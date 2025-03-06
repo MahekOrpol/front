@@ -1,0 +1,157 @@
+.footer_mdjj {
+  background-color: #611d2b;
+}
+
+.hdr_csds {
+  margin-top: 10rem;
+}
+
+.use_sdc {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-size: 30px !important;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.doof_dd {
+  font-family: "Cabin";
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 311%;
+  letter-spacing: 0%;
+  text-align: justify;
+  text-align: start;
+}
+
+.footr_lnk {
+  color: #fff;
+  text-decoration: none;
+}
+.footr_lnk:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer_icon_kk {
+  border: 1px solid white;
+  border-radius: 100%;
+  padding: 10px;
+}
+/* 
+.hr_tg_dd{
+        position: relative;
+        overflow: visible;
+        text-align: center;
+        margin: 1rem 0;
+        color: inherit;
+        background-color: #ffff;
+        border: 0;
+        opacity: 1.25;
+}
+
+.hr_tg_dd::after{
+    content: "";
+    position: absolute;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 150px;
+} */
+
+.hr_tg_dd {
+  position: relative;
+  width: 100%;
+  border: none;
+  height: 1px;
+  background-color: #fff;
+  opacity: 1;
+  margin: 2rem 0; /* Adjust spacing */
+}
+
+/* Social Icons Wrapper - Positioning Over the HR */
+.foote_ic_sddc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 20px;
+}
+
+/* Adjust individual icons */
+.footer_icon_kk {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #611d2b;
+  border-radius: 50%;
+}
+
+.ajreug {
+  font-family: "Cabin";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 106%;
+  letter-spacing: 0%;
+}
+
+.pay_ic_sdcxsd {
+  height: 40px !important;
+  width: 70px;
+  background-color: #fff;
+}
+.pay_ic_sdcxsxxd {
+  background-color: #fff;
+}
+
+.hr_bootom {
+  background-color: #fff;
+  margin-top: 30px;
+  height: 1px;
+  opacity: 0.7;
+}
+
+.foot_ofcd {
+  font-family: "Cabin";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.main-dxbd {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.gbhuji8usdjikijd {
+  border-radius: 9px;
+  color: #611d2b;
+  background-color: #fff;
+  width: 50%;
+  align-items: center;
+  margin: auto;
+}
+.suv_butn {
+  background-color: #611d2b;
+  color: #fff;
+  border-radius: 4px;
+  font-family: "Cabin";
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+/* .suv_butn1{
+    background-color: #F4EDED;
+    color: #fff;
+    border-radius: 4px;
+    
+} */
