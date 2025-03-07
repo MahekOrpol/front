@@ -20,11 +20,11 @@ import { CiStar } from "react-icons/ci";
 import Footer from "../../Pages/Footer";
 
 const images = [
-  require("../../Images/disco_img.png"),
-  require("../../Images/disco_img.png"),
-  require("../../Images/disco_img.png"),
-  require("../../Images/disco_img.png"),
-  require("../../Images/disco_img.png"),
+  require("../../Images/ring222.png"),
+  require("../../Images/ring222.png"),
+  require("../../Images/ring222.png"),
+  require("../../Images/ring222.png"),
+  require("../../Images/ring222.png"),
 ];
 
 const Home = () => {
@@ -59,7 +59,7 @@ const Home = () => {
 
           <div className="banner_text2 w-50 justify-content-start d-flex gap-3">
             <button className="get-strt_btn ">Let’s Get Started</button>
-            <div className="arrow_bac p-2 d-flex justify-content-center align-items-center">
+            <div className="arrow_bac p-2 d-flex justify-content-center align-items-center ">
               <FaArrowRight className="right_arrow_dd" />
             </div>
           </div>
@@ -208,6 +208,46 @@ const Home = () => {
               <img src={vector} alt="icon" />
               <span className="scroll_heder">Friendly Sale 30% Off</span>
             </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">
+                Shop Gold and Diamond Jewellery
+              </span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">Friendly Sale 30% Off</span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">
+                Shop Gold and Diamond Jewellery
+              </span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">Friendly Sale 30% Off</span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">
+                Shop Gold and Diamond Jewellery
+              </span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">Friendly Sale 30% Off</span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">
+                Shop Gold and Diamond Jewellery
+              </span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">Friendly Sale 30% Off</span>
+            </div>
           </div>
         </div>
         {/* </div> */}
@@ -243,6 +283,46 @@ const Home = () => {
 
         <div className="scrolling-wrapper">
           <div className="scroll-content">
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">
+                Shop Gold and Diamond Jewellery
+              </span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">Friendly Sale 30% Off</span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">
+                Shop Gold and Diamond Jewellery
+              </span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">Friendly Sale 30% Off</span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">
+                Shop Gold and Diamond Jewellery
+              </span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">Friendly Sale 30% Off</span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">
+                Shop Gold and Diamond Jewellery
+              </span>
+            </div>
+            <div className="scroll-item">
+              <img src={vector} alt="icon" />
+              <span className="scroll_heder">Friendly Sale 30% Off</span>
+            </div>
             <div className="scroll-item">
               <img src={vector} alt="icon" />
               <span className="scroll_heder">
@@ -504,7 +584,7 @@ const Home = () => {
           </Swiper>
 
           <div
-            className="carousel-controls d-flex justify-content-center gap-5 pt-5"
+            className="carousel-controls d-flex justify-content-center gap-5"
             style={{ cursor: "pointer" }}
           >
             <div ref={prevRef}>
@@ -524,62 +604,53 @@ const Home = () => {
         <img src={require("../../Images/Groupimg.png")} />
 
         <div className="pt-5 d-flex position-relative w-100 justify-content-center">
-          <div className=" position-relative box-trens-2 w-25">
-            <div className="d-flex justify-content-center align-items-center h-100">
+          <div className=" position-relative box-trens-2 w-25 ">
+            <div className="d-flex justify-content-center align-items-center h-100 first_bnnrrr">
               <img
                 src={require("../../Images/image (7).png")}
                 alt="Dainty Earrings"
-                className="img-fluid"
+                className="img-fluid fir_bnr_rd"
               />
             </div>
 
-            {/* <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Dainty Earrings</span>
-              <a href="#" className="shop_now_lnk">
+            <div className="text-overlay position-absolute top-50 translate-middle_frst text-white text-center d-flex flex-column">
+              <span className="bird_ddc">Birthday Gifts</span>
+              <a href="#" className="shop_now_lnk ">
                 SHOP NOW <FaChevronRight />
               </a>
-            </div> */}
+            </div>
           </div>
 
           <div className="w-25">
-            <div className=" position-relative box-trens-2">
+            <div className=" position-relative box-trens-2 sec_bbbb">
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
                   src={require("../../Images/image 155.png")}
                   alt="Dainty Earrings"
-                  className="img-fluid"
+                  className="img-fluid fir_bnr_rd"
                 />
               </div>
-              {/* <div
-                className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-                style={{ left: "121px" }}
-              >
-                <span className="dai_txt">Dainty Earrings</span>
-                <a href="#" className="shop_now_lnk">
+              <div className="text-overlay position-absolute top-50 translate-middle_sec1 text-white text-center d-flex flex-column">
+                <span className="bird_ddc">Birthday Gifts</span>
+                <a href="#" className="shop_now_lnk ">
                   SHOP NOW <FaChevronRight />
                 </a>
-              </div> */}
+              </div>
             </div>
-            <div className=" position-relative box-trens-2">
+            <div className=" position-relative box-trens-2 sec_bbbb1">
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
                   src={require("../../Images/image 157.png")}
                   alt="Dainty Earrings"
-                  className="img-fluid"
+                  className="img-fluid fir_bnr_rd"
                 />
               </div>
-              {/* <div
-                className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-                style={{ left: "121px" }}
-              >
-                <span className="dai_txt">Dainty Earrings</span>
-                <a href="#" className="shop_now_lnk">
+              <div className="text-overlay position-absolute top-50 translate-middle_sec2 text-white text-center d-flex flex-column">
+                <span className="bird_ddc">Birthday Gifts</span>
+                <a href="#" className="shop_now_lnk ">
                   SHOP NOW <FaChevronRight />
                 </a>
-              </div> */}
+              </div>
             </div>
           </div>
 
@@ -589,56 +660,47 @@ const Home = () => {
                 <img
                   src={require("../../Images/image 156.png")}
                   alt="Dainty Earrings"
-                  className="img-fluid"
+                  className="img-fluid fir_bnr_rd"
                 />
               </div>
-              {/* <div
-                className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-                style={{ left: "121px" }}
-              >
-                <span className="dai_txt">Dainty Earrings</span>
-                <a href="#" className="shop_now_lnk">
+              <div className="text-overlay position-absolute top-50 translate-middle_sec3 text-white text-center d-flex flex-column">
+                <span className="bird_ddc">Birthday Gifts</span>
+                <a href="#" className="shop_now_lnk_lst ">
                   SHOP NOW <FaChevronRight />
                 </a>
-              </div> */}
+              </div>
             </div>
-            <div className=" position-relative box-trens-2">
+            <div className=" position-relative box-trens-2 sec_bbbb2">
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
                   src={require("../../Images/image (8).png")}
                   alt="Dainty Earrings"
-                  className="img-fluid"
+                  className="img-fluid fir_bnr_rd"
                 />
               </div>
-              {/* <div
-                className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-                style={{ left: "121px" }}
-              >
-                <span className="dai_txt">Dainty Earrings</span>
-                <a href="#" className="shop_now_lnk">
+              <div className="text-overlay position-absolute top-50 translate-middle_sec3 text-white text-center d-flex flex-column">
+                <span className="bird_ddc">Birthday Gifts</span>
+                <a href="#" className="shop_now_lnk_lst ">
                   SHOP NOW <FaChevronRight />
                 </a>
-              </div> */}
+              </div>
             </div>
           </div>
 
           <div className=" position-relative box-trens-2 w-25">
-            <div className="d-flex justify-content-center align-items-center">
+            <div className="d-flex justify-content-center align-items-center last_bnnn">
               <img
                 src={require("../../Images/image 159.png")}
                 alt="Dainty Earrings"
-                className="img-fluid"
+                className="img-fluid fir_bnr_rd"
               />
             </div>
-            {/* <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Dainty Earrings</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div> */}
+            <div className="text-overlay position-absolute top-50 translate-middle_sec4 text-white text-center d-flex flex-column">
+                <span className="bird_ddc">Birthday Gifts</span>
+                <a href="#" className="shop_now_lnk_lst ">
+                  SHOP NOW <FaChevronRight />
+                </a>
+              </div>
           </div>
         </div>
       </div>
