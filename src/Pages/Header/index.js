@@ -16,7 +16,7 @@ const Header = () => {
       <div className="heder_sec_main d-flex align-items-center">
         <div
           className="d-flex align-items-center w-25 gap-4"
-          style={{ paddingLeft: "9rem" }}
+          style={{ paddingLeft: "7.3rem" }}
         >
           <div className="header_list_tcty">Rings</div>
           <div className="header_list_tcty">Earrings</div>
