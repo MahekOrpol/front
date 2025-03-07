@@ -19,15 +19,16 @@
   line-height: 25.76px;
   font-weight: 400;
   color: white;
-  margin-left: 3%;
+  margin-left: 4.6%;
   position: absolute;
   bottom: 40.5%;
+  font-family: "Cabin", sans-serif;
 }
 .banner_text2 {
   position: absolute;
   bottom: 32%;
-  font-family: Cabin;
-  margin-left: 10.6%;
+  font-family: "Cabin", sans-serif;
+  margin-left: 9%;
   justify-content: center;
   display: flex;
 }
@@ -56,12 +57,19 @@
   font-size: 50px;
   font-weight: 400;
   line-height: 68.55px;
+  font-family: "DM Serif Text", serif;
 }
 
 .category_txt {
   font-size: 22px;
   font-weight: 500;
   line-height: 26.73px;
+  font-family: "Cabin", sans-serif;
+}
+
+.sdcdscsd{
+  
+  font-family: "Cabin", sans-serif;
 }
 
 .grp_img {
@@ -73,6 +81,7 @@
   color: #611d2b;
   font-weight: 400;
   white-space: noWrap;
+  font-family: "DM Serif Text", serif;
 }
 .dai_txt1 {
   font-size: 13px;
@@ -92,10 +101,10 @@
 .shop_now_lnk {
   color: black;
   font-size: 13px;
-  color: #000000;
   font-weight: 400;
   white-space: noWrap;
   text-align: left;
+  font-family: "Cabin", sans-serif;
 }
 
 .ractangle_box {
@@ -125,7 +134,7 @@
 }
 
 .hszhh {
-  font-family: Cabin;
+  font-family: "Cabin", sans-serif;
   font-weight: 400;
   font-size: 24px;
   line-height: 38.64px;
@@ -140,7 +149,7 @@
   left: 118px;
   border-radius: 4px;
   border: none;
-  font-family: "Cabin";
+  font-family: "Cabin", sans-serif;
   font-weight: 500;
   font-size: 24px;
   line-height: 38.64px;
@@ -148,6 +157,9 @@
 }
 
 .hdr_csd {
+  padding-top: 6rem;
+}
+.hdr_csd1 {
   padding-top: 10rem;
 }
 
@@ -214,7 +226,7 @@
 }
 
 .fest_fff {
-  font-family: "Cabin";
+  font-family: "Cabin", sans-serif;
   font-weight: 400;
   font-size: 24px;
   line-height: 100%;
@@ -230,7 +242,7 @@
 }
 
 .txt_par {
-  font-family: "Cabin";
+  font-family: "Cabin", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 153%;
@@ -287,7 +299,7 @@
   width: 70%;
   border: none;
   height: 30px;
-  font-family: "Cabin";
+  font-family: "Cabin", sans-serif;
   font-weight: 400;
   font-size: 14px;
   letter-spacing: 0%;
@@ -316,7 +328,7 @@
 }
 
 .word_txtxt {
-  font-family: "Cabin";
+  font-family: "Cabin", sans-serif;
   font-weight: 600;
   font-size: 22px;
   line-height: 100%;
@@ -324,7 +336,7 @@
 }
 .word_txtxt1 {
   color: #000000;
-  font-family: "Cabin";
+  font-family: "Cabin", sans-serif;
   font-weight: 600;
   font-size: 22px;
   line-height: 100%;
@@ -333,7 +345,7 @@
 
 .word_txtxt2 {
   color: #989898;
-  font-family: "Cabin";
+  font-family: "Cabin", sans-serif;
   font-weight: 600;
   font-size: 15px;
   line-height: 100%;
@@ -347,7 +359,9 @@
   border-radius: 4px;
   border: none;
   height: 40px;
+  font-weight: 600;
   align-items: center;
+  font-family: "Cabin", sans-serif;
 }
 
 .more_btn_dsdd {
@@ -357,6 +371,7 @@
   background-color: #fff;
   border-radius: 4px;
   height: 40px;
+  font-family: "Cabin", sans-serif;
 }
 
 .img-fluid1 {
@@ -384,7 +399,7 @@
 }
 
 .soli_txt_sccs {
-  font-family: "Cabin";
+  font-family: "Cabin", sans-serif;
   font-weight: 600;
   font-size: 35px;
   line-height: 100%;
@@ -1171,7 +1186,7 @@ button.swiper-pagination-bullet {
 }
 
 .szdcsdz_txtx {
-  font-family: "Cabin";
+  font-family: "Cabin", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
@@ -1180,7 +1195,7 @@ button.swiper-pagination-bullet {
 }
 
 .cl_sdcsd {
-  font-family: "Cabin";
+  font-family: "Cabin", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 150%;
@@ -1302,35 +1317,45 @@ button.swiper-pagination-bullet {
 }
 
 .translate-middle_frst {
-  transform: translate(-28%, 270%) !important;
+  transform: translate(-65%, 304%) !important;
 }
 .translate-middle_sec1 {
-  transform: translate(-75%, 62%) !important;
+  transform: translate(-123%, 80%) !important;
 }
 .translate-middle_sec2 {
-  transform: translate(-75%, 62%) !important;
+  transform: translate(-123%, 80%) !important;
 }
 .translate-middle_sec3 {
-  transform: translate(10%, 62%) !important;
+  transform: translate(17%, 91%) !important;
 }
 .translate-middle_sec4 {
-  transform: translate(-54%, 280%) !important;
+  transform: translate(-65%, 304%) !important;
 }
 
 .bird_ddc {
-  font-family: 'Cabin';
+  font-family: "Cabin", sans-serif;
   font-weight: 500;
-  font-size: 35px;
+  font-size: 26px;
   line-height: 100%;
   letter-spacing: 0%;
-  color: #000;
+  color: #fff;
 }
 
 .shop_now_lnk_lst {
-  color: black;
   font-size: 13px;
-  color: #000000;
+  color: #fff;
   font-weight: 400;
   white-space: noWrap;
   text-align: end;
+  font-family: "Cabin", sans-serif;
+}
+
+.spg_nb_sle{
+  font-family: "DM Serif Text", serif;
+  color: #611d2b;
+  font-weight: 400;
+  font-size: 28px;
+  background-color: #F4EDED;
+  border: 1px solid #611d2b;
+  border-radius: 5px;
 }

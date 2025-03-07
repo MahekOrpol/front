@@ -2,6 +2,7 @@
   background-color: #611d2b;
   color: #fff;
   height: 40px;
+
 }
 
 .header_text {
@@ -10,6 +11,7 @@
   font-size: 16px;
   font-weight: 500;
   align-items: center;
+  font-family: "Cabin", sans-serif;
 }
 
 .heder_sec_main {
@@ -18,12 +20,14 @@
 .acco9_text {
   font-weight: 600;
   font-size: 22px;
+  font-family: "Cabin", sans-serif;
 }
 
 .sign_txt {
   color: #797979;
   font-weight: 400;
   font-size: 16px;
+  font-family: "Cabin", sans-serif;
 }
 
 .header_list_tcty {
@@ -32,5 +36,6 @@
   line-height: 19.8px;
   color: black;
   white-space: noWrap;
-  margin-left: 5%;
+  margin-left: 0%;
+  font-family: "Cabin", sans-serif;
 }

@@ -66,7 +66,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center pt-5">
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Categories</span>
         <p className="category_txt">Radiance Fits for Everyone</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -155,7 +155,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="hdr_csd position-relative">
+      <div className="hdr_csd1 position-relative">
         <div className="position-relative">
           <img
             src={require("../../Images/Rectangle 105464.png")}
@@ -185,7 +185,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="hdr_csd">
+      <div className="hdr_csd1">
         <div className="scrolling-wrapper">
           <div className="scroll-content">
             <div className="scroll-item">
@@ -278,6 +278,9 @@ const Home = () => {
               and appeal.
               <br /> Here’s a guide to different shapes of diamond rings
             </span>
+            <button className="w-25 spg_nb_sle">
+            Shop Now
+            </button>
           </div>
         </div>
 
@@ -478,7 +481,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd mt-5">
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd1 mt-5">
         <span className="category_name">New Arrivals</span>
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -601,21 +604,23 @@ const Home = () => {
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Gifting Guide</span>
         <p className="category_txt">Jewelry makes the perfect gift</p>
+        {/* <img src={require("../../Images/Groupimg.png")} /> */}
         <img src={require("../../Images/Groupimg.png")} />
 
         <div className="pt-5 d-flex position-relative w-100 justify-content-center">
           <div className=" position-relative box-trens-2 w-25 ">
             <div className="d-flex justify-content-center align-items-center h-100 first_bnnrrr">
               <img
-                src={require("../../Images/image (7).png")}
+                // src={require("../../Images/image (7).png")}
+                src={require("../../Images/earings.png")}
                 alt="Dainty Earrings"
                 className="img-fluid fir_bnr_rd"
               />
             </div>
 
-            <div className="text-overlay position-absolute top-50 translate-middle_frst text-white text-center d-flex flex-column">
+            <div className="text-overlay position-absolute top-50 translate-middle_frst text-white text-center d-flex flex-column gap-1">
               <span className="bird_ddc">Birthday Gifts</span>
-              <a href="#" className="shop_now_lnk ">
+              <a href="#" className="shop_now_lnk" style={{color:'#fff'}}>
                 SHOP NOW <FaChevronRight />
               </a>
             </div>
@@ -625,14 +630,15 @@ const Home = () => {
             <div className=" position-relative box-trens-2 sec_bbbb">
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
-                  src={require("../../Images/image 155.png")}
+                  src={require("../../Images/birth.png")}
+                  // src={require("../../Images/image 155.png")}
                   alt="Dainty Earrings"
                   className="img-fluid fir_bnr_rd"
                 />
               </div>
-              <div className="text-overlay position-absolute top-50 translate-middle_sec1 text-white text-center d-flex flex-column">
+              <div className="text-overlay position-absolute top-50 translate-middle_sec1 text-white text-center d-flex flex-column gap-1">
                 <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk ">
+                <a href="#" className="shop_now_lnk " style={{color:'#fff'}}>
                   SHOP NOW <FaChevronRight />
                 </a>
               </div>
@@ -640,14 +646,15 @@ const Home = () => {
             <div className=" position-relative box-trens-2 sec_bbbb1">
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
-                  src={require("../../Images/image 157.png")}
+                  src={require("../../Images/bar.png")}
+                  // src={require("../../Images/image 157.png")}
                   alt="Dainty Earrings"
                   className="img-fluid fir_bnr_rd"
                 />
               </div>
-              <div className="text-overlay position-absolute top-50 translate-middle_sec2 text-white text-center d-flex flex-column">
+              <div className="text-overlay position-absolute top-50 translate-middle_sec2 text-white text-center d-flex flex-column gap-1">
                 <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk ">
+                <a href="#" className="shop_now_lnk" style={{color:'#fff'}}>
                   SHOP NOW <FaChevronRight />
                 </a>
               </div>
@@ -658,14 +665,15 @@ const Home = () => {
             <div className=" position-relative box-trens-2">
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
-                  src={require("../../Images/image 156.png")}
+                  src={require("../../Images/chn.png")}
+                  // src={require("../../Images/image 156.png")}
                   alt="Dainty Earrings"
                   className="img-fluid fir_bnr_rd"
                 />
               </div>
-              <div className="text-overlay position-absolute top-50 translate-middle_sec3 text-white text-center d-flex flex-column">
+              <div className="text-overlay position-absolute top-50 translate-middle_sec3 text-white text-center d-flex flex-column gap-1">
                 <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk_lst ">
+                <a href="#" className="shop_now_lnk_lst " style={{color:'#fff'}}>
                   SHOP NOW <FaChevronRight />
                 </a>
               </div>
@@ -673,14 +681,15 @@ const Home = () => {
             <div className=" position-relative box-trens-2 sec_bbbb2">
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
-                  src={require("../../Images/image (8).png")}
+                  src={require("../../Images/ring.png")}
+                  // src={require("../../Images/image (8).png")}
                   alt="Dainty Earrings"
                   className="img-fluid fir_bnr_rd"
                 />
               </div>
-              <div className="text-overlay position-absolute top-50 translate-middle_sec3 text-white text-center d-flex flex-column">
+              <div className="text-overlay position-absolute top-50 translate-middle_sec3 text-white text-center d-flex flex-column gap-1">
                 <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk_lst ">
+                <a href="#" className="shop_now_lnk_lst " style={{color:'#fff'}}>
                   SHOP NOW <FaChevronRight />
                 </a>
               </div>
@@ -690,14 +699,15 @@ const Home = () => {
           <div className=" position-relative box-trens-2 w-25">
             <div className="d-flex justify-content-center align-items-center last_bnnn">
               <img
-                src={require("../../Images/image 159.png")}
+                src={require("../../Images/diam.png")}
+                // src={require("../../Images/image 159.png")}
                 alt="Dainty Earrings"
                 className="img-fluid fir_bnr_rd"
               />
             </div>
-            <div className="text-overlay position-absolute top-50 translate-middle_sec4 text-white text-center d-flex flex-column">
+            <div className="text-overlay position-absolute top-50 translate-middle_sec4 text-white text-center d-flex flex-column gap-1">
                 <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk_lst ">
+                <a href="#" className="shop_now_lnk_lst " style={{color:'#fff'}}>
                   SHOP NOW <FaChevronRight />
                 </a>
               </div>
@@ -714,13 +724,13 @@ const Home = () => {
           <div className="card w-25 testimonial-card mt-5">
             <div className="card-body pt-5">
               <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-              <p className="card-text text-center">
+              <p className="card-text sdcdscsd text-center">
                 I wanted a custom bracelet to honor my daughter’s birth, and the
                 designers exceeded my expectations. They listened to every
                 detail I envisioned and brought it to life. It’s a masterpiece
                 I’ll cherish forever.
               </p>
-              <p className="text-center">Client</p>
+              <p className="text-center sdcdscsd">Client</p>
 
               {/* Star Ratings */}
               <div className="d-flex justify-content-center align-items-center">
@@ -735,13 +745,13 @@ const Home = () => {
           <div className="card w-25 testimonial-card1 mt-5">
             <div className="card-body pt-5">
               <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-              <p className="card-text text-center">
+              <p className="card-text sdcdscsd text-center">
                 I wanted a custom bracelet to honor my daughter’s birth, and the
                 designers exceeded my expectations. They listened to every
                 detail I envisioned and brought it to life. It’s a masterpiece
                 I’ll cherish forever.
               </p>
-              <p className="text-center">Client</p>
+              <p className="text-center sdcdscsd">Client</p>
 
               {/* Star Ratings */}
               <div className="d-flex justify-content-center align-items-center">
@@ -756,13 +766,13 @@ const Home = () => {
           <div className="card w-25 testimonial-card2 mt-5">
             <div className="card-body pt-5">
               <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-              <p className="card-text text-center">
+              <p className="card-text sdcdscsd text-center">
                 I wanted a custom bracelet to honor my daughter’s birth, and the
                 designers exceeded my expectations. They listened to every
                 detail I envisioned and brought it to life. It’s a masterpiece
                 I’ll cherish forever.
               </p>
-              <p className="text-center">Client</p>
+              <p className="text-center sdcdscsd">Client</p>
 
               {/* Star Ratings */}
               <div className="d-flex justify-content-center align-items-center">

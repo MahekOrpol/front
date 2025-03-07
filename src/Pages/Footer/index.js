@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="gbhuji8usdjikijd d-flex justify-content-between p-3 pe-5 ps-5">
             <div>
             <span className="main-dxbd">Subscribe to get Updated</span>
-            <p className="mt-2">
+            <p className="mt-2 sdcdscsd">
             Be the first to know about exclusive offers, new arrivals, and expert jewelry tips.
             </p>
             </div>
@@ -34,7 +34,7 @@ const Footer = () => {
               src={require("../../Images/crystovalogowhite (1) 2.png")}
               width={400}
             />
-            <p style={{ width: "442px" }}>
+            <p className="sdcdscsd ms-3 mt-3" style={{ width: "442px" }}>
               At Crystova Jewellery, we believe that every piece tells a story.
               Inspired by timeless elegance and modern trends, our collections
               are designed to celebrate life’s precious moments.
