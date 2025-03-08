@@ -122,7 +122,6 @@ const ProductDetails = () => {
               <div className="d-flex gap-4">
                 <div className="det_min_cd2">
                 <video src={ringVideo} className="detr_img bg-white" autoPlay loop muted />
-
                   {/* <img
                     className="detr_img"
                     src={require("../../Images/productdetails.png")}

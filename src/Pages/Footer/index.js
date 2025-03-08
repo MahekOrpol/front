@@ -16,15 +16,18 @@ const Footer = () => {
         <div className="gbhuji8usdjikijd d-flex justify-content-between p-3 pe-5 ps-5">
             <div>
             <span className="main-dxbd">Subscribe to get Updated</span>
-            <p className="mt-2 sdcdscsd">
+            <p className="mt-2 sdcdscsd" style={{width:'85%'}}>
             Be the first to know about exclusive offers, new arrivals, and expert jewelry tips.
             </p>
             </div>
             <div>
 
+            <div className="d-flex align-items-center gap-2" style={{whiteSpace:'noWrap'}}>
+            <input type="text" name="pincode" className="oizb_inout p-2" />
             <butto className='suv_butn p-2'>
             Subscribe Now
             </butto>
+            </div>
             </div>
         </div>
 
@@ -56,7 +59,7 @@ const Footer = () => {
                 <a className="footr_lnk">Shop</a>
               </li>
               <li>
-                <a className="footr_lnk">Blog</a>
+                <a href="/blog" className="footr_lnk">Blog</a>
               </li>
               <li>
                 <a className="footr_lnk">Contact Us</a>

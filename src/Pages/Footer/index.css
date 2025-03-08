@@ -148,6 +148,11 @@
   font-size: 19px;
   line-height: 100%;
   letter-spacing: 0%;
+  width: 163px;
+  text-align: center;
+  height: 42px;
+  /* align-items: center; */
+  align-content: center;
 }
 /* .suv_butn1{
     background-color: #F4EDED;
@@ -155,3 +160,9 @@
     border-radius: 4px;
     
 } */
+
+.oizb_inout{
+  background-color: #F4EDED;
+  border: none;
+  outline: none;
+}

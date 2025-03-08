@@ -1,0 +1,29 @@
+.ssss_dddd11{
+    width: 50%;
+}
+.ssss_ssd11{
+    width: 100%;
+}
+.deta_blg_dd{
+    width: 100%;
+}
+
+.blog_fade_ds1 {
+    position: relative;
+}
+
+
+.blog_fade_ds1::after {
+    content: "Jan 20, 2025"; /* Change dynamically in React if needed */
+    position: absolute;
+    bottom: -26px;
+    left: 50px;
+    background-color: #611d2b;
+    color: #fff;
+    padding: 18px 80px;
+    font-size: 20px;
+    font-family: "Cabin", sans-serif;
+    font-weight: 600;
+    border-radius: 2px;
+    border: none;
+}
