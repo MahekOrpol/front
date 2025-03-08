@@ -28,7 +28,8 @@
 }
 
 .det_min_cd{
-    width: 22.5%;
+    /* width: 22.5%; */
+    width: 122%;
 }
 
 .detr_img_d{
@@ -41,5 +42,211 @@
     border-bottom-right-radius: 50px;
     box-shadow: 0px 0px 2px 0px #00000040;
     background-color: #dcdcdc;
-    width: 22.5%;
+    /* width: 22.5%; */
+    width: 117%;
+}
+
+.sdss_degree{
+  font-family: "Cabin", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0%;
+  text-align: center;
+}
+
+.secrt_1{
+  font-family: "Cabin", sans-serif;
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+  
+.sav_btn{
+  font-family: "Cabin", sans-serif;
+font-weight: 400;
+font-size: 13px;
+line-height: 142%;
+letter-spacing: 0%;
+text-align: justify;
+background-color: #611D2B;
+border-radius: 91px;
+color: #FFFFFF;
+border: none;
+}
+
+.rv_ssss{
+  font-family: "Cabin", sans-serif;
+font-weight: 400;
+font-size: 15px;
+line-height: 100%;
+letter-spacing: 0%;
+
+}
+
+.sku_dsd{
+
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.stk_btn{
+  font-family: "Cabin", sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 9%;
+  color: #611d2b;
+  border: 1px solid #611d2b;
+  border-radius: 91px;
+  background-color: #FFFFFF;
+}
+
+.main_txt_pb{
+  font-family: "Cabin", sans-serif;
+font-weight: 500;
+font-size: 35px;
+line-height: 100%;
+letter-spacing: 0%;
+color: #000000;
+}
+
+.cut_txt_sc{
+  font-family: "Cabin", sans-serif;
+font-weight: 500;
+font-size: 25px;
+line-height: 100%;
+letter-spacing: 0%;
+color: #969696;
+text-decoration: line-through;
+}
+
+.seb_p_g{
+  font-family: "Cabin", sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 142%;
+letter-spacing: 0%;
+text-align: justify;
+
+}
+
+.sec_pb{
+  box-shadow: 0px 0px 5px 0px #00000040;
+}
+
+.your_pncd{
+  font-family: "Cabin", sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 155%;
+letter-spacing: 0%;
+}
+
+.pncd_btn{
+  background-color: #611d2b;
+  color: #FFFFFF;
+  border: none;
+  font-family: 'Inter';
+}
+
+.oib_inout{
+  border: none;
+  background-color: #EAEAEA;
+  outline: none;
+}
+
+.pv_txtsss{
+  font-family: "Cabin", sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 155%;
+letter-spacing: 0%;
+
+}
+
+.hr_pb_dtl{
+  color: #E1E1E1;
+  height: 1px !important;
+  opacity: 1;
+}
+
+.size_drp_dpwn{
+  background-color: #EAEAEA;
+  color: #000000;
+  border: none;
+  font-family: "Cabin", sans-serif;
+font-weight: 500;
+font-size: 20px;
+letter-spacing: 0%;
+}
+
+.btn-check:focus+.btn-secondary, .btn-secondary:focus {
+  color: #000000;
+  background-color: #EAEAEA;
+  border:none;
+  box-shadow: 0 0 0 .25rem rgba(130,138,145,.5);
+}
+
+.dim_txt_sjs{
+  font-family: "Cabin", sans-serif;
+font-weight: 500;
+font-size: 20px;
+line-height: 155%;
+letter-spacing: 0%;
+
+}
+
+.a_sssss{
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 14px !important;
+  line-height: 220.00000000000003%;
+  letter-spacing: 0%;
+}
+
+.round_ddd{
+  box-shadow: 0px 0px 5px 0px #00000040;
+border-radius: 100px;
+}
+
+
+.diamond_shape {
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px; /* Adjust size as needed */
+  height: 100px;
+  border-radius: 50%; /* Keeps circular shape */
+}
+
+.diamond_shape:hover {
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  border-radius: 8px;
+  transform: scale(1.1); /* Slight zoom effect */
+}
+
+.diamond_shape img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.diamond_shape:hover img {
+  transform: scale(1.1);
+}
+
+
+
+.product_det_menu{
+  max-height: 200px; /* Adjust height as needed */
+  overflow-y: auto; /* Enables scrolling */
+}
+
+.xsddcsd{
+  width: 104%;
 }

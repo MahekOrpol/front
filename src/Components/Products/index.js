@@ -262,7 +262,7 @@ const Products = () => {
                 </div>
                 <div className="d-flex flex-column main_cdsss">
                   <span className="mikdec_asdaa pt-3">{product.name}</span>
-                  <div className="d-flex align-items-center gap-4 pt-1">
+                  <div className="d-flex align-items-center gap-3 pt-1">
                     <span className="mikdec_asdxsx">{product.price}</span>
                     <span className="mikdec_axsx">{product.cutPrice}</span>
                   </div>

@@ -5,8 +5,10 @@ import logo from "../../Images/logo.png";
 import usericon from "../../Images/Group.png";
 import { CiHeart, CiSearch } from "react-icons/ci";
 import { IoBagHandleOutline } from "react-icons/io5";
-const Header = () => {
+import { useNavigate } from "react-router-dom";
 
+const Header = () => {
+  const navigate=useNavigate('');
   return (
     <>
       <div className="header_main">
@@ -18,7 +20,7 @@ const Header = () => {
           className="d-flex align-items-center w-25 gap-4"
           style={{ paddingLeft: "7.3rem" }}
         >
-          <div className="header_list_tcty">Rings</div>
+          <div className="header_list_tcty" onClick={()=>navigate('/products')}>Rings</div>
           <div className="header_list_tcty">Earrings</div>
           <div className="header_list_tcty">Pendant</div>
           <div className="header_list_tcty">Bracelet</div>
