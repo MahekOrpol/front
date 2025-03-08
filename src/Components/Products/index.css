@@ -154,17 +154,7 @@
 .asxasx_card:hover .hover-overlay {
   opacity: 1;
 }
-.left-btn,
-.right-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(460%);
-  border: none;
-  padding: 5px 10px;
-  border-radius: 50%;
-  cursor: pointer;
-  background-color: #eaeaea;
-}
+
 
 .DFC_NHJ {
 position: absolute;
@@ -207,4 +197,39 @@ top: 80%;
   line-height: 100%;
   letter-spacing: 0%;
   font-family: "Cabin", sans-serif;
+}
+
+
+.add-to-crd-dsss {
+  background-color: #611d2b;
+  color: #fff;
+  border: none;
+  font-family: "Cabin", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: absolute;
+  bottom: 0;
+}
+
+.left-btn {
+  position: absolute;
+  position: absolute;
+  bottom: 20px;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #eaeaea;
+}
+.right-btn {
+  position: absolute;
+  bottom: 20px;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #eaeaea;
 }

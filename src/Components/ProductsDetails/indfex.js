@@ -1,10 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
 import { FaChevronRight, FaStar } from "react-icons/fa6";
 import "./index.css";
+import { BiShoppingBag } from "react-icons/bi";
+import { GoHeart, GoHeartFill } from "react-icons/go";
+import { GoShareAndroid } from "react-icons/go";
+import { FcLike } from "react-icons/fc";
+import ringVideo from '../../Videos/ring.mp4'
 
+const products = [
+  {
+    id: 1,
+    imgSrc: require("../../Images/image 98.png"),
+    link: "RINGS",
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 2,
+    imgSrc: require("../../Images/tre-2.png"),
+    link: "RINGS",
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 3,
+    imgSrc: require("../../Images/image 100 (1).png"),
+    link: "RINGS",
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 4,
+    imgSrc: require("../../Images/latsss.png"),
+    link: "RINGS",
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+];
 const ProductDetails = () => {
+  const [liked, setLiked] = useState(false);
+  const [hoveredProduct, setHoveredProduct] = useState(null);
+  const [isFavorite, setIsFavorite] = useState({});
+
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const toggleFavorite = (id) => {
+    setIsFavorite((prev) => ({
+      ...prev,
+      [id]: !prev[id], // Toggle the favorite state for the specific card
+    }));
+  };
+
+  const faqs = [
+    {
+      icon: <img src={require("../../Images/watch.png")} />,
+      title: "Shipping",
+      answer:
+        "This item is made to order and takes 2-3 weeks to craft. We ship FedEx Priority Overnight, signature required and fully insured.",
+    },
+    {
+      icon: <img src={require("../../Images/Vector (6).png")} />,
+      title: "Return Policy",
+      answer:
+        "Received an item you don't like? Crystova is proud to offer free returns within 30 days from receiving your item. Contact our support team to issue a return.",
+    },
+  ];
+
   return (
     <div>
       <Header />
@@ -47,14 +118,16 @@ const ProductDetails = () => {
 
         <section className="d-flex gap-5">
           <div className="w-100">
-            <div className="pt-5 d-flex flex-column gap-4">
+            <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0">
               <div className="d-flex gap-4">
-                <div className="det_min_cd p-5 w-100">
-                  <img
+                <div className="det_min_cd2">
+                <video src={ringVideo} className="detr_img bg-white" autoPlay loop muted />
+
+                  {/* <img
                     className="detr_img"
                     src={require("../../Images/productdetails.png")}
-                  />
-                  <div className="sdss_degree">360° Degree View</div>
+                  /> */}
+                  {/* <div className="sdss_degree">360° Degree View</div> */}
                 </div>
                 <div className="det_min_cds p-5 w-100">
                   <img
@@ -325,19 +398,25 @@ const ProductDetails = () => {
               </div>
               <div className="d-flex align-items-center flex-column ">
                 <div className="diamond_shape">
-                  <img src={require("../../Images/oval-single-84e219e56d-500x500.png")} />
+                  <img
+                    src={require("../../Images/oval-single-84e219e56d-500x500.png")}
+                  />
                 </div>
                 <span className="pt-2">Oval</span>
               </div>
               <div className="d-flex align-items-center flex-column ">
                 <div className="diamond_shape">
-                  <img src={require("../../Images/gia-certified-real-cushion-cut-diamond (1).png")} />
+                  <img
+                    src={require("../../Images/gia-certified-real-cushion-cut-diamond (1).png")}
+                  />
                 </div>
                 <span className="pt-2">Cushion</span>
               </div>
               <div className="d-flex align-items-center flex-column ">
                 <div className="diamond_shape">
-                  <img src={require("../../Images/emerald-cut-loose-diamond.png")} />
+                  <img
+                    src={require("../../Images/emerald-cut-loose-diamond.png")}
+                  />
                 </div>
                 <span className="pt-2">Emerald</span>
               </div>
@@ -345,8 +424,272 @@ const ProductDetails = () => {
             <div className="pt-2">
               <hr className="hr_pb_dtl" />
             </div>
+
+            <div className="d-flex justify-content-between align-items-center gap-4">
+              <button className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3">
+                Add to Cart <BiShoppingBag size={25} />
+              </button>
+              <div className="d-flex gap-4 align-items-center">
+                <div
+                  className="gohrt_bod p-2"
+                  onClick={() => setLiked(!liked)}
+                  style={{ cursor: "pointer" }}
+                >
+                  {liked ? (
+                    <GoHeartFill size={25} className="hert_fffs" />
+                  ) : (
+                    <GoHeart size={25} className="hert_fff" />
+                  )}
+                </div>
+                <div className="gohrt_bod p-2">
+                  <GoShareAndroid size={25} className="hert_fff" />
+                </div>
+              </div>
+            </div>
+
+            <div className="d-flex justify-content-between align-items-center gap-4 pt-5">
+              <div className="icon-box">
+                <img
+                  src={require("../../Images/lifetime.png")}
+                  alt="Lifetime Exchange"
+                />
+              </div>
+              <div className="divider"></div>
+              <div className="icon-box">
+                <img
+                  src={require("../../Images/cirti.png")}
+                  alt="Certified Jewellery"
+                />
+              </div>
+              <div className="divider"></div>
+              <div className="icon-box">
+                <img
+                  src={require("../../Images/sev.png")}
+                  alt="Secure Payment"
+                />
+              </div>
+              <div className="divider"></div>
+              <div className="icon-box">
+                <img
+                  src={require("../../Images/day.png")}
+                  alt="30 Days Return"
+                />
+              </div>
+            </div>
+
+            <div className="pt-5">
+              <div className="card det_cddd p-3">
+                <div className="d-flex gap-3 align-items-center align-content-center">
+                  <img
+                    src={require("../../Images/Ellipse 1687.png")}
+                    className="position-relative"
+                  />
+                  <div className="position-absolute dvtfrvfr">
+                    <img src={require("../../Images/Vector (4).png")} />
+                  </div>
+                  <span className="knoe_www">Know your Setting</span>
+                </div>
+
+                <div className="d-flex align-items-center gap-3 pt-4">
+                  <div className="card det_cd_sec p-3 w-100">
+                    <div className="d-flex align-items-center gap-3">
+                      <img src={require("../../Images/Group (1).png")} />
+                      <span className="knoe_www_rng">RING DIAMETER</span>
+                    </div>
+                    <div className="pt-3">
+                      <span className="sdjuij">1.62 cm</span>
+                    </div>
+                    <div className="pt-5">
+                      <span className="mes_ddd">
+                        Measured at the base of the ring.
+                      </span>
+                    </div>
+                  </div>
+                  <div className="card det_cd_sec p-3 w-100">
+                    <div className="d-flex align-items-center gap-3">
+                      <img src={require("../../Images/Vector (5).png")} />
+                      <span className="knoe_www_rng">APPROX CTW</span>
+                    </div>
+                    <div className="pt-3">
+                      <span className="sdjuij">0.2 ct</span>
+                    </div>
+                    <div className="pt-5">
+                      <span className="mes_ddd">
+                        The setting’s average total carat weight.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="pt-3">
+                  <div className="card det_cd_sec p-3 w-100">
+                    <div className="d-flex align-items-center gap-3">
+                      <img src={require("../../Images/Group (2).png")} />
+                      <span className="knoe_www_rng">METAL</span>
+                    </div>
+                    <div className="pt-3">
+                      <span className="sdjuij">925 Silver</span>
+                    </div>
+                    <div className="pt-5">
+                      <span className="mes_ddd">
+                        It comes with the authenticity and gaurantee certificate
+                        of 925 Silver with <br /> lifetime exchange gaurantee.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-5">
+              <div className="card det_cddd p-3">
+                <div className="d-flex gap-3 align-items-center align-content-center">
+                  <img
+                    src={require("../../Images/Ellipse 1687.png")}
+                    className="position-relative"
+                  />
+                  <div className="position-absolute dvtfrvfr">
+                    <img src={require("../../Images/Vector (4).png")} />
+                  </div>
+                  <span className="knoe_www">Know your Stone</span>
+                </div>
+
+                <div className="d-flex align-items-center gap-3 pt-4">
+                  <div className="card det_cd_sec_ddd p-3 w-100">
+                    <div className="d-flex align-items-center gap-3">
+                      <span className="knoe_www_rng">DIAMOND SHAPE</span>
+                    </div>
+                    <div className="pt-2">
+                      <span className="sdjuij">Circle</span>
+                    </div>
+                  </div>
+                  <div className="card det_cd_sec_ddd p-3 w-100">
+                    <div className="d-flex align-items-center gap-3">
+                      <span className="knoe_www_rng">DIAMOND SIZE</span>
+                    </div>
+                    <div className="pt-2">
+                      <span className="sdjuij w-25">
+                        Moissanite Diamond <br /> 0.18 ctw
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center gap-3 pt-3">
+                  <div className="card det_cd_sec_ddd p-3 w-100">
+                    <div className="d-flex align-items-center gap-3">
+                      <span className="knoe_www_rng">DIAMOND WEIGHT</span>
+                    </div>
+                    <div className="pt-2">
+                      <span className="sdjuij">0.18 Ct Approx</span>
+                    </div>
+                  </div>
+                  <div className="card det_cd_sec_ddd p-3 w-100">
+                    <div className="d-flex align-items-center gap-3">
+                      <span className="knoe_www_rng">DIAMOND PURITY</span>
+                    </div>
+                    <div className="pt-2">
+                      <span className="sdjuij">4 ctw</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-5">
+              {/* FAQ is here */}
+
+              <div className="accordion" id="faqAccordion">
+                {faqs.map((faq, index) => (
+                  <div className="accordion-item" key={index}>
+                    <h2 className="accordion-header">
+                      <button
+                        className={`accordion-button ${
+                          openIndex === index ? "" : "collapsed"
+                        }`}
+                        type="button"
+                        onClick={() => toggleFAQ(index)}
+                      >
+                        <span className="d-flex align-items-center gap-3 faq_txtt">
+                          {faq.icon} {faq.title}
+                        </span>
+                      </button>
+                    </h2>
+                    <div
+                      className={`accordion-collapse collapse ${
+                        openIndex === index ? "show" : ""
+                      }`}
+                      data-bs-parent="#faqAccordion"
+                    >
+                      <div className="accordion-body srfferc">{faq.answer}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
+
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+          <span className="category_name">Related Products</span>
+          <p className="category_txt">A Touch of Grace for Every Gesture</p>
+          <img src={require("../../Images/Groupimg.png")} />
+        </div>
+        <div className="heder_sec_main d-flex flex-column">
+          <div className="row pt-5">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="col-lg-3 col-md-4 col-sm-6 mb-4 asxasx_cards"
+                onMouseEnter={() => setHoveredProduct(product.id)}
+                onMouseLeave={() => setHoveredProduct(null)}
+              >
+                {/* Each column adapts based on screen size */}
+                <div className="card prio_card scdscsed_sdss">
+                  <div className="card-title">
+                    <div>
+                      <button className="new_btnddx p-1 ms-3 mt-3">NEW</button>
+                      <div
+                        className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
+                        onClick={() => toggleFavorite(product.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {isFavorite[product.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={18} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={18} />
+                        )}
+                      </div>
+                    </div>
+                    <div className="card-body d-flex justify-content-center ">
+                      <img
+                        src={product.imgSrc}
+                        className="p-1_proi"
+                        alt="Product"
+                      />
+                      {hoveredProduct === product.id && (
+                        <div className="hover-overlay w-100 d-flex">
+                          <button className="d-flex align-items-center add-to-crd-dss p-2 mt-2 justify-content-center gap-3">
+                            Add to Cart <BiShoppingBag size={25} />
+                          </button>
+                          {/* <p className="mt-1"> */}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="d-flex flex-column main_cdsss">
+                  <a className="mikdec_asdaa det_links pt-3">{product.link}</a>
+                  <span className="mikdec_asdaa pt-1">{product.name}</span>
+                  <div className="d-flex align-items-center gap-3 pt-1">
+                    <span className="mikdec_asdxsx">{product.price}</span>
+                    <span className="mikdec_axsx">{product.cutPrice}</span>
+                  </div>
+
+                  {/* </p> */}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <Footer />
     </div>

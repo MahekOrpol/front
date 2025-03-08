@@ -381,7 +381,7 @@ const Home = () => {
               </span>
               <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
                 <button className="more_btn_dsdd w-50">More Info</button>
-                <button className="d-flex align-items-centyert add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
                   Add to Cart <BiShoppingBag size={25} />
                 </button>
               </div>
@@ -411,7 +411,7 @@ const Home = () => {
               </span>
               <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
                 <button className="more_btn_dsdd w-50">More Info</button>
-                <button className="d-flex align-items-centyert add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
                   Add to Cart <BiShoppingBag size={25} />
                 </button>
               </div>
@@ -441,7 +441,7 @@ const Home = () => {
               </span>
               <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
                 <button className="more_btn_dsdd w-50">More Info</button>
-                <button className="d-flex align-items-centyert add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
                   Add to Cart <BiShoppingBag size={25} />
                 </button>
               </div>
@@ -472,7 +472,7 @@ const Home = () => {
               </span>
               <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
                 <button className="more_btn_dsdd w-50">More Info</button>
-                <button className="d-flex align-items-centyert add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
                   Add to Cart <BiShoppingBag size={25} />
                 </button>
               </div>

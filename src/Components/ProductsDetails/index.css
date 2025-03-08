@@ -12,41 +12,54 @@
   width: fit-content;
 }
 .det_min_cds {
-    border: 1px solid #dcdcdc;
-    box-shadow: 0px 0px 5px 0px #00000040;
-    background-color: #FFFFFF;
-    width: 22.5%;
+  border: 1px solid #dcdcdc;
+  box-shadow: 0px 0px 5px 0px #00000040;
+  background-color: #ffffff;
+  width: 22.5%;
 }
 
-.detr_img{
-    border-top-left-radius: 50px;
+.detr_img {
+  border-top-left-radius: 50px;
 }
 
-.detr_img_s_s{
-    border-bottom-right-radius: 50px;
-    width: 100%;
+.detr_img_s_s {
+  border-bottom-right-radius: 50px;
+  width: 100%;
 }
 
-.det_min_cd{
-    /* width: 22.5%; */
-    width: 122%;
+.det_min_cd {
+  /* width: 22.5%; */
+  width: 122%;
 }
 
-.detr_img_d{
-    width: 100%;
-    height: 300px;
+.det_min_cd2 {
+  border: none;
+  border-top-left-radius: 50px;
+  box-shadow: 0px 0px 2px 0px #00000040;
+  width: fit-content;
+  width: 121%;
+  background-color: #EFF5F7;
+}
+
+.detr_img_d {
+  width: 100%;
+  height: 300px;
+}
+
+.scdscsed_sdss{
+height: 380px;
 }
 
 .det_min_cd_1 {
-    border: 1px solid #dcdcdc;
-    border-bottom-right-radius: 50px;
-    box-shadow: 0px 0px 2px 0px #00000040;
-    background-color: #dcdcdc;
-    /* width: 22.5%; */
-    width: 117%;
+  border: 1px solid #dcdcdc;
+  border-bottom-right-radius: 50px;
+  box-shadow: 0px 0px 2px 0px #00000040;
+  background-color: #dcdcdc;
+  /* width: 22.5%; */
+  width: 117%;
 }
 
-.sdss_degree{
+.sdss_degree {
   font-family: "Cabin", sans-serif;
   font-weight: 600;
   font-size: 16px;
@@ -55,38 +68,28 @@
   text-align: center;
 }
 
-.secrt_1{
+.secrt_1 {
   font-family: "Cabin", sans-serif;
   font-weight: 600;
   font-size: 35px;
   line-height: 100%;
   letter-spacing: 0%;
 }
-  
-.sav_btn{
+
+.sav_btn {
   font-family: "Cabin", sans-serif;
-font-weight: 400;
-font-size: 13px;
-line-height: 142%;
-letter-spacing: 0%;
-text-align: justify;
-background-color: #611D2B;
-border-radius: 91px;
-color: #FFFFFF;
-border: none;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 142%;
+  letter-spacing: 0%;
+  text-align: justify;
+  background-color: #611d2b;
+  border-radius: 91px;
+  color: #ffffff;
+  border: none;
 }
 
-.rv_ssss{
-  font-family: "Cabin", sans-serif;
-font-weight: 400;
-font-size: 15px;
-line-height: 100%;
-letter-spacing: 0%;
-
-}
-
-.sku_dsd{
-
+.rv_ssss {
   font-family: "Cabin", sans-serif;
   font-weight: 400;
   font-size: 15px;
@@ -94,7 +97,15 @@ letter-spacing: 0%;
   letter-spacing: 0%;
 }
 
-.stk_btn{
+.sku_dsd {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.stk_btn {
   font-family: "Cabin", sans-serif;
   font-weight: 500;
   font-size: 10px;
@@ -103,105 +114,103 @@ letter-spacing: 0%;
   color: #611d2b;
   border: 1px solid #611d2b;
   border-radius: 91px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
-.main_txt_pb{
+.main_txt_pb {
   font-family: "Cabin", sans-serif;
-font-weight: 500;
-font-size: 35px;
-line-height: 100%;
-letter-spacing: 0%;
-color: #000000;
+  font-weight: 500;
+  font-size: 35px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #000000;
 }
 
-.cut_txt_sc{
+.cut_txt_sc {
   font-family: "Cabin", sans-serif;
-font-weight: 500;
-font-size: 25px;
-line-height: 100%;
-letter-spacing: 0%;
-color: #969696;
-text-decoration: line-through;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #969696;
+  text-decoration: line-through;
 }
 
-.seb_p_g{
+.seb_p_g {
   font-family: "Cabin", sans-serif;
-font-weight: 400;
-font-size: 16px;
-line-height: 142%;
-letter-spacing: 0%;
-text-align: justify;
-
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 142%;
+  letter-spacing: 0%;
+  text-align: justify;
 }
 
-.sec_pb{
+.sec_pb {
   box-shadow: 0px 0px 5px 0px #00000040;
 }
 
-.your_pncd{
+.your_pncd {
   font-family: "Cabin", sans-serif;
-font-weight: 400;
-font-size: 16px;
-line-height: 155%;
-letter-spacing: 0%;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0%;
 }
 
-.pncd_btn{
+.pncd_btn {
   background-color: #611d2b;
-  color: #FFFFFF;
+  color: #ffffff;
   border: none;
-  font-family: 'Inter';
+  font-family: "Inter";
 }
 
-.oib_inout{
+.oib_inout {
   border: none;
-  background-color: #EAEAEA;
+  background-color: #eaeaea;
   outline: none;
 }
 
-.pv_txtsss{
+.pv_txtsss {
   font-family: "Cabin", sans-serif;
-font-weight: 400;
-font-size: 16px;
-line-height: 155%;
-letter-spacing: 0%;
-
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0%;
 }
 
-.hr_pb_dtl{
-  color: #E1E1E1;
+.hr_pb_dtl {
+  color: #e1e1e1;
   height: 1px !important;
   opacity: 1;
 }
 
-.size_drp_dpwn{
-  background-color: #EAEAEA;
+.size_drp_dpwn {
+  background-color: #eaeaea;
   color: #000000;
   border: none;
   font-family: "Cabin", sans-serif;
-font-weight: 500;
-font-size: 20px;
-letter-spacing: 0%;
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0%;
 }
 
-.btn-check:focus+.btn-secondary, .btn-secondary:focus {
+.btn-check:focus + .btn-secondary,
+.btn-secondary:focus {
   color: #000000;
-  background-color: #EAEAEA;
-  border:none;
-  box-shadow: 0 0 0 .25rem rgba(130,138,145,.5);
+  background-color: #eaeaea;
+  border: none;
+  box-shadow: 0 0 0 0.25rem rgba(130, 138, 145, 0.5);
 }
 
-.dim_txt_sjs{
+.dim_txt_sjs {
   font-family: "Cabin", sans-serif;
-font-weight: 500;
-font-size: 20px;
-line-height: 155%;
-letter-spacing: 0%;
-
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 155%;
+  letter-spacing: 0%;
 }
 
-.a_sssss{
+.a_sssss {
   font-family: "Cabin", sans-serif;
   font-weight: 400;
   font-size: 14px !important;
@@ -209,11 +218,10 @@ letter-spacing: 0%;
   letter-spacing: 0%;
 }
 
-.round_ddd{
+.round_ddd {
   box-shadow: 0px 0px 5px 0px #00000040;
-border-radius: 100px;
+  border-radius: 100px;
 }
-
 
 .diamond_shape {
   transition: all 0.3s ease-in-out;
@@ -240,13 +248,160 @@ border-radius: 100px;
   transform: scale(1.1);
 }
 
-
-
-.product_det_menu{
+.product_det_menu {
   max-height: 200px; /* Adjust height as needed */
   overflow-y: auto; /* Enables scrolling */
 }
 
-.xsddcsd{
+.xsddcsd {
   width: 104%;
 }
+
+.add-to-crd-dd_dd {
+  background-color: #611d2b;
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  font-family: "Cabin", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.hert_fff {
+  fill: #611d2b;
+}
+.hert_fffs {
+  fill: red;
+}
+
+.gohrt_bod {
+  box-shadow: 0px 0px 7px 0px #00000040;
+  background-color: #ffffff;
+  border-radius: 100px;
+}
+
+.icon-box {
+  text-align: center;
+}
+
+.icon-box p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #000; /* Adjust text color */
+}
+
+.divider {
+  width: 1px;
+  height: 100px; /* Adjust height */
+  background-color: #000; /* Adjust color */
+}
+
+.det_cddd {
+  border-radius: 6px;
+  background-color: #eaeaea;
+  border: none;
+}
+
+.knoe_www {
+  font-family: "Cabin", sans-serif;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 155%;
+  letter-spacing: 0%;
+}
+
+.ven_ddd {
+  box-shadow: 0px 0px 4px 0px #00000040;
+  border-radius: 100px;
+
+  border: none;
+  background-color: #fff;
+}
+.det_cd_sec {
+  border-radius: 6px;
+  background-color: #fff;
+  border: none;
+}
+
+.dvtfrvfr {
+  left: 32px;
+}
+
+.knoe_www_rng {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 220.00000000000003%;
+  letter-spacing: 0%;
+  font-family: "Cabin", sans-serif;
+}
+
+.sdjuij {
+  font-family: "Cabin", sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 155%;
+  letter-spacing: 0%;
+}
+
+.mes_ddd {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 220.00000000000003%;
+  letter-spacing: 0%;
+}
+
+.det_cd_sec_ddd {
+  border-radius: 6px;
+  background-color: #fff;
+  border: none;
+  height: 200px;
+}
+
+.faq_txtt {
+  font-family: "Cabin", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 155%;
+  letter-spacing: 0%;
+}
+.srfferc {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 155%;
+  letter-spacing: 0%;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #000000;
+  background-color: #e7f1ff;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
+}
+
+.asxasx_cards:hover .hover-overlay {
+  opacity: 1;
+}
+
+.det_links {
+  color: #611d2b;
+  font-size: 18px;
+}
+
+.add-to-crd-dss {
+  width: 100%;
+  background-color: #611d2b;
+  color: #fff;
+  border: none;
+  font-family: "Cabin", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  position: absolute;
+  bottom: 0;
+}
+
+

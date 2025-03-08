@@ -176,14 +176,13 @@ const Products = () => {
   return (
     <>
       <Header />
-        <div>
-          <img
-            src={require("../../Images/product_banner.png")}
-            className="img_fluid1_banner"
-          />
-        </div>
+      <div>
+        <img
+          src={require("../../Images/product_banner.png")}
+          className="img_fluid1_banner"
+        />
+      </div>
       <div className="container">
-
         <div className="hdr_csd d-flex flex-column align-items-center">
           <span className="produ_shsu">Choose Perfect Ring Style for You</span>
           <p className="pro_p">
@@ -247,14 +246,16 @@ const Products = () => {
                         className="p-1_proi w-100"
                         alt="Product"
                       />
+                    
                       {hoveredProduct === product.id && (
-                        <div className="hover-overlay">
-                          <button className="btn btn-light left-btn">
+                        <div className="hover-overlay w-100 d-flex">
+                          <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3">
                             <FaChevronLeft />
                           </button>
                           <button className="btn btn-light right-btn">
                             <FaChevronRight />
                           </button>
+   
                         </div>
                       )}
                     </div>
@@ -273,7 +274,10 @@ const Products = () => {
                         Add to Cart <BiShoppingBag size={25} />
                       </button>
                       {/* <p className="mt-1"> */}
-                      <a href="/product-details" className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4">
+                      <a
+                        href="/product-details"
+                        className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
+                      >
                         Read more about the Product <FaArrowRight />
                       </a>
                     </div>
