@@ -178,9 +178,12 @@ const Products = () => {
       <Header />
       <div>
         <img
-          src={require("../../Images/product_banner.png")}
+          src={require("../../Images/Mask group11.png")}
           className="img_fluid1_banner"
         />
+        <div className='banner_text_sss'>
+          <h1 className='banner_exx'>Shop</h1>
+        </div>
       </div>
       <div className="container">
         <div className="hdr_csd d-flex flex-column align-items-center">

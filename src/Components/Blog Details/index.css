@@ -3,7 +3,7 @@
 }
 .ssss_ssd11{
     width: 100%;
-}
+    }
 .deta_blg_dd{
     width: 100%;
 }
@@ -26,4 +26,57 @@
     font-weight: 600;
     border-radius: 2px;
     border: none;
+}
+
+.ens_ddd{
+    font-family: "Cabin", sans-serif;
+font-weight: 500;
+font-size: 20px;
+text-align: justify;
+
+}
+.ens_ddds{
+    font-family: "Cabin", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: justify;
+    
+}
+
+.ssjnsec_fd{
+    background-color: #F1F1F1;
+    border-left: 6px solid #611D2B;
+    width: 100%;
+}
+
+.sedwd{
+    font-family: "Cabin", sans-serif;
+font-weight: 700;
+font-size: 24px;
+line-height: 100%;
+letter-spacing: 0%;
+text-align: right;
+
+}
+
+.sdjuue_rrf{
+    font-family: "Cabin", sans-serif;
+
+font-weight: 600;
+font-size: 32px;
+line-height: 100%;
+letter-spacing: 0%;
+
+}
+
+.sdchhdu{
+    font-family: "Cabin", sans-serif;
+font-weight: 400;
+font-size: 18px;
+line-height: 32px;
+letter-spacing: 0%;
+text-align: justify;
+
 }

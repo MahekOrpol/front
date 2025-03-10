@@ -54,6 +54,12 @@ const ProductDetails = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const [selectedSize, setSelectedSize] = useState("Select size");
+
+  const handleSelect = (size) => {
+    setSelectedSize(size);
+  };
+
   const toggleFavorite = (id) => {
     setIsFavorite((prev) => ({
       ...prev,
@@ -208,7 +214,7 @@ const ProductDetails = () => {
                 captivating charm and versatility.
               </p>
             </div>
-            <div className="p-3 sec_pb w-50">
+            <div className="p-3 sec_pb w-75">
               <div className="d-flex align-items-center justify-content-between pt-2">
                 <span className="your_pncd">Your pincode</span>
                 <div>
@@ -224,123 +230,39 @@ const ProductDetails = () => {
               <hr className="hr_pb_dtl" />
             </div>
 
-            <div class="dropdown ">
-              <button
-                class="btn btn-secondary dropdown-toggle size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Select size
-              </button>
-              <ul class="dropdown-menu product_det_menu w-50 mt-1 ">
-                <li>
-                  <a class="dropdown-item" href="#">
-                    6
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    7
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    8
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    9
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    10
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    11
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    12
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    13
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    14
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    15
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    16
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    17
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    18
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    19
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    20
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    21
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    22
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    23
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    24
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    25
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">
-                    26
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <div className="dropdown">
+      <button
+        className="btn btn-secondary dropdown-toggle size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        {selectedSize}
+      </button>
+      <ul className="dropdown-menu product_det_menu w-50 mt-1">
+        <li><button className="dropdown-item" onClick={() => handleSelect("6")}>6</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("7")}>7</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("8")}>8</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("9")}>9</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("10")}>10</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("11")}>11</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("12")}>12</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("13")}>13</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("14")}>14</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("15")}>15</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("16")}>16</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("17")}>17</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("18")}>18</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("19")}>19</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("20")}>20</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("21")}>21</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("22")}>22</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("23")}>23</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("24")}>24</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("25")}>25</button></li>
+        <li><button className="dropdown-item" onClick={() => handleSelect("26")}>26</button></li>
+      </ul>
+    </div>
 
             <div className="pt-2">
               <hr className="hr_pb_dtl" />

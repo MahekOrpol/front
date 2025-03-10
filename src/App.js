@@ -6,6 +6,8 @@ import Products from './Components/Products';
 import ProductDetails from './Components/ProductsDetails/indfex';
 import Blog from './Components/Blog';
 import BlogDetails from './Components/Blog Details';
+import Contact from './Components/Contact Us';
+import AboutUs from './Components/About Us';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog-details" element={<BlogDetails />} />
+        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/about-us" element={<AboutUs />} />
       </Routes>
     </BrowserRouter>
   );

@@ -8,7 +8,7 @@ import { IoBagHandleOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const navigate=useNavigate('');
+  const navigate = useNavigate('');
   return (
     <>
       <div className="header_main">
@@ -20,14 +20,14 @@ const Header = () => {
           className="d-flex align-items-center w-25 gap-4"
           style={{ paddingLeft: "7.3rem" }}
         >
-          <div className="header_list_tcty" onClick={()=>navigate('/products')}>Rings</div>
+          <div className="header_list_tcty" onClick={() => navigate('/products')}>Rings</div>
           <div className="header_list_tcty">Earrings</div>
           <div className="header_list_tcty">Pendant</div>
           <div className="header_list_tcty">Bracelet</div>
           <div className="header_list_tcty">Custom Jewellery</div>
         </div>
-        <div className="d-flex justify-content-center w-50">
-          <img src={logo} /> 
+        <div className="d-flex justify-content-center w-50" style={{cursor: 'pointer'}}>
+          <img src={logo} onClick={() => navigate('/')} />
         </div>
         <div className="w-25 d-flex align-items-center gap-5">
           <div className="user_icon gap-3 d-flex align-items-center">

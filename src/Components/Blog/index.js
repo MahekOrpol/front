@@ -37,9 +37,12 @@ const Blog = () => {
       <Header />
       <div>
         <img
-          src={require("../../Images/product_banner.png")}
+          src={require("../../Images/Mask group11.png")}
           className="img_fluid1_banner"
         />
+        <div className='banner_text_sss'>
+          <h1 className='banner_exx'>Blogs</h1>
+        </div>
       </div>
       <div className="container pt-5 ">
         <div className="d-flex gap-5">

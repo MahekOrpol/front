@@ -716,8 +716,8 @@ const Home = () => {
       </div>
 
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
-        <span className="category_name">Trending Collection</span>
-        <p className="category_txt">The Latest looks, Crafted to Perfection</p>
+        <span className="category_name">Client Testimonial</span>
+        <p className="category_txt">What our Client’s say about us</p>
         <img src={require("../../Images/Groupimg.png")} />
 
         <div className="pt-5 d-flex position-relative w-100 justify-content-center gap-3">

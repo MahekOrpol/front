@@ -135,7 +135,7 @@
   border-radius: 9px;
   color: #611d2b;
   background-color: #fff;
-  width: 50%;
+  width: 60%;
   align-items: center;
   margin: auto;
 }
@@ -165,4 +165,15 @@
   background-color: #F4EDED;
   border: none;
   outline: none;
+}
+
+.sdcdscsdss_ss{
+  color: #fff;
+  font-family: "Cabin", sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 150%;
+letter-spacing: 0%;
+text-align: justify;
+
 }

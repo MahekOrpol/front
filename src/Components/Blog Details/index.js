@@ -37,13 +37,16 @@ const BlogDetails = () => {
       <Header />
       <div>
         <img
-          src={require("../../Images/product_banner.png")}
+          src={require("../../Images/Mask group11.png")}
           className="img_fluid1_banner"
         />
+        <div className='banner_text_sss'>
+          <h1 className='banner_exx'>Blog Detail</h1>
+        </div>
       </div>
       <div className="container pt-5 ">
         <div className="d-flex gap-5">
-          <div className="sdncsduchs h-100 position-sticky" style={{top:'12px'}}>
+          <div className="sdncsduchs h-100 position-sticky" style={{ top: '12px' }}>
             <div className="card p-3 shadow-sm border-0 ">
               <h4 className="fw-bold border-bottom pb-2">Popular Posts</h4>
               {posts.map((post, index) => (
@@ -93,24 +96,63 @@ const BlogDetails = () => {
           <div className="sdncsduch row">
             <div className="ssss_ssd11">
               <div className="blog_fade_ds1">
-                <img src={require("../../Images/image (25).png")} className="deta_blg_dd"/>
+                <img src={require("../../Images/image (25).png")} className="deta_blg_dd" />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-5">
                 <span className="mainj_ss">
                   Jewellery Trends Inspired by Us
                 </span>
-                
+
                 <p className="psps">
-                Jewellery has always been a significant part of human culture, transcending its role as mere adornment. From ancient civilizations to modern times, it has carried meanings that go beyond aesthetics, symbolizing identity, emotion, and history.
+                  Jewellery has always been a significant part of human culture, transcending its role as mere adornment. From ancient civilizations to modern times, it has carried meanings that go beyond aesthetics, symbolizing identity, emotion, and history.
                 </p>
                 <p className="psps">
-                Jewellery has always been a significant part of human culture, transcending its role as mere adornment. From ancient civilizations to modern times, it has carried meanings that go beyond aesthetics, symbolizing identity, emotion, and history. A bold necklace or minimalist earrings can reflect an individual’s personality—confident, elegant, or understated. Custom pieces like name pendants or birthstone rings allow wearers to showcase their uniqueness. Every piece of jewellery has a story to tell.
-                                </p>
-               
+                  Jewellery has always been a significant part of human culture, transcending its role as mere adornment. From ancient civilizations to modern times, it has carried meanings that go beyond aesthetics, symbolizing identity, emotion, and history. A bold necklace or minimalist earrings can reflect an individual’s personality—confident, elegant, or understated. Custom pieces like name pendants or birthstone rings allow wearers to showcase their uniqueness. Every piece of jewellery has a story to tell.
+                </p>
+
               </div>
             </div>
-           
+
+            <div className="pt-4 pb-2">
+
+              <div className="ssjnsec_fd p-3">
+                <span className="ens_ddd">Engagement rings, wedding bands, and anniversary gifts commemorate milestones, making the jewellery a lifelong symbol of love and commitment.</span>
+              </div>
+            </div>
+
+            <div className="d-flex flex-column pt-5">
+              <span>
+                <img src={require('../../Images/Group 99.png')} />
+              </span>
+              <span className="ens_ddds pt-4">“Learn how to keep your jewelry shining bright! From cleaning techniques to storage solutions, our blog offers expert advice.  Each item is handcrafted with love and precision, using ethically sourced materials to ensure beauty that you feel good about. Learn how to keep your jewelry shining bright! From cleaning techniques to storage solutions, our blog offers expert advice.”</span>
+              <span className="pt-3 d-flex justify-content-between">
+                <span className="sedwd">- Jasmin Rosie</span>
+                <img src={require('../../Images/Group 100.png')} />
+              </span>
+            </div>
+
+            <div className="d-flex flex-column pt-5">
+              <span className="sdjuue_rrf">Trends to Watch in the Jewelry World</span>
+            </div>
+            <div className="pt-4">
+              <ul className="d-flex flex-row">
+                <div className="row sdchhdu">
+                  <li>Jewellery Care 101: Keeping Your Pieces Sparkling</li>
+                  <li>How to Choose the Perfect Engagement Ring</li>
+                  <li>Birthstone Guide: Meaning and Significance</li>
+                  <li>Sustainable Jewelry: Making Eco-Friendly Choices</li>
+                  <li>Celebrities and Their Iconic Jewelry Moment</li>
+                </div>
+                <div className="row sdchhdu">
+                  <li>The Role of Jewelry in Different Cultures</li>
+                  <li>The Intersection of Technology and Jewelry Design</li>
+                  <li>Jewelry as an Investment: What to Know Before You Buy</li>
+                  <li>Trends to Watch in the Jewelry World</li>
+                  <li>Birthstone Guide: Meaning and Significance</li>
+                </div>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

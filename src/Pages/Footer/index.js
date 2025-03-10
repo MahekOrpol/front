@@ -37,32 +37,32 @@ const Footer = () => {
               src={require("../../Images/crystovalogowhite (1) 2.png")}
               width={400}
             />
-            <p className="sdcdscsd ms-3 mt-3" style={{ width: "442px" }}>
+            <p className="sdcdscsdss_ss ms-3 mt-3" style={{ width: "442px" }}>
               At Crystova Jewellery, we believe that every piece tells a story.
               Inspired by timeless elegance and modern trends, our collections
               are designed to celebrate life’s precious moments.
             </p>
           </div>
-          <div className="col-2 text-white">
+          <div className="col-2 text-white ms-5">
             <h2 className="use_sdc">Useful Links</h2>
             <ul
               style={{ listStyle: "none", paddingLeft: "0rem" }}
               className="doof_dd pt-2"
             >
               <li>
-                <a className="footr_lnk">Home</a>
+                <a href="/" className="footr_lnk">Home</a>
               </li>
               <li>
-                <a className="footr_lnk">About</a>
+                <a href="/about-us" className="footr_lnk">About</a>
               </li>
               <li>
-                <a className="footr_lnk">Shop</a>
+                <a href="/products" className="footr_lnk">Shop</a>
               </li>
               <li>
                 <a href="/blog" className="footr_lnk">Blog</a>
               </li>
               <li>
-                <a className="footr_lnk">Contact Us</a>
+                <a href="/contact-us" className="footr_lnk">Contact Us</a>
               </li>
             </ul>
           </div>
