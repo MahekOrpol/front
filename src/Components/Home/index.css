@@ -67,8 +67,7 @@
   font-family: "Cabin", sans-serif;
 }
 
-.sdcdscsd{
-  
+.sdcdscsd {
   font-family: "Cabin", sans-serif;
 }
 
@@ -365,8 +364,8 @@
 }
 
 .more_btn_dsdd {
-  border: 1px solid #611d2b !important;
-  color: #611d2b;
+  border: 2px solid #611d2b !important;
+  color: #000000;
   font-weight: 500;
   background-color: #fff;
   border-radius: 4px;
@@ -1350,12 +1349,133 @@ button.swiper-pagination-bullet {
   font-family: "Cabin", sans-serif;
 }
 
-.spg_nb_sle{
+.spg_nb_sle {
   font-family: "DM Serif Text", serif;
   color: #611d2b;
   font-weight: 400;
   font-size: 28px;
-  background-color: #F4EDED;
+  background-color: #f4eded;
   border: 1px solid #611d2b;
   border-radius: 5px;
 }
+
+.slider-container {
+  padding: 50px 0;
+  background: #fff;
+  text-align: center;
+}
+
+.slider-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.slider-description {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.carousel {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+}
+
+.carousel-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.carousel-item img {
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item.active img {
+  transform: scale(1.2);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+
+.under_cimn {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.next_arrow {
+  background-color: #611d2b;
+  color: #fff;
+  border-radius: 200px;
+}
+
+.offer_prixx {
+  border: 2px solid #611d2b;
+  background-color: #611d2b1a;
+  border-radius: 29px;
+  width: 20%;
+}
+.offer_prixx1 {
+  border: 2px solid #611d2b;
+  background-color: #dfd2d5;
+  border-radius: 29px;
+  width: 20%;
+}
+.offer_prixx2 {
+  border: 2px solid #611d2b;
+  background-color: #d0bbbf;
+  border-radius: 29px;
+  width: 20%;
+}
+.offer_prixx3 {
+  border: 2px solid #611d2b;
+  background-color: #b08e95;
+  border-radius: 29px;
+  width: 20%;
+}
+.dsjnurh_sx {
+  position: relative;
+  text-align: center;
+}
+
+.dsjnurh_sx img {
+  width: 100%;
+  display: block;
+}
+
+.lionk_ss {
+  position: absolute;
+  bottom: 40px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+
+  font-family: 'Outfit';
+font-weight: 500;
+font-size: 22px;
+line-height: 100%;
+letter-spacing: 0%;
+text-decoration: underline;
+}
+
+
+
+
+
+
+
+

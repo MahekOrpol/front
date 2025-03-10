@@ -18,6 +18,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { CiStar } from "react-icons/ci";
 import Footer from "../../Pages/Footer";
+import { GrNext } from "react-icons/gr";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -66,12 +67,38 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd container">
         <span className="category_name">Categories</span>
         <p className="category_txt">Radiance Fits for Everyone</p>
         <img src={require("../../Images/Groupimg.png")} />
 
-        <div className="pt-5 d-flex position-relative">
+        <div className="row pt-5">
+          <div className="col-md-2 d-flex flex-column align-items-center">
+            <img src={require("../../Images/Group 1597884634 (1).png")} />
+            <span>Pendant</span>
+          </div>
+          <div className="col-md-2 d-flex flex-column align-items-center">
+            <img src={require("../../Images/Group 1597884629 (1).png")} />
+            <span>Bracelet</span>
+          </div>
+          <div className="col-md-2 d-flex flex-column align-items-center">
+            <img src={require("../../Images/Group 1597884630.png")} />
+            <span>Earrings</span>
+          </div>
+          <div className="col-md-2 d-flex flex-column align-items-center">
+            <img src={require("../../Images/Group 1597884631.png")} />
+            <span>Rings</span>
+          </div>
+          <div className="col-md-2 d-flex flex-column align-items-center">
+            <img src={require("../../Images/Group 1597884632.png")} />
+            <span>Pendant</span>
+          </div>
+          <div className="col-md-2 d-flex flex-column align-items-center">
+            <img src={require("../../Images/Group 1597884632.png")} />
+            <span>Pendant</span>
+          </div>
+        </div>
+        {/* <div className="pt-5 d-flex position-relative">
           <div className="grp_img position-relative">
             <img
               src={require("../../Images/image.png")}
@@ -152,10 +179,10 @@ const Home = () => {
               </a>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
-      <div className="hdr_csd1 position-relative">
+      {/* <div className="hdr_csd1 position-relative">
         <div className="position-relative">
           <img
             src={require("../../Images/Rectangle 105464.png")}
@@ -183,9 +210,9 @@ const Home = () => {
             <div className="class-txt-sss1">PIECES</div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="hdr_csd1">
+      <div className="hdr_csd">
         <div className="scrolling-wrapper">
           <div className="scroll-content">
             <div className="scroll-item">
@@ -278,9 +305,7 @@ const Home = () => {
               and appeal.
               <br /> Here’s a guide to different shapes of diamond rings
             </span>
-            <button className="w-25 spg_nb_sle">
-            Shop Now
-            </button>
+            <button className="w-25 spg_nb_sle">Shop Now</button>
           </div>
         </div>
 
@@ -350,7 +375,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd pb-4">
         <span className="category_name">Trending Collection</span>
         <p className="category_txt">The Latest looks, Crafted to Perfection</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -482,71 +507,71 @@ const Home = () => {
       </div>
 
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd1 mt-5">
-        <span className="category_name">New Arrivals</span>
-        <p className="category_txt">New Designs, Same Timeless Elegance</p>
+        <span className="category_name">
+          Celebrate love with our Collection
+        </span>
+        <p className="category_txt">Perfect Presents for Every Occasion.</p>
         <img src={require("../../Images/Groupimg.png")} />
 
         <div className="pt-5 d-flex position-relative w-100 justify-content-center gap-3">
-          <div className="grp_img position-relative box-trens-2">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/image (4).png")}
-                alt="Dainty Earrings"
-                className="img-fluid"
-              />
-            </div>
+          <div className="d-flex flex-column align-items-center gap-3 offer_prixx p-5">
+            <span className="under_cimn">Under</span>
+            <span className="under_cimn">₹1,999</span>
+            <span className="next_arrow p-2">
+              <GrNext size={28} />
+            </span>
+          </div>
+          <div className="d-flex flex-column align-items-center gap-3 offer_prixx1 p-5">
+            <span className="under_cimn">Under</span>
+            <span className="under_cimn">₹1,999</span>
+            <span className="next_arrow p-2">
+              <GrNext size={28} />
+            </span>
+          </div>
+          <div className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5">
+            <span className="under_cimn">Under</span>
+            <span className="under_cimn">₹1,999</span>
+            <span className="next_arrow p-2">
+              <GrNext size={28} />
+            </span>
+          </div>
+          <div className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5">
+            <span className="under_cimn">Under</span>
+            <span className="under_cimn">₹1,999</span>
+            <span className="next_arrow p-2">
+              <GrNext size={28} />
+            </span>
+          </div>
+        </div>
+      </div>
 
-            <div
-              className="text-overlay position-absolute top-0 translate-middle4 text-white text-center d-flex flex-column"
-              style={{ left: "146px" }}
-            >
-              <button className="new_btndd_arvl">Dazzling Earrings</button>
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        <span className="category_name">Gifting Edition</span>
+        <p className="category_txt">Elegant & Versatile Gifts</p>
+        <img src={require("../../Images/Groupimg.png")} />
+        <div className="row pt-5">
+          <div className="col-md-3 dsjnurh_sx">
+            <img src={require("../../Images/Group 1597884624 (1).png")} />
+            <div className="lionk_ss">
+              <a>Gifts for Her</a>
             </div>
           </div>
-          <div className="grp_img position-relative box-trens-2">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/image (5).png")}
-                alt="Dainty Earrings"
-                className="img-fluid"
-              />
-            </div>
-            <div
-              className="text-overlay position-absolute top-0 translate-middle4 text-white text-center d-flex flex-column"
-              style={{ left: "146px" }}
-            >
-              <button className="new_btndd_arvl">Elegant Bracelets</button>
+          <div className="col-md-3 dsjnurh_sx">
+            <img src={require("../../Images/Group 1597884625 (1).png")} />
+            <div className="lionk_ss">
+              <a>Gifts for Him</a>
             </div>
           </div>
-          <div className="grp_img position-relative box-trens-2">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/Mask group (2).png")}
-                alt="Dainty Earrings"
-                className="img-fluid"
-              />
-            </div>
-            <div
-              className="text-overlay position-absolute top-0 translate-middle4 text-white text-center d-flex flex-column"
-              style={{ left: "146px" }}
-            >
-              <button className="new_btndd_arvl">Chic Necklaces</button>
+          <div className="col-md-3 dsjnurh_sx">
+            <img src={require("../../Images/Group 1597884626 (1).png")} />
+            <div className="lionk_ss">
+              <a>Gifts for Self</a>
             </div>
           </div>
-
-          <div className="grp_img position-relative box-trens-2">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/image (6).png")}
-                alt="Dainty Earrings"
-                className="img-fluid"
-              />
-            </div>
-            <div
-              className="text-overlay position-absolute top-0 translate-middle4 text-white text-center d-flex flex-column"
-              style={{ left: "146px" }}
-            >
-              <button className="new_btndd_arvl">Exquisite Rings</button>
+          <div className="col-md-3 dsjnurh_sx">
+            <img src={require("../../Images/Group 1597884626 (1).png")} />
+            <div className="lionk_ss">
+              <a>Gifts for Her</a>
             </div>
           </div>
         </div>
@@ -557,7 +582,7 @@ const Home = () => {
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img src={require("../../Images/Groupimg.png")} />
 
-        <div className="carousel-container pt-5">
+        {/* <div className="carousel-container pt-5">
           <Swiper
             effect="coverflow"
             grabCursor={true}
@@ -598,20 +623,64 @@ const Home = () => {
               <FaAngleRight size={25} />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        <span className="category_name">New Arrivals</span>
+        <p className="category_txt">New Designs, Same Timeless Elegance</p>
+        <img src={require("../../Images/Groupimg.png")} />
+
+        <div className="pt-5 d-flex position-relative w-100 justify-content-center gap-3">
+          <div className="grp_img position-relative box-trens-2">
+            <div className="d-flex justify-content-center align-items-center h-100">
+              <img
+                src={require("../../Images/image (4).png")}
+                alt="Dainty Earrings"
+                className="img-fluid"
+              />
+            </div>
+          </div>
+          <div className="grp_img position-relative box-trens-2">
+            <div className="d-flex justify-content-center align-items-center h-100">
+              <img
+                src={require("../../Images/image (5).png")}
+                alt="Dainty Earrings"
+                className="img-fluid"
+              />
+            </div>
+          </div>
+          <div className="grp_img position-relative box-trens-2">
+            <div className="d-flex justify-content-center align-items-center h-100">
+              <img
+                src={require("../../Images/Mask group (2).png")}
+                alt="Dainty Earrings"
+                className="img-fluid"
+              />
+            </div>
+          </div>
+
+          <div className="grp_img position-relative box-trens-2">
+            <div className="d-flex justify-content-center align-items-center h-100">
+              <img
+                src={require("../../Images/image (6).png")}
+                alt="Dainty Earrings"
+                className="img-fluid"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Gifting Guide</span>
         <p className="category_txt">Jewelry makes the perfect gift</p>
-        {/* <img src={require("../../Images/Groupimg.png")} /> */}
         <img src={require("../../Images/Groupimg.png")} />
 
         <div className="pt-5 d-flex position-relative w-100 justify-content-center">
           <div className=" position-relative box-trens-2 w-25 ">
             <div className="d-flex justify-content-center align-items-center h-100 first_bnnrrr">
               <img
-                // src={require("../../Images/image (7).png")}
                 src={require("../../Images/earings.png")}
                 alt="Dainty Earrings"
                 className="img-fluid fir_bnr_rd"
@@ -620,7 +689,7 @@ const Home = () => {
 
             <div className="text-overlay position-absolute top-50 translate-middle_frst text-white text-center d-flex flex-column gap-1">
               <span className="bird_ddc">Birthday Gifts</span>
-              <a href="#" className="shop_now_lnk" style={{color:'#fff'}}>
+              <a href="#" className="shop_now_lnk" style={{ color: "#fff" }}>
                 SHOP NOW <FaChevronRight />
               </a>
             </div>
@@ -631,14 +700,13 @@ const Home = () => {
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
                   src={require("../../Images/birth.png")}
-                  // src={require("../../Images/image 155.png")}
                   alt="Dainty Earrings"
                   className="img-fluid fir_bnr_rd"
                 />
               </div>
               <div className="text-overlay position-absolute top-50 translate-middle_sec1 text-white text-center d-flex flex-column gap-1">
                 <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk " style={{color:'#fff'}}>
+                <a href="#" className="shop_now_lnk " style={{ color: "#fff" }}>
                   SHOP NOW <FaChevronRight />
                 </a>
               </div>
@@ -647,14 +715,13 @@ const Home = () => {
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
                   src={require("../../Images/bar.png")}
-                  // src={require("../../Images/image 157.png")}
                   alt="Dainty Earrings"
                   className="img-fluid fir_bnr_rd"
                 />
               </div>
               <div className="text-overlay position-absolute top-50 translate-middle_sec2 text-white text-center d-flex flex-column gap-1">
                 <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk" style={{color:'#fff'}}>
+                <a href="#" className="shop_now_lnk" style={{ color: "#fff" }}>
                   SHOP NOW <FaChevronRight />
                 </a>
               </div>
@@ -666,14 +733,17 @@ const Home = () => {
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
                   src={require("../../Images/chn.png")}
-                  // src={require("../../Images/image 156.png")}
                   alt="Dainty Earrings"
                   className="img-fluid fir_bnr_rd"
                 />
               </div>
               <div className="text-overlay position-absolute top-50 translate-middle_sec3 text-white text-center d-flex flex-column gap-1">
                 <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk_lst " style={{color:'#fff'}}>
+                <a
+                  href="#"
+                  className="shop_now_lnk_lst "
+                  style={{ color: "#fff" }}
+                >
                   SHOP NOW <FaChevronRight />
                 </a>
               </div>
@@ -682,14 +752,17 @@ const Home = () => {
               <div className="d-flex justify-content-center align-items-center h-100">
                 <img
                   src={require("../../Images/ring.png")}
-                  // src={require("../../Images/image (8).png")}
                   alt="Dainty Earrings"
                   className="img-fluid fir_bnr_rd"
                 />
               </div>
               <div className="text-overlay position-absolute top-50 translate-middle_sec3 text-white text-center d-flex flex-column gap-1">
                 <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk_lst " style={{color:'#fff'}}>
+                <a
+                  href="#"
+                  className="shop_now_lnk_lst "
+                  style={{ color: "#fff" }}
+                >
                   SHOP NOW <FaChevronRight />
                 </a>
               </div>
@@ -700,20 +773,23 @@ const Home = () => {
             <div className="d-flex justify-content-center align-items-center last_bnnn">
               <img
                 src={require("../../Images/diam.png")}
-                // src={require("../../Images/image 159.png")}
                 alt="Dainty Earrings"
                 className="img-fluid fir_bnr_rd"
               />
             </div>
             <div className="text-overlay position-absolute top-50 translate-middle_sec4 text-white text-center d-flex flex-column gap-1">
-                <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk_lst " style={{color:'#fff'}}>
-                  SHOP NOW <FaChevronRight />
-                </a>
-              </div>
+              <span className="bird_ddc">Birthday Gifts</span>
+              <a
+                href="#"
+                className="shop_now_lnk_lst "
+                style={{ color: "#fff" }}
+              >
+                SHOP NOW <FaChevronRight />
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Client Testimonial</span>
