@@ -31,27 +31,29 @@ const images = [
 const diamondRings = [
   {
     id: 1,
-    image: require("../../Images/1 (5) (1).png"),
+    image: require("../../Images/2 (4) (5).png"),
     size: "small",
   },
   {
     id: 2,
-    image: require("../../Images/1 (5) (1).png"),
+    image: require("../../Images/1 (5) (2).png"),
     size: "medium",
   },
   {
     id: 3,
-    image: require("../../Images/1 (5) (1).png"),
+    image: require("../../Images/111111.png"),
     size: "large",
+    number:'4'
+
   },
   {
     id: 4,
-    image: require("../../Images/1 (5) (1).png"),
+    image: require("../../Images/1 (5) (2).png"),
     size: "medium",
   },
   {
     id: 5,
-    image: require("../../Images/1 (5) (1).png"),
+    image: require("../../Images/2 (4) (5).png"),
     size: "small",
   },
 ];
@@ -69,6 +71,30 @@ const Home = () => {
       swiperRef.current.navigation.update();
     }
   }, []);
+
+  const [currentIndex, setCurrentIndex] = useState(0); // ID 3 is at index 2
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % diamondRings.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? diamondRings.length - 1 : prevIndex - 1
+    );
+  };
+
+  const getVisibleRings = () => {
+    const total = diamondRings.length;
+    return [
+      diamondRings[(currentIndex - 2 + total) % total],
+      diamondRings[(currentIndex - 1 + total) % total],
+      diamondRings[currentIndex],
+      diamondRings[(currentIndex + 1) % total],
+      diamondRings[(currentIndex + 2) % total],
+    ];
+  };
+
   return (
     <div>
       <Header />
@@ -655,28 +681,27 @@ const Home = () => {
 
         <div className="rings-container">
           <div className="rings-row">
-            {diamondRings.map((ring) => (
-              <div key={ring.id} className={`ring-item ${ring.size}`}>
-                <div className="ring-shadow">
-                  <img
-                    src={ring.image}
-                    alt={`Diamond Ring ${ring.id}`}
-                    className="ring-image"
-                  />
-                </div>
+          {getVisibleRings().map((ring, index) => (
+            <div
+              key={ring.id}
+              className={`ring-item ${index === 2 ? "large" : index === 1 || index === 3 ? "medium" : "small"}`}
+            >
+              <div className="ring-shadow">
+                <img src={ring.image} alt={`Diamond Ring ${ring.id}`} className="ring-image" />
               </div>
-            ))}
+            </div>
+          ))}
           </div>
         </div>
         <div
           className="carousel-controls d-flex justify-content-center gap-5"
           style={{ cursor: "pointer" }}
         >
-          <div ref={prevRef}>
+          <div onClick={prevSlide}>
             <FaAngleLeft size={25} />
           </div>
           <span className="soli_txt_sccs">Solitare Rings</span>
-          <div ref={nextRef}>
+          <div onClick={nextSlide}>
             <FaAngleRight size={25} />
           </div>
         </div>

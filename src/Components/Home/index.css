@@ -1523,13 +1523,13 @@ text-decoration: underline;
 }
 
 .ring-item.medium {
-  width: 480px;
-  transform: translateY(150px);
+  width: 500px;
+  transform: translateY(90px);
 }
 
 .ring-item.large {
   width: 735px;
-  transform: translateY(300px);
+  transform: translateY(210px);
 }
 
 .ring-shadow {
@@ -1573,3 +1573,8 @@ text-decoration: underline;
     transform: translateY(0);
   }
 } 
+
+img.ring-image {
+  box-shadow: none;
+  border: none;
+}
