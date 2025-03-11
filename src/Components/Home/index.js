@@ -28,6 +28,34 @@ const images = [
   require("../../Images/ring222.png"),
 ];
 
+const diamondRings = [
+  {
+    id: 1,
+    image: require("../../Images/1 (5) (1).png"),
+    size: "small",
+  },
+  {
+    id: 2,
+    image: require("../../Images/1 (5) (1).png"),
+    size: "medium",
+  },
+  {
+    id: 3,
+    image: require("../../Images/1 (5) (1).png"),
+    size: "large",
+  },
+  {
+    id: 4,
+    image: require("../../Images/1 (5) (1).png"),
+    size: "medium",
+  },
+  {
+    id: 5,
+    image: require("../../Images/1 (5) (1).png"),
+    size: "small",
+  },
+];
+
 const Home = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -624,6 +652,34 @@ const Home = () => {
             </div>
           </div>
         </div> */}
+
+        <div className="rings-container">
+          <div className="rings-row">
+            {diamondRings.map((ring) => (
+              <div key={ring.id} className={`ring-item ${ring.size}`}>
+                <div className="ring-shadow">
+                  <img
+                    src={ring.image}
+                    alt={`Diamond Ring ${ring.id}`}
+                    className="ring-image"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div
+          className="carousel-controls d-flex justify-content-center gap-5"
+          style={{ cursor: "pointer" }}
+        >
+          <div ref={prevRef}>
+            <FaAngleLeft size={25} />
+          </div>
+          <span className="soli_txt_sccs">Solitare Rings</span>
+          <div ref={nextRef}>
+            <FaAngleRight size={25} />
+          </div>
+        </div>
       </div>
 
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
