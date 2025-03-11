@@ -434,8 +434,8 @@ const Home = () => {
         <p className="category_txt">The Latest looks, Crafted to Perfection</p>
         <img src={require("../../Images/Groupimg.png")} />
 
-        <div className="pt-5 d-flex position-relative w-100 justify-content-center gap-3">
-          <div className="grp_img position-relative box-trens-1">
+        <div className="container d-flex gap-3 justify-content-between position-relative pt-4 w-100">
+          <div className="grp_img position-relative box-trens-1 w-25">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/image 98.png")}
@@ -466,7 +466,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="grp_img position-relative box-trens-1">
+          <div className="grp_img position-relative box-trens-1 w-25">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/tre-2.png")}
@@ -496,7 +496,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="grp_img position-relative box-trens-1">
+          <div className="grp_img position-relative box-trens-1 w-25">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/image 100.png")}
@@ -527,7 +527,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="grp_img position-relative box-trens-1">
+          <div className="grp_img position-relative box-trens-1 w-25">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/trending-5.png")}
@@ -558,6 +558,7 @@ const Home = () => {
             </div>
           </div>
         </div>
+
       </div>
 
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd1 mt-5">
@@ -567,29 +568,29 @@ const Home = () => {
         <p className="category_txt">Perfect Presents for Every Occasion.</p>
         <img src={require("../../Images/Groupimg.png")} />
 
-        <div className="pt-5 d-flex position-relative w-100 justify-content-center gap-3">
-          <div className="d-flex flex-column align-items-center gap-3 offer_prixx p-5">
+        <div className="pt-4 d-flex position-relative w-100 container justify-content-between gap-3">
+          <div className="d-flex flex-column align-items-center gap-3 offer_prixx p-5 w-25">
             <span className="under_cimn">Under</span>
             <span className="under_cimn">₹1,999</span>
             <span className="next_arrow p-2">
               <GrNext size={28} />
             </span>
           </div>
-          <div className="d-flex flex-column align-items-center gap-3 offer_prixx1 p-5">
+          <div className="d-flex flex-column align-items-center gap-3 offer_prixx1 p-5 w-25">
             <span className="under_cimn">Under</span>
             <span className="under_cimn">₹1,999</span>
             <span className="next_arrow p-2">
               <GrNext size={28} />
             </span>
           </div>
-          <div className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5">
+          <div className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5 w-25">
             <span className="under_cimn">Under</span>
             <span className="under_cimn">₹1,999</span>
             <span className="next_arrow p-2">
               <GrNext size={28} />
             </span>
           </div>
-          <div className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5">
+          <div className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5 w-25">
             <span className="under_cimn">Under</span>
             <span className="under_cimn">₹1,999</span>
             <span className="next_arrow p-2">
@@ -603,7 +604,7 @@ const Home = () => {
         <span className="category_name">Gifting Edition</span>
         <p className="category_txt">Elegant & Versatile Gifts</p>
         <img src={require("../../Images/Groupimg.png")} />
-        <div className="row pt-5">
+        <div className="row pt-4">
           <div className="col-md-3 dsjnurh_sx">
             <img src={require("../../Images/Group 1597884624 (1).png")} />
             <div className="lionk_ss">
@@ -712,9 +713,9 @@ const Home = () => {
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img src={require("../../Images/Groupimg.png")} />
 
-        <div className="pt-5 d-flex position-relative w-100 justify-content-center gap-3">
-          <div className="grp_img position-relative box-trens-2">
-            <div className="d-flex justify-content-center align-items-center h-100">
+        <div className="container pt-4 d-flex position-relative w-100 justify-content-between">
+          <div className="grp_img position-relative box-trens-2 w-25">
+            <div className="d-flex justify-content-center align-items-center h-100 w-100">
               <img
                 src={require("../../Images/image (4).png")}
                 alt="Dainty Earrings"
@@ -722,7 +723,7 @@ const Home = () => {
               />
             </div>
           </div>
-          <div className="grp_img position-relative box-trens-2">
+          <div className="grp_img position-relative box-trens-2 w-25">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/image (5).png")}
@@ -731,7 +732,7 @@ const Home = () => {
               />
             </div>
           </div>
-          <div className="grp_img position-relative box-trens-2">
+          <div className="grp_img position-relative box-trens-2 w-25">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/Mask group (2).png")}
@@ -741,7 +742,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="grp_img position-relative box-trens-2">
+          <div className="grp_img position-relative box-trens-2 w-25">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/image (6).png")}
@@ -877,8 +878,8 @@ const Home = () => {
         <p className="category_txt">What our Client’s say about us</p>
         <img src={require("../../Images/Groupimg.png")} />
 
-        <div className="pt-5 d-flex position-relative w-100 justify-content-center gap-3">
-          <div className="card w-25 testimonial-card mt-5">
+        <div className="pt-5 container d-flex position-relative w-100 justify-content-between gap-3">
+          <div className="card testimonial-card mt-5">
             <div className="card-body pt-5">
               <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
               <p className="card-text sdcdscsd text-center">
@@ -899,7 +900,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="card w-25 testimonial-card1 mt-5">
+          <div className="card  testimonial-card1 mt-5">
             <div className="card-body pt-5">
               <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
               <p className="card-text sdcdscsd text-center">
@@ -920,7 +921,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="card w-25 testimonial-card2 mt-5">
+          <div className="card  testimonial-card2 mt-5">
             <div className="card-body pt-5">
               <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
               <p className="card-text sdcdscsd text-center">
