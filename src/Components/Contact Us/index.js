@@ -12,12 +12,12 @@ const Contact = () => {
             <Header />
             <div>
                 <img
-                    src={require("../../Images/Mask group11.png")}
+                    src={require("../../Images/Group 1597884579.png")}
                     className="img_fluid1_banner"
                 />
-                <div className='banner_text_sss'>
+                {/* <div className='banner_text_sss'>
                     <h1 className='banner_exx'>Contact Us</h1>
-                </div>
+                </div> */}
             </div>
             <div className="container pt-5 ">
 

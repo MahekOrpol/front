@@ -11,7 +11,7 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import Header from "../../Pages/Header";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
+import { EffectCoverflow, Navigation, Pagination ,Autoplay} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -63,14 +63,14 @@ const Home = () => {
   const nextRef = useRef(null);
   const swiperRef = useRef(null); // Store Swiper instance
 
-  useEffect(() => {
-    if (swiperRef.current) {
-      swiperRef.current.params.navigation.prevEl = prevRef.current;
-      swiperRef.current.params.navigation.nextEl = nextRef.current;
-      swiperRef.current.navigation.init();
-      swiperRef.current.navigation.update();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (swiperRef.current) {
+  //     swiperRef.current.params.navigation.prevEl = prevRef.current;
+  //     swiperRef.current.params.navigation.nextEl = nextRef.current;
+  //     swiperRef.current.navigation.init();
+  //     swiperRef.current.navigation.update();
+  //   }
+  // }, []);
 
   const [currentIndex, setCurrentIndex] = useState(0); // ID 3 is at index 2
 
@@ -873,7 +873,7 @@ const Home = () => {
         </div>
       </div> */}
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+      {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Client Testimonial</span>
         <p className="category_txt">What our Client’s say about us</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -890,7 +890,6 @@ const Home = () => {
               </p>
               <p className="text-center sdcdscsd">Client</p>
 
-              {/* Star Ratings */}
               <div className="d-flex justify-content-center align-items-center">
                 <FaStar color="#DBB439" />
                 <FaStar color="#DBB439" />
@@ -911,7 +910,6 @@ const Home = () => {
               </p>
               <p className="text-center sdcdscsd">Client</p>
 
-              {/* Star Ratings */}
               <div className="d-flex justify-content-center align-items-center">
                 <FaStar color="#DBB439" />
                 <FaStar color="#DBB439" />
@@ -932,7 +930,6 @@ const Home = () => {
               </p>
               <p className="text-center sdcdscsd">Client</p>
 
-              {/* Star Ratings */}
               <div className="d-flex justify-content-center align-items-center">
                 <FaStar color="#DBB439" />
                 <FaStar color="#DBB439" />
@@ -964,8 +961,71 @@ const Home = () => {
           </div>
           
           
-        </div> */}
-      </div>
+        </div> 
+      </div> */}
+
+<div className="testimonial-container d-flex align-items-center">
+        {/* Left Navigation Button */}
+        <button
+          className="nav-button left"
+          onClick={() => swiperRef.current?.slidePrev()}
+        >
+          <FaAngleLeft />
+        </button>
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+          <span className="category_name">Client Testimonial</span>
+          <p className="category_txt">What our Client’s say about us</p>
+          <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
+          <Swiper
+            effect={"slide"}
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={3} // Always show 3 cards
+            loop={true}
+            slidesPerGroup={1} // Move only 1 slide at a time
+            modules={[Pagination, Autoplay]}
+            autoplay={{ delay: 2000, disableOnInteraction: false }} // Add autoplay for smooth effect
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            className="swiper_testimonial container "
+          >
+            {[...Array(10)].map((_, index) => (
+              <SwiperSlide key={index} className="">
+                <div
+                  className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                    } mt-5`}
+                >
+                  <div className="card-body pt-5">
+                    <h5 className="card-title text-center emi_ffcc">
+                      Emily Carol
+                    </h5>
+                    <p className="card-text sdcdscsd text-center">
+                      I wanted a custom bracelet to honor my daughter’s birth, and
+                      the designers exceeded my expectations. They listened to
+                      every detail I envisioned and brought it to life. It’s a
+                      masterpiece I’ll cherish forever.
+                    </p>
+                    <p className="text-center sdcdscsd">Client</p>
+                    <div className="d-flex justify-content-center align-items-center">
+                      <FaStar color="#DBB439" />
+                      <FaStar color="#DBB439" />
+                      <FaStar color="#DBB439" />
+                      <CiStar />
+                      <CiStar />
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+        {/* Right Navigation Button */}
+        <button
+          className="nav-button right"
+          onClick={() => swiperRef.current?.slideNext()}
+        >
+          <FaAngleRight />
+        </button>
+</div>
 
       <Footer />
     </div>

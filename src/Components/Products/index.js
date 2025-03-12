@@ -178,15 +178,15 @@ const Products = () => {
       <Header />
       <div>
         <img
-          src={require("../../Images/Mask group11.png")}
+          src={require("../../Images/productt_sss.png")}
           className="img_fluid1_banner"
         />
-        <div className='banner_text_sss'>
+        {/* <div className='banner_text_sss'>
           <h1 className='banner_exx'>Shop</h1>
-        </div>
+        </div> */}
       </div>
       <div className="container">
-        <div className="hdr_csd d-flex flex-column align-items-center">
+        <div className="hdr_csd d-flex flex-column align-items-center produ_sss">
           <span className="produ_shsu">Choose Perfect Ring Style for You</span>
           <p className="pro_p">
             Find the design that speaks to your heart. Explore a variety of
@@ -201,18 +201,18 @@ const Products = () => {
             </button>
           </div>
           <hr className="prod_hr mt-5 w-100" />
-          <div className="d-flex justify-content-between w-100 mt-3">
-            <div className="d-flex gap-3">
-              <button className="flt_btn d-flex gap-3 align-items-center justify-content-center">
+          <div className="d-flex justify-content-between w-100 mt-3 zsdc_555">
+            <div className="d-flex gap-3 filter_pro">
+              <button className="flt_btn d-flex gap-3 align-items-center justify-content-center filter_pro">
                 <img src={require("../../Images/filter.png")} /> Filter
               </button>
-              <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center">
+              <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro">
                 Select Carat Weight <FaAngleDown />
               </button>
             </div>
-            <div className="d-flex gap-3 align-items-center">
-              <span className="sho_ddd">Sort by:</span>
-              <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center">
+            <div className="d-flex gap-3 align-items-center filter_pro2">
+              <span className="sho_ddd filter_pro1">Sort by:</span>
+              <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro">
                 High to Low <FaAngleDown />
               </button>
             </div>

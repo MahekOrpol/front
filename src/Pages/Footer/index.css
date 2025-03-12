@@ -138,6 +138,8 @@
   width: 60%;
   align-items: center;
   margin: auto;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
 }
 .suv_butn {
   background-color: #611d2b;
@@ -177,3 +179,122 @@ letter-spacing: 0%;
 text-align: justify;
 
 }
+
+@media (max-width:575px) {
+  .sdc_sdds{
+    flex: 0 0 auto;
+    width: 50%;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+    padding-top: 3rem !important;
+  }
+  .sdc_sdds1{
+    width: 100%;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+
+  .gbhuji8usdjikijd{
+    width: 90%;
+  padding-left: 0rem !important;
+  padding-right: 0rem !important;
+
+  }
+
+  .zsdds_sss55{
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .sdxc_988_sss{
+    flex-direction:column-reverse
+  }
+
+
+.foot_ofcd {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  width: 100%;
+  white-space: noWrap;
+  justify-content: center;
+  display: flex;
+}
+}
+
+@media (max-width:410px) {
+  .dis-ssss1{
+    flex-direction: column;
+  }
+  .dis-ssss{
+    width: 100%;
+  }
+  .dszcdscs_aszs{
+      font-family: "DM Serif Text", serif;
+      font-weight: 400;
+      font-size: 29px;
+      line-height: 100%;
+      letter-spacing: 0%;
+  }
+
+
+.foot_ofcd {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  width: 100%;
+  white-space: noWrap;
+  justify-content: center;
+  display: flex;
+}
+
+.ajreug {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 106%;
+  letter-spacing: 0%;
+}
+
+}
+
+@media (max-width:1024px) {
+  .gbhuji8usdjikijd {
+    border-radius: 9px;
+    color: #611d2b;
+    background-color: #fff;
+    width: 90%;
+    align-items: center;
+    margin: auto;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+}
+}
+@media (max-width:1240px) and (min-width:1025px){
+  .gbhuji8usdjikijd {
+    border-radius: 9px;
+    color: #611d2b;
+    background-color: #fff;
+    width: 90%;
+    align-items: center;
+    margin: auto;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+}
+}
+
+@media (min-width:992px) {
+  .sdcdscsdss_ss{
+    width: 100%;
+  }
+}
+

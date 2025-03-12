@@ -125,3 +125,7 @@
 .translate-middle {
     transform: translate(0%,-50%)!important;
 }
+
+.hdr_csd{
+width: 100%;
+}

@@ -123,9 +123,9 @@ const ProductDetails = () => {
         </section>
 
         <section className="d-flex gap-5">
-          <div className="w-100">
+          <div className="w-100 sdcsd_saxza">
             <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0">
-              <div className="d-flex gap-4">
+              <div className="d-flex gap-4 pro_dddd66">
                 <div className="det_min_cd2">
                 <video src={ringVideo} className="detr_img bg-white" autoPlay loop muted />
                   {/* <img
@@ -141,7 +141,7 @@ const ProductDetails = () => {
                   />
                 </div>
               </div>
-              <div className="d-flex gap-4">
+              <div className="d-flex gap-4 pro_dddd66">
                 <div className="det_min_cd ">
                   <img
                     className="detr_img_d"
@@ -155,7 +155,7 @@ const ProductDetails = () => {
                   />
                 </div>
               </div>
-              <div className="d-flex gap-4">
+              <div className="d-flex gap-4 pro_dddd66">
                 <div className="det_min_cds p-5 xsddcsd">
                   <img
                     className="detr_img_d"
@@ -172,7 +172,7 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <div className="w-100 pt-5">
+          <div className="w-100 pt-5 sdcsd_saxza">
             <div className="d-flex justify-content-between align-items-center">
               <span className="secrt_1">2 CTW Halo Engagement Ring</span>
               <div>
@@ -272,7 +272,7 @@ const ProductDetails = () => {
               <span className="dim_txt_sjs">Diamond Purity:</span>
             </div>
 
-            <div className="d-flex align-items-center gap-3 pt-3">
+            <div className="d-flex align-items-center gap-3 pt-3 flex-wrap">
               <div className="round_ddd p-3">
                 <span className="a_sssss">1ctw</span>
               </div>
@@ -298,7 +298,7 @@ const ProductDetails = () => {
               <span className="dim_txt_sjs">Diamond Shape:</span>
             </div>
 
-            <div className="d-flex align-items-center gap-3 pt-3">
+            <div className="d-flex align-items-center gap-3 pt-3 flex-wrap">
               <div className="d-flex align-items-center flex-column ">
                 <div className="diamond_shape">
                   <img src={require("../../Images/Round-New 1.png")} />
@@ -549,7 +549,7 @@ const ProductDetails = () => {
           </div>
         </section>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd mt-md-5">
           <span className="category_name">Related Products</span>
           <p className="category_txt">A Touch of Grace for Every Gesture</p>
           <img src={require("../../Images/Groupimg.png")} />
