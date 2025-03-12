@@ -8,7 +8,7 @@ import { PiHeartThin } from "react-icons/pi";
 import { BiShoppingBag } from "react-icons/bi";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import Header from "../../Pages/Header";
-import banner from "../../Images/Group 1597884635.png";
+import banner from "../../Images/Frame 200.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   EffectCoverflow,
@@ -102,26 +102,9 @@ const Home = () => {
     <div>
       <Header />
       <div>
-        <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" />
-        <div className="text_dsfcd ">
-          {/* <span className="banner_text w-50 justify-content-center d-flex">
-            Where Elegance Finds <br /> Extraordinary Artistry
-          </span>
-          <span className="banner_text1 w-50 justify-content-center d-flex">
-            From selecting the perfect gemstone to finalizing every intricate
-            detail, we’ll work with you to create a one-of-a-
-            <br />
-            kind masterpiece. Discover exquisite designs, from classic to
-            contemporary, tailored for every occasion.
-          </span> */}
+        {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
+        <div className="hoe_page_main_bvannei"></div>
 
-          {/* <div className="banner_text2 w-50 justify-content-start d-flex gap-3">
-            <button className="get-strt_btn ">Let’s Get Started</button>
-            <div className="arrow_bac p-2 d-flex justify-content-center align-items-center ">
-              <FaArrowRight className="right_arrow_dd" />
-            </div>
-          </div> */}
-        </div>
       </div>
 
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd container">
@@ -609,26 +592,26 @@ const Home = () => {
         <span className="category_name">Gifting Edition</span>
         <p className="category_txt">Elegant & Versatile Gifts</p>
         <img src={require("../../Images/Groupimg.png")} />
-        <div className="row pt-4">
-          <div className="col-md-3 dsjnurh_sx">
+        <div className="row pt-4 w-100">
+          <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
             <img src={require("../../Images/Group 1597884624 (1).png")} />
             <div className="lionk_ss">
               <a>Gifts for Her</a>
             </div>
           </div>
-          <div className="col-md-3 dsjnurh_sx">
+          <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
             <img src={require("../../Images/Group 1597884625 (1).png")} />
             <div className="lionk_ss">
               <a>Gifts for Him</a>
             </div>
           </div>
-          <div className="col-md-3 dsjnurh_sx">
+          <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
             <img src={require("../../Images/Group 1597884626 (1).png")} />
             <div className="lionk_ss">
               <a>Gifts for Self</a>
             </div>
           </div>
-          <div className="col-md-3 dsjnurh_sx">
+          <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
             <img src={require("../../Images/Group 1597884626 (1).png")} />
             <div className="lionk_ss">
               <a>Gifts for Her</a>
@@ -728,8 +711,8 @@ const Home = () => {
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img src={require("../../Images/Groupimg.png")} />
 
-        <div className="container pt-4 d-flex position-relative w-100 justify-content-between">
-          <div className="grp_img position-relative box-trens-2 w-25">
+        <div className="container pt-4 row position-relative w-100 justify-content-between">
+          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12">
             <div className="d-flex justify-content-center align-items-center h-100 w-100">
               <img
                 src={require("../../Images/image (4).png")}
@@ -738,7 +721,7 @@ const Home = () => {
               />
             </div>
           </div>
-          <div className="grp_img position-relative box-trens-2 w-25">
+          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/image (5).png")}
@@ -747,7 +730,7 @@ const Home = () => {
               />
             </div>
           </div>
-          <div className="grp_img position-relative box-trens-2 w-25">
+          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/Mask group (2).png")}
@@ -757,7 +740,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="grp_img position-relative box-trens-2 w-25">
+          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/image (6).png")}
