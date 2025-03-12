@@ -7,13 +7,12 @@ import { BiShoppingBag } from "react-icons/bi";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { GoShareAndroid } from "react-icons/go";
 import { FcLike } from "react-icons/fc";
-import ringVideo from '../../Videos/ring.mp4'
+import ringVideo from "../../Videos/ring.mp4";
 
 const products = [
   {
     id: 1,
     imgSrc: require("../../Images/image 98.png"),
-    link: "RINGS",
     name: "Two Stone Diamond Ring",
     price: "₹30,000",
     cutPrice: "35000",
@@ -21,7 +20,6 @@ const products = [
   {
     id: 2,
     imgSrc: require("../../Images/tre-2.png"),
-    link: "RINGS",
     name: "Two Stone Diamond Ring",
     price: "₹30,000",
     cutPrice: "35000",
@@ -29,7 +27,6 @@ const products = [
   {
     id: 3,
     imgSrc: require("../../Images/image 100 (1).png"),
-    link: "RINGS",
     name: "Two Stone Diamond Ring",
     price: "₹30,000",
     cutPrice: "35000",
@@ -37,7 +34,6 @@ const products = [
   {
     id: 4,
     imgSrc: require("../../Images/latsss.png"),
-    link: "RINGS",
     name: "Two Stone Diamond Ring",
     price: "₹30,000",
     cutPrice: "35000",
@@ -127,7 +123,13 @@ const ProductDetails = () => {
             <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0">
               <div className="d-flex gap-4 pro_dddd66">
                 <div className="det_min_cd2">
-                <video src={ringVideo} className="detr_img bg-white" autoPlay loop muted />
+                  <video
+                    src={ringVideo}
+                    className="detr_img bg-white"
+                    autoPlay
+                    loop
+                    muted
+                  />
                   {/* <img
                     className="detr_img"
                     src={require("../../Images/productdetails.png")}
@@ -179,8 +181,8 @@ const ProductDetails = () => {
                 <button className="sav_btn p-2 pe-3 ps-3">Save 20%</button>
               </div>
             </div>
-            <div className="pt-3 d-flex gap-5 align-items-center">
-              <div className="d-flex justify-content-left align-items-center gap-3">
+            <div className="pt-3 d-flex gap-5 align-items-center ">
+              <div className="d-flex justify-content-left align-items-center gap-3 sdcdc">
                 <div className="d-flex align-items-center gap-1">
                   <FaStar color="#DBB439" />
                   <FaStar color="#DBB439" />
@@ -192,20 +194,18 @@ const ProductDetails = () => {
                   <span className="rv_ssss">24 Reviews</span>
                 </div>
               </div>
-              <div>
+              <div className="gap-3 d-flex align-items-center sdcdc">
                 <span className="sku_dsd">SKU : KD-566498</span>
-              </div>
-              <div>
                 <button className="stk_btn p-2 pe-3 ps-3">IN STOCK</button>
               </div>
             </div>
-            <div className="pt-3">
+            <div className="pt-3 pt-sm-4">
               <div className="d-flex gap-3 align-items-center">
                 <span className="main_txt_pb">₹40,000</span>
                 <span className="cut_txt_sc">₹48,000</span>
               </div>
             </div>
-            <div className="pt-5">
+            <div className="pt-sm-3 pt-md-3 pt-lg-5">
               <p className="seb_p_g">
                 A halo diamond ring is a classic and sophisticated choice,
                 renowned for its dazzling design and ability to elevate the
@@ -215,7 +215,7 @@ const ProductDetails = () => {
               </p>
             </div>
             <div className="p-3 sec_pb w-75">
-              <div className="d-flex align-items-center justify-content-between pt-2">
+              <div className="d-flex align-items-center justify-content-between pt-2 sdcdc align-items-sm-start align-items-md-start align-items-lg-center">
                 <span className="your_pncd">Your pincode</span>
                 <div>
                   <input type="text" name="pincode" className="oib_inout p-1" />
@@ -231,38 +231,185 @@ const ProductDetails = () => {
             </div>
 
             <div className="dropdown">
-      <button
-        className="btn btn-secondary dropdown-toggle size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
-        type="button"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
-      >
-        {selectedSize}
-      </button>
-      <ul className="dropdown-menu product_det_menu w-50 mt-1">
-        <li><button className="dropdown-item" onClick={() => handleSelect("6")}>6</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("7")}>7</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("8")}>8</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("9")}>9</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("10")}>10</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("11")}>11</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("12")}>12</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("13")}>13</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("14")}>14</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("15")}>15</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("16")}>16</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("17")}>17</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("18")}>18</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("19")}>19</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("20")}>20</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("21")}>21</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("22")}>22</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("23")}>23</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("24")}>24</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("25")}>25</button></li>
-        <li><button className="dropdown-item" onClick={() => handleSelect("26")}>26</button></li>
-      </ul>
-    </div>
+              <button
+                className="btn btn-secondary dropdown-toggle size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {selectedSize}
+              </button>
+              <ul className="dropdown-menu product_det_menu w-50 mt-1">
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("6")}
+                  >
+                    6
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("7")}
+                  >
+                    7
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("8")}
+                  >
+                    8
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("9")}
+                  >
+                    9
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("10")}
+                  >
+                    10
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("11")}
+                  >
+                    11
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("12")}
+                  >
+                    12
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("13")}
+                  >
+                    13
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("14")}
+                  >
+                    14
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("15")}
+                  >
+                    15
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("16")}
+                  >
+                    16
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("17")}
+                  >
+                    17
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("18")}
+                  >
+                    18
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("19")}
+                  >
+                    19
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("20")}
+                  >
+                    20
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("21")}
+                  >
+                    21
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("22")}
+                  >
+                    22
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("23")}
+                  >
+                    23
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("24")}
+                  >
+                    24
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("25")}
+                  >
+                    25
+                  </button>
+                </li>
+                <li>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => handleSelect("26")}
+                  >
+                    26
+                  </button>
+                </li>
+              </ul>
+            </div>
 
             <div className="pt-2">
               <hr className="hr_pb_dtl" />
@@ -559,7 +706,7 @@ const ProductDetails = () => {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="col-lg-3 col-md-4 col-sm-6 mb-4 asxasx_cards"
+                className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
                 onMouseEnter={() => setHoveredProduct(product.id)}
                 onMouseLeave={() => setHoveredProduct(null)}
               >
@@ -586,25 +733,28 @@ const ProductDetails = () => {
                         className="p-1_proi"
                         alt="Product"
                       />
-                      {hoveredProduct === product.id && (
+                      {/* {hoveredProduct === product.id && (
                         <div className="hover-overlay w-100 d-flex">
                           <button className="d-flex align-items-center add-to-crd-dss p-2 mt-2 justify-content-center gap-3">
                             Add to Cart <BiShoppingBag size={25} />
                           </button>
-                          {/* <p className="mt-1"> */}
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </div>
                 <div className="d-flex flex-column main_cdsss">
-                  <a className="mikdec_asdaa det_links pt-3">{product.link}</a>
-                  <span className="mikdec_asdaa pt-1">{product.name}</span>
+                  <span className="mikdec_asdaa pt-3">{product.name}</span>
                   <div className="d-flex align-items-center gap-3 pt-1">
                     <span className="mikdec_asdxsx">{product.price}</span>
                     <span className="mikdec_axsx">{product.cutPrice}</span>
                   </div>
-
+                  <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                    <button className="more_btn_dsdd w-50">More Info</button>
+                    <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                      Add to Cart <BiShoppingBag size={25} />
+                    </button>
+                  </div>
                   {/* </p> */}
                 </div>
               </div>

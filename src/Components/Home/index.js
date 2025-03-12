@@ -23,6 +23,7 @@ import "swiper/css/navigation";
 import { CiStar } from "react-icons/ci";
 import Footer from "../../Pages/Footer";
 import { GrNext } from "react-icons/gr";
+import { GoHeart, GoHeartFill } from "react-icons/go";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -30,6 +31,37 @@ const images = [
   require("../../Images/ring222.png"),
   require("../../Images/ring222.png"),
   require("../../Images/ring222.png"),
+];
+
+const products = [
+  {
+    id: 1,
+    imgSrc: require("../../Images/image 98.png"),
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 2,
+    imgSrc: require("../../Images/tre-2.png"),
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 3,
+    imgSrc: require("../../Images/image 100 (1).png"),
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 4,
+    imgSrc: require("../../Images/latsss.png"),
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
 ];
 
 const diamondRings = [
@@ -62,6 +94,8 @@ const diamondRings = [
 ];
 
 const Home = () => {
+    const [isFavorite, setIsFavorite] = useState({});
+      const [liked, setLiked] = useState(false);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef(null); // Store Swiper instance
@@ -96,6 +130,13 @@ const Home = () => {
       diamondRings[(currentIndex + 1) % total],
       diamondRings[(currentIndex + 2) % total],
     ];
+  };
+
+  const toggleFavorite = (id) => {
+    setIsFavorite((prev) => ({
+      ...prev,
+      [id]: !prev[id], // Toggle the favorite state for the specific card
+    }));
   };
 
   return (
@@ -420,7 +461,7 @@ const Home = () => {
         <p className="category_txt">The Latest looks, Crafted to Perfection</p>
         <img src={require("../../Images/Groupimg.png")} />
 
-        <div className="container d-flex gap-3 justify-content-between position-relative pt-4 w-100">
+        {/* <div className="container d-flex gap-3 justify-content-between position-relative pt-4 w-100">
           <div className="grp_img position-relative box-trens-1 w-25">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
@@ -543,7 +584,67 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+           <div className="heder_sec_main d-flex flex-column container">
+                  <div className="row pt-5">
+                    {products.map((product) => (
+                      <div
+                        key={product.id}
+                        className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                        // onMouseEnter={() => setHoveredProduct(product.id)}
+                        // onMouseLeave={() => setHoveredProduct(null)}
+                      >
+                        {/* Each column adapts based on screen size */}
+                        <div className="card prio_card scdscsed_sdss">
+                          <div className="card-title">
+                            <div>
+                              <button className="new_btnddx p-1 ms-3 mt-3">NEW</button>
+                              <div
+                                className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
+                                onClick={() => toggleFavorite(product.id)}
+                                style={{ cursor: "pointer" }}
+                              >
+                                {isFavorite[product.id] ? (
+                                  <GoHeartFill className="heart-icon_ss" size={18} />
+                                ) : (
+                                  <GoHeart className="heart-icon_ss" size={18} />
+                                )}
+                              </div>
+                            </div>
+                            <div className="card-body d-flex justify-content-center ">
+                              <img
+                                src={product.imgSrc}
+                                className="p-1_proi"
+                                alt="Product"
+                              />
+                              {/* {hoveredProduct === product.id && (
+                                <div className="hover-overlay w-100 d-flex">
+                                  <button className="d-flex align-items-center add-to-crd-dss p-2 mt-2 justify-content-center gap-3">
+                                    Add to Cart <BiShoppingBag size={25} />
+                                  </button>
+                                </div>
+                              )} */}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="d-flex flex-column main_cdsss">
+                          <span className="mikdec_asdaa pt-3">{product.name}</span>
+                          <div className="d-flex align-items-center gap-3 pt-1">
+                            <span className="mikdec_asdxsx">{product.price}</span>
+                            <span className="mikdec_axsx">{product.cutPrice}</span>
+                          </div>
+                          <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                            <button className="more_btn_dsdd w-50">More Info</button>
+                            <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                              Add to Cart <BiShoppingBag size={25} />
+                            </button>
+                          </div>
+                          {/* </p> */}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
       </div>
 
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd1 mt-5">
