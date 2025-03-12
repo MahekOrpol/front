@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import $ from "jquery";
-import homeBanner from "../../Images/banner.png";
+import homeBanner from "../../Images/Group 1597884635.png";
 import { FaArrowRight, FaChevronRight, FaStar } from "react-icons/fa6";
 import logobnddd from "../../Images/diamondring.png";
 import vector from "../../Images/Vector.png";
@@ -11,7 +11,12 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import Header from "../../Pages/Header";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Navigation, Pagination ,Autoplay} from "swiper/modules";
+import {
+  EffectCoverflow,
+  Navigation,
+  Pagination,
+  Autoplay,
+} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -43,8 +48,7 @@ const diamondRings = [
     id: 3,
     image: require("../../Images/111111.png"),
     size: "large",
-    number:'4'
-
+    number: "4",
   },
   {
     id: 4,
@@ -101,7 +105,7 @@ const Home = () => {
       <div>
         <img src={homeBanner} className="img_fluid1_banner" />
         <div className="text_dsfcd ">
-          <span className="banner_text w-50 justify-content-center d-flex">
+          {/* <span className="banner_text w-50 justify-content-center d-flex">
             Where Elegance Finds <br /> Extraordinary Artistry
           </span>
           <span className="banner_text1 w-50 justify-content-center d-flex">
@@ -110,7 +114,7 @@ const Home = () => {
             <br />
             kind masterpiece. Discover exquisite designs, from classic to
             contemporary, tailored for every occasion.
-          </span>
+          </span> */}
 
           <div className="banner_text2 w-50 justify-content-start d-flex gap-3">
             <button className="get-strt_btn ">Let’s Get Started</button>
@@ -558,7 +562,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-
       </div>
 
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd1 mt-5">
@@ -568,34 +571,37 @@ const Home = () => {
         <p className="category_txt">Perfect Presents for Every Occasion.</p>
         <img src={require("../../Images/Groupimg.png")} />
 
-        <div className="pt-4 d-flex position-relative w-100 container justify-content-between gap-3">
-          <div className="d-flex flex-column align-items-center gap-3 offer_prixx p-5 w-25">
-            <span className="under_cimn">Under</span>
-            <span className="under_cimn">₹1,999</span>
-            <span className="next_arrow p-2">
-              <GrNext size={28} />
-            </span>
-          </div>
-          <div className="d-flex flex-column align-items-center gap-3 offer_prixx1 p-5 w-25">
-            <span className="under_cimn">Under</span>
-            <span className="under_cimn">₹1,999</span>
-            <span className="next_arrow p-2">
-              <GrNext size={28} />
-            </span>
-          </div>
-          <div className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5 w-25">
-            <span className="under_cimn">Under</span>
-            <span className="under_cimn">₹1,999</span>
-            <span className="next_arrow p-2">
-              <GrNext size={28} />
-            </span>
-          </div>
-          <div className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5 w-25">
-            <span className="under_cimn">Under</span>
-            <span className="under_cimn">₹1,999</span>
-            <span className="next_arrow p-2">
-              <GrNext size={28} />
-            </span>
+        {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
+        <div className="pt-4 container">
+          <div className="row justify-content-center justify-content-md-between">
+            <div className="d-flex flex-column align-items-center gap-3 offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+              <span className="under_cimn">Under</span>
+              <span className="under_cimn">₹1,999</span>
+              <span className="next_arrow p-2">
+                <GrNext size={28} />
+              </span>
+            </div>
+            <div className="d-flex flex-column align-items-center gap-3 offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+              <span className="under_cimn">Under</span>
+              <span className="under_cimn">₹1,999</span>
+              <span className="next_arrow p-2">
+                <GrNext size={28} />
+              </span>
+            </div>
+            <div className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+              <span className="under_cimn">Under</span>
+              <span className="under_cimn">₹1,999</span>
+              <span className="next_arrow p-2">
+                <GrNext size={28} />
+              </span>
+            </div>
+            <div className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+              <span className="under_cimn">Under</span>
+              <span className="under_cimn">₹1,999</span>
+              <span className="next_arrow p-2">
+                <GrNext size={28} />
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -682,16 +688,26 @@ const Home = () => {
 
         <div className="rings-container">
           <div className="rings-row">
-          {getVisibleRings().map((ring, index) => (
-            <div
-              key={ring.id}
-              className={`ring-item ${index === 2 ? "large" : index === 1 || index === 3 ? "medium" : "small"}`}
-            >
-              <div className="ring-shadow">
-                <img src={ring.image} alt={`Diamond Ring ${ring.id}`} className="ring-image" />
+            {getVisibleRings().map((ring, index) => (
+              <div
+                key={ring.id}
+                className={`ring-item ${
+                  index === 2
+                    ? "large"
+                    : index === 1 || index === 3
+                    ? "medium"
+                    : "small"
+                }`}
+              >
+                <div className="ring-shadow">
+                  <img
+                    src={ring.image}
+                    alt={`Diamond Ring ${ring.id}`}
+                    className="ring-image"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
         </div>
         <div
@@ -964,7 +980,7 @@ const Home = () => {
         </div> 
       </div> */}
 
-<div className="testimonial-container d-flex align-items-center">
+      <div className="testimonial-container d-flex align-items-center">
         {/* Left Navigation Button */}
         <button
           className="nav-button left"
@@ -991,18 +1007,19 @@ const Home = () => {
             {[...Array(10)].map((_, index) => (
               <SwiperSlide key={index} className="">
                 <div
-                  className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                    } mt-5`}
+                  className={`card testimonial-card${
+                    index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                  } mt-5`}
                 >
                   <div className="card-body pt-5">
                     <h5 className="card-title text-center emi_ffcc">
                       Emily Carol
                     </h5>
                     <p className="card-text sdcdscsd text-center">
-                      I wanted a custom bracelet to honor my daughter’s birth, and
-                      the designers exceeded my expectations. They listened to
-                      every detail I envisioned and brought it to life. It’s a
-                      masterpiece I’ll cherish forever.
+                      I wanted a custom bracelet to honor my daughter’s birth,
+                      and the designers exceeded my expectations. They listened
+                      to every detail I envisioned and brought it to life. It’s
+                      a masterpiece I’ll cherish forever.
                     </p>
                     <p className="text-center sdcdscsd">Client</p>
                     <div className="d-flex justify-content-center align-items-center">
@@ -1025,7 +1042,7 @@ const Home = () => {
         >
           <FaAngleRight />
         </button>
-</div>
+      </div>
 
       <Footer />
     </div>
