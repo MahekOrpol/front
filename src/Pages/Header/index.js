@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./index.css";
 
-import logo from "../../Images/logo.png";
+import logo from "../../Images/Group 1597884561.png";
 import usericon from "../../Images/Group.png";
 import { CiHeart, CiSearch } from "react-icons/ci";
 import { IoBagHandleOutline, IoClose, IoMenu } from "react-icons/io5";

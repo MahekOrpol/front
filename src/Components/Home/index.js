@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import $ from "jquery";
-import homeBanner from "../../Images/Group 1597884635.png";
 import { FaArrowRight, FaChevronRight, FaStar } from "react-icons/fa6";
 import logobnddd from "../../Images/diamondring.png";
 import vector from "../../Images/Vector.png";
@@ -9,7 +8,7 @@ import { PiHeartThin } from "react-icons/pi";
 import { BiShoppingBag } from "react-icons/bi";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import Header from "../../Pages/Header";
-
+import banner from "../../Images/Group 1597884635.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   EffectCoverflow,
@@ -103,7 +102,7 @@ const Home = () => {
     <div>
       <Header />
       <div>
-        <img src={homeBanner} className="img_fluid1_banner" />
+        <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" />
         <div className="text_dsfcd ">
           {/* <span className="banner_text w-50 justify-content-center d-flex">
             Where Elegance Finds <br /> Extraordinary Artistry
@@ -116,12 +115,12 @@ const Home = () => {
             contemporary, tailored for every occasion.
           </span> */}
 
-          <div className="banner_text2 w-50 justify-content-start d-flex gap-3">
+          {/* <div className="banner_text2 w-50 justify-content-start d-flex gap-3">
             <button className="get-strt_btn ">Let’s Get Started</button>
             <div className="arrow_bac p-2 d-flex justify-content-center align-items-center ">
               <FaArrowRight className="right_arrow_dd" />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -131,27 +130,27 @@ const Home = () => {
         <img src={require("../../Images/Groupimg.png")} />
 
         <div className="row pt-5">
-          <div className="col-md-2 d-flex flex-column align-items-center">
+          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
             <img src={require("../../Images/Group 1597884634 (1).png")} />
             <span>Pendant</span>
           </div>
-          <div className="col-md-2 d-flex flex-column align-items-center">
+          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
             <img src={require("../../Images/Group 1597884629 (1).png")} />
             <span>Bracelet</span>
           </div>
-          <div className="col-md-2 d-flex flex-column align-items-center">
+          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
             <img src={require("../../Images/Group 1597884630.png")} />
             <span>Earrings</span>
           </div>
-          <div className="col-md-2 d-flex flex-column align-items-center">
+          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
             <img src={require("../../Images/Group 1597884631.png")} />
             <span>Rings</span>
           </div>
-          <div className="col-md-2 d-flex flex-column align-items-center">
+          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
             <img src={require("../../Images/Group 1597884632.png")} />
             <span>Pendant</span>
           </div>
-          <div className="col-md-2 d-flex flex-column align-items-center">
+          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
             <img src={require("../../Images/Group 1597884632.png")} />
             <span>Pendant</span>
           </div>
@@ -336,23 +335,23 @@ const Home = () => {
           </div>
         </div>
         {/* </div> */}
-        <div className="d-flex ">
+        <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
           <div className="position-relative">
             <img
               src={require("../../Images/image (3).png")}
-              className="img-fluid"
+              className="img-fluid w-100"
               alt="Main Image"
             />
 
             <div className="overlay-img11">
               <img
                 src={require("../../Images/Rectangle 105457.png")}
-                className="img-fluid"
+                className="img-fluid w-100"
                 alt="Overlay"
               />
             </div>
           </div>
-          <div className="d-flex flex-column justify-content-center gap-5 ps-5 ms-5">
+          <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
             <span className="fest_fff">FESTIVAL SALE OFFERS</span>
             <div className="txt_frss d-flex flex-column gap-3">
               <span>Upto 25% Off on All Jewelry Favorites</span>
