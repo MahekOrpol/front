@@ -45,8 +45,8 @@ const Blog = () => {
         </div> */}
       </div>
       <div className="container pt-5 ">
-        <div className="d-flex gap-5">
-          <div className="sdncsduchs h-100 position-sticky" style={{top:'12px'}}>
+        <div className="d-flex gap-5 blog_main_dddd">
+          <div className="sdncsduchs h-100 position-sticky blog_sins_ssss" style={{top:'12px'}}>
             <div className="card p-3 shadow-sm border-0 ">
               <h4 className="fw-bold border-bottom pb-2">Popular Posts</h4>
               {posts.map((post, index) => (
@@ -54,7 +54,7 @@ const Blog = () => {
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="rounded"
+                    className="rounded blog_dim_dd"
                     width="100"
                     height="100"
                   />
@@ -66,10 +66,10 @@ const Blog = () => {
               ))}
             </div>
 
-            <div className="card p-3 shadow-sm border-0  mt-5">
+            <div className="card p-3 shadow-sm border-0  mt-5 blog_det_crdsss">
               <h4 className="fw-bold border-bottom pb-2">Category</h4>
               <ul
-                className="mt-3 d-flex flex-column gap-2 align-items-start ms-0"
+                className="mt-3 d-flex flex-column gap-2 align-items-start ms-0 dfc_newssss"
                 style={{ listStyle: "none", fontWeight: 400, fontSize: "24px" }}
               >
                 <li>News</li>
@@ -81,7 +81,7 @@ const Blog = () => {
               </ul>
             </div>
 
-            <div className="card p-3 shadow-sm border-0  mt-5">
+            <div className="card p-3 shadow-sm border-0  mt-5 blog_det_crdsss">
               <h4 className="fw-bold border-bottom pb-2">Tags</h4>
               <div className="d-flex flex-wrap gap-3 pt-4 pb-2">
                 <div className="hjvbxy">Accessories</div>
@@ -96,7 +96,7 @@ const Blog = () => {
           <div className="sdncsduch row">
             <div className="ssss_dddd10">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (20).png")} width={554} />
+                <img src={require("../../Images/image (20).png")} className="blog_ss_tysn_mg" width={554} />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -120,7 +120,7 @@ const Blog = () => {
             </div>
             <div className="ssss_dddd10">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (20).png")} width={554} />
+                <img src={require("../../Images/image (20).png")} className="blog_ss_tysn_mg" width={554} />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -144,7 +144,7 @@ const Blog = () => {
             </div>
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (21).png")} width={554} />
+                <img src={require("../../Images/image (21).png")} className="blog_ss_tysn_mg" width={554} />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -168,7 +168,7 @@ const Blog = () => {
             </div>
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (22).png")} width={554} />
+                <img src={require("../../Images/image (22).png")} className="blog_ss_tysn_mg" width={554} />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -192,7 +192,7 @@ const Blog = () => {
             </div>
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (23).png")} width={554} />
+                <img src={require("../../Images/image (23).png")} className="blog_ss_tysn_mg" width={554} />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -216,7 +216,7 @@ const Blog = () => {
             </div>
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (24).png")} width={554} />
+                <img src={require("../../Images/image (24).png")} className="blog_ss_tysn_mg" width={554} />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">

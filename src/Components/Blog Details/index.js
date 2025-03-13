@@ -45,8 +45,8 @@ const BlogDetails = () => {
         </div> */}
       </div>
       <div className="container pt-5 ">
-        <div className="d-flex gap-5">
-          <div className="sdncsduchs h-100 position-sticky" style={{ top: '12px' }}>
+        <div className="d-flex gap-5 blog_main_dddd">
+          {/* <div className="sdncsduchs h-100 position-sticky" style={{ top: '12px' }}>
             <div className="card p-3 shadow-sm border-0 ">
               <h4 className="fw-bold border-bottom pb-2">Popular Posts</h4>
               {posts.map((post, index) => (
@@ -91,15 +91,60 @@ const BlogDetails = () => {
                 <div className="hjvbxy">Collection</div>
               </div>
             </div>
-          </div>
+          </div> */}
+ <div className="sdncsduchs h-100 position-sticky blog_sins_ssss" style={{top:'12px'}}>
+            <div className="card p-3 shadow-sm border-0 ">
+              <h4 className="fw-bold border-bottom pb-2">Popular Posts</h4>
+              {posts.map((post, index) => (
+                <div key={post.id} className="d-flex align-items-center my-3">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="rounded blog_dim_dd"
+                    width="100"
+                    height="100"
+                  />
+                  <div className="ms-3">
+                    <h6 className="mb-2 fw-bold sdiuuhjus">{post.title}</h6>
+                    <span className="sxdexes mt-5">{post.date}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
 
+            <div className="card p-3 shadow-sm border-0  mt-5 blog_det_crdsss">
+              <h4 className="fw-bold border-bottom pb-2">Category</h4>
+              <ul
+                className="mt-3 d-flex flex-column gap-2 align-items-start ms-0 dfc_newssss"
+                style={{ listStyle: "none", fontWeight: 400, fontSize: "24px" }}
+              >
+                <li>News</li>
+                <li>Accessories</li>
+                <li>Collection</li>
+                <li>Fashion</li>
+                <li>Jewellery</li>
+                <li>Trends</li>
+              </ul>
+            </div>
+
+            <div className="card p-3 shadow-sm border-0  mt-5 blog_det_crdsss">
+              <h4 className="fw-bold border-bottom pb-2">Tags</h4>
+              <div className="d-flex flex-wrap gap-3 pt-4 pb-2">
+                <div className="hjvbxy">Accessories</div>
+                <div className="hjvbxy">Jewellery Collection</div>
+                <div className="hjvbxy">Trends</div>
+                <div className="hjvbxy">Fashion</div>
+                <div className="hjvbxy">Collection</div>
+              </div>
+            </div>
+          </div>
           <div className="sdncsduch row">
             <div className="ssss_ssd11">
               <div className="blog_fade_ds1">
                 <img src={require("../../Images/image (25).png")} className="deta_blg_dd" />
               </div>
 
-              <div className="d-flex flex-column gap-2 pt-5">
+              <div className="d-flex flex-column gap-2 pt-5 sdc_sdcji_swd">
                 <span className="mainj_ss">
                   Jewellery Trends Inspired by Us
                 </span>
@@ -136,7 +181,7 @@ const BlogDetails = () => {
               <span className="sdjuue_rrf">Trends to Watch in the Jewelry World</span>
             </div>
             <div className="pt-4">
-              <ul className="d-flex flex-row">
+              <ul className="d-flex flex-row dscds_det_lst_sdss">
                 <div className="row sdchhdu">
                   <li>Jewellery Care 101: Keeping Your Pieces Sparkling</li>
                   <li>How to Choose the Perfect Engagement Ring</li>

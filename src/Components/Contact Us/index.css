@@ -200,3 +200,199 @@ letter-spacing: 0%;
     -o-transform: translate(-50%, -50%);
 
 } */
+
+.hdr_cs{
+    margin-top: 60px;
+}
+/* Responsive */
+@media (max-width: 991px) {
+    .contact-info-container {
+        text-align: center;
+    }
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .icon-wrapper {
+        margin-bottom: 10px;
+    }
+    .hdr_cs {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+    .shyr_con {
+        width: 100%;
+    }
+}
+.ssyhgyeye {
+    font-family: "Cabin", sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 142%;
+    letter-spacing: 0%;
+}
+.ssyhgyey_sse {
+    font-family: "Cabin", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 142%;
+    letter-spacing: 0%;
+}
+.banner_exx {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 100%;
+    color: #fff;
+}
+/* .banner_text_sss{
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+} */
+/* @media (min-width: 928px) and (max-width: 1120px) {
+    .ssyhgyeye {
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .ssyhgyey_sse {
+        font-weight: 600;
+        font-size: 13px;
+      }
+} */
+@media (max-width: 690px) {
+    .contact-item {
+        flex-direction: row;
+        /* align-items: center;
+        justify-content: flex-start;
+        width: 100%; */
+        margin-bottom: 20px;
+    }
+    .icon-wrapper {
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #F5EBED;
+        border-radius: 50%;
+    }
+    .icon-wrapper svg {
+        color: #7D1228;
+    }
+    .text-left {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+    }
+    .text-left h4 {
+        margin-bottom: 5px;
+    }
+
+}
+@media(max-width:600px) {
+    .dhs_ddd,
+    .ens_ddds {
+        font-size: 16px;
+    }
+    .habv_www {
+        font-size: 40px;
+    }
+}
+@media(max-width:777px) {
+ 
+    .con_main{
+        padding: 1rem !important;
+    }
+}
+@media(max-width:767px) {
+    .sssss11 {
+        border-right: none;
+    }
+}
+@media(max-width:1560px) {
+    .ssyhgyey_sse {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 142%;
+        letter-spacing: 0%;
+    }
+    .contact-item {
+        gap: 20px;
+        text-align: left;
+        padding: 0px;
+    }
+}
+@media(max-width:1175px) {
+    .ssyhgyey_sse {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 142%;
+        letter-spacing: 0%;
+    }
+    .contact-item {
+        gap: 20px;
+        text-align: left;
+        padding: 0px;
+    }
+    .ssyhgyeye {
+        font-family: "Cabin", sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 142%;
+        letter-spacing: 0%;
+    }
+    .crad_idm_222_sss{
+        justify-content: space-around !important;
+    }
+}
+@media(max-width:1097px) {
+    .ssyhgyey_sse {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 142%;
+        letter-spacing: 0%;
+    }
+    .contact-item {
+        gap: 20px;
+        text-align: left;
+        padding: 0px;
+    }
+    .sssss11 {
+        border-right: 2px solid #979797;
+        /* padding-top: 9rem; */
+        height: 132px;
+        margin-top: 1rem;
+    }
+    .ssyhgyeye {
+        font-family: "Cabin", sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 142%;
+        letter-spacing: 0%;
+    }
+    .crad_idm_222_sss{
+        justify-content: space-around !important;
+    }
+    .crad_ss_99_okw {
+        width: 32.333%;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width:775px) {
+    .crad_idm_222_sss{
+        flex-wrap: wrap !important;
+    }
+}

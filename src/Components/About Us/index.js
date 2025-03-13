@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
@@ -12,6 +12,25 @@ import { Autoplay, Pagination } from "swiper/modules";
 
 const AboutUs = () => {
 const swiperRef = useRef(null); // Store Swiper instance
+const [slidesPerGroup, setSlidesPerGroup] = useState(1);
+
+useEffect(() => {
+  const updateSlidesPerGroup = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 600) {
+      setSlidesPerGroup(1); // Turn off grouping
+    } else if (screenWidth <= 600 && screenWidth <= 1000) {
+      setSlidesPerGroup(1); // Set to 1
+    } else {
+      setSlidesPerGroup(3); // Default to 1
+    }
+  };
+
+  updateSlidesPerGroup(); // Run on mount
+  window.addEventListener("resize", updateSlidesPerGroup);
+
+  return () => window.removeEventListener("resize", updateSlidesPerGroup);
+}, []);
 
   return (
     <>
@@ -340,7 +359,7 @@ const swiperRef = useRef(null); // Store Swiper instance
         </div>
       </div> */}
 
-      <div className="testimonial-container d-flex align-items-center">
+<div className="testimonial-container d-flex align-items-center">
         {/* Left Navigation Button */}
         <button
           className="nav-button left"
@@ -348,28 +367,33 @@ const swiperRef = useRef(null); // Store Swiper instance
         >
           <FaAngleLeft />
         </button>
+
         <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
           <span className="category_name">Client Testimonial</span>
           <p className="category_txt">What our Client’s say about us</p>
           <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
+
           <Swiper
             effect={"slide"}
             grabCursor={true}
-            centeredSlides={true}
-            slidesPerView={3} // Always show 3 cards
             loop={true}
-            slidesPerGroup={1} // Move only 1 slide at a time
+            slidesPerView={slidesPerGroup} // Dynamically set
+            slidesPerGroup={slidesPerGroup} // Match slidesPerView
             modules={[Pagination, Autoplay]}
-            autoplay={{ delay: 2000, disableOnInteraction: false }} // Add autoplay for smooth effect
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-            className="swiper_testimonial container "
+            className="swiper_testimonial container"
+            breakpoints={{
+              320: { slidesPerView: 1, slidesPerGroup: 1 }, // Mobile
+              600: { slidesPerView: 2, slidesPerGroup: 2 }, // Tablets
+              1000: { slidesPerView: 3, slidesPerGroup: 3 }, // Desktop
+            }}
           >
             {[...Array(10)].map((_, index) => (
-              <SwiperSlide key={index} className="">
+              <SwiperSlide key={index}>
                 <div
-                  className={`card testimonial-card${
-                    index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                  } mt-5`}
+                  className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                    } mt-5`}
                 >
                   <div className="card-body pt-5">
                     <h5 className="card-title text-center emi_ffcc">
@@ -378,8 +402,8 @@ const swiperRef = useRef(null); // Store Swiper instance
                     <p className="card-text sdcdscsd text-center">
                       I wanted a custom bracelet to honor my daughter’s birth,
                       and the designers exceeded my expectations. They listened
-                      to every detail I envisioned and brought it to life. It’s
-                      a masterpiece I’ll cherish forever.
+                      to every detail I envisioned and brought it to life. It’s a
+                      masterpiece I’ll cherish forever.
                     </p>
                     <p className="text-center sdcdscsd">Client</p>
                     <div className="d-flex justify-content-center align-items-center">
