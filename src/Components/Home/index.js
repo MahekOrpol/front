@@ -722,15 +722,16 @@ const Home = () => {
             </div>
           </div>
           <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
-            <img src={require("../../Images/Group 1597884626 (1).png")} />
+            <img src={require("../../Images/Group 1597884636.png")} />
             <div className="lionk_ss">
-              <a>Gifts for Her</a>
+              <a>Wedding Bands</a>
             </div>
           </div>
+
         </div>
       </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd ">
         <span className="category_name">Discover Styles</span>
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -835,7 +836,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd asxs_sdxszx">
         <span className="category_name">New Arrivals</span>
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img src={require("../../Images/Groupimg.png")} />
