@@ -5,7 +5,6 @@ import './index.css'
 import { Button, Card, Col, Form, Row } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
-
 const Contact = () => {
     return (
         <>
@@ -19,11 +18,10 @@ const Contact = () => {
                     <h1 className='banner_exx'>Contact Us</h1>
                 </div> */}
             </div>
-            <div className="container pt-5 ">
-
-                <div className='d-flex justify-content-between'>
-
-                    <div className="col-md-4 d-flex align-items-center justify-content-center contact-item">
+            <div className="container pt-5">
+                <div className='d-flex flex-wrap justify-content-between text-center text-md-start crad_idm_222_sss'>
+                    {/* Phone Number */}
+                    <div className="col-sm-6 col-md-3 d-flex align-items-center justify-content-center justify-content-md-start contact-item crad_ss_99_okw">
                         <div className="icon-wrapper">
                             <FontAwesomeIcon icon={faPhone} size="lg" />
                         </div>
@@ -33,10 +31,9 @@ const Contact = () => {
                             <span className="ssyhgyey_sse">+91 72650 77755</span>
                         </div>
                     </div>
-
                     <p className='sssss11'></p>
-                    {/* Email Section */}
-                    <div className="col-md-4 d-flex align-items-center justify-content-center contact-item">
+                    {/* Email Address */}
+                    <div className="col-sm-6 col-md-3 d-flex align-items-center justify-content-center justify-content-md-start contact-item crad_ss_99_okw">
                         <div className="icon-wrapper">
                             <FontAwesomeIcon icon={faEnvelope} size="lg" />
                         </div>
@@ -46,28 +43,22 @@ const Contact = () => {
                             <span className="ssyhgyey_sse">info@crystovajewels.com</span>
                         </div>
                     </div>
-
                     <p className='sssss11'></p>
-
-                    {/* Address Section */}
-                    <div className="col-md-4 d-flex align-items-center justify-content-center contact-item">
+                    {/* Office Address */}
+                    <div className="col-sm-6 col-md-3 d-flex align-items-center justify-content-center justify-content-md-start contact-item crad_ss_99_okw">
                         <div className="icon-wrapper">
                             <FontAwesomeIcon icon={faLocationDot} size="lg" />
                         </div>
                         <div className="text-left d-flex flex-column">
                             <h4 className='ssyhgyeye'>Office Address</h4>
                             <span className="ssyhgyey_sse">
-                                B-714 IT Park, Opp. AR Mall,
-                                <br />
+                                B-714 IT Park, Opp. AR Mall,<br />
                                 Mota Varachha, Surat - 394101
                             </span>
                         </div>
                     </div>
                 </div>
-
-
-
-                <div className="d-flex gap-5 hdr_csd">
+                <div className="d-flex gap-5 hdr_cs">
                     <div className='shyr_con'>
                         <div className='con_main'>
                             <h3 className='habv_www'>Have Queries?</h3>
@@ -75,7 +66,6 @@ const Contact = () => {
                             <div className='pt-4'>
                                 <span className='dhs_ddd'>Have questions, feedback, or need assistance? Connect with us, and we’ll ensure you get the support you need.</span>
                             </div>
-
                             <div className='pt-4'>
                                 <span className='dhs_ddd'>Your trust and satisfaction are our treasures. Reach out to us anytime, and let us help you shine!" Whether you have a question, need assistance, or want to share feedback, we’d love to hear from you. Let’s make your jewellery shopping experience exceptional.</span>
                             </div>
@@ -133,9 +123,8 @@ const Contact = () => {
                     </div>
                 </div>
             </div>
-
             {/* map here */}
-            <div className="map-container hdr_csd" style={{ width: "100%", height: "600px" ,marginBottom:'-10rem'}}>
+            <div className="map-container hdr_csd" style={{ width: "100%", height: "600px", marginBottom: '-10rem' }}>
                 <iframe
                     title="Google Map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.304037324984!2d72.8311!3d21.1702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDA1JzU2LjciTiA3MsKwNDknNTUuNSJF!5e0!3m2!1sen!2sin!4v1648032200000!5m2!1sen!2sin"
@@ -151,5 +140,4 @@ const Contact = () => {
         </>
     )
 }
-
 export default Contact

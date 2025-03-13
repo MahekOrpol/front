@@ -123,3 +123,372 @@ border: none;
     border-radius: 2px;
     border: none;
 }
+
+@media (max-width:1083px) {
+    .sdiuuhjus {
+        font-family: "Cabin", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .sxdexes {
+        color: #611d2b;
+        font-family: "Cabin", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .mainj_ss {
+        font-family: "Cabin", sans-serif;
+        font-weight: 700;
+        font-size: 27px;
+        line-height: 142%;
+        letter-spacing: 0%;
+        text-align: justify;
+    }
+    .dfc_newssss{
+        font-size: 18px !important;
+    }
+    .hjvbxy {
+        border: 1px solid #a1a1a1;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px 0px #00000040;
+        padding: 0.5rem;
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .esyh_btn {
+        color: #611d2b;
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: center;
+        background-color: #F4EDED;
+        border: none;
+        padding: 1rem;
+        border-radius: 92px;
+        width: 30%;
+    }
+}
+
+@media (max-width:991px) {
+    .sdiuuhjus {
+        font-family: "Cabin", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .sxdexes {
+        color: #611d2b;
+        font-family: "Cabin", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .mainj_ss {
+        font-family: "Cabin", sans-serif;
+        font-weight: 700;
+        font-size: 22px;
+        line-height: 142%;
+        letter-spacing: 0%;
+        text-align: justify;
+    }
+    .dfc_newssss{
+        font-size: 14px !important;
+    }
+    .hjvbxy {
+        border: 1px solid #a1a1a1;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px 0px #00000040;
+        padding: 0.5rem;
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .esyh_btn {
+        color: #611d2b;
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: center;
+        background-color: #F4EDED;
+        border: none;
+        padding: 1rem;
+        border-radius: 92px;
+        width: auto;
+    }
+    .psps {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 142%;
+        letter-spacing: 0%;
+        text-align: justify;
+    }
+}
+@media (max-width:885px) {
+    .sdiuuhjus {
+        font-family: "Cabin", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .blog_dim_dd{
+        width: 40%;
+    }
+    .sxdexes {
+        color: #611d2b;
+        font-family: "Cabin", sans-serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .mainj_ss {
+        font-family: "Cabin", sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 142%;
+        letter-spacing: 0%;
+        text-align: justify;
+    }
+    .psps {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 142%;
+        letter-spacing: 0%;
+        text-align: justify;
+    }
+    .dfc_newssss{
+        font-size: 15px !important;
+    }
+    .hjvbxy {
+        border: 1px solid #a1a1a1;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px 0px #00000040;
+        padding: 0.5rem;
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .esyh_btn {
+        color: #611d2b;
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: center;
+        background-color: #F4EDED;
+        border: none;
+        padding: 1rem;
+        border-radius: 92px;
+        width: auto;
+    }
+    .red_ddd {
+        font-family: "Cabin", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 142%;
+        letter-spacing: 0%;
+        text-align: justify;
+        color: #611d2b;
+    }
+}
+@media (max-width:841px) {
+    .ssss_dddd10 {
+        width: 100%;
+        margin-top: 3rem !important;
+    }
+    .mainj_ss {
+        font-family: "Cabin", sans-serif;
+        font-weight: 700;
+        font-size: 25px;
+        line-height: 142%;
+        letter-spacing: 0%;
+        text-align: justify;
+    }
+    .esyh_btn {
+        color: #611d2b;
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: center;
+        background-color: #F4EDED;
+        border: none;
+        padding: 1rem;
+        border-radius: 92px;
+        width: auto;
+    }
+    .psps {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 142%;
+        letter-spacing: 0%;
+        text-align: justify;
+    }
+    .red_ddd {
+        font-family: "Cabin", sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 142%;
+        letter-spacing: 0%;
+        text-align: justify;
+        color: #611d2b;
+    }
+}
+@media (max-width:816px) {
+.blog_main_dddd{
+    flex-direction: column;
+}
+.sdncsduchs {
+    box-shadow: 0px 0px 10px 0px #00000040 !important;
+    width: 30%;
+    font-family: "Cabin", sans-serif;
+    position: static !important;
+}
+.sdncsduchs {
+    box-shadow: 0px 0px 10px 0px #00000040 !important;
+    width: 100%;
+    font-family: "Cabin", sans-serif;
+    position: static !important;
+}
+.blog_sins_ssss{
+    display: flex;
+}
+.blog_det_crdsss{
+    width: 33.3333%;
+    margin-top: 0rem !important;
+}
+.ssss_dddd10 {
+    width: 50%;
+    margin-top: 3rem !important;
+}
+.sdncsduch {
+    width: 100%;
+    margin: auto;
+}
+.dfc_newssss{
+    padding-left: 1rem !important;
+}
+}
+@media (max-width:768px) {
+.blog_main_dddd{
+    flex-direction: column;
+}
+.sdncsduchs {
+    box-shadow: 0px 0px 10px 0px #00000040 !important;
+    width: 30%;
+    font-family: "Cabin", sans-serif;
+    position: static !important;
+}
+.sdncsduchs {
+    box-shadow: 0px 0px 10px 0px #00000040 !important;
+    width: 100%;
+    font-family: "Cabin", sans-serif;
+    position: static !important;
+}
+.blog_sins_ssss{
+    display: flex;
+}
+.blog_det_crdsss{
+    width: 33.3333%;
+    margin-top: 0rem !important;
+}
+.ssss_dddd10 {
+    width: 100%;
+    margin-top: 3rem !important;
+}
+.sdncsduch {
+    width: 100%;
+    margin: auto;
+}
+.dfc_newssss{
+    padding-left: 1rem !important;
+}
+.blog_ss_tysn_mg{
+    width: 100%;
+}
+}
+@media (max-width:643px) {
+    .blog_sins_ssss {
+        display: flex;
+        flex-direction: column;
+    }
+    .blog_det_crdsss {
+        width: 100%;
+        margin-top: 1rem !important;
+    }
+    
+    .blog_main_dddd{
+        gap: 0.2rem !important;
+    }
+    .ssss_dddd10{
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+    .sdiuuhjus {
+        font-family: "Cabin", sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .sxdexes {
+        color: #611d2b;
+        font-family: "Cabin", sans-serif;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .dfc_newssss {
+        font-size: 18px !important;
+    }
+    .hjvbxy {
+        border: 1px solid #a1a1a1;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px 0px #00000040;
+        padding: 0.5rem;
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+    .blog_dim_dd {
+        width: auto;
+    }
+}
+
+@media (max-width:329px) {
+    
+.mainj_ss {
+    font-family: "Cabin", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 142%;
+    letter-spacing: 0%;
+    text-align: justify;
+}
+}

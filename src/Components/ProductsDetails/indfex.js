@@ -118,7 +118,7 @@ const ProductDetails = () => {
           </div>
         </section>
 
-        <section className="d-flex gap-5">
+        <section className="d-flex gap-5 pro_sss_gubs ">
           <div className="w-100 sdcsd_saxza">
             <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0">
               <div className="d-flex gap-4 pro_dddd66">
@@ -174,15 +174,15 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <div className="w-100 pt-5 sdcsd_saxza">
+          <div className="w-100 pt-5 sdcsd_saxza dscd_54_Dscds">
             <div className="d-flex justify-content-between align-items-center">
               <span className="secrt_1">2 CTW Halo Engagement Ring</span>
               <div>
-                <button className="sav_btn p-2 pe-3 ps-3">Save 20%</button>
+                <button className="sav_btn p-2 pe-3 ps-3 dcs_dddd_8888">Save 20%</button>
               </div>
             </div>
-            <div className="pt-3 d-flex gap-5 align-items-center ">
-              <div className="d-flex justify-content-left align-items-center gap-3 sdcdc">
+            <div className="pt-3 d-flex gap-5 align-items-center sdcdc">
+              <div className="d-flex justify-content-left align-items-center gap-3 df_rrrrr">
                 <div className="d-flex align-items-center gap-1">
                   <FaStar color="#DBB439" />
                   <FaStar color="#DBB439" />
@@ -194,7 +194,7 @@ const ProductDetails = () => {
                   <span className="rv_ssss">24 Reviews</span>
                 </div>
               </div>
-              <div className="gap-3 d-flex align-items-center sdcdc">
+              <div className="gap-3 d-flex align-items-center df_rrrrr">
                 <span className="sku_dsd">SKU : KD-566498</span>
                 <button className="stk_btn p-2 pe-3 ps-3">IN STOCK</button>
               </div>
@@ -215,7 +215,7 @@ const ProductDetails = () => {
               </p>
             </div>
             <div className="p-3 sec_pb w-75">
-              <div className="d-flex align-items-center justify-content-between pt-2 sdcdc align-items-sm-start align-items-md-start align-items-lg-center">
+              <div className="d-flex align-items-center justify-content-between pt-2 sdcdc align-items-sm-start align-items-md-start align-items-lg-center produ_detl_sss">
                 <span className="your_pncd">Your pincode</span>
                 <div>
                   <input type="text" name="pincode" className="oib_inout p-1" />
@@ -446,25 +446,25 @@ const ProductDetails = () => {
             </div>
 
             <div className="d-flex align-items-center gap-3 pt-3 flex-wrap">
-              <div className="d-flex align-items-center flex-column ">
+              <div className="d-flex align-items-center flex-column  diamon_sss ">
                 <div className="diamond_shape">
                   <img src={require("../../Images/Round-New 1.png")} />
                 </div>
                 <span className="pt-2">Round</span>
               </div>
-              <div className="d-flex align-items-center flex-column ">
+              <div className="d-flex align-items-center flex-column  diamon_sss ">
                 <div className="diamond_shape">
                   <img src={require("../../Images/princess-cut-diamond.png")} />
                 </div>
                 <span className="pt-2">Princess</span>
               </div>
-              <div className="d-flex align-items-center flex-column ">
+              <div className="d-flex align-items-center flex-column  diamon_sss ">
                 <div className="diamond_shape">
                   <img src={require("../../Images/pear-shape-diamond.png")} />
                 </div>
                 <span className="pt-2">Pear</span>
               </div>
-              <div className="d-flex align-items-center flex-column ">
+              <div className="d-flex align-items-center flex-column  diamon_sss ">
                 <div className="diamond_shape">
                   <img
                     src={require("../../Images/oval-single-84e219e56d-500x500.png")}
@@ -472,7 +472,7 @@ const ProductDetails = () => {
                 </div>
                 <span className="pt-2">Oval</span>
               </div>
-              <div className="d-flex align-items-center flex-column ">
+              <div className="d-flex align-items-center flex-column  diamon_sss ">
                 <div className="diamond_shape">
                   <img
                     src={require("../../Images/gia-certified-real-cushion-cut-diamond (1).png")}
@@ -480,7 +480,7 @@ const ProductDetails = () => {
                 </div>
                 <span className="pt-2">Cushion</span>
               </div>
-              <div className="d-flex align-items-center flex-column ">
+              <div className="d-flex align-items-center flex-column  diamon_sss ">
                 <div className="diamond_shape">
                   <img
                     src={require("../../Images/emerald-cut-loose-diamond.png")}
@@ -515,7 +515,7 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            <div className="d-flex justify-content-between align-items-center gap-4 pt-5">
+            <div className="d-flex justify-content-between align-items-center gap-4 pt-5 fdcvd_life_ttt">
               <div className="icon-box">
                 <img
                   src={require("../../Images/lifetime.png")}
@@ -529,7 +529,7 @@ const ProductDetails = () => {
                   alt="Certified Jewellery"
                 />
               </div>
-              <div className="divider"></div>
+              <div className="divider szcxds_fix"></div>
               <div className="icon-box">
                 <img
                   src={require("../../Images/sev.png")}
@@ -558,8 +558,8 @@ const ProductDetails = () => {
                   <span className="knoe_www">Know your Setting</span>
                 </div>
 
-                <div className="d-flex align-items-center gap-3 pt-4">
-                  <div className="card det_cd_sec p-3 w-100">
+                <div className="d-flex align-items-center gap-3 pt-4 sdsc_knoww">
+                  <div className="card det_cd_sec dfc_vardss p-3 w-100">
                     <div className="d-flex align-items-center gap-3">
                       <img src={require("../../Images/Group (1).png")} />
                       <span className="knoe_www_rng">RING DIAMETER</span>
@@ -573,7 +573,7 @@ const ProductDetails = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="card det_cd_sec p-3 w-100">
+                  <div className="card det_cd_sec dfc_vardss p-3 w-100">
                     <div className="d-flex align-items-center gap-3">
                       <img src={require("../../Images/Vector (5).png")} />
                       <span className="knoe_www_rng">APPROX CTW</span>
@@ -621,13 +621,13 @@ const ProductDetails = () => {
                   <span className="knoe_www">Know your Stone</span>
                 </div>
 
-                <div className="d-flex align-items-center gap-3 pt-4">
+                <div className="d-flex align-items-center gap-3 pt-4 sdsc_knoww">
                   <div className="card det_cd_sec_ddd p-3 w-100">
                     <div className="d-flex align-items-center gap-3">
                       <span className="knoe_www_rng">DIAMOND SHAPE</span>
                     </div>
                     <div className="pt-2">
-                      <span className="sdjuij">Circle</span>
+                      <span className="sdjuij1 diam_dd_fin">Circle</span>
                     </div>
                   </div>
                   <div className="card det_cd_sec_ddd p-3 w-100">
@@ -635,27 +635,27 @@ const ProductDetails = () => {
                       <span className="knoe_www_rng">DIAMOND SIZE</span>
                     </div>
                     <div className="pt-2">
-                      <span className="sdjuij w-25">
+                      <span className="sdjuij1 w-25 diam_dd_fin">
                         Moissanite Diamond <br /> 0.18 ctw
                       </span>
                     </div>
                   </div>
                 </div>
                 <div className="d-flex align-items-center gap-3 pt-3">
-                  <div className="card det_cd_sec_ddd p-3 w-100">
+                  <div className="card det_cd_sec_ddd p-3 w-100 ins_ssuxj_55">
                     <div className="d-flex align-items-center gap-3">
                       <span className="knoe_www_rng">DIAMOND WEIGHT</span>
                     </div>
                     <div className="pt-2">
-                      <span className="sdjuij">0.18 Ct Approx</span>
+                      <span className="sdjuij1 diam_dd_fin">0.18 Ct Approx</span>
                     </div>
                   </div>
-                  <div className="card det_cd_sec_ddd p-3 w-100">
+                  <div className="card det_cd_sec_ddd p-3 w-100 ins_ssuxj_55">
                     <div className="d-flex align-items-center gap-3">
                       <span className="knoe_www_rng">DIAMOND PURITY</span>
                     </div>
                     <div className="pt-2">
-                      <span className="sdjuij">4 ctw</span>
+                      <span className="sdjuij1 diam_dd_fin">4 ctw</span>
                     </div>
                   </div>
                 </div>
@@ -696,7 +696,7 @@ const ProductDetails = () => {
           </div>
         </section>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd mt-md-5">
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd mt-md-5 szdcd_99909">
           <span className="category_name">Related Products</span>
           <p className="category_txt">A Touch of Grace for Every Gesture</p>
           <img src={require("../../Images/Groupimg.png")} />
