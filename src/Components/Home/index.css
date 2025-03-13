@@ -1564,10 +1564,7 @@ button.swiper-pagination-bullet {
   transform: translateY(90px);
 }
 
-.ring-item.large {
-  width: 735px;
-  transform: translateY(210px);
-}
+
 
 .ring-shadow {
   position: relative;
@@ -1597,19 +1594,7 @@ button.swiper-pagination-bullet {
   transform: translateY(-10px);
 }
 
-@media (max-width: 768px) {
-  .rings-row {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
 
-  .ring-item.small,
-  .ring-item.medium,
-  .ring-item.large {
-    width: 140px;
-    transform: translateY(0);
-  }
-}
 
 img.ring-image {
   box-shadow: none;
@@ -1862,4 +1847,36 @@ img.ring-image {
     margin-right: 1rem !important;
     gap: 2rem !important;
   }
+}
+
+@media (min-width:769px) {
+  .ring-item.large {
+    width: 735px;
+    transform: translateY(210px);
+  }
+  .home_ring_2{
+    display: block;
+  }
+  .home_ring_1{
+    display: none;
+  }
+}
+@media (max-width:768px) {
+  .ring-item.large {
+    width: 735px;
+    transform: translateY(180px);
+  }
+  .home_ring_1{
+    display: block;
+  }
+  .home_ring_2{
+    display: none;
+  }
+  .rings-container {
+    position: relative;
+    padding: 0 0;
+    overflow: hidden;
+    height: 480px;
+    width: 100%;
+}
 }

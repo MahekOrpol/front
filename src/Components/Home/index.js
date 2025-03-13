@@ -124,6 +124,14 @@ const Home = () => {
   const getVisibleRings = () => {
     const total = diamondRings.length;
     return [
+      diamondRings[(currentIndex - 1 + total) % total],
+      diamondRings[currentIndex],
+      diamondRings[(currentIndex + 1) % total],
+    ];
+  };
+  const getVisibleRings1 = () => {
+    const total = diamondRings.length;
+    return [
       diamondRings[(currentIndex - 2 + total) % total],
       diamondRings[(currentIndex - 1 + total) % total],
       diamondRings[currentIndex],
@@ -138,6 +146,7 @@ const Home = () => {
       [id]: !prev[id], // Toggle the favorite state for the specific card
     }));
   };
+  
 
   return (
     <div>
@@ -769,9 +778,28 @@ const Home = () => {
           </div>
         </div> */}
 
-        <div className="rings-container">
+        <div className="rings-container home_ring_1">
           <div className="rings-row">
             {getVisibleRings().map((ring, index) => (
+              <div
+                key={ring.id}
+                className={`ring-item ${index === 1 ? "large" : "small"}`}
+                
+              >
+                <div className="ring-shadow">
+                  <img
+                    src={ring.image}
+                    alt={`Diamond Ring ${ring.id}`}
+                    className="ring-image"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="rings-container home_ring_2">
+          <div className="rings-row">
+            {getVisibleRings1().map((ring, index) => (
               <div
                 key={ring.id}
                 className={`ring-item ${
