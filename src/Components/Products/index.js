@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
@@ -172,6 +172,10 @@ const Products = () => {
       [id]: !prev[id], // Toggle the favorite state for the specific card
     }));
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component loads
+  }, []);
 
   return (
     <>
