@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
 import { FaChevronRight, FaStar } from "react-icons/fa6";
@@ -77,6 +77,11 @@ const ProductDetails = () => {
         "Received an item you don't like? Crystova is proud to offer free returns within 30 days from receiving your item. Contact our support team to issue a return.",
     },
   ];
+
+    useEffect(() => {
+      window.scrollTo(0, 0); // Scrolls to the top when the component loads
+    }, []);
+  
 
   return (
     <div>
@@ -214,7 +219,7 @@ const ProductDetails = () => {
                 captivating charm and versatility.
               </p>
             </div>
-            <div className="p-3 sec_pb w-75">
+            {/* <div className="p-3 sec_pb w-75">
               <div className="d-flex align-items-center justify-content-between pt-2 sdcdc align-items-sm-start align-items-md-start align-items-lg-center produ_detl_sss">
                 <span className="your_pncd">Your pincode</span>
                 <div>
@@ -225,7 +230,7 @@ const ProductDetails = () => {
               <p className="pv_txtsss pt-3">
                 Provide pincode for delivery date and nearby stores!
               </p>
-            </div>
+            </div> */}
             <div className="pt-2">
               <hr className="hr_pb_dtl" />
             </div>
@@ -411,11 +416,11 @@ const ProductDetails = () => {
               </ul>
             </div>
 
-            <div className="pt-2">
+            <div className="">
               <hr className="hr_pb_dtl" />
             </div>
 
-            <div>
+            {/* <div>
               <span className="dim_txt_sjs">Diamond Purity:</span>
             </div>
 
@@ -488,10 +493,10 @@ const ProductDetails = () => {
                 </div>
                 <span className="pt-2">Emerald</span>
               </div>
-            </div>
-            <div className="pt-2">
+            </div> */}
+            {/* <div className="pt-2">
               <hr className="hr_pb_dtl" />
-            </div>
+            </div> */}
 
             <div className="d-flex justify-content-between align-items-center gap-4">
               <button className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3">
