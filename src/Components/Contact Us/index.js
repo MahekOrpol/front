@@ -19,13 +19,13 @@ const Contact = () => {
                 </div> */}
             </div>
             <div className="container pt-5">
-                <div className='d-flex flex-wrap justify-content-between text-center text-md-start crad_idm_222_sss'>
+                <div className='d-flex justify-content-between text-center text-md-start crad_idm_222_sss'>
                     {/* Phone Number */}
                     <div className="col-sm-6 col-md-3 d-flex align-items-center justify-content-center justify-content-md-start contact-item crad_ss_99_okw">
                         <div className="icon-wrapper">
                             <FontAwesomeIcon icon={faPhone} size="lg" />
                         </div>
-                        <div className="text-left d-flex flex-column">
+                        <div className="text-left d-flex flex-column acrtd_sss">
                             <h4 className='ssyhgyeye'>Phone Number</h4>
                             <span className="ssyhgyey_sse">+91 72650 77755</span>
                             <span className="ssyhgyey_sse">+91 72650 77755</span>
@@ -37,7 +37,7 @@ const Contact = () => {
                         <div className="icon-wrapper">
                             <FontAwesomeIcon icon={faEnvelope} size="lg" />
                         </div>
-                        <div className="text-left d-flex flex-column">
+                        <div className="text-left d-flex flex-column acrtd_sss">
                             <h4 className='ssyhgyeye'>Email Address</h4>
                             <span className="ssyhgyey_sse">info@crystovajewels.com</span>
                             <span className="ssyhgyey_sse">info@crystovajewels.com</span>
@@ -49,7 +49,7 @@ const Contact = () => {
                         <div className="icon-wrapper">
                             <FontAwesomeIcon icon={faLocationDot} size="lg" />
                         </div>
-                        <div className="text-left d-flex flex-column">
+                        <div className="text-left d-flex flex-column acrtd_sss">
                             <h4 className='ssyhgyeye'>Office Address</h4>
                             <span className="ssyhgyey_sse">
                                 B-714 IT Park, Opp. AR Mall,<br />
@@ -58,7 +58,7 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-                <div className="d-flex gap-5 hdr_cs">
+                <div className="d-flex gap-5 hdr_cs sdc_Sdc_888">
                     <div className='shyr_con'>
                         <div className='con_main'>
                             <h3 className='habv_www'>Have Queries?</h3>
@@ -84,25 +84,25 @@ const Contact = () => {
                         <Card className="contact-card con_ssss">
                             <Card.Body>
                                 <Form>
-                                    <Row>
-                                        <Col md={6}>
+                                    <Row className='con_row_sss'>
+                                        <Col md={6} className='sx_row_sss'>
                                             <Form.Group className="my-4">
                                                 <Form.Control type="text" placeholder="Your Name" className='con_filddd' />
                                             </Form.Group>
                                         </Col>
-                                        <Col md={6}>
+                                        <Col md={6} className='sx_row_sss'>
                                             <Form.Group className="my-4">
                                                 <Form.Control type="email" placeholder="Email Address" className='con_filddd' />
                                             </Form.Group>
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <Col md={6}>
+                                    <Row className='con_row_sss'>
+                                        <Col md={6} className='sx_row_sss'>
                                             <Form.Group className="my-4">
                                                 <Form.Control type="text" placeholder="Phone No." className='con_filddd' />
                                             </Form.Group>
                                         </Col>
-                                        <Col md={6}>
+                                        <Col md={6} className='sx_row_sss'>
                                             <Form.Group className="my-4">
                                                 <Form.Control type="text" placeholder="Select Subject" className='con_filddd' />
                                             </Form.Group>
@@ -124,7 +124,7 @@ const Contact = () => {
                 </div>
             </div>
             {/* map here */}
-            <div className="map-container hdr_csd" style={{ width: "100%", height: "600px", marginBottom: '-10rem' }}>
+            <div className="map-container hdr_csd d-none" style={{ width: "100%", height: "600px", marginBottom: '-10rem' }}>
                 <iframe
                     title="Google Map"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.304037324984!2d72.8311!3d21.1702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDA1JzU2LjciTiA3MsKwNDknNTUuNSJF!5e0!3m2!1sen!2sin!4v1648032200000!5m2!1sen!2sin"

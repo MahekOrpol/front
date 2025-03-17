@@ -24,6 +24,14 @@ import { CiStar } from "react-icons/ci";
 import Footer from "../../Pages/Footer";
 import { GrNext } from "react-icons/gr";
 import { GoHeart, GoHeartFill } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
+// import { Tab, Tabs } from "react-bootstrap";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import TabContext from "@mui/lab/TabContext";
+import { Tabs } from "@mui/material";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -94,12 +102,12 @@ const diamondRings = [
 ];
 
 const Home = () => {
-    const [isFavorite, setIsFavorite] = useState({});
-      const [liked, setLiked] = useState(false);
+  const [isFavorite, setIsFavorite] = useState({});
+  const [liked, setLiked] = useState(false);
   const prevRef = useRef(null);
   const nextRef = useRef(null);
   const swiperRef = useRef(null); // Store Swiper instance
-
+  const navigate = useNavigate();
   // useEffect(() => {
   //   if (swiperRef.current) {
   //     swiperRef.current.params.navigation.prevEl = prevRef.current;
@@ -108,6 +116,12 @@ const Home = () => {
   //     swiperRef.current.navigation.update();
   //   }
   // }, []);
+
+  const [value, setValue] = React.useState("1");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   const [currentIndex, setCurrentIndex] = useState(0); // ID 3 is at index 2
 
@@ -146,7 +160,6 @@ const Home = () => {
       [id]: !prev[id], // Toggle the favorite state for the specific card
     }));
   };
-  
 
   return (
     <div>
@@ -154,7 +167,6 @@ const Home = () => {
       <div>
         {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
         <div className="hoe_page_main_bvannei"></div>
-
       </div>
 
       <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd container">
@@ -469,6 +481,100 @@ const Home = () => {
         <span className="category_name">Trending Collection</span>
         <p className="category_txt">The Latest looks, Crafted to Perfection</p>
         <img src={require("../../Images/Groupimg.png")} />
+        <div className="w-25 mt-3">
+        <TabContext value={value}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+              sx={{
+                "& .MuiTabs-list": {
+                  justifyContent: "space-between",
+                },
+              }}
+            >
+              <Tab label="On Sale" />
+              <Tab label="Best Seller" />
+              <Tab label="Top Rated" value="3"  />
+            </Tabs>
+          </Box>
+          {/* <TabPanel value="3">
+         
+          </TabPanel> */}
+          </TabContext>
+        </div>
+
+        <div className="heder_sec_main d-flex flex-column container">
+              <div className="row pt-5">
+                {products.map((product) => (
+                  <div
+                    key={product.id}
+                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                    // onMouseEnter={() => setHoveredProduct(product.id)}
+                    // onMouseLeave={() => setHoveredProduct(null)}
+                  >
+                    {/* Each column adapts based on screen size */}
+                    <div className="card prio_card scdscsed_sdss">
+                      <div className="card-title">
+                        <div>
+                          <button className="new_btnddx p-1 ms-3 mt-3">
+                            NEW
+                          </button>
+                          <div
+                            className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
+                            onClick={() => toggleFavorite(product.id)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {isFavorite[product.id] ? (
+                              <GoHeartFill
+                                className="heart-icon_ss"
+                                size={18}
+                              />
+                            ) : (
+                              <GoHeart className="heart-icon_ss" size={18} />
+                            )}
+                          </div>
+                        </div>
+                        <div className="card-body d-flex justify-content-center ">
+                          <img
+                            src={product.imgSrc}
+                            className="p-1_proi"
+                            alt="Product"
+                          />
+                          {/* {hoveredProduct === product.id && (
+                                <div className="hover-overlay w-100 d-flex">
+                                  <button className="d-flex align-items-center add-to-crd-dss p-2 mt-2 justify-content-center gap-3">
+                                    Add to Cart <BiShoppingBag size={25} />
+                                  </button>
+                                </div>
+                              )} */}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="d-flex flex-column main_cdsss">
+                      <span className="mikdec_asdaa pt-3">{product.name}</span>
+                      <div className="d-flex align-items-center gap-3 pt-1">
+                        <span className="mikdec_asdxsx">{product.price}</span>
+                        <span className="mikdec_axsx">{product.cutPrice}</span>
+                      </div>
+                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                        <button
+                          className="more_btn_dsdd w-50"
+                          onClick={() => navigate("/products")}
+                        >
+                          More Info
+                        </button>
+                        <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                          Add to Cart <BiShoppingBag size={25} />
+                        </button>
+                      </div>
+                      {/* </p> */}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
         {/* <div className="container d-flex gap-3 justify-content-between position-relative pt-4 w-100">
           <div className="grp_img position-relative box-trens-1 w-25">
@@ -594,69 +700,66 @@ const Home = () => {
             </div>
           </div>
         </div> */}
-           <div className="heder_sec_main d-flex flex-column container">
-                  <div className="row pt-5">
-                    {products.map((product) => (
+        {/* <div className="heder_sec_main d-flex flex-column container">
+          <div className="row pt-5">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                // onMouseEnter={() => setHoveredProduct(product.id)}
+                // onMouseLeave={() => setHoveredProduct(null)}
+              >
+                <div className="card prio_card scdscsed_sdss">
+                  <div className="card-title">
+                    <div>
+                      <button className="new_btnddx p-1 ms-3 mt-3">NEW</button>
                       <div
-                        key={product.id}
-                        className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                        // onMouseEnter={() => setHoveredProduct(product.id)}
-                        // onMouseLeave={() => setHoveredProduct(null)}
+                        className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
+                        onClick={() => toggleFavorite(product.id)}
+                        style={{ cursor: "pointer" }}
                       >
-                        {/* Each column adapts based on screen size */}
-                        <div className="card prio_card scdscsed_sdss">
-                          <div className="card-title">
-                            <div>
-                              <button className="new_btnddx p-1 ms-3 mt-3">NEW</button>
-                              <div
-                                className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                                onClick={() => toggleFavorite(product.id)}
-                                style={{ cursor: "pointer" }}
-                              >
-                                {isFavorite[product.id] ? (
-                                  <GoHeartFill className="heart-icon_ss" size={18} />
-                                ) : (
-                                  <GoHeart className="heart-icon_ss" size={18} />
-                                )}
-                              </div>
-                            </div>
-                            <div className="card-body d-flex justify-content-center ">
-                              <img
-                                src={product.imgSrc}
-                                className="p-1_proi"
-                                alt="Product"
-                              />
-                              {/* {hoveredProduct === product.id && (
-                                <div className="hover-overlay w-100 d-flex">
-                                  <button className="d-flex align-items-center add-to-crd-dss p-2 mt-2 justify-content-center gap-3">
-                                    Add to Cart <BiShoppingBag size={25} />
-                                  </button>
-                                </div>
-                              )} */}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="d-flex flex-column main_cdsss">
-                          <span className="mikdec_asdaa pt-3">{product.name}</span>
-                          <div className="d-flex align-items-center gap-3 pt-1">
-                            <span className="mikdec_asdxsx">{product.price}</span>
-                            <span className="mikdec_axsx">{product.cutPrice}</span>
-                          </div>
-                          <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                            <button className="more_btn_dsdd w-50">More Info</button>
-                            <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                              Add to Cart <BiShoppingBag size={25} />
-                            </button>
-                          </div>
-                          {/* </p> */}
-                        </div>
+                        {isFavorite[product.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={18} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={18} />
+                        )}
                       </div>
-                    ))}
+                    </div>
+                    <div className="card-body d-flex justify-content-center ">
+                      <img
+                        src={product.imgSrc}
+                        className="p-1_proi"
+                        alt="Product"
+                      />
+                    
+                    </div>
                   </div>
                 </div>
+                <div className="d-flex flex-column main_cdsss">
+                  <span className="mikdec_asdaa pt-3">{product.name}</span>
+                  <div className="d-flex align-items-center gap-3 pt-1">
+                    <span className="mikdec_asdxsx">{product.price}</span>
+                    <span className="mikdec_axsx">{product.cutPrice}</span>
+                  </div>
+                  <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                    <button
+                      className="more_btn_dsdd w-50"
+                      onClick={() => navigate("/products")}
+                    >
+                      More Info
+                    </button>
+                    <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                      Add to Cart <BiShoppingBag size={25} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div> */}
       </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd1 mt-5">
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">
           Celebrate love with our Collection
         </span>
@@ -722,15 +825,15 @@ const Home = () => {
             </div>
           </div>
           <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
-            <img src={require("../../Images/Group 1597884626 (1).png")} />
+            <img src={require("../../Images/Group 1597884636.png")} />
             <div className="lionk_ss">
-              <a>Gifts for Her</a>
+              <a>Wedding Bands</a>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd ">
         <span className="category_name">Discover Styles</span>
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -784,7 +887,6 @@ const Home = () => {
               <div
                 key={ring.id}
                 className={`ring-item ${index === 1 ? "large" : "small"}`}
-                
               >
                 <div className="ring-shadow">
                   <img
@@ -835,7 +937,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd asxs_sdxszx">
         <span className="category_name">New Arrivals</span>
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img src={require("../../Images/Groupimg.png")} />
