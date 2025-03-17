@@ -655,7 +655,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd1 mt-5">
+      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">
           Celebrate love with our Collection
         </span>
