@@ -11,26 +11,36 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
 const AboutUs = () => {
-const swiperRef = useRef(null); // Store Swiper instance
-const [slidesPerGroup, setSlidesPerGroup] = useState(1);
+  const swiperRef = useRef(null); 
+  const [slidesPerView, setSlidesPerView] = useState(1);
+  const testimonials = [
+    { name: "Emily Carol", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
+    { name: "John Doe", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
+    { name: "Jane Smith", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
+  ];
 
-useEffect(() => {
-  const updateSlidesPerGroup = () => {
-    const screenWidth = window.innerWidth;
-    if (screenWidth <= 600) {
-      setSlidesPerGroup(1); // Turn off grouping
-    } else if (screenWidth <= 600 && screenWidth <= 1000) {
-      setSlidesPerGroup(1); // Set to 1
-    } else {
-      setSlidesPerGroup(3); // Default to 1
-    }
-  };
+  useEffect(() => {
+    const updateSlidesPerView = () => {
+      const screenWidth = window.innerWidth;
+      let newSlidesPerView;
 
-  updateSlidesPerGroup(); // Run on mount
-  window.addEventListener("resize", updateSlidesPerGroup);
+      if (screenWidth <= 600) {
+        newSlidesPerView = 1;
+      } else if (screenWidth <= 1000) {
+        newSlidesPerView = 2;
+      } else {
+        newSlidesPerView = 3;
+      }
+      if (newSlidesPerView !== slidesPerView) {
+        setSlidesPerView(newSlidesPerView);
+      }
+    };
 
-  return () => window.removeEventListener("resize", updateSlidesPerGroup);
-}, []);
+    updateSlidesPerView(); // Run on mount
+    window.addEventListener("resize", updateSlidesPerView);
+
+    return () => window.removeEventListener("resize", updateSlidesPerView);
+  }, [slidesPerView]); // Dependency to prevent infinite re-renders
 
   return (
     <>
@@ -47,17 +57,17 @@ useEffect(() => {
 
       <div className="container hdr_csd">
         <div className="row">
-          <div className="w-50">
+          <div className="aout">
             <img
-              className="djs_about"
+              className="djs_about img-fluid sticky"
               src={require("../../Images/Group 1597884574.png")}
             />
           </div>
-          <div className="w-50 d-flex flex-column gap-5">
+          <div className="w-50 d-flex flex-column gap-5 wr dlex">
             <span className="wel_sss">
               Welcome to the Crystova Jewels where Elegance meets Artistry{" "}
             </span>
-            <span className="sx_dec25 d-flex justify-content-start">
+            <span className="sx_dec25 d-flex justify-content-start dlex">
               Our brand was founded on the principles of quality, craftsmanship,
               and innovation. We bring a rich heritage of artistry into every
               design.
@@ -71,7 +81,7 @@ useEffect(() => {
               imbued with meaning, designed to resonate with your deepest
               sentiments and last for generations to come.
             </span>
-            <div className="d-flex align-itesm-center ">
+            <div className="d-flex align-items-center">
               <div className="d-flex align-items-center gap-3 flex-column">
                 <img src={require("../../Images/Group 1597884563.png")} />
                 <span className="our_ddd">Our Journey</span>
@@ -98,8 +108,8 @@ useEffect(() => {
       </div>
 
       <div className="container p-2">
-        <div className="hdr_csd row">
-          <div className="col-md-6 d-flex flex-column gap-5">
+        <div className="hdr_csd dcscds_xsx row cdc_dcdcd">
+          <div className="col-md-6 d-flex flex-column gap-5 Her">
             <div className="d-flex flex-column gap-3">
               <span className="abt_vdio">What Sets Us Apart?</span>
               <span className="skijiws_256">
@@ -139,11 +149,11 @@ useEffect(() => {
               </div>
             </div>
           </div>
-          <div className="col-md-6 position-relative">
+          <div className="col-md-6 position-relative d-flex justify-content-center m-auto GRoUp">
             <div className="video-container position-relative">
               <video
                 src={ringVideo}
-                className="bg-white mas_ddd w-50"
+                className="bg-white w-50 vi_rng_fff"
                 autoPlay
                 loop
                 muted
@@ -179,116 +189,100 @@ useEffect(() => {
         </div>
 
         <div className="sdncsduchs_1 row">
-          <div className="ssss_dddd1_aby mt-5">
+          <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
             <div className="blog_fade_ds">
-              <img src={require("../../Images/image (21).png")} width={554} />
+              <img src={require("../../Images/image (21).png")} className="img-fluid" />
             </div>
-
             <div className="d-flex flex-column gap-2 pt-4">
               <span className="mainj_ss">Jewellery Trends Inspired by Us</span>
-              <div className="d-flex align-items-center gap-2">
+              <div className="d-flex align-items-center gap-2 flex-wrap">
                 <button className="esyh_btn">Design</button>
                 <button className="esyh_btn">Research</button>
                 <button className="esyh_btn">Jewellery</button>
               </div>
               <p className="psps">
-                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum
-                aliquam risus, sit amet dictum ligula lorem non nisl Urna
-                pretium elit mauris cursus Curabitur
+                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum aliquam risus, sit amet dictum ligula lorem non nisl Urna pretium elit mauris cursus Curabitur.
               </p>
-              <a
-                href="/blog-details"
-                className="red_ddd d-flex gap-2 align-items-center"
-              >
+              <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
                 Read More <FaArrowRight />
               </a>
             </div>
           </div>
-          <div className="ssss_dddd1_aby mt-5">
-            <div className="blog_fade_ds">
-              <img src={require("../../Images/image (22).png")} width={554} />
-            </div>
 
+          <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
+            <div className="blog_fade_ds">
+              <img src={require("../../Images/image (22).png")} className="img-fluid" />
+            </div>
             <div className="d-flex flex-column gap-2 pt-4">
               <span className="mainj_ss">Jewellery Trends Inspired by Us</span>
-              <div className="d-flex align-items-center gap-2">
+              <div className="d-flex align-items-center gap-2 flex-wrap">
                 <button className="esyh_btn">Design</button>
                 <button className="esyh_btn">Research</button>
                 <button className="esyh_btn">Jewellery</button>
               </div>
               <p className="psps">
-                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum
-                aliquam risus, sit amet dictum ligula lorem non nisl Urna
-                pretium elit mauris cursus Curabitur
+                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum aliquam risus, sit amet dictum ligula lorem non nisl Urna pretium elit mauris cursus Curabitur.
               </p>
-              <a
-                href="/blog-details"
-                className="red_ddd d-flex gap-2 align-items-center"
-              >
+              <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
                 Read More <FaArrowRight />
               </a>
             </div>
           </div>
-          <div className="ssss_dddd1_aby mt-5">
-            <div className="blog_fade_ds">
-              <img src={require("../../Images/image (23).png")} width={554} />
-            </div>
 
+          <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
+            <div className="blog_fade_ds">
+              <img src={require("../../Images/image (23).png")} className="img-fluid" />
+            </div>
             <div className="d-flex flex-column gap-2 pt-4">
               <span className="mainj_ss">Jewellery Trends Inspired by Us</span>
-              <div className="d-flex align-items-center gap-2">
+              <div className="d-flex align-items-center gap-2 flex-wrap">
                 <button className="esyh_btn">Design</button>
                 <button className="esyh_btn">Research</button>
                 <button className="esyh_btn">Jewellery</button>
               </div>
               <p className="psps">
-                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum
-                aliquam risus, sit amet dictum ligula lorem non nisl Urna
-                pretium elit mauris cursus Curabitur
+                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum aliquam risus, sit amet dictum ligula lorem non nisl Urna pretium elit mauris cursus Curabitur.
               </p>
-              <a
-                href="/blog-details"
-                className="red_ddd d-flex gap-2 align-items-center"
-              >
+              <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
                 Read More <FaArrowRight />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="d-flex pt-5 gap-5 pb-1 mt-5">
-          <div className="d-flex flex-column gap-3">
-            <CiWallet size={50} />
-            <span className="xshhhss_ss">Flexible Payment</span>
-            <span className="xshhhss">
-              Enjoy easy, flexible payment options to suit your budget
-            </span>
-          </div>
-          <div className="d-flex flex-column gap-3">
-            <PiMoneyWavy size={50} />
+        <div className="container pt-5">
+          <div className="row g-4 Fyty">
+            <div className="col-md-3 col-sm-6 d-flex flex-column align-items-center text-center FlBi">
+              <CiWallet size={50} className="icon-style" />
+              <span className="xshhhss_ss">Flexible Payment</span>
+              <span className="xshhhss">
+                Enjoy easy, flexible payment options to suit your budget
+              </span>
+            </div>
 
-            <span className="xshhhss_ss">Money Gaurantee</span>
-            <span className="xshhhss ">
-              Shop with confidence our money-back guarantee ensures your
-              satisfaction
-            </span>
-          </div>
-          <div className="d-flex flex-column gap-3">
-            <PiCertificateLight size={50} />
-            <span className="xshhhss_ss">Certifications</span>
-            <span className="xshhhss">
-              All our jewelry pieces are certified for quality and ethical
-              sourcing.
-            </span>
-          </div>
-          <div className="d-flex flex-column gap-3">
-            <MdOutlineContactSupport size={50} />
+            <div className="col-md-3 col-sm-6 d-flex flex-column align-items-center text-center FlBi">
+              <PiMoneyWavy size={50} className="icon-style" />
+              <span className="xshhhss_ss">Money Guarantee</span>
+              <span className="xshhhss">
+                Shop with confidence, our money-back guarantee ensures your satisfaction
+              </span>
+            </div>
 
-            <span className="xshhhss_ss">Online Support</span>
-            <span className="xshhhss">
-              Need assistance? Our dedicated online support team is here to help
-              you
-            </span>
+            <div className="col-md-3 col-sm-6 d-flex flex-column align-items-center text-center FlBi">
+              <PiCertificateLight size={50} className="icon-style" />
+              <span className="xshhhss_ss">Certifications</span>
+              <span className="xshhhss">
+                All our jewelry pieces are certified for quality and ethical sourcing.
+              </span>
+            </div>
+
+            <div className="col-md-3 col-sm-6 d-flex flex-column align-items-center text-center FlBi">
+              <MdOutlineContactSupport size={50} className="icon-style" />
+              <span className="xshhhss_ss">Online Support</span>
+              <span className="xshhhss">
+                Need assistance? Our dedicated online support team is here to help you
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -359,8 +353,7 @@ useEffect(() => {
         </div>
       </div> */}
 
-<div className="testimonial-container d-flex align-items-center">
-        {/* Left Navigation Button */}
+      <div className="testimonial-container d-flex align-items-center">
         <button
           className="nav-button left"
           onClick={() => swiperRef.current?.slidePrev()}
@@ -374,31 +367,28 @@ useEffect(() => {
           <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
 
           <Swiper
-            effect={"slide"}
             grabCursor={true}
-            loop={true}
-            slidesPerView={slidesPerGroup} // Dynamically set
-            slidesPerGroup={slidesPerGroup} // Match slidesPerView
+            loop={true} // Infinite Loop
+            slidesPerView={slidesPerView}
+            slidesPerGroup={1}
             modules={[Pagination, Autoplay]}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             className="swiper_testimonial container"
             breakpoints={{
-              320: { slidesPerView: 1, slidesPerGroup: 1 }, // Mobile
-              600: { slidesPerView: 2, slidesPerGroup: 2 }, // Tablets
-              1000: { slidesPerView: 3, slidesPerGroup: 3 }, // Desktop
+              320: { slidesPerView: 1 },
+              600: { slidesPerView: 2 },
+              1000: { slidesPerView: 3 },
             }}
           >
-            {[...Array(10)].map((_, index) => (
+            {[...testimonials, ...testimonials, ...testimonials].map((item, index) => (
               <SwiperSlide key={index}>
                 <div
                   className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
                     } mt-5`}
                 >
                   <div className="card-body pt-5">
-                    <h5 className="card-title text-center emi_ffcc">
-                      Emily Carol
-                    </h5>
+                    <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
                     <p className="card-text sdcdscsd text-center">
                       I wanted a custom bracelet to honor my daughter’s birth,
                       and the designers exceeded my expectations. They listened
@@ -418,16 +408,15 @@ useEffect(() => {
               </SwiperSlide>
             ))}
           </Swiper>
+
         </div>
-        {/* Right Navigation Button */}
         <button
           className="nav-button right"
           onClick={() => swiperRef.current?.slideNext()}
         >
           <FaAngleRight />
         </button>
-      </div>
-
+      </div >
       <Footer />
     </>
   );

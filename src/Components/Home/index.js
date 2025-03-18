@@ -24,7 +24,7 @@ import { CiStar } from "react-icons/ci";
 import Footer from "../../Pages/Footer";
 import { GrNext } from "react-icons/gr";
 import { GoHeart, GoHeartFill } from "react-icons/go";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 // import { Tab, Tabs } from "react-bootstrap";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -104,18 +104,37 @@ const diamondRings = [
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
   const [liked, setLiked] = useState(false);
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-  const swiperRef = useRef(null); // Store Swiper instance
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (swiperRef.current) {
-  //     swiperRef.current.params.navigation.prevEl = prevRef.current;
-  //     swiperRef.current.params.navigation.nextEl = nextRef.current;
-  //     swiperRef.current.navigation.init();
-  //     swiperRef.current.navigation.update();
-  //   }
-  // }, []);
+  const swiperRef = useRef(null); // Store Swiper instance
+  const [slidesPerView, setSlidesPerView] = useState(1);
+  const testimonials = [
+    { name: "Emily Carol", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
+    { name: "John Doe", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
+    { name: "Jane Smith", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
+  ];
+
+  useEffect(() => {
+    const updateSlidesPerView = () => {
+      const screenWidth = window.innerWidth;
+      let newSlidesPerView;
+
+      if (screenWidth <= 600) {
+        newSlidesPerView = 1;
+      } else if (screenWidth <= 1000) {
+        newSlidesPerView = 2;
+      } else {
+        newSlidesPerView = 3;
+      }
+      if (newSlidesPerView !== slidesPerView) {
+        setSlidesPerView(newSlidesPerView);
+      }
+    };
+
+    updateSlidesPerView(); // Run on mount
+    window.addEventListener("resize", updateSlidesPerView);
+
+    return () => window.removeEventListener("resize", updateSlidesPerView);
+  }, [slidesPerView]); // Dependency to prevent infinite re-renders
 
   const [value, setValue] = React.useState("1");
 
@@ -407,7 +426,7 @@ const Home = () => {
               and appeal.
               <br /> Here’s a guide to different shapes of diamond rings
             </span>
-            <button className="w-25 spg_nb_sle">Shop Now</button>
+            <button className="w-25 spg_nb_sle" style={{whiteSpace:'nowrap'}}>Shop Now</button>
           </div>
         </div>
 
@@ -482,99 +501,99 @@ const Home = () => {
         <p className="category_txt">The Latest looks, Crafted to Perfection</p>
         <img src={require("../../Images/Groupimg.png")} />
         <div className="w-25 mt-3">
-        <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
-              sx={{
-                "& .MuiTabs-list": {
-                  justifyContent: "space-between",
-                },
-              }}
-            >
-              <Tab label="On Sale" />
-              <Tab label="Best Seller" />
-              <Tab label="Top Rated" value="3"  />
-            </Tabs>
-          </Box>
-          {/* <TabPanel value="3">
+          <TabContext value={value}>
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+                sx={{
+                  "& .MuiTabs-list": {
+                    justifyContent: "space-between",
+                  },
+                }}
+              >
+                <Tab label="On Sale" />
+                <Tab label="Best Seller" />
+                <Tab label="Top Rated" value="3" />
+              </Tabs>
+            </Box>
+            {/* <TabPanel value="3">
          
           </TabPanel> */}
           </TabContext>
         </div>
 
         <div className="heder_sec_main d-flex flex-column container">
-              <div className="row pt-5">
-                {products.map((product) => (
-                  <div
-                    key={product.id}
-                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                    // onMouseEnter={() => setHoveredProduct(product.id)}
-                    // onMouseLeave={() => setHoveredProduct(null)}
-                  >
-                    {/* Each column adapts based on screen size */}
-                    <div className="card prio_card scdscsed_sdss">
-                      <div className="card-title">
-                        <div>
-                          <button className="new_btnddx p-1 ms-3 mt-3">
-                            NEW
-                          </button>
-                          <div
-                            className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                            onClick={() => toggleFavorite(product.id)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {isFavorite[product.id] ? (
-                              <GoHeartFill
-                                className="heart-icon_ss"
-                                size={18}
-                              />
-                            ) : (
-                              <GoHeart className="heart-icon_ss" size={18} />
-                            )}
-                          </div>
-                        </div>
-                        <div className="card-body d-flex justify-content-center ">
-                          <img
-                            src={product.imgSrc}
-                            className="p-1_proi"
-                            alt="Product"
+          <div className="row pt-5">
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+              // onMouseEnter={() => setHoveredProduct(product.id)}
+              // onMouseLeave={() => setHoveredProduct(null)}
+              >
+                {/* Each column adapts based on screen size */}
+                <div className="card prio_card scdscsed_sdss">
+                  <div className="card-title">
+                    <div>
+                      <button className="new_btnddx p-1 ms-3 mt-3">
+                        NEW
+                      </button>
+                      <div
+                        className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
+                        onClick={() => toggleFavorite(product.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {isFavorite[product.id] ? (
+                          <GoHeartFill
+                            className="heart-icon_ss"
+                            size={18}
                           />
-                          {/* {hoveredProduct === product.id && (
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={18} />
+                        )}
+                      </div>
+                    </div>
+                    <div className="card-body d-flex justify-content-center ">
+                      <img
+                        src={product.imgSrc}
+                        className="p-1_proi"
+                        alt="Product"
+                      />
+                      {/* {hoveredProduct === product.id && (
                                 <div className="hover-overlay w-100 d-flex">
                                   <button className="d-flex align-items-center add-to-crd-dss p-2 mt-2 justify-content-center gap-3">
                                     Add to Cart <BiShoppingBag size={25} />
                                   </button>
                                 </div>
                               )} */}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_asdaa pt-3">{product.name}</span>
-                      <div className="d-flex align-items-center gap-3 pt-1">
-                        <span className="mikdec_asdxsx">{product.price}</span>
-                        <span className="mikdec_axsx">{product.cutPrice}</span>
-                      </div>
-                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                        <button
-                          className="more_btn_dsdd w-50"
-                          onClick={() => navigate("/products")}
-                        >
-                          More Info
-                        </button>
-                        <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                          Add to Cart <BiShoppingBag size={25} />
-                        </button>
-                      </div>
-                      {/* </p> */}
                     </div>
                   </div>
-                ))}
+                </div>
+                <div className="d-flex flex-column main_cdsss">
+                  <span className="mikdec_asdaa pt-3">{product.name}</span>
+                  <div className="d-flex align-items-center gap-3 pt-1">
+                    <span className="mikdec_asdxsx">{product.price}</span>
+                    <span className="mikdec_axsx">{product.cutPrice}</span>
+                  </div>
+                  <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                    <button
+                      className="more_btn_dsdd w-50"
+                      onClick={() => navigate("/products")}
+                    >
+                      More Info
+                    </button>
+                    <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                      Add to Cart <BiShoppingBag size={25} />
+                    </button>
+                  </div>
+                  {/* </p> */}
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
+        </div>
 
         {/* <div className="container d-flex gap-3 justify-content-between position-relative pt-4 w-100">
           <div className="grp_img position-relative box-trens-1 w-25">
@@ -904,13 +923,12 @@ const Home = () => {
             {getVisibleRings1().map((ring, index) => (
               <div
                 key={ring.id}
-                className={`ring-item ${
-                  index === 2
-                    ? "large"
-                    : index === 1 || index === 3
+                className={`ring-item ${index === 2
+                  ? "large"
+                  : index === 1 || index === 3
                     ? "medium"
                     : "small"
-                }`}
+                  }`}
               >
                 <div className="ring-shadow">
                   <img
@@ -1194,45 +1212,46 @@ const Home = () => {
       </div> */}
 
       <div className="testimonial-container d-flex align-items-center">
-        {/* Left Navigation Button */}
         <button
           className="nav-button left"
           onClick={() => swiperRef.current?.slidePrev()}
         >
           <FaAngleLeft />
         </button>
+
         <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
           <span className="category_name">Client Testimonial</span>
           <p className="category_txt">What our Client’s say about us</p>
           <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
+
           <Swiper
-            effect={"slide"}
             grabCursor={true}
-            centeredSlides={true}
-            slidesPerView={3} // Always show 3 cards
-            loop={true}
-            slidesPerGroup={1} // Move only 1 slide at a time
+            loop={true} // Infinite Loop
+            slidesPerView={slidesPerView}
+            slidesPerGroup={1}
             modules={[Pagination, Autoplay]}
-            autoplay={{ delay: 2000, disableOnInteraction: false }} // Add autoplay for smooth effect
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-            className="swiper_testimonial container "
+            className="swiper_testimonial container"
+            breakpoints={{
+              320: { slidesPerView: 1 },
+              600: { slidesPerView: 2 },
+              1000: { slidesPerView: 3 },
+            }}
           >
-            {[...Array(10)].map((_, index) => (
-              <SwiperSlide key={index} className="">
+            {[...testimonials, ...testimonials, ...testimonials].map((item, index) => (
+              <SwiperSlide key={index}>
                 <div
-                  className={`card testimonial-card${
-                    index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                  } mt-5`}
+                  className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                    } mt-5`}
                 >
                   <div className="card-body pt-5">
-                    <h5 className="card-title text-center emi_ffcc">
-                      Emily Carol
-                    </h5>
+                    <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
                     <p className="card-text sdcdscsd text-center">
                       I wanted a custom bracelet to honor my daughter’s birth,
                       and the designers exceeded my expectations. They listened
-                      to every detail I envisioned and brought it to life. It’s
-                      a masterpiece I’ll cherish forever.
+                      to every detail I envisioned and brought it to life. It’s a
+                      masterpiece I’ll cherish forever.
                     </p>
                     <p className="text-center sdcdscsd">Client</p>
                     <div className="d-flex justify-content-center align-items-center">
@@ -1248,14 +1267,13 @@ const Home = () => {
             ))}
           </Swiper>
         </div>
-        {/* Right Navigation Button */}
         <button
           className="nav-button right"
           onClick={() => swiperRef.current?.slideNext()}
         >
           <FaAngleRight />
         </button>
-      </div>
+      </div >
 
       <Footer />
     </div>
