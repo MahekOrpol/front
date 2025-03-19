@@ -32,6 +32,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import TabContext from "@mui/lab/TabContext";
 import { Tabs } from "@mui/material";
+import axios from "axios";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -138,10 +139,44 @@ const Home = () => {
   const navigate = useNavigate();
   const swiperRef = useRef(null); // Store Swiper instance
   const [slidesPerView, setSlidesPerView] = useState(1);
+  const [topRated, setTopRated] = useState([]);
+  const [bestSelling, setBestSelling] = useState([]);
+  const [onSale, setOnSale] = useState([]);
+
+  const getTopRated = async () => {
+    const res = await axios("http://localhost:3000/api/v1/product/getTopRated");
+    setTopRated(res.data);
+  };
+  const getBestSelling = async () => {
+    const res = await axios(
+      "http://localhost:3000/api/v1/product/getBestSelling"
+    );
+    setBestSelling(res.data);
+  };
+  const getOnSale = async () => {
+    const res = await axios("http://localhost:3000/api/v1/product/getOnSale");
+    setOnSale(res.data);
+  };
+
+  useEffect(() => {
+    getTopRated();
+    getBestSelling();
+    getOnSale();
+  }, []);
+
   const testimonials = [
-    { name: "Emily Carol", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
-    { name: "John Doe", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
-    { name: "Jane Smith", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
+    {
+      name: "Emily Carol",
+      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
+    },
+    {
+      name: "John Doe",
+      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
+    },
+    {
+      name: "Jane Smith",
+      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
+    },
   ];
 
   useEffect(() => {
@@ -457,7 +492,12 @@ const Home = () => {
               and appeal.
               <br /> Here’s a guide to different shapes of diamond rings
             </span>
-            <button className="w-25 spg_nb_sle" style={{ whiteSpace: 'nowrap' }}>Shop Now</button>
+            <button
+              className="w-25 spg_nb_sle"
+              style={{ whiteSpace: "nowrap" }}
+            >
+              Shop Now
+            </button>
           </div>
         </div>
 
@@ -551,15 +591,20 @@ const Home = () => {
             </Box>
           </TabContext>
         </div>
-        {value === "1" && (
+        {/* {value === "1" && (
           <div className="heder_sec_main d-flex flex-column container">
             <div className="row pt-5">
-              {products.map((product) => (
-                <div key={product.id} className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards">
+              {onSale.map((product) => (
+                <div
+                  key={product.id}
+                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                >
                   <div className="card prio_card scdscsed_sdss">
                     <div className="card-title">
                       <div>
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">SALE</button>
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
+                          SALE
+                        </button>
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
                           onClick={() => toggleFavorite(product.id)}
@@ -573,18 +618,101 @@ const Home = () => {
                         </div>
                       </div>
                       <div className="card-body d-flex justify-content-center">
-                        <img src={product.imgSrc} className="p-1_proi" alt="Product" />
+                        <img
+                          src={`http://localhost:3000${product.image[0]}`}
+                          className="p-1_proi"
+                          alt="Product"
+                        />
                       </div>
                     </div>
                   </div>
                   <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">{product.name}</span>
+                    <span className="mikdec_asdaa pt-3">
+                      {product.productName}
+                    </span>
                     <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">{product.price}</span>
-                      <span className="mikdec_axsx">{product.cutPrice}</span>
+                      <span className="mikdec_asdxsx">
+                        {product.salePrice?.$numberDecimal}
+                      </span>
+                      <span className="mikdec_axsx">
+                        {product.regularPrice?.$numberDecimal}
+                      </span>
                     </div>
                     <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button className="more_btn_dsdd w-50" onClick={() => navigate("/products")}>
+                      <button
+                        className="more_btn_dsdd w-50"
+                        onClick={() => navigate("/products")}
+                      >
+                        More Info
+                      </button>
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                        Add to Cart <BiShoppingBag size={25} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )} */}
+        {value === "1" && (
+          <div className="heder_sec_main d-flex flex-column container">
+            <div className="row pt-5">
+              {onSale.map((product) => (
+                <div
+                  key={product.id}
+                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                >
+                  <div className="card prio_card scdscsed_sdss">
+                    {/* Image Wrapper with position-relative */}
+                    <div className="card-image-wrapper position-relative">
+                      {/* SALE Badge */}
+                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                        SALE
+                      </button>
+
+                      {/* Favorite Icon */}
+                      <div
+                        className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                        onClick={() => toggleFavorite(product.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {isFavorite[product.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={18} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={18} />
+                        )}
+                      </div>
+
+                      {/* Product Image */}
+                      <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                        <img
+                          src={`http://localhost:3000${product.image[0]}`}
+                          className="p-1_proi img-fluid"
+                          alt="Product"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Product Details */}
+                  <div className="d-flex flex-column main_cdsss">
+                    <span className="mikdec_asdaa pt-3">
+                      {product.productName}
+                    </span>
+                    <div className="d-flex align-items-center gap-3 pt-1">
+                      <span className="mikdec_asdxsx">
+                        {product.salePrice?.$numberDecimal}
+                      </span>
+                      <span className="mikdec_axsx">
+                        {product.regularPrice?.$numberDecimal}
+                      </span>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <button
+                        className="more_btn_dsdd w-50"
+                        onClick={() => navigate("/products")}
+                      >
                         More Info
                       </button>
                       <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
@@ -601,12 +729,88 @@ const Home = () => {
         {value === "2" && (
           <div className="heder_sec_main d-flex flex-column container">
             <div className="row pt-5">
-              {products1.map((product) => (
-                <div key={product.id} className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards">
+              {bestSelling.map((product) => (
+                <div
+                  key={product.id}
+                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                >
+                  <div className="card prio_card scdscsed_sdss">
+                    {/* Image Wrapper with position-relative */}
+                    <div className="card-image-wrapper position-relative">
+                      {/* SALE Badge */}
+                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                        SALE
+                      </button>
+
+                      {/* Favorite Icon */}
+                      <div
+                        className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                        onClick={() => toggleFavorite(product.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {isFavorite[product.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={18} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={18} />
+                        )}
+                      </div>
+
+                      {/* Product Image */}
+                      <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                        <img
+                          src={`http://localhost:3000${product.image[0]}`}
+                          className="p-1_proi img-fluid"
+                          alt="Product"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Product Details */}
+                  <div className="d-flex flex-column main_cdsss">
+                    <span className="mikdec_asdaa pt-3">
+                      {product.productName}
+                    </span>
+                    <div className="d-flex align-items-center gap-3 pt-1">
+                      <span className="mikdec_asdxsx">
+                        {product.salePrice?.$numberDecimal}
+                      </span>
+                      <span className="mikdec_axsx">
+                        {product.regularPrice?.$numberDecimal}
+                      </span>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <button
+                        className="more_btn_dsdd w-50"
+                        onClick={() => navigate("/products")}
+                      >
+                        More Info
+                      </button>
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                        Add to Cart <BiShoppingBag size={25} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* {value === "2" && (
+          <div className="heder_sec_main d-flex flex-column container">
+            <div className="row pt-5">
+              {bestSelling.map((product) => (
+                <div
+                  key={product.id}
+                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                >
                   <div className="card prio_card scdscsed_sdss">
                     <div className="card-title">
                       <div>
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">NEW</button>
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
+                          NEW
+                        </button>
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
                           onClick={() => toggleFavorite(product.id)}
@@ -620,18 +824,31 @@ const Home = () => {
                         </div>
                       </div>
                       <div className="card-body d-flex justify-content-center">
-                        <img src={product.imgSrc} className="p-1_proi" alt="Product" />
+                        <img
+                          src={`http://localhost:3000${product.image[0]}`}
+                          className="p-1_proi"
+                          alt="Product"
+                        />
                       </div>
                     </div>
                   </div>
                   <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">{product.name}</span>
+                    <span className="mikdec_asdaa pt-3">
+                      {product.productName}
+                    </span>
                     <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">{product.price}</span>
-                      <span className="mikdec_axsx">{product.cutPrice}</span>
+                      <span className="mikdec_asdxsx">
+                        {product.salePrice?.$numberDecimal}
+                      </span>
+                      <span className="mikdec_axsx">
+                        {product.regularPrice?.$numberDecimal}
+                      </span>
                     </div>
                     <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button className="more_btn_dsdd w-50" onClick={() => navigate("/products")}>
+                      <button
+                        className="more_btn_dsdd w-50"
+                        onClick={() => navigate("/products")}
+                      >
                         More Info
                       </button>
                       <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
@@ -643,42 +860,131 @@ const Home = () => {
               ))}
             </div>
           </div>
-        )}
+        )} */}
+
+        {/* {value === "3" && (
+          <div className="heder_sec_main d-flex flex-column container">
+            <div className="row pt-5">
+              {topRated.map((product) => (
+                <div
+                  key={product.id}
+                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                >
+                  <div className="card prio_card scdscsed_sdss">
+                    <div className="card-title">
+                      <div>
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
+                          NEW
+                        </button>
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {isFavorite[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+                      </div>
+                      <div className="card-body d-flex justify-content-center">
+                        <img
+                          src={`http://localhost:3000${product.image[0]}`}
+                          className="p-1_proi "
+                          alt="Product"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="d-flex flex-column main_cdsss">
+                    <span className="mikdec_asdaa pt-3">
+                      {product.productName}
+                    </span>
+                    <div className="d-flex align-items-center gap-3 pt-1">
+                      <span className="mikdec_asdxsx">
+                        {product.salePrice?.$numberDecimal}
+                      </span>
+                      <span className="mikdec_axsx">
+                        {product.regularPrice?.$numberDecimal}
+                      </span>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <button
+                        className="more_btn_dsdd w-50"
+                        onClick={() => navigate("/products")}
+                      >
+                        More Info
+                      </button>
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                        Add to Cart <BiShoppingBag size={25} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )} */}
 
         {value === "3" && (
           <div className="heder_sec_main d-flex flex-column container">
             <div className="row pt-5">
-              {products.map((product) => (
-                <div key={product.id} className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards">
+              {topRated.map((product) => (
+                <div
+                  key={product.id}
+                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                >
                   <div className="card prio_card scdscsed_sdss">
-                    <div className="card-title">
-                      <div>
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">NEW</button>
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {isFavorite[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
+                    {/* Image Wrapper with position-relative */}
+                    <div className="card-image-wrapper position-relative">
+                      {/* SALE Badge */}
+                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                        SALE
+                      </button>
+
+                      {/* Favorite Icon */}
+                      <div
+                        className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                        onClick={() => toggleFavorite(product.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {isFavorite[product.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={18} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={18} />
+                        )}
                       </div>
-                      <div className="card-body d-flex justify-content-center">
-                        <img src={product.imgSrc} className="p-1_proi" alt="Product" />
+
+                      {/* Product Image */}
+                      <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                        <img
+                          src={`http://localhost:3000${product.image[0]}`}
+                          className="p-1_proi img-fluid"
+                          alt="Product"
+                        />
                       </div>
                     </div>
                   </div>
+
+                  {/* Product Details */}
                   <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">{product.name}</span>
+                    <span className="mikdec_asdaa pt-3">
+                      {product.productName}
+                    </span>
                     <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">{product.price}</span>
-                      <span className="mikdec_axsx">{product.cutPrice}</span>
+                      <span className="mikdec_asdxsx">
+                        {product.salePrice?.$numberDecimal}
+                      </span>
+                      <span className="mikdec_axsx">
+                        {product.regularPrice?.$numberDecimal}
+                      </span>
                     </div>
                     <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button className="more_btn_dsdd w-50" onClick={() => navigate("/products")}>
+                      <button
+                        className="more_btn_dsdd w-50"
+                        onClick={() => navigate("/products")}
+                      >
                         More Info
                       </button>
                       <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
@@ -691,7 +997,6 @@ const Home = () => {
             </div>
           </div>
         )}
-
         {/* <div className="container d-flex gap-3 justify-content-between position-relative pt-4 w-100">
           <div className="grp_img position-relative box-trens-1 w-25">
             <div className="d-flex justify-content-center align-items-center h-100">
@@ -1020,12 +1325,13 @@ const Home = () => {
             {getVisibleRings1().map((ring, index) => (
               <div
                 key={ring.id}
-                className={`ring-item ${index === 2
-                  ? "large"
-                  : index === 1 || index === 3
+                className={`ring-item ${
+                  index === 2
+                    ? "large"
+                    : index === 1 || index === 3
                     ? "medium"
                     : "small"
-                  }`}
+                }`}
               >
                 <div className="ring-shadow">
                   <img
@@ -1336,32 +1642,37 @@ const Home = () => {
               1000: { slidesPerView: 3 },
             }}
           >
-            {[...testimonials, ...testimonials, ...testimonials].map((item, index) => (
-              <SwiperSlide key={index}>
-                <div
-                  className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+            {[...testimonials, ...testimonials, ...testimonials].map(
+              (item, index) => (
+                <SwiperSlide key={index}>
+                  <div
+                    className={`card testimonial-card${
+                      index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
                     } mt-5`}
-                >
-                  <div className="card-body pt-5">
-                    <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-                    <p className="card-text sdcdscsd text-center">
-                      I wanted a custom bracelet to honor my daughter’s birth,
-                      and the designers exceeded my expectations. They listened
-                      to every detail I envisioned and brought it to life. It’s a
-                      masterpiece I’ll cherish forever.
-                    </p>
-                    <p className="text-center sdcdscsd">Client</p>
-                    <div className="d-flex justify-content-center align-items-center">
-                      <FaStar color="#DBB439" />
-                      <FaStar color="#DBB439" />
-                      <FaStar color="#DBB439" />
-                      <CiStar />
-                      <CiStar />
+                  >
+                    <div className="card-body pt-5">
+                      <h5 className="card-title text-center emi_ffcc">
+                        Emily Carol
+                      </h5>
+                      <p className="card-text sdcdscsd text-center">
+                        I wanted a custom bracelet to honor my daughter’s birth,
+                        and the designers exceeded my expectations. They
+                        listened to every detail I envisioned and brought it to
+                        life. It’s a masterpiece I’ll cherish forever.
+                      </p>
+                      <p className="text-center sdcdscsd">Client</p>
+                      <div className="d-flex justify-content-center align-items-center">
+                        <FaStar color="#DBB439" />
+                        <FaStar color="#DBB439" />
+                        <FaStar color="#DBB439" />
+                        <CiStar />
+                        <CiStar />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              )
+            )}
           </Swiper>
         </div>
         <button
@@ -1370,7 +1681,7 @@ const Home = () => {
         >
           <FaAngleRight />
         </button>
-      </div >
+      </div>
 
       <Footer />
     </div>
