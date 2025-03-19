@@ -5,12 +5,14 @@ import Footer from "../../Pages/Footer";
 import {
   FaAngleDown,
   FaArrowRight,
+  FaChevronDown,
   FaChevronLeft,
   FaChevronRight,
+  FaChevronUp,
 } from "react-icons/fa6";
-import { PiHeartThin } from "react-icons/pi";
 import { GoHeart, GoHeartFill } from "react-icons/go";
-import { BiShoppingBag } from "react-icons/bi";
+import { BiSearch, BiShoppingBag } from "react-icons/bi";
+import { RxCross2 } from "react-icons/rx";
 
 const products = [
   {
@@ -165,6 +167,44 @@ const products = [
 const Products = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState(null);
+  const [isFilterVisible, setIsFilterVisible] = useState(false);
+  const [openSections, setOpenSections] = useState({
+    categories: true,
+    priceFilter: true,
+    weight: true,
+  });
+  const [priceRange, setPriceRange] = useState([1000, 15000]);
+
+  const handlePriceChange = (event, index) => {
+    const newValue = Number(event.target.value);
+    setPriceRange((prev) => {
+      const updatedRange = [...prev];
+      updatedRange[index] = newValue;
+      return updatedRange;
+    });
+  };
+
+  const handleClearFilters = () => {
+    // Reset all checkboxes
+    document.querySelectorAll('.category-checkbox').forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
+    document.querySelectorAll('.filter-category input[type="checkbox"]').forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+
+    // Reset price range
+    setPriceRange([1000, 15000]);
+  };
+
+  const toggleSection = (section) => {
+    setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
+  };
+
+  const toggleFilter = () => {
+    setIsFilterVisible((prev) => !prev);
+  };
 
   const toggleFavorite = (id) => {
     setIsFavorite((prev) => ({
@@ -190,13 +230,13 @@ const Products = () => {
         </div> */}
       </div>
       <div className="container">
-        <div className="hdr_csd d-flex flex-column align-items-center produ_sss">
+        <div className="hdr_csdg d-flex flex-column align-items-center produ_sss">
           <span className="produ_shsu">Choose Perfect Ring Style for You</span>
           <p className="pro_p">
             Find the design that speaks to your heart. Explore a variety of
             stunning ring styles to match your unique taste and occasion
           </p>
-          <div className="pt-3">
+          <div className="pt-3 Sfg">
             <button className="ring_for_her">
               <img src={require("../../Images/her.png")} /> Rings for Her
             </button>
@@ -207,21 +247,92 @@ const Products = () => {
           <hr className="prod_hr mt-5 w-100" />
           <div className="d-flex justify-content-between w-100 mt-3 zsdc_555">
             <div className="d-flex gap-3 filter_pro">
-              <button className="flt_btn d-flex gap-3 align-items-center justify-content-center filter_pro">
-                <img src={require("../../Images/filter.png")} /> Filter
+              <button className="flt_btn d-flex gap-3 align-items-center justify-content-center" onClick={toggleFilter}>
+                <img src={require("../../Images/filter.png")} alt="Filter Icon" /> Filter
               </button>
-              <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro">
+              <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro3">
                 Select Carat Weight <FaAngleDown />
               </button>
             </div>
             <div className="d-flex gap-3 align-items-center filter_pro2">
               <span className="sho_ddd filter_pro1">Sort by:</span>
-              <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro">
+              <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro3">
                 High to Low <FaAngleDown />
               </button>
             </div>
           </div>
 
+          {/* Filter Sidebar Overlay */}
+          {isFilterVisible && (
+            <div className="filter-overlay" onClick={toggleFilter}>
+              <div className="filter-sidebar" onClick={(e) => e.stopPropagation()}>
+                <div className="p-3">
+                  <button className="close-button" onClick={toggleFilter}><RxCross2 /></button>
+                </div>
+                <div className="input-group mb-3">
+                  <input type="text" className="search-input" placeholder="Search Products" />
+                  <span className="search-button"><BiSearch size={25} /></span>
+                </div>
+                <div className="filter-category">
+                  <h5 onClick={() => toggleSection('categories')}>
+                    Categories {openSections.categories ? <FaChevronUp size={20} className="mr3" /> : <FaChevronDown size={20} className="mr3" />}
+                  </h5>
+                  {openSections.categories && (
+                    <>
+                      <label>
+                        <input type="checkbox" className="category-checkbox" /> Women's Ring
+                      </label>
+                      <label>
+                        <input type="checkbox" className="category-checkbox" /> Men's Ring
+                      </label>
+                      <label>
+                        <input type="checkbox" className="category-checkbox" /> Pendant
+                      </label>
+                      <label>
+                        <input type="checkbox" className="category-checkbox" /> Women's Bracelet
+                      </label>
+                      <label>
+                        <input type="checkbox" className="category-checkbox" /> Men's Bracelet
+                      </label>
+                      <label>
+                        <input type="checkbox" className="category-checkbox" /> Earrings
+                      </label>
+                    </>
+                  )}
+                </div>
+                <div className="filter-category">
+                  <h5 onClick={() => toggleSection('priceFilter')}>
+                    Price Filter {openSections.priceFilter ? <FaChevronUp size={20} className="mr3" /> : <FaChevronDown size={20} className="mr3" />}
+                  </h5>
+                  {openSections.priceFilter && (
+                    <div>
+                      <input type="range" min="1000" max="15000" value={priceRange[1]} onChange={(e) => handlePriceChange(e, 1)} className="price-slider" />
+                      <div className="price-labels">
+                        <span>{`₹${priceRange[0]} - ₹${priceRange[1]}`}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="filter-category">
+                  <h5 onClick={() => toggleSection('weight')}>
+                    Weight {openSections.weight ? <FaChevronUp size={20} className="mr3" /> : <FaChevronDown size={20} className="mr3" />}
+                  </h5>
+                  {openSections.weight && (
+                    <>
+                      <label><input type="checkbox" /> 2 to 5 g</label>
+                      <label><input type="checkbox" /> 5 to 10 g</label>
+                      <label><input type="checkbox" /> 10 to 15 g</label>
+                      <label><input type="checkbox" /> &gt; 15 g</label>
+                    </>
+                  )}
+                </div>
+                <div style={{ textAlign: 'end' }}>
+                  <button className="Clen" onClick={handleClearFilters}>Clear</button>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="row pt-5">
             {products.map((product) => (
               <div
@@ -253,7 +364,6 @@ const Products = () => {
                         className="p-1_proi w-100"
                         alt="Product"
                       />
-                    
                       {hoveredProduct === product.id && (
                         <div className="hover-overlay w-100 d-flex">
                           <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3">
@@ -262,7 +372,7 @@ const Products = () => {
                           <button className="btn btn-light right-btn">
                             <FaChevronRight />
                           </button>
-   
+
                         </div>
                       )}
                     </div>
@@ -289,14 +399,12 @@ const Products = () => {
                       </a>
                     </div>
                   )}
-                  {/* </p> */}
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );

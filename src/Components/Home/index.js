@@ -72,6 +72,37 @@ const products = [
   },
 ];
 
+const products1 = [
+  {
+    id: 1,
+    imgSrc: require("../../Images/image 98.png"),
+    name: "Two Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 2,
+    imgSrc: require("../../Images/tre-2.png"),
+    name: "Two Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 3,
+    imgSrc: require("../../Images/image 100 (1).png"),
+    name: "Two Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 4,
+    imgSrc: require("../../Images/latsss.png"),
+    name: "Two Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+];
+
 const diamondRings = [
   {
     id: 1,
@@ -426,7 +457,7 @@ const Home = () => {
               and appeal.
               <br /> Here’s a guide to different shapes of diamond rings
             </span>
-            <button className="w-25 spg_nb_sle" style={{whiteSpace:'nowrap'}}>Shop Now</button>
+            <button className="w-25 spg_nb_sle" style={{ whiteSpace: 'nowrap' }}>Shop Now</button>
           </div>
         </div>
 
@@ -500,7 +531,7 @@ const Home = () => {
         <span className="category_name">Trending Collection</span>
         <p className="category_txt">The Latest looks, Crafted to Perfection</p>
         <img src={require("../../Images/Groupimg.png")} />
-        <div className="w-25 mt-3">
+        <div className="w-auto mt-3">
           <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
               <Tabs
@@ -513,87 +544,153 @@ const Home = () => {
                   },
                 }}
               >
-                <Tab label="On Sale" />
-                <Tab label="Best Seller" />
+                <Tab label="On Sale" value="1" />
+                <Tab label="Best Seller" value="2" />
                 <Tab label="Top Rated" value="3" />
               </Tabs>
             </Box>
-            {/* <TabPanel value="3">
-         
-          </TabPanel> */}
           </TabContext>
         </div>
-
-        <div className="heder_sec_main d-flex flex-column container">
-          <div className="row pt-5">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-              // onMouseEnter={() => setHoveredProduct(product.id)}
-              // onMouseLeave={() => setHoveredProduct(null)}
-              >
-                {/* Each column adapts based on screen size */}
-                <div className="card prio_card scdscsed_sdss">
-                  <div className="card-title">
-                    <div>
-                      <button className="new_btnddx p-1 ms-3 mt-3">
-                        NEW
-                      </button>
-                      <div
-                        className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                        onClick={() => toggleFavorite(product.id)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {isFavorite[product.id] ? (
-                          <GoHeartFill
-                            className="heart-icon_ss"
-                            size={18}
-                          />
-                        ) : (
-                          <GoHeart className="heart-icon_ss" size={18} />
-                        )}
+        {value === "1" && (
+          <div className="heder_sec_main d-flex flex-column container">
+            <div className="row pt-5">
+              {products.map((product) => (
+                <div key={product.id} className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards">
+                  <div className="card prio_card scdscsed_sdss">
+                    <div className="card-title">
+                      <div>
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">SALE</button>
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {isFavorite[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+                      </div>
+                      <div className="card-body d-flex justify-content-center">
+                        <img src={product.imgSrc} className="p-1_proi" alt="Product" />
                       </div>
                     </div>
-                    <div className="card-body d-flex justify-content-center ">
-                      <img
-                        src={product.imgSrc}
-                        className="p-1_proi"
-                        alt="Product"
-                      />
-                      {/* {hoveredProduct === product.id && (
-                                <div className="hover-overlay w-100 d-flex">
-                                  <button className="d-flex align-items-center add-to-crd-dss p-2 mt-2 justify-content-center gap-3">
-                                    Add to Cart <BiShoppingBag size={25} />
-                                  </button>
-                                </div>
-                              )} */}
+                  </div>
+                  <div className="d-flex flex-column main_cdsss">
+                    <span className="mikdec_asdaa pt-3">{product.name}</span>
+                    <div className="d-flex align-items-center gap-3 pt-1">
+                      <span className="mikdec_asdxsx">{product.price}</span>
+                      <span className="mikdec_axsx">{product.cutPrice}</span>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <button className="more_btn_dsdd w-50" onClick={() => navigate("/products")}>
+                        More Info
+                      </button>
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                        Add to Cart <BiShoppingBag size={25} />
+                      </button>
                     </div>
                   </div>
                 </div>
-                <div className="d-flex flex-column main_cdsss">
-                  <span className="mikdec_asdaa pt-3">{product.name}</span>
-                  <div className="d-flex align-items-center gap-3 pt-1">
-                    <span className="mikdec_asdxsx">{product.price}</span>
-                    <span className="mikdec_axsx">{product.cutPrice}</span>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                    <button
-                      className="more_btn_dsdd w-50"
-                      onClick={() => navigate("/products")}
-                    >
-                      More Info
-                    </button>
-                    <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                      Add to Cart <BiShoppingBag size={25} />
-                    </button>
-                  </div>
-                  {/* </p> */}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
+        {value === "2" && (
+          <div className="heder_sec_main d-flex flex-column container">
+            <div className="row pt-5">
+              {products1.map((product) => (
+                <div key={product.id} className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards">
+                  <div className="card prio_card scdscsed_sdss">
+                    <div className="card-title">
+                      <div>
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">NEW</button>
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {isFavorite[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+                      </div>
+                      <div className="card-body d-flex justify-content-center">
+                        <img src={product.imgSrc} className="p-1_proi" alt="Product" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="d-flex flex-column main_cdsss">
+                    <span className="mikdec_asdaa pt-3">{product.name}</span>
+                    <div className="d-flex align-items-center gap-3 pt-1">
+                      <span className="mikdec_asdxsx">{product.price}</span>
+                      <span className="mikdec_axsx">{product.cutPrice}</span>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <button className="more_btn_dsdd w-50" onClick={() => navigate("/products")}>
+                        More Info
+                      </button>
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                        Add to Cart <BiShoppingBag size={25} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {value === "3" && (
+          <div className="heder_sec_main d-flex flex-column container">
+            <div className="row pt-5">
+              {products.map((product) => (
+                <div key={product.id} className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards">
+                  <div className="card prio_card scdscsed_sdss">
+                    <div className="card-title">
+                      <div>
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">NEW</button>
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {isFavorite[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+                      </div>
+                      <div className="card-body d-flex justify-content-center">
+                        <img src={product.imgSrc} className="p-1_proi" alt="Product" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="d-flex flex-column main_cdsss">
+                    <span className="mikdec_asdaa pt-3">{product.name}</span>
+                    <div className="d-flex align-items-center gap-3 pt-1">
+                      <span className="mikdec_asdxsx">{product.price}</span>
+                      <span className="mikdec_axsx">{product.cutPrice}</span>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <button className="more_btn_dsdd w-50" onClick={() => navigate("/products")}>
+                        More Info
+                      </button>
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                        Add to Cart <BiShoppingBag size={25} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* <div className="container d-flex gap-3 justify-content-between position-relative pt-4 w-100">
           <div className="grp_img position-relative box-trens-1 w-25">
@@ -731,7 +828,7 @@ const Home = () => {
                 <div className="card prio_card scdscsed_sdss">
                   <div className="card-title">
                     <div>
-                      <button className="new_btnddx p-1 ms-3 mt-3">NEW</button>
+                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">NEW</button>
                       <div
                         className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
                         onClick={() => toggleFavorite(product.id)}
