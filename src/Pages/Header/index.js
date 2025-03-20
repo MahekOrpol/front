@@ -7,7 +7,7 @@ import { CiHeart, CiSearch } from "react-icons/ci";
 import { IoBagHandleOutline, IoClose, IoMenu } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ openCart }) => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -60,7 +60,7 @@ const Header = () => {
           </div>
           {/* <div><CiSearch size={25} /></div> */}
           <div><CiHeart size={25} /></div>
-          <div><IoBagHandleOutline size={25} /></div>
+          <div><IoBagHandleOutline size={25} onClick={openCart}/></div>
         </div>
       </div>
       <div className="dsn_mdcm">

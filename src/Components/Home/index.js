@@ -137,29 +137,6 @@ const diamondRings = [
 
 const Home = () => {
 
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const handleAddToCart = () => {
-    console.log("Button clicked!"); // Debugging
-    setIsCartOpen(true);
-    console.log("Cart state:", isCartOpen); // Check if the state is changing
-  };
-
-  const closeCart = () => {
-    setIsCartOpen(false);
-  };
-
-  useEffect(() => {
-    if (isCartOpen) {
-      document.body.style.overflow = "hidden"; // Disable scrolling
-    } else {
-      document.body.style.overflow = "auto"; // Enable scrolling
-    }
-  
-    return () => {
-      document.body.style.overflow = "auto"; // Cleanup when component unmounts
-    };
-  }, [isCartOpen]);
-
   const [isFavorite, setIsFavorite] = useState({});
   const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
@@ -168,6 +145,19 @@ const Home = () => {
   const [topRated, setTopRated] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const openCart = () => {
+    setIsCartOpen(true);
+    document.body.classList.add("no-scroll");
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false);
+    document.body.classList.remove("no-scroll");
+  };
+
 
   const getTopRated = async () => {
     const res = await axios("http://localhost:3000/api/v1/product/getTopRated");
@@ -274,10 +264,11 @@ const Home = () => {
   };
 
   return (
-    <>  
-     <CartPopup isOpen={isCartOpen} closeCart={closeCart}/>
-    <div className={`${isCartOpen ? "blurred" : ""}`} onClick={(e) => e.stopPropagation()}>
-      <Header />
+    <>
+      <CartPopup isOpen={isCartOpen} closeCart={closeCart} /> 
+      {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
+      <div className={isCartOpen ? "blurred" : ""}>
+      <Header openCart={openCart} />
 
       <div>
         {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
@@ -745,7 +736,7 @@ const Home = () => {
                       >
                         More Info
                       </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={openCart}>
                         Add to Cart <BiShoppingBag size={25} />
                       </button>
                     </div>
@@ -816,7 +807,7 @@ const Home = () => {
                       >
                         More Info
                       </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={openCart}>
                         Add to Cart <BiShoppingBag size={25} />
                       </button>
                     </div>
@@ -841,75 +832,8 @@ const Home = () => {
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
                           NEW
                         </button>
-<<<<<<< deep
                         <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={handleAddToCart}>
                           Add to Cart <BiShoppingBag size={25} />
-=======
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {isFavorite[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                      </div>
-                      <div className="card-body d-flex justify-content-center">
-                        <img
-                          src={`http://localhost:3000${product.image[0]}`}
-                          className="p-1_proi"
-                          alt="Product"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">
-                      {product.productName}
-                    </span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">
-                        {product.salePrice?.$numberDecimal}
-                      </span>
-                      <span className="mikdec_axsx">
-                        {product.regularPrice?.$numberDecimal}
-                      </span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button
-                        className="more_btn_dsdd w-50"
-                        onClick={() => navigate("/products")}
-                      >
-                        More Info
-                      </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                        Add to Cart <BiShoppingBag size={25} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )} */}
-
-        {/* {value === "3" && (
-          <div className="heder_sec_main d-flex flex-column container">
-            <div className="row pt-5">
-              {topRated.map((product) => (
-                <div
-                  key={product.id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                >
-                  <div className="card prio_card scdscsed_sdss">
-                    <div className="card-title">
-                      <div>
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
-                          NEW
->>>>>>> master
                         </button>
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
@@ -1022,7 +946,7 @@ const Home = () => {
                       >
                         More Info
                       </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={openCart}>
                         Add to Cart <BiShoppingBag size={25} />
                       </button>
                     </div>
@@ -1360,13 +1284,12 @@ const Home = () => {
             {getVisibleRings1().map((ring, index) => (
               <div
                 key={ring.id}
-                className={`ring-item ${
-                  index === 2
+                className={`ring-item ${index === 2
                     ? "large"
                     : index === 1 || index === 3
-                    ? "medium"
-                    : "small"
-                }`}
+                      ? "medium"
+                      : "small"
+                  }`}
               >
                 <div className="ring-shadow">
                   <img
@@ -1690,9 +1613,8 @@ const Home = () => {
               (item, index) => (
                 <SwiperSlide key={index}>
                   <div
-                    className={`card testimonial-card${
-                      index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                    } mt-5`}
+                    className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                      } mt-5`}
                   >
                     <div className="card-body pt-5">
                       <h5 className="card-title text-center emi_ffcc">
@@ -1728,9 +1650,9 @@ const Home = () => {
       </div>
 
       <Footer />
-    </div>
+      </div>
     </>
-    
+
   );
 };
 
