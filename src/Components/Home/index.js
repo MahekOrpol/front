@@ -160,17 +160,17 @@ const Home = () => {
 
 
   const getTopRated = async () => {
-    const res = await axios("http://localhost:3000/api/v1/product/getTopRated");
+    const res = await axios("https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated");
     setTopRated(res.data);
   };
   const getBestSelling = async () => {
     const res = await axios(
-      "http://localhost:3000/api/v1/product/getBestSelling"
+      "https://crystova.cloudbusiness.cloud/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
-    const res = await axios("http://localhost:3000/api/v1/product/getOnSale");
+    const res = await axios("https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale");
     setOnSale(res.data);
   };
 
@@ -640,7 +640,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi"
                           alt="Product"
                         />
@@ -708,7 +708,7 @@ const Home = () => {
                       {/* Product Image */}
                       <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi img-fluid"
                           alt="Product"
                         />
@@ -779,7 +779,7 @@ const Home = () => {
                       {/* Product Image */}
                       <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi img-fluid"
                           alt="Product"
                         />
@@ -834,7 +834,7 @@ const Home = () => {
                         </button>
                         <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={handleAddToCart}>
                           Add to Cart <BiShoppingBag size={25} />
-                        </button>
+=======
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
                           onClick={() => toggleFavorite(product.id)}
@@ -850,6 +850,72 @@ const Home = () => {
                       <div className="card-body d-flex justify-content-center">
                         <img
                           src={`http://localhost:3000${product.image[0]}`}
+                          className="p-1_proi"
+                          alt="Product"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="d-flex flex-column main_cdsss">
+                    <span className="mikdec_asdaa pt-3">
+                      {product.productName}
+                    </span>
+                    <div className="d-flex align-items-center gap-3 pt-1">
+                      <span className="mikdec_asdxsx">
+                        {product.salePrice?.$numberDecimal}
+                      </span>
+                      <span className="mikdec_axsx">
+                        {product.regularPrice?.$numberDecimal}
+                      </span>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <button
+                        className="more_btn_dsdd w-50"
+                        onClick={() => navigate("/products")}
+                      >
+                        More Info
+                      </button>
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                        Add to Cart <BiShoppingBag size={25} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )} */}
+
+        {/* {value === "3" && (
+          <div className="heder_sec_main d-flex flex-column container">
+            <div className="row pt-5">
+              {topRated.map((product) => (
+                <div
+                  key={product.id}
+                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                >
+                  <div className="card prio_card scdscsed_sdss">
+                    <div className="card-title">
+                      <div>
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
+                          NEW
+>>>>>>> master
+                        </button>
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {isFavorite[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+                      </div>
+                      <div className="card-body d-flex justify-content-center">
+                        <img
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi "
                           alt="Product"
                         />
@@ -918,7 +984,7 @@ const Home = () => {
                       {/* Product Image */}
                       <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi img-fluid"
                           alt="Product"
                         />
