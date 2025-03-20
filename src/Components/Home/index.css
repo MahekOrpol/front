@@ -1869,6 +1869,12 @@ img.ring-image {
   }
 }
 
+@media (max-width:993px) and (min-width:768px) {
+  .sdcsdh_xshx{
+    width: 20%;
+  }
+}
+
 @media (max-width:1300px) and (min-width:992px) {
   .fest_00ssss {
     padding-left: 0rem !important;
@@ -1890,6 +1896,9 @@ img.ring-image {
   .spg_nb_sle {
     width: 100% !important;
   }
+  .sdcsdh_xshx{
+    width: 20%;
+  }
 }
 
 @media (max-width:1686px) and (min-width:1301px) {
@@ -1902,6 +1911,9 @@ img.ring-image {
     gap: 2rem !important;
   }
 
+  .sdcsdh_xshx{
+    width: 20%;
+  }
   .txt_frss {
     font-size: 40px;
   }

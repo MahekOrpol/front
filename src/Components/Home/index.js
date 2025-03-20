@@ -728,7 +728,7 @@ const Home = () => {
                   {/* Product Details */}
                   <div className="d-flex flex-column main_cdsss">
                     <span className="mikdec_asdaa pt-3">
-                      {product.productName}
+                      {products.productName}
                     </span>
                     <div className="d-flex align-items-center gap-3 pt-1">
                       <span className="mikdec_asdxsx">
@@ -1399,7 +1399,7 @@ const Home = () => {
         <img src={require("../../Images/Groupimg.png")} />
 
         <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd">
-          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12">
+          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
             <div className="d-flex justify-content-center align-items-center h-100 w-100">
               <img
                 src={require("../../Images/image (4).png")}
@@ -1408,7 +1408,7 @@ const Home = () => {
               />
             </div>
           </div>
-          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12">
+          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/image (5).png")}
@@ -1417,7 +1417,7 @@ const Home = () => {
               />
             </div>
           </div>
-          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12">
+          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/Mask group (2).png")}
@@ -1427,7 +1427,16 @@ const Home = () => {
             </div>
           </div>
 
-          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12">
+          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+            <div className="d-flex justify-content-center align-items-center h-100">
+              <img
+                src={require("../../Images/image (6).png")}
+                alt="Dainty Earrings"
+                className="img-fluid"
+              />
+            </div>
+          </div>
+          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
                 src={require("../../Images/image (6).png")}
