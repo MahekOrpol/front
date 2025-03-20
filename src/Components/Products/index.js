@@ -198,7 +198,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      let url = `http://localhost:3000/api/v1/product/get?`;
+      let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
       if (categoryName) url += `categoryName=${categoryName}&`;
       if (gender) url += `gender=${gender}`;
 
@@ -459,7 +459,7 @@ const Products = () => {
                     </div>
                     <div className="card-body">
                       <img
-                        src={`http://localhost:3000${product.image[0]}`}
+                        src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                         className="p-1_proi w-100"
                         alt="Product"
                       />
@@ -498,38 +498,38 @@ const Products = () => {
                         )}
                       </div>
 
-                      {/* Product Image */}
-                      <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                        <img
-                          src={`http://localhost:3000${product.image[0]}`}
-                          className="p-1_proi img-fluid"
-                          alt="Product"
-                        />
-                        {hoveredProduct === product.id && (
-                          <div className="hover-overlay w-100 d-flex">
-                            <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3">
-                              <FaChevronLeft />
-                            </button>
-                            <button className="btn btn-light right-btn">
-                              <FaChevronRight />
-                            </button>
-                          </div>
-                        )}
-                      </div>
+                    {/* Product Image */}
+                    <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                      <img
+                        src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                        className="p-1_proi img-fluid"
+                        alt="Product"
+                      />
+                      {hoveredProduct === product.id && (
+                        <div className="hover-overlay w-100 d-flex">
+                          <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3">
+                            <FaChevronLeft />
+                          </button>
+                          <button className="btn btn-light right-btn">
+                            <FaChevronRight />
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">
-                      {product.productName}
+                </div>
+                <div className="d-flex flex-column main_cdsss">
+                  <span className="mikdec_asdaa pt-3">
+                    {product.productName}
+                  </span>
+                  <div className="d-flex align-items-center gap-3 pt-1">
+                    <span className="mikdec_asdxsx">
+                      {product.salePrice?.$numberDecimal}
                     </span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">
-                        {product.salePrice?.$numberDecimal}
-                      </span>
-                      <span className="mikdec_axsx">
-                        {product.regularPrice?.$numberDecimal}
-                      </span>
-                    </div>
+                    <span className="mikdec_axsx">
+                      {product.regularPrice?.$numberDecimal}
+                    </span>
+                  </div>
 
                     {hoveredProduct === product.id && (
                       <div className="hover-overlay DFC_NHJ w-100 d-flex">
