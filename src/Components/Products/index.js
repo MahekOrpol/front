@@ -185,7 +185,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      let url = `http://localhost:3001/api/v1/product/get?`;
+      let url = `http://localhost:3000/api/v1/product/get?`;
       if (categoryName) url += `categoryName=${categoryName}&`;
       if (gender) url += `gender=${gender}`;
 

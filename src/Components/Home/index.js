@@ -745,7 +745,7 @@ const Home = () => {
                       >
                         More Info
                       </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={handleAddToCart}>
                         Add to Cart <BiShoppingBag size={25} />
                       </button>
                     </div>
@@ -816,7 +816,7 @@ const Home = () => {
                       >
                         More Info
                       </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={handleAddToCart}>
                         Add to Cart <BiShoppingBag size={25} />
                       </button>
                     </div>
@@ -1022,7 +1022,7 @@ const Home = () => {
                       >
                         More Info
                       </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
+                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={handleAddToCart}>
                         Add to Cart <BiShoppingBag size={25} />
                       </button>
                     </div>
