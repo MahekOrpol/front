@@ -1363,7 +1363,7 @@ const Home = () => {
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img src={require("../../Images/Groupimg.png")} />
 
-        <div className="container pt-4 row position-relative w-100 justify-content-between">
+        <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd">
           <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12">
             <div className="d-flex justify-content-center align-items-center h-100 w-100">
               <img
