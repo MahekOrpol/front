@@ -15,6 +15,11 @@ const Header = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
+  const handleCategoryClick = (category) => {
+    navigate(`/products?categoryName=${category}`);
+    setIsDrawerOpen(false);
+  };
+
   return (
     <>
       <div className="header_main">
@@ -29,10 +34,10 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <div className="d-none d-lg-flex align-items-center w-25 gap-4 sdchy_88__sxsxs" style={{ paddingLeft: "7.3rem" }}>
-          <div className="header_list_tcty" onClick={() => navigate('/products')}>Rings</div>
-          <div className="header_list_tcty">Earrings</div>
-          <div className="header_list_tcty">Pendant</div>
-          <div className="header_list_tcty">Bracelet</div>
+          <div className="header_list_tcty" onClick={() => handleCategoryClick('Rings')}>Rings</div>
+          <div className="header_list_tcty" onClick={() => handleCategoryClick('Earrings')}>Earrings</div>
+          <div className="header_list_tcty" onClick={() => handleCategoryClick('Pendant')}>Pendant</div>
+          <div className="header_list_tcty" onClick={() => handleCategoryClick('Bracelet')}>Bracelet</div>
           <div className="header_list_tcty">Custom Jewellery</div>
         </div>
 
@@ -63,13 +68,12 @@ const Header = () => {
           <IoClose size={30} onClick={toggleDrawer} />
         </div>
         <div className="drawer-menu">
-          <div className="drawer-item" onClick={() => {navigate('/products');
-            toggleDrawer()
-          }}>Rings</div>
-          <div className="drawer-item">Earrings</div>
-          <div className="drawer-item">Pendant</div>
-          <div className="drawer-item">Bracelet</div>
-          <div className="drawer-item">Custom Jewellery</div>
+        <div className="drawer-item" onClick={() => handleCategoryClick('Rings')}>Rings</div>
+          <div className="drawer-item" onClick={() => handleCategoryClick('Earrings')}>Earrings</div>
+          <div className="drawer-item" onClick={() => handleCategoryClick('Pendant')}>Pendant</div>
+          <div className="drawer-item" onClick={() => handleCategoryClick('Bracelet')}>Bracelet</div>
+        
+          <div className="drawer-item" >Custom Jewellery</div>
         </div>
 
         {/* 🟢 Icons Section Inside Drawer (Mobile Only) */}
