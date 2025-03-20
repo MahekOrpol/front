@@ -275,7 +275,7 @@ const Home = () => {
 
   return (
     <>  
-     {/* <CartPopup isOpen={isCartOpen} closeCart={closeCart}/> */}
+     <CartPopup isOpen={isCartOpen} closeCart={closeCart}/>
     <div className={`${isCartOpen ? "blurred" : ""}`} onClick={(e) => e.stopPropagation()}>
       <Header />
 
