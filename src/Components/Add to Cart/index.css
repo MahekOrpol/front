@@ -1,0 +1,117 @@
+/* Cart Popup Styles */
+.cart-popup {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 300px;
+  height: 100%;
+  background: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s ease-in-out;
+  border-left: 2px solid #ccc;
+}
+
+.cart-popup.open {
+  right: 0;
+}
+
+.btn-close-cart {
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  padding: .25em .25em;
+  color: white;
+  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+  border: 0;
+  border-radius: .25rem;
+  opacity: .5;
+}
+
+/* Cart Header */
+.cart-header {
+  background-color: #611d2b;
+  padding: 15px;
+  color: white;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-items-bg {
+  overflow: hidden;
+  height: 75vh;
+}
+
+/* Cart Item */
+.cart-item {
+  margin: 15px;
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  border: 3px solid black;
+  border-radius: 24px;
+}
+
+.cart_item_detail{
+  width: 100%;
+}
+.head_cart {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.cart-item-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Cart Footer */
+.cart-footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  left: 0;
+  padding: 15px;
+  background: white;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Open Cart Button */
+.open-cart-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.dropdown_size{
+  margin-left: 10px;
+}
+.btn_check_out {
+  color: white;
+  font-family: Cabin;
+  background-color: #611d2b;
+}
+.btn_check_out:hover{
+  color: white;
+}
+
+.bg_prime{
+  color: white;
+  background-color: #611d2b;
+}
+.bg_prime:hover{
+  color: white;
+}
+
+.bg_prime:focus{
+  box-shadow: unset;
+}
+
+.delete {
+  display: flex;
+  width: 1.5rem;
+  background-repeat: no-repeat;
+  background-image: url(http://localhost:3000/static/media/trash-solid.14227052dac2e311a885.svg);
+}
+
