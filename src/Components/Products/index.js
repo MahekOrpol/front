@@ -239,6 +239,7 @@ const Products = () => {
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
+  
 
   return (
     <>

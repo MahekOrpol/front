@@ -23,7 +23,7 @@ const Footer = () => {
             <div className="col-sm-12 col-md-7 col-lg-6">
 
             <div className="d-flex align-items-center gap-2 dis-ssss1" style={{whiteSpace:'noWrap'}}>
-            <input type="text" name="pincode" className="oizb_inout p-2 dis-ssss" />
+            <input type="text" name="pincode" placeholder="Email" className="oizb_inout p-2 dis-ssss" />
             <butto className='suv_butn p-2 dis-ssss'>
             Subscribe Now
             </butto>

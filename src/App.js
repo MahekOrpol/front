@@ -8,6 +8,7 @@ import Blog from './Components/Blog';
 import BlogDetails from './Components/Blog Details';
 import Contact from './Components/Contact Us';
 import AboutUs from './Components/About Us';
+import CartPopup from './Components/Add to Cart';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
         <Route path="/blog-details" element={<BlogDetails />} />
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/add_to_cart" element={<CartPopup />} />
+
       </Routes>
     </BrowserRouter>
   );

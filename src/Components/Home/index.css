@@ -331,6 +331,7 @@
 }
 
 .snuf_dfv {
+  z-index: 999;
   right: 0;
   border: 1px solid lightgray;
   border-radius: 50%;
@@ -493,6 +494,11 @@
 
 
  */
+
+ .blurred {
+  filter: blur(10px);
+  pointer-events: none; /* Prevents interaction when blurred */
+}
 
 .swiper-pagination-bullet {
   border: 1px solid #1da1f2;

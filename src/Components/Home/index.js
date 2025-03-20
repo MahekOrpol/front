@@ -32,7 +32,9 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import TabContext from "@mui/lab/TabContext";
 import { Tabs } from "@mui/material";
+import CartPopup from "../Add to Cart";
 import axios from "axios";
+
 
 const images = [
   require("../../Images/ring222.png"),
@@ -134,6 +136,30 @@ const diamondRings = [
 ];
 
 const Home = () => {
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const handleAddToCart = () => {
+    console.log("Button clicked!"); // Debugging
+    setIsCartOpen(true);
+    console.log("Cart state:", isCartOpen); // Check if the state is changing
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false);
+  };
+
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.style.overflow = "hidden"; // Disable scrolling
+    } else {
+      document.body.style.overflow = "auto"; // Enable scrolling
+    }
+  
+    return () => {
+      document.body.style.overflow = "auto"; // Cleanup when component unmounts
+    };
+  }, [isCartOpen]);
+
   const [isFavorite, setIsFavorite] = useState({});
   const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
@@ -239,6 +265,7 @@ const Home = () => {
     ];
   };
 
+
   const toggleFavorite = (id) => {
     setIsFavorite((prev) => ({
       ...prev,
@@ -247,8 +274,11 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <>  
+     <CartPopup isOpen={isCartOpen} closeCart={closeCart}/>
+    <div className={`${isCartOpen ? "blurred" : ""}`} onClick={(e) => e.stopPropagation()}>
       <Header />
+
       <div>
         {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
         <div className="hoe_page_main_bvannei"></div>
@@ -811,6 +841,10 @@ const Home = () => {
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
                           NEW
                         </button>
+<<<<<<< deep
+                        <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={handleAddToCart}>
+                          Add to Cart <BiShoppingBag size={25} />
+=======
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
                           onClick={() => toggleFavorite(product.id)}
@@ -875,6 +909,7 @@ const Home = () => {
                       <div>
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
                           NEW
+>>>>>>> master
                         </button>
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
@@ -1685,6 +1720,8 @@ const Home = () => {
 
       <Footer />
     </div>
+    </>
+    
   );
 };
 
