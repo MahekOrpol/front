@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./index.css";
 import { RxCross2 } from "react-icons/rx";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { GoTrash } from "react-icons/go";
 
 const CartPopup = ({ isOpen, closeCart }) => {
   const [count, setCount] = useState(1);
@@ -64,7 +65,7 @@ const CartPopup = ({ isOpen, closeCart }) => {
                     +
                   </button>
                 </div>
-                <div className="delete mt-2"></div>
+                <div className="delete mt-2"><GoTrash size={25}/></div>
               </div>
             </div>
           </div>

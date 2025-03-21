@@ -9,6 +9,7 @@ import BlogDetails from './Components/Blog Details';
 import Contact from './Components/Contact Us';
 import AboutUs from './Components/About Us';
 import CartPopup from './Components/Add to Cart';
+import CheckoutPage from './Components/Check Out';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog-details" element={<BlogDetails />} />

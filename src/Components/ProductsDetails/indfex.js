@@ -630,60 +630,7 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              <div className="pt-5">
-                <div className="card det_cddd p-3">
-                  <div className="d-flex gap-3 align-items-center align-content-center">
-                    <img
-                      src={require("../../Images/Ellipse 1687.png")}
-                      className="position-relative"
-                    />
-                    <div className="position-absolute dvtfrvfr">
-                      <img src={require("../../Images/Vector (4).png")} />
-                    </div>
-                    <span className="knoe_www">Know your Stone</span>
-                  </div>
-
-                  <div className="d-flex align-items-center gap-3 pt-4 sdsc_knoww">
-                    <div className="card det_cd_sec_ddd p-3 w-100">
-                      <div className="d-flex align-items-center gap-3">
-                        <span className="knoe_www_rng">DIAMOND SHAPE</span>
-                      </div>
-                      <div className="pt-2">
-                        <span className="sdjuij1 diam_dd_fin">Circle</span>
-                      </div>
-                    </div>
-                    <div className="card det_cd_sec_ddd p-3 w-100">
-                      <div className="d-flex align-items-center gap-3">
-                        <span className="knoe_www_rng">DIAMOND SIZE</span>
-                      </div>
-                      <div className="pt-2">
-                        <span className="sdjuij1 w-25 diam_dd_fin">
-                          Moissanite Diamond <br /> 0.18 ctw
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="d-flex align-items-center gap-3 pt-3">
-                    <div className="card det_cd_sec_ddd p-3 w-100 ins_ssuxj_55">
-                      <div className="d-flex align-items-center gap-3">
-                        <span className="knoe_www_rng">DIAMOND WEIGHT</span>
-                      </div>
-                      <div className="pt-2">
-                        <span className="sdjuij1 diam_dd_fin">0.18 Ct Approx</span>
-                      </div>
-                    </div>
-                    <div className="card det_cd_sec_ddd p-3 w-100 ins_ssuxj_55">
-                      <div className="d-flex align-items-center gap-3">
-                        <span className="knoe_www_rng">DIAMOND PURITY</span>
-                      </div>
-                      <div className="pt-2">
-                        <span className="sdjuij1 diam_dd_fin">4 ctw</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              
               <div className="pt-5">
                 {/* FAQ is here */}
 

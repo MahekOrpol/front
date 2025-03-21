@@ -1285,8 +1285,8 @@ button.swiper-pagination-bullet {
 }
 
 .emi_ffcc {
-  font-family: "DM Serif Text", serif;
-  font-weight: 400;
+  font-family: "Cabin", sans-serif;
+  font-weight: bold;
   font-size: 25px;
   line-height: 100%;
   letter-spacing: 0%;
@@ -1479,24 +1479,19 @@ button.swiper-pagination-bullet {
 .lionk_ss {
   position: absolute;
   bottom: 40px;
-  /* Adjust as needed */
   left: 50%;
   transform: translateX(-50%);
   color: white;
   padding: 5px 10px;
   border-radius: 5px;
-  font-size: 14px;
   text-align: center;
-
-  font-family: "Outfit", sans-serif;
-  font-weight: 500;
-  font-size: 22px;
+  font-family: "Cabin", sans-serif;
+  font-weight: bold;
+  font-size: 28px;
   line-height: 100%;
   letter-spacing: 0%;
   text-decoration: underline;
   white-space: nowrap;
-
-
 }
 
 .diamond-ring-slider {
@@ -2008,7 +2003,8 @@ img.ring-image {
 .card-image-wrapper {
   position: relative;
   width: 100%;
-  height: 100%; /* Fixed height for all product images */
+  height: 100%;
+  /* Fixed height for all product images */
   overflow: hidden;
   border-radius: 8px;
 }
@@ -2016,7 +2012,8 @@ img.ring-image {
 .p-1_proi {
   width: 100%;
   height: 100%;
-  object-fit: none; /* Ensures the image covers the div without stretching */
+  object-fit: none;
+  /* Ensures the image covers the div without stretching */
   border-radius: 8px;
 }
 
@@ -2035,7 +2032,8 @@ img.ring-image {
   color: #611d2b;
 }
 
-.sle_home_ddd, .snuf_dfv {
+.sle_home_ddd,
+.snuf_dfv {
   z-index: 2;
 }
 
@@ -2059,10 +2057,16 @@ img.ring-image {
   }
 }
 
-.top_fff_trosnd{
+.top_fff_trosnd {
   height: 100%;
 }
 
-.xcdf_sdcsd{
+.xcdf_sdcsd {
   max-width: 1700px;
+}
+
+.hyyt {
+  font-size: 24px;
+  font-family: "Cabin", sans-serif;
+  font-weight: bold;
 }
