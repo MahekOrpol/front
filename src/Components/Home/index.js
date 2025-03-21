@@ -35,7 +35,6 @@ import { Tabs } from "@mui/material";
 import CartPopup from "../Add to Cart";
 import axios from "axios";
 
-
 const images = [
   require("../../Images/ring222.png"),
   require("../../Images/ring222.png"),
@@ -136,7 +135,6 @@ const diamondRings = [
 ];
 
 const Home = () => {
-
   const [isFavorite, setIsFavorite] = useState({});
   const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
@@ -147,7 +145,6 @@ const Home = () => {
   const [onSale, setOnSale] = useState([]);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
-
   const openCart = () => {
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
@@ -158,9 +155,22 @@ const Home = () => {
     document.body.classList.remove("no-scroll");
   };
 
+  // useEffect(() => {
+  //   if (isCartOpen) {
+  //     document.body.style.overflow = "hidden"; // Disable scrolling
+  //   } else {
+  //     document.body.style.overflow = "auto"; // Enable scrolling
+  //   }
+
+  //   return () => {
+  //     document.body.style.overflow = "auto"; // Cleanup when component unmounts
+  //   };
+  // }, [isCartOpen]);
 
   const getTopRated = async () => {
-    const res = await axios("https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated");
+    const res = await axios(
+      "https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated"
+    );
     setTopRated(res.data);
   };
   const getBestSelling = async () => {
@@ -170,7 +180,9 @@ const Home = () => {
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
-    const res = await axios("https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale");
+    const res = await axios(
+      "https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale"
+    );
     setOnSale(res.data);
   };
 
@@ -255,7 +267,6 @@ const Home = () => {
     ];
   };
 
-
   const toggleFavorite = (id) => {
     setIsFavorite((prev) => ({
       ...prev,
@@ -270,43 +281,43 @@ const Home = () => {
       <div className={isCartOpen ? "blurred" : ""}>
       <Header openCart={openCart} />
 
-      <div>
-        {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
-        <div className="hoe_page_main_bvannei"></div>
-      </div>
-
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd container">
-        <span className="category_name">Categories</span>
-        <p className="category_txt">Radiance Fits for Everyone</p>
-        <img src={require("../../Images/Groupimg.png")} />
-
-        <div className="row pt-5">
-          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-            <img src={require("../../Images/Group 1597884634 (1).png")} />
-            <span>Pendant</span>
-          </div>
-          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-            <img src={require("../../Images/Group 1597884629 (1).png")} />
-            <span>Bracelet</span>
-          </div>
-          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-            <img src={require("../../Images/Group 1597884630.png")} />
-            <span>Earrings</span>
-          </div>
-          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-            <img src={require("../../Images/Group 1597884631.png")} />
-            <span>Rings</span>
-          </div>
-          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-            <img src={require("../../Images/Group 1597884632.png")} />
-            <span>Pendant</span>
-          </div>
-          <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-            <img src={require("../../Images/Group 1597884632.png")} />
-            <span>Pendant</span>
-          </div>
+        <div>
+          {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
+          <div className="hoe_page_main_bvannei"></div>
         </div>
-        {/* <div className="pt-5 d-flex position-relative">
+
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd container">
+          <span className="category_name">Categories</span>
+          <p className="category_txt">Radiance Fits for Everyone</p>
+          <img src={require("../../Images/Groupimg.png")} />
+
+          <div className="row pt-5">
+            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
+              <img src={require("../../Images/Group 1597884634 (1).png")} />
+              <span className="hyyt">Pendant</span>
+            </div>
+            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
+              <img src={require("../../Images/Group 1597884629 (1).png")} />
+              <span className="hyyt">Bracelet</span>
+            </div>
+            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
+              <img src={require("../../Images/Group 1597884630.png")} />
+              <span className="hyyt">Earrings</span>
+            </div>
+            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
+              <img src={require("../../Images/Group 1597884631.png")} />
+              <span className="hyyt">Rings</span>
+            </div>
+            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
+              <img src={require("../../Images/Group 1597884632.png")} />
+              <span className="hyyt">Pendant</span>
+            </div>
+            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
+              <img src={require("../../Images/Group 1597884632.png")} />
+              <span className="hyyt">Pendant</span>
+            </div>
+          </div>
+          {/* <div className="pt-5 d-flex position-relative">
           <div className="grp_img position-relative">
             <img
               src={require("../../Images/image.png")}
@@ -388,9 +399,9 @@ const Home = () => {
             </div>
           </div>
         </div> */}
-      </div>
+        </div>
 
-      {/* <div className="hdr_csd1 position-relative">
+        {/* <div className="hdr_csd1 position-relative">
         <div className="position-relative">
           <img
             src={require("../../Images/Rectangle 105464.png")}
@@ -420,199 +431,201 @@ const Home = () => {
         </div>
       </div> */}
 
-      <div className="hdr_csd">
-        <div className="scrolling-wrapper">
-          <div className="scroll-content">
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
+        <div className="hdr_csd">
+          <div className="scrolling-wrapper">
+            <div className="scroll-content">
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
             </div>
           </div>
-        </div>
-        {/* </div> */}
-        <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
-          <div className="position-relative">
-            <img
-              src={require("../../Images/image (3).png")}
-              className="img-fluid w-100"
-              alt="Main Image"
-            />
-
-            <div className="overlay-img11">
+          {/* </div> */}
+          <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
+            <div className="position-relative">
               <img
-                src={require("../../Images/Rectangle 105457.png")}
+                src={require("../../Images/image (3).png")}
                 className="img-fluid w-100"
-                alt="Overlay"
+                alt="Main Image"
               />
-            </div>
-          </div>
-          <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
-            <span className="fest_fff">FESTIVAL SALE OFFERS</span>
-            <div className="txt_frss d-flex flex-column gap-3">
-              <span>Upto 25% Off on All Jewelry Favorites</span>
-              <span>Limited Time!</span>
-            </div>
-            <span className="txt_par">
-              Diamonds come in a variety of shapes, each offering unique beauty
-              and appeal.
-              <br /> Here’s a guide to different shapes of diamond rings
-            </span>
-            <button
-              className="w-25 spg_nb_sle"
-              style={{ whiteSpace: "nowrap" }}
-            >
-              Shop Now
-            </button>
-          </div>
-        </div>
 
-        <div className="scrolling-wrapper">
-          <div className="scroll-content">
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
+              <div className="overlay-img11">
+                <img
+                  src={require("../../Images/Rectangle 105457.png")}
+                  className="img-fluid w-100"
+                  alt="Overlay"
+                />
+              </div>
+            </div>
+            <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
+              <span className="fest_fff">FESTIVAL SALE OFFERS</span>
+              <div className="txt_frss d-flex flex-column gap-3">
+                <span>Upto 25% Off on All Jewelry Favorites</span>
+                <span>Limited Time!</span>
+              </div>
+              <span className="txt_par">
+                Diamonds come in a variety of shapes, each offering unique
+                beauty and appeal.
+                <br /> Here’s a guide to different shapes of diamond rings
               </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">
-                Shop Gold and Diamond Jewellery
-              </span>
-            </div>
-            <div className="scroll-item">
-              <img src={vector} alt="icon" />
-              <span className="scroll_heder">Friendly Sale 30% Off</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd pb-4">
-        <span className="category_name">Trending Collection</span>
-        <p className="category_txt">The Latest looks, Crafted to Perfection</p>
-        <img src={require("../../Images/Groupimg.png")} />
-        <div className="w-auto mt-3">
-          <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <Tabs
-                value={value}
-                onChange={handleChange}
-                aria-label="basic tabs example"
-                sx={{
-                  "& .MuiTabs-list": {
-                    justifyContent: "space-between",
-                  },
-                }}
+              <button
+                className="w-25 spg_nb_sle"
+                style={{ whiteSpace: "nowrap" }}
               >
-                <Tab label="On Sale" value="1" />
-                <Tab label="Best Seller" value="2" />
-                <Tab label="Top Rated" value="3" />
-              </Tabs>
-            </Box>
-          </TabContext>
+                Shop Now
+              </button>
+            </div>
+          </div>
+
+          <div className="scrolling-wrapper">
+            <div className="scroll-content">
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewellery
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img src={vector} alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+            </div>
+          </div>
         </div>
-        {/* {value === "1" && (
+
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd pb-4">
+          <span className="category_name">Trending Collection</span>
+          <p className="category_txt">
+            The Latest looks, Crafted to Perfection
+          </p>
+          <img src={require("../../Images/Groupimg.png")} />
+          <div className="w-auto mt-3">
+            <TabContext value={value}>
+              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="basic tabs example"
+                  sx={{
+                    "& .MuiTabs-list": {
+                      justifyContent: "space-between",
+                    },
+                  }}
+                >
+                  <Tab label="On Sale" value="1" />
+                  <Tab label="Best Seller" value="2" />
+                  <Tab label="Top Rated" value="3" />
+                </Tabs>
+              </Box>
+            </TabContext>
+          </div>
+          {/* {value === "1" && (
           <div className="heder_sec_main d-flex flex-column container">
             <div className="row pt-5">
               {onSale.map((product) => (
@@ -640,7 +653,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                          src={`http://localhost:3000${product.image[0]}`}
                           className="p-1_proi"
                           alt="Product"
                         />
@@ -676,149 +689,155 @@ const Home = () => {
             </div>
           </div>
         )} */}
-        {value === "1" && (
-          <div className="heder_sec_main d-flex flex-column container">
-            <div className="row pt-5">
-              {onSale.map((product) => (
-                <div
-                  key={product.id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                >
-                  <div className="card prio_card scdscsed_sdss">
-                    {/* Image Wrapper with position-relative */}
-                    <div className="card-image-wrapper position-relative">
-                      {/* SALE Badge */}
-                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                        SALE
-                      </button>
+          {value === "1" && (
+            <div className="heder_sec_main d-flex flex-column container">
+              <div className="row pt-5">
+                {onSale.map((product) => (
+                  <div
+                    key={product.id}
+                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                  >
+                    <div className="card prio_card scdscsed_sdss">
+                      {/* Image Wrapper with position-relative */}
+                      <div className="card-image-wrapper position-relative">
+                        {/* SALE Badge */}
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                          SALE
+                        </button>
 
-                      {/* Favorite Icon */}
-                      <div
-                        className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                        onClick={() => toggleFavorite(product.id)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {isFavorite[product.id] ? (
-                          <GoHeartFill className="heart-icon_ss" size={18} />
-                        ) : (
-                          <GoHeart className="heart-icon_ss" size={18} />
-                        )}
-                      </div>
+                        {/* Favorite Icon */}
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {isFavorite[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
 
-                      {/* Product Image */}
-                      <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                        <img
+                        {/* Product Image */}
+                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                          <img
                           src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi img-fluid"
-                          alt="Product"
-                        />
+                            alt="Product"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Product Details */}
+                    <div className="d-flex flex-column main_cdsss">
+                      <span className="mikdec_asdaa pt-3">
+                        {product.productName}
+                      </span>
+                      <div className="d-flex align-items-center gap-3 pt-1">
+                        <span className="mikdec_asdxsx">
+                          {product.salePrice?.$numberDecimal}
+                        </span>
+                        <span className="mikdec_axsx">
+                          {product.regularPrice?.$numberDecimal}
+                        </span>
+                      </div>
+                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                        <button
+                          className="more_btn_dsdd w-50"
+                          onClick={() => navigate("/product-details")}
+                        >
+                          More Info
+                        </button>
+                        <button
+                          className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                          onClick={openCart}
+                        >
+                          Add to Cart <BiShoppingBag size={25} />
+                        </button>
                       </div>
                     </div>
                   </div>
-
-                  {/* Product Details */}
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">
-                      {products.productName}
-                    </span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">
-                        {product.salePrice?.$numberDecimal}
-                      </span>
-                      <span className="mikdec_axsx">
-                        {product.regularPrice?.$numberDecimal}
-                      </span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button
-                        className="more_btn_dsdd w-50"
-                        onClick={() => navigate("/products")}
-                      >
-                        More Info
-                      </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={openCart}>
-                        Add to Cart <BiShoppingBag size={25} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {value === "2" && (
-          <div className="heder_sec_main d-flex flex-column container">
-            <div className="row pt-5">
-              {bestSelling.map((product) => (
-                <div
-                  key={product.id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                >
-                  <div className="card prio_card scdscsed_sdss">
-                    {/* Image Wrapper with position-relative */}
-                    <div className="card-image-wrapper position-relative">
-                      {/* SALE Badge */}
-                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                        SALE
-                      </button>
+          {value === "2" && (
+            <div className="heder_sec_main d-flex flex-column container">
+              <div className="row pt-5">
+                {bestSelling.map((product) => (
+                  <div
+                    key={product.id}
+                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                  >
+                    <div className="card prio_card scdscsed_sdss">
+                      {/* Image Wrapper with position-relative */}
+                      <div className="card-image-wrapper position-relative">
+                        {/* SALE Badge */}
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                          SALE
+                        </button>
 
-                      {/* Favorite Icon */}
-                      <div
-                        className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                        onClick={() => toggleFavorite(product.id)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {isFavorite[product.id] ? (
-                          <GoHeartFill className="heart-icon_ss" size={18} />
-                        ) : (
-                          <GoHeart className="heart-icon_ss" size={18} />
-                        )}
+                        {/* Favorite Icon */}
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {isFavorite[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+
+                        {/* Product Image */}
+                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                          <img
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            className="p-1_proi img-fluid"
+                            alt="Product"
+                          />
+                        </div>
                       </div>
+                    </div>
 
-                      {/* Product Image */}
-                      <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                        <img
-                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                          className="p-1_proi img-fluid"
-                          alt="Product"
-                        />
+                    {/* Product Details */}
+                    <div className="d-flex flex-column main_cdsss">
+                      <span className="mikdec_asdaa pt-3">
+                        {product.productName}
+                      </span>
+                      <div className="d-flex align-items-center gap-3 pt-1">
+                        <span className="mikdec_asdxsx">
+                          {product.salePrice?.$numberDecimal}
+                        </span>
+                        <span className="mikdec_axsx">
+                          {product.regularPrice?.$numberDecimal}
+                        </span>
+                      </div>
+                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                        <button
+                          className="more_btn_dsdd w-50"
+                          onClick={() => navigate("/products")}
+                        >
+                          More Info
+                        </button>
+                        <button
+                          className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                          onClick={openCart}
+                        >
+                          Add to Cart <BiShoppingBag size={25} />
+                        </button>
                       </div>
                     </div>
                   </div>
-
-                  {/* Product Details */}
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">
-                      {product.productName}
-                    </span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">
-                        {product.salePrice?.$numberDecimal}
-                      </span>
-                      <span className="mikdec_axsx">
-                        {product.regularPrice?.$numberDecimal}
-                      </span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button
-                        className="more_btn_dsdd w-50"
-                        onClick={() => navigate("/products")}
-                      >
-                        More Info
-                      </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={openCart}>
-                        Add to Cart <BiShoppingBag size={25} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* {value === "2" && (
+          {/* {value === "2" && (
           <div className="heder_sec_main d-flex flex-column container">
             <div className="row pt-5">
               {bestSelling.map((product) => (
@@ -886,7 +905,7 @@ const Home = () => {
           </div>
         )} */}
 
-        {/* {value === "3" && (
+          {/* {value === "3" && (
           <div className="heder_sec_main d-flex flex-column container">
             <div className="row pt-5">
               {topRated.map((product) => (
@@ -899,7 +918,7 @@ const Home = () => {
                       <div>
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
                           NEW
->>>>>>> master
+
                         </button>
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
@@ -915,7 +934,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                          src={`http://localhost:3000${product.image[0]}`}
                           className="p-1_proi "
                           alt="Product"
                         />
@@ -952,77 +971,80 @@ const Home = () => {
           </div>
         )} */}
 
-        {value === "3" && (
-          <div className="heder_sec_main d-flex flex-column container">
-            <div className="row pt-5">
-              {topRated.map((product) => (
-                <div
-                  key={product.id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                >
-                  <div className="card prio_card scdscsed_sdss">
-                    {/* Image Wrapper with position-relative */}
-                    <div className="card-image-wrapper position-relative">
-                      {/* SALE Badge */}
-                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                        SALE
-                      </button>
+          {value === "3" && (
+            <div className="heder_sec_main d-flex flex-column container">
+              <div className="row pt-5">
+                {topRated.map((product) => (
+                  <div
+                    key={product.id}
+                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                  >
+                    <div className="card prio_card scdscsed_sdss">
+                      {/* Image Wrapper with position-relative */}
+                      <div className="card-image-wrapper position-relative">
+                        {/* SALE Badge */}
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                          SALE
+                        </button>
 
-                      {/* Favorite Icon */}
-                      <div
-                        className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                        onClick={() => toggleFavorite(product.id)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {isFavorite[product.id] ? (
-                          <GoHeartFill className="heart-icon_ss" size={18} />
-                        ) : (
-                          <GoHeart className="heart-icon_ss" size={18} />
-                        )}
+                        {/* Favorite Icon */}
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {isFavorite[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+
+                        {/* Product Image */}
+                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                          <img
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            className="p-1_proi img-fluid"
+                            alt="Product"
+                          />
+                        </div>
                       </div>
+                    </div>
 
-                      {/* Product Image */}
-                      <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                        <img
-                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                          className="p-1_proi img-fluid"
-                          alt="Product"
-                        />
+                    {/* Product Details */}
+                    <div className="d-flex flex-column main_cdsss">
+                      <span className="mikdec_asdaa pt-3">
+                        {product.productName}
+                      </span>
+                      <div className="d-flex align-items-center gap-3 pt-1">
+                        <span className="mikdec_asdxsx">
+                          {product.salePrice?.$numberDecimal}
+                        </span>
+                        <span className="mikdec_axsx">
+                          {product.regularPrice?.$numberDecimal}
+                        </span>
+                      </div>
+                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                        <button
+                          className="more_btn_dsdd w-50"
+                          onClick={() => navigate("/products")}
+                        >
+                          More Info
+                        </button>
+                        <button
+                          className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                          onClick={openCart}
+                        >
+                          Add to Cart <BiShoppingBag size={25} />
+                        </button>
                       </div>
                     </div>
                   </div>
-
-                  {/* Product Details */}
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">
-                      {product.productName}
-                    </span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">
-                        {product.salePrice?.$numberDecimal}
-                      </span>
-                      <span className="mikdec_axsx">
-                        {product.regularPrice?.$numberDecimal}
-                      </span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button
-                        className="more_btn_dsdd w-50"
-                        onClick={() => navigate("/products")}
-                      >
-                        More Info
-                      </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={openCart}>
-                        Add to Cart <BiShoppingBag size={25} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-        {/* <div className="container d-flex gap-3 justify-content-between position-relative pt-4 w-100">
+          )}
+          {/* <div className="container d-flex gap-3 justify-content-between position-relative pt-4 w-100">
           <div className="grp_img position-relative box-trens-1 w-25">
             <div className="d-flex justify-content-center align-items-center h-100">
               <img
@@ -1146,7 +1168,7 @@ const Home = () => {
             </div>
           </div>
         </div> */}
-        {/* <div className="heder_sec_main d-flex flex-column container">
+          {/* <div className="heder_sec_main d-flex flex-column container">
           <div className="row pt-5">
             {products.map((product) => (
               <div
@@ -1203,88 +1225,88 @@ const Home = () => {
             ))}
           </div>
         </div> */}
-      </div>
+        </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
-        <span className="category_name">
-          Celebrate love with our Collection
-        </span>
-        <p className="category_txt">Perfect Presents for Every Occasion.</p>
-        <img src={require("../../Images/Groupimg.png")} />
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+          <span className="category_name">
+            Celebrate love with our Collection
+          </span>
+          <p className="category_txt">Perfect Presents for Every Occasion.</p>
+          <img src={require("../../Images/Groupimg.png")} />
 
-        {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
-        <div className="pt-4 container">
-          <div className="row justify-content-center justify-content-md-between">
-            <div className="d-flex flex-column align-items-center gap-3 offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3">
-              <span className="under_cimn">Under</span>
-              <span className="under_cimn">₹1,999</span>
-              <span className="next_arrow p-2">
-                <GrNext size={28} />
-              </span>
-            </div>
-            <div className="d-flex flex-column align-items-center gap-3 offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
-              <span className="under_cimn">Under</span>
-              <span className="under_cimn">₹1,999</span>
-              <span className="next_arrow p-2">
-                <GrNext size={28} />
-              </span>
-            </div>
-            <div className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
-              <span className="under_cimn">Under</span>
-              <span className="under_cimn">₹1,999</span>
-              <span className="next_arrow p-2">
-                <GrNext size={28} />
-              </span>
-            </div>
-            <div className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
-              <span className="under_cimn">Under</span>
-              <span className="under_cimn">₹1,999</span>
-              <span className="next_arrow p-2">
-                <GrNext size={28} />
-              </span>
+          {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
+          <div className="pt-4 container">
+            <div className="row justify-content-center justify-content-md-between">
+              <div className="d-flex flex-column align-items-center gap-3 offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+                <span className="under_cimn">Under</span>
+                <span className="under_cimn">₹1,999</span>
+                <span className="next_arrow p-2">
+                  <GrNext size={28} />
+                </span>
+              </div>
+              <div className="d-flex flex-column align-items-center gap-3 offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+                <span className="under_cimn">Under</span>
+                <span className="under_cimn">₹1,999</span>
+                <span className="next_arrow p-2">
+                  <GrNext size={28} />
+                </span>
+              </div>
+              <div className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+                <span className="under_cimn">Under</span>
+                <span className="under_cimn">₹1,999</span>
+                <span className="next_arrow p-2">
+                  <GrNext size={28} />
+                </span>
+              </div>
+              <div className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+                <span className="under_cimn">Under</span>
+                <span className="under_cimn">₹1,999</span>
+                <span className="next_arrow p-2">
+                  <GrNext size={28} />
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
-        <span className="category_name">Gifting Edition</span>
-        <p className="category_txt">Elegant & Versatile Gifts</p>
-        <img src={require("../../Images/Groupimg.png")} />
-        <div className="row pt-4 w-100">
-          <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
-            <img src={require("../../Images/Group 1597884624 (1).png")} />
-            <div className="lionk_ss">
-              <a>Gifts for Her</a>
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+          <span className="category_name">Gifting Edition</span>
+          <p className="category_txt">Elegant & Versatile Gifts</p>
+          <img src={require("../../Images/Groupimg.png")} />
+          <div className="row pt-4 w-100">
+            <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
+              <img src={require("../../Images/Group 1597884624 (1).png")} />
+              <div className="lionk_ss">
+                <a>Gifts for Her</a>
+              </div>
             </div>
-          </div>
-          <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
-            <img src={require("../../Images/Group 1597884625 (1).png")} />
-            <div className="lionk_ss">
-              <a>Gifts for Him</a>
+            <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
+              <img src={require("../../Images/Group 1597884625 (1).png")} />
+              <div className="lionk_ss">
+                <a>Gifts for Him</a>
+              </div>
             </div>
-          </div>
-          <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
-            <img src={require("../../Images/Group 1597884626 (1).png")} />
-            <div className="lionk_ss">
-              <a>Gifts for Self</a>
+            <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
+              <img src={require("../../Images/Group 1597884626 (1).png")} />
+              <div className="lionk_ss">
+                <a>Gifts for Self</a>
+              </div>
             </div>
-          </div>
-          <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
-            <img src={require("../../Images/Group 1597884636.png")} />
-            <div className="lionk_ss">
-              <a>Wedding Bands</a>
+            <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
+              <img src={require("../../Images/Group 1597884636.png")} />
+              <div className="lionk_ss">
+                <a>Wedding Bands</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd ">
-        <span className="category_name">Discover Styles</span>
-        <p className="category_txt">New Designs, Same Timeless Elegance</p>
-        <img src={require("../../Images/Groupimg.png")} />
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd ">
+          <span className="category_name">Discover Styles</span>
+          <p className="category_txt">New Designs, Same Timeless Elegance</p>
+          <img src={require("../../Images/Groupimg.png")} />
 
-        {/* <div className="carousel-container pt-5">
+          {/* <div className="carousel-container pt-5">
           <Swiper
             effect="coverflow"
             grabCursor={true}
@@ -1327,117 +1349,118 @@ const Home = () => {
           </div>
         </div> */}
 
-        <div className="rings-container home_ring_1">
-          <div className="rings-row">
-            {getVisibleRings().map((ring, index) => (
-              <div
-                key={ring.id}
-                className={`ring-item ${index === 1 ? "large" : "small"}`}
-              >
-                <div className="ring-shadow">
-                  <img
-                    src={ring.image}
-                    alt={`Diamond Ring ${ring.id}`}
-                    className="ring-image"
-                  />
+          <div className="rings-container home_ring_1">
+            <div className="rings-row">
+              {getVisibleRings().map((ring, index) => (
+                <div
+                  key={ring.id}
+                  className={`ring-item ${index === 1 ? "large" : "small"}`}
+                >
+                  <div className="ring-shadow">
+                    <img
+                      src={ring.image}
+                      alt={`Diamond Ring ${ring.id}`}
+                      className="ring-image"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="rings-container home_ring_2">
-          <div className="rings-row">
-            {getVisibleRings1().map((ring, index) => (
-              <div
-                key={ring.id}
-                className={`ring-item ${index === 2
-                    ? "large"
-                    : index === 1 || index === 3
+          <div className="rings-container home_ring_2">
+            <div className="rings-row">
+              {getVisibleRings1().map((ring, index) => (
+                <div
+                  key={ring.id}
+                  className={`ring-item ${
+                    index === 2
+                      ? "large"
+                      : index === 1 || index === 3
                       ? "medium"
                       : "small"
                   }`}
-              >
-                <div className="ring-shadow">
-                  <img
-                    src={ring.image}
-                    alt={`Diamond Ring ${ring.id}`}
-                    className="ring-image"
-                  />
+                >
+                  <div className="ring-shadow">
+                    <img
+                      src={ring.image}
+                      alt={`Diamond Ring ${ring.id}`}
+                      className="ring-image"
+                    />
+                  </div>
                 </div>
+              ))}
+            </div>
+          </div>
+          <div
+            className="carousel-controls d-flex justify-content-center gap-5"
+            style={{ cursor: "pointer" }}
+          >
+            <div onClick={prevSlide}>
+              <FaAngleLeft size={25} />
+            </div>
+            <span className="soli_txt_sccs">Solitare Rings</span>
+            <div onClick={nextSlide}>
+              <FaAngleRight size={25} />
+            </div>
+          </div>
+        </div>
+
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd asxs_sdxszx">
+          <span className="category_name">New Arrivals</span>
+          <p className="category_txt">New Designs, Same Timeless Elegance</p>
+          <img src={require("../../Images/Groupimg.png")} />
+
+          <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd">
+            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+              <div className="d-flex justify-content-center align-items-center h-100 w-100">
+                <img
+                  src={require("../../Images/image (4).png")}
+                  alt="Dainty Earrings"
+                  className="img-fluid"
+                />
               </div>
-            ))}
-          </div>
-        </div>
-        <div
-          className="carousel-controls d-flex justify-content-center gap-5"
-          style={{ cursor: "pointer" }}
-        >
-          <div onClick={prevSlide}>
-            <FaAngleLeft size={25} />
-          </div>
-          <span className="soli_txt_sccs">Solitare Rings</span>
-          <div onClick={nextSlide}>
-            <FaAngleRight size={25} />
-          </div>
-        </div>
-      </div>
+            </div>
+            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+              <div className="d-flex justify-content-center align-items-center h-100">
+                <img
+                  src={require("../../Images/image (5).png")}
+                  alt="Dainty Earrings"
+                  className="img-fluid"
+                />
+              </div>
+            </div>
+            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+              <div className="d-flex justify-content-center align-items-center h-100">
+                <img
+                  src={require("../../Images/Mask group (2).png")}
+                  alt="Dainty Earrings"
+                  className="img-fluid"
+                />
+              </div>
+            </div>
 
-      <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd asxs_sdxszx">
-        <span className="category_name">New Arrivals</span>
-        <p className="category_txt">New Designs, Same Timeless Elegance</p>
-        <img src={require("../../Images/Groupimg.png")} />
-
-        <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd">
-          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
-            <div className="d-flex justify-content-center align-items-center h-100 w-100">
-              <img
-                src={require("../../Images/image (4).png")}
-                alt="Dainty Earrings"
-                className="img-fluid"
-              />
+            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+              <div className="d-flex justify-content-center align-items-center h-100">
+                <img
+                  src={require("../../Images/image (6).png")}
+                  alt="Dainty Earrings"
+                  className="img-fluid"
+                />
+              </div>
             </div>
-          </div>
-          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/image (5).png")}
-                alt="Dainty Earrings"
-                className="img-fluid"
-              />
-            </div>
-          </div>
-          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/Mask group (2).png")}
-                alt="Dainty Earrings"
-                className="img-fluid"
-              />
-            </div>
-          </div>
-
-          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/image (6).png")}
-                alt="Dainty Earrings"
-                className="img-fluid"
-              />
-            </div>
-          </div>
-          <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/image (6).png")}
-                alt="Dainty Earrings"
-                className="img-fluid"
-              />
+            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+              <div className="d-flex justify-content-center align-items-center h-100">
+                <img
+                  src={require("../../Images/image (6).png")}
+                  alt="Dainty Earrings"
+                  className="img-fluid"
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Gifting Guide</span>
         <p className="category_txt">Jewelry makes the perfect gift</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -1556,7 +1579,7 @@ const Home = () => {
         </div>
       </div> */}
 
-      {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Client Testimonial</span>
         <p className="category_txt">What our Client’s say about us</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -1647,78 +1670,78 @@ const Home = () => {
         </div> 
       </div> */}
 
-      <div className="testimonial-container d-flex align-items-center">
-        <button
-          className="nav-button left"
-          onClick={() => swiperRef.current?.slidePrev()}
-        >
-          <FaAngleLeft />
-        </button>
-
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
-          <span className="category_name">Client Testimonial</span>
-          <p className="category_txt">What our Client’s say about us</p>
-          <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
-
-          <Swiper
-            grabCursor={true}
-            loop={true} // Infinite Loop
-            slidesPerView={slidesPerView}
-            slidesPerGroup={1}
-            modules={[Pagination, Autoplay]}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            onSwiper={(swiper) => (swiperRef.current = swiper)}
-            className="swiper_testimonial container"
-            breakpoints={{
-              320: { slidesPerView: 1 },
-              600: { slidesPerView: 2 },
-              1000: { slidesPerView: 3 },
-            }}
+        <div className="testimonial-container d-flex align-items-center">
+          <button
+            className="nav-button left"
+            onClick={() => swiperRef.current?.slidePrev()}
           >
-            {[...testimonials, ...testimonials, ...testimonials].map(
-              (item, index) => (
-                <SwiperSlide key={index}>
-                  <div
-                    className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+            <FaAngleLeft />
+          </button>
+
+          <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+            <span className="category_name">Client Testimonial</span>
+            <p className="category_txt">What our Client’s say about us</p>
+            <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
+
+            <Swiper
+              grabCursor={true}
+              loop={true} // Infinite Loop
+              slidesPerView={slidesPerView}
+              slidesPerGroup={1}
+              modules={[Pagination, Autoplay]}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
+              className="swiper_testimonial container"
+              breakpoints={{
+                320: { slidesPerView: 1 },
+                600: { slidesPerView: 2 },
+                1000: { slidesPerView: 3 },
+              }}
+            >
+              {[...testimonials, ...testimonials, ...testimonials].map(
+                (item, index) => (
+                  <SwiperSlide key={index}>
+                    <div
+                      className={`card testimonial-card${
+                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
                       } mt-5`}
-                  >
-                    <div className="card-body pt-5">
-                      <h5 className="card-title text-center emi_ffcc">
-                        Emily Carol
-                      </h5>
-                      <p className="card-text sdcdscsd text-center">
-                        I wanted a custom bracelet to honor my daughter’s birth,
-                        and the designers exceeded my expectations. They
-                        listened to every detail I envisioned and brought it to
-                        life. It’s a masterpiece I’ll cherish forever.
-                      </p>
-                      <p className="text-center sdcdscsd">Client</p>
-                      <div className="d-flex justify-content-center align-items-center">
-                        <FaStar color="#DBB439" />
-                        <FaStar color="#DBB439" />
-                        <FaStar color="#DBB439" />
-                        <CiStar />
-                        <CiStar />
+                    >
+                      <div className="card-body pt-5">
+                        <h5 className="card-title text-center emi_ffcc">
+                          Emily Carol
+                        </h5>
+                        <p className="card-text sdcdscsd text-center">
+                          I wanted a custom bracelet to honor my daughter’s
+                          birth, and the designers exceeded my expectations.
+                          They listened to every detail I envisioned and brought
+                          it to life. It’s a masterpiece I’ll cherish forever.
+                        </p>
+                        <p className="text-center sdcdscsd">Client</p>
+                        <div className="d-flex justify-content-center align-items-center">
+                          <FaStar color="#DBB439" />
+                          <FaStar color="#DBB439" />
+                          <FaStar color="#DBB439" />
+                          <CiStar />
+                          <CiStar />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              )
-            )}
-          </Swiper>
+                  </SwiperSlide>
+                )
+              )}
+            </Swiper>
+          </div>
+          <button
+            className="nav-button right"
+            onClick={() => swiperRef.current?.slideNext()}
+          >
+            <FaAngleRight />
+          </button>
         </div>
-        <button
-          className="nav-button right"
-          onClick={() => swiperRef.current?.slideNext()}
-        >
-          <FaAngleRight />
-        </button>
-      </div>
 
-      <Footer />
+        <Footer />
       </div>
     </>
-
   );
 };
 

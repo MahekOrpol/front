@@ -87,12 +87,12 @@ const Contact = () => {
                                     <Row className='con_row_sss'>
                                         <Col md={6} className='sx_row_sss'>
                                             <Form.Group className="my-4">
-                                                <Form.Control type="text" placeholder="Your Name" className='con_filddd' />
+                                                <Form.Control type="text" placeholder="First Name" className='con_filddd' />
                                             </Form.Group>
                                         </Col>
                                         <Col md={6} className='sx_row_sss'>
                                             <Form.Group className="my-4">
-                                                <Form.Control type="email" placeholder="Email Address" className='con_filddd' />
+                                                <Form.Control type="text" placeholder="Last Name" className='con_filddd' />
                                             </Form.Group>
                                         </Col>
                                     </Row>
@@ -104,9 +104,10 @@ const Contact = () => {
                                         </Col>
                                         <Col md={6} className='sx_row_sss'>
                                             <Form.Group className="my-4">
-                                                <Form.Control type="text" placeholder="Select Subject" className='con_filddd' />
+                                                <Form.Control type="email" placeholder="Email Address" className='con_filddd' />
                                             </Form.Group>
                                         </Col>
+                                       
                                     </Row>
                                     <Form.Group className="my-4">
                                         <Form.Control type="text" placeholder="Company" className='con_filddd' />
