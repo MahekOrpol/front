@@ -43,68 +43,6 @@ const images = [
   require("../../Images/ring222.png"),
 ];
 
-const products = [
-  {
-    id: 1,
-    imgSrc: require("../../Images/image 98.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 2,
-    imgSrc: require("../../Images/tre-2.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 3,
-    imgSrc: require("../../Images/image 100 (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 4,
-    imgSrc: require("../../Images/latsss.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-];
-
-const products1 = [
-  {
-    id: 1,
-    imgSrc: require("../../Images/image 98.png"),
-    name: "Two Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 2,
-    imgSrc: require("../../Images/tre-2.png"),
-    name: "Two Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 3,
-    imgSrc: require("../../Images/image 100 (1).png"),
-    name: "Two Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 4,
-    imgSrc: require("../../Images/latsss.png"),
-    name: "Two Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-];
-
 const diamondRings = [
   {
     id: 1,
@@ -143,7 +81,26 @@ const Home = () => {
   const [topRated, setTopRated] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
+  // Function to add an item to the cart
+  const addToCart = (product) => {
+    setCartItems((prevCart) => {
+      // Check if item already exists in cart
+      const exists = prevCart.some((item) => item.id === product.id);
+  
+      if (!exists) {
+        // If item is not in the cart, add it with quantity 1
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+  
+      return prevCart;
+    });
+  
+    openCart(); 
+  };
+  
+  
   const [isCartOpen, setIsCartOpen] = useState(false);
   const openCart = () => {
     setIsCartOpen(true);
@@ -155,17 +112,36 @@ const Home = () => {
     document.body.classList.remove("no-scroll");
   };
 
-  // useEffect(() => {
-  //   if (isCartOpen) {
-  //     document.body.style.overflow = "hidden"; // Disable scrolling
-  //   } else {
-  //     document.body.style.overflow = "auto"; // Enable scrolling
-  //   }
+  useEffect(() => {
+    console.log("Cart open state:", isCartOpen);
+    console.log("cartItemse:", cartItems);
+  }, [isCartOpen,cartItems]);
+  
+  const addWishlist = async (productId) => {
+    try {
+      const userId = localStorage.get('userId');
+      const response = await axios.post("https://crystova.cloudbusiness.cloud/api/v1/wishlist/create", {
+        userId,
+        productId,
+      });
+      console.log("Wishlist Response:", response.data);
+      setIsFavorite(response.data);
+    } catch (error) {
+      console.error("Error adding to wishlist:", error.response?.data || error.message);
+    }
+  };
 
-  //   return () => {
-  //     document.body.style.overflow = "auto"; // Cleanup when component unmounts
-  //   };
-  // }, [isCartOpen]);
+  const deleteWishlist = async (productId) => {
+
+    try {
+      const userId = localStorage.getItem('userId');
+      const response = await axios.delete(`https://crystova.cloudbusiness.cloud/api/v1/wishlist/${productId}?userId=${userId}`);
+      console.log("Wishlist Delete Response:", response.data);
+      setIsFavorite(response.data);
+    } catch (error) {
+      console.error("Error deleting from wishlist:", error.response?.data || error.message);
+    }
+  };
 
   const getTopRated = async () => {
     const res = await axios(
@@ -276,10 +252,12 @@ const Home = () => {
 
   return (
     <>
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} /> 
+      <CartPopup isOpen={isCartOpen} items={cartItems} closeCart={closeCart} updateCart={setCartItems} />;
+
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
+
       <div className={isCartOpen ? "blurred" : ""}>
-      <Header openCart={openCart} />
+        <Header openCart={openCart} />
 
         <div>
           {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
@@ -317,119 +295,7 @@ const Home = () => {
               <span className="hyyt">Pendant</span>
             </div>
           </div>
-          {/* <div className="pt-5 d-flex position-relative">
-          <div className="grp_img position-relative">
-            <img
-              src={require("../../Images/image.png")}
-              alt="Dainty Earrings"
-              className="img-fluid"
-            />
-            <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Dainty Earrings</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-          <div className="grp_img position-relative">
-            <img
-              src={require("../../Images/image (1).png")}
-              alt="Dainty Earrings"
-              className="img-fluid"
-            />
-            <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Radiant Rings</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-          <div className="grp_img position-relative">
-            <img
-              src={require("../../Images/image (2).png")}
-              alt="Dainty Earrings"
-              className="img-fluid"
-            />
-            <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Festive Pendants</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-          <div className="grp_img position-relative">
-            <img
-              src={require("../../Images/Mask group.png")}
-              alt="Dainty Earrings"
-              className="img-fluid"
-            />
-            <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Diamond Bracelet</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-          <div className="grp_img position-relative">
-            <img
-              src={require("../../Images/Mask group (1).png")}
-              alt="Dainty Earrings"
-              className="img-fluid"
-            />
-            <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Men’s Ring</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-        </div> */}
         </div>
-
-        {/* <div className="hdr_csd1 position-relative">
-        <div className="position-relative">
-          <img
-            src={require("../../Images/Rectangle 105464.png")}
-            className="ractangle_box pt-5"
-          />
-          <div className="bn_sdc w-25 container">
-            <span className="banner_txxts_hom">
-              Buy the Ring of <br />
-              your Choice
-            </span>
-            <hr className="hr_bnr w-25" />
-            <span className="hszhh">
-              Spark your imagination with recently <br /> purchased engagement
-              rings.
-            </span>
-            <button className="text-white explore_btn d-flex align-items-center gap-3 mt-3">
-              Explore Rings <FaArrowRight />
-            </button>
-
-            <div className=" bn_sdc1">
-              <img src={logobnddd} />
-            </div>
-
-            <div className="class-txt-sss">CLASSIC SILVER</div>
-            <div className="class-txt-sss1">PIECES</div>
-          </div>
-        </div>
-      </div> */}
 
         <div className="hdr_csd">
           <div className="scrolling-wrapper">
@@ -625,70 +491,7 @@ const Home = () => {
               </Box>
             </TabContext>
           </div>
-          {/* {value === "1" && (
-          <div className="heder_sec_main d-flex flex-column container">
-            <div className="row pt-5">
-              {onSale.map((product) => (
-                <div
-                  key={product.id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                >
-                  <div className="card prio_card scdscsed_sdss">
-                    <div className="card-title">
-                      <div>
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
-                          SALE
-                        </button>
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {isFavorite[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                      </div>
-                      <div className="card-body d-flex justify-content-center">
-                        <img
-                          src={`http://localhost:3000${product.image[0]}`}
-                          className="p-1_proi"
-                          alt="Product"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">
-                      {product.productName}
-                    </span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">
-                        {product.salePrice?.$numberDecimal}
-                      </span>
-                      <span className="mikdec_axsx">
-                        {product.regularPrice?.$numberDecimal}
-                      </span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button
-                        className="more_btn_dsdd w-50"
-                        onClick={() => navigate("/products")}
-                      >
-                        More Info
-                      </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                        Add to Cart <BiShoppingBag size={25} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )} */}
+         
           {value === "1" && (
             <div className="heder_sec_main d-flex flex-column container">
               <div className="row pt-5">
@@ -714,15 +517,19 @@ const Home = () => {
                           {isFavorite[product.id] ? (
                             <GoHeartFill className="heart-icon_ss" size={18} />
                           ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
+                            <GoHeart
+                              className="heart-icon_ss"
+                              size={18}
+                              onClick={() => addWishlist(product._id)} // Use product._id from the backend
+                            />
                           )}
                         </div>
 
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                          className="p-1_proi img-fluid"
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            className="p-1_proi img-fluid"
                             alt="Product"
                           />
                         </div>
@@ -751,10 +558,11 @@ const Home = () => {
                         </button>
                         <button
                           className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
-                          onClick={openCart}
+                          onClick={() => addToCart(product)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
+
                       </div>
                     </div>
                   </div>
@@ -825,10 +633,11 @@ const Home = () => {
                         </button>
                         <button
                           className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
-                          onClick={openCart}
+                          onClick={() => addToCart(product)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
+
                       </div>
                     </div>
                   </div>
@@ -868,7 +677,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi"
                           alt="Product"
                         />
@@ -934,7 +743,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi "
                           alt="Product"
                         />
@@ -1033,10 +842,11 @@ const Home = () => {
                         </button>
                         <button
                           className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
-                          onClick={openCart}
+                          onClick={() => addToCart(product)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
+
                       </div>
                     </div>
                   </div>
@@ -1306,49 +1116,6 @@ const Home = () => {
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img src={require("../../Images/Groupimg.png")} />
 
-          {/* <div className="carousel-container pt-5">
-          <Swiper
-            effect="coverflow"
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView="auto"
-            loop={true}
-            // pagination={{ clickable: true }}
-            modules={[EffectCoverflow, Pagination, Navigation]}
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 100,
-              depth: 150,
-              modifier: 1.5,
-              slideShadows: false,
-            }}
-            className="swiper-container"
-          >
-            {images.map((img, index) => (
-              <SwiperSlide key={index} className="swiper-slide">
-                <img src={img} alt={`Slide ${index}`} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <div
-            className="carousel-controls d-flex justify-content-center gap-5"
-            style={{ cursor: "pointer" }}
-          >
-            <div ref={prevRef}>
-              <FaAngleLeft size={25} />
-            </div>
-            <span className="soli_txt_sccs">Solitare Rings</span>
-            <div ref={nextRef}>
-              <FaAngleRight size={25} />
-            </div>
-          </div>
-        </div> */}
-
           <div className="rings-container home_ring_1">
             <div className="rings-row">
               {getVisibleRings().map((ring, index) => (
@@ -1372,13 +1139,12 @@ const Home = () => {
               {getVisibleRings1().map((ring, index) => (
                 <div
                   key={ring.id}
-                  className={`ring-item ${
-                    index === 2
+                  className={`ring-item ${index === 2
                       ? "large"
                       : index === 1 || index === 3
-                      ? "medium"
-                      : "small"
-                  }`}
+                        ? "medium"
+                        : "small"
+                    }`}
                 >
                   <div className="ring-shadow">
                     <img
@@ -1702,9 +1468,8 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide key={index}>
                     <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
+                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                        } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
