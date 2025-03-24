@@ -11,7 +11,7 @@ import { RiTwitterXFill } from "react-icons/ri";
 const Footer = () => {
   return (
     <>
-      <div className="footer_mdjj hdr_csds pt-5">
+      <div className="footer_mdjj hdr_csdssdrcsdc pt-5">
 
         <div className="gbhuji8usdjikijd row justify-content-between p-3 pe-5 ps-5">
             <div className="col-sm-12 col-md-5 col-lg-6">

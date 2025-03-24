@@ -74,7 +74,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 0 20px;
+  /* padding: 0 20px; */
 }
 
 /* Adjust individual icons */
@@ -316,4 +316,8 @@ text-align: justify;
     margin-bottom: 10px;
     font-family: "DM Serif Text", serif;
 }
+}
+
+.hdr_csdssdrcsdc{
+  margin-top: 2rem;
 }

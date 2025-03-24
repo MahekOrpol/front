@@ -120,7 +120,7 @@ const Home = () => {
   const addWishlist = async (productId) => {
     try {
       const userId = localStorage.get('userId');
-      const response = await axios.post("https://crystova.cloudbusiness.cloud/api/v1/wishlist/create", {
+      const response = await axios.post("http://localhost:3000/api/v1/wishlist/create", {
         userId,
         productId,
       });
@@ -135,7 +135,7 @@ const Home = () => {
 
     try {
       const userId = localStorage.getItem('userId');
-      const response = await axios.delete(`https://crystova.cloudbusiness.cloud/api/v1/wishlist/${productId}?userId=${userId}`);
+      const response = await axios.delete(`http://localhost:3000/api/v1/wishlist/${productId}?userId=${userId}`);
       console.log("Wishlist Delete Response:", response.data);
       setIsFavorite(response.data);
     } catch (error) {
@@ -145,19 +145,19 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated"
+      "http://localhost:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
   };
   const getBestSelling = async () => {
     const res = await axios(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getBestSelling"
+      "http://localhost:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale"
+      "http://localhost:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -528,7 +528,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -603,7 +603,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -677,7 +677,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                          src={`http://localhost:3000${product.image[0]}`}
                           className="p-1_proi"
                           alt="Product"
                         />
@@ -743,7 +743,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                          src={`http://localhost:3000${product.image[0]}`}
                           className="p-1_proi "
                           alt="Product"
                         />
@@ -812,7 +812,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />

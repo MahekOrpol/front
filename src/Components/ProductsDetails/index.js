@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
 import { FaChevronRight, FaStar } from "react-icons/fa6";
@@ -9,6 +9,10 @@ import { GoShareAndroid } from "react-icons/go";
 import { FcLike } from "react-icons/fc";
 import ringVideo from "../../Videos/ring.mp4";
 import CartPopup from "../Add to Cart";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 const products = [
   {
@@ -46,9 +50,9 @@ const ProductDetails = () => {
   const [isFavorite, setIsFavorite] = useState({});
 
   const [openIndex, setOpenIndex] = useState(null);
-  
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const videoRef = useRef(null);
   const openCart = () => {
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
@@ -76,7 +80,6 @@ const ProductDetails = () => {
     }));
   };
 
-
   const faqs = [
     {
       icon: <img src={require("../../Images/watch.png")} />,
@@ -96,13 +99,12 @@ const ProductDetails = () => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
 
-
   return (
     <div>
       <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-        <Header openCart={openCart}/>
+        <Header openCart={openCart} />
         <div className="container">
           <section>
             <div class=" pb-2 pt-3 md:px-5">
@@ -142,7 +144,7 @@ const ProductDetails = () => {
 
           <section className="d-flex gap-5 pro_sss_gubs ">
             <div className="w-100 sdcsd_saxza">
-              <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0">
+              <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
                 <div className="d-flex gap-4 pro_dddd66">
                   <div className="det_min_cd2">
                     <video
@@ -194,13 +196,80 @@ const ProductDetails = () => {
                   </div>
                 </div>
               </div>
+              <div className="mobile-slider">
+               
+                <Swiper
+                  spaceBetween={0}
+                  loop={false}
+                  speed={1000}
+                  modules={[Autoplay]}
+                  autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                  }}
+                  breakpoints={{
+                    0: {
+                      slidesPerView: 1, // Mobile - 1 item
+                    },
+                    601: {
+                      slidesPerView: 2, // Tablet and up - 2 items
+                    },
+                    1200: {
+                      slidesPerView: 3, // Optional for large screens
+                    },
+                  }}
+                >
+                  <SwiperSlide>
+                    <video
+                      src={ringVideo}
+                      className="detr_img slider_ring_sss bg-white"
+                      autoPlay
+                      loop
+                      muted
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      className="detr_img slider_ring_sss"
+                      src={require("../../Images/pd-2.png")}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      className="detr_img_d slider_ring_sss"
+                      src={require("../../Images/15 Model white.png")}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      className="detr_img_d slider_ring_sss"
+                      src={require("../../Images/1 (8).png")}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      className="detr_img_d slider_ring_sss"
+                      src={require("../../Images/1 (6).png")}
+                    />
+                  </SwiperSlide>
+                  <SwiperSlide>
+                    <img
+                      className="detr_img_s_s slider_ring_sss"
+                      src={require("../../Images/lastttt.png")}
+                    />
+                  </SwiperSlide>
+                </Swiper>
+              </div>
             </div>
-
             <div className="w-100 pt-5 sdcsd_saxza dscd_54_Dscds">
+              <div className="sticky-top" style={{top:'50px'}}>
+
               <div className="d-flex justify-content-between align-items-center">
                 <span className="secrt_1">2 CTW Halo Engagement Ring</span>
                 <div>
-                  <button className="sav_btn p-2 pe-3 ps-3 dcs_dddd_8888">Save 20%</button>
+                  <button className="sav_btn p-2 pe-3 ps-3 dcs_dddd_8888">
+                    Save 20%
+                  </button>
                 </div>
               </div>
               <div className="pt-3 d-flex gap-5 align-items-center sdcdc">
@@ -231,23 +300,12 @@ const ProductDetails = () => {
                 <p className="seb_p_g">
                   A halo diamond ring is a classic and sophisticated choice,
                   renowned for its dazzling design and ability to elevate the
-                  brilliance of the center stone. This style has become a favorite
-                  for engagement rings and statement jewelry due to its
+                  brilliance of the center stone. This style has become a
+                  favorite for engagement rings and statement jewelry due to its
                   captivating charm and versatility.
                 </p>
               </div>
-              {/* <div className="p-3 sec_pb w-75">
-              <div className="d-flex align-items-center justify-content-between pt-2 sdcdc align-items-sm-start align-items-md-start align-items-lg-center produ_detl_sss">
-                <span className="your_pncd">Your pincode</span>
-                <div>
-                  <input type="text" name="pincode" className="oib_inout p-1" />
-                  <button className="pncd_btn p-1 pe-3 ps-3">Check</button>
-                </div>
-              </div>
-              <p className="pv_txtsss pt-3">
-                Provide pincode for delivery date and nearby stores!
-              </p>
-            </div> */}
+              
               <div className="pt-2">
                 <hr className="hr_pb_dtl" />
               </div>
@@ -437,89 +495,14 @@ const ProductDetails = () => {
                 <hr className="hr_pb_dtl" />
               </div>
 
-              {/* <div>
-              <span className="dim_txt_sjs">Diamond Purity:</span>
-            </div>
-
-            <div className="d-flex align-items-center gap-3 pt-3 flex-wrap">
-              <div className="round_ddd p-3">
-                <span className="a_sssss">1ctw</span>
-              </div>
-              <div className="round_ddd p-3">
-                <span className="a_sssss">2ctw</span>
-              </div>
-              <div className="round_ddd p-3">
-                <span className="a_sssss">3ctw</span>
-              </div>
-              <div className="round_ddd p-3">
-                <span className="a_sssss">4ctw</span>
-              </div>
-              <div className="round_ddd p-3">
-                <span className="a_sssss">5ctw</span>
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <hr className="hr_pb_dtl" />
-            </div>
-
-            <div>
-              <span className="dim_txt_sjs">Diamond Shape:</span>
-            </div>
-
-            <div className="d-flex align-items-center gap-3 pt-3 flex-wrap">
-              <div className="d-flex align-items-center flex-column  diamon_sss ">
-                <div className="diamond_shape">
-                  <img src={require("../../Images/Round-New 1.png")} />
-                </div>
-                <span className="pt-2">Round</span>
-              </div>
-              <div className="d-flex align-items-center flex-column  diamon_sss ">
-                <div className="diamond_shape">
-                  <img src={require("../../Images/princess-cut-diamond.png")} />
-                </div>
-                <span className="pt-2">Princess</span>
-              </div>
-              <div className="d-flex align-items-center flex-column  diamon_sss ">
-                <div className="diamond_shape">
-                  <img src={require("../../Images/pear-shape-diamond.png")} />
-                </div>
-                <span className="pt-2">Pear</span>
-              </div>
-              <div className="d-flex align-items-center flex-column  diamon_sss ">
-                <div className="diamond_shape">
-                  <img
-                    src={require("../../Images/oval-single-84e219e56d-500x500.png")}
-                  />
-                </div>
-                <span className="pt-2">Oval</span>
-              </div>
-              <div className="d-flex align-items-center flex-column  diamon_sss ">
-                <div className="diamond_shape">
-                  <img
-                    src={require("../../Images/gia-certified-real-cushion-cut-diamond (1).png")}
-                  />
-                </div>
-                <span className="pt-2">Cushion</span>
-              </div>
-              <div className="d-flex align-items-center flex-column  diamon_sss ">
-                <div className="diamond_shape">
-                  <img
-                    src={require("../../Images/emerald-cut-loose-diamond.png")}
-                  />
-                </div>
-                <span className="pt-2">Emerald</span>
-              </div>
-            </div> */}
-              {/* <div className="pt-2">
-              <hr className="hr_pb_dtl" />
-            </div> */}
-
               <div className="d-flex justify-content-between align-items-center gap-4">
-                <button className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"  onClick={openCart}>
+                <button
+                  className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                  onClick={openCart}
+                >
                   Add to Cart <BiShoppingBag size={25} />
                 </button>
-                <div className="d-flex gap-4 align-items-center">
+                <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs">
                   <div
                     className="gohrt_bod p-2"
                     onClick={() => setLiked(!liked)}
@@ -621,8 +604,9 @@ const ProductDetails = () => {
                       </div>
                       <div className="pt-5">
                         <span className="mes_ddd">
-                          It comes with the authenticity and gaurantee certificate
-                          of 925 Silver with <br /> lifetime exchange gaurantee.
+                          It comes with the authenticity and gaurantee
+                          certificate of 925 Silver with <br /> lifetime
+                          exchange gaurantee.
                         </span>
                       </div>
                     </div>
@@ -630,7 +614,6 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              
               <div className="pt-5">
                 {/* FAQ is here */}
 
@@ -639,8 +622,9 @@ const ProductDetails = () => {
                     <div className="accordion-item" key={index}>
                       <h2 className="accordion-header">
                         <button
-                          className={`accordion-button ${openIndex === index ? "" : "collapsed"
-                            }`}
+                          className={`accordion-button ${
+                            openIndex === index ? "" : "collapsed"
+                          }`}
                           type="button"
                           onClick={() => toggleFAQ(index)}
                         >
@@ -650,15 +634,19 @@ const ProductDetails = () => {
                         </button>
                       </h2>
                       <div
-                        className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
-                          }`}
+                        className={`accordion-collapse collapse ${
+                          openIndex === index ? "show" : ""
+                        }`}
                         data-bs-parent="#faqAccordion"
                       >
-                        <div className="accordion-body srfferc">{faq.answer}</div>
+                        <div className="accordion-body srfferc">
+                          {faq.answer}
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
+              </div>
               </div>
             </div>
           </section>
@@ -669,44 +657,40 @@ const ProductDetails = () => {
             <img src={require("../../Images/Groupimg.png")} />
           </div>
           <div className="heder_sec_main d-flex flex-column">
-            <div className="row pt-5">
+            <div className="row">
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 pt-5 asxasx_cards tsrd_didhd_sdcs"
                   onMouseEnter={() => setHoveredProduct(product.id)}
                   onMouseLeave={() => setHoveredProduct(null)}
                 >
-                  {/* Each column adapts based on screen size */}
                   <div className="card prio_card scdscsed_sdss">
-                    <div className="card-title">
-                      <div>
-                        <button className="new_btnddx p-1 ms-3 mt-3">NEW</button>
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {isFavorite[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
+                    <div className="card-image-wrapper position-relative">
+                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                        NEW
+                      </button>
+                      <div
+                        className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                        onClick={() => toggleFavorite(product.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {isFavorite[product.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={18} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={18} />
+                        )}
                       </div>
-                      <div className="card-body d-flex justify-content-center ">
+
+                      <div
+                        className="card-body p-0 d-flex justify-content-center"
+                        style={{ height: "100%" }}
+                      >
                         <img
                           src={product.imgSrc}
-                          className="p-1_proi"
+                          className="p-1_proi img-fluid"
                           alt="Product"
                         />
-                        {/* {hoveredProduct === product.id && (
-                        <div className="hover-overlay w-100 d-flex">
-                          <button className="d-flex align-items-center add-to-crd-dss p-2 mt-2 justify-content-center gap-3">
-                            Add to Cart <BiShoppingBag size={25} />
-                          </button>
-                        </div>
-                      )} */}
                       </div>
                     </div>
                   </div>
@@ -718,14 +702,99 @@ const ProductDetails = () => {
                     </div>
                     <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
                       <button className="more_btn_dsdd w-50">More Info</button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"  onClick={openCart}>
+                      <button
+                        className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                        onClick={openCart}
+                      >
                         Add to Cart <BiShoppingBag size={25} />
                       </button>
                     </div>
-                    {/* </p> */}
                   </div>
                 </div>
               ))}
+
+              <div className="slider_ssss_fdcdf">
+                <Swiper
+                  spaceBetween={0}
+                  breakpoints={{
+                    1200: { slidesPerView: 4 }, // Large screen - 4 cards
+                    992: { slidesPerView: 3 }, // Below 1200px - 3 cards
+                    768: { slidesPerView: 2 }, // Below 992px - 2 cards
+                    0: { slidesPerView: 1 }, // Mobile - 1 card
+                  }}
+                  loop={true}
+                  // autoplay={{
+                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                  //   disableOnInteraction: false,
+                  // }}
+                  // modules={[Autoplay]}
+                >
+                  {products.map((product) => (
+                    <SwiperSlide key={product.id}>
+                      <div
+                        className="card prio_card scdscsed_sdss"
+                        onMouseEnter={() => setHoveredProduct(product.id)}
+                        onMouseLeave={() => setHoveredProduct(null)}
+                      >
+                        <div className="card-image-wrapper position-relative">
+                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                            NEW
+                          </button>
+                          <div
+                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                            onClick={() => toggleFavorite(product.id)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {isFavorite[product.id] ? (
+                              <GoHeartFill
+                                className="heart-icon_ss"
+                                size={18}
+                              />
+                            ) : (
+                              <GoHeart className="heart-icon_ss" size={18} />
+                            )}
+                          </div>
+
+                          <div
+                            className="card-body p-0 d-flex justify-content-center"
+                            style={{ height: "100%" }}
+                          >
+                            <img
+                              src={product.imgSrc}
+                              className="p-1_proi img-fluid border-0"
+                              alt="Product"
+                              style={{ height: "100%" }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="d-flex flex-column main_cdsss">
+                        <span className="mikdec_asdaa pt-3">
+                          {product.name}
+                        </span>
+                        <div className="d-flex align-items-center gap-3 pt-1">
+                          <span className="mikdec_asdxsx">{product.price}</span>
+                          <span className="mikdec_axsx">
+                            {product.cutPrice}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                          <button className="more_btn_dsdd w-50">
+                            More Info
+                          </button>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                            onClick={openCart}
+                          >
+                            Add to Cart <BiShoppingBag size={25} />
+                          </button>
+                        </div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
             </div>
           </div>
         </div>
