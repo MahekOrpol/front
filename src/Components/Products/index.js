@@ -198,7 +198,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
+      let url = `http://localhost:3000/api/v1/product/get?`;
       if (categoryName) url += `categoryName=${categoryName}&`;
       if (gender) url += `gender=${gender}`;
 
@@ -459,7 +459,7 @@ const Products = () => {
                     </div>
                     <div className="card-body">
                       <img
-                        src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                        src={`http://localhost:3000${product.image[0]}`}
                         className="p-1_proi w-100"
                         alt="Product"
                       />
@@ -501,7 +501,7 @@ const Products = () => {
                     {/* Product Image */}
                     <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                       <img
-                        src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                        src={`http://localhost:3000${product.image[0]}`}
                         className="p-1_proi img-fluid"
                         alt="Product"
                       />
