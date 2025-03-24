@@ -382,7 +382,7 @@ const AboutUs = () => {
             }}
           >
             {[...testimonials, ...testimonials, ...testimonials].map((item, index) => (
-              <SwiperSlide key={index}>
+              <SwiperSlide className="slide_ssssss_sss_dexsdx" key={index}>
                 <div
                   className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
                     } mt-5`}

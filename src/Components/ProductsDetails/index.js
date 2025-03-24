@@ -219,7 +219,7 @@ const ProductDetails = () => {
                     },
                   }}
                 >
-                  <SwiperSlide>
+                  <SwiperSlide className="swiper-slide_sssss">
                     <video
                       src={ringVideo}
                       className="detr_img slider_ring_sss bg-white"
@@ -228,31 +228,31 @@ const ProductDetails = () => {
                       muted
                     />
                   </SwiperSlide>
-                  <SwiperSlide>
+                  <SwiperSlide className="swiper-slide_sssss">
                     <img
                       className="detr_img slider_ring_sss"
                       src={require("../../Images/pd-2.png")}
                     />
                   </SwiperSlide>
-                  <SwiperSlide>
+                  <SwiperSlide className="swiper-slide_sssss">
                     <img
                       className="detr_img_d slider_ring_sss"
                       src={require("../../Images/15 Model white.png")}
                     />
                   </SwiperSlide>
-                  <SwiperSlide>
+                  <SwiperSlide className="swiper-slide_sssss">
                     <img
                       className="detr_img_d slider_ring_sss"
                       src={require("../../Images/1 (8).png")}
                     />
                   </SwiperSlide>
-                  <SwiperSlide>
+                  <SwiperSlide className="swiper-slide_sssss">
                     <img
                       className="detr_img_d slider_ring_sss"
                       src={require("../../Images/1 (6).png")}
                     />
                   </SwiperSlide>
-                  <SwiperSlide>
+                  <SwiperSlide className="swiper-slide_sssss">
                     <img
                       className="detr_img_s_s slider_ring_sss"
                       src={require("../../Images/lastttt.png")}

@@ -34,6 +34,12 @@ import TabContext from "@mui/lab/TabContext";
 import { Tabs } from "@mui/material";
 import CartPopup from "../Add to Cart";
 import axios from "axios";
+import "swiper/css/navigation";
+import ringVideo1 from "../../Videos/dfcvdfx.mp4";
+import ringVideo2 from "../../Videos/dfvdfvd.mp4";
+import ringVideo3 from "../../Videos/sdcsdcdfc.mp4";
+import ringVideo4 from "../../Videos/sdcxdscx.mp4";
+import ringVideo5 from "../../Videos/dsfcdfc.mp4";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -88,19 +94,18 @@ const Home = () => {
     setCartItems((prevCart) => {
       // Check if item already exists in cart
       const exists = prevCart.some((item) => item.id === product.id);
-  
+
       if (!exists) {
         // If item is not in the cart, add it with quantity 1
         return [...prevCart, { ...product, quantity: 1 }];
       }
-  
+
       return prevCart;
     });
-  
-    openCart(); 
+
+    openCart();
   };
-  
-  
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const openCart = () => {
     setIsCartOpen(true);
@@ -115,38 +120,46 @@ const Home = () => {
   useEffect(() => {
     console.log("Cart open state:", isCartOpen);
     console.log("cartItemse:", cartItems);
-  }, [isCartOpen,cartItems]);
-  
+  }, [isCartOpen, cartItems]);
+
   const addWishlist = async (productId) => {
     try {
-      const userId = localStorage.get('userId');
-      const response = await axios.post("http://localhost:3000/api/v1/wishlist/create", {
-        userId,
-        productId,
-      });
+      const userId = localStorage.get("userId");
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/wishlist/create",
+        {
+          userId,
+          productId,
+        }
+      );
       console.log("Wishlist Response:", response.data);
       setIsFavorite(response.data);
     } catch (error) {
-      console.error("Error adding to wishlist:", error.response?.data || error.message);
+      console.error(
+        "Error adding to wishlist:",
+        error.response?.data || error.message
+      );
     }
   };
 
   const deleteWishlist = async (productId) => {
-
     try {
-      const userId = localStorage.getItem('userId');
-      const response = await axios.delete(`http://localhost:3000/api/v1/wishlist/${productId}?userId=${userId}`);
+      const userId = localStorage.getItem("userId");
+      const response = await axios.delete(
+        `http://localhost:3000/api/v1/wishlist/${productId}?userId=${userId}`
+      );
       console.log("Wishlist Delete Response:", response.data);
       setIsFavorite(response.data);
     } catch (error) {
-      console.error("Error deleting from wishlist:", error.response?.data || error.message);
+      console.error(
+        "Error deleting from wishlist:",
+        error.response?.data || error.message
+      );
     }
   };
 
   const getTopRated = async () => {
-    const res = await axios(
-      "http://localhost:3000/api/v1/product/getTopRated"
-    );
+    const res = await axios("http://localhost:3000/api/v1/product/getTopRated");
     setTopRated(res.data);
   };
   const getBestSelling = async () => {
@@ -156,9 +169,7 @@ const Home = () => {
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
-    const res = await axios(
-      "http://localhost:3000/api/v1/product/getOnSale"
-    );
+    const res = await axios("http://localhost:3000/api/v1/product/getOnSale");
     setOnSale(res.data);
   };
 
@@ -252,10 +263,13 @@ const Home = () => {
 
   return (
     <>
-      <CartPopup isOpen={isCartOpen} items={cartItems} closeCart={closeCart} updateCart={setCartItems} />;
-
-      {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
-
+      <CartPopup
+        isOpen={isCartOpen}
+        items={cartItems}
+        closeCart={closeCart}
+        updateCart={setCartItems}
+      />
+      ;{isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
 
@@ -269,35 +283,84 @@ const Home = () => {
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img src={require("../../Images/Groupimg.png")} />
 
-          <div className="row pt-5">
-            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-              <img src={require("../../Images/Group 1597884634 (1).png")} />
-              <span className="hyyt">Pendant</span>
-            </div>
-            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-              <img src={require("../../Images/Group 1597884629 (1).png")} />
-              <span className="hyyt">Bracelet</span>
-            </div>
-            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-              <img src={require("../../Images/Group 1597884630.png")} />
-              <span className="hyyt">Earrings</span>
-            </div>
-            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-              <img src={require("../../Images/Group 1597884631.png")} />
-              <span className="hyyt">Rings</span>
-            </div>
-            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-              <img src={require("../../Images/Group 1597884632.png")} />
-              <span className="hyyt">Pendant</span>
-            </div>
-            <div className="col-md-2 col-sm-3 col-6 d-flex flex-column align-items-center">
-              <img src={require("../../Images/Group 1597884632.png")} />
-              <span className="hyyt">Pendant</span>
-            </div>
+          <div className="row  container">
+            <Swiper
+              spaceBetween={10}
+              // navigation={true}
+              // autoplay={{
+              //   delay: 2000,
+              //   disableOnInteraction: false,
+              // }}
+              loop={true}
+              // modules={[Autoplay]}
+              breakpoints={{
+                0: { slidesPerView: 2 },
+                576: { slidesPerView: 5 },
+                768: { slidesPerView: 5 },
+                992: { slidesPerView: 6 },
+                1200: { slidesPerView: 6 },
+              }}
+              className="mySwiper"
+            >
+              <SwiperSlide className="slide_ssssss">
+                <div className="d-flex flex-column align-items-center">
+                  <img
+                    src={require("../../Images/Group 1597884634 (1).png")}
+                    className="shadow-none border-0 home_img_ssssss"
+                  />
+                  <span className="hyyt">Pendant</span>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="slide_ssssss">
+                <div className="d-flex flex-column align-items-center">
+                  <img
+                    src={require("../../Images/Group 1597884629 (1).png")}
+                    className="shadow-none border-0 home_img_ssssss"
+                  />
+                  <span className="hyyt">Bracelet</span>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="slide_ssssss">
+                <div className="d-flex flex-column align-items-center">
+                  <img
+                    src={require("../../Images/Group 1597884630.png")}
+                    className="shadow-none border-0 home_img_ssssss"
+                  />
+                  <span className="hyyt">Earrings</span>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="slide_ssssss">
+                <div className="d-flex flex-column align-items-center">
+                  <img
+                    src={require("../../Images/Group 1597884631.png")}
+                    className="shadow-none border-0 home_img_ssssss"
+                  />
+                  <span className="hyyt">Rings</span>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="slide_ssssss">
+                <div className="d-flex flex-column align-items-center">
+                  <img
+                    src={require("../../Images/Group 1597884632.png")}
+                    className="shadow-none border-0 home_img_ssssss"
+                  />
+                  <span className="hyyt">Pendant</span>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide className="slide_ssssss">
+                <div className="d-flex flex-column align-items-center">
+                  <img
+                    src={require("../../Images/Group 1597884632.png")}
+                    className="shadow-none border-0 home_img_ssssss"
+                  />
+                  <span className="hyyt">Pendant</span>
+                </div>
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
 
-        <div className="hdr_csd">
+        <div className="hdr_csd sdcxsdcx_Sdcxszdcx">
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
@@ -491,16 +554,16 @@ const Home = () => {
               </Box>
             </TabContext>
           </div>
-         
+
           {value === "1" && (
             <div className="heder_sec_main d-flex flex-column container">
-              <div className="row pt-5">
+              <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {onSale.map((product) => (
                   <div
                     key={product.id}
-                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
                   >
-                    <div className="card prio_card scdscsed_sdss">
+                    <div className="card prio_card scdscsed_sdss ">
                       {/* Image Wrapper with position-relative */}
                       <div className="card-image-wrapper position-relative">
                         {/* SALE Badge */}
@@ -538,7 +601,7 @@ const Home = () => {
 
                     {/* Product Details */}
                     <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_asdaa pt-3">
+                      <span className="mikdec_asdaa text-truncate pt-3 text-truncate">
                         {product.productName}
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
@@ -562,7 +625,6 @@ const Home = () => {
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
-
                       </div>
                     </div>
                   </div>
@@ -573,11 +635,11 @@ const Home = () => {
 
           {value === "2" && (
             <div className="heder_sec_main d-flex flex-column container">
-              <div className="row pt-5">
+              <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {bestSelling.map((product) => (
                   <div
                     key={product.id}
-                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
                   >
                     <div className="card prio_card scdscsed_sdss">
                       {/* Image Wrapper with position-relative */}
@@ -637,7 +699,6 @@ const Home = () => {
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
-
                       </div>
                     </div>
                   </div>
@@ -782,11 +843,11 @@ const Home = () => {
 
           {value === "3" && (
             <div className="heder_sec_main d-flex flex-column container">
-              <div className="row pt-5">
+              <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {topRated.map((product) => (
                   <div
                     key={product.id}
-                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
+                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
                   >
                     <div className="card prio_card scdscsed_sdss">
                       {/* Image Wrapper with position-relative */}
@@ -822,7 +883,7 @@ const Home = () => {
 
                     {/* Product Details */}
                     <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_asdaa pt-3">
+                      <span className="mikdec_asdaa pt-3 text-truncate">
                         {product.productName}
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
@@ -846,7 +907,6 @@ const Home = () => {
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
-
                       </div>
                     </div>
                   </div>
@@ -1045,30 +1105,30 @@ const Home = () => {
           <img src={require("../../Images/Groupimg.png")} />
 
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
-          <div className="pt-4 container">
-            <div className="row justify-content-center justify-content-md-between">
-              <div className="d-flex flex-column align-items-center gap-3 offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+          <div className="pt-4 container ">
+            <div className="row justify-content-center justify-content-md-between scc_gift_edit_sdsd">
+              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3 offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
@@ -1083,7 +1143,7 @@ const Home = () => {
           <span className="category_name">Gifting Edition</span>
           <p className="category_txt">Elegant & Versatile Gifts</p>
           <img src={require("../../Images/Groupimg.png")} />
-          <div className="row pt-4 w-100">
+          <div className="row pt-4 w-100 scc_gift_edit">
             <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
               <img src={require("../../Images/Group 1597884624 (1).png")} />
               <div className="lionk_ss">
@@ -1139,12 +1199,13 @@ const Home = () => {
               {getVisibleRings1().map((ring, index) => (
                 <div
                   key={ring.id}
-                  className={`ring-item ${index === 2
+                  className={`ring-item ${
+                    index === 2
                       ? "large"
                       : index === 1 || index === 3
-                        ? "medium"
-                        : "small"
-                    }`}
+                      ? "medium"
+                      : "small"
+                  }`}
                 >
                   <div className="ring-shadow">
                     <img
@@ -1176,50 +1237,60 @@ const Home = () => {
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img src={require("../../Images/Groupimg.png")} />
 
-          <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd">
-            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+          <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd ">
+            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
               <div className="d-flex justify-content-center align-items-center h-100 w-100">
-                <img
-                  src={require("../../Images/image (4).png")}
-                  alt="Dainty Earrings"
-                  className="img-fluid"
+                <video
+                  src={ringVideo1}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
                 />
               </div>
             </div>
-            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
               <div className="d-flex justify-content-center align-items-center h-100">
-                <img
-                  src={require("../../Images/image (5).png")}
-                  alt="Dainty Earrings"
-                  className="img-fluid"
+                <video
+                  src={ringVideo2}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
                 />
               </div>
             </div>
-            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
               <div className="d-flex justify-content-center align-items-center h-100">
-                <img
-                  src={require("../../Images/Mask group (2).png")}
-                  alt="Dainty Earrings"
-                  className="img-fluid"
+                <video
+                  src={ringVideo3}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
                 />
               </div>
             </div>
 
-            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
               <div className="d-flex justify-content-center align-items-center h-100">
-                <img
-                  src={require("../../Images/image (6).png")}
-                  alt="Dainty Earrings"
-                  className="img-fluid"
+                <video
+                  src={ringVideo4}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
                 />
               </div>
             </div>
-            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcsdh_xshx">
+            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
               <div className="d-flex justify-content-center align-items-center h-100">
-                <img
-                  src={require("../../Images/image (6).png")}
-                  alt="Dainty Earrings"
-                  className="img-fluid"
+                <video
+                  src={ringVideo5}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
                 />
               </div>
             </div>
@@ -1466,10 +1537,11 @@ const Home = () => {
             >
               {[...testimonials, ...testimonials, ...testimonials].map(
                 (item, index) => (
-                  <SwiperSlide key={index}>
+                  <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                        } mt-5`}
+                      className={`card testimonial-card${
+                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                      } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
