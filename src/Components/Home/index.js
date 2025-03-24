@@ -287,12 +287,12 @@ const Home = () => {
             <Swiper
               spaceBetween={10}
               // navigation={true}
-              // autoplay={{
-              //   delay: 2000,
-              //   disableOnInteraction: false,
-              // }}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
+              }}
               loop={true}
-              // modules={[Autoplay]}
+              modules={[Autoplay]}
               breakpoints={{
                 0: { slidesPerView: 2 },
                 576: { slidesPerView: 5 },
