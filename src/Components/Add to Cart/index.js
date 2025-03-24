@@ -3,10 +3,11 @@ import "./index.css";
 import { RxCross2 } from "react-icons/rx";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { GoTrash } from "react-icons/go";
+import { useNavigate } from "react-router-dom";
 
 const CartPopup = ({ isOpen, closeCart }) => {
   const [count, setCount] = useState(1);
-
+  const navigate = useNavigate();
   const increment = () => {
     setCount(count + 1);
   };
@@ -17,11 +18,15 @@ const CartPopup = ({ isOpen, closeCart }) => {
     }
   };
 
+  const handleCheckout=() => {  
+    navigate("/checkout");
+  }
+
   return (
     <div className={`cart-popup ${isOpen ? "open" : ""}`}>
       <div className="cart-header d-flex justify-content-between align-items-center">
         <h5 className="fw-bold head_cart">Your Cart</h5>
-        <RxCross2 onClick={closeCart} style={{cursor:'pointer'}}/>
+        <RxCross2 onClick={closeCart} style={{ cursor: "pointer" }} />
         {/* <button className="btn-close-cart" onClick={closeCart}></button> */}
       </div>
 
@@ -65,7 +70,9 @@ const CartPopup = ({ isOpen, closeCart }) => {
                     +
                   </button>
                 </div>
-                <div className="delete mt-2"><GoTrash size={25}/></div>
+                <div className="delete mt-2">
+                  <GoTrash size={25} />
+                </div>
               </div>
             </div>
           </div>
@@ -82,7 +89,10 @@ const CartPopup = ({ isOpen, closeCart }) => {
             <h5 className="fw-bold"> ₹30,000</h5>
           </div>
         </div>
-        <button className="btn btn_check_out w-100 main_cdsss">
+        <button
+          className="btn btn_check_out w-100 main_cdsss"
+          onClick={handleCheckout}
+        >
           Secure Checkout
         </button>
       </div>

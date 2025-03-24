@@ -43,68 +43,6 @@ const images = [
   require("../../Images/ring222.png"),
 ];
 
-const products = [
-  {
-    id: 1,
-    imgSrc: require("../../Images/image 98.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 2,
-    imgSrc: require("../../Images/tre-2.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 3,
-    imgSrc: require("../../Images/image 100 (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 4,
-    imgSrc: require("../../Images/latsss.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-];
-
-const products1 = [
-  {
-    id: 1,
-    imgSrc: require("../../Images/image 98.png"),
-    name: "Two Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 2,
-    imgSrc: require("../../Images/tre-2.png"),
-    name: "Two Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 3,
-    imgSrc: require("../../Images/image 100 (1).png"),
-    name: "Two Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 4,
-    imgSrc: require("../../Images/latsss.png"),
-    name: "Two Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-];
-
 const diamondRings = [
   {
     id: 1,
@@ -154,6 +92,33 @@ const Home = () => {
     setIsCartOpen(false);
     document.body.classList.remove("no-scroll");
   };
+
+  const addWishlist = async (productId) => {
+    try {
+      const userId = localStorage.get('userId'); 
+      const response = await axios.post("http://localhost:3000/api/v1/wishlist/create", {
+        userId,
+        productId,
+      });
+      console.log("Wishlist Response:", response.data);
+      setIsFavorite(response.data);
+    } catch (error) {
+      console.error("Error adding to wishlist:", error.response?.data || error.message);
+    }
+  };
+  
+  const deleteWishlist = async (productId) => { 
+  
+    try {
+      const userId = localStorage.getItem('userId'); 
+      const response = await axios.delete(`http://localhost:3000/api/v1/wishlist/${productId}?userId=${userId}`);
+      console.log("Wishlist Delete Response:", response.data);
+      setIsFavorite(response.data);
+    } catch (error) {
+      console.error("Error deleting from wishlist:", error.response?.data || error.message);
+    }
+  };
+ 
 
   // useEffect(() => {
   //   if (isCartOpen) {
@@ -276,10 +241,10 @@ const Home = () => {
 
   return (
     <>
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} /> 
+      <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-      <Header openCart={openCart} />
+        <Header openCart={openCart} />
 
         <div>
           {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
@@ -317,119 +282,7 @@ const Home = () => {
               <span className="hyyt">Pendant</span>
             </div>
           </div>
-          {/* <div className="pt-5 d-flex position-relative">
-          <div className="grp_img position-relative">
-            <img
-              src={require("../../Images/image.png")}
-              alt="Dainty Earrings"
-              className="img-fluid"
-            />
-            <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Dainty Earrings</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-          <div className="grp_img position-relative">
-            <img
-              src={require("../../Images/image (1).png")}
-              alt="Dainty Earrings"
-              className="img-fluid"
-            />
-            <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Radiant Rings</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-          <div className="grp_img position-relative">
-            <img
-              src={require("../../Images/image (2).png")}
-              alt="Dainty Earrings"
-              className="img-fluid"
-            />
-            <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Festive Pendants</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-          <div className="grp_img position-relative">
-            <img
-              src={require("../../Images/Mask group.png")}
-              alt="Dainty Earrings"
-              className="img-fluid"
-            />
-            <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Diamond Bracelet</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-          <div className="grp_img position-relative">
-            <img
-              src={require("../../Images/Mask group (1).png")}
-              alt="Dainty Earrings"
-              className="img-fluid"
-            />
-            <div
-              className="text-overlay position-absolute top-50 translate-middle1 text-white text-center d-flex flex-column"
-              style={{ left: "121px" }}
-            >
-              <span className="dai_txt">Men’s Ring</span>
-              <a href="#" className="shop_now_lnk">
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-        </div> */}
         </div>
-
-        {/* <div className="hdr_csd1 position-relative">
-        <div className="position-relative">
-          <img
-            src={require("../../Images/Rectangle 105464.png")}
-            className="ractangle_box pt-5"
-          />
-          <div className="bn_sdc w-25 container">
-            <span className="banner_txxts_hom">
-              Buy the Ring of <br />
-              your Choice
-            </span>
-            <hr className="hr_bnr w-25" />
-            <span className="hszhh">
-              Spark your imagination with recently <br /> purchased engagement
-              rings.
-            </span>
-            <button className="text-white explore_btn d-flex align-items-center gap-3 mt-3">
-              Explore Rings <FaArrowRight />
-            </button>
-
-            <div className=" bn_sdc1">
-              <img src={logobnddd} />
-            </div>
-
-            <div className="class-txt-sss">CLASSIC SILVER</div>
-            <div className="class-txt-sss1">PIECES</div>
-          </div>
-        </div>
-      </div> */}
 
         <div className="hdr_csd">
           <div className="scrolling-wrapper">
@@ -714,15 +567,19 @@ const Home = () => {
                           {isFavorite[product.id] ? (
                             <GoHeartFill className="heart-icon_ss" size={18} />
                           ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
+                            <GoHeart
+                            className="heart-icon_ss"
+                            size={18}
+                            onClick={() => addWishlist(product._id)} // Use product._id from the backend
+                          />
                           )}
                         </div>
 
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                          className="p-1_proi img-fluid"
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            className="p-1_proi img-fluid"
                             alt="Product"
                           />
                         </div>
@@ -1305,49 +1162,6 @@ const Home = () => {
           <span className="category_name">Discover Styles</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img src={require("../../Images/Groupimg.png")} />
-
-          {/* <div className="carousel-container pt-5">
-          <Swiper
-            effect="coverflow"
-            grabCursor={true}
-            centeredSlides={true}
-            slidesPerView="auto"
-            loop={true}
-            // pagination={{ clickable: true }}
-            modules={[EffectCoverflow, Pagination, Navigation]}
-            navigation={{
-              prevEl: prevRef.current,
-              nextEl: nextRef.current,
-            }}
-            coverflowEffect={{
-              rotate: 0,
-              stretch: 100,
-              depth: 150,
-              modifier: 1.5,
-              slideShadows: false,
-            }}
-            className="swiper-container"
-          >
-            {images.map((img, index) => (
-              <SwiperSlide key={index} className="swiper-slide">
-                <img src={img} alt={`Slide ${index}`} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <div
-            className="carousel-controls d-flex justify-content-center gap-5"
-            style={{ cursor: "pointer" }}
-          >
-            <div ref={prevRef}>
-              <FaAngleLeft size={25} />
-            </div>
-            <span className="soli_txt_sccs">Solitare Rings</span>
-            <div ref={nextRef}>
-              <FaAngleRight size={25} />
-            </div>
-          </div>
-        </div> */}
 
           <div className="rings-container home_ring_1">
             <div className="rings-row">
