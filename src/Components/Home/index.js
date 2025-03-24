@@ -81,7 +81,26 @@ const Home = () => {
   const [topRated, setTopRated] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
+  // Function to add an item to the cart
+  const addToCart = (product) => {
+    setCartItems((prevCart) => {
+      // Check if item already exists in cart
+      const exists = prevCart.some((item) => item.id === product.id);
+  
+      if (!exists) {
+        // If item is not in the cart, add it with quantity 1
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+  
+      return prevCart;
+    });
+  
+    openCart(); 
+  };
+  
+  
   const [isCartOpen, setIsCartOpen] = useState(false);
   const openCart = () => {
     setIsCartOpen(true);
@@ -93,10 +112,15 @@ const Home = () => {
     document.body.classList.remove("no-scroll");
   };
 
+  useEffect(() => {
+    console.log("Cart open state:", isCartOpen);
+    console.log("cartItemse:", cartItems);
+  }, [isCartOpen,cartItems]);
+  
   const addWishlist = async (productId) => {
     try {
-      const userId = localStorage.get('userId'); 
-      const response = await axios.post("http://localhost:3000/api/v1/wishlist/create", {
+      const userId = localStorage.get('userId');
+      const response = await axios.post("https://crystova.cloudbusiness.cloud/api/v1/wishlist/create", {
         userId,
         productId,
       });
@@ -106,31 +130,18 @@ const Home = () => {
       console.error("Error adding to wishlist:", error.response?.data || error.message);
     }
   };
-  
-  const deleteWishlist = async (productId) => { 
-  
+
+  const deleteWishlist = async (productId) => {
+
     try {
-      const userId = localStorage.getItem('userId'); 
-      const response = await axios.delete(`http://localhost:3000/api/v1/wishlist/${productId}?userId=${userId}`);
+      const userId = localStorage.getItem('userId');
+      const response = await axios.delete(`https://crystova.cloudbusiness.cloud/api/v1/wishlist/${productId}?userId=${userId}`);
       console.log("Wishlist Delete Response:", response.data);
       setIsFavorite(response.data);
     } catch (error) {
       console.error("Error deleting from wishlist:", error.response?.data || error.message);
     }
   };
- 
-
-  // useEffect(() => {
-  //   if (isCartOpen) {
-  //     document.body.style.overflow = "hidden"; // Disable scrolling
-  //   } else {
-  //     document.body.style.overflow = "auto"; // Enable scrolling
-  //   }
-
-  //   return () => {
-  //     document.body.style.overflow = "auto"; // Cleanup when component unmounts
-  //   };
-  // }, [isCartOpen]);
 
   const getTopRated = async () => {
     const res = await axios(
@@ -241,8 +252,10 @@ const Home = () => {
 
   return (
     <>
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
+      <CartPopup isOpen={isCartOpen} items={cartItems} closeCart={closeCart} updateCart={setCartItems} />;
+
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
+
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
 
@@ -478,70 +491,7 @@ const Home = () => {
               </Box>
             </TabContext>
           </div>
-          {/* {value === "1" && (
-          <div className="heder_sec_main d-flex flex-column container">
-            <div className="row pt-5">
-              {onSale.map((product) => (
-                <div
-                  key={product.id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                >
-                  <div className="card prio_card scdscsed_sdss">
-                    <div className="card-title">
-                      <div>
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
-                          SALE
-                        </button>
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {isFavorite[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                      </div>
-                      <div className="card-body d-flex justify-content-center">
-                        <img
-                          src={`http://localhost:3000${product.image[0]}`}
-                          className="p-1_proi"
-                          alt="Product"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">
-                      {product.productName}
-                    </span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">
-                        {product.salePrice?.$numberDecimal}
-                      </span>
-                      <span className="mikdec_axsx">
-                        {product.regularPrice?.$numberDecimal}
-                      </span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button
-                        className="more_btn_dsdd w-50"
-                        onClick={() => navigate("/products")}
-                      >
-                        More Info
-                      </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                        Add to Cart <BiShoppingBag size={25} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )} */}
+         
           {value === "1" && (
             <div className="heder_sec_main d-flex flex-column container">
               <div className="row pt-5">
@@ -568,10 +518,10 @@ const Home = () => {
                             <GoHeartFill className="heart-icon_ss" size={18} />
                           ) : (
                             <GoHeart
-                            className="heart-icon_ss"
-                            size={18}
-                            onClick={() => addWishlist(product._id)} // Use product._id from the backend
-                          />
+                              className="heart-icon_ss"
+                              size={18}
+                              onClick={() => addWishlist(product._id)} // Use product._id from the backend
+                            />
                           )}
                         </div>
 
@@ -608,10 +558,11 @@ const Home = () => {
                         </button>
                         <button
                           className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
-                          onClick={openCart}
+                          onClick={() => addToCart(product)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
+
                       </div>
                     </div>
                   </div>
@@ -682,10 +633,11 @@ const Home = () => {
                         </button>
                         <button
                           className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
-                          onClick={openCart}
+                          onClick={() => addToCart(product)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
+
                       </div>
                     </div>
                   </div>
@@ -725,7 +677,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi"
                           alt="Product"
                         />
@@ -791,7 +743,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi "
                           alt="Product"
                         />
@@ -890,10 +842,11 @@ const Home = () => {
                         </button>
                         <button
                           className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
-                          onClick={openCart}
+                          onClick={() => addToCart(product)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
+
                       </div>
                     </div>
                   </div>
@@ -1186,13 +1139,12 @@ const Home = () => {
               {getVisibleRings1().map((ring, index) => (
                 <div
                   key={ring.id}
-                  className={`ring-item ${
-                    index === 2
+                  className={`ring-item ${index === 2
                       ? "large"
                       : index === 1 || index === 3
-                      ? "medium"
-                      : "small"
-                  }`}
+                        ? "medium"
+                        : "small"
+                    }`}
                 >
                   <div className="ring-shadow">
                     <img
@@ -1516,9 +1468,8 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide key={index}>
                     <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
+                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                        } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
