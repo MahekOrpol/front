@@ -199,10 +199,14 @@ const Home = () => {
       const screenWidth = window.innerWidth;
       let newSlidesPerView;
 
-      if (screenWidth <= 600) {
+      if (screenWidth <= 427) {
         newSlidesPerView = 1;
-      } else if (screenWidth <= 1000) {
+      }else if (screenWidth <= 599) {
         newSlidesPerView = 2;
+      }else if (screenWidth <= 768) {
+        newSlidesPerView = 2;
+      } else if (screenWidth <= 1024) {
+        newSlidesPerView = 3;
       } else {
         newSlidesPerView = 3;
       }
@@ -216,6 +220,13 @@ const Home = () => {
 
     return () => window.removeEventListener("resize", updateSlidesPerView);
   }, [slidesPerView]); // Dependency to prevent infinite re-renders
+
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      swiperRef.current?.update();
+    });
+  }, []);
 
   const [value, setValue] = React.useState("1");
 
@@ -1109,8 +1120,8 @@ const Home = () => {
           <img src={require("../../Images/Groupimg.png")} />
 
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
-          <div className="pt-4 container ">
-            <div className="row justify-content-center justify-content-md-between scc_gift_edit_sdsd">
+          <div className="pt-4 container djb_dsjvn">
+            <div className="row justify-content-center justify-content-md-center scc_gift_edit_sdsd">
               <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
@@ -1542,19 +1553,18 @@ const Home = () => {
             <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
 
             <Swiper
-              grabCursor={true}
-              loop={true} // Infinite Loop
-              slidesPerView={slidesPerView}
-              slidesPerGroup={1}
-              modules={[Pagination, Autoplay]}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              onSwiper={(swiper) => (swiperRef.current = swiper)}
-              className="swiper_testimonial container"
-              breakpoints={{
-                320: { slidesPerView: 1 },
-                600: { slidesPerView: 2 },
-                1000: { slidesPerView: 3 },
-              }}
+               grabCursor={true}
+               loop={true} 
+               slidesPerView={slidesPerView}
+               slidesPerGroup={1}
+               loopedSlides={testimonials.length} 
+               modules={[Pagination, Autoplay]}
+               autoplay={{ delay: 3000, disableOnInteraction: false }}
+               observer={true}   // Observe changes
+               observeParents={true}   // Observe parent element changes
+               onSwiper={(swiper) => (swiperRef.current = swiper)}
+               className="swiper_testimonial container"
+             
             >
               {[...testimonials, ...testimonials, ...testimonials].map(
                 (item, index) => (
