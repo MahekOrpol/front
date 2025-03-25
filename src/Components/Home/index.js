@@ -126,7 +126,7 @@ const Home = () => {
     try {
       const userId = localStorage.get("userId");
       const response = await axios.post(
-        "http://localhost:3000/api/v1/wishlist/create",
+        "https://crystova.cloudbusiness.cloud/api/v1/wishlist/create",
         {
           userId,
           productId,
@@ -146,7 +146,7 @@ const Home = () => {
     try {
       const userId = localStorage.getItem("userId");
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/wishlist/${productId}?userId=${userId}`
+        `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${productId}?userId=${userId}`
       );
       console.log("Wishlist Delete Response:", response.data);
       setIsFavorite(response.data);
@@ -159,17 +159,17 @@ const Home = () => {
   };
 
   const getTopRated = async () => {
-    const res = await axios("http://localhost:3000/api/v1/product/getTopRated");
+    const res = await axios("https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated");
     setTopRated(res.data);
   };
   const getBestSelling = async () => {
     const res = await axios(
-      "http://localhost:3000/api/v1/product/getBestSelling"
+      "https://crystova.cloudbusiness.cloud/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
-    const res = await axios("http://localhost:3000/api/v1/product/getOnSale");
+    const res = await axios("https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale");
     setOnSale(res.data);
   };
 
@@ -269,7 +269,7 @@ const Home = () => {
         closeCart={closeCart}
         updateCart={setCartItems}
       />
-      ;{isCartOpen && <div className="overlay" onClick={closeCart}></div>}
+      {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
 
@@ -591,7 +591,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -643,7 +643,7 @@ const Home = () => {
                   >
                     <div className="card prio_card scdscsed_sdss">
                       {/* Image Wrapper with position-relative */}
-                      <div className="card-image-wrapper position-relative">
+                      <div className="card-image-wrapper position-relative">+
                         {/* SALE Badge */}
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
                           SALE
@@ -665,7 +665,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -738,7 +738,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi"
                           alt="Product"
                         />
@@ -804,7 +804,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi "
                           alt="Product"
                         />
@@ -873,7 +873,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
