@@ -20,7 +20,7 @@ const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
   const handleRemoveItem = (index) => {
     const updatedItems = items.filter((_, i) => i !== index);
     updateCart(updatedItems);
-    closeCart();
+    // closeCart();
   };
 
   // Function to calculate total price
@@ -65,24 +65,41 @@ const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
 
   const checkOut = async () => {
     try {
-      const userId = localStorage.getItem("userId"); 
+   
+      const userId = localStorage.getItem("userId");
+console.log("User ID:", userId);
+
   
-      const formattedItems = items.map((item) => ({
-        productId: item.id,
-        productPrice: parseFloat(item.salePrice?.$numberDecimal || 0),
-        quantity: item.quantity,
-        productSize: item.selectedSize || 9, 
-        discount: item.discount || 0,  
-      }));
-  
-      const response = await axios.post(
-        "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
-        {
-          userId,
-          products: formattedItems,
-        }
-      );
-  
+// const userId = localStorage.getItem("userId");
+
+// if (!userId) {
+//   console.error("User is not logged in. Redirecting to login...");
+//   navigate("/login"); // Redirect user to login page
+//   return;
+// }
+
+const formattedItems = items.map((item) => ({
+  productId: item.productId || item.id, // Ensure correct mapping
+  productPrice: parseFloat(item.salePrice?.$numberDecimal || item.salePrice || 0),
+  quantity: item.quantity,
+  productSize: item.selectedSize || 9,
+  discount: parseFloat(item.discount?.$numberDecimal || item.discount || 0),
+}));
+console.log("Cart Items before formatting:", items);
+
+const response = await axios.post(
+  "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
+  {
+    userId,
+    products: formattedItems,
+  },
+  {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+);
+
       if (response.status === 200) {
         updateCart([]);
         navigate("/checkout");
