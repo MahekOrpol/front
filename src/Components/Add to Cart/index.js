@@ -3,6 +3,7 @@ import { RxCross2 } from "react-icons/rx";
 import { GoTrash } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
+import axios from "axios";
 
 const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
   const handleRemoveItem = (index) => {
     const updatedItems = items.filter((_, i) => i !== index);
     updateCart(updatedItems);
+    // closeCart();
   };
 
   // Function to calculate total price
@@ -26,7 +28,8 @@ const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
     return items
       .reduce(
         (total, item) =>
-          total + parseFloat(item.salePrice?.$numberDecimal || 0) * item.quantity,
+          total +
+          parseFloat(item.salePrice?.$numberDecimal || 0) * item.quantity,
         0
       )
       .toFixed(2);
@@ -34,6 +37,81 @@ const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
 
   if (!isOpen) return null;
 
+  // const checkOut = async () => {
+  //   try {
+  //     const response = await axios(
+  //       "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({ items }),
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed to checkout the cart");
+  //     }
+
+  //     // Clear the cart
+  //     updateCart([]);
+
+  //     // Redirect to checkout page
+  //     navigate("/checkout");
+  //     closeCart();
+  //   } catch (error) {}
+  // };
+
+  const checkOut = async () => {
+    try {
+   
+      const userId = localStorage.getItem("userId");
+console.log("User ID:", userId);
+
+  
+// const userId = localStorage.getItem("userId");
+
+// if (!userId) {
+//   console.error("User is not logged in. Redirecting to login...");
+//   navigate("/login"); // Redirect user to login page
+//   return;
+// }
+
+const formattedItems = items.map((item) => ({
+  productId: item.productId || item.id, // Ensure correct mapping
+  productPrice: parseFloat(item.salePrice?.$numberDecimal || item.salePrice || 0),
+  quantity: item.quantity,
+  productSize: item.selectedSize || 9,
+  discount: parseFloat(item.discount?.$numberDecimal || item.discount || 0),
+}));
+console.log("Cart Items before formatting:", items);
+
+const response = await axios.post(
+  "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
+  {
+    userId,
+    products: formattedItems,
+  },
+  {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }
+);
+
+      if (response.status === 200) {
+        updateCart([]);
+        navigate("/checkout");
+        closeCart();
+      } else {
+        console.error("Checkout failed:", response);
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+    }
+  };
+  
   return (
     <div className={`cart-popup ${isOpen ? "open" : ""}`}>
       <div className="cart-header d-flex justify-content-between align-items-center">
@@ -54,13 +132,18 @@ const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
                     <select className="dropdown_size w-50 p-1">
                       {Array.isArray(item.productSize) &&
                         item.productSize.map((size, i) => (
-                          <option key={i}>{size.toString().replace(/[\[\]]/g, '')}</option>
+                          <option key={i}>
+                            {size.toString().replace(/[\[\]]/g, "")}
+                          </option>
                         ))}
                     </select>
-
                   </div>
                   <p className="fw-bold m-0">
-                    ₹{(parseFloat(item.salePrice?.$numberDecimal || 0) * item.quantity).toFixed(2)}
+                    ₹
+                    {(
+                      parseFloat(item.salePrice?.$numberDecimal || 0) *
+                      item.quantity
+                    ).toFixed(2)}
                   </p>
                 </div>
                 <div className="d-flex align-items-center justify-content-between mt-3">
@@ -79,7 +162,10 @@ const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
                       +
                     </button>
                   </div>
-                  <div className="delete mt-2" onClick={() => handleRemoveItem(index)}>
+                  <div
+                    className="delete mt-2"
+                    onClick={() => handleRemoveItem(index)}
+                  >
                     <GoTrash size={25} />
                   </div>
                 </div>
@@ -97,7 +183,10 @@ const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
             <h5 className="fw-bold">Total:</h5>
             <h5 className="fw-bold">₹{calculateTotal()}</h5>
           </div>
-          <button className="btn btn_check_out w-100" onClick={() => navigate("/checkout")}>
+          <button
+            className="btn btn_check_out w-100"
+            onClick={() => checkOut()}
+          >
             Secure Checkout
           </button>
         </div>

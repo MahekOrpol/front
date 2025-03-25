@@ -647,7 +647,7 @@ const Home = () => {
                   >
                     <div className="card prio_card scdscsed_sdss">
                       {/* Image Wrapper with position-relative */}
-                      <div className="card-image-wrapper position-relative">
+                      <div className="card-image-wrapper position-relative">+
                         {/* SALE Badge */}
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
                           SALE

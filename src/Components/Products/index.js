@@ -17,156 +17,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CartPopup from "../Add to Cart";
 import axios from "axios";
 
-const products = [
-  {
-    id: 1,
-    imgSrc: require("../../Images/2 (4) (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 2,
-    imgSrc: require("../../Images/1 (9) (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 3,
-    imgSrc: require("../../Images/17 (1) (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 4,
-    imgSrc: require("../../Images/583 (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 5,
-    imgSrc: require("../../Images/2 (4) (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 6,
-    imgSrc: require("../../Images/1 (9) (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 7,
-    imgSrc: require("../../Images/15 (2) (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 8,
-    imgSrc: require("../../Images/17 (1) (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 9,
-    imgSrc: require("../../Images/2 (4) (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 10,
-    imgSrc: require("../../Images/1 (9) (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 11,
-    imgSrc: require("../../Images/17 (1) (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 12,
-    imgSrc: require("../../Images/583 (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 13,
-    imgSrc: require("../../Images/2 (4) (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 14,
-    imgSrc: require("../../Images/1 (9) (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 15,
-    imgSrc: require("../../Images/15 (2) (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 16,
-    imgSrc: require("../../Images/17 (1) (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 17,
-    imgSrc: require("../../Images/583 (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 18,
-    imgSrc: require("../../Images/2 (4) (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 19,
-    imgSrc: require("../../Images/1 (9) (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 20,
-    imgSrc: require("../../Images/15 (2) (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 21,
-    imgSrc: require("../../Images/17 (1) (2).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-];
-
 const Products = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState(null);
@@ -433,15 +283,16 @@ const Products = () => {
               </div>
             )}
             <div className="row pt-5">
-              {productList.map((product) => (
-                <div
-                  key={product.id}
-                  className="col-lg-3 col-md-4 col-sm-6 mb-4 asxasx_card"
-                  onMouseEnter={() => setHoveredProduct(product.id)}
-                  onMouseLeave={() => setHoveredProduct(null)}
-                >
-                  {/* Each column adapts based on screen size */}
-                  {/* <div className="card prio_card">
+              {productList.length > 0 ? (
+                productList.map((product) => (
+                  <div
+                    key={product.id}
+                    className="col-lg-3 col-md-4 col-sm-6 mb-4 asxasx_card"
+                    onMouseEnter={() => setHoveredProduct(product.id)}
+                    onMouseLeave={() => setHoveredProduct(null)}
+                  >
+                    {/* Each column adapts based on screen size */}
+                    {/* <div className="card prio_card">
                   <div className="card-title">
                     <div>
                       <button className="new_btnddx p-1 ms-3 mt-3">NEW</button>
@@ -477,77 +328,83 @@ const Products = () => {
                   </div>
                 </div> */}
 
-                  <div className="card prio_card scdscsed_sdss_pro">
-                    {/* Image Wrapper with position-relative */}
-                    <div className="card-image-wrapper position-relative">
-                      {/* SALE Badge */}
-                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                        SALE
-                      </button>
+                    <div className="card prio_card scdscsed_sdss_pro">
+                      {/* Image Wrapper with position-relative */}
+                      <div className="card-image-wrapper position-relative">
+                        {/* SALE Badge */}
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                          SALE
+                        </button>
 
-                      {/* Favorite Icon */}
-                      <div
-                        className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                        onClick={() => toggleFavorite(product.id)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {isFavorite[product.id] ? (
-                          <GoHeartFill className="heart-icon_ss" size={18} />
-                        ) : (
-                          <GoHeart className="heart-icon_ss" size={18} />
-                        )}
+                        {/* Favorite Icon */}
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {isFavorite[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+
+                        {/* Product Image */}
+                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                          <img
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            className="p-1_proi img-fluid"
+                            alt="Product"
+                          />
+                          {hoveredProduct === product.id && (
+                            <div className="hover-overlay w-100 d-flex">
+                              <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3">
+                                <FaChevronLeft />
+                              </button>
+                              <button className="btn btn-light right-btn">
+                                <FaChevronRight />
+                              </button>
+                            </div>
+                          )}
+
+                        </div>
                       </div>
 
-                    {/* Product Image */}
-                    <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                      <img
-                        src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                        className="p-1_proi img-fluid"
-                        alt="Product"
-                      />
+                    </div>
+                    <div className="d-flex flex-column main_cdsss">
+                      <span className="mikdec_asdaa pt-3">
+                        {product.productName}
+                      </span>
+                      <div className="d-flex align-items-center gap-3 pt-1">
+                        <span className="mikdec_asdxsx">
+                          {product.salePrice?.$numberDecimal}
+                        </span>
+                        <span className="mikdec_axsx">
+                          {product.regularPrice?.$numberDecimal}
+                        </span>
+                      </div>
                       {hoveredProduct === product.id && (
-                        <div className="hover-overlay w-100 d-flex">
-                          <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3">
-                            <FaChevronLeft />
+                        <div className="hover-overlay DFC_NHJ w-100 d-flex">
+                          <button className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3" onClick={openCart}>
+                            Add to Cart <BiShoppingBag size={25} />
                           </button>
-                          <button className="btn btn-light right-btn">
-                            <FaChevronRight />
-                          </button>
+                          {/* <p className="mt-1"> */}
+                          <a
+                            href="/product-details"
+                            className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
+                          >
+                            Read more about the Product <FaArrowRight />
+                          </a>
                         </div>
                       )}
                     </div>
                   </div>
+                ))
+              ) : (
+                <div className="text-center w-100">
+                  <h3>No products found</h3>
                 </div>
-                <div className="d-flex flex-column main_cdsss">
-                  <span className="mikdec_asdaa pt-3">
-                    {product.productName}
-                  </span>
-                  <div className="d-flex align-items-center gap-3 pt-1">
-                    <span className="mikdec_asdxsx">
-                      {product.salePrice?.$numberDecimal}
-                    </span>
-                    <span className="mikdec_axsx">
-                      {product.regularPrice?.$numberDecimal}
-                    </span>
-                  </div>
-
-                    {hoveredProduct === product.id && (
-                      <div className="hover-overlay DFC_NHJ w-100 d-flex">
-                        <button className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3" onClick={openCart}>
-                          Add to Cart <BiShoppingBag size={25} />
-                        </button>
-                        {/* <p className="mt-1"> */}
-                        <a
-                          href="/product-details"
-                          className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
-                        >
-                          Read more about the Product <FaArrowRight />
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
