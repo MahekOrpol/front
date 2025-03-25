@@ -126,7 +126,7 @@ const Home = () => {
     try {
       const userId = localStorage.get("userId");
       const response = await axios.post(
-        "http://localhost:3000/api/v1/wishlist/create",
+        "https://crystova.cloudbusiness.cloud/api/v1/wishlist/create",
         {
           userId,
           productId,
@@ -146,7 +146,7 @@ const Home = () => {
     try {
       const userId = localStorage.getItem("userId");
       const response = await axios.delete(
-        `http://localhost:3000/api/v1/wishlist/${productId}?userId=${userId}`
+        `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${productId}?userId=${userId}`
       );
       console.log("Wishlist Delete Response:", response.data);
       setIsFavorite(response.data);
@@ -159,17 +159,17 @@ const Home = () => {
   };
 
   const getTopRated = async () => {
-    const res = await axios("http://localhost:3000/api/v1/product/getTopRated");
+    const res = await axios("https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated");
     setTopRated(res.data);
   };
   const getBestSelling = async () => {
     const res = await axios(
-      "http://localhost:3000/api/v1/product/getBestSelling"
+      "https://crystova.cloudbusiness.cloud/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
-    const res = await axios("http://localhost:3000/api/v1/product/getOnSale");
+    const res = await axios("https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale");
     setOnSale(res.data);
   };
 
@@ -254,6 +254,10 @@ const Home = () => {
     ];
   };
 
+  const getVisibleRing2 = () => {
+    return [diamondRings[currentIndex]]; // Return a single ring inside an array
+  };
+
   const toggleFavorite = (id) => {
     setIsFavorite((prev) => ({
       ...prev,
@@ -269,7 +273,7 @@ const Home = () => {
         closeCart={closeCart}
         updateCart={setCartItems}
       />
-      ;{isCartOpen && <div className="overlay" onClick={closeCart}></div>}
+      {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
 
@@ -278,7 +282,7 @@ const Home = () => {
           <div className="hoe_page_main_bvannei"></div>
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd container">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd container">
           <span className="category_name">Categories</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img src={require("../../Images/Groupimg.png")} />
@@ -360,7 +364,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="hdr_csd sdcxsdcx_Sdcxszdcx">
+        <div className="paddingdn hdr_csd sdcxsdcx_Sdcxszdcx">
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
@@ -528,7 +532,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd pb-4">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd pb-4">
           <span className="category_name">Trending Collection</span>
           <p className="category_txt">
             The Latest looks, Crafted to Perfection
@@ -556,7 +560,7 @@ const Home = () => {
           </div>
 
           {value === "1" && (
-            <div className="heder_sec_main d-flex flex-column container">
+            <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {onSale.map((product) => (
                   <div
@@ -591,7 +595,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -634,7 +638,7 @@ const Home = () => {
           )}
 
           {value === "2" && (
-            <div className="heder_sec_main d-flex flex-column container">
+            <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {bestSelling.map((product) => (
                   <div
@@ -665,7 +669,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -708,7 +712,7 @@ const Home = () => {
           )}
 
           {/* {value === "2" && (
-          <div className="heder_sec_main d-flex flex-column container">
+          <div className="paddingdn d-flex flex-column container">
             <div className="row pt-5">
               {bestSelling.map((product) => (
                 <div
@@ -738,7 +742,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi"
                           alt="Product"
                         />
@@ -776,7 +780,7 @@ const Home = () => {
         )} */}
 
           {/* {value === "3" && (
-          <div className="heder_sec_main d-flex flex-column container">
+          <div className="paddingdn d-flex flex-column container">
             <div className="row pt-5">
               {topRated.map((product) => (
                 <div
@@ -804,7 +808,7 @@ const Home = () => {
                       </div>
                       <div className="card-body d-flex justify-content-center">
                         <img
-                          src={`http://localhost:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi "
                           alt="Product"
                         />
@@ -842,7 +846,7 @@ const Home = () => {
         )} */}
 
           {value === "3" && (
-            <div className="heder_sec_main d-flex flex-column container">
+            <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {topRated.map((product) => (
                   <div
@@ -873,7 +877,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -1038,7 +1042,7 @@ const Home = () => {
             </div>
           </div>
         </div> */}
-          {/* <div className="heder_sec_main d-flex flex-column container">
+          {/* <div className="paddingdn d-flex flex-column container">
           <div className="row pt-5">
             {products.map((product) => (
               <div
@@ -1097,7 +1101,7 @@ const Home = () => {
         </div> */}
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
           <span className="category_name">
             Celebrate love with our Collection
           </span>
@@ -1139,7 +1143,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
           <span className="category_name">Gifting Edition</span>
           <p className="category_txt">Elegant & Versatile Gifts</p>
           <img src={require("../../Images/Groupimg.png")} />
@@ -1171,7 +1175,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd ">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd ">
           <span className="category_name">Discover Styles</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img src={require("../../Images/Groupimg.png")} />
@@ -1194,18 +1198,35 @@ const Home = () => {
               ))}
             </div>
           </div>
+          <div className="rings-container home_ring_3">
+            <div className="rings-row">
+              {getVisibleRing2().map((ring, index) => (
+                <div
+                  key={ring.id}
+                  className={`ring-item large`}
+                >
+                  <div className="ring-shadow">
+                    <img
+                      src={ring.image}
+                      alt={`Diamond Ring ${ring.id}`}
+                      className="ring-image"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="rings-container home_ring_2">
             <div className="rings-row">
               {getVisibleRings1().map((ring, index) => (
                 <div
                   key={ring.id}
-                  className={`ring-item ${
-                    index === 2
-                      ? "large"
-                      : index === 1 || index === 3
+                  className={`ring-item ${index === 2
+                    ? "large"
+                    : index === 1 || index === 3
                       ? "medium"
                       : "small"
-                  }`}
+                    }`}
                 >
                   <div className="ring-shadow">
                     <img
@@ -1232,7 +1253,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd asxs_sdxszx">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd asxs_sdxszx">
           <span className="category_name">New Arrivals</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img src={require("../../Images/Groupimg.png")} />
@@ -1297,7 +1318,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Gifting Guide</span>
         <p className="category_txt">Jewelry makes the perfect gift</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -1416,7 +1437,7 @@ const Home = () => {
         </div>
       </div> */}
 
-        {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Client Testimonial</span>
         <p className="category_txt">What our Client’s say about us</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -1515,7 +1536,7 @@ const Home = () => {
             <FaAngleLeft />
           </button>
 
-          <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+          <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd" style={{paddingTop:"4rem"}}>
             <span className="category_name">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
             <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
@@ -1539,9 +1560,8 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
+                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                        } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
