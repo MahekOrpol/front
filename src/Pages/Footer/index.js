@@ -13,7 +13,7 @@ const Footer = () => {
     <>
       <div className="footer_mdjj hdr_csdssdrcsdc pt-5">
 
-        <div className="gbhuji8usdjikijd row justify-content-between p-3 pe-5 ps-5">
+        {/* <div className="gbhuji8usdjikijd row justify-content-between p-3 pe-5 ps-5">
             <div className="col-sm-12 col-md-5 col-lg-6">
             <span className="main-dxbd dszcdscs_aszs">Subscribe to get Updated</span>
             <p className="mt-2 sdcdscsd" style={{width:'85%'}}>
@@ -29,9 +29,9 @@ const Footer = () => {
             </butto>
             </div>
             </div>
-        </div>
+        </div> */}
 
-        <div className="justify-content-around pt-5 row w-100">
+        <div className="justify-content-around pt-5 row w-100 fccc_asxs_footer">
           <div className="col-3 col-sm-6 col-md-12 col-lg-3 text-white ps-md-5 pe-md-5 ps-sm-5 pe-sm-5 ps-slg-0 pe-lg-0 sdc_sdds1">
             <img
               src={require("../../Images/crystovalogowhite (1) 2.png")}
@@ -72,24 +72,20 @@ const Footer = () => {
               style={{ listStyle: "none", paddingLeft: "0rem" }}
               className="doof_dd pt-2"
             >
-              <li>
-                <a className="footr_lnk">Refund</a>
-              </li>
+           
               <li>
                 <a className="footr_lnk">Shipping</a>
               </li>
               <li>
                 <a className="footr_lnk">Order Status</a>
               </li>
-              <li>
-                <a className="footr_lnk">FAQ</a>
-              </li>
+             
               <li>
                 <a className="footr_lnk">Exchange</a>
               </li>
             </ul>
           </div>
-          <div className="col-2 col-sm-6 col-md-4 col-lg-2 text-white mt-md-3 mt-sm-3 mt-lg-0 ps-md-5 pe-md-5 ps-sm-5 pe-sm-5 ps-slg-0 pe-lg-0 sdc_sdds1">
+          <div className="col-2 col-sm-6 col-md-4 col-lg-2 text-white mt-md-3 mt-sm-3 mt-lg-0 ps-md-5 pe-md-5 ps-sm-5 pe-sm-5 ps-slg-0 pe-lg-0 sdc_sdds1 sdcdsc_fvgtfgv">
             <h2 className="use_sdc">Support</h2>
             <ul
               style={{ listStyle: "none", paddingLeft: "0rem" }}
@@ -101,9 +97,7 @@ const Footer = () => {
               <li>
                 <a className="footr_lnk">Terms & Conditions</a>
               </li>
-              <li>
-                <a className="footr_lnk">Terms of Use</a>
-              </li>
+              
             </ul>
           </div>
         </div>

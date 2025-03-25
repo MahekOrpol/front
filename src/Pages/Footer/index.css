@@ -278,6 +278,77 @@ text-align: justify;
     padding-left: 3rem !important;
     padding-right: 3rem !important;
 }
+.foot_ofcd {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+}
+@media (max-width:935px) {
+
+.foot_ofcd {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+}
+@media (max-width:802px) {
+
+.foot_ofcd {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+}
+@media (max-width:375px) {
+
+.fccc_asxs_footer{
+  flex-direction: column;
+}
+.sdc_sdds1 {
+  width: 100%;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+.sdc_sdds {
+  flex: 0 0 auto;
+  width: 50%;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+  padding-top: 0.5rem !important;
+  width: 100%;
+}
+.fccc_asxs_footer{
+  padding-top: 0rem !important;
+}
+.sdcdsc_fvgtfgv{
+  width: 100%;
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+.use_sdc{
+  width: 100% !important;
+white-space: nowrap;
+}
 }
 @media (max-width:1240px) and (min-width:1025px){
   .gbhuji8usdjikijd {
