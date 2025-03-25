@@ -199,10 +199,14 @@ const Home = () => {
       const screenWidth = window.innerWidth;
       let newSlidesPerView;
 
-      if (screenWidth <= 600) {
+      if (screenWidth <= 427) {
         newSlidesPerView = 1;
-      } else if (screenWidth <= 1000) {
+      }else if (screenWidth <= 599) {
         newSlidesPerView = 2;
+      }else if (screenWidth <= 768) {
+        newSlidesPerView = 2;
+      } else if (screenWidth <= 1024) {
+        newSlidesPerView = 3;
       } else {
         newSlidesPerView = 3;
       }
@@ -216,6 +220,13 @@ const Home = () => {
 
     return () => window.removeEventListener("resize", updateSlidesPerView);
   }, [slidesPerView]); // Dependency to prevent infinite re-renders
+
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      swiperRef.current?.update();
+    });
+  }, []);
 
   const [value, setValue] = React.useState("1");
 
@@ -254,6 +265,10 @@ const Home = () => {
     ];
   };
 
+  const getVisibleRing2 = () => {
+    return [diamondRings[currentIndex]]; // Return a single ring inside an array
+  };
+
   const toggleFavorite = (id) => {
     setIsFavorite((prev) => ({
       ...prev,
@@ -278,7 +293,7 @@ const Home = () => {
           <div className="hoe_page_main_bvannei"></div>
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd container">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd container">
           <span className="category_name">Categories</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img src={require("../../Images/Groupimg.png")} />
@@ -360,7 +375,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="hdr_csd sdcxsdcx_Sdcxszdcx">
+        <div className="paddingdn hdr_csd sdcxsdcx_Sdcxszdcx">
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
@@ -528,7 +543,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd pb-4">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd pb-4">
           <span className="category_name">Trending Collection</span>
           <p className="category_txt">
             The Latest looks, Crafted to Perfection
@@ -556,7 +571,7 @@ const Home = () => {
           </div>
 
           {value === "1" && (
-            <div className="heder_sec_main d-flex flex-column container">
+            <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {onSale.map((product) => (
                   <div
@@ -634,7 +649,7 @@ const Home = () => {
           )}
 
           {value === "2" && (
-            <div className="heder_sec_main d-flex flex-column container">
+            <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {bestSelling.map((product) => (
                   <div
@@ -708,7 +723,7 @@ const Home = () => {
           )}
 
           {/* {value === "2" && (
-          <div className="heder_sec_main d-flex flex-column container">
+          <div className="paddingdn d-flex flex-column container">
             <div className="row pt-5">
               {bestSelling.map((product) => (
                 <div
@@ -776,7 +791,7 @@ const Home = () => {
         )} */}
 
           {/* {value === "3" && (
-          <div className="heder_sec_main d-flex flex-column container">
+          <div className="paddingdn d-flex flex-column container">
             <div className="row pt-5">
               {topRated.map((product) => (
                 <div
@@ -842,7 +857,7 @@ const Home = () => {
         )} */}
 
           {value === "3" && (
-            <div className="heder_sec_main d-flex flex-column container">
+            <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {topRated.map((product) => (
                   <div
@@ -1038,7 +1053,7 @@ const Home = () => {
             </div>
           </div>
         </div> */}
-          {/* <div className="heder_sec_main d-flex flex-column container">
+          {/* <div className="paddingdn d-flex flex-column container">
           <div className="row pt-5">
             {products.map((product) => (
               <div
@@ -1097,7 +1112,7 @@ const Home = () => {
         </div> */}
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
           <span className="category_name">
             Celebrate love with our Collection
           </span>
@@ -1105,8 +1120,8 @@ const Home = () => {
           <img src={require("../../Images/Groupimg.png")} />
 
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
-          <div className="pt-4 container ">
-            <div className="row justify-content-center justify-content-md-between scc_gift_edit_sdsd">
+          <div className="pt-4 container djb_dsjvn">
+            <div className="row justify-content-center justify-content-md-center scc_gift_edit_sdsd">
               <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
@@ -1139,7 +1154,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
           <span className="category_name">Gifting Edition</span>
           <p className="category_txt">Elegant & Versatile Gifts</p>
           <img src={require("../../Images/Groupimg.png")} />
@@ -1171,7 +1186,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd ">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd ">
           <span className="category_name">Discover Styles</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img src={require("../../Images/Groupimg.png")} />
@@ -1194,18 +1209,35 @@ const Home = () => {
               ))}
             </div>
           </div>
+          <div className="rings-container home_ring_3">
+            <div className="rings-row">
+              {getVisibleRing2().map((ring, index) => (
+                <div
+                  key={ring.id}
+                  className={`ring-item large`}
+                >
+                  <div className="ring-shadow">
+                    <img
+                      src={ring.image}
+                      alt={`Diamond Ring ${ring.id}`}
+                      className="ring-image"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="rings-container home_ring_2">
             <div className="rings-row">
               {getVisibleRings1().map((ring, index) => (
                 <div
                   key={ring.id}
-                  className={`ring-item ${
-                    index === 2
-                      ? "large"
-                      : index === 1 || index === 3
+                  className={`ring-item ${index === 2
+                    ? "large"
+                    : index === 1 || index === 3
                       ? "medium"
                       : "small"
-                  }`}
+                    }`}
                 >
                   <div className="ring-shadow">
                     <img
@@ -1232,7 +1264,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd asxs_sdxszx">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd asxs_sdxszx">
           <span className="category_name">New Arrivals</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img src={require("../../Images/Groupimg.png")} />
@@ -1297,7 +1329,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Gifting Guide</span>
         <p className="category_txt">Jewelry makes the perfect gift</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -1416,7 +1448,7 @@ const Home = () => {
         </div>
       </div> */}
 
-        {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Client Testimonial</span>
         <p className="category_txt">What our Client’s say about us</p>
         <img src={require("../../Images/Groupimg.png")} />
@@ -1515,33 +1547,31 @@ const Home = () => {
             <FaAngleLeft />
           </button>
 
-          <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+          <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd" style={{paddingTop:"4rem"}}>
             <span className="category_name">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
             <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
 
             <Swiper
-              grabCursor={true}
-              loop={true} // Infinite Loop
-              slidesPerView={slidesPerView}
-              slidesPerGroup={1}
-              modules={[Pagination, Autoplay]}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              onSwiper={(swiper) => (swiperRef.current = swiper)}
-              className="swiper_testimonial container"
-              breakpoints={{
-                320: { slidesPerView: 1 },
-                600: { slidesPerView: 2 },
-                1000: { slidesPerView: 3 },
-              }}
+               grabCursor={true}
+               loop={true} 
+               slidesPerView={slidesPerView}
+               slidesPerGroup={1}
+               loopedSlides={testimonials.length} 
+               modules={[Pagination, Autoplay]}
+               autoplay={{ delay: 3000, disableOnInteraction: false }}
+               observer={true}   // Observe changes
+               observeParents={true}   // Observe parent element changes
+               onSwiper={(swiper) => (swiperRef.current = swiper)}
+               className="swiper_testimonial container"
+             
             >
               {[...testimonials, ...testimonials, ...testimonials].map(
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
+                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                        } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">

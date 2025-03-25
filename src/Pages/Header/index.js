@@ -32,8 +32,8 @@ const Header = ({ openCart }) => {
           <IoMenu size={30} />
         </div>
 
-        {/* Desktop Navigation */}
-        <div className="d-none d-lg-flex align-items-center sdchy_88__sxsxs" style={{ marginLeft: "7rem", borderRadius: "10px" }}>
+<div className="w-25 justify-content-center d-flex">
+        <div className="d-none d-lg-flex align-items-center sdchy_88__sxsxs" style={{  borderRadius: "10px" ,width:'75%'}}>
           <input
             type="text"
             placeholder="Search Product Here"
@@ -44,13 +44,15 @@ const Header = ({ openCart }) => {
           </button>
         </div>
 
+</div>
+
         {/* Logo */}
         <div className="d-flex justify-content-center w-50 hedr_sss" style={{ cursor: "pointer" }}>
           <img src={logo} onClick={() => navigate('/')} alt="Logo" />
         </div>
 
         {/* Icons Section (Desktop Only) */}
-        <div className="w-25 d-none d-lg-flex align-items-center gap-5 dcxde_asx485">
+        <div className="w-25 d-none d-lg-flex align-items-center gap-0 justify-content-evenly dcxde_asx485">
           <div className="user_icon gap-3 d-flex align-items-center">
             <img src={usericon} alt="User Icon" />
             <div className="d-flex flex-column align-items-center pt-2">

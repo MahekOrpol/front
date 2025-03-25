@@ -36,6 +36,7 @@ const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
   };
 
   if (!isOpen) return null;
+  
 
   // const checkOut = async () => {
   //   try {
@@ -122,14 +123,8 @@ const response = await axios.post(
       <div className="cart-items-bg">
         {items.length > 0 ? (
           items.map((item, index) => (
-            <div
-              key={index}
-              className="cart-item d-flex flex-column align-items-center"
-            >
-              <img
-                src={`https://crystova.cloudbusiness.cloud${item.image[0]}`}
-                alt={item.productName}
-              />
+            <div key={index} className="cart-item d-flex flex-column align-items-center">
+              <img src={`https://crystova.cloudbusiness.cloud${item.image[0]}`} alt={item.name} />
               <div className="cart_item_detail">
                 <h5 className="fw-bold mb-1">{item.productName}</h5>
                 <div className="d-flex align-items-center justify-content-between">

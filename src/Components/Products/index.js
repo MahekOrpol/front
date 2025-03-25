@@ -383,7 +383,6 @@ const Products = () => {
                           {product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
-
                       {hoveredProduct === product.id && (
                         <div className="hover-overlay DFC_NHJ w-100 d-flex">
                           <button className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3" onClick={openCart}>

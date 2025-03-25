@@ -97,7 +97,7 @@
   z-index: 999;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 991px) {
   .heder_sec_main {
     justify-content: space-between;
     padding: 10px 20px;
@@ -120,10 +120,13 @@
   .hedr_sss {
     width: 100% !important;
   }
+  .hedr_sss{
+    padding-right: 10rem;
+  }
 
   /* Ensure drawer covers full height */
   .mobile-drawer {
-    height: 100%;
+    height: 50%;
   }
 
   /* Show drawer only when open */
@@ -132,6 +135,21 @@
   }
 }
 
+@media (max-width: 767px) {
+  .hedr_sss{
+    padding-right: 9rem;
+  }
+}
+@media (max-width: 600px) {
+  .hedr_sss{
+    padding-right: 7rem;
+  }
+}
+@media (max-width: 475px) {
+  .hedr_sss{
+    padding-right: 5.2rem;
+  }
+}
 /* @media (min-width:992px) {
   .hedr_sss{
     width: 50% !important;
@@ -139,7 +157,7 @@
   }
 } */
 
-@media (min-width: 1025px) {
+@media (min-width: 991px) {
   .menu-icon {
     display: none;
   }
@@ -249,5 +267,5 @@
 }
 
 .dcxde_asx485{
-  justify-content: end;
+  justify-content: center;
 }
