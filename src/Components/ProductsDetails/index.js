@@ -44,7 +44,7 @@ const products = [
     cutPrice: "35000",
   },
 ];
-const ProductDetails = () => {
+const ProductDetailss = () => {
   const [liked, setLiked] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState(null);
   const [isFavorite, setIsFavorite] = useState({});
@@ -713,13 +713,14 @@ const ProductDetails = () => {
                 </div>
               ))}
 
-              <div className="slider_ssss_fdcdf">
+              <div className="slider_ssss_fdcdf ">
                 <Swiper
                   spaceBetween={0}
                   breakpoints={{
                     1200: { slidesPerView: 4 }, // Large screen - 4 cards
                     992: { slidesPerView: 3 }, // Below 1200px - 3 cards
-                    768: { slidesPerView: 2 }, // Below 992px - 2 cards
+                    768: { slidesPerView: 3 }, // Below 992px - 2 cards
+                    500: { slidesPerView: 2 }, // Below 992px - 2 cards
                     0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
@@ -804,4 +805,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default ProductDetailss;
