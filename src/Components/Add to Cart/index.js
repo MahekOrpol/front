@@ -36,6 +36,7 @@ const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
   };
 
   if (!isOpen) return null;
+  
 
   // const checkOut = async () => {
   //   try {

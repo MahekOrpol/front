@@ -49,6 +49,37 @@ const images = [
   require("../../Images/ring222.png"),
 ];
 
+const ringData = [
+  {
+    image: require("../../Images/Frame 197.png"),
+    title: "Classic Ring",
+    description: "Timeless elegance in its purest form",
+  },
+  {
+    image: require("../../Images/Frame 197.png"),
+    title: "Nature Ring",
+    description: "Inspired by natural beauty",
+  },
+  {
+    image: require("../../Images/Frame 197.png"),
+    title: "Hidden Halo",
+    description: "Intriguing brilliance from a concealed halo",
+  },
+  {
+    image: require("../../Images/Frame 197.png"),
+    title: "Solitaire",
+    description: "Simple sophistication that speaks volumes",
+  },
+  {
+    image: require("../../Images/Frame 197.png"),
+    title: "Emerald Ring",
+    description: "Modern elegance with vintage appeal",
+  },
+];
+
+const bgImage = require("../../Images/Frame 197.png");
+const bgImage2 = require("../../Images/Frame 197.png");
+
 const diamondRings = [
   {
     id: 1,
@@ -78,6 +109,15 @@ const diamondRings = [
   },
 ];
 
+const categories = [
+  { img: require("../../Images/Group 1597884634 (1).png"), label: "Pendant" },
+  { img: require("../../Images/Group 1597884629 (1).png"), label: "Bracelet" },
+  { img: require("../../Images/Group 1597884630.png"), label: "Earrings" },
+  { img: require("../../Images/Group 1597884631.png"), label: "Rings" },
+  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+];
+
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
   const [liked, setLiked] = useState(false);
@@ -88,6 +128,10 @@ const Home = () => {
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+
+  const handleCategoryClick = (category) => {
+    navigate(`/products?categoryName=${category}`);
+  };
 
   // Function to add an item to the cart
   const addToCart = (product) => {
@@ -105,6 +149,31 @@ const Home = () => {
 
     openCart();
   };
+
+  useEffect(() => {
+    const swiperInstance = swiperRef.current?.swiper;
+    if (!swiperInstance) return;
+
+    const scaleSlides = () => {
+      swiperInstance.slides.forEach((slide) => {
+        slide.style.transform = "scale(0.8)";
+        slide.style.opacity = "1";
+      });
+
+      const activeSlide = swiperInstance.slides[swiperInstance.activeIndex];
+      if (activeSlide) {
+        activeSlide.style.transform = "scale(1)";
+        activeSlide.style.opacity = "1";
+      }
+    };
+
+    scaleSlides();
+    swiperInstance.on("slideChangeTransitionStart", scaleSlides);
+
+    return () => {
+      swiperInstance.off("slideChangeTransitionStart", scaleSlides);
+    };
+  }, []);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const openCart = () => {
@@ -159,7 +228,9 @@ const Home = () => {
   };
 
   const getTopRated = async () => {
-    const res = await axios("https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated");
+    const res = await axios(
+      "https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated"
+    );
     setTopRated(res.data);
   };
   const getBestSelling = async () => {
@@ -169,7 +240,9 @@ const Home = () => {
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
-    const res = await axios("https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale");
+    const res = await axios(
+      "https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale"
+    );
     setOnSale(res.data);
   };
 
@@ -201,9 +274,9 @@ const Home = () => {
 
       if (screenWidth <= 427) {
         newSlidesPerView = 1;
-      }else if (screenWidth <= 599) {
+      } else if (screenWidth <= 599) {
         newSlidesPerView = 2;
-      }else if (screenWidth <= 768) {
+      } else if (screenWidth <= 768) {
         newSlidesPerView = 2;
       } else if (screenWidth <= 1024) {
         newSlidesPerView = 3;
@@ -220,7 +293,6 @@ const Home = () => {
 
     return () => window.removeEventListener("resize", updateSlidesPerView);
   }, [slidesPerView]); // Dependency to prevent infinite re-renders
-
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -276,6 +348,31 @@ const Home = () => {
     }));
   };
 
+  useEffect(() => {
+    const swiperInstance = swiperRef.current?.swiper;
+    if (!swiperInstance) return;
+
+    const scaleSlides = () => {
+      swiperInstance.slides.forEach((slide) => {
+        slide.style.transform = "scale(0.8)";
+        slide.style.opacity = "1";
+      });
+
+      const activeSlide = swiperInstance.slides[swiperInstance.activeIndex];
+      if (activeSlide) {
+        activeSlide.style.transform = "scale(1)";
+        activeSlide.style.opacity = "1";
+      }
+    };
+
+    scaleSlides();
+    swiperInstance.on("slideChangeTransitionStart", scaleSlides);
+
+    return () => {
+      swiperInstance.off("slideChangeTransitionStart", scaleSlides);
+    };
+  }, []);
+
   return (
     <>
       <CartPopup
@@ -293,29 +390,67 @@ const Home = () => {
           <div className="hoe_page_main_bvannei"></div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd container">
-          <span className="category_name">Categories</span>
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd container p-0 mt-sm-3">
+          <span className="category_name mt-2">Categories</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
-          <img src={require("../../Images/Groupimg.png")} />
+          <img
+            src={require("../../Images/Groupimg.png")}
+            className="home_tag_img"
+          />
 
-          <div className="row  container">
+          <div className="container p-0">
+            <Swiper
+              spaceBetween={10}
+              loop={true}
+              // autoplay={{ delay: 2000, disableOnInteraction: false }}
+              // modules={[ Autoplay]}
+              breakpoints={{
+                0: { slidesPerView: 4 },
+                480: { slidesPerView: 4 },
+                768: { slidesPerView: 5 },
+                1024: { slidesPerView: 6 },
+                1200: { slidesPerView: 6 },
+              }}
+              className="mySwiper xfvdfvdfvc "
+            >
+              {categories.map((item, index) => (
+                <SwiperSlide
+                  key={index}
+                  className="slide-item"
+                  onClick={() => {
+                    handleCategoryClick();
+                  }}
+                >
+                  <div className="d-flex flex-column align-items-center fvfvfc_Zdcdsc">
+                    <img
+                      src={item.img}
+                      className="img-fluid home-img home_img_ssssss"
+                      alt={item.label}
+                    />
+                    <span className="category-label">{item.label}</span>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          {/* <div className="row  container">
             <Swiper
               spaceBetween={10}
               // navigation={true}
-              autoplay={{
-                delay: 2000,
-                disableOnInteraction: false,
-              }}
+              // autoplay={{
+              //   delay: 2000,
+              //   disableOnInteraction: false,
+              // }}
               loop={true}
-              modules={[Autoplay]}
+              // modules={[Autoplay]}
               breakpoints={{
                 0: { slidesPerView: 2 },
                 576: { slidesPerView: 5 },
-                768: { slidesPerView: 5 },
+                768: { slidesPerView: 6 },
                 992: { slidesPerView: 6 },
                 1200: { slidesPerView: 6 },
               }}
-              className="mySwiper"
+              className="mySwiper xfvdxfvdfv"
             >
               <SwiperSlide className="slide_ssssss">
                 <div className="d-flex flex-column align-items-center">
@@ -372,7 +507,7 @@ const Home = () => {
                 </div>
               </SwiperSlide>
             </Swiper>
-          </div>
+          </div> */}
         </div>
 
         <div className="paddingdn hdr_csd sdcxsdcx_Sdcxszdcx">
@@ -459,21 +594,26 @@ const Home = () => {
             </div>
             <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
               <span className="fest_fff">FESTIVAL SALE OFFERS</span>
-              <div className="txt_frss d-flex flex-column gap-3">
+              <div className="txt_frss d-flex flex-column gap-3 sale_offer_sss">
                 <span>Upto 25% Off on All Jewelry Favorites</span>
-                <span>Limited Time!</span>
+                <span> Limited Time!</span>
               </div>
-              <span className="txt_par">
-                Diamonds come in a variety of shapes, each offering unique
-                beauty and appeal.
-                <br /> Here’s a guide to different shapes of diamond rings
-              </span>
-              <button
-                className="w-25 spg_nb_sle"
-                style={{ whiteSpace: "nowrap" }}
-              >
-                Shop Now
-              </button>
+              <div>
+                <span className="txt_par">
+                  Diamonds come in a variety of shapes, each offering unique
+                  beauty and appeal.
+                  <br className="d-md-none d-lg-block d-none" /> Here’s a guide
+                  to different shapes of diamond rings
+                </span>
+              </div>
+              <div>
+                <button
+                  className="w-25 spg_nb_sle"
+                  style={{ whiteSpace: "nowrap" }}
+                >
+                  Shop Now
+                </button>
+              </div>
             </div>
           </div>
 
@@ -543,12 +683,15 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd pb-4">
-          <span className="category_name">Trending Collection</span>
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd hnbgygjhh">
+          <span className="category_name mt-2">Trending Collection</span>
           <p className="category_txt">
             The Latest looks, Crafted to Perfection
           </p>
-          <img src={require("../../Images/Groupimg.png")} />
+          <img
+            src={require("../../Images/Groupimg.png")}
+            className="home_tag_img"
+          />
           <div className="w-auto mt-3">
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -556,7 +699,18 @@ const Home = () => {
                   value={value}
                   onChange={handleChange}
                   aria-label="basic tabs example"
+                  textColor="black"
+                  TabIndicatorProps={{
+                    style: { backgroundColor: "#611D2B" }, // Active indicator color
+                  }}
                   sx={{
+                    "& .MuiTab-root": {
+                      color: "black", // Default text color for all tabs
+                    },
+                    "& .Mui-selected": {
+                      color: "#611D2B !important",
+                      fontWeight: 600,
+                    },
                     "& .MuiTabs-list": {
                       justifyContent: "space-between",
                     },
@@ -607,7 +761,7 @@ const Home = () => {
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
                             src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                            className="p-1_proi img-fluid"
+                            className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
                         </div>
@@ -616,7 +770,7 @@ const Home = () => {
 
                     {/* Product Details */}
                     <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_asdaa text-truncate pt-3 text-truncate">
+                      <span className="mikdec_asdaa text-truncate pt-3 ">
                         {product.productName}
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
@@ -627,7 +781,7 @@ const Home = () => {
                           {product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
-                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                         <button
                           className="more_btn_dsdd w-50"
                           onClick={() => navigate("/product-details")}
@@ -635,7 +789,7 @@ const Home = () => {
                           More Info
                         </button>
                         <button
-                          className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
                           onClick={() => addToCart(product)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
@@ -648,7 +802,7 @@ const Home = () => {
             </div>
           )}
 
-          {value === "2" && (
+          {/* {value === "2" && (
             <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {bestSelling.map((product) => (
@@ -657,8 +811,77 @@ const Home = () => {
                     className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
                   >
                     <div className="card prio_card scdscsed_sdss">
-                      {/* Image Wrapper with position-relative */}
                       <div className="card-image-wrapper position-relative">+
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                          SALE
+                        </button>
+
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {isFavorite[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+
+                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                          <img
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            className="p-1_proi img-fluid"
+                            alt="Product"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="d-flex flex-column main_cdsss">
+                      <span className="mikdec_asdaa pt-3 text-truncate">
+                        {product.productName}
+                      </span>
+                      <div className="d-flex align-items-center gap-3 pt-1">
+                        <span className="mikdec_asdxsx">
+                          {product.salePrice?.$numberDecimal}
+                        </span>
+                        <span className="mikdec_axsx">
+                          {product.regularPrice?.$numberDecimal}
+                        </span>
+                      </div>
+                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                        <button
+                          className="more_btn_dsdd w-50"
+                          onClick={() => navigate("/products")}
+                        >
+                          More Info
+                        </button>
+                        <button
+                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                          onClick={() => addToCart(product)}
+                        >
+                          Add to Cart <BiShoppingBag size={25} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )} */}
+
+          {value === "2" && (
+            <div className="d-flex flex-column container">
+              <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
+                {topRated.map((product) => (
+                  <div
+                    key={product.id}
+                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                  >
+                    <div className="card prio_card scdscsed_sdss">
+                      {/* Image Wrapper with position-relative */}
+                      <div className="card-image-wrapper position-relative">
                         {/* SALE Badge */}
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
                           SALE
@@ -681,7 +904,7 @@ const Home = () => {
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
                             src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                            className="p-1_proi img-fluid"
+                            className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
                         </div>
@@ -690,7 +913,7 @@ const Home = () => {
 
                     {/* Product Details */}
                     <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_asdaa pt-3">
+                      <span className="mikdec_asdaa pt-3 text-truncate">
                         {product.productName}
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
@@ -701,7 +924,7 @@ const Home = () => {
                           {product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
-                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                         <button
                           className="more_btn_dsdd w-50"
                           onClick={() => navigate("/products")}
@@ -709,7 +932,7 @@ const Home = () => {
                           More Info
                         </button>
                         <button
-                          className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
                           onClick={() => addToCart(product)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
@@ -721,141 +944,6 @@ const Home = () => {
               </div>
             </div>
           )}
-
-          {/* {value === "2" && (
-          <div className="paddingdn d-flex flex-column container">
-            <div className="row pt-5">
-              {bestSelling.map((product) => (
-                <div
-                  key={product.id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                >
-                  <div className="card prio_card scdscsed_sdss">
-                    <div className="card-title">
-                      <div>
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
-                          NEW
-                        </button>
-                        <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3" onClick={handleAddToCart}>
-                          Add to Cart <BiShoppingBag size={25} />
-=======
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {isFavorite[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                      </div>
-                      <div className="card-body d-flex justify-content-center">
-                        <img
-                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                          className="p-1_proi"
-                          alt="Product"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">
-                      {product.productName}
-                    </span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">
-                        {product.salePrice?.$numberDecimal}
-                      </span>
-                      <span className="mikdec_axsx">
-                        {product.regularPrice?.$numberDecimal}
-                      </span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button
-                        className="more_btn_dsdd w-50"
-                        onClick={() => navigate("/products")}
-                      >
-                        More Info
-                      </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                        Add to Cart <BiShoppingBag size={25} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )} */}
-
-          {/* {value === "3" && (
-          <div className="paddingdn d-flex flex-column container">
-            <div className="row pt-5">
-              {topRated.map((product) => (
-                <div
-                  key={product.id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                >
-                  <div className="card prio_card scdscsed_sdss">
-                    <div className="card-title">
-                      <div>
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">
-                          NEW
-
-                        </button>
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {isFavorite[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                      </div>
-                      <div className="card-body d-flex justify-content-center">
-                        <img
-                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                          className="p-1_proi "
-                          alt="Product"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">
-                      {product.productName}
-                    </span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">
-                        {product.salePrice?.$numberDecimal}
-                      </span>
-                      <span className="mikdec_axsx">
-                        {product.regularPrice?.$numberDecimal}
-                      </span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button
-                        className="more_btn_dsdd w-50"
-                        onClick={() => navigate("/products")}
-                      >
-                        More Info
-                      </button>
-                      <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                        Add to Cart <BiShoppingBag size={25} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )} */}
-
           {value === "3" && (
             <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
@@ -889,7 +977,7 @@ const Home = () => {
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
                             src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                            className="p-1_proi img-fluid"
+                            className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
                         </div>
@@ -909,7 +997,7 @@ const Home = () => {
                           {product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
-                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                         <button
                           className="more_btn_dsdd w-50"
                           onClick={() => navigate("/products")}
@@ -917,7 +1005,7 @@ const Home = () => {
                           More Info
                         </button>
                         <button
-                          className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
                           onClick={() => addToCart(product)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
@@ -1113,37 +1201,44 @@ const Home = () => {
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
-          <span className="category_name">
+          <span className="category_name mt-0 mobile-hide">
             Celebrate love with our Collection
           </span>
+          <span className="category_name mt-0 mobile-show">
+            Stunning Surprise
+          </span>
+
           <p className="category_txt">Perfect Presents for Every Occasion.</p>
-          <img src={require("../../Images/Groupimg.png")} />
+          <img
+            src={require("../../Images/Groupimg.png")}
+            className="home_tag_img"
+          />
 
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
           <div className="pt-4 container djb_dsjvn">
-            <div className="row justify-content-center justify-content-md-center scc_gift_edit_sdsd">
-              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+            <div className="row justify-content-center justify-content-md-between scc_gift_edit_sdsd gap-2">
+              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3">
+              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
@@ -1155,30 +1250,45 @@ const Home = () => {
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
-          <span className="category_name">Gifting Edition</span>
+          <span className="category_name mt-2">Gifting Edition</span>
           <p className="category_txt">Elegant & Versatile Gifts</p>
-          <img src={require("../../Images/Groupimg.png")} />
-          <div className="row pt-4 w-100 scc_gift_edit">
-            <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
-              <img src={require("../../Images/Group 1597884624 (1).png")} />
+          <img
+            src={require("../../Images/Groupimg.png")}
+            className="home_tag_img"
+          />
+          <div className="row pt-4 w-100 scc_gift_edit container">
+            <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
+              <img
+                className="img-sssssss"
+                src={require("../../Images/Group 1597884624 (1).png")}
+              />
               <div className="lionk_ss">
                 <a>Gifts for Her</a>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
-              <img src={require("../../Images/Group 1597884625 (1).png")} />
+            <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
+              <img
+                className="img-sssssss"
+                src={require("../../Images/Group 1597884625 (1).png")}
+              />
               <div className="lionk_ss">
                 <a>Gifts for Him</a>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
-              <img src={require("../../Images/Group 1597884626 (1).png")} />
+            <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
+              <img
+                className="img-sssssss"
+                src={require("../../Images/Group 1597884626 (1).png")}
+              />
               <div className="lionk_ss">
                 <a>Gifts for Self</a>
               </div>
             </div>
-            <div className="col-md-6 col-lg-3 mt-md-4 mt-sm-4 col-sm-6 mt-4 dsjnurh_sx">
-              <img src={require("../../Images/Group 1597884636.png")} />
+            <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
+              <img
+                className="img-sssssss"
+                src={require("../../Images/Group 1597884636.png")}
+              />
               <div className="lionk_ss">
                 <a>Wedding Bands</a>
               </div>
@@ -1187,9 +1297,12 @@ const Home = () => {
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd ">
-          <span className="category_name">Discover Styles</span>
+          <span className="category_name mt-2">Discover Styles</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
-          <img src={require("../../Images/Groupimg.png")} />
+          <img
+            src={require("../../Images/Groupimg.png")}
+            className="home_tag_img"
+          />
 
           <div className="rings-container home_ring_1">
             <div className="rings-row">
@@ -1212,10 +1325,7 @@ const Home = () => {
           <div className="rings-container home_ring_3">
             <div className="rings-row">
               {getVisibleRing2().map((ring, index) => (
-                <div
-                  key={ring.id}
-                  className={`ring-item large`}
-                >
+                <div key={ring.id} className={`ring-item large`}>
                   <div className="ring-shadow">
                     <img
                       src={ring.image}
@@ -1232,12 +1342,13 @@ const Home = () => {
               {getVisibleRings1().map((ring, index) => (
                 <div
                   key={ring.id}
-                  className={`ring-item ${index === 2
-                    ? "large"
-                    : index === 1 || index === 3
+                  className={`ring-item ${
+                    index === 2
+                      ? "large"
+                      : index === 1 || index === 3
                       ? "medium"
                       : "small"
-                    }`}
+                  }`}
                 >
                   <div className="ring-shadow">
                     <img
@@ -1262,12 +1373,54 @@ const Home = () => {
               <FaAngleRight size={25} />
             </div>
           </div>
+
+          {/* <div className="ring-slider-container ">
+            <Swiper
+              ref={swiperRef}
+              modules={[Navigation]}
+              slidesPerView={5}
+              spaceBetween={10}
+              centeredSlides={true}
+              loop={true}
+              loopedSlides={ringData.length}
+              watchSlidesProgress={true}
+              speed={600}
+              initialSlide={2}
+              slideToClickedSlide={true}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              breakpoints={{
+                320: { slidesPerView: 1, spaceBetween: 10 },
+                768: { slidesPerView: 3, spaceBetween: 60 },
+                1024: { slidesPerView: 5, spaceBetween: 10 },
+              }}
+              className="swiper"
+            >
+              {ringData.map((item, index) => (
+                <SwiperSlide key={index} className="swiper-slide">
+                  <img src={item.image} alt={item.title} />
+                  <h2>{item.title}</h2>
+                  <p>{item.description}</p>
+                </SwiperSlide>
+              ))}
+              <div className="swiper-button-prev"></div>
+              <div className="swiper-button-next"></div>
+            </Swiper>
+
+            <img src={bgImage} alt="" className="bg" />
+            <img src={bgImage2} alt="" className="bg2" />
+          </div> */}
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd asxs_sdxszx">
-          <span className="category_name">New Arrivals</span>
+          <span className="category_name mt-2">New Arrivals</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
-          <img src={require("../../Images/Groupimg.png")} />
+          <img
+            src={require("../../Images/Groupimg.png")}
+            className="home_tag_img"
+          />
 
           <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd ">
             <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
@@ -1332,7 +1485,7 @@ const Home = () => {
         {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Gifting Guide</span>
         <p className="category_txt">Jewelry makes the perfect gift</p>
-        <img src={require("../../Images/Groupimg.png")} />
+        <img src={require("../../Images/Groupimg.png")} className="home_tag_img"/>
 
         <div className="pt-5 d-flex position-relative w-100 justify-content-center">
           <div className=" position-relative box-trens-2 w-25 ">
@@ -1451,7 +1604,7 @@ const Home = () => {
         {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Client Testimonial</span>
         <p className="category_txt">What our Client’s say about us</p>
-        <img src={require("../../Images/Groupimg.png")} />
+        <img src={require("../../Images/Groupimg.png")} className="home_tag_img"/>
 
         <div className="pt-5 container d-flex position-relative w-100 justify-content-between gap-3">
           <div className="card testimonial-card mt-5">
@@ -1547,31 +1700,34 @@ const Home = () => {
             <FaAngleLeft />
           </button>
 
-          <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd" style={{paddingTop:"4rem"}}>
-            <span className="category_name">Client Testimonial</span>
+          <div
+            className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
+            style={{ paddingTop: "4rem" }}
+          >
+            <span className="category_name mt-2">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
             <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
 
             <Swiper
-               grabCursor={true}
-               loop={true} 
-               slidesPerView={slidesPerView}
-               slidesPerGroup={1}
-               loopedSlides={testimonials.length} 
-               modules={[Pagination, Autoplay]}
-               autoplay={{ delay: 3000, disableOnInteraction: false }}
-               observer={true}   // Observe changes
-               observeParents={true}   // Observe parent element changes
-               onSwiper={(swiper) => (swiperRef.current = swiper)}
-               className="swiper_testimonial container"
-             
+              grabCursor={true}
+              loop={true}
+              slidesPerView={slidesPerView}
+              slidesPerGroup={1}
+              loopedSlides={testimonials.length}
+              modules={[Pagination, Autoplay]}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              observer={true} // Observe changes
+              observeParents={true} // Observe parent element changes
+              onSwiper={(swiper) => (swiperRef.current = swiper)}
+              className="swiper_testimonial container"
             >
               {[...testimonials, ...testimonials, ...testimonials].map(
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                        } mt-5`}
+                      className={`card testimonial-card${
+                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                      } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
