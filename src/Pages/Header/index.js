@@ -23,6 +23,10 @@ import RegisterPopup from "../../Components/RegisterPopup";
 const Header = ({ openCart }) => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
+const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
+const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
+
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -90,6 +94,9 @@ const Header = ({ openCart }) => {
               <span className="acco9_text w-100">Account</span>
             </div>
           </div>
+          {isSignupPopupOpen && (
+            <SignInPopup isOpen={isSignupPopupOpen} onClose={() => setIsSignupPopupOpen(false)} />
+          )}
           {/* <div><CiSearch size={25} /></div> */}
           <div><CiHeart size={25} /></div>
           <div><IoBagHandleOutline size={25} onClick={openCart}/></div>

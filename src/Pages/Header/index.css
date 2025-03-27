@@ -180,6 +180,8 @@
   }
 
 }
+
+
 /* @media (max-width: 767px) {
   .hedr_sss{
     padding-right: 9rem;
@@ -372,4 +374,12 @@
   .input-group1{
     width: 43% !important;
   }
+}
+
+@media (max-width:375px) {
+  .hedr_sss img {
+    max-width: 160px;
+    height: auto;
+  }
+  
 }
