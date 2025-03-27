@@ -102,6 +102,7 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
           <div><IoBagHandleOutline size={25} onClick={openCart}/></div>
         </div>
       </div>
+      
       <div className="dsn_mdcm">
         <div
           className="d-flex align-items-center justify-content-center jhdb_dhvh pt-1 pb-1 mt-2"
