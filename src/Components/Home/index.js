@@ -1215,30 +1215,30 @@ const Home = () => {
           />
 
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
-          <div className="pt-4 container djb_dsjvn">
+          <div className="pt-4 container djb_dsjvn mx-2">
             <div className="row justify-content-center scc_gift_edit_sdsd gap-2">
-              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
+              <div className="d-flex flex-column align-items-center gap-3  offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
+              <div className="d-flex flex-column align-items-center gap-3  offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
+              <div className="d-flex flex-column align-items-center gap-3  offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3 sdcxsdc_asxzas offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
+              <div className="d-flex flex-column align-items-center gap-3  offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">

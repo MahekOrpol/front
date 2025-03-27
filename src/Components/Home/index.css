@@ -2608,6 +2608,11 @@ img.ring-image {
   }
 } */
 
+@media(max-width:576px){
+  .hnbgygjhh {
+    height: 581px !important;
+}
+}
 .video_new_arrr {
   border-radius: 10px;
 }
@@ -2796,9 +2801,6 @@ img.ring-image {
     -o-border-radius: 4px;
 }
 
-.hnbgygjhh{
-  height: 723px !important;
-}
 }
 @media (max-width: 375px) {
   .sdcs_ASxsax_dfrvdxf {
@@ -2886,7 +2888,6 @@ img.ring-image {
     -o-border-radius: 4px;
 }
 .hnbgygjhh{
-  height: 723px !important;
   padding-left: .5rem;
 }
 .category_name {
@@ -2904,11 +2905,6 @@ img.ring-image {
 }
 }
 
-@media (min-width:574px) and (max-width:600px) {
-  .hnbgygjhh{
-    height: 723px !important;
-  }
-}
 @media (max-width: 425px) and (min-width:375px) {
  .fvdvdf_Ththgf{
   flex-direction: column;
@@ -2936,9 +2932,6 @@ img.ring-image {
 
  }
 
- .hnbgygjhh{
-  height: 723px !important;
-}
 }
 
 @media (max-width: 1258px) {
@@ -3621,6 +3614,12 @@ img.ring-image {
     object-fit: contain;
 }
 
+}
+
+@media(max-width:425px){
+  .cart-popup {
+    width:100% !important;
+  }
 }
 @media (max-width:524px) and (min-width:425px) {
   .ring-slider-container .swiper-wrapper{
