@@ -614,6 +614,20 @@ const Home = () => {
                   Shop Now
                 </button>
               </div>
+<<<<<<< Updated upstream
+=======
+              <span className="txt_par">
+                Diamonds come in a variety of shapes, each offering unique
+                beauty and appeal.
+                <br /> Here’s a guide to different shapes of diamond rings
+              </span>
+              <button
+                className="spg_nb_sle"
+                style={{ whiteSpace: "nowrap" }}
+              >
+                Shop Now
+              </button>
+>>>>>>> Stashed changes
             </div>
           </div>
 

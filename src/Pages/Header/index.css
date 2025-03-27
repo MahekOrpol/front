@@ -221,6 +221,19 @@
     font-family: "Cabin", sans-serif;
     cursor: pointer;
   }
+<<<<<<< Updated upstream
+=======
+
+  .sdk {
+    padding-right: 0% !important;
+    padding-left: 0% !important;
+  }
+
+  /* .sdchy_88__sxsxs {
+   
+    border: 1px solid #A1A1A1;
+  } */
+>>>>>>> Stashed changes
   
   .sign_txt {
     font-size: 14px;
@@ -233,7 +246,7 @@
     gap: 30px !important;
   }
   .sdcsd_ss_ddd {
-    padding: 1rem;
+    padding: 0.5rem;
   }
 }
 @media (max-width: 1293px) and (min-width: 1101px) {
@@ -247,9 +260,21 @@
     font-family: "Cabin", sans-serif;
     cursor: pointer;
   }
+<<<<<<< Updated upstream
   .sdchy_88__sxsxs {
-    width: 27%;
+=======
+
+  .sdk {
+    padding-right: 0% !important;
+    padding-left: 0% !important;
   }
+
+  /* .sdchy_88__sxsxs {
+    
+    border: 2px solid #A1A1A1;
+>>>>>>> Stashed changes
+    width: 27%;
+  } */
 
   .sign_txt {
     font-size: 12px;
@@ -276,10 +301,11 @@
     font-family: "Cabin", sans-serif;
     cursor: pointer;
   }
-  .sdchy_88__sxsxs {
+
+  /* .sdchy_88__sxsxs {
     margin-left: 7rem;
     width: 27%;
-  }
+  } */
   .sign_txt {
     font-size: 18px;
   }
@@ -293,6 +319,9 @@
     padding: 0.6rem;
   }
 
+  /* .sdcsd_ss_ddd {
+    padding: 1rem;
+  } */
 }
 
 @media (min-width: 1441px) and (max-width: 1526px) {
@@ -302,6 +331,7 @@
  
 }
 
+<<<<<<< Updated upstream
 .dcxde_asx485{
   justify-content: center;
 }
@@ -315,3 +345,50 @@
 
 
 
+=======
+.hedr_sss {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  cursor: pointer;
+}
+
+.hedr_sss img {
+  max-width: 180px;
+  height: auto;
+}
+
+.user_icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user_icon img {
+  width: 27%;
+  height: auto;
+}
+
+.sign_txt {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.acco9_text {
+  font-size: 19px;
+  color: black;
+}
+
+.input-group1 {
+  display: flex;
+  align-items: center;
+  width: 25% !important;
+  max-width: 100%;
+}
+
+@media(min-width:992px) and (max-width:1024px){
+  .input-group1{
+    width: 43% !important;
+  }
+}
+>>>>>>> Stashed changes

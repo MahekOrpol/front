@@ -598,6 +598,7 @@ video {
     width: 50% !important;
   }
 
+<<<<<<< Updated upstream
   .testimonial-container .swiper-wrapper {
     display: flex;
     transition-timing-function: ease-in-out !important;
@@ -642,6 +643,8 @@ video {
     width: 50% !important;
   }
 
+=======
+>>>>>>> Stashed changes
   .testimonial-container .swiper-wrapper {
     display: flex;
     transition-timing-function: ease-in-out !important;
@@ -1801,7 +1804,11 @@ img.ring-image {
 
 @media(max-width:991px) {
   .paddingdn {
+<<<<<<< Updated upstream
     padding-top: 3rem !important;
+=======
+    padding-top: 2.5rem;
+>>>>>>> Stashed changes
   }
 }
 @media(max-width:600px) {
@@ -2474,6 +2481,12 @@ img.ring-image {
     width: 100% !important;
   }
 
+<<<<<<< Updated upstream
+=======
+  .sdcxsdc_asxzas {
+    width: 33.33333% !important;
+  }
+>>>>>>> Stashed changes
 }
 
 @media (max-width: 670px) and (min-width: 600px) {
@@ -2493,6 +2506,12 @@ img.ring-image {
     width: 100% !important;
   }
 
+<<<<<<< Updated upstream
+=======
+  .sdcxsdc_asxzas {
+    width: 48% !important;
+  }
+>>>>>>> Stashed changes
 }
 
 @media (max-width: 599px) and (min-width: 426px) {
@@ -2512,6 +2531,12 @@ img.ring-image {
     width: 100% !important;
   }
 
+<<<<<<< Updated upstream
+=======
+  .sdcxsdc_asxzas {
+    width: 48% !important;
+  }
+>>>>>>> Stashed changes
 }
 
 @media (max-width: 425px) {
@@ -2541,6 +2566,12 @@ img.ring-image {
     padding-top: 1rem !important;
   }
 
+<<<<<<< Updated upstream
+=======
+  .sdcxsdc_asxzas {
+    width: 100% !important;
+  }
+>>>>>>> Stashed changes
 }
 
 @media (min-width: 991px) {
@@ -2611,12 +2642,22 @@ img.ring-image {
   overflow: auto;
 } */
 
+<<<<<<< Updated upstream
 /* .djb_dsjvn{
   padding: 0;
     width: 92%;
     margin: 0 auto;
 } */
 /* .scc_gift_edit_sdsd {
+=======
+.djb_dsjvn {
+  padding: 0;
+  width: 92% !important;
+  margin: 0 auto;
+}
+
+.scc_gift_edit_sdsd {
+>>>>>>> Stashed changes
   display: flex;
   flex-wrap: nowrap !important;
   width: 100%;
