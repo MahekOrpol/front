@@ -51,27 +51,32 @@ const images = [
 
 const ringData = [
   {
-    image: require("../../Images/Frame 197.png"),
+    image: require("../../Images/Frame 197 (1).png"),
     title: "Classic Ring",
     description: "Timeless elegance in its purest form",
   },
   {
-    image: require("../../Images/Frame 197.png"),
+    image: require("../../Images/Frame 197 (1).png"),
     title: "Nature Ring",
     description: "Inspired by natural beauty",
   },
   {
-    image: require("../../Images/Frame 197.png"),
+    image: require("../../Images/Frame 197 (1).png"),
     title: "Hidden Halo",
     description: "Intriguing brilliance from a concealed halo",
   },
   {
-    image: require("../../Images/Frame 197.png"),
+    image: require("../../Images/Frame 197 (1).png"),
     title: "Solitaire",
     description: "Simple sophistication that speaks volumes",
   },
   {
-    image: require("../../Images/Frame 197.png"),
+    image: require("../../Images/Frame 197 (1).png"),
+    title: "Emerald Ring",
+    description: "Modern elegance with vintage appeal",
+  },
+  {
+    image: require("../../Images/Frame 197 (1).png"),
     title: "Emerald Ring",
     description: "Modern elegance with vintage appeal",
   },
@@ -802,7 +807,7 @@ const Home = () => {
             </div>
           )}
 
-          {/* {value === "2" && (
+          {value === "2" && (
             <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {bestSelling.map((product) => (
@@ -811,7 +816,7 @@ const Home = () => {
                     className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
                   >
                     <div className="card prio_card scdscsed_sdss">
-                      <div className="card-image-wrapper position-relative">+
+                      <div className="card-image-wrapper position-relative">
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
                           SALE
                         </button>
@@ -869,9 +874,9 @@ const Home = () => {
                 ))}
               </div>
             </div>
-          )} */}
+          )} 
 
-          {value === "2" && (
+          {/* {value === "2" && (
             <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
                 {topRated.map((product) => (
@@ -880,14 +885,11 @@ const Home = () => {
                     className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
                   >
                     <div className="card prio_card scdscsed_sdss">
-                      {/* Image Wrapper with position-relative */}
                       <div className="card-image-wrapper position-relative">
-                        {/* SALE Badge */}
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
                           SALE
                         </button>
 
-                        {/* Favorite Icon */}
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
                           onClick={() => toggleFavorite(product.id)}
@@ -900,7 +902,6 @@ const Home = () => {
                           )}
                         </div>
 
-                        {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
                             src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
@@ -911,7 +912,6 @@ const Home = () => {
                       </div>
                     </div>
 
-                    {/* Product Details */}
                     <div className="d-flex flex-column main_cdsss">
                       <span className="mikdec_asdaa pt-3 text-truncate">
                         {product.productName}
@@ -943,7 +943,7 @@ const Home = () => {
                 ))}
               </div>
             </div>
-          )}
+          )} */}
           {value === "3" && (
             <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
@@ -1304,7 +1304,7 @@ const Home = () => {
             className="home_tag_img"
           />
 
-          <div className="rings-container home_ring_1">
+          {/* <div className="rings-container home_ring_1">
             <div className="rings-row">
               {getVisibleRings().map((ring, index) => (
                 <div
@@ -1372,14 +1372,14 @@ const Home = () => {
             <div onClick={nextSlide}>
               <FaAngleRight size={25} />
             </div>
-          </div>
+          </div> */}
 
-          {/* <div className="ring-slider-container ">
+          <div className="ring-slider-container ">
             <Swiper
               ref={swiperRef}
               modules={[Navigation]}
-              slidesPerView={5}
-              spaceBetween={10}
+              slidesPerView={20}
+              spaceBetween={0}
               centeredSlides={true}
               loop={true}
               loopedSlides={ringData.length}
@@ -1393,9 +1393,12 @@ const Home = () => {
               }}
               breakpoints={{
                 320: { slidesPerView: 1, spaceBetween: 10 },
-                768: { slidesPerView: 3, spaceBetween: 60 },
-                1024: { slidesPerView: 5, spaceBetween: 10 },
+                525: { slidesPerView: 3, spaceBetween: 10 },
+                768: { slidesPerView: 3, spaceBetween: 0 },
+                1024: { slidesPerView: 5, spaceBetween: 20 },
+                1700: { slidesPerView: 5, spaceBetween: 20 },
               }}
+              
               className="swiper"
             >
               {ringData.map((item, index) => (
@@ -1411,11 +1414,11 @@ const Home = () => {
 
             <img src={bgImage} alt="" className="bg" />
             <img src={bgImage2} alt="" className="bg2" />
-          </div> */}
+          </div> 
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd asxs_sdxszx">
-          <span className="category_name mt-2">New Arrivals</span>
+        <div className="paddingdn d-flex flex-column align-items-center mt-2 asxs_sdxszx dxfcvdfsCV_ss">
+          <span className="category_name mt-0">New Arrivals</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img
             src={require("../../Images/Groupimg.png")}
