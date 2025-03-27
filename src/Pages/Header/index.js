@@ -105,6 +105,7 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
       <div className="dsn_mdcm">
         <div
           className="d-flex align-items-center justify-content-center jhdb_dhvh pt-1 pb-1 mt-2"
+          
           style={{ borderTop: "1px solid #797979" }}
         >
           <div
