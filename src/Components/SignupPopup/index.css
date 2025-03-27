@@ -122,8 +122,13 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         padding: 2px 0;
         text-align: left;
+<<<<<<< Updated upstream
         bottom: 6%;
         right: 2%;
+=======
+        bottom: 12%;
+        right: 5%;
+>>>>>>> Stashed changes
     }
 
     .profile-pic {
