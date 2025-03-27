@@ -29,7 +29,6 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/add_to_cart" element={<CartPopup />} />
 
-  s
       </Routes>
     </BrowserRouter>
   );
