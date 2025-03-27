@@ -11,7 +11,7 @@ import AboutUs from './Components/About Us';
 import CartPopup from './Components/Add to Cart';
 import CheckoutPage from './Components/Check Out';
 import EditProfile from './Components/EditProfile';
-// import OrderDetails from './Components/Order';
+import OrderDetails from './Components/Order';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/Editprofile" element={<EditProfile />} />
-        {/* <Route path="/Order" element={<OrderDetails />} /> */}
+        <Route path="/Order" element={<OrderDetails />} />
         <Route path="/product-details" element={<ProductDetails />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog-details" element={<BlogDetails />} />

@@ -41,8 +41,9 @@
     width: 60%;
     padding: 26px;
     text-align: center;
+     overflow: scroll;
+    scrollbar-width: none;
 }
-
 .form-header {
     display: flex;
     justify-content: space-evenly;

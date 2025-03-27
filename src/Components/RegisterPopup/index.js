@@ -47,7 +47,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
               </Box>
 
               {/* Login Panel */}
-              <TabPanel value="login">
+              <TabPanel className="scroll_dcb" value="login">
                 <p className="register-text"><strong>Login using your Email and Password</strong></p>
                 <p className="register-subtext">For the purpose of industry registration, your details are required and will be stored.</p>
                 <form>
@@ -86,7 +86,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
               </TabPanel>
 
               {/* Register Panel */}
-              <TabPanel value="register">
+              <TabPanel className="scroll_dcb" value="register">
                 <p className="register-text"><strong>Don’t have an Account?</strong></p>
                 <p className="register-subtext">For the purpose of industry registration, your details are required and will be stored.</p>
                 <form>
