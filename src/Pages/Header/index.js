@@ -103,12 +103,36 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
         </div>
       </div>
       <div className="dsn_mdcm">
-        <div className="d-flex align-items-center justify-content-center jhdb_dhvh pt-2 mt-2" style={{ borderTop: "1px solid #797979" }}>
-          <div className="header_list_tcty mx-4 my-2" onClick={() => handleCategoryClick('Rings')}>Rings</div>
-          <div className="header_list_tcty mx-4 my-2" onClick={() => handleCategoryClick('Earrings')}>Earrings</div>
-          <div className="header_list_tcty mx-4 my-2" onClick={() => handleCategoryClick('Pendant')}>Pendant</div>
-          <div className="header_list_tcty mx-4 my-2" onClick={() => handleCategoryClick('Bracelet')}>Bracelet</div>
-          <div className="header_list_tcty mx-4 my-2" onClick={() => setIsProfilePopupOpen(!isProfilePopupOpen)}>Custom Jewellery</div>
+        <div
+          className="d-flex align-items-center justify-content-center jhdb_dhvh pt-1 pb-1 mt-2"
+          style={{ borderTop: "1px solid #797979" }}
+        >
+          <div
+            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+            onClick={() => handleCategoryClick("Rings")}
+          >
+            <img src={ring} width={25}/> Rings
+          </div>
+          <div
+            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+            onClick={() => handleCategoryClick("Earrings")}
+          >
+            <img src={earing} width={25}/> Earrings
+          </div>
+          <div
+            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+            onClick={() => handleCategoryClick("Pendant")}
+          >
+           <GiGemPendant  size={20}/> Pendant
+          </div>
+          <div
+            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+            onClick={() => handleCategoryClick("Bracelet")}
+          >
+           <img src={bracelet} width={25}/> Bracelet
+          </div>
+          <div className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2">
+          <img src={csome} width={20}/> Custom Jewellery</div>
         </div>
       </div>
       {/* <div style={{ borderTop: "1px solid #797979",margin:"5px" }}></div> */}
