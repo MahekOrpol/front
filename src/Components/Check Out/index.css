@@ -871,3 +871,50 @@ html, body {
         padding-top: 10px;
     }
 }
+
+
+@media(max-width:768px) {
+    .wered {
+        width: 19%;
+    }
+}
+@media(max-width:425px) {
+    .wered {
+        width: 38%;
+    }
+    .left-container {
+        padding-top: 10px;
+    }
+}
+.form-check-input:checked {
+    background-color: #611D2B;
+    border-color: #611D2B;
+}
+
+.form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: .15em;
+    vertical-align: top;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid rgba(0,0,0,.25);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+}
+
+@media (min-width:991px) {
+    .check_outpgedetail{
+        width: 15%;
+    }
+}
+@media(max-width:1024px) {
+    .wered {
+        width: 15%;
+    }
+}

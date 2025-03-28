@@ -16,6 +16,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   const [showChangePass, setShowChangePass] = useState(false);
 
   if (!isOpen) return null;
+    if (!isOpen) return null;
   if (showForgotPass) {
     return <ForgotPass isOpen={showForgotPass} onClose={() => {
       setShowForgotPass(false);
@@ -28,6 +29,18 @@ const RegisterPopup = ({ isOpen, onClose }) => {
       onClose();
     }} />;
   }
+  // Login form state
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [loginErrors, setLoginErrors] = useState({});
+
+  // Register form state
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [registerErrors, setRegisterErrors] = useState({});
 
 
   const handleOverlayClick = (e) => {
@@ -179,34 +192,43 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                 </Tabs>
               </Box>
 
-              {/* Login Panel */}
-              <Slide direction="right" in={tabValue === "login"} timeout={500}>
 
-              <TabPanel value="login">
-                <p className="register-text"><strong>Login using your Email and Password</strong></p>
-                <p className="register-subtext">For the purpose of industry registration, your details are required and will be stored.</p>
-                <form>
-                  <TextField
-                    label="E-mail"
-                    variant="outlined"
-                    fullWidth
-                    margin="normal"
-                  />
-                  <TextField
-                    label="Password"
-                    variant="outlined"
-                    fullWidth
-                    type="password"
-                    margin="normal"
-                  />
+              {/* <Fade in={tabValue === "login"} timeout={500}> */}
+              <Slide direction="left" in={tabValue === "login"} timeout={500}>
 
-                  <div className="d-flex justify-content-between">
-                    <div className="remember-me-container">
-                      <input type="checkbox" id="remember-me" />
-                      <label htmlFor="remember-me" className="remember-me-label">Remember me</label>
+                <TabPanel value="login">
+                  <p className="register-text"><strong>Login using your Email and Password</strong></p>
+                  <p className="register-subtext">For the purpose of industry registration, your details are required and will be stored.</p>
+                  <form onSubmit={handleLoginSubmit}>
+                    <TextField
+                      label="E-mail"
+                      variant="outlined"
+                      fullWidth
+                      margin="normal"
+                      value={loginEmail}
+                      onChange={(e) => setLoginEmail(e.target.value)}
+                      error={!!loginErrors.email}
+                      helperText={loginErrors.email}
+                    />
+                    <TextField
+                      label="Password"
+                      variant="outlined"
+                      fullWidth
+                      type="password"
+                      margin="normal"
+                      value={loginPassword}
+                      onChange={(e) => setLoginPassword(e.target.value)}
+                      error={!!loginErrors.password}
+                      helperText={loginErrors.password}
+                    />
+                    <div className="d-flex justify-content-between">
+                      <div className="remember-me-container">
+                        <input type="checkbox" id="remember-me" />
+                        <label htmlFor="remember-me" className="remember-me-label">Remember me</label>
+                      </div>
+                      <p className="hrdd" onClick={() => setShowForgotPass(true)} style={{cursor:"pointer"}}>Forgot Password</p>
+
                     </div>
-                    <p className="hrdd" onClick={() => setShowForgotPass(true)} style={{cursor:"pointer"}}>Forgot Password</p>
-                  </div>
 
                     <p className="otre1">By Continuing, I agree to <span className="hrdd"> Terms of Use </span> & <span className="hrdd">Privacy Policy</span></p>
 

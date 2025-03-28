@@ -4,6 +4,8 @@ import { Form, Row, Col } from "react-bootstrap";
 import logo from "../../Images/logo.png";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
+import { useLocation } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
