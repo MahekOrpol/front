@@ -36,6 +36,8 @@ const Products = () => {
 
   const [isCartOpen, setIsCartOpen] = useState(false);
 
+  const [imageIndexes, setImageIndexes] = useState({});
+
   const openCart = () => {
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
@@ -54,11 +56,31 @@ const Products = () => {
 
       const response = await axios.get(url);
       setProductList(response.data);
-    };
+
+      const initialIndexes = {};
+        response.data.forEach((product) => {
+          initialIndexes[product.id] = 0;
+        });
+        setImageIndexes(initialIndexes);
+      };
 
     fetchProducts();
   }, [categoryName, gender]);
 
+  const handleNextImage = (productId, images) => {
+    setImageIndexes((prevIndex) => ({
+      ...prevIndex,
+      [productId]: (prevIndex[productId] + 1) % images.length,
+    }));
+  };
+
+  const handlePrevImage = (productId, images) => {
+    setImageIndexes((prevIndex) => ({
+      ...prevIndex,
+      [productId]: (prevIndex[productId] - 1 + images.length) % images.length,
+    }));
+  };
+  
   const handlePriceChange = (event, index) => {
     const newValue = Number(event.target.value);
     setPriceRange((prev) => {
@@ -103,6 +125,42 @@ const Products = () => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
 
+  const addToCart = async (product) => {
+    try {
+      const userId = localStorage.getItem("user_Id");
+      const productSize = Array.isArray(product?.productSize)
+        ? product.productSize.join(",")
+        : product?.productSize || "";
+      // Define the payload for the API request
+      const payload = {
+        userId: userId,
+        productId: product?.id,
+        productPrice: product.salePrice?.$numberDecimal,
+        quantity: product?.quantity || 1,
+        productSize: productSize,
+        discount: product?.discount?.$numberDecimal || 0,
+      };
+
+      // Make the API request
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/order-details/create",
+        payload,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Product added to cart successfully:", response.data);
+        openCart(); // Open cart after successful addition
+      } else {
+        console.error("Failed to add product to cart:", response);
+      }
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    }
+  };
+  
 
   return (
     <>
@@ -352,16 +410,20 @@ const Products = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            // src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`https://crystova.cloudbusiness.cloud${product.image[imageIndexes[product.id]]}`}
+
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
                           {hoveredProduct === product.id && (
                             <div className="hover-overlay w-100 d-flex">
-                              <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3">
+                              <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"  onClick={() => handlePrevImage(product.id, product.image)}
+                              >
                                 <FaChevronLeft />
                               </button>
-                              <button className="btn btn-light right-btn">
+                              <button className="btn btn-light right-btn" onClick={() => handleNextImage(product.id, product.image)}
+                              >
                                 <FaChevronRight />
                               </button>
                             </div>
@@ -385,7 +447,7 @@ const Products = () => {
                       </div>
                       {hoveredProduct === product.id && (
                         <div className="hover-overlay DFC_NHJ w-100 d-flex">
-                          <button className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3" onClick={openCart}>
+                          <button className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3" onClick={() => addToCart(product)}>
                             Add to Cart <BiShoppingBag size={25} />
                           </button>
                           {/* <p className="mt-1"> */}

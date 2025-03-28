@@ -1,118 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { GoTrash } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 
-const CartPopup = ({ isOpen, items = [], closeCart, updateCart }) => {
+const CartPopup = ({ isOpen, closeCart }) => {
   const navigate = useNavigate();
+  const [orderDetails, setOrderDetails] = useState([]);
+
 
   const handleQuantityChange = (index, change) => {
-    const updatedItems = items.map((item, i) =>
-      i === index
-        ? { ...item, quantity: Math.max(1, item.quantity + change) }
-        : item
+    const updatedItems = orderDetails.map((item, i) =>
+      i === index ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
     );
-    updateCart(updatedItems); // Update parent state
-  };
+    setOrderDetails(updatedItems);
+  }; 
+
+  useEffect(() => {
+    if (isOpen) {
+      getOrderDetails();
+    }
+  }, [isOpen]);
 
   const handleRemoveItem = (index) => {
-    const updatedItems = items.filter((_, i) => i !== index);
-    updateCart(updatedItems);
+    const updatedItems = orderDetails.filter((_, i) => i !== index);
+    setOrderDetails(updatedItems);
     // closeCart();
   };
 
   // Function to calculate total price
+  // const calculateTotal = () => {
+  //   return orderDetails
+  //     .reduce(
+  //       (total, item) =>
+  //         total +
+  //         parseFloat(item.salePrice?.$numberDecimal || 0) * item.productId.quantity,
+  //       0
+  //     )
+  //     .toFixed(2);
+  // };
+
   const calculateTotal = () => {
-    return items
+    return orderDetails
       .reduce(
         (total, item) =>
           total +
-          parseFloat(item.salePrice?.$numberDecimal || 0) * item.quantity,
+          parseFloat(item.productId.salePrice?.$numberDecimal || 0) * item.quantity,
         0
       )
       .toFixed(2);
   };
+  
+  const getOrderDetails = async () => {
+    const userId = localStorage.getItem("user_Id");
+
+    const res = await axios.get(
+      `https://crystova.cloudbusiness.cloud/api/v1/order-details/get/${userId}`
+    );
+
+    setOrderDetails(res.data.data);
+  };
 
   if (!isOpen) return null;
-  
 
-  // const checkOut = async () => {
-  //   try {
-  //     const response = await axios(
-  //       "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ items }),
-  //       }
-  //     );
-
-  //     if (!response.ok) {
-  //       throw new Error("Failed to checkout the cart");
-  //     }
-
-  //     // Clear the cart
-  //     updateCart([]);
-
-  //     // Redirect to checkout page
-  //     navigate("/checkout");
-  //     closeCart();
-  //   } catch (error) {}
-  // };
-
-  const checkOut = async () => {
-    try {
-   
-      const userId = localStorage.getItem("userId");
-console.log("User ID:", userId);
-
-  
-// const userId = localStorage.getItem("userId");
-
-// if (!userId) {
-//   console.error("User is not logged in. Redirecting to login...");
-//   navigate("/login"); // Redirect user to login page
-//   return;
-// }
-
-const formattedItems = items.map((item) => ({
-  productId: item.productId || item.id, // Ensure correct mapping
-  productPrice: parseFloat(item.salePrice?.$numberDecimal || item.salePrice || 0),
-  quantity: item.quantity,
-  productSize: item.selectedSize || 9,
-  discount: parseFloat(item.discount?.$numberDecimal || item.discount || 0),
-}));
-console.log("Cart Items before formatting:", items);
-
-const response = await axios.post(
-  "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
-  {
-    userId,
-    products: formattedItems,
-  },
-  {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }
-);
-
-      if (response.status === 200) {
-        updateCart([]);
-        navigate("/checkout");
-        closeCart();
-      } else {
-        console.error("Checkout failed:", response);
-      }
-    } catch (error) {
-      console.error("Checkout error:", error);
-    }
-  };
-  
   return (
     <div className={`cart-popup ${isOpen ? "open" : ""}`}>
       <div className="cart-header d-flex justify-content-between align-items-center">
@@ -121,29 +72,36 @@ const response = await axios.post(
       </div>
 
       <div className="cart-items-bg">
-        {items.length > 0 ? (
-          items.map((item, index) => (
-            <div key={index} className="cart-item d-flex flex-column align-items-center">
-              <img src={`https://crystova.cloudbusiness.cloud${item.image[0]}`} alt={item.name} />
+        {orderDetails?.length > 0 ? (
+          orderDetails.map((item, index) => (
+            <div
+              key={index}
+              className="cart-item d-flex flex-column align-items-center"
+            >
+              <img
+                src={`https://crystova.cloudbusiness.cloud${item.productId.image?.[0]}`}
+                alt={item.productId.productName}
+                style={{borderRadius:'24px',width:'100%'}}
+              />
               <div className="cart_item_detail">
-                <h5 className="fw-bold mb-1">{item.productName}</h5>
+                <h5 className="fw-bold mb-1">{item.productId.productName}</h5>
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center w-100">
                     <p className="m-0">Ring Size :</p>
                     <select className="dropdown_size w-50 p-1">
-                      {Array.isArray(item.productSize) &&
-                        item.productSize.map((size, i) => (
-                          <option key={i}>
-                            {size.toString().replace(/[\[\]]/g, "")}
-                          </option>
-                        ))}
+                      {JSON.parse(item.productId?.productSize).map(
+                        (size, i) => (
+                          <option key={i}>{size}</option>
+                        )
+                      )}
                     </select>
                   </div>
                   <p className="fw-bold m-0">
                     ₹
                     {(
-                      parseFloat(item.salePrice?.$numberDecimal || 0) *
-                      item.quantity
+                      parseFloat(
+                        item.productId.salePrice?.$numberDecimal || 0
+                      ) * parseInt(item.quantity)
                     ).toFixed(2)}
                   </p>
                 </div>
@@ -178,18 +136,13 @@ const response = await axios.post(
         )}
       </div>
 
-      {items.length > 0 && (
+      {orderDetails.length > 0 && (
         <div className="cart-footer">
           <div className="d-flex align-items-center justify-content-between my-2">
             <h5 className="fw-bold">Total:</h5>
             <h5 className="fw-bold">₹{calculateTotal()}</h5>
           </div>
-          <button
-            className="btn btn_check_out w-100"
-            onClick={() => checkOut()}
-          >
-            Secure Checkout
-          </button>
+          <button className="btn btn_check_out w-100">Secure Checkout</button>
         </div>
       )}
     </div>

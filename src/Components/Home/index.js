@@ -40,6 +40,7 @@ import ringVideo2 from "../../Videos/dfvdfvd.mp4";
 import ringVideo3 from "../../Videos/sdcsdcdfc.mp4";
 import ringVideo4 from "../../Videos/sdcxdscx.mp4";
 import ringVideo5 from "../../Videos/dsfcdfc.mp4";
+import JewelrySale from "../Contact Us/sdcsd/demo";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -132,27 +133,46 @@ const Home = () => {
   const [topRated, setTopRated] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
 
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
   };
 
   // Function to add an item to the cart
-  const addToCart = (product) => {
-    setCartItems((prevCart) => {
-      // Check if item already exists in cart
-      const exists = prevCart.some((item) => item.id === product.id);
+  const addToCart = async (product) => {
+    try {
+      const userId = localStorage.getItem("user_Id");
+      const productSize = Array.isArray(product?.productSize)
+        ? product.productSize.join(",")
+        : product?.productSize || "";
+      // Define the payload for the API request
+      const payload = {
+        userId: userId,
+        productId: product?.id,
+        productPrice: product.salePrice?.$numberDecimal,
+        quantity: product?.quantity || 1,
+        productSize: productSize,
+        discount: product?.discount?.$numberDecimal || 0,
+      };
 
-      if (!exists) {
-        // If item is not in the cart, add it with quantity 1
-        return [...prevCart, { ...product, quantity: 1 }];
+      // Make the API request
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/order-details/create",
+        payload,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Product added to cart successfully:", response.data);
+        openCart(); // Open cart after successful addition
+      } else {
+        console.error("Failed to add product to cart:", response);
       }
-
-      return prevCart;
-    });
-
-    openCart();
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+    }
   };
 
   useEffect(() => {
@@ -190,11 +210,6 @@ const Home = () => {
     setIsCartOpen(false);
     document.body.classList.remove("no-scroll");
   };
-
-  useEffect(() => {
-    console.log("Cart open state:", isCartOpen);
-    console.log("cartItemse:", cartItems);
-  }, [isCartOpen, cartItems]);
 
   const addWishlist = async (productId) => {
     try {
@@ -293,11 +308,11 @@ const Home = () => {
       }
     };
 
-    updateSlidesPerView(); // Run on mount
+    updateSlidesPerView();
     window.addEventListener("resize", updateSlidesPerView);
 
     return () => window.removeEventListener("resize", updateSlidesPerView);
-  }, [slidesPerView]); // Dependency to prevent infinite re-renders
+  }, [slidesPerView]);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -380,19 +395,15 @@ const Home = () => {
 
   return (
     <>
-      <CartPopup
-        isOpen={isCartOpen}
-        items={cartItems}
-        closeCart={closeCart}
-        updateCart={setCartItems}
-      />
+      <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
 
         <div>
           {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
-          <div className="hoe_page_main_bvannei"></div>
+          {/* <div className="hoe_page_main_bvannei"></div> */}
+          <JewelrySale />
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd container p-0 mt-sm-3">
@@ -438,81 +449,6 @@ const Home = () => {
               ))}
             </Swiper>
           </div>
-          {/* <div className="row  container">
-            <Swiper
-              spaceBetween={10}
-              // navigation={true}
-              // autoplay={{
-              //   delay: 2000,
-              //   disableOnInteraction: false,
-              // }}
-              loop={true}
-              // modules={[Autoplay]}
-              breakpoints={{
-                0: { slidesPerView: 2 },
-                576: { slidesPerView: 5 },
-                768: { slidesPerView: 6 },
-                992: { slidesPerView: 6 },
-                1200: { slidesPerView: 6 },
-              }}
-              className="mySwiper xfvdxfvdfv"
-            >
-              <SwiperSlide className="slide_ssssss">
-                <div className="d-flex flex-column align-items-center">
-                  <img
-                    src={require("../../Images/Group 1597884634 (1).png")}
-                    className="shadow-none border-0 home_img_ssssss"
-                  />
-                  <span className="hyyt">Pendant</span>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="slide_ssssss">
-                <div className="d-flex flex-column align-items-center">
-                  <img
-                    src={require("../../Images/Group 1597884629 (1).png")}
-                    className="shadow-none border-0 home_img_ssssss"
-                  />
-                  <span className="hyyt">Bracelet</span>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="slide_ssssss">
-                <div className="d-flex flex-column align-items-center">
-                  <img
-                    src={require("../../Images/Group 1597884630.png")}
-                    className="shadow-none border-0 home_img_ssssss"
-                  />
-                  <span className="hyyt">Earrings</span>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="slide_ssssss">
-                <div className="d-flex flex-column align-items-center">
-                  <img
-                    src={require("../../Images/Group 1597884631.png")}
-                    className="shadow-none border-0 home_img_ssssss"
-                  />
-                  <span className="hyyt">Rings</span>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="slide_ssssss">
-                <div className="d-flex flex-column align-items-center">
-                  <img
-                    src={require("../../Images/Group 1597884632.png")}
-                    className="shadow-none border-0 home_img_ssssss"
-                  />
-                  <span className="hyyt">Pendant</span>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="slide_ssssss">
-                <div className="d-flex flex-column align-items-center">
-                  <img
-                    src={require("../../Images/Group 1597884632.png")}
-                    className="shadow-none border-0 home_img_ssssss"
-                  />
-                  <span className="hyyt">Pendant</span>
-                </div>
-              </SwiperSlide>
-            </Swiper>
-          </div> */}
         </div>
 
         <div className="paddingdn hdr_csd sdcxsdcx_Sdcxszdcx">
@@ -874,76 +810,8 @@ const Home = () => {
                 ))}
               </div>
             </div>
-          )} 
+          )}
 
-          {/* {value === "2" && (
-            <div className="d-flex flex-column container">
-              <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
-                {topRated.map((product) => (
-                  <div
-                    key={product.id}
-                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
-                  >
-                    <div className="card prio_card scdscsed_sdss">
-                      <div className="card-image-wrapper position-relative">
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          SALE
-                        </button>
-
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {isFavorite[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-
-                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                            className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                            alt="Product"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_asdaa pt-3 text-truncate">
-                        {product.productName}
-                      </span>
-                      <div className="d-flex align-items-center gap-3 pt-1">
-                        <span className="mikdec_asdxsx">
-                          {product.salePrice?.$numberDecimal}
-                        </span>
-                        <span className="mikdec_axsx">
-                          {product.regularPrice?.$numberDecimal}
-                        </span>
-                      </div>
-                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                        <button
-                          className="more_btn_dsdd w-50"
-                          onClick={() => navigate("/products")}
-                        >
-                          More Info
-                        </button>
-                        <button
-                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                          onClick={() => addToCart(product)}
-                        >
-                          Add to Cart <BiShoppingBag size={25} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )} */}
           {value === "3" && (
             <div className="d-flex flex-column container">
               <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
@@ -1216,7 +1084,7 @@ const Home = () => {
 
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
           <div className="pt-4 container djb_dsjvn mx-2">
-            <div className="row justify-content-center scc_gift_edit_sdsd gap-2">
+            <div className="row justify-content-between scc_gift_edit_sdsd gap-2">
               <div className="d-flex flex-column align-items-center gap-3  offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
@@ -1398,7 +1266,6 @@ const Home = () => {
                 1024: { slidesPerView: 5, spaceBetween: 20 },
                 1700: { slidesPerView: 5, spaceBetween: 20 },
               }}
-              
               className="swiper"
             >
               {ringData.map((item, index) => (
@@ -1414,7 +1281,7 @@ const Home = () => {
 
             <img src={bgImage} alt="" className="bg" />
             <img src={bgImage2} alt="" className="bg2" />
-          </div> 
+          </div>
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center mt-2 asxs_sdxszx dxfcvdfsCV_ss">

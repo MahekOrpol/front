@@ -169,7 +169,7 @@
 }
 
 .taout_d {
-    font-size: 30px !important;
+    font-size: 20px !important;
     color: black !important;
     font-weight: bold;
 }
@@ -457,4 +457,10 @@
     .hrdd {
         font-size: 11px;
     }
+}
+
+
+
+.register-form button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.MuiTab-fullWidth.Mui-selected.taout_d.css-hmk518-MuiButtonBase-root-MuiTab-root {
+    font-size: 28px !important;
 }
