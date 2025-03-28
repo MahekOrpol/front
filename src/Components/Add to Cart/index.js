@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 
-const CartPopup = ({ isOpen, closeCart ,stock}) => {
+const CartPopup = ({ isOpen, closeCart }) => {
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState([]);
 
@@ -65,10 +65,18 @@ const CartPopup = ({ isOpen, closeCart ,stock}) => {
     setOrderDetails(
       res.data.data.map((item) => ({
         ...item,
-        quantity: 1, // Set quantity to 1 regardless of API data
+        quantity: 1, 
+        selectedSize: JSON.parse(item.productId?.productSize)?.[0] || ""
       }))
     );
     
+  };
+
+  const handleSizeChange = (index, size) => {
+    const updatedItems = orderDetails.map((item, i) =>
+      i === index ? { ...item, selectedSize: size } : item
+    );
+    setOrderDetails(updatedItems);
   };
 
   if (!isOpen) return null;
@@ -101,9 +109,11 @@ const CartPopup = ({ isOpen, closeCart ,stock}) => {
                       className="dropdown_size w-50 p-1"
                       style={{ borderRadius: "5px" }}
                     >
-                      {JSON.parse(item.productId?.productSize).map(
+                     {JSON.parse(item.productId?.productSize).map(
                         (size, i) => (
-                          <option key={i}>{size}</option>
+                          <option key={i} value={size}>
+                            {size}
+                          </option>
                         )
                       )}
                     </select>
@@ -160,9 +170,11 @@ const CartPopup = ({ isOpen, closeCart ,stock}) => {
               navigate("/checkout", { 
                 state: { 
                   total: calculateTotal(), 
-                  orderDetails: orderDetails, 
-                  stock : stock
-                
+                  // orderDetails: orderDetails, 
+                  orderDetails: orderDetails.map((item) => ({
+                    ...item,
+                    selectedSize: item.selectedSize, // Pass selected size
+                  })),
               } });
             }}
           >

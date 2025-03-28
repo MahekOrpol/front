@@ -857,3 +857,9 @@
     -webkit-print-color-adjust: exact;
     color-adjust: exact;
 }
+
+@media (min-width:991px) {
+    .check_outpgedetail{
+        width: 15%;
+    }
+}

@@ -14,12 +14,9 @@ const CheckoutPage = () => {
   const location = useLocation();
   const totalAmount = location.state?.total || "0.00";
   const orderDetails = location.state?.orderDetails || [];
-  const stock = location.state?.stock || 1;
-  
+
   console.log("Total Price:", totalAmount);
   console.log("Order Details:", orderDetails);
-  console.log("Stock:", stock);
-  
 
   return (
     <div>
@@ -167,7 +164,7 @@ const CheckoutPage = () => {
         >
           <div className="text-white ytjt">
             {/* Order Items */}
-            <div className="order-item">
+            {/* <div className="order-item">
               <img
                 src={require("../../Images/1 (9) (1).png")}
                 alt="Two Stone Diamond Ring"
@@ -183,7 +180,7 @@ const CheckoutPage = () => {
                 </div>
                 <strong className="order-price">&#8377;30,000</strong>
               </div>
-            </div>
+            </div> */}
 
             <div className="order-item">
               <img
@@ -202,6 +199,34 @@ const CheckoutPage = () => {
                 <strong className="order-price">&#8377;30,000</strong>
               </div>
             </div>
+
+            {orderDetails.map((item, index) => (
+              <div className="order-item" key={index}>
+                <img
+                  src={`https://crystova.cloudbusiness.cloud${item.productId.image[0]}`}
+                  alt={item.productId.productId}
+                  className="order-item-img"
+                />
+                <div className="bfh">
+                  <div className="order-item-details">
+                    <p className="mb-1 fs4">
+                      {item.productId.productName}{" "}
+                    </p>
+                    {/* <span className="fs5 text-truncate check_outpgedetail">
+                      {item.productId.productsDescription}
+                    </span> */}
+                    <span className="fs5">Ring size : {item.selectedSize}</span>
+                  </div>
+                  <strong className="order-price">
+                    {item?.productPrice?.$numberDecimal
+                      ? parseFloat(
+                          item.productPrice.$numberDecimal
+                        ).toLocaleString()
+                      : "Price not available"}
+                  </strong>
+                </div>
+              </div>
+            ))}
 
             {/* Discount Code */}
             <Form.Group className="my-4 d-flex">
