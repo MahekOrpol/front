@@ -12,6 +12,7 @@ import CartPopup from './Components/Add to Cart';
 import CheckoutPage from './Components/Check Out';
 import EditProfile from './Components/EditProfile';
 import OrderDetails from './Components/Order';
+import JewelrySale from './Components/Contact Us/sdcsd/demo';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/add_to_cart" element={<CartPopup />} />
+        <Route path="/demo" element={<JewelrySale />} />
 
       </Routes>
     </BrowserRouter>

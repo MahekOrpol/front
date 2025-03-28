@@ -4,12 +4,19 @@ import { Form, Row, Col } from "react-bootstrap";
 import logo from "../../Images/logo.png";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
+import { useLocation } from "react-router-dom";
 
 const CheckoutPage = () => {
-  
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
+
+  const location = useLocation();
+  const totalAmount = location.state?.total || "0.00";
+  const orderDetails = location.state?.orderDetails || [];
+
+  console.log("Total Price:", totalAmount);
+  console.log("Order Details:", orderDetails);
 
   return (
     <div>
@@ -18,28 +25,8 @@ const CheckoutPage = () => {
       </div> */}
       <Header />
       <div className="gffg d-md-flex">
-        {/* Left Section */}
         <Col md={7} className="left-container">
           <div className="container">
-            {/* <h4 className="text-center mt-4 Express">Express Checkout</h4>
-            <div className="d-flex justify-content-between gap-3 my-3 BoxFont">
-              <div className="Puj">
-                <img src={require("../../Images/paytm.png")} alt="Paytm" className="checkout-logo" />
-              </div>
-              <div className="Puj">
-                <img src={require("../../Images/Google-Pay-logo.png")} alt="Google Pay" className="checkout-logo" />
-              </div>
-              <div className="Puj">
-                <img src={require("../../Images/paypal.png")} alt="PayPal" className="checkout-logo" />
-              </div>
-            </div>
-
-            <div className="or-container">
-              <div className="line"></div>
-              <span className="or-text">OR</span>
-              <div className="line"></div>
-            </div> */}
-
             <h5 className="BigFont gkyuy mt-3">Contact</h5>
             <Form>
               <Form.Group>
@@ -177,7 +164,7 @@ const CheckoutPage = () => {
         >
           <div className="text-white ytjt">
             {/* Order Items */}
-            <div className="order-item">
+            {/* <div className="order-item">
               <img
                 src={require("../../Images/1 (9) (1).png")}
                 alt="Two Stone Diamond Ring"
@@ -193,7 +180,7 @@ const CheckoutPage = () => {
                 </div>
                 <strong className="order-price">&#8377;30,000</strong>
               </div>
-            </div>
+            </div> */}
 
             <div className="order-item">
               <img
@@ -212,6 +199,34 @@ const CheckoutPage = () => {
                 <strong className="order-price">&#8377;30,000</strong>
               </div>
             </div>
+
+            {orderDetails.map((item, index) => (
+              <div className="order-item" key={index}>
+                <img
+                  src={`https://crystova.cloudbusiness.cloud${item.productId.image[0]}`}
+                  alt={item.productId.productId}
+                  className="order-item-img"
+                />
+                <div className="bfh">
+                  <div className="order-item-details">
+                    <p className="mb-1 fs4">
+                      {item.productId.productName}{" "}
+                    </p>
+                    {/* <span className="fs5 text-truncate check_outpgedetail">
+                      {item.productId.productsDescription}
+                    </span> */}
+                    <span className="fs5">Ring size : {item.selectedSize}</span>
+                  </div>
+                  <strong className="order-price">
+                    {item?.productPrice?.$numberDecimal
+                      ? parseFloat(
+                          item.productPrice.$numberDecimal
+                        ).toLocaleString()
+                      : "Price not available"}
+                  </strong>
+                </div>
+              </div>
+            ))}
 
             {/* Discount Code */}
             <Form.Group className="my-4 d-flex">
@@ -235,7 +250,7 @@ const CheckoutPage = () => {
             {/* Total */}
             <div className="d-flex justify-content-between mt-2">
               <strong className="RightSec">Total</strong>
-              <strong className="RightSec">&#8377;60,000</strong>
+              <strong className="RightSec">&#8377;{totalAmount}</strong>
             </div>
           </div>
         </Col>
