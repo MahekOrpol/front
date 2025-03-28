@@ -5,13 +5,17 @@ import { useNavigate } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 
-const CartPopup = ({ isOpen, closeCart }) => {
+const CartPopup = ({ isOpen, closeCart ,stock}) => {
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState([]);
-  const [stock, setStock] = useState(1); // Stock ni state set kari
 
-  const handleQuantityChange = (change) => {
-    setStock((prevStock) => Math.max(1, prevStock + change));
+  const handleQuantityChange = (index, change) => {
+    const updatedItems = orderDetails.map((item, i) =>
+      i === index
+        ? { ...item, quantity: Math.max(1, item.quantity + change) }
+        : item
+    );
+    setOrderDetails(updatedItems);
   };
 
   useEffect(() => {
@@ -43,7 +47,8 @@ const CartPopup = ({ isOpen, closeCart }) => {
       .reduce(
         (total, item) =>
           total +
-          parseFloat(item.productId.salePrice?.$numberDecimal || 0) * stock,
+          parseFloat(item.productId.salePrice?.$numberDecimal || 0) *
+            item.quantity,
         0
       )
       .toFixed(2);
@@ -56,7 +61,14 @@ const CartPopup = ({ isOpen, closeCart }) => {
       `https://crystova.cloudbusiness.cloud/api/v1/order-details/get/${userId}`
     );
 
-    setOrderDetails(res.data.data);
+    // setOrderDetails(res.data.data);
+    setOrderDetails(
+      res.data.data.map((item) => ({
+        ...item,
+        quantity: 1, // Set quantity to 1 regardless of API data
+      }))
+    );
+    
   };
 
   if (!isOpen) return null;
@@ -101,22 +113,22 @@ const CartPopup = ({ isOpen, closeCart }) => {
                     {(
                       parseFloat(
                         item.productId.salePrice?.$numberDecimal || 0
-                      ) * parseInt(stock)
+                      ) * parseInt(item.quantity)
                     ).toFixed(2)}
                   </p>
                 </div>
                 <div className="d-flex align-items-center justify-content-between mt-3">
-                  <div className="d-inline-flex align-items-center p-2 gap-3 wr_sss_dd_sssss ">
+                <div className="d-inline-flex align-items-center p-2 gap-3 wr_sss_dd_sssss ">
                     <button
-                      className="btn bg_prime rounded-circle fw-bold inc_btn_dddd"
-                      onClick={() => handleQuantityChange(-1)}
+                      className="btn bg_prime rounded-circle fw-bold"
+                      onClick={() => handleQuantityChange(index, -1)}
                     >
                       −
                     </button>
-                    <span className="fw-bold">{stock}</span>
+                    <span className="fw-bold">{item.quantity}</span>
                     <button
-                      className="btn bg_prime rounded-circle fw-bold inc_btn_dddd"
-                      onClick={() => handleQuantityChange(1)}
+                      className="btn bg_prime rounded-circle fw-bold"
+                      onClick={() => handleQuantityChange(index, 1)}
                     >
                       +
                     </button>
