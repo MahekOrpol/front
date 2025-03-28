@@ -8,14 +8,11 @@ import axios from "axios";
 const CartPopup = ({ isOpen, closeCart }) => {
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState([]);
+  const [stock, setStock] = useState(1); // Stock ni state set kari
 
-
-  const handleQuantityChange = (index, change) => {
-    const updatedItems = orderDetails.map((item, i) =>
-      i === index ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
-    );
-    setOrderDetails(updatedItems);
-  }; 
+  const handleQuantityChange = (change) => {
+    setStock((prevStock) => Math.max(1, prevStock + change));
+  };
 
   useEffect(() => {
     if (isOpen) {
@@ -46,12 +43,12 @@ const CartPopup = ({ isOpen, closeCart }) => {
       .reduce(
         (total, item) =>
           total +
-          parseFloat(item.productId.salePrice?.$numberDecimal || 0) * item.quantity,
+          parseFloat(item.productId.salePrice?.$numberDecimal || 0) * stock,
         0
       )
       .toFixed(2);
   };
-  
+
   const getOrderDetails = async () => {
     const userId = localStorage.getItem("user_Id");
 
@@ -81,14 +78,17 @@ const CartPopup = ({ isOpen, closeCart }) => {
               <img
                 src={`https://crystova.cloudbusiness.cloud${item.productId.image?.[0]}`}
                 alt={item.productId.productName}
-                style={{borderRadius:'24px',width:'100%'}}
+                style={{ borderRadius: "24px", width: "100%" }}
               />
               <div className="cart_item_detail">
                 <h5 className="fw-bold mb-1">{item.productId.productName}</h5>
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center w-100">
                     <p className="m-0">Ring Size :</p>
-                    <select className="dropdown_size w-50 p-1">
+                    <select
+                      className="dropdown_size w-50 p-1"
+                      style={{ borderRadius: "5px" }}
+                    >
                       {JSON.parse(item.productId?.productSize).map(
                         (size, i) => (
                           <option key={i}>{size}</option>
@@ -101,22 +101,22 @@ const CartPopup = ({ isOpen, closeCart }) => {
                     {(
                       parseFloat(
                         item.productId.salePrice?.$numberDecimal || 0
-                      ) * parseInt(item.quantity)
+                      ) * parseInt(stock)
                     ).toFixed(2)}
                   </p>
                 </div>
                 <div className="d-flex align-items-center justify-content-between mt-3">
-                  <div className="d-inline-flex align-items-center rounded p-2 gap-3">
+                  <div className="d-inline-flex align-items-center p-2 gap-3 wr_sss_dd_sssss ">
                     <button
-                      className="btn bg_prime rounded-circle fw-bold"
-                      onClick={() => handleQuantityChange(index, -1)}
+                      className="btn bg_prime rounded-circle fw-bold inc_btn_dddd"
+                      onClick={() => handleQuantityChange(-1)}
                     >
                       −
                     </button>
-                    <span className="fw-bold">{item.quantity}</span>
+                    <span className="fw-bold">{stock}</span>
                     <button
-                      className="btn bg_prime rounded-circle fw-bold"
-                      onClick={() => handleQuantityChange(index, 1)}
+                      className="btn bg_prime rounded-circle fw-bold inc_btn_dddd"
+                      onClick={() => handleQuantityChange(1)}
                     >
                       +
                     </button>
@@ -142,7 +142,20 @@ const CartPopup = ({ isOpen, closeCart }) => {
             <h5 className="fw-bold">Total:</h5>
             <h5 className="fw-bold">₹{calculateTotal()}</h5>
           </div>
-          <button className="btn btn_check_out w-100">Secure Checkout</button>
+          <button
+            className="btn btn_check_out w-100"
+            onClick={() => {
+              navigate("/checkout", { 
+                state: { 
+                  total: calculateTotal(), 
+                  orderDetails: orderDetails, 
+                  stock : stock
+                
+              } });
+            }}
+          >
+            Secure Checkout
+          </button>
         </div>
       )}
     </div>
