@@ -98,8 +98,8 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
             <SignInPopup isOpen={isSignupPopupOpen} onClose={() => setIsSignupPopupOpen(false)} />
           )}
           {/* <div><CiSearch size={25} /></div> */}
-          <div><CiHeart size={25} /></div>
-          <div><IoBagHandleOutline size={25} onClick={openCart}/></div>
+          <div style={{cursor:'pointer'}}><CiHeart size={25} /></div>
+          <div style={{cursor:'pointer'}}><IoBagHandleOutline size={25} onClick={openCart}/></div>
         </div>
       </div>
       
@@ -177,7 +177,7 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
 
         {/* :large_green_circle: Icons Section Inside Drawer (Mobile Only) */}
         {/* 🟢 Icons Section Inside Drawer (Mobile Only) */}
-        <div className="user_icon gap-3 d-flex align-items-center ps-3" onClick={() => {
+        <div className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3" onClick={() => {
           setIsDrawerOpen(false); // Close the drawer
           setIsRegisterPopupOpen(true); // Open RegisterPopup
         }}>

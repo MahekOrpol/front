@@ -348,7 +348,7 @@
   gap: 10px;
 }
 
-.user_icon img {
+.mobile_user_icon img {
   
   width: 12%;
   height: auto;
@@ -356,7 +356,7 @@
 
 .sign_txt {
   font-size: 14px;
-  color: #ccc;
+  /* color: #ccc; */
 }
 
 .acco9_text {

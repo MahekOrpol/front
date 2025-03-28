@@ -1,4 +1,11 @@
 /* Cart Popup Styles */
+html,
+body {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
 .cart-popup {
   position: fixed;
   top: 0;
@@ -146,3 +153,34 @@
   background-image: url(https://crystova.cloudbusiness.cloud/static/media/trash-solid.14227052dac2e311a885.svg);
 }
 
+  .wr_sss_dd_sssss {
+    /* border: 1px solid; */
+    box-shadow: 0px 0px 2px 0px #00000080;
+    background: #E9E9E9;
+border-radius: 5px !important;
+
+}
+
+.inc_btn_dddd {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.175rem .65rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.bg_prime {
+  color: white;
+  background-color: #611d2b;
+}

@@ -3,7 +3,7 @@ import "./demo.css";
 
 const JewelrySale = () => {
   return (
-    <section className="jewelry-sale">
+    <section className="jewelry-sale overflow-hidden">
       {/* <div className="left-image">
         <img src="/images/necklace.jpg" alt="Necklace" />
       </div> */}
