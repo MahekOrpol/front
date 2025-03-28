@@ -43,7 +43,7 @@ const Footer = () => {
               are designed to celebrate life’s precious moments.
             </p>
           </div>
-          <div className="col-2 col-sm-6 col-md-4 col-lg-2 text-white sm-ms-0 lg-ms-5 mt-md-3 ps-md-5 pe-md-5 ps-sm-5 pe-sm-5 ps-slg-0 pe-lg-0 sdc_sdds">
+          <div className="col-2 col-sm-3 col-sm col-md-4 col-lg-2 text-white sm-ms-0 lg-ms-5 mt-md-3 ps-md-5 pe-md-5 ps-sm-5 pe-sm-5 ps-slg-0 pe-lg-0 sdc_sdds">
             <h2 className="use_sdc">Useful Links</h2>
             <ul
               style={{ listStyle: "none", paddingLeft: "0rem" }}
@@ -66,7 +66,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="col-2 col-sm-6 col-md-4 col-lg-2 text-white mt-md-3 mt-sm-3 mt-lg-0 ps-md-5 pe-md-5 ps-sm-5 pe-sm-5 ps-slg-0 pe-lg-0 sdc_sdds">
+          <div className="col-2 col-sm-3 col-sm col-md-4 col-lg-2 text-white mt-md-3 mt-sm-3 mt-lg-0 ps-md-5 pe-md-5 ps-sm-5 pe-sm-5 ps-slg-0 pe-lg-0 sdc_sdds">
             <h2 className="use_sdc">Customer Service</h2>
             <ul
               style={{ listStyle: "none", paddingLeft: "0rem" }}
@@ -85,7 +85,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="col-2 col-sm-6 col-md-4 col-lg-2 text-white mt-md-3 mt-sm-3 mt-lg-0 ps-md-5 pe-md-5 ps-sm-5 pe-sm-5 ps-slg-0 pe-lg-0 sdc_sdds1 sdcdsc_fvgtfgv">
+          <div className="col-2 col-sm-3 col-sm col-md-4 col-lg-2 text-white mt-md-3 mt-sm-3 mt-lg-0 ps-md-5 pe-md-5 ps-sm-5 pe-sm-5 ps-slg-0 pe-lg-0 sdc_sdds1 sdcdsc_fvgtfgv">
             <h2 className="use_sdc">Support</h2>
             <ul
               style={{ listStyle: "none", paddingLeft: "0rem" }}

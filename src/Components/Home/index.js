@@ -1242,7 +1242,7 @@ const Home = () => {
             </div>
           </div> */}
 
-          <div className="ring-slider-container ">
+          <div className="ring-slider-container " style={{width:"100%"}}>
             <Swiper
               ref={swiperRef}
               modules={[Navigation]}

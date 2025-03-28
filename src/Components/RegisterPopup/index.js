@@ -4,13 +4,30 @@ import { Box, Tab, Tabs, TextField, Button, Fade, Slide } from "@mui/material";
 import { TabContext, TabPanel } from "@mui/lab";
 import registerImage from "../../Images/register.png";
 import googleIcon from "../../Images/googleicon.png";
+  import ForgotPass from "../ForgotPopup";
+import ChangePass from "../ChangePass";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-bootstrap";
 import axios from "axios";
 
 const RegisterPopup = ({ isOpen, onClose }) => {
   const [tabValue, setTabValue] = useState("login");
+  const [showForgotPass, setShowForgotPass] = useState(false);
+  const [showChangePass, setShowChangePass] = useState(false);
 
+    if (!isOpen) return null;
+  if (showForgotPass) {
+    return <ForgotPass isOpen={showForgotPass} onClose={() => {
+      setShowForgotPass(false);
+      onClose();
+    }} />;
+  }
+  if (showChangePass) {
+    return <ChangePass isOpen={showChangePass} onClose={() => {
+      setShowChangePass(false);
+      onClose();
+    }} />;
+  }
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -172,7 +189,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                 </Tabs>
               </Box>
 
-              {/* Login Panel */}
+
               {/* <Fade in={tabValue === "login"} timeout={500}> */}
               <Slide direction="left" in={tabValue === "login"} timeout={500}>
 
@@ -206,7 +223,8 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         <input type="checkbox" id="remember-me" />
                         <label htmlFor="remember-me" className="remember-me-label">Remember me</label>
                       </div>
-                      <p className="hrdd">Forgot Password</p>
+<p className="hrdd" onClick={() => setShowForgotPass(true)}>Forgot Password</p>
+
                     </div>
 
                     <p className="otre1">By Continuing, I agree to <span className="hrdd"> Terms of Use </span> & <span className="hrdd">Privacy Policy</span></p>
@@ -226,6 +244,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
               </Slide>
               {/* </Fade> */}
               {/* Register Panel */}
+
               {/* <Fade in={tabValue === "register"} timeout={500}> */}
               <Slide direction="right" in={tabValue === "register"} timeout={500}>
 

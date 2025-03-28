@@ -358,7 +358,9 @@
         font-size: 1rem;
     }
 }
-
+.cnjb_hcvh{
+    padding-right:0;
+}
 @media (min-width:1500px)and (max-width:1699px) {
     .order-item-img {
         border-radius: 10px;
@@ -504,15 +506,26 @@
         font-size: 13px;
     }
 }
-
+@media (min-width:767px) and (max-width:768px){
+    .left-container{
+        width: 100%;
+    }
+    .right-section{
+        width: 100%;
+    }
+    .gffg{
+        display: flex;
+        flex-direction: column;
+    }
+}
 @media(max-width:768px) {
     .checkout-logo {
         width: 102px;
         height: auto;
         background-color: #fff;
         border-radius: 40%;
-    }
-
+}
+    
     .BigFont {
         font-family: "Cabin", sans-serif;
         font-weight: 600;
@@ -681,7 +694,12 @@
         padding-top: 10px;
     }
 }
-
+html, body {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
 .order-item-details {
     flex: 1;
     display: flex;
@@ -835,6 +853,22 @@
         font-size: 18px;
     } */
 }
+@media(max-width:1024px) {
+    .wered {
+        width: 15%;
+    }
+}
+@media(max-width:768px) {
+    .wered {
+        width: 19%;
+    }
+}
+@media(max-width:425px) {
+    .wered {
+        width: 38%;
+    }
+    .left-container {
+        padding-top: 10px;
 
 .form-check-input:checked {
     background-color: #611D2B;
