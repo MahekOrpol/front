@@ -1,0 +1,837 @@
+.PaytmLogo {
+    width: 10%;
+}
+
+.Express {
+    font-family: "Cabin", sans-serif;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #646464;
+}
+
+.Puj {
+    box-shadow: 0px 0px 4px 0px #00000040;
+    height: 100%;
+    width: 33.3333%;
+    display: flex;
+    justify-content: center;
+}
+
+.BigFont {
+    font-family: "Cabin", sans-serif;
+    font-weight: 600;
+    font-size: 29px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+.checkout-logo {
+    width: 120px;
+    height: auto;
+    background-color: #fff;
+    border-radius: 40%;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #f4f4f4;
+}
+
+.payment-option img {
+    width: 50px;
+    height: auto;
+}
+
+.payment-option input {
+    margin-right: 10px;
+}
+
+.payment-option1 {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.or-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.line {
+    flex: 1;
+    height: 2px;
+    background-color: #ccc;
+    margin: 0 7px;
+}
+
+.line1 {
+    flex: 1;
+    height: 2px;
+    background-color: #ccc;
+}
+
+.or-text {
+    font-weight: bold;
+    color: #333;
+}
+
+.Box {
+    background-color: #f4f4f4;
+    height: 50px;
+}
+
+.Box1 {
+    height: 50px;
+}
+
+.ryyt {
+    background-color: #fff;
+}
+
+.left-container {
+    max-width: 2000px;
+    padding-left: 200px;
+}
+
+.BoxFont {
+    font-family: "Cabin", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+.Credit {
+    border: 1px solid black;
+    background-color: #f4f4f4;
+    padding: 11px;
+}
+
+.Payment {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.Payment .border {
+    background-color: white;
+}
+
+
+.Credit1 {
+    background-color: #f4f4f4;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Payment {
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.PaymentSec {
+    background-color: #f4f4f4;
+    padding: 25px;
+}
+
+.PaymentSec1 {
+    margin-bottom: 20px;
+}
+
+.PaymentSec2 {
+    font-family: "Cabin", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+.PayBtn {
+    background-color: #611d2b;
+    color: white;
+    font-size: 29px;
+    font-weight: bold;
+    border: none;
+}
+
+.PayBtn1 {
+    color: #611d2b;
+    background-color: white;
+    margin-left: 7px;
+    padding: 10px;
+    border-radius: 10%;
+}
+
+.RightSec3 {
+    font-family: "Cabin", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.tyty,
+.tyty1 {
+    display: grid;
+}
+
+.PayBtn2 {
+    color: #611d2b;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: white;
+    margin-left: 7px;
+    border: none;
+    padding: 10px;
+    border-radius: 9%;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.ytjt {
+    width: 70% !important;
+}
+
+.RightSec {
+    font-family: "Cabin", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.RightSec1 {
+    font-family: "Cabin", sans-serif;
+    font-weight: 500;
+}
+
+.bdsh_mIN {
+    background-color: #611d2b;
+}
+
+.Logo {
+    width: 10%;
+    background-color: #f4f4f4;
+}
+
+.spanF {
+    color: black;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.fs4 {
+    font-size: 33px;
+}
+
+.fs5 {
+    font-size: 1.25rem;
+}
+
+.link {
+    color: grey;
+}
+
+.dffd {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dffd1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Hter {
+    display: flex;
+    justify-content: end;
+    /* gap: 1rem !important; */
+}
+
+.word_txtxt {
+    font-family: "Cabin", sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+@media (max-width:1300px) {
+    .left-container {
+        padding-left: 3%;
+    }
+}
+
+@media (max-width:1700px) {
+    .ytjt {
+        width: 100% !important;
+    }
+}
+
+@media(min-width:100px) and (max-width:399px) {
+    .dffd {
+        display: grid;
+    }
+
+    .order-item-img {
+        border-radius: 10px;
+        width: auto !important;
+    }
+
+    .iyut {
+        padding-top: 20px;
+    }
+
+    .PayBtn2 {
+        color: #611d2b;
+        font-weight: bold;
+        font-size: 15px;
+        background-color: white;
+        margin-left: 7px;
+        border: none;
+        padding: 9px;
+        border-radius: 9%;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .fs4 {
+        font-size: 15px;
+    }
+
+    .link {
+        font-size: 11px;
+    }
+
+    .fs5 {
+        font-size: 1.05rem;
+    }
+
+    .RightSec {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .bfh {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 16px !important;
+        text-align: right;
+        padding-top: 0% !important;
+    }
+}
+
+@media(min-width:768px)and (max-width:1699px) {
+    .PayBtn2 {
+        color: #611d2b;
+        font-weight: bold;
+        font-size: 16px;
+        background-color: white;
+        margin-left: 7px;
+        border: none;
+        padding: 10px;
+        border-radius: 9%;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .RightSec {
+        font-family: "Cabin",
+            sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .fs5 {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width:1500px)and (max-width:1699px) {
+    .order-item-img {
+        border-radius: 10px;
+        width: 26% !important;
+    }
+
+    .fs4 {
+        font-size: 30px;
+    }
+}
+
+@media (min-width:1260px) and (max-width:1499px) {
+    .order-item-img {
+        border-radius: 10px;
+        width: 27% !important;
+    }
+
+    .fs4 {
+        font-size: 23px;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 21px !important;
+        text-align: right;
+        padding-top: 5px !important;
+    }
+}
+
+@media (min-width:1142px) and (max-width:1259px) {
+    .order-item-img {
+        border-radius: 10px;
+        width: 25% !important;
+    }
+
+    .fs4 {
+        font-size: 21px;
+    }
+
+    .RightSec {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .PayBtn2 {
+        color: #611d2b;
+        font-weight: bold;
+        font-size: 16px;
+        background-color: white;
+        margin-left: 7px;
+        border: none;
+        padding: 10px;
+        border-radius: 9%;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 21px !important;
+        text-align: right;
+        padding-top: 4px !important;
+    }
+}
+
+@media (min-width:1109px) and (max-width:1141px) {
+    .order-item-img {
+        border-radius: 10px;
+        width: 24% !important;
+    }
+
+    .fs4 {
+        font-size: 21px;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 21px !important;
+        text-align: right;
+        padding-top: 4px !important;
+    }
+}
+
+@media (min-width:1056px) and (max-width:1108px) {
+    .order-item-img {
+        border-radius: 10px;
+        width: 26% !important;
+    }
+
+    .fs4 {
+        font-size: 20px;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 17px !important;
+        text-align: right;
+        padding-top: 4px !important;
+    }
+}
+
+@media (min-width:844px) and (max-width:1055px) {
+    .order-item-img {
+        border-radius: 10px;
+        width: 28% !important;
+    }
+
+    .fs4 {
+        font-size: 14px;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 14px !important;
+        text-align: right;
+        padding-top: 3px !important;
+    }
+
+    .fs5 {
+        font-size: 15px;
+    }
+}
+
+@media (min-width:769px) and (max-width:843px) {
+    .order-item-img {
+        border-radius: 10px;
+        width: 24% !important;
+    }
+
+    .fs4 {
+        font-size: 12px;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 12px !important;
+        text-align: right;
+        padding-top: 3px !important;
+    }
+
+    .fs5 {
+        font-size: 13px;
+    }
+}
+
+@media(max-width:768px) {
+    .checkout-logo {
+        width: 102px;
+        height: auto;
+        background-color: #fff;
+        border-radius: 40%;
+    }
+
+    .BigFont {
+        font-family: "Cabin", sans-serif;
+        font-weight: 600;
+        font-size: 23px;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+
+    .Box {
+        background-color: #f4f4f4;
+        height: 50px;
+    }
+
+    .Hter {
+        display: flex;
+        justify-content: end;
+        gap: 0rem !important;
+    }
+}
+
+@media(max-width:767px) {
+    .gffg {
+        flex-direction: row;
+    }
+
+    .gkyuy {
+        margin-top: 25px;
+    }
+}
+
+@media(min-width:600px)and (max-width:767px) {
+    .PayBtn2 {
+        color: #611d2b;
+        font-weight: bold;
+        font-size: 16px;
+        background-color: white;
+        margin-left: 7px;
+        border: none;
+        padding: 10px;
+        border-radius: 9%;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .RightSec {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .fs4 {
+        font-size: 33px;
+    }
+
+    .fs5 {
+        font-size: 20px;
+    }
+}
+
+@media(min-width:400px)and (max-width:599px) {
+    .fs4 {
+        font-size: 25px;
+    }
+
+    .fs5 {
+        font-size: 1rem;
+    }
+
+    .Credit {
+        border: 1px solid black;
+        background-color: #f4f4f4;
+        padding: 4px;
+    }
+}
+
+@media(min-width:100px)and (max-width:399px) {
+    .order-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .order-item-img {
+        width: auto;
+        border-radius: 11px;
+    }
+
+    .Credit {
+        border: 1px solid black;
+        background-color: #f4f4f4;
+        padding: 4px;
+    }
+}
+
+@media(max-width:1500px) {
+    .PayBtn {
+        background-color: #611d2b;
+        color: white;
+        font-size: 23px;
+        font-weight: bold;
+    }
+}
+
+@media(min-width:250px) and (max-width:600px) {
+    .PayBtn {
+        background-color: #611d2b;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+
+@media(max-width:491px) {
+    .checkout-logo {
+        width: 70px;
+        height: auto;
+        background-color: #fff;
+        border-radius: 40%;
+    }
+
+    .PayBtn {
+        background-color: #611d2b;
+        color: white;
+        font-size: 17px;
+        font-weight: bold;
+    }
+}
+
+/* .right-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #f8f8f8;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+} */
+
+.order-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+.bfh {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.order-item-details {
+    flex-grow: 1;
+}
+
+@media (min-width:1700px) and (max-width:1920px) {
+    .order-item-img {
+        width: 31% !important;
+        height: auto;
+        border-radius: 11px;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 18px;
+        text-align: right;
+        padding-top: 10px;
+    }
+}
+
+.order-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.order-price {
+    font-weight: bold;
+    font-size: 24px;
+    text-align: right;
+    padding-top: 10px;
+}
+
+@media(min-width:777px)and (max-width: 768px) {
+    .order-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .order-item-img {
+        border-radius: 10px;
+        width: 28% !important;
+    }
+
+    .order-price {
+        font-size: 22px;
+    }
+
+    .RightSec {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .fs4 {
+        font-size: 18px;
+    }
+
+    .fs5 {
+        font-size: 9px;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 13px !important;
+        text-align: right;
+        padding-top: 1px !important;
+    }
+}
+
+@media(min-width:582px)and (max-width: 766px) {
+    .order-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .order-item-img {
+        border-radius: 10px;
+        width: 19% !important;
+    }
+
+    .order-price {
+        font-size: 22px;
+    }
+
+    .RightSec {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .fs4 {
+        font-size: 30px;
+    }
+
+    .fs5 {
+        font-size: 17px;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 22px !important;
+        text-align: right;
+        padding-top: 7px !important;
+    }
+}
+
+@media(min-width:400px)and (max-width: 581px) {
+    .order-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .order-item-img {
+        border-radius: 10px;
+        width: 23% !important;
+    }
+
+    .order-price {
+        font-size: 22px;
+    }
+
+    .RightSec {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .fs4 {
+        font-size: 18px;
+    }
+
+    .fs5 {
+        font-size: 11px;
+    }
+
+    .order-price {
+        font-weight: bold;
+        font-size: 15px !important;
+        text-align: right;
+        padding-top: 3px !important;
+    }
+}
+
+@media(min-width:462px)and (max-width: 535px) {
+    .order-item {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .order-item-img {
+        width: 29%;
+        border-radius: 10px;
+    }
+
+    /* .order-price {
+        font-size: 22px;
+    } */
+
+    .RightSec {
+        font-family: "Cabin", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    /* .fs4 {
+        font-size: 29px;
+    }
+
+    .fs5 {
+        font-size: 18px;
+    } */
+}

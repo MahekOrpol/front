@@ -33,8 +33,8 @@ const SignupPopup = ({ isOpen, onClose }) => {
 
                         {/* Menu List */}
                         <ul className="menu-list">
-                            <li onClick={() => setShowRegister(true)}>
-                                <div className="menu-item">
+                            {/* <li onClick={() => setShowRegister(true)}>
+                                {/* <div className="menu-item">
                                     <img src={require("../../Images/profileicon.png")} alt="Profile" className="menu-icons" />
                                     <span className="sass">Login/Register</span>
                                 </div>
@@ -46,35 +46,53 @@ const SignupPopup = ({ isOpen, onClose }) => {
                                     <span className="sass">Your Profile</span>
                                 </div>
                                 <FaAngleRight size={20} className="menu-arrow" />
-                            </li>
-                            <li onClick={() => navigate('/Order')}>
-                                <div className="menu-item">
-                                    <img src={require("../../Images/ordericon.png")} alt="Orders" className="menu-icons" />
-                                    <span className="sass">My Orders</span>
-                                </div>
-                                <FaAngleRight size={20} className="menu-arrow" />
-                            </li>
-                            <li>
-                                <div className="menu-item">
-                                    <img src={require("../../Images/termsicon.png")} alt="Terms" className="menu-icons" />
-                                    <span className="sass">Terms & Conditions</span>
-                                </div>
-                                <FaAngleRight size={20} className="menu-arrow" />
-                            </li>
-                            <li>
-                                <div className="menu-item">
-                                    <img src={require("../../Images/privacyicon.png")} alt="Privacy" className="menu-icons" />
-                                    <span className="sass">Privacy Policy</span>
-                                </div>
-                                <FaAngleRight size={20} className="menu-arrow" />
-                            </li>
-                            <li>
-                                <div className="menu-item">
-                                    <img src={require("../../Images/contacticon.png")} alt="Contact" className="menu-icons" />
-                                    <span className="sass">Contact Us</span>
-                                </div>
-                                <FaAngleRight size={20} className="menu-arrow" />
-                            </li>
+                            </li> */}
+                                {localStorage.getItem("user_Id") && localStorage.getItem("user_token") ? (
+                                    <li onClick={() => navigate('/Editprofile')}>
+                                        <div className="menu-item">
+                                            <img src={require("../../Images/profileicon.png")} alt="Profile" className="menu-icons" />
+                                            <span className="sass">Your Profile</span>
+                                        </div>
+                                        <FaAngleRight size={20} className="menu-arrow" />
+                                    </li>
+                                ) : (
+                                    <li onClick={() => setShowRegister(true)}>
+                                        <div className="menu-item">
+                                            <img src={require("../../Images/profileicon.png")} alt="Profile" className="menu-icons" />
+                                            <span className="sass">Login/Register</span>
+                                        </div>
+                                        <FaAngleRight size={20} className="menu-arrow" />
+                                    </li>
+                                )}
+
+                                <li onClick={() => navigate('/Order')}>
+                                    <div className="menu-item">
+                                        <img src={require("../../Images/ordericon.png")} alt="Orders" className="menu-icons" />
+                                        <span className="sass">My Orders</span>
+                                    </div>
+                                    <FaAngleRight size={20} className="menu-arrow" />
+                                </li>
+                                <li>
+                                    <div className="menu-item">
+                                        <img src={require("../../Images/termsicon.png")} alt="Terms" className="menu-icons" />
+                                        <span className="sass">Terms & Conditions</span>
+                                    </div>
+                                    <FaAngleRight size={20} className="menu-arrow" />
+                                </li>
+                                <li>
+                                    <div className="menu-item">
+                                        <img src={require("../../Images/privacyicon.png")} alt="Privacy" className="menu-icons" />
+                                        <span className="sass">Privacy Policy</span>
+                                    </div>
+                                    <FaAngleRight size={20} className="menu-arrow" />
+                                </li>
+                                <li>
+                                    <div className="menu-item">
+                                        <img src={require("../../Images/contacticon.png")} alt="Contact" className="menu-icons" />
+                                        <span className="sass">Contact Us</span>
+                                    </div>
+                                    <FaAngleRight size={20} className="menu-arrow" />
+                                </li>
                         </ul>
                     </div>
                 </div>
