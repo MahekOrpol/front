@@ -200,18 +200,19 @@ const ProductDetailss = () => {
                
                 <Swiper
                   spaceBetween={0}
-                  loop={false}
+                  loop={true}
                   speed={1000}
-                  modules={[Autoplay]}
-                  autoplay={{
-                    delay: 3000,
-                    disableOnInteraction: false,
+                  modules={[Autoplay , Pagination]}
+                  pagination={{
+                    clickable: true,
+                    dynamicBullets: true, // Enables a modern pagination style
                   }}
+            
                   breakpoints={{
                     0: {
                       slidesPerView: 1, // Mobile - 1 item
                     },
-                    601: {
+                    768: {
                       slidesPerView: 2, // Tablet and up - 2 items
                     },
                     1200: {
@@ -605,7 +606,7 @@ const ProductDetailss = () => {
                       <div className="pt-5">
                         <span className="mes_ddd">
                           It comes with the authenticity and gaurantee
-                          certificate of 925 Silver with <br /> lifetime
+                          certificate of 925 Silver with lifetime
                           exchange gaurantee.
                         </span>
                       </div>

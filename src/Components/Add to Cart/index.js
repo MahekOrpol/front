@@ -186,7 +186,7 @@ const response = await axios.post(
           </div>
           <button
             className="btn btn_check_out w-100"
-            onClick={() => checkOut()}
+            onClick={ ()=>{navigate("/checkout")}}
           >
             Secure Checkout
           </button>

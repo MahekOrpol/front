@@ -135,7 +135,7 @@
 
 @media (max-width: 600px) {
 
-    .order-item,
+    .order-container .order-item,
     .prev-order-item {
         flex-direction: row;
         align-items: flex-start;

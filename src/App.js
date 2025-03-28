@@ -12,6 +12,7 @@ import CartPopup from './Components/Add to Cart';
 import CheckoutPage from './Components/Check Out';
 import EditProfile from './Components/EditProfile';
 import OrderDetails from './Components/Order';
+import CustomJewel from './Components/Custom Jewelry';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/add_to_cart" element={<CartPopup />} />
-
+        <Route path="/Customjewel" element={<CustomJewel />} />
       </Routes>
     </BrowserRouter>
   );

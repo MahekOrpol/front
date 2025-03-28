@@ -4,19 +4,20 @@ import { Form, Row, Col } from "react-bootstrap";
 import logo from "../../Images/logo.png";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
-  
+    const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
 
   return (
     <div>
-      {/* <div className="d-flex p-3 justify-content-center w-100 bdsh_mIN">
-        <img src={logo} />
-      </div> */}
-      <Header />
+    <div className="d-flex p-3 justify-content-center w-100 bdsh_mIN">
+        <img src={require("../../Images/crystova.png")} onClick={() => navigate("/")} className="wered"/>
+      </div>
+      {/* <Header /> */}
       <div className="gffg d-md-flex">
         {/* Left Section */}
         <Col md={7} className="left-container">
@@ -59,7 +60,7 @@ const CheckoutPage = () => {
                     className="Box BoxFont"
                   />
                 </Form.Group>
-                <Col>
+                <Col className="cnjb_hcvh">
                   <Form.Control
                     type="text"
                     placeholder="First Name"
@@ -89,14 +90,14 @@ const CheckoutPage = () => {
                 />
               </Form.Group>
               <Row className="mt-2">
-                <Col>
+                <Col className="cnjb_hcvh">
                   <Form.Control
                     type="text"
                     placeholder="City"
                     className="Box BoxFont"
                   />
                 </Col>
-                <Col>
+                <Col className="cnjb_hcvh">
                   <Form.Control
                     type="text"
                     placeholder="State"

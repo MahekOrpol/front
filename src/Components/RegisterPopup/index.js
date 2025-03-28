@@ -4,11 +4,28 @@ import { Box, Tab, Tabs, TextField } from "@mui/material";
 import { TabContext, TabPanel } from "@mui/lab";
 import registerImage from "../../Images/register.png";
 import googleIcon from "../../Images/googleicon.png";
+import ForgotPass from "../ForgotPopup";
+import ChangePass from "../ChangePass";
 
 const RegisterPopup = ({ isOpen, onClose }) => {
   const [tabValue, setTabValue] = useState("login");
+  const [showForgotPass, setShowForgotPass] = useState(false);
+  const [showChangePass, setShowChangePass] = useState(false);
 
   if (!isOpen) return null;
+  if (showForgotPass) {
+    return <ForgotPass isOpen={showForgotPass} onClose={() => {
+      setShowForgotPass(false);
+      onClose();
+    }} />;
+  }
+  if (showChangePass) {
+    return <ChangePass isOpen={showChangePass} onClose={() => {
+      setShowChangePass(false);
+      onClose();
+    }} />;
+  }
+
 
   const handleOverlayClick = (e) => {
     if (e.target.classList.contains("register-popup-overlay")) {
@@ -41,13 +58,13 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                     },
                   }}
                 >
-                  <Tab label="Login" value="login" className="taout_d"/>
-                  <Tab label="Register" value="register" className="taout_d"/>
+                  <Tab label="Login" value="login" className="taout_d" />
+                  <Tab label="Register" value="register" className="taout_d" />
                 </Tabs>
               </Box>
 
               {/* Login Panel */}
-              <TabPanel className="scroll_dcb" value="login">
+              <TabPanel value="login">
                 <p className="register-text"><strong>Login using your Email and Password</strong></p>
                 <p className="register-subtext">For the purpose of industry registration, your details are required and will be stored.</p>
                 <form>
@@ -70,7 +87,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                       <input type="checkbox" id="remember-me" />
                       <label htmlFor="remember-me" className="remember-me-label">Remember me</label>
                     </div>
-                    <p className="hrdd">Forgot Password</p>
+                    <p className="hrdd" onClick={() => setShowForgotPass(true)} style={{cursor:"pointer"}}>Forgot Password</p>
                   </div>
 
                   <p className="otre1">By Continuing, I agree to <span className="hrdd"> Terms of Use </span> & <span className="hrdd">Privacy Policy</span></p>
@@ -81,12 +98,12 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                     <span className="or-text">or</span>
                     <span className="or-line"></span>
                   </p>
-                  <p className="otre">Already have an Account? <span className="tvjg">Create Account</span></p>
+                  <p className="otre">Already have an Account? <span className="tvjg" onClick={() => setShowChangePass(true)}>Create Account</span></p>
                 </form>
               </TabPanel>
 
               {/* Register Panel */}
-              <TabPanel className="scroll_dcb" value="register">
+              <TabPanel value="register">
                 <p className="register-text"><strong>Don’t have an Account?</strong></p>
                 <p className="register-subtext">For the purpose of industry registration, your details are required and will be stored.</p>
                 <form>
