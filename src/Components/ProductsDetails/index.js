@@ -13,10 +13,40 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation,useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+const products = [
+  {
+    id: 1,
+    imgSrc: require("../../Images/image 98.png"),
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 2,
+    imgSrc: require("../../Images/tre-2.png"),
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 3,
+    imgSrc: require("../../Images/image 100 (1).png"),
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+  {
+    id: 4,
+    imgSrc: require("../../Images/latsss.png"),
+    name: "Two Stone Diamond Ring",
+    price: "₹30,000",
+    cutPrice: "35000",
+  },
+];
 const ProductDetailss = () => {
   const [liked, setLiked] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState(null);
@@ -35,7 +65,7 @@ const ProductDetailss = () => {
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
   };
-
+  
   const navigate = useNavigate();
 
   const handleProductClick = (productId, productData) => {
@@ -50,17 +80,16 @@ const ProductDetailss = () => {
   useEffect(() => {
     if (!productData) {
       // Fetch product data if not available in state
-      axios
-        .get(`http://localhost:3000/api/v1/product/get-product-id/${productId}`)
+      axios.get(`http://localhost:3000/api/v1/product/get-product-id/${productId}`)
         .then((response) => {
           console.log("Fetched product:", response.data);
           setProductDetails(response.data);
-          console.log("productDetails", productDetails);
+          console.log('productDetails', productDetails)
           if (response.data.categoryName) {
             fetchRelatedProducts(response.data.categoryName);
           }
         })
-        .catch((error) => console.error("Error:", error));
+        .catch(error => console.error("Error:", error));
     }
   }, [productId, productData]);
 
@@ -76,8 +105,8 @@ const ProductDetailss = () => {
       })
       .catch((error) =>
         console.error("Error fetching related products:", error)
-      );
-  };
+      );  };
+
 
   const closeCart = () => {
     setIsCartOpen(false);
@@ -97,50 +126,53 @@ const ProductDetailss = () => {
 
   const handleSelect = (size) => {
     setSelectedSize(size);
+  
 
-    if (productDetails?.hasVariations) {
-      const selectedVariation = productDetails.variations.find(
-        (variation) => variation.productSize === size
-      );
 
-      if (selectedVariation) {
-        setDisplayPrice({
-          regularPrice: selectedVariation.regularPrice,
-          salePrice: selectedVariation.salePrice,
-          discount: selectedVariation.discount,
-        });
-      }
-    } else {
+  if (productDetails?.hasVariations) {
+    const selectedVariation = productDetails.variations.find(
+      (variation) => variation.productSize === size
+    );
+
+    if (selectedVariation) {
       setDisplayPrice({
-        regularPrice: productDetails?.regularPrice?.$numberDecimal,
-        salePrice: productDetails?.salePrice?.$numberDecimal,
-        discount: productDetails?.discount?.$numberDecimal,
+        regularPrice: selectedVariation.regularPrice,
+        salePrice: selectedVariation.salePrice,
+        discount: selectedVariation.discount,
       });
     }
-  };
+  } else {
+    setDisplayPrice({
+      regularPrice: productDetails?.regularPrice?.$numberDecimal,
+      salePrice: productDetails?.salePrice?.$numberDecimal,
+      discount: productDetails?.discount?.$numberDecimal,
+    });
+  }
+};
 
-  useEffect(() => {
-    if (
-      productDetails?.hasVariations &&
-      productDetails.variations?.length > 0
-    ) {
-      // Set default price from the first variation
-      const firstVariation = productDetails.variations[0];
+useEffect(() => {
+  if (
+    productDetails?.hasVariations &&
+    productDetails.variations?.length > 0
+  ) {
+    // Set default price from the first variation
+    const firstVariation = productDetails.variations[0];
 
-      setDisplayPrice({
-        regularPrice: firstVariation.regularPrice,
-        salePrice: firstVariation.salePrice,
-        discount: firstVariation.discount,
-      });
-    } else {
-      // Set default price if there are no variations
-      setDisplayPrice({
-        regularPrice: productDetails?.regularPrice?.$numberDecimal || 0,
-        salePrice: productDetails?.salePrice?.$numberDecimal || 0,
-        discount: productDetails?.discount?.$numberDecimal || 0,
-      });
-    }
-  }, [productDetails]);
+    setDisplayPrice({
+      regularPrice: firstVariation.regularPrice,
+      salePrice: firstVariation.salePrice,
+      discount: firstVariation.discount,
+    });
+  } else {
+    // Set default price if there are no variations
+    setDisplayPrice({
+      regularPrice: productDetails?.regularPrice?.$numberDecimal || 0,
+      salePrice: productDetails?.salePrice?.$numberDecimal || 0,
+      discount: productDetails?.discount?.$numberDecimal || 0,
+    });
+  }
+}, [productDetails]);
+
 
   const toggleFavorite = async (productId) => {
     if (!userId) return toast.error("Please log in to add items to wishlist");
@@ -187,22 +219,16 @@ const ProductDetailss = () => {
     const fetchWishlist = async () => {
       if (!userId) return;
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/v1/wishlist/${userId}`
-        );
+        const response = await axios.get(`http://localhost:3000/api/v1/wishlist/${userId}`);
         const wishlistData = response.data.data || [];
 
         console.log("Fetched Wishlist Data:", wishlistData);
 
+
         const wishlistMap = {};
         wishlistData.forEach((item) => {
-          let productId = item.productId._id || item.productId.id;
-          console.log(
-            "Processed Product ID:",
-            productId,
-            "Type:",
-            typeof productId
-          );
+          let productId = item.productId._id || item.productId.id; // Extract _id if present
+          console.log("Processed Product ID:", productId, "Type:", typeof productId);
 
           if (typeof productId === "string" || typeof productId === "number") {
             wishlistMap[productId] = item.id;
@@ -324,7 +350,7 @@ const ProductDetailss = () => {
           </section>
 
           <section className="d-flex gap-5 pro_sss_gubs ">
-            <div className="w-100 sdcsd_saxza">
+            <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
                 {/* <div className="d-flex gap-4 pro_dddd66">
                   <div className="det_min_cd2">
@@ -373,6 +399,7 @@ const ProductDetailss = () => {
                     />
                   </div>
                 </div> */}
+
                 {productDetails?.image && productDetails.image.length > 0 ? (
                   productDetails.image.map((img, index) => {
                     const isVideo = img.endsWith(".mp4"); // Check if the file is a video
@@ -401,8 +428,10 @@ const ProductDetailss = () => {
                 ) : (
                   <p>Loading images...</p>
                 )}
+
               </div>
               <div className="mobile-slider">
+
                 <Swiper
                   spaceBetween={0}
                   loop={true}
@@ -412,6 +441,7 @@ const ProductDetailss = () => {
                     clickable: true,
                     dynamicBullets: true, // Enables a modern pagination style
                   }}
+
                   breakpoints={{
                     0: {
                       slidesPerView: 1, // Mobile - 1 item
@@ -494,13 +524,43 @@ const ProductDetailss = () => {
                 </Swiper>
               </div>
             </div>
+
+            {/* <div className="d-none d-md-flex w-100 gap-3 sticky">
+              <div className="sdcsd_saxza">
+                <div className="thumbnail-gallery-container">
+                  <div className="thumbnail-gallery-row w-100 gap-2">
+                    {productImages.map((image, index) => (
+                      <div
+                        key={index}
+                        className={`thumbnail-item ${selectedImageIndex === index ? 'active' : ''}`}
+                        onClick={() => setSelectedImageIndex(index)}
+                      >
+                        <img
+                          src={image.src}
+                          className="thumbnail-image"
+                          alt={`Thumbnail ${index + 1}`}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="main-image-container">
+                <img
+                  src={productImages[selectedImageIndex].src}
+                  className="main-product-image w-100 object-fit-contain"
+                  alt="Halo Diamond Ring"
+                />
+              </div>
+            </div> */}
             <div className="w-100 pt-5 sdcsd_saxza dscd_54_Dscds">
-              <div className="sticky-top" style={{ top: "50px" }}>
+              <div className="sticky-top" style={{ top: '50px' }}>
+
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="secrt_1">{productDetails?.productName}</span>
                   <div>
                     <button className="sav_btn p-2 pe-3 ps-3 dcs_dddd_8888">
-                      Save {displayPrice.discount}%
+                    Save {displayPrice.discount}%
                     </button>
                   </div>
                 </div>
@@ -551,10 +611,10 @@ const ProductDetailss = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    {selectedSize || "Select size"}
+                      {selectedSize || "Select size"}
                   </button>
                   <ul className="dropdown-menu product_det_menu w-50 mt-1">
-                    {(Array.isArray(productDetails?.productSize)
+                  {(Array.isArray(productDetails?.productSize)
                       ? productDetails.productSize[0].split(",")
                       : []
                     ).map((size) => (
@@ -603,6 +663,7 @@ const ProductDetailss = () => {
                       ) : (
                         <GoHeart className="heart-icon_ss" size={25} />
                       )}
+
                     </div>
 
                     <div className="gohrt_bod p-2">
@@ -696,8 +757,8 @@ const ProductDetailss = () => {
                         <div className="pt-5">
                           <span className="mes_ddd">
                             It comes with the authenticity and gaurantee
-                            certificate of 925 Silver with lifetime exchange
-                            gaurantee.
+                            certificate of 925 Silver with lifetime
+                            exchange gaurantee.
                           </span>
                         </div>
                       </div>
@@ -713,9 +774,8 @@ const ProductDetailss = () => {
                       <div className="accordion-item" key={index}>
                         <h2 className="accordion-header">
                           <button
-                            className={`accordion-button ${
-                              openIndex === index ? "" : "collapsed"
-                            }`}
+                            className={`accordion-button ${openIndex === index ? "" : "collapsed"
+                              }`}
                             type="button"
                             onClick={() => toggleFAQ(index)}
                           >
@@ -725,9 +785,8 @@ const ProductDetailss = () => {
                           </button>
                         </h2>
                         <div
-                          className={`accordion-collapse collapse ${
-                            openIndex === index ? "show" : ""
-                          }`}
+                          className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
+                            }`}
                           data-bs-parent="#faqAccordion"
                         >
                           <div className="accordion-body srfferc">
