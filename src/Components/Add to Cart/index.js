@@ -56,60 +56,26 @@ const CartPopup = ({ isOpen, closeCart }) => {
     }
   }, [isOpen]);
 
-  const handleRemoveItem = (index) => {
-    const updatedItems = orderDetails.filter((_, i) => i !== index);
-    setOrderDetails(updatedItems);
-    // closeCart();
+  // const handleRemoveItem = (index) => {
+  //   const updatedItems = orderDetails.filter((_, i) => i !== index);
+  //   setOrderDetails(updatedItems);
+  //   // closeCart();
+  // };
+
+  const handleRemoveItem = async (orderId, index) => {
+    try {
+      const res = await axios.delete(
+        `http://localhost:3000/api/v1/order-details/delete/${orderId}`
+      );
+  
+      if (res.status === 200) {
+        const updatedItems = orderDetails.filter((_, i) => i !== index);
+        setOrderDetails(updatedItems);
+      }
+    } catch (err) {
+      console.error("Error deleting order item:", err);
+    }
   };
-
-  // Function to calculate total price
-  // const calculateTotal = () => {
-  //   return orderDetails
-  //     .reduce(
-  //       (total, item) =>
-  //         total +
-  //         parseFloat(item.salePrice?.$numberDecimal || 0) * item.productId.quantity,
-  //       0
-  //     )
-  //     .toFixed(2);
-  // };
-
-  // const getOrderDetails = async () => {
-  //   const userId = localStorage.getItem("user_Id");
-  //   try {
-  //     const res = await axios.get(
-  //       `http://localhost:3000/api/v1/order-details/get/${userId}`
-  //     );
-  //     if (res.status === 200) {
-
-  //       setOrderDetails(
-  //         res.data.data.map((item) => ({
-  //           ...item,
-  //           quantity: 1,
-  //           selectedSize: (() => {
-  //             if (Array.isArray(item.productId?.productSize)) {
-  //               return item.productId?.productSize[0] || "";
-  //             } else if (typeof item.productId?.productSize === "string") {
-  //               try {
-  //                 return JSON.parse(item.productId?.productSize)[0] || "";
-  //               } catch (error) {
-  //                 console.error("JSON Parsing Error:", error, item.productId?.productSize);
-  //                 return "";
-  //               }
-  //             }
-  //             return "";
-  //           })(),
-
-  //         }))
-  //       )
-  //     }
-
-  //   } catch (err) {
-  //     console.log('err', err)
-  //   }
-  //   // setOrderDetails(res.data.data);
-
-  // };
 
   const getOrderDetails = async () => {
     const userId = localStorage.getItem("user_Id");
@@ -242,7 +208,6 @@ const CartPopup = ({ isOpen, closeCart }) => {
                     {(
                       parseFloat(item.salePrice) * parseInt(item.quantity)
                     ).toFixed(2)}
-                    {console.log("item.salePrice", item)}
                   </p>
                 </div>
                 <div className="d-flex align-items-center justify-content-between mt-3">
@@ -263,7 +228,7 @@ const CartPopup = ({ isOpen, closeCart }) => {
                   </div>
                   <div
                     className="delete mt-2"
-                    onClick={() => handleRemoveItem(index)}
+                    onClick={() => handleRemoveItem(item.id, index)}
                   >
                     <GoTrash size={25} />
                   </div>

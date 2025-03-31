@@ -42,13 +42,15 @@ const CheckoutPage = () => {
   const orderDetails = location.state?.orderDetails || [];
   const discountTotal = location?.state?.discountTotal || 0;
 
+  const mainTotal = totalAmount - discountTotal;
+
   console.log("location :>> ", location);
 
   const handlePayment = async (e) => {
     e.preventDefault(); // Prevents page reload
     try {
       const payload = {
-        amount: totalAmount - discountTotal,
+        amount: mainTotal,
       };
 
       // Step 1: Create an order via API
@@ -354,7 +356,7 @@ const CheckoutPage = () => {
                             item.productPrice.$numberDecimal
                           ).toLocaleString()
                         : "Price not available"} */}
-                        ₹{displayPrice}
+                      ₹ {displayPrice}
                     </strong>
                   </div>
                 </div>
@@ -375,8 +377,12 @@ const CheckoutPage = () => {
             </Form.Group>
             {/* Price Breakdown */}
             <div className="d-flex justify-content-between mt-5">
-              <span className="RightSec">Subtotal • 2 Items</span>
-              <strong className="RightSec">&#8377;60,000</strong>
+              <span className="RightSec">Subtotal • {orderDetails.length}  Items</span>
+              <strong className="RightSec">&#8377;{totalAmount}</strong>
+            </div>
+            <div className="d-flex justify-content-between mt-1">
+              <span className="RightSec">Total Discount</span>
+              <span className="RightSec">{discountTotal} %</span>
             </div>
             <div className="d-flex justify-content-between mt-1">
               <span className="RightSec">Shipping</span>
@@ -386,7 +392,7 @@ const CheckoutPage = () => {
             {/* Total */}
             <div className="d-flex justify-content-between mt-2">
               <strong className="RightSec">Total</strong>
-              <strong className="RightSec">&#8377;{totalAmount}</strong>
+              <strong className="RightSec">&#8377;{mainTotal.toFixed(2)}</strong>
             </div>
           </div>
         </Col>

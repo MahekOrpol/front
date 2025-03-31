@@ -895,7 +895,10 @@ html, body {
 
 @media (min-width:991px) {
     .check_outpgedetail{
-        width: 401px;
+        width: 399px;
+    }
+    .order-price{
+        white-space: noWrap;
     }
 }
 

@@ -751,7 +751,6 @@ const ProductDetailss = () => {
             <div className="row">
               {relatedProducts.map(
                 (product) => (
-                  console.log("relatedProducts :>> ", relatedProducts),
                   (
                     <div
                       key={product.id}
