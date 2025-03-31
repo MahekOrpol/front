@@ -1,64 +1,131 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./index.css";
 import Footer from "../../Pages/Footer";
 import Header from "../../Pages/Header";
 
 const OrderDetails = () => {
-    const [currentStep, setCurrentStep] = useState(0);
-    const steps = ["Confirmed", "Packed", "Shipped", "Delivered"]
-
-    const handleSliderChange = (event) => {
-        setCurrentStep(Number(event.target.value));
+    const [pendingOrders, setPendingOrders] = useState([]);
+    const [deliveredOrders, setDeliveredOrders] = useState([]);
+    const steps = ["Confirmed", "Packed", "Shipped", "Delivered"];
+    const statusMap = {
+        pending: "Pending",
+        confirmed: "Confirmed",
+        confirm: "Packed",  
+        shipped: "Shipped",
+        delivered: "Delivered",
+        cancelled: "Cancelled"
     };
+    
+
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const userId = localStorage.getItem("user_Id"); // Get user ID from localStorage
+                const response = await axios.get(`http://localhost:3000/api/v1/order/get-user/${userId}`);
+
+                if (response.data.status) {
+                    let orders = response.data.data;
+
+                    console.log("Fetched Orders:", orders); // Debugging log
+
+                    // 🔹 Exclude orders where paymentStatus is "Unpaid"
+                    orders = orders.filter(order => order.paymentStatus?.toLowerCase() !== "unpaid");
+
+                    const pendingOrders = orders.filter(order => order.status?.toLowerCase() !== "delivered");
+                    const deliveredOrders = orders.filter(order => order.status?.toLowerCase() === "delivered");
+
+                    setPendingOrders(pendingOrders);
+                    setDeliveredOrders(deliveredOrders);
+
+                    console.log("Pending Orders:", pendingOrders);
+                    console.log("Delivered Orders:", deliveredOrders);
+                }
+            } catch (error) {
+                console.error("Error fetching orders:", error);
+            }
+        };
+
+        fetchOrders();
+    }, []);
+
+
+    const totalPendingAmount = pendingOrders.reduce((sum, order) => {
+        return sum + parseFloat(order.totalPrice?.$numberDecimal || 0);
+    }, 0);
+
+
     return (
         <>
             <Header />
             <div className="order-container">
                 <h2 className="order-title">Order Details</h2>
-                <p className="order-info">
-                    Order Placed On: <strong>March 18, 2024</strong> | Order No:{" "}
-                    <strong>767069493</strong>
-                </p>
-                <p className="delivery-date">Delivery Expected by March 19, 2024</p>
 
-                {/* Order Tracking */}
-                <div className="order_ddyy">
-                    <div className="step-progress-container mx-lg-5">
-                        <input
-                            type="range"
-                            min="0"
-                            max={steps.length - 1}
-                            value={currentStep}
-                            onChange={handleSliderChange}
-                            className="price-slider w-100"
-                            style={{ accentColor: "#611d2b" }}
-                        />
+                {/* Pending Orders */}
+                {pendingOrders.length > 0 ? (
+                    pendingOrders.map((order, index) => (
+                        
+                        <div key={index} className="order_ddyy">
+                            <p className="order-info">
+                                Order Placed On: <strong>{new Date(order.createdAt).toDateString()}</strong> |
+                                Order No: <strong># {order.orderId}</strong>
+                            </p>
+                            <p className="delivery-date">Delivery Expected by {new Date(order.updatedAt).toDateString()}</p>
 
-                        <div className="d-flex justify-content-between mt-2">
-                            {steps.map((steps, index) => (
-                                <span key={index} className="step-label">{steps}</span>
-                            ))}
-                        </div>
-                    </div>
+                            {/* Order Tracking */}
+                            {/* Order Tracking */}
+                            <div className="step-progress-container mx-lg-5">
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max={steps.length - 1}
+                                    // value={steps.indexOf(statusMap[order.status?.toLowerCase()] || "Confirmed")}
+                                    value={Math.max(0, steps.indexOf(statusMap[order.status?.toLowerCase()] || "Confirmed"))}
+                                    
 
-                    {/* Order Items */}
-                    {[1, 2].map((_, i) => (
-                        <div key={i} className="order_ddd">
-                            <img src={require("../../Images/2 (4) (2).png")} alt="Two Stone Diamond Ring" className="img_dd" />
-                            <div className="item-details mx-1">
-                                <p className="item-name m-auto">Two Stone Diamond Ring</p>
-                                <p className="item-price">
-                                    Total: <strong>₹30,000</strong>
-                                </p>
-                                <p className="item-qty">
-                                    <strong>Qty: 1</strong> | Order ID: 976545768
-                                </p>
+                                    className="price-slider w-100"
+                                    style={{ accentColor: "#611d2b" }}
+                                    readOnly
+                                />
+                                <div className="d-flex justify-content-between mt-2">
+                                    {steps.map((step, index) => (
+                                        <span key={index} className={`step-label ${steps.indexOf(statusMap[order.status?.toLowerCase()] || "Confirmed") >= index ? 'active-step' : ''}`}>
+                                            {step}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
 
-                {/* Price Summary */}
+
+                            {/* Order Items */}
+                            {/* Order Items */}
+                            {order.orderDetails?.length > 0 ? (
+                                order.orderDetails.map((item, i) => (
+                                    <div key={i} className="order_ddd">
+                                        <img
+                                            src={`http://localhost:3000${item.productId.image[0]}`}
+                                            alt={item.productId?.productName} className="img_dd" />
+                                        <div className="item-details mx-1">
+                                            <p className="item-name m-auto">{item.productId?.productName}</p>
+                                            <p className="item-price">
+                                                Total: <strong>₹{item.productPrice.$numberDecimal}</strong>
+                                            </p>
+                                            <p className="item-qty">
+                                                <strong>Qty: {item.quantity}</strong> | Order ID: # {order.orderId}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>No items found in this order.</p>
+                            )}
+
+                        </div>
+                    ))
+                ) : (
+                    <p>No pending orders found.</p>
+                )}
+
                 <table className="price-summary mt-5 w-25">
                     <thead>
                         <tr>
@@ -68,7 +135,7 @@ const OrderDetails = () => {
                     <tbody>
                         <tr>
                             <td>Item Total</td>
-                            <td>₹30,000.00</td>
+                            <td>₹{totalPendingAmount.toFixed(2)}</td>
                         </tr>
                         <tr>
                             <td>Delivery Charge</td>
@@ -84,7 +151,7 @@ const OrderDetails = () => {
                         </tr>
                         <tr className="total">
                             <td>Total Payable</td>
-                            <td>₹35,000.00</td>
+                            <td>₹{totalPendingAmount.toFixed(2)}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -98,34 +165,45 @@ const OrderDetails = () => {
 
                 {/* Previous Orders */}
                 <h3 className="prev-orders-title mt-5 mb-3 fs-2">Your Previous Orders</h3>
-                {[1, 2].map((_, i) => (
-                    <div key={i} className="prev-order">
-                        <div className="prev-order-info mt-2 mx-3">
-                            <div className="gftt">
-                                <p className="m-auto">Order Placed On</p>
-                                <p className="bold">March 12, 2024</p>
+                {deliveredOrders.length > 0 ? (
+                    deliveredOrders.map((order, index) => (
+                        <div key={index} className="prev-order">
+                            <div className="prev-order-info mt-2 mx-3">
+                                <div className="gftt">
+                                    <p className="m-auto">Order Placed On</p>
+                                    <p className="bold">{new Date(order.createdAt).toDateString()}</p>
+                                </div>
+                                <div className="gftt">
+                                    <p className="m-auto">Total Price</p>
+                                    <p className="bold">₹{order.totalPrice.$numberDecimal}</p>
+                                </div>
+                                <div className="gftt">
+                                    <p className="m-auto">Ship to</p>
+                                    <p className="bold">{order.receiverName}</p>
+                                </div>
                             </div>
-                            <div className="gftt">
-                                <p className="m-auto">Total Price</p>
-                                <p className="bold">₹1065.00</p>
-                            </div>
-                            <div className="gftt">
-                                <p className="m-auto">Ship to</p>
-                                <p className="bold">John Walter</p>
+                            <hr className="m-auto" />
+                            <div className="prev-order-item p-3">
+                                <img
+                                    src={`http://localhost:3000${order.orderDetails[0]?.productId?.image[0] || ""}`}
+                                    alt={order.orderDetails[0]?.productId?.productName || "Product"}
+                                    className="img_dd"
+                                />
+
+                                <div className="mx-3">
+                                    <div className="d-flex align-items-baseline gap-2">
+                                        <p>{order.orderDetails.length} item(s)</p>
+                                        <div className="delivered-status">Order Delivered</div>
+                                    </div>
+                                    <p className="gftt">Order ID: {order.orderId}</p>
+                                    <p className="gftt bold">Delivered on {new Date(order.updatedAt).toDateString()}</p>
+                                </div>
                             </div>
                         </div>
-                        <hr className="m-auto" />
-                        <div className="prev-order-item p-3">
-                            <img src={require("../../Images/2 (4) (2).png")} alt="Two Stone Diamond Ring" className="img_dd" />
-                            <div className="mx-3">
-                                <div className="d-flex align-items-baseline gap-2"> <p>1 item</p>
-                                    <div className="delivered-status">Order Delivered</div></div>
-                                <p className="gftt">Order ID: 976545764</p>
-                                <p className="gftt bold">Delivered on March 12, 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                    ))
+                ) : (
+                    <p>No previous orders found.</p>
+                )}
             </div>
             <Footer />
         </>

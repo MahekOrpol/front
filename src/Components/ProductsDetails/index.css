@@ -150,6 +150,10 @@
   }
 }
 
+.sticky-top{
+  z-index: unset;
+}
+
 .bread_crumnbs {
   color: black;
 }

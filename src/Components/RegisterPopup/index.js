@@ -14,6 +14,18 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   const [tabValue, setTabValue] = useState("login");
   const [showForgotPass, setShowForgotPass] = useState(false);
   const [showChangePass, setShowChangePass] = useState(false);
+  // Login form state
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [loginErrors, setLoginErrors] = useState({});
+
+  // Register form state
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [registerErrors, setRegisterErrors] = useState({});
 
     if (!isOpen) return null;
   if (showForgotPass) {
@@ -28,18 +40,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
       onClose();
     }} />;
   }
-  // Login form state
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const [loginErrors, setLoginErrors] = useState({});
 
-  // Register form state
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [registerErrors, setRegisterErrors] = useState({});
 
 
   const handleOverlayClick = (e) => {
@@ -74,7 +75,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await axios.post("https://crystova.cloudbusiness.cloud/api/v1/register/login", {
+        const response = await axios.post("http://localhost:3000/api/v1/register/login", {
           email: loginEmail,  
           password: loginPassword,
         });
@@ -119,7 +120,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await axios.post("https://crystova.cloudbusiness.cloud/api/v1/register/register", {
+        const response = await axios.post("http://localhost:3000/api/v1/register/register", {
           name,
           email,
           phone,
@@ -137,20 +138,20 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     }
   };
 
-  useEffect(() => {
-    // Reset login fields
-    setLoginEmail("");
-    setLoginPassword("");
-    setLoginErrors({});
+  // useEffect(() => {
+  //   // Reset login fields
+  //   setLoginEmail("");
+  //   setLoginPassword("");
+  //   setLoginErrors({});
 
-    // Reset register fields
-    setName("");
-    setEmail("");
-    setPhone("");
-    setPassword("");
-    setConfirmPassword("");
-    setRegisterErrors({});
-  }, [tabValue]);  
+  //   // Reset register fields
+  //   setName("");
+  //   setEmail("");
+  //   setPhone("");
+  //   setPassword("");
+  //   setConfirmPassword("");
+  //   setRegisterErrors({});
+  // }, [tabValue]);  
 
   if (!isOpen) return null;
 

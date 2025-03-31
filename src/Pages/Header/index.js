@@ -41,7 +41,7 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
         <p className="header_text pt-2">Shop Gold and Diamond Jewellery</p>
       </div>
 
-      <div className="heder_sec_main d-flex align-items-center sdcsd_ss_ddd">
+      <div className="heder_sec_main  mt-lg-2 d-flex align-items-center sdcsd_ss_ddd">
         {/* 🟢 Menu Icon for Mobile */}
         <div className="menu-icon d-xl-none" onClick={toggleDrawer}>
           <LuTextSearch size={30} />
@@ -98,7 +98,7 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
             <SignInPopup isOpen={isSignupPopupOpen} onClose={() => setIsSignupPopupOpen(false)} />
           )}
           {/* <div><CiSearch size={25} /></div> */}
-          <div style={{cursor:'pointer'}}><CiHeart size={25} /></div>
+          <div style={{cursor:'pointer'}} onClick={()=>{navigate('/wishlist')}}><CiHeart size={25} /></div>
           <div style={{cursor:'pointer'}}><IoBagHandleOutline size={25} onClick={openCart}/></div>
         </div>
       </div>

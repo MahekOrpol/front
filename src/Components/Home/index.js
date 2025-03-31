@@ -41,6 +41,7 @@ import ringVideo3 from "../../Videos/sdcsdcdfc.mp4";
 import ringVideo4 from "../../Videos/sdcxdscx.mp4";
 import ringVideo5 from "../../Videos/dsfcdfc.mp4";
 import JewelrySale from "../Contact Us/sdcsd/demo";
+import { toast } from "react-toastify";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -133,11 +134,16 @@ const Home = () => {
   const [topRated, setTopRated] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
+  const userId = localStorage.getItem("user_Id");
+  const [wishlistItems, setWishlistItems] = useState({});
 
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
   };
 
+  const handleProductClick = (productId, productData) => {
+    navigate(`/product-details/${productId}`, { state: { product: productData } });
+  };
   // Function to add an item to the cart
   const addToCart = async (product) => {
     try {
@@ -145,6 +151,10 @@ const Home = () => {
       const productSize = Array.isArray(product?.productSize)
         ? product.productSize.join(",")
         : product?.productSize || "";
+        const variationIds = Array.isArray(product?.variations)
+        ? product.variations.map(variation => variation.id) // Ensure only ObjectIds are sent
+        : [];
+
       // Define the payload for the API request
       const payload = {
         userId: userId,
@@ -153,7 +163,11 @@ const Home = () => {
         quantity: product?.quantity || 1,
         productSize: productSize,
         discount: product?.discount?.$numberDecimal || 0,
+       variation: variationIds
+
       };
+      console.log('product', JSON.stringify(       JSON.stringify(product?.variations)
+    ))
 
       // Make the API request
       const response = await axios.post(
@@ -163,10 +177,10 @@ const Home = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-
+      
+      openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
-        openCart(); // Open cart after successful addition
       } else {
         console.error("Failed to add product to cart:", response);
       }
@@ -211,57 +225,22 @@ const Home = () => {
     document.body.classList.remove("no-scroll");
   };
 
-  const addWishlist = async (productId) => {
-    try {
-      const userId = localStorage.get("userId");
-      const response = await axios.post(
-        "https://crystova.cloudbusiness.cloud/api/v1/wishlist/create",
-        {
-          userId,
-          productId,
-        }
-      );
-      console.log("Wishlist Response:", response.data);
-      setIsFavorite(response.data);
-    } catch (error) {
-      console.error(
-        "Error adding to wishlist:",
-        error.response?.data || error.message
-      );
-    }
-  };
-
-  const deleteWishlist = async (productId) => {
-    try {
-      const userId = localStorage.getItem("userId");
-      const response = await axios.delete(
-        `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${productId}?userId=${userId}`
-      );
-      console.log("Wishlist Delete Response:", response.data);
-      setIsFavorite(response.data);
-    } catch (error) {
-      console.error(
-        "Error deleting from wishlist:",
-        error.response?.data || error.message
-      );
-    }
-  };
-
   const getTopRated = async () => {
-    const res = await axios(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated"
+    const res = await axios.get(
+      "http://localhost:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
+    console.log('res.data', res.data)
   };
   const getBestSelling = async () => {
-    const res = await axios(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getBestSelling"
+    const res = await axios.get(
+      "http://localhost:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
-    const res = await axios(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale"
+    const res = await axios.get(
+      "http://localhost:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -286,6 +265,78 @@ const Home = () => {
       text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
     },
   ];
+
+  const toggleFavorite = async (productId) => {
+    if (!userId) return toast.error("Please log in to add items to wishlist");
+
+    try {
+      if (wishlistItems[productId]) {
+        // Remove from wishlist
+        const wishlistItemId = wishlistItems[productId]; // Store the current ID
+        setWishlistItems((prev) => {
+          const updatedWishlist = { ...prev };
+          delete updatedWishlist[productId]; // Update UI immediately
+          return updatedWishlist;
+        });
+
+        const res = await axios.delete(
+          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
+        );
+        toast.success(res.data.message || "Removed from wishlist!");
+      } else {
+        // Add to wishlist
+        const response = await axios.post(
+          `http://localhost:3000/api/v1/wishlist/create`,
+          {
+            productId,
+            userId,
+          }
+        );
+
+        const newWishlistItemId = response.data.data.id;
+        setWishlistItems((prev) => ({
+          ...prev,
+          [productId]: newWishlistItemId, // Store wishlist ID properly
+        }));
+
+        toast.success(response.data.message || "Added to wishlist!");
+      }
+    } catch (error) {
+      console.error("Failed to update wishlist:", error);
+      toast.error("Failed to update wishlist. Please try again!");
+    }
+  };
+
+  useEffect(() => {
+    const fetchWishlist = async () => {
+      if (!userId) return;
+      try {
+        const response = await axios.get(`http://localhost:3000/api/v1/wishlist/${userId}`);
+        const wishlistData = response.data.data || [];
+
+        console.log("Fetched Wishlist Data:", wishlistData);
+
+
+        const wishlistMap = {};
+        wishlistData.forEach((item) => {
+          let productId = item.productId._id || item.productId.id; // Extract _id if present
+          console.log("Processed Product ID:", productId, "Type:", typeof productId);
+
+          if (typeof productId === "string" || typeof productId === "number") {
+            wishlistMap[productId] = item.id;
+          } else {
+            console.error("Invalid productId format:", item.productId);
+          }
+        });
+
+        setWishlistItems(wishlistMap);
+      } catch (error) {
+        console.error("Error fetching wishlist:", error);
+      }
+    };
+
+    fetchWishlist();
+  }, [userId]);
 
   useEffect(() => {
     const updateSlidesPerView = () => {
@@ -361,12 +412,12 @@ const Home = () => {
     return [diamondRings[currentIndex]]; // Return a single ring inside an array
   };
 
-  const toggleFavorite = (id) => {
-    setIsFavorite((prev) => ({
-      ...prev,
-      [id]: !prev[id], // Toggle the favorite state for the specific card
-    }));
-  };
+  // const toggleFavorite = (id) => {
+  //   setIsFavorite((prev) => ({
+  //     ...prev,
+  //     [id]: !prev[id], // Toggle the favorite state for the specific card
+  //   }));
+  // };
 
   useEffect(() => {
     const swiperInstance = swiperRef.current?.swiper;
@@ -682,26 +733,24 @@ const Home = () => {
                         </button>
 
                         {/* Favorite Icon */}
+
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
                           onClick={() => toggleFavorite(product.id)}
                           style={{ cursor: "pointer" }}
                         >
-                          {isFavorite[product.id] ? (
+                          {wishlistItems[product.id] ? (
                             <GoHeartFill className="heart-icon_ss" size={18} />
                           ) : (
-                            <GoHeart
-                              className="heart-icon_ss"
-                              size={18}
-                              onClick={() => addWishlist(product._id)} // Use product._id from the backend
-                            />
+                            <GoHeart className="heart-icon_ss" size={18} />
                           )}
+
                         </div>
 
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -725,7 +774,8 @@ const Home = () => {
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                         <button
                           className="more_btn_dsdd w-50"
-                          onClick={() => navigate("/product-details")}
+                          // onClick={() => navigate("/product-details")}
+                          onClick={() => handleProductClick(product.id)}
                         >
                           More Info
                         </button>
@@ -771,7 +821,7 @@ const Home = () => {
 
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -844,7 +894,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1084,7 +1134,7 @@ const Home = () => {
 
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
           <div className="pt-4 container djb_dsjvn mx-2">
-            <div className="row justify-content-between scc_gift_edit_sdsd gap-2">
+            <div className="row justify-content-evenly scc_gift_edit_sdsd gap-2">
               <div className="d-flex flex-column align-items-center gap-3  offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
@@ -1242,7 +1292,7 @@ const Home = () => {
             </div>
           </div> */}
 
-          <div className="ring-slider-container " style={{width:"100%"}}>
+          <div className="ring-slider-container " style={{ width: "100%" }}>
             <Swiper
               ref={swiperRef}
               modules={[Navigation]}
@@ -1595,9 +1645,8 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
+                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                        } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
@@ -1631,7 +1680,7 @@ const Home = () => {
             <FaAngleRight />
           </button>
         </div>
-
+        <div className="pb-5"></div>
         <Footer />
       </div>
     </>
