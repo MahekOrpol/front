@@ -201,8 +201,9 @@ const Products = () => {
   }, [userId]);
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Scrolls to the top when the component loads
+    window.scrollTo(0, 0); // Ensure the page scrolls to the top when productId changes
   }, []);
+  
 
   const addToCart = async (product) => {
     try {

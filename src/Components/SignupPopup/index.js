@@ -86,7 +86,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
                                     </div>
                                     <FaAngleRight size={20} className="menu-arrow" />
                                 </li>
-                                <li>
+                                <li onClick={()=>navigate('/contact-us')}>
                                     <div className="menu-item">
                                         <img src={require("../../Images/contacticon.png")} alt="Contact" className="menu-icons" />
                                         <span className="sass">Contact Us</span>

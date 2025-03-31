@@ -13,40 +13,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const products = [
-  {
-    id: 1,
-    imgSrc: require("../../Images/image 98.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 2,
-    imgSrc: require("../../Images/tre-2.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 3,
-    imgSrc: require("../../Images/image 100 (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 4,
-    imgSrc: require("../../Images/latsss.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-];
 const ProductDetailss = () => {
   const [liked, setLiked] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState(null);
@@ -65,6 +35,17 @@ const ProductDetailss = () => {
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
   };
+
+  const navigate = useNavigate();
+
+  const handleProductClick = (productId, productData) => {
+    navigate(`/product-details/${productId}`, { state: { product: productData } });
+  };
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component loads
+  }, [location]);
 
   useEffect(() => {
     if (!productData) {
@@ -87,9 +68,11 @@ const ProductDetailss = () => {
     const formData = new FormData();
     formData.append("categoryName", categoryName);
     axios
-      .get(`http://localhost:3000/api/v1/product/get-latest-products`, { params: { categoryName } }) // Use params for GET
+      .get(`http://localhost:3000/api/v1/product/get-related-product`, {
+        params: { categoryName },
+      }) // Use params for GET
       .then((response) => {
-        setRelatedProducts(response.data.data || []);
+        setRelatedProducts(response.data || []);
       })
       .catch((error) =>
         console.error("Error fetching related products:", error)
@@ -137,10 +120,13 @@ const ProductDetailss = () => {
   };
 
   useEffect(() => {
-    if (productDetails?.hasVariations && productDetails.variations?.length > 0) {
+    if (
+      productDetails?.hasVariations &&
+      productDetails.variations?.length > 0
+    ) {
       // Set default price from the first variation
       const firstVariation = productDetails.variations[0];
-  
+
       setDisplayPrice({
         regularPrice: firstVariation.regularPrice,
         salePrice: firstVariation.salePrice,
@@ -155,7 +141,6 @@ const ProductDetailss = () => {
       });
     }
   }, [productDetails]);
-  
 
   const toggleFavorite = async (productId) => {
     if (!userId) return toast.error("Please log in to add items to wishlist");
@@ -211,7 +196,7 @@ const ProductDetailss = () => {
 
         const wishlistMap = {};
         wishlistData.forEach((item) => {
-          let productId = item.productId._id || item.productId.id; 
+          let productId = item.productId._id || item.productId.id;
           console.log(
             "Processed Product ID:",
             productId,
@@ -250,19 +235,14 @@ const ProductDetailss = () => {
     },
   ];
 
-  useEffect(() => {
-    window.scrollTo(0, 0); // Scrolls to the top when the component loads
-  }, []);
-
-
   const addToCart = async (product) => {
     try {
       const userId = localStorage.getItem("user_Id");
       const productSize = Array.isArray(product?.productSize)
         ? product.productSize.join(",")
         : product?.productSize || "";
-        const variationIds = Array.isArray(product?.variations)
-        ? product.variations.map(variation => variation.id) // Ensure only ObjectIds are sent
+      const variationIds = Array.isArray(product?.variations)
+        ? product.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
         : [];
 
       // Define the payload for the API request
@@ -273,11 +253,12 @@ const ProductDetailss = () => {
         quantity: product?.quantity || 1,
         productSize: productSize,
         discount: product?.discount?.$numberDecimal || 0,
-       variation: variationIds
-
+        variation: variationIds,
       };
-      console.log('product', JSON.stringify(       JSON.stringify(product?.variations)
-    ))
+      console.log(
+        "product",
+        JSON.stringify(JSON.stringify(product?.variations))
+      );
 
       // Make the API request
       const response = await axios.post(
@@ -287,7 +268,7 @@ const ProductDetailss = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-      
+
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
@@ -768,60 +749,76 @@ const ProductDetailss = () => {
           </div>
           <div className="heder_sec_main d-flex flex-column">
             <div className="row">
-              {products.map((product) => (
-                <div
-                  key={product.id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 pt-5 asxasx_cards tsrd_didhd_sdcs"
-                  onMouseEnter={() => setHoveredProduct(product.id)}
-                  onMouseLeave={() => setHoveredProduct(null)}
-                >
-                  <div className="card prio_card scdscsed_sdss">
-                    <div className="card-image-wrapper position-relative">
-                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                        NEW
-                      </button>
-                      <div
-                        className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                        onClick={() => toggleFavorite(product.id)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {wishlistItems[product.id] ? (
-                          <GoHeartFill className="heart-icon_ss" size={18} />
-                        ) : (
-                          <GoHeart className="heart-icon_ss" size={18} />
-                        )}
-                      </div>
+              {relatedProducts.map(
+                (product) => (
+                  console.log("relatedProducts :>> ", relatedProducts),
+                  (
+                    <div
+                      key={product.id}
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 pt-5 asxasx_cards tsrd_didhd_sdcs"
+                      onMouseEnter={() => setHoveredProduct(product.id)}
+                      onMouseLeave={() => setHoveredProduct(null)}
+                    >
+                      <div className="card prio_card scdscsed_sdss">
+                        <div className="card-image-wrapper position-relative">
+                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                            NEW
+                          </button>
+                          <div
+                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                            onClick={() => toggleFavorite(product.id)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {wishlistItems[product.id] ? (
+                              <GoHeartFill
+                                className="heart-icon_ss"
+                                size={18}
+                              />
+                            ) : (
+                              <GoHeart className="heart-icon_ss" size={18} />
+                            )}
+                          </div>
 
-                      <div
-                        className="card-body p-0 d-flex justify-content-center"
-                        style={{ height: "100%" }}
-                      >
-                        <img
-                          src={product.imgSrc}
-                          className="p-1_proi img-fluid"
-                          alt="Product"
-                        />
+                          <div
+                            className="card-body p-0 d-flex justify-content-center"
+                            style={{ height: "100%" }}
+                          >
+                            <img
+                              src={`http://localhost:3000${product.image[0]}`}
+                              className="p-1_proi img-fluid"
+                              alt="Product"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="d-flex flex-column main_cdsss">
+                        <span className="mikdec_asdaa pt-3">
+                          {product.productName}
+                        </span>
+                        <div className="d-flex align-items-center gap-3 pt-1">
+                          <span className="mikdec_asdxsx">
+                            {product.salePrice.$numberDecimal}
+                          </span>
+                          <span className="mikdec_axsx">
+                            {product.regularPrice?.$numberDecimal}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                          <button className="more_btn_dsdd w-50"  onClick={() => handleProductClick(product.id)}>
+                            More Info
+                          </button>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                            onClick={() => addToCart(productDetails)}
+                          >
+                            Add to Cart <BiShoppingBag size={25} />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_asdaa pt-3">{product.name}</span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx">{product.price}</span>
-                      <span className="mikdec_axsx">{product.cutPrice}</span>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                      <button className="more_btn_dsdd w-50">More Info</button>
-                      <button
-                        className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
-                        onClick={openCart}
-                      >
-                        Add to Cart <BiShoppingBag size={25} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                  )
+                )
+              )}
 
               <div className="slider_ssss_fdcdf ">
                 <Swiper
@@ -840,7 +837,7 @@ const ProductDetailss = () => {
                   // }}
                   // modules={[Autoplay]}
                 >
-                  {products.map((product) => (
+                  {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
                       <div
                         className="card prio_card scdscsed_sdss"
@@ -871,7 +868,7 @@ const ProductDetailss = () => {
                             style={{ height: "100%" }}
                           >
                             <img
-                              src={product.imgSrc}
+                              src={`http://localhost:3000${product.image[0]}`}
                               className="p-1_proi img-fluid border-0"
                               alt="Product"
                               style={{ height: "100%" }}
@@ -882,21 +879,26 @@ const ProductDetailss = () => {
 
                       <div className="d-flex flex-column main_cdsss">
                         <span className="mikdec_asdaa pt-3">
-                          {product.name}
+                          {product.productName}
                         </span>
                         <div className="d-flex align-items-center gap-3 pt-1">
-                          <span className="mikdec_asdxsx">{product.price}</span>
+                          <span className="mikdec_asdxsx">
+                            {" "}
+                            {product.salePrice.$numberDecimal}
+                          </span>
                           <span className="mikdec_axsx">
-                            {product.cutPrice}
+                            {product.regularPrice?.$numberDecimal}
                           </span>
                         </div>
                         <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                          <button className="more_btn_dsdd w-50">
+                          <button className="more_btn_dsdd w-50"
+                          onClick={() => handleProductClick(product.id)}
+                          >
                             More Info
                           </button>
                           <button
                             className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
-                            onClick={openCart}
+                            onClick={() => addToCart(productDetails)}
                           >
                             Add to Cart <BiShoppingBag size={25} />
                           </button>

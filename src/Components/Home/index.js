@@ -142,7 +142,9 @@ const Home = () => {
   };
 
   const handleProductClick = (productId, productData) => {
-    navigate(`/product-details/${productId}`, { state: { product: productData } });
+    navigate(`/product-details/${productId}`, {
+      state: { product: productData },
+    });
   };
   // Function to add an item to the cart
   const addToCart = async (product) => {
@@ -151,8 +153,8 @@ const Home = () => {
       const productSize = Array.isArray(product?.productSize)
         ? product.productSize.join(",")
         : product?.productSize || "";
-        const variationIds = Array.isArray(product?.variations)
-        ? product.variations.map(variation => variation.id) // Ensure only ObjectIds are sent
+      const variationIds = Array.isArray(product?.variations)
+        ? product.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
         : [];
 
       // Define the payload for the API request
@@ -163,11 +165,12 @@ const Home = () => {
         quantity: product?.quantity || 1,
         productSize: productSize,
         discount: product?.discount?.$numberDecimal || 0,
-       variation: variationIds
-
+        variation: variationIds,
       };
-      console.log('product', JSON.stringify(       JSON.stringify(product?.variations)
-    ))
+      console.log(
+        "product",
+        JSON.stringify(JSON.stringify(product?.variations))
+      );
 
       // Make the API request
       const response = await axios.post(
@@ -177,7 +180,7 @@ const Home = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-      
+
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
@@ -230,7 +233,7 @@ const Home = () => {
       "http://localhost:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
-    console.log('res.data', res.data)
+    console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
@@ -311,16 +314,22 @@ const Home = () => {
     const fetchWishlist = async () => {
       if (!userId) return;
       try {
-        const response = await axios.get(`http://localhost:3000/api/v1/wishlist/${userId}`);
+        const response = await axios.get(
+          `http://localhost:3000/api/v1/wishlist/${userId}`
+        );
         const wishlistData = response.data.data || [];
 
         console.log("Fetched Wishlist Data:", wishlistData);
 
-
         const wishlistMap = {};
         wishlistData.forEach((item) => {
           let productId = item.productId._id || item.productId.id; // Extract _id if present
-          console.log("Processed Product ID:", productId, "Type:", typeof productId);
+          console.log(
+            "Processed Product ID:",
+            productId,
+            "Type:",
+            typeof productId
+          );
 
           if (typeof productId === "string" || typeof productId === "number") {
             wishlistMap[productId] = item.id;
@@ -484,9 +493,7 @@ const Home = () => {
                 <SwiperSlide
                   key={index}
                   className="slide-item"
-                  onClick={() => {
-                    handleCategoryClick();
-                  }}
+                  onClick={() => handleCategoryClick(item.label)}
                 >
                   <div className="d-flex flex-column align-items-center fvfvfc_Zdcdsc">
                     <img
@@ -744,7 +751,6 @@ const Home = () => {
                           ) : (
                             <GoHeart className="heart-icon_ss" size={18} />
                           )}
-
                         </div>
 
                         {/* Product Image */}
@@ -1645,8 +1651,9 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                        } mt-5`}
+                      className={`card testimonial-card${
+                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                      } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
