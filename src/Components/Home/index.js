@@ -822,9 +822,9 @@ const Home = () => {
                     className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
                   >
                     <div className="card prio_card scdscsed_sdss">
-                      <div className="card-image-wrapper position-relative">
+                      <div className="card-image-wrapper position-relative best_saller_btn">
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          SALE
+                         BEST SALLER
                         </button>
 
                         <div
@@ -896,7 +896,7 @@ const Home = () => {
                       <div className="card-image-wrapper position-relative">
                         {/* SALE Badge */}
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          SALE
+                          NEW
                         </button>
 
                         {/* Favorite Icon */}

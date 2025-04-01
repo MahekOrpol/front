@@ -40,7 +40,7 @@ const Products = () => {
   const navigate = useNavigate();
   const [selectedCategories, setSelectedCategories] = useState([]);
   const userId = localStorage.getItem("user_Id");
-
+  const [searchQuery, setSearchQuery] = useState("");
 
   // const handleProductClick = (productId) => {
   //   navigate(`/product-details/${productId}`);
@@ -65,7 +65,6 @@ const Products = () => {
     setIsCartOpen(false);
     document.body.classList.remove("no-scroll");
   };
-  
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -86,7 +85,6 @@ const Products = () => {
     fetchProducts();
   }, [categoryName, gender]);
 
-  
   const handleNextImage = (productId, images) => {
     setImageIndexes((prevIndex) => ({
       ...prevIndex,
@@ -136,15 +134,19 @@ const Products = () => {
 
   const handleApplyFilters = async () => {
     let url = `http://localhost:3000/api/v1/product/get?`;
-  
+
     // Append selected categories as query parameters
     if (selectedCategories.length > 0) {
       url += `categoryName=${selectedCategories.join(",")}&`;
     }
-  
+
     // Append price range as query parameters
     url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
-  
+
+    if (searchQuery) {
+      url += `search=${searchQuery}&`; // Append search query parameter
+    }
+    
     try {
       const response = await axios.get(url);
       setProductList(response.data); // Update product list with filtered results
@@ -153,9 +155,8 @@ const Products = () => {
       console.error("Error fetching filtered products:", error);
     }
   };
-  
-  const toggleFavorite = async (productId) => {
 
+  const toggleFavorite = async (productId) => {
     // if (!userId) return toast.error("Please log in to add items to wishlist");
     const userId = localStorage.getItem("user_Id");
 
@@ -204,8 +205,6 @@ const Products = () => {
 
   useEffect(() => {
     const fetchWishlist = async () => {
-      
-    
       if (!userId) return;
 
       try {
@@ -241,7 +240,6 @@ const Products = () => {
 
     fetchWishlist();
   }, [userId]);
-  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -249,7 +247,6 @@ const Products = () => {
 
   const addToCart = async (product) => {
     try {
-
       const userId = localStorage.getItem("user_Id");
 
       if (!userId) {
@@ -308,13 +305,13 @@ const Products = () => {
   }, []);
 
   const handleCategoryChange = (category) => {
-    setSelectedCategories((prev) =>
-      prev.includes(category)
-        ? prev.filter((c) => c !== category) // Remove category if already selected
-        : [...prev, category] // Add category if not selected
+    setSelectedCategories(
+      (prev) =>
+        prev.includes(category)
+          ? prev.filter((c) => c !== category) // Remove category if already selected
+          : [...prev, category] // Add category if not selected
     );
   };
-  
 
   return (
     <>
@@ -341,7 +338,6 @@ const Products = () => {
               stunning ring styles to match your unique taste and occasion
             </p>
             <div className="pt-3 Sfg">
-             
               <button
                 className="ring_for_her"
                 onClick={() =>
@@ -372,7 +368,6 @@ const Products = () => {
                   />{" "}
                   Filter
                 </button>
-                
               </div>
               <div className="d-flex gap-3 align-items-center filter_pro2">
                 <span className="sho_ddd filter_pro1">Sort by:</span>
@@ -399,6 +394,8 @@ const Products = () => {
                       type="text"
                       className="search-input"
                       placeholder="Search Products"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
                     />
                     <span className="search-button">
                       <BiSearch size={25} />
@@ -419,8 +416,12 @@ const Products = () => {
                           type="checkbox"
                           className="category-checkbox"
                           value={category.categoryName}
-                          checked={selectedCategories.includes(category.categoryName)}
-                          onChange={() => handleCategoryChange(category.categoryName)}
+                          checked={selectedCategories.includes(
+                            category.categoryName
+                          )}
+                          onChange={() =>
+                            handleCategoryChange(category.categoryName)
+                          }
                         />{" "}
                         {category.categoryName}
                       </label>
@@ -452,7 +453,10 @@ const Products = () => {
                     )}
                   </div>
 
-                  <div className="d-flex align-items-center gap-2 justify-content-end" style={{ textAlign: "end" }}>
+                  <div
+                    className="d-flex align-items-center gap-2 justify-content-end"
+                    style={{ textAlign: "end" }}
+                  >
                     <button className="Clen" onClick={handleApplyFilters}>
                       Apply
                     </button>
@@ -495,7 +499,6 @@ const Products = () => {
 
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                       
                           {product.image[imageIndexes[product.id]]?.endsWith(
                             ".mp4"
                           ) ? (
@@ -547,10 +550,10 @@ const Products = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx htryf">
-                         ₹{product.salePrice?.$numberDecimal}
+                          ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx htryf">
-                         ₹{product.regularPrice?.$numberDecimal}
+                          ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       {hoveredProduct === product.id && (
