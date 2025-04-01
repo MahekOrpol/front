@@ -128,9 +128,21 @@ const RegisterPopup = ({ isOpen, onClose }) => {
           ConfirmPassword: confirmPassword
         });
 
+       
         if (response.status === 201) {
-          toast.success("Registration Successful!");
-          setTabValue("login");
+          const createProfileRes =  await axios.post("http://localhost:3000/api/v1/users/create", {
+            user_id:response.data.user.id,
+            firstName:name,
+            email,
+            phone
+        
+          });
+
+          if(createProfileRes.status === 200){
+            toast.success("Registration Successful!");
+            setTabValue("login");
+          }
+         
         }
       } catch (error) {
         toast.error(error.response?.data?.message || "Registration failed");

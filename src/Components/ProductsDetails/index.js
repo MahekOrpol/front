@@ -13,7 +13,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { useLocation,useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -59,13 +59,13 @@ const ProductDetailss = () => {
   const userId = localStorage.getItem("user_Id");
   const [wishlistItems, setWishlistItems] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const openCart = () => {
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
   };
-  
+
   const navigate = useNavigate();
 
   const handleProductClick = (productId, productData) => {
@@ -105,7 +105,8 @@ const ProductDetailss = () => {
       })
       .catch((error) =>
         console.error("Error fetching related products:", error)
-      );  };
+      );
+  };
 
 
   const closeCart = () => {
@@ -126,52 +127,52 @@ const ProductDetailss = () => {
 
   const handleSelect = (size) => {
     setSelectedSize(size);
-  
 
 
-  if (productDetails?.hasVariations) {
-    const selectedVariation = productDetails.variations.find(
-      (variation) => variation.productSize === size
-    );
 
-    if (selectedVariation) {
+    if (productDetails?.hasVariations) {
+      const selectedVariation = productDetails.variations.find(
+        (variation) => variation.productSize === size
+      );
+
+      if (selectedVariation) {
+        setDisplayPrice({
+          regularPrice: selectedVariation.regularPrice,
+          salePrice: selectedVariation.salePrice,
+          discount: selectedVariation.discount,
+        });
+      }
+    } else {
       setDisplayPrice({
-        regularPrice: selectedVariation.regularPrice,
-        salePrice: selectedVariation.salePrice,
-        discount: selectedVariation.discount,
+        regularPrice: productDetails?.regularPrice?.$numberDecimal,
+        salePrice: productDetails?.salePrice?.$numberDecimal,
+        discount: productDetails?.discount?.$numberDecimal,
       });
     }
-  } else {
-    setDisplayPrice({
-      regularPrice: productDetails?.regularPrice?.$numberDecimal,
-      salePrice: productDetails?.salePrice?.$numberDecimal,
-      discount: productDetails?.discount?.$numberDecimal,
-    });
-  }
-};
+  };
 
-useEffect(() => {
-  if (
-    productDetails?.hasVariations &&
-    productDetails.variations?.length > 0
-  ) {
-    // Set default price from the first variation
-    const firstVariation = productDetails.variations[0];
+  useEffect(() => {
+    if (
+      productDetails?.hasVariations &&
+      productDetails.variations?.length > 0
+    ) {
+      // Set default price from the first variation
+      const firstVariation = productDetails.variations[0];
 
-    setDisplayPrice({
-      regularPrice: firstVariation.regularPrice,
-      salePrice: firstVariation.salePrice,
-      discount: firstVariation.discount,
-    });
-  } else {
-    // Set default price if there are no variations
-    setDisplayPrice({
-      regularPrice: productDetails?.regularPrice?.$numberDecimal || 0,
-      salePrice: productDetails?.salePrice?.$numberDecimal || 0,
-      discount: productDetails?.discount?.$numberDecimal || 0,
-    });
-  }
-}, [productDetails]);
+      setDisplayPrice({
+        regularPrice: firstVariation.regularPrice,
+        salePrice: firstVariation.salePrice,
+        discount: firstVariation.discount,
+      });
+    } else {
+      // Set default price if there are no variations
+      setDisplayPrice({
+        regularPrice: productDetails?.regularPrice?.$numberDecimal || 0,
+        salePrice: productDetails?.salePrice?.$numberDecimal || 0,
+        discount: productDetails?.discount?.$numberDecimal || 0,
+      });
+    }
+  }, [productDetails]);
 
 
   const toggleFavorite = async (productId) => {
@@ -403,7 +404,6 @@ useEffect(() => {
                 {productDetails?.image && productDetails.image.length > 0 ? (
                   productDetails.image.map((img, index) => {
                     const isVideo = img.endsWith(".mp4"); // Check if the file is a video
-
                     return (
                       <div className="det_min_cd2" key={index}>
                         {isVideo ? (
@@ -463,36 +463,7 @@ useEffect(() => {
                       muted
                     />
                   </SwiperSlide>
-                  {/* <SwiperSlide className="swiper-slide_sssss">
-                    <img
-                      className="detr_img slider_ring_sss"
-                      src={require("../../Images/pd-2.png")}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide_sssss">
-                    <img
-                      className="detr_img_d slider_ring_sss"
-                      src={require("../../Images/15 Model white.png")}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide_sssss">
-                    <img
-                      className="detr_img_d slider_ring_sss"
-                      src={require("../../Images/1 (8).png")}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide_sssss">
-                    <img
-                      className="detr_img_d slider_ring_sss"
-                      src={require("../../Images/1 (6).png")}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide className="swiper-slide_sssss">
-                    <img
-                      className="detr_img_s_s slider_ring_sss"
-                      src={require("../../Images/lastttt.png")}
-                    />
-                  </SwiperSlide> */}
+
                   {productDetails?.image && productDetails.image.length > 0 ? (
                     productDetails.image.map((img, index) => {
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
@@ -525,20 +496,20 @@ useEffect(() => {
               </div>
             </div>
 
-            {/* <div className="d-none d-md-flex w-100 gap-3 sticky">
+            <div className="d-none d-md-flex w-100 gap-3 sticky">
               <div className="sdcsd_saxza">
                 <div className="thumbnail-gallery-container">
                   <div className="thumbnail-gallery-row w-100 gap-2">
-                    {productImages.map((image, index) => (
+                    {productDetails?.image?.map((image, index) => (
                       <div
                         key={index}
                         className={`thumbnail-item ${selectedImageIndex === index ? 'active' : ''}`}
                         onClick={() => setSelectedImageIndex(index)}
                       >
                         <img
-                          src={image.src}
-                          className="thumbnail-image"
-                          alt={`Thumbnail ${index + 1}`}
+                          src={`http://localhost:3000${image}`}
+                        className="thumbnail-image"
+                        alt={`Thumbnail ${index + 1}`}
                         />
                       </div>
                     ))}
@@ -546,13 +517,26 @@ useEffect(() => {
                 </div>
               </div>
               <div className="main-image-container">
-                <img
-                  src={productImages[selectedImageIndex].src}
-                  className="main-product-image w-100 object-fit-contain"
-                  alt="Halo Diamond Ring"
-                />
+                {productDetails?.image && productDetails.image.length > 0 && (
+                  productDetails.image[selectedImageIndex].endsWith('.mp4') ? (
+                    <video
+                      src={`http://localhost:3000${productDetails.image[selectedImageIndex]}`}
+                      className="main-product-image w-100 object-fit-contain"
+                      autoPlay
+                      loop
+                      muted
+                      controls
+                    />
+                  ) : (
+                    <img
+                      src={`http://localhost:3000${productDetails.image[selectedImageIndex]}`}
+                      className="main-product-image w-100 object-fit-contain"
+                      alt={productDetails?.productName || "Product image"}
+                    />
+                  )
+                )}
               </div>
-            </div> */}
+            </div>
             <div className="w-100 pt-5 sdcsd_saxza dscd_54_Dscds">
               <div className="sticky-top" style={{ top: '50px' }}>
 
@@ -560,7 +544,7 @@ useEffect(() => {
                   <span className="secrt_1">{productDetails?.productName}</span>
                   <div>
                     <button className="sav_btn p-2 pe-3 ps-3 dcs_dddd_8888">
-                    Save {displayPrice.discount}%
+                      Save {displayPrice.discount}%
                     </button>
                   </div>
                 </div>
@@ -611,10 +595,10 @@ useEffect(() => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                      {selectedSize || "Select size"}
+                    {selectedSize || "Select size"}
                   </button>
                   <ul className="dropdown-menu product_det_menu w-50 mt-1">
-                  {(Array.isArray(productDetails?.productSize)
+                    {(Array.isArray(productDetails?.productSize)
                       ? productDetails.productSize[0].split(",")
                       : []
                     ).map((size) => (
@@ -862,7 +846,7 @@ useEffect(() => {
                           </span>
                         </div>
                         <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                          <button className="more_btn_dsdd w-50"  onClick={() => handleProductClick(product.id)}>
+                          <button className="more_btn_dsdd w-50" onClick={() => handleProductClick(product.id)}>
                             More Info
                           </button>
                           <button
@@ -889,11 +873,11 @@ useEffect(() => {
                     0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
-                  // autoplay={{
-                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                  //   disableOnInteraction: false,
-                  // }}
-                  // modules={[Autoplay]}
+                // autoplay={{
+                //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                //   disableOnInteraction: false,
+                // }}
+                // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
@@ -950,7 +934,7 @@ useEffect(() => {
                         </div>
                         <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
                           <button className="more_btn_dsdd w-50"
-                          onClick={() => handleProductClick(product.id)}
+                            onClick={() => handleProductClick(product.id)}
                           >
                             More Info
                           </button>

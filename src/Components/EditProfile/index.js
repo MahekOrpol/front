@@ -74,18 +74,37 @@ const EditProfile = () => {
             alert(error.response?.data?.message || "Failed to save profile");
         } 
     };
-    const getProfileData = async () =>{
-        try{
+    const getProfileData = async () => {
+        try {
             const res = await axios.get(`http://localhost:3000/api/v1/users/${user_Id}`);
-            setProfileData(res.data);
-        }
-        catch(err){
+            const data = res.data;
+    
+            setProfileData(data);
+    
+            // Form fields update
+            setFirstName(data.firstName || "");
+            setLastName(data.lastName || "");
+            setEmail(data.email || "");
+            setPhone(data.phone || "");
+            setAddress(data.address || "");
+            setAddress_line2(data.address_line2 || "");
+            setCity(data.city || "");
+            setState(data.state || "");
+            setPostalCode(data.postalCode || "");
+            setGender(data.gender || "");
+            setBirthday(data.birthday || "");
+            
+            localStorage.setItem("isExistingProfile", "true"); // User profile exists
+        } catch (err) {
             console.log(err);
+            localStorage.setItem("isExistingProfile", "false"); // No existing profile
         }
-    }
-    useEffect(()=>{
+    };
+    
+    useEffect(() => {
         getProfileData();
-    },[]);
+    }, []);
+
     return (
         <>
             <Header />

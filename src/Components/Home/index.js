@@ -123,6 +123,8 @@ const categories = [
   { img: require("../../Images/Group 1597884631.png"), label: "Rings" },
   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
 ];
 
 const Home = () => {
@@ -136,7 +138,8 @@ const Home = () => {
   const [onSale, setOnSale] = useState([]);
   const userId = localStorage.getItem("user_Id");
   const [wishlistItems, setWishlistItems] = useState({});
-
+  // const [categories, setCategories] = useState();
+  
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
   };
@@ -818,7 +821,7 @@ const Home = () => {
                           onClick={() => toggleFavorite(product.id)}
                           style={{ cursor: "pointer" }}
                         >
-                          {isFavorite[product.id] ? (
+                          {wishlistItems[product.id] ? (
                             <GoHeartFill className="heart-icon_ss" size={18} />
                           ) : (
                             <GoHeart className="heart-icon_ss" size={18} />
@@ -850,7 +853,8 @@ const Home = () => {
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                         <button
                           className="more_btn_dsdd w-50"
-                          onClick={() => navigate("/products")}
+                          // onClick={() => navigate("/product-details")}
+                          onClick={() => handleProductClick(product.id)}
                         >
                           More Info
                         </button>
@@ -890,7 +894,7 @@ const Home = () => {
                           onClick={() => toggleFavorite(product.id)}
                           style={{ cursor: "pointer" }}
                         >
-                          {isFavorite[product.id] ? (
+                          {wishlistItems[product.id] ? (
                             <GoHeartFill className="heart-icon_ss" size={18} />
                           ) : (
                             <GoHeart className="heart-icon_ss" size={18} />
@@ -924,7 +928,8 @@ const Home = () => {
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                         <button
                           className="more_btn_dsdd w-50"
-                          onClick={() => navigate("/products")}
+                          // onClick={() => navigate("/product-details")}
+                          onClick={() => handleProductClick(product.id)}
                         >
                           More Info
                         </button>
@@ -1651,9 +1656,8 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
+                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                        } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">

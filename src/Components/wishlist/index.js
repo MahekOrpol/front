@@ -12,6 +12,7 @@ import { BiShoppingBag } from "react-icons/bi";
 import axios from "axios";
 import { toast } from "react-toastify";
 import CartPopup from "../Add to Cart";
+import { useNavigate } from "react-router-dom";
 const Wishlist = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState(null);
@@ -32,13 +33,19 @@ const Wishlist = () => {
       });
     }
   }, [wishlist]);
+  const navigate = useNavigate();
 
-//   const toggleFavorite = (id) => {
-//     setIsFavorite((prev) => ({
-//       ...prev,
-//       [id]: !prev[id], // Toggle the favorite state for the specific card
-//     }));
-//   };
+  const handleProductClick = (productId, productData) => {
+    navigate(`/product-details/${productId}`, { state: { product: productData } });
+  };
+
+
+  //   const toggleFavorite = (id) => {
+  //     setIsFavorite((prev) => ({
+  //       ...prev,
+  //       [id]: !prev[id], // Toggle the favorite state for the specific card
+  //     }));
+  //   };
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
@@ -134,7 +141,7 @@ const Wishlist = () => {
         ? productId.productSize.join(",")
         : productId?.productSize || "";
       const variationIds = Array.isArray(productId?.variations)
-        ? productId.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
+        ? productId.variations.map(variation => variation.id) // Ensure only ObjectIds are sent
         : [];
 
       // Define the payload for the API request
@@ -145,12 +152,11 @@ const Wishlist = () => {
         quantity: productId?.quantity || 1,
         productSize: productSize,
         discount: productId?.discount?.$numberDecimal || 0,
-        variation: variationIds,
+        variation: variationIds
+
       };
-      console.log(
-        "product",
-        JSON.stringify(JSON.stringify(productId?.variations))
-      );
+      console.log('product', JSON.stringify(JSON.stringify(productId?.variations)
+      ))
 
       // Make the API request
       const response = await axios.post(
@@ -177,7 +183,7 @@ const Wishlist = () => {
       <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-        <Header />
+        <Header openCart={openCart} />
         <div className="container">
           <div className="hdr_csd flex-column align-items-center produ_sss">
             <div className="row pt-sm-5">
@@ -218,9 +224,8 @@ const Wishlist = () => {
                             ".mp4"
                           ) ? (
                             <video
-                              src={`http://localhost:3000${
-                                productId.image[imageIndexes[productId.id]]
-                              }`}
+                              src={`http://localhost:3000${productId.image[imageIndexes[productId.id]]
+                                }`}
                               className="w-100"
                               autoPlay
                               loop
@@ -229,9 +234,8 @@ const Wishlist = () => {
                             />
                           ) : (
                             <img
-                              src={`http://localhost:3000${
-                                productId.image[imageIndexes[productId.id]]
-                              }`}
+                              src={`http://localhost:3000${productId.image[imageIndexes[productId.id]]
+                                }`}
                               className="w-100"
                               alt={productId.productName}
                             />
@@ -284,7 +288,8 @@ const Wishlist = () => {
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
                         <a
-                          href="/product-details"
+                          onClick={() => handleProductClick(productId.id)}
+
                           className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
                         >
                           Read more about the Product <FaArrowRight />
@@ -300,7 +305,8 @@ const Wishlist = () => {
                       </button>
                       {/* <p className="mt-1"> */}
                       <a
-                        href="/product-details"
+                        onClick={() => handleProductClick(productId.id)}
+
                         className="mt-2 text-body szdc_za d-flex gap-2 align-items-left justify-content-left w-100"
                       >
                         Read more about the Product <FaArrowRight />

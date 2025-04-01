@@ -133,7 +133,9 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
           >
            <img src={bracelet} width={25}/> Bracelet
           </div>
-          <div className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2">
+          <div className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+          onClick={()=>navigate('/Customjewel')}
+          >
           <img src={csome} width={20}/> Custom Jewellery</div>
         </div>
       </div>

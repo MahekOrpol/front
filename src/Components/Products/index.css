@@ -699,7 +699,7 @@
     transform: translateY(-20px);
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    height: 700px !important;
+  height: 526px !important;
     border: 1px solid #611d2b;
     padding-top: 16px;
     padding-left: 16px;
@@ -713,6 +713,10 @@
   .left-btn {
     left: 32% !important;
   }
+
+.scdscsed_sdss_pro {
+  height: 315px !important;
+}
 }
 
 @media (min-width: 901px) and (max-width: 991px) {
@@ -720,7 +724,7 @@
     transform: translateY(-20px);
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    height: 655px !important;
+  height: 560px !important;
     border: 1px solid #611d2b;
     padding-top: 16px;
     padding-left: 16px;
@@ -734,6 +738,10 @@
   .left-btn {
     left: 33%;
   }
+
+.scdscsed_sdss_pro {
+  height: 345px !important;
+}
 
   .mikdec_try {
     font-weight: 600;
@@ -747,7 +755,7 @@
     transform: translateY(-20px);
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    height: 646px !important;
+  height: 560px !important;
     border: 1px solid #611d2b;
     padding-top: 16px;
     padding-left: 16px;
@@ -761,6 +769,10 @@
   .left-btn {
     left: 33%;
   }
+
+.scdscsed_sdss_pro {
+  height: 345px !important;
+}
 
   .mikdec_try {
     font-weight: 600;
@@ -774,7 +786,7 @@
     transform: translateY(-20px);
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    height: 645px !important;
+  height: 540px !important;
     border: 1px solid #611d2b;
     padding-top: 16px;
     padding-left: 16px;
@@ -789,6 +801,10 @@
     left: 33%;
   }
 
+.scdscsed_sdss_pro {
+  height: 335px !important;
+}
+
   .mikdec_try {
     font-weight: 600;
     font-size: 18px !important;
@@ -801,7 +817,7 @@
     transform: translateY(-20px);
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    height: 640px !important;
+  height: 600px !important;
     border: 1px solid #611d2b;
     padding-top: 16px;
     padding-left: 16px;
@@ -815,6 +831,10 @@
   .left-btn {
     left: 38%;
   }
+
+.scdscsed_sdss_pro {
+  height: 395px !important;
+}
 
   .produ_shsu {
     font-family: "DM Serif Text", serif;
@@ -830,7 +850,7 @@
     transform: translateY(-20px);
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    height: 644px !important;
+  height: 600px !important;
     border: 1px solid #611d2b;
     padding-top: 16px;
     padding-left: 16px;
@@ -844,6 +864,10 @@
   .left-btn {
     left: 35%;
   }
+
+.scdscsed_sdss_pro {
+  height: 385px !important;
+}
 
   .produ_shsu {
     font-family: "DM Serif Text", serif;
@@ -870,7 +894,7 @@
     transform: translateY(-20px);
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    height: 648px;
+  height: 580px;
     border: 1px solid #611d2b;
     padding-top: 16px;
     padding-left: 16px;
@@ -909,6 +933,10 @@
     line-height: 100%;
     letter-spacing: 0%;
   }
+
+.scdscsed_sdss_pro {
+  height: 355px !important;
+}
 }
 
 /* @media (max-width:575px) and (max-width:575px) {
@@ -1451,21 +1479,32 @@
 
 @media(max-width:576px) {
   .scdscsed_sdss_pro {
-    height: 252px;
+  height: 290px;
   }
 
   .mikdec_try {
-    font-size: 10px;
+  font-size: 11px;
   }
 
   .szdc_za {
     font-size: 9px;
   }
 
+.snuf_dfv {
+  margin-top: 7px;
+  margin-right: .5rem !important;
+  padding: 6px;
+}
+
+.mikdec_asdxsx,
+.mikdec_axsx {
+  font-size: 12px !important;
+}
+
   .trtrd {
     font-size: 10px !important;
-    width: 47px !important;
-    height: 26px !important;
+  width: 45px !important;
+  height: 23px !important;
   }
 
   .asxasx_card:hover {
@@ -1481,6 +1520,10 @@
 
   .asxasx_card {
     transition: none;
+  overflow: auto;
+  padding-top: 0% !important;
+  padding-left: 3% !important;
+  padding-right: 3% !important;
   }
 
   .htryf {
@@ -1490,6 +1533,10 @@
   .rtuy {
     font-size: 11px;
   }
+
+.add-to-crd-dd {
+  width: 98%;
+}
 }
 
 @media (max-width: 575.98px) {
@@ -1499,4 +1546,22 @@
   .right-btn {
     display: none !important;
   }
+}
+
+@media(max-width:1232px) {
+.p-1_proi {
+  object-fit: cover;
+}
+}
+
+@media(max-width:470px) {
+.scdscsed_sdss_pro {
+  height: 250px;
+}
+}
+
+@media(max-width:375px) {
+.scdscsed_sdss_pro {
+  height: 195px;
+}
 }

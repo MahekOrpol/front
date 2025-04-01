@@ -201,7 +201,7 @@ const Products = () => {
   }, [userId]);
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Ensure the page scrolls to the top when productId changes
+    window.scrollTo(0, 0);  
   }, []);
   
 
@@ -215,7 +215,6 @@ const Products = () => {
         ? product.variations.map(variation => variation.id) // Ensure only ObjectIds are sent
         : [];
 
-      // Define the payload for the API request
       const payload = {
         userId: userId,
         productId: product?.id,
