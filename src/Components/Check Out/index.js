@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import logo1 from '../../Images/Frame 193.png';
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({}); // State to store error messages
@@ -46,9 +46,9 @@ const CheckoutPage = () => {
   // const selectedSize = orderDetails.selectedSize;
   const mainTotal = totalAmount - discountTotal;
   // const quantity = location.state?.orderDetails.quantity;
-  const selectedSize = orderDetails.map(item => item.selectedSize).join(", ");
-  const quantity = orderDetails.map(item => item.quantity).join(", ");
-  
+  const selectedSize = orderDetails.map((item) => item.selectedSize).join(", ");
+  const quantity = orderDetails.map((item) => item.quantity).join(", ");
+
   console.log("location :>> ", selectedSize);
 
   const validateForm = () => {
@@ -57,13 +57,15 @@ const CheckoutPage = () => {
     // Check if all required fields are filled
     if (!formData.email) validationErrors.email = "Email is required";
     if (!formData.country) validationErrors.country = "Country is required";
-    if (!formData.firstName) validationErrors.firstName = "First name is required";
+    if (!formData.firstName)
+      validationErrors.firstName = "First name is required";
     if (!formData.lastName) validationErrors.lastName = "Last name is required";
     if (!formData.address) validationErrors.address = "Address is required";
     if (!formData.city) validationErrors.city = "City is required";
     if (!formData.state) validationErrors.state = "State is required";
     if (!formData.zipCode) validationErrors.zipCode = "ZIP code is required";
-    if (!formData.phoneNumber) validationErrors.phoneNumber = "Phone number is required";
+    if (!formData.phoneNumber)
+      validationErrors.phoneNumber = "Phone number is required";
 
     setErrors(validationErrors);
     return Object.keys(validationErrors).length === 0; // Return true if no errors
@@ -131,10 +133,10 @@ const CheckoutPage = () => {
                 status: "pending",
                 paymentStatus: "Paid",
                 selectedSize: selectedSize, // Passing as an array
-                selectedqty: quantity, 
+                selectedqty: quantity,
               };
 
-              console.log('quantity :>> ', quantity);
+              console.log("quantity :>> ", quantity);
 
               const res = await axios.post(
                 "http://localhost:3000/api/v1/order/create",
@@ -177,11 +179,12 @@ const CheckoutPage = () => {
 
   return (
     <div>
-      <div className="d-flex p-3 justify-content-center w-100 bdsh_mIN">
+      <div className="d-flex p-0 justify-content-center w-100 bdsh_mIN">
         <img
-          src={require("../../Images/crystova.png")}
+          src={logo1}
           onClick={() => navigate("/")}
-          className="wered"
+          alt="Logo"
+          width={200}
         />
       </div>
       {/* <Header /> */}
@@ -200,7 +203,9 @@ const CheckoutPage = () => {
                   onChange={handleInputChange}
                   className="Box BoxFont"
                 />
-                  {errors.email && <span className="error-flksssss">{errors.email}</span>}
+                {errors.email && (
+                  <span className="error-flksssss">{errors.email}</span>
+                )}
               </Form.Group>
 
               <h5 className="mt-4 BigFont">Delivery</h5>
@@ -214,7 +219,9 @@ const CheckoutPage = () => {
                     onChange={handleInputChange}
                     className="Box BoxFont"
                   />
-                     {errors.country && <span className="error-flksssss">{errors.country}</span>}
+                  {errors.country && (
+                    <span className="error-flksssss">{errors.country}</span>
+                  )}
                 </Form.Group>
                 <Col className="cnjb_hcvh">
                   <Form.Control
@@ -226,7 +233,9 @@ const CheckoutPage = () => {
                     className="Box BoxFont"
                   />
                 </Col>
-                {errors.firstName && <span className="error-flksssss">{errors.firstName}</span>}
+                {errors.firstName && (
+                  <span className="error-flksssss">{errors.firstName}</span>
+                )}
                 <Col>
                   <Form.Control
                     type="text"
@@ -236,9 +245,10 @@ const CheckoutPage = () => {
                     onChange={handleInputChange}
                     className="Box BoxFont"
                   />
-                {errors.lastName && <span className="error-flksssss">{errors.lastName}</span>}
+                  {errors.lastName && (
+                    <span className="error-flksssss">{errors.lastName}</span>
+                  )}
                 </Col>
-                
               </Row>
               <Form.Group className="mt-2">
                 <Form.Control
@@ -249,8 +259,9 @@ const CheckoutPage = () => {
                   onChange={handleInputChange}
                   className="Box BoxFont"
                 />
-                {errors.address && <span className="error-flksssss">{errors.address}</span>}
-
+                {errors.address && (
+                  <span className="error-flksssss">{errors.address}</span>
+                )}
               </Form.Group>
               <Form.Group className="mt-2">
                 <Form.Control
@@ -261,8 +272,9 @@ const CheckoutPage = () => {
                   onChange={handleInputChange}
                   className="Box BoxFont"
                 />
-                {errors.apartment && <span className="error-flksssss">{errors.apartment}</span>}
-
+                {errors.apartment && (
+                  <span className="error-flksssss">{errors.apartment}</span>
+                )}
               </Form.Group>
               <Row className="mt-2">
                 <Col className="cnjb_hcvh">
@@ -274,7 +286,9 @@ const CheckoutPage = () => {
                     onChange={handleInputChange}
                     className="Box BoxFont"
                   />
-                {errors.city && <span className="error-flksssss">{errors.city}</span>}
+                  {errors.city && (
+                    <span className="error-flksssss">{errors.city}</span>
+                  )}
                 </Col>
 
                 <Col>
@@ -286,7 +300,9 @@ const CheckoutPage = () => {
                     onChange={handleInputChange}
                     className="Box BoxFont"
                   />
-                {errors.state && <span className="error-flksssss">{errors.state}</span>}
+                  {errors.state && (
+                    <span className="error-flksssss">{errors.state}</span>
+                  )}
                 </Col>
 
                 <Col>
@@ -298,9 +314,10 @@ const CheckoutPage = () => {
                     onChange={handleInputChange}
                     className="Box BoxFont"
                   />
-                {errors.zipCode && <span className="error-flksssss">{errors.zipCode}</span>}
+                  {errors.zipCode && (
+                    <span className="error-flksssss">{errors.zipCode}</span>
+                  )}
                 </Col>
-
               </Row>
               <Form.Group className="mt-2">
                 <Form.Control
@@ -311,8 +328,9 @@ const CheckoutPage = () => {
                   onChange={handleInputChange}
                   className="Box BoxFont"
                 />
-                {errors.phoneNumber && <span className="error-flksssss">{errors.phoneNumber}</span>}
-
+                {errors.phoneNumber && (
+                  <span className="error-flksssss">{errors.phoneNumber}</span>
+                )}
               </Form.Group>
 
               <h5 className="mt-5 mb-2 fs-4 fw-bold">Remember me</h5>
@@ -322,7 +340,6 @@ const CheckoutPage = () => {
                   id="rememberMe"
                   label="Save my information for a faster checkout with shop account"
                 />
-                
               </Form.Group>
 
               <div className="Payment">

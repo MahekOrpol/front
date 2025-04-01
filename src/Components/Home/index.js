@@ -123,8 +123,7 @@ const categories = [
   { img: require("../../Images/Group 1597884631.png"), label: "Rings" },
   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
-  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
-  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+ 
 ];
 
 const Home = () => {
@@ -153,6 +152,12 @@ const Home = () => {
   const addToCart = async (product) => {
     try {
       const userId = localStorage.getItem("user_Id");
+
+      if (!userId) {
+        navigate("/register");
+        return;
+      }
+
       const productSize = Array.isArray(product?.productSize)
         ? product.productSize.join(",")
         : product?.productSize || "";
@@ -273,7 +278,12 @@ const Home = () => {
   ];
 
   const toggleFavorite = async (productId) => {
-    if (!userId) return toast.error("Please log in to add items to wishlist");
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
 
     try {
       if (wishlistItems[productId]) {
@@ -612,6 +622,7 @@ const Home = () => {
                 <button
                   className="w-25 spg_nb_sle"
                   style={{ whiteSpace: "nowrap" }}
+           
                 >
                   Shop Now
                 </button>
@@ -774,10 +785,10 @@ const Home = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx">
-                          {product.salePrice?.$numberDecimal}
+                        ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx">
-                          {product.regularPrice?.$numberDecimal}
+                        ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
@@ -844,10 +855,10 @@ const Home = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx">
-                          {product.salePrice?.$numberDecimal}
+                         ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx">
-                          {product.regularPrice?.$numberDecimal}
+                         ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
@@ -919,10 +930,10 @@ const Home = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx">
-                          {product.salePrice?.$numberDecimal}
+                         ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx">
-                          {product.regularPrice?.$numberDecimal}
+                         ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">

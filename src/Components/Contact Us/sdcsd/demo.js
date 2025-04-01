@@ -1,7 +1,9 @@
 import React from "react";
 import "./demo.css";
+import { useNavigate } from "react-router-dom";
 
 const JewelrySale = () => {
+  const navigate = useNavigate();
   return (
     <section className="jewelry-sale overflow-hidden">
       {/* <div className="left-image">
@@ -30,7 +32,7 @@ const JewelrySale = () => {
           <span className="dfecddv_dcd_bt">Upto 30% Off</span>
           <hr className="banne_hr_dsdsd" />
 
-          <button className="shop_now_ww">Shop Now</button>
+          <button className="shop_now_ww"        onClick={()=>{navigate('/products')}}>Shop Now</button>
         </div>
       </div>
 

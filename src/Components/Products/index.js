@@ -16,7 +16,7 @@ import { RxCross2 } from "react-icons/rx";
 import { useLocation, useNavigate } from "react-router-dom";
 import CartPopup from "../Add to Cart";
 import axios from "axios";
-import Wishlist from './../wishlist/index';
+import Wishlist from "./../wishlist/index";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -36,15 +36,20 @@ const Products = () => {
   const gender = queryParams.get("gender");
   const [productList, setProductList] = useState([]);
   const [wishlistItems, setWishlistItems] = useState({});
+  const [category, setCategory] = useState([]);
+  const navigate = useNavigate();
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const userId = localStorage.getItem("user_Id");
 
-  const navigate = useNavigate();
+
   // const handleProductClick = (productId) => {
   //   navigate(`/product-details/${productId}`);
   //   console.log('productId', productId)
   // };
   const handleProductClick = (productId, productData) => {
-    navigate(`/product-details/${productId}`, { state: { product: productData } });
+    navigate(`/product-details/${productId}`, {
+      state: { product: productData },
+    });
   };
 
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -60,6 +65,7 @@ const Products = () => {
     setIsCartOpen(false);
     document.body.classList.remove("no-scroll");
   };
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -80,7 +86,7 @@ const Products = () => {
     fetchProducts();
   }, [categoryName, gender]);
 
-
+  
   const handleNextImage = (productId, images) => {
     setImageIndexes((prevIndex) => ({
       ...prevIndex,
@@ -128,8 +134,35 @@ const Products = () => {
     setIsFilterVisible((prev) => !prev);
   };
 
+  const handleApplyFilters = async () => {
+    let url = `http://localhost:3000/api/v1/product/get?`;
+  
+    // Append selected categories as query parameters
+    if (selectedCategories.length > 0) {
+      url += `categoryName=${selectedCategories.join(",")}&`;
+    }
+  
+    // Append price range as query parameters
+    url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
+  
+    try {
+      const response = await axios.get(url);
+      setProductList(response.data); // Update product list with filtered results
+      setIsFilterVisible(false); // Close filter sidebar
+    } catch (error) {
+      console.error("Error fetching filtered products:", error);
+    }
+  };
+  
   const toggleFavorite = async (productId) => {
-    if (!userId) return toast.error("Please log in to add items to wishlist");
+
+    // if (!userId) return toast.error("Please log in to add items to wishlist");
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
 
     try {
       if (wishlistItems[productId]) {
@@ -171,18 +204,27 @@ const Products = () => {
 
   useEffect(() => {
     const fetchWishlist = async () => {
+      
+    
       if (!userId) return;
+
       try {
-        const response = await axios.get(`http://localhost:3000/api/v1/wishlist/${userId}`);
+        const response = await axios.get(
+          `http://localhost:3000/api/v1/wishlist/${userId}`
+        );
         const wishlistData = response.data.data || [];
 
         console.log("Fetched Wishlist Data:", wishlistData);
 
-
         const wishlistMap = {};
         wishlistData.forEach((item) => {
           let productId = item.productId._id || item.productId.id; // Extract _id if present
-          console.log("Processed Product ID:", productId, "Type:", typeof productId);
+          console.log(
+            "Processed Product ID:",
+            productId,
+            "Type:",
+            typeof productId
+          );
 
           if (typeof productId === "string" || typeof productId === "number") {
             wishlistMap[productId] = item.id;
@@ -199,20 +241,27 @@ const Products = () => {
 
     fetchWishlist();
   }, [userId]);
+  
 
   useEffect(() => {
-    window.scrollTo(0, 0);  
+    window.scrollTo(0, 0);
   }, []);
-  
 
   const addToCart = async (product) => {
     try {
+
       const userId = localStorage.getItem("user_Id");
+
+      if (!userId) {
+        navigate("/register");
+        return;
+      }
+
       const productSize = Array.isArray(product?.productSize)
         ? product.productSize.join(",")
         : product?.productSize || "";
-        const variationIds = Array.isArray(product?.variations)
-        ? product.variations.map(variation => variation.id) // Ensure only ObjectIds are sent
+      const variationIds = Array.isArray(product?.variations)
+        ? product.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
         : [];
 
       const payload = {
@@ -222,11 +271,12 @@ const Products = () => {
         quantity: product?.quantity || 1,
         productSize: productSize,
         discount: product?.discount?.$numberDecimal || 0,
-       variation: variationIds
-
+        variation: variationIds,
       };
-      console.log('product', JSON.stringify(       JSON.stringify(product?.variations)
-    ))
+      console.log(
+        "product",
+        JSON.stringify(JSON.stringify(product?.variations))
+      );
 
       // Make the API request
       const response = await axios.post(
@@ -236,7 +286,7 @@ const Products = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-      
+
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
@@ -248,6 +298,23 @@ const Products = () => {
     }
   };
 
+  const getCategory = async () => {
+    const res = await axios.get("http://localhost:3000/api/v1/category/get");
+    setCategory(res.data);
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category) // Remove category if already selected
+        : [...prev, category] // Add category if not selected
+    );
+  };
+  
 
   return (
     <>
@@ -266,18 +333,15 @@ const Products = () => {
         </div>
         <div className="container pb-5">
           <div className="hdr_csdg d-flex flex-column align-items-center produ_sss">
-            <span className="produ_shsu">Choose Perfect Ring Style for You</span>
+            <span className="produ_shsu">
+              Choose Perfect Ring Style for You
+            </span>
             <p className="pro_p">
               Find the design that speaks to your heart. Explore a variety of
               stunning ring styles to match your unique taste and occasion
             </p>
             <div className="pt-3 Sfg">
-              {/* <button className="ring_for_her">
-              <img src={require("../../Images/her.png")} /> Rings for Her
-            </button>
-            <button className="ring_for_him">
-              <img src={require("../../Images/him.png")} /> Rings for Him
-            </button> */}
+             
               <button
                 className="ring_for_her"
                 onClick={() =>
@@ -308,9 +372,7 @@ const Products = () => {
                   />{" "}
                   Filter
                 </button>
-                {/* <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro3">
-                Select Carat Weight <FaAngleDown />
-              </button> */}
+                
               </div>
               <div className="d-flex gap-3 align-items-center filter_pro2">
                 <span className="sho_ddd filter_pro1">Sort by:</span>
@@ -351,34 +413,18 @@ const Products = () => {
                         <FaChevronDown size={20} className="mr3" />
                       )}
                     </h5>
-                    {openSections.categories && (
-                      <>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Women's Ring
-                        </label>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Men's Ring
-                        </label>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Pendant
-                        </label>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Women's Bracelet
-                        </label>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Men's Bracelet
-                        </label>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Earrings
-                        </label>
-                      </>
-                    )}
+                    {category.map((category) => (
+                      <label key={category._id}>
+                        <input
+                          type="checkbox"
+                          className="category-checkbox"
+                          value={category.categoryName}
+                          checked={selectedCategories.includes(category.categoryName)}
+                          onChange={() => handleCategoryChange(category.categoryName)}
+                        />{" "}
+                        {category.categoryName}
+                      </label>
+                    ))}
                   </div>
                   <div className="filter-category">
                     <h5 onClick={() => toggleSection("priceFilter")}>
@@ -406,7 +452,10 @@ const Products = () => {
                     )}
                   </div>
 
-                  <div style={{ textAlign: "end" }}>
+                  <div className="d-flex align-items-center gap-2 justify-content-end" style={{ textAlign: "end" }}>
+                    <button className="Clen" onClick={handleApplyFilters}>
+                      Apply
+                    </button>
                     <button className="Clen" onClick={handleClearFilters}>
                       Clear
                     </button>
@@ -423,7 +472,6 @@ const Products = () => {
                     onMouseEnter={() => setHoveredProduct(product.id)}
                     onMouseLeave={() => setHoveredProduct(null)}
                   >
-
                     <div className="card prio_card scdscsed_sdss_pro">
                       {/* Image Wrapper with position-relative */}
                       <div className="card-image-wrapper position-relative">
@@ -443,21 +491,18 @@ const Products = () => {
                           ) : (
                             <GoHeart className="heart-icon_ss" size={18} />
                           )}
-
                         </div>
 
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          {/* <img
-                            // src={`http://localhost:3000${product.image[0]}`}
-                            src={`http://localhost:3000${product.image[imageIndexes[product.id]]}`}
-
-                            className="p-1_proi img-fluid"
-                            alt="Product"
-                          /> */}
-                          {product.image[imageIndexes[product.id]]?.endsWith(".mp4") ? (
+                       
+                          {product.image[imageIndexes[product.id]]?.endsWith(
+                            ".mp4"
+                          ) ? (
                             <video
-                              src={`http://localhost:3000${product.image[imageIndexes[product.id]]}`}
+                              src={`http://localhost:3000${
+                                product.image[imageIndexes[product.id]]
+                              }`}
                               className="p-1_proi img-fluid"
                               autoPlay
                               loop
@@ -465,7 +510,9 @@ const Products = () => {
                             />
                           ) : (
                             <img
-                              src={`http://localhost:3000${product.image[imageIndexes[product.id]]}`}
+                              src={`http://localhost:3000${
+                                product.image[imageIndexes[product.id]]
+                              }`}
                               className="p-1_proi img-fluid"
                               alt="Product"
                             />
@@ -473,20 +520,26 @@ const Products = () => {
 
                           {hoveredProduct === product.id && (
                             <div className="hover-overlay w-100 d-none d-sm-flex">
-                              <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3" onClick={() => handlePrevImage(product.id, product.image)}
+                              <button
+                                className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
+                                onClick={() =>
+                                  handlePrevImage(product.id, product.image)
+                                }
                               >
                                 <FaChevronLeft />
                               </button>
-                              <button className="btn btn-light right-btn" onClick={() => handleNextImage(product.id, product.image)}
+                              <button
+                                className="btn btn-light right-btn"
+                                onClick={() =>
+                                  handleNextImage(product.id, product.image)
+                                }
                               >
                                 <FaChevronRight />
                               </button>
                             </div>
                           )}
-
                         </div>
                       </div>
-
                     </div>
                     <div className="d-flex flex-column main_cdsss">
                       <span className="mikdec_try pt-3 text-truncate ">
@@ -494,15 +547,18 @@ const Products = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx htryf">
-                          {product.salePrice?.$numberDecimal}
+                         ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx htryf">
-                          {product.regularPrice?.$numberDecimal}
+                         ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       {hoveredProduct === product.id && (
                         <div className="hover-overlay DFC_NHJ w-100 d-none d-sm-flex">
-                          <button className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3" onClick={() => addToCart(product)}>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3"
+                            onClick={() => addToCart(product)}
+                          >
                             Add to Cart <BiShoppingBag size={25} />
                           </button>
                           {/* <p className="mt-1"> */}
@@ -515,14 +571,17 @@ const Products = () => {
                         </div>
                       )}
                       <div className="d-flex d-sm-none flex-column mt-2">
-                        <button className="d-flex align-items-center add-to-crd-dd p-1 justify-content-center gap-3" onClick={openCart}>
+                        <button
+                          className="d-flex align-items-center add-to-crd-dd p-1 justify-content-center gap-3"
+                          onClick={() => addToCart(product)}
+                        >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
                         {/* <p className="mt-1"> */}
                         <a
                           onClick={() => handleProductClick(product.id)}
                           className="mt-2 text-body szdc_za d-flex gap-2 align-items-left justify-content-left w-100"
-                          style={{ cursor: 'pointer' }}
+                          style={{ cursor: "pointer" }}
                         >
                           Read more about the Product <FaArrowRight />
                         </a>
@@ -540,7 +599,6 @@ const Products = () => {
         </div>
         <Footer />
       </div>
-
     </>
   );
 };

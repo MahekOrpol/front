@@ -176,7 +176,12 @@ const ProductDetailss = () => {
 
 
   const toggleFavorite = async (productId) => {
-    if (!userId) return toast.error("Please log in to add items to wishlist");
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
 
     try {
       if (wishlistItems[productId]) {
@@ -265,6 +270,11 @@ const ProductDetailss = () => {
   const addToCart = async (product) => {
     try {
       const userId = localStorage.getItem("user_Id");
+
+      if (!userId) {
+        navigate("/register");
+        return;
+      }
       const productSize = Array.isArray(product?.productSize)
         ? product.productSize.join(",")
         : product?.productSize || "";
@@ -839,10 +849,10 @@ const ProductDetailss = () => {
                         </span>
                         <div className="d-flex align-items-center gap-3 pt-1">
                           <span className="mikdec_asdxsx">
-                            {product.salePrice.$numberDecimal}
+                            ₹{product.salePrice.$numberDecimal}
                           </span>
                           <span className="mikdec_axsx">
-                            {product.regularPrice?.$numberDecimal}
+                            ₹{product.regularPrice?.$numberDecimal}
                           </span>
                         </div>
                         <div className="d-flex align-items-center justify-content-between gap-2 pt-2">

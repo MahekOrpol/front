@@ -67,7 +67,7 @@ const CartPopup = ({ isOpen, closeCart }) => {
       const res = await axios.delete(
         `http://localhost:3000/api/v1/order-details/delete/${orderId}`
       );
-  
+
       if (res.status === 200) {
         const updatedItems = orderDetails.filter((_, i) => i !== index);
         setOrderDetails(updatedItems);
@@ -180,10 +180,26 @@ const CartPopup = ({ isOpen, closeCart }) => {
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center w-100">
                     <p className="m-0">Ring Size :</p>
-                    <select
+                    {/* <select
                       className="dropdown_size w-50 p-1"
                       style={{ borderRadius: "5px" }}
                       value={item.selectedSize}
+                      onChange={(e) => handleSizeChange(index, e.target.value)}
+                    >
+                      {(Array.isArray(item.productId?.productSize) &&
+                      item.productId?.productSize.length > 0
+                        ? item.productId?.productSize[0].split(",") // Convert string to array
+                        : []
+                      ).map((size, i) => (
+                        <option key={i} value={size}>
+                          {size}
+                        </option>
+                      ))}
+                    </select> */}
+                    <select
+                      className="dropdown_size w-50 p-1"
+                      style={{ borderRadius: "5px" }}
+                      value={orderDetails[index]?.selectedSize || item.selectedSize} // Ensure state value is correctly assigned
                       onChange={(e) => handleSizeChange(index, e.target.value)}
                     >
                       {(Array.isArray(item.productId?.productSize) &&
@@ -258,8 +274,9 @@ const CartPopup = ({ isOpen, closeCart }) => {
                   orderDetails: orderDetails.map((item) => ({
                     ...item,
                     // selectedSize: item.selectedSize,
-                    selectedSize: item.productId?.hasVariations ? item.selectedSize : item.selectedSize, 
-
+                    selectedSize: item.productId?.hasVariations
+                      ? item.selectedSize
+                      : item.selectedSize,
                   })),
                 },
               });

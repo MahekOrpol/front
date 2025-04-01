@@ -181,7 +181,8 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
         {/* 🟢 Icons Section Inside Drawer (Mobile Only) */}
         <div className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3" onClick={() => {
           setIsDrawerOpen(false); // Close the drawer
-          setIsRegisterPopupOpen(true); // Open RegisterPopup
+          // setIsRegisterPopupOpen(true); // Open RegisterPopup
+          navigate("/register")
         }}>
           {isRegisterPopupOpen && (
             <RegisterPopup isOpen={isRegisterPopupOpen} onClose={() => setIsRegisterPopupOpen(false)} />

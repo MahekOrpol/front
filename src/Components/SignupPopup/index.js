@@ -9,7 +9,6 @@ const SignupPopup = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
     const [showRegister, setShowRegister] = useState(false);
     const [data, setData] = useState();
-    if (!isOpen && !showRegister) return null;
     const user_Id = localStorage.getItem("user_Id");
 
     const handleClose = () => {
@@ -17,11 +16,11 @@ const SignupPopup = ({ isOpen, onClose }) => {
         onClose(); // Close SignupPopup
     };
 
-    // useEffect(() => {
-    //     if (user_Id) {
-    //         getProfileData();
-    //     }
-    // }, [user_Id]); 
+    useEffect(() => {
+        if (user_Id) {
+            getProfileData();
+        }
+    }, [user_Id]); 
 
     const getProfileData = async () => {
         try {
@@ -45,6 +44,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
     };
     
     if (!isOpen && !showRegister) return null;
+
     return (
         <>
             {!showRegister ? (
@@ -92,7 +92,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
                                     <FaAngleRight size={20} className="menu-arrow" />
                                 </li>
                             ) : (
-                                <li onClick={() => setShowRegister(true)}>
+                                <li onClick={() => navigate('/register')}>
                                     <div className="menu-item">
                                         <img src={require("../../Images/profileicon.png")} alt="Profile" className="menu-icons" />
                                         <span className="sass">Login/Register</span>
