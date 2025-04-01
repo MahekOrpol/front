@@ -94,17 +94,18 @@ const Products = () => {
       if (gender) url += `gender=${gender}`;
 
       const response = await axios.get(url);
-      setProductList(response.data);
+      const sortedProducts = sortProducts(response.data, selectedOption);
+      setProductList(sortedProducts);
 
       const initialIndexes = {};
-      response.data.forEach((product) => {
+      sortedProducts.forEach((product) => {
         initialIndexes[product.id] = 0;
       });
       setImageIndexes(initialIndexes);
     };
 
     fetchProducts();
-  }, [categoryName, gender]);
+  }, [categoryName, gender, selectedOption]); // Add selectedOption to dependencies
 
 
   const handleNextImage = (productId, images) => {
@@ -171,7 +172,8 @@ const Products = () => {
 
     try {
       const response = await axios.get(url);
-      setProductList(response.data); // Update product list with filtered results
+      const sortedProducts = sortProducts(response.data, selectedOption);
+      setProductList(sortedProducts); // Update product list with filtered and sorted results
       setIsFilterVisible(false); // Close filter sidebar
     } catch (error) {
       console.error("Error fetching filtered products:", error);
@@ -338,7 +340,46 @@ const Products = () => {
         : [...prev, category] // Add category if not selected
     );
   };
+  // Add this function to handle sorting
+  const sortProducts = (products, sortOption) => {
+    const sortedProducts = [...products];
+    if (sortOption === 'high-to-low') {
+      sortedProducts.sort((a, b) =>
+        parseFloat(b.salePrice?.$numberDecimal || 0) - parseFloat(a.salePrice?.$numberDecimal || 0)
+      );
+    } else if (sortOption === 'low-to-high') {
+      sortedProducts.sort((a, b) =>
+        parseFloat(a.salePrice?.$numberDecimal || 0) - parseFloat(b.salePrice?.$numberDecimal || 0)
+      );
+    }
+    return sortedProducts;
+  };
 
+  // // Update your handleApplyFilters function
+  // const handleApplyFilters = async () => {
+  //   let url = `http://localhost:3000/api/v1/product/get?`;
+
+  //   // Append selected categories as query parameters
+  //   if (selectedCategories.length > 0) {
+  //     url += `categoryName=${selectedCategories.join(",")}&`;
+  //   }
+
+  //   // Append price range as query parameters
+  //   url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
+
+  //   if (searchQuery) {
+  //     url += `&search=${searchQuery}`; // Append search query parameter
+  //   }
+
+  //   try {
+  //     const response = await axios.get(url);
+  //     const sortedProducts = sortProducts(response.data, selectedOption);
+  //     setProductList(sortedProducts); // Update product list with filtered and sorted results
+  //     setIsFilterVisible(false); // Close filter sidebar
+  //   } catch (error) {
+  //     console.error("Error fetching filtered products:", error);
+  //   }
+  // };
 
   return (
     <>

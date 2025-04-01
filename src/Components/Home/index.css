@@ -1807,7 +1807,7 @@ img.ring-image {
 }
 @media(max-width:600px) {
   .paddingdn {
-    padding-top: 5rem !important;
+    padding-top: 1rem !important;
   }
 }
 @media(max-width:425px){
@@ -2522,7 +2522,18 @@ img.ring-image {
   .hyyt {
     font-size: 18px !important;
   }
-
+  .best_saller_btn .sle_home_ddd {
+    font-family: "Cabin", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    background-color: #611d2b;
+    color: #fff;
+    border: none;
+    width: 93px !important;
+    height: 26px;
+}
   .home_img_ssssss {
     width: 25% !important;
   }
@@ -2610,7 +2621,7 @@ img.ring-image {
 
 @media(max-width:576px){
   .hnbgygjhh {
-    height: 581px !important;
+    height: 491px !important;
 }
 }
 .video_new_arrr {
@@ -2905,11 +2916,74 @@ img.ring-image {
 }
 }
 
-@media (max-width: 425px) and (min-width:375px) {
+@media (max-width: 426px) and (min-width:375px) {
  .fvdvdf_Ththgf{
   flex-direction: column;
   width:100% !important;
  }
+
+ .hnbgygjhh {
+  height: 550px !important;
+}
+ .more_btn_dsdd{
+  width: 100% !important;
+  font-size: 15px !important;
+
+  .category_name {
+    font-size: 40px;
+    text-align: center;
+    font-weight: 400;
+    line-height: normal !important;
+    margin-bottom: 10px;
+    font-family: "DM Serif Text", serif;
+}
+
+ }
+ .gfbfgbvgfcbfb {
+  width: 100% !important;
+  font-size: 15px !important;
+  gap: 1rem !important;
+  padding: .4rem !important;
+
+ }
+
+ .best_saller_btn .sle_home_ddd {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  background-color: #611d2b;
+  color: #fff;
+  border: none;
+  width: 93px !important;
+  height: 26px;
+}
+}
+@media (max-width: 374px)  {
+ .fvdvdf_Ththgf{
+  flex-direction: column;
+  width:100% !important;
+ }
+
+ .hnbgygjhh {
+  height: 600px !important;
+}
+
+.best_saller_btn .sle_home_ddd {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  background-color: #611d2b;
+  color: #fff;
+  border: none;
+  width: 153px !important;
+  height: 26px;
+  white-space: nowrap;
+  /* padding-top: 2rem !important; */
+}
  .more_btn_dsdd{
   width: 100% !important;
   font-size: 15px !important;
