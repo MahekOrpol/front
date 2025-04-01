@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
 import {
+  FaAngleUp,
   FaAngleDown,
   FaArrowRight,
   FaChevronDown,
   FaChevronLeft,
   FaChevronRight,
   FaChevronUp,
+  FaArrowUpWideShort,
+  FaArrowDownShortWide
 } from "react-icons/fa6";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { BiSearch, BiShoppingBag } from "react-icons/bi";
@@ -42,6 +45,23 @@ const Products = () => {
   const userId = localStorage.getItem("user_Id");
   const [searchQuery, setSearchQuery] = useState("");
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('high-to-low');
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   // const handleProductClick = (productId) => {
   //   navigate(`/product-details/${productId}`);
   //   console.log('productId', productId)
@@ -66,6 +86,7 @@ const Products = () => {
     document.body.classList.remove("no-scroll");
   };
 
+
   useEffect(() => {
     const fetchProducts = async () => {
       let url = `http://localhost:3000/api/v1/product/get?`;
@@ -84,6 +105,7 @@ const Products = () => {
 
     fetchProducts();
   }, [categoryName, gender]);
+
 
   const handleNextImage = (productId, images) => {
     setImageIndexes((prevIndex) => ({
@@ -146,7 +168,7 @@ const Products = () => {
     if (searchQuery) {
       url += `search=${searchQuery}&`; // Append search query parameter
     }
-    
+
     try {
       const response = await axios.get(url);
       setProductList(response.data); // Update product list with filtered results
@@ -157,6 +179,7 @@ const Products = () => {
   };
 
   const toggleFavorite = async (productId) => {
+
     // if (!userId) return toast.error("Please log in to add items to wishlist");
     const userId = localStorage.getItem("user_Id");
 
@@ -205,6 +228,8 @@ const Products = () => {
 
   useEffect(() => {
     const fetchWishlist = async () => {
+
+
       if (!userId) return;
 
       try {
@@ -241,12 +266,14 @@ const Products = () => {
     fetchWishlist();
   }, [userId]);
 
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const addToCart = async (product) => {
     try {
+
       const userId = localStorage.getItem("user_Id");
 
       if (!userId) {
@@ -305,13 +332,13 @@ const Products = () => {
   }, []);
 
   const handleCategoryChange = (category) => {
-    setSelectedCategories(
-      (prev) =>
-        prev.includes(category)
-          ? prev.filter((c) => c !== category) // Remove category if already selected
-          : [...prev, category] // Add category if not selected
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category) // Remove category if already selected
+        : [...prev, category] // Add category if not selected
     );
   };
+
 
   return (
     <>
@@ -338,6 +365,7 @@ const Products = () => {
               stunning ring styles to match your unique taste and occasion
             </p>
             <div className="pt-3 Sfg">
+
               <button
                 className="ring_for_her"
                 onClick={() =>
@@ -369,14 +397,100 @@ const Products = () => {
                   Filter
                 </button>
               </div>
+              {/* <div className="d-flex justify-content-between w-100 mt-3 zsdc_555">
+                <div className="d-flex gap-3 filter_pro">
+                  <button
+                    className="flt_btn d-flex gap-3 align-items-center justify-content-center"
+                    onClick={toggleFilter}
+                  >
+                    <img
+                      src={require("../../Images/filter.png")}
+                      alt="Filter Icon"
+                    />{" "}
+                    Filter
+                  </button>
+
+                </div>
+                <div className="d-flex gap-3 align-items-center filter_pro2">
+                  <span className="sho_ddd filter_pro1">Sort by:</span>
+                  <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro3">
+                    High to Low <FaAngleDown />
+                  </button>
+                </div>
+              </div> */}
               <div className="d-flex gap-3 align-items-center filter_pro2">
                 <span className="sho_ddd filter_pro1">Sort by:</span>
-                <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro3">
-                  High to Low <FaAngleDown />
-                </button>
+                <div className="dropdown" ref={dropdownRef}>
+                  <button
+                    className="hi_to_low p-3 gap-2 align-items-center justify-content-center filter_pro3"
+                    type="button"
+                    id="sortDropdown"
+                    onClick={toggleDropdown}
+                    aria-expanded={isDropdownOpen}
+                    style={{ minWidth: '150px' }}
+                  >
+                    <span className="d-flex align-items-center gap-2 justify-content-between w-100">
+                      {selectedOption === 'low-to-high' ? (
+                        <>
+                          <span className="d-flex align-items-center gap-2">
+                            <FaArrowUpWideShort /> (low-to-high)
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="d-flex align-items-center gap-2">
+                            <FaArrowDownShortWide /> (high-to-low)
+                          </span>
+                        </>
+                      )}
+                      {isDropdownOpen ? (
+                        <FaAngleUp style={{ fontSize: '0.9rem' }} />
+                      ) : (
+                        <FaAngleDown style={{ fontSize: '0.9rem' }} />
+                      )}
+                    </span>
+                  </button>
+
+                  {isDropdownOpen && (
+                    <ul
+                      className="dropdown-menu show"
+                      aria-labelledby="sortDropdown"
+                      style={{
+                        minWidth: '194px',
+                        padding: '0.5rem 0',
+                        border: '1px solid #e9ecef',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                      }}
+                    >
+                      <li>
+                        <a
+                          className="dropdown-item d-flex align-items-center gap-2 py-2 px-3"
+                          href="#"
+                          onClick={() => {
+                            setIsDropdownOpen(false);
+                            setSelectedOption('low-to-high');
+                          }}
+                        >
+                          <FaArrowUpWideShort /> Price (low-to-high)
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-item d-flex align-items-center gap-2 py-2 px-3"
+                          href="#"
+                          onClick={() => {
+                            setIsDropdownOpen(false);
+                            setSelectedOption('high-to-low');
+                          }}
+                        >
+                          <FaArrowDownShortWide /> Price (high-to-low)
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
               </div>
             </div>
-
             {/* Filter Sidebar Overlay */}
             {isFilterVisible && (
               <div className="filter-overlay" onClick={toggleFilter}>
@@ -416,12 +530,8 @@ const Products = () => {
                           type="checkbox"
                           className="category-checkbox"
                           value={category.categoryName}
-                          checked={selectedCategories.includes(
-                            category.categoryName
-                          )}
-                          onChange={() =>
-                            handleCategoryChange(category.categoryName)
-                          }
+                          checked={selectedCategories.includes(category.categoryName)}
+                          onChange={() => handleCategoryChange(category.categoryName)}
                         />{" "}
                         {category.categoryName}
                       </label>
@@ -453,10 +563,7 @@ const Products = () => {
                     )}
                   </div>
 
-                  <div
-                    className="d-flex align-items-center gap-2 justify-content-end"
-                    style={{ textAlign: "end" }}
-                  >
+                  <div className="d-flex align-items-center gap-2 justify-content-end" style={{ textAlign: "end" }}>
                     <button className="Clen" onClick={handleApplyFilters}>
                       Apply
                     </button>
@@ -499,13 +606,13 @@ const Products = () => {
 
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+
                           {product.image[imageIndexes[product.id]]?.endsWith(
                             ".mp4"
                           ) ? (
                             <video
-                              src={`http://localhost:3000${
-                                product.image[imageIndexes[product.id]]
-                              }`}
+                              src={`http://localhost:3000${product.image[imageIndexes[product.id]]
+                                }`}
                               className="p-1_proi img-fluid"
                               autoPlay
                               loop
@@ -513,9 +620,8 @@ const Products = () => {
                             />
                           ) : (
                             <img
-                              src={`http://localhost:3000${
-                                product.image[imageIndexes[product.id]]
-                              }`}
+                              src={`http://localhost:3000${product.image[imageIndexes[product.id]]
+                                }`}
                               className="p-1_proi img-fluid"
                               alt="Product"
                             />
