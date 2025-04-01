@@ -41,7 +41,7 @@ import ringVideo3 from "../../Videos/sdcsdcdfc.mp4";
 import ringVideo4 from "../../Videos/sdcxdscx.mp4";
 import ringVideo5 from "../../Videos/dsfcdfc.mp4";
 import JewelrySale from "../Contact Us/sdcsd/demo";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
 
 const images = [
   require("../../Images/ring222.png"),
@@ -123,7 +123,8 @@ const categories = [
   { img: require("../../Images/Group 1597884631.png"), label: "Rings" },
   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
- 
+  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
 ];
 
 const Home = () => {
@@ -137,6 +138,8 @@ const Home = () => {
   const [onSale, setOnSale] = useState([]);
   const userId = localStorage.getItem("user_Id");
   const [wishlistItems, setWishlistItems] = useState({});
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
   // const [categories, setCategories] = useState();
   
   const handleCategoryClick = (category) => {
@@ -192,9 +195,12 @@ const Home = () => {
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
+       
       } else {
         console.error("Failed to add product to cart:", response);
       }
+      setToastMessage("Item added to cart successfully!");
+      setShowToast(true);
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
@@ -233,6 +239,7 @@ const Home = () => {
 
   const closeCart = () => {
     setIsCartOpen(false);
+    setShowToast(false); // Reset toast state when closing
     document.body.classList.remove("no-scroll");
   };
 
@@ -468,7 +475,20 @@ const Home = () => {
 
   return (
     <>
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
+    <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
+      <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage}/>
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />

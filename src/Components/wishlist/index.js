@@ -10,15 +10,19 @@ import {
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { BiShoppingBag } from "react-icons/bi";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
 import CartPopup from "../Add to Cart";
 import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+
 const Wishlist = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState(null);
   const userId = localStorage.getItem("user_Id");
   const [wishlist, setWishlist] = useState([]);
   const [imageIndexes, setImageIndexes] = useState({});
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     if (wishlist.length > 0) {
@@ -59,6 +63,7 @@ const Wishlist = () => {
 
   const closeCart = () => {
     setIsCartOpen(false);
+    setShowToast(false); // Reset toast state when closing
     document.body.classList.remove("no-scroll");
   };
 
@@ -84,6 +89,8 @@ const Wishlist = () => {
       setImageIndexes(initialIndexes);
     } catch (error) {
       console.error("Error fetching wishlist:", error);
+      setToastMessage("Failed to add item to cart!");
+      setShowToast(true);
     }
   };
 
@@ -173,6 +180,8 @@ const Wishlist = () => {
       } else {
         console.error("Failed to add product to cart:", response);
       }
+      setToastMessage("Item added to cart successfully!");
+      setShowToast(true);
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
@@ -180,7 +189,19 @@ const Wishlist = () => {
 
   return (
     <>
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+       <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage}/>
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />

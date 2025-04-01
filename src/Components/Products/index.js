@@ -3,15 +3,15 @@ import "./index.css";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
 import {
-  FaAngleUp,
   FaAngleDown,
+  FaAngleUp,
+  FaArrowDownShortWide,
   FaArrowRight,
+  FaArrowUpWideShort,
   FaChevronDown,
   FaChevronLeft,
   FaChevronRight,
   FaChevronUp,
-  FaArrowUpWideShort,
-  FaArrowDownShortWide
 } from "react-icons/fa6";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { BiSearch, BiShoppingBag } from "react-icons/bi";
@@ -20,7 +20,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CartPopup from "../Add to Cart";
 import axios from "axios";
 import Wishlist from "./../wishlist/index";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 const Products = () => {
@@ -43,6 +43,8 @@ const Products = () => {
   const navigate = useNavigate();
   const [selectedCategories, setSelectedCategories] = useState([]);
   const userId = localStorage.getItem("user_Id");
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -63,7 +65,7 @@ const Products = () => {
   }, []);
 
   // const handleProductClick = (productId) => {
-  //   navigate(`/product-details/${productId}`);
+  //   navigate(/product-details/${productId});
   //   console.log('productId', productId)
   // };
   const handleProductClick = (productId, productData) => {
@@ -83,6 +85,7 @@ const Products = () => {
 
   const closeCart = () => {
     setIsCartOpen(false);
+    setShowToast(false); // Reset toast state when closing
     document.body.classList.remove("no-scroll");
   };
 
@@ -105,8 +108,7 @@ const Products = () => {
     };
 
     fetchProducts();
-  }, [categoryName, gender, selectedOption]); // Add selectedOption to dependencies
-
+  }, [categoryName, gender, selectedOption]); // Add selectedOptio
 
   const handleNextImage = (productId, images) => {
     setImageIndexes((prevIndex) => ({
@@ -319,6 +321,8 @@ const Products = () => {
       } else {
         console.error("Failed to add product to cart:", response);
       }
+      setToastMessage("Item added to cart successfully!");
+      setShowToast(true);
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
@@ -340,7 +344,7 @@ const Products = () => {
         : [...prev, category] // Add category if not selected
     );
   };
-  // Add this function to handle sorting
+
   const sortProducts = (products, sortOption) => {
     const sortedProducts = [...products];
     if (sortOption === 'high-to-low') {
@@ -355,35 +359,28 @@ const Products = () => {
     return sortedProducts;
   };
 
-  // // Update your handleApplyFilters function
-  // const handleApplyFilters = async () => {
-  //   let url = `http://localhost:3000/api/v1/product/get?`;
-
-  //   // Append selected categories as query parameters
-  //   if (selectedCategories.length > 0) {
-  //     url += `categoryName=${selectedCategories.join(",")}&`;
-  //   }
-
-  //   // Append price range as query parameters
-  //   url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
-
-  //   if (searchQuery) {
-  //     url += `&search=${searchQuery}`; // Append search query parameter
-  //   }
-
-  //   try {
-  //     const response = await axios.get(url);
-  //     const sortedProducts = sortProducts(response.data, selectedOption);
-  //     setProductList(sortedProducts); // Update product list with filtered and sorted results
-  //     setIsFilterVisible(false); // Close filter sidebar
-  //   } catch (error) {
-  //     console.error("Error fetching filtered products:", error);
-  //   }
-  // };
 
   return (
     <>
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
+    <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          
+      <CartPopup
+        isOpen={isCartOpen}
+        closeCart={closeCart}
+        showToast={showToast}
+        toastMessage={toastMessage}
+      />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
@@ -406,7 +403,6 @@ const Products = () => {
               stunning ring styles to match your unique taste and occasion
             </p>
             <div className="pt-3 Sfg">
-
               <button
                 className="ring_for_her"
                 onClick={() =>
@@ -468,10 +464,10 @@ const Products = () => {
                     id="sortDropdown"
                     onClick={toggleDropdown}
                     aria-expanded={isDropdownOpen}
-                    style={{ minWidth: '150px' }}
+                    style={{ minWidth: "150px" }}
                   >
                     <span className="d-flex align-items-center gap-2 justify-content-between w-100">
-                      {selectedOption === 'low-to-high' ? (
+                      {selectedOption === "low-to-high" ? (
                         <>
                           <span className="d-flex align-items-center gap-2">
                             <FaArrowUpWideShort /> (low-to-high)
@@ -485,9 +481,9 @@ const Products = () => {
                         </>
                       )}
                       {isDropdownOpen ? (
-                        <FaAngleUp style={{ fontSize: '0.9rem' }} />
+                        <FaAngleUp style={{ fontSize: "0.9rem" }} />
                       ) : (
-                        <FaAngleDown style={{ fontSize: '0.9rem' }} />
+                        <FaAngleDown style={{ fontSize: "0.9rem" }} />
                       )}
                     </span>
                   </button>
@@ -497,10 +493,10 @@ const Products = () => {
                       className="dropdown-menu show"
                       aria-labelledby="sortDropdown"
                       style={{
-                        minWidth: '194px',
-                        padding: '0.5rem 0',
-                        border: '1px solid #e9ecef',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                        minWidth: "194px",
+                        padding: "0.5rem 0",
+                        border: "1px solid #e9ecef",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                       }}
                     >
                       <li>
@@ -509,7 +505,7 @@ const Products = () => {
                           href="#"
                           onClick={() => {
                             setIsDropdownOpen(false);
-                            setSelectedOption('low-to-high');
+                            setSelectedOption("low-to-high");
                           }}
                         >
                           <FaArrowUpWideShort /> Price (low-to-high)
@@ -521,7 +517,7 @@ const Products = () => {
                           href="#"
                           onClick={() => {
                             setIsDropdownOpen(false);
-                            setSelectedOption('high-to-low');
+                            setSelectedOption("high-to-low");
                           }}
                         >
                           <FaArrowDownShortWide /> Price (high-to-low)
@@ -571,8 +567,12 @@ const Products = () => {
                           type="checkbox"
                           className="category-checkbox"
                           value={category.categoryName}
-                          checked={selectedCategories.includes(category.categoryName)}
-                          onChange={() => handleCategoryChange(category.categoryName)}
+                          checked={selectedCategories.includes(
+                            category.categoryName
+                          )}
+                          onChange={() =>
+                            handleCategoryChange(category.categoryName)
+                          }
                         />{" "}
                         {category.categoryName}
                       </label>
@@ -604,7 +604,10 @@ const Products = () => {
                     )}
                   </div>
 
-                  <div className="d-flex align-items-center gap-2 justify-content-end" style={{ textAlign: "end" }}>
+                  <div
+                    className="d-flex align-items-center gap-2 justify-content-end"
+                    style={{ textAlign: "end" }}
+                  >
                     <button className="Clen" onClick={handleApplyFilters}>
                       Apply
                     </button>
@@ -647,13 +650,13 @@ const Products = () => {
 
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-
                           {product.image[imageIndexes[product.id]]?.endsWith(
                             ".mp4"
                           ) ? (
                             <video
-                              src={`http://localhost:3000${product.image[imageIndexes[product.id]]
-                                }`}
+                              src={`http://localhost:3000${
+                                product.image[imageIndexes[product.id]]
+                              }`}
                               className="p-1_proi img-fluid"
                               autoPlay
                               loop
@@ -661,8 +664,9 @@ const Products = () => {
                             />
                           ) : (
                             <img
-                              src={`http://localhost:3000${product.image[imageIndexes[product.id]]
-                                }`}
+                              src={`http://localhost:3000${
+                                product.image[imageIndexes[product.id]]
+                              }`}
                               className="p-1_proi img-fluid"
                               alt="Product"
                             />

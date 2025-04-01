@@ -4,8 +4,10 @@ import { GoTrash } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
-const CartPopup = ({ isOpen, closeCart }) => {
+const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState([]);
 
@@ -49,6 +51,19 @@ const CartPopup = ({ isOpen, closeCart }) => {
     );
     setOrderDetails(updatedItems);
   };
+  
+  useEffect(() => {
+    if (showToast && toastMessage) {
+      toast.success(toastMessage, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  }, [showToast, toastMessage]);
 
   useEffect(() => {
     if (isOpen) {
@@ -71,6 +86,7 @@ const CartPopup = ({ isOpen, closeCart }) => {
       if (res.status === 200) {
         const updatedItems = orderDetails.filter((_, i) => i !== index);
         setOrderDetails(updatedItems);
+        toast.success("Removed from Cart!");
       }
     } catch (err) {
       console.error("Error deleting order item:", err);
@@ -245,6 +261,7 @@ const CartPopup = ({ isOpen, closeCart }) => {
                   <div
                     className="delete mt-2"
                     onClick={() => handleRemoveItem(item.id, index)}
+                    style={{cursor:'pointer'}}
                   >
                     <GoTrash size={25} />
                   </div>

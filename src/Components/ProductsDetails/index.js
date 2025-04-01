@@ -15,7 +15,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const products = [
   {
@@ -61,6 +62,9 @@ const ProductDetailss = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+
   const openCart = () => {
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
@@ -111,6 +115,7 @@ const ProductDetailss = () => {
 
   const closeCart = () => {
     setIsCartOpen(false);
+    setShowToast(false); // Reset toast state when closing
     document.body.classList.remove("no-scroll");
   };
 
@@ -312,6 +317,8 @@ const ProductDetailss = () => {
       } else {
         console.error("Failed to add product to cart:", response);
       }
+      setToastMessage("Item added to cart successfully!");
+      setShowToast(true);
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
@@ -319,7 +326,18 @@ const ProductDetailss = () => {
 
   return (
     <div>
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage}/>
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
