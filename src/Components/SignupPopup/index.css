@@ -8,7 +8,7 @@
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: flex-end;
-    align-items: center;
+    align-items: start;
 }
 
 .signup-popup {
@@ -19,8 +19,9 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     padding: 10px 0;
     text-align: left;
-    bottom: 10%;
-    right: 6%;
+    /* bottom: 10%; */
+    top: 14%;
+    right: 9%;
 }
 
 .popup-arrow {

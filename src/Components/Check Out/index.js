@@ -25,16 +25,52 @@ const CheckoutPage = () => {
     zipCode: "",
     phoneNumber: "",
     discountCode: "",
+    payPhoneNumber: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+      
+    // Special handling for phone number
+    if (name === 'phoneNumber') {
+      // Remove all non-digit characters and limit to 10 digits
+      const cleanedValue = value.replace(/\D/g, '').slice(0, 10);
+      
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: cleanedValue, // Store only the raw digits
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
+  const validatePhoneNumber = (e) => {
+    const { name, value } = e.target;
+    const cleanedValue = value.replace(/\D/g, ''); // Remove formatting
+    
+    let error = '';
+    
+    if (!value) {
+      error = 'Phone number is required';
+    } else if (cleanedValue.length < 10) {
+      error = 'Phone number must be at least 10 digits';
+    } else if (!/^[0-9]{10,15}$/.test(cleanedValue)) {
+      error = 'Please enter a valid phone number';
+    }
+    
+    setErrors(prev => ({
+      ...prev,
+      [name]: error
+    }));
+    
+    // Return true if valid (optional)
+    return !error;
+  };
+  
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
@@ -321,12 +357,14 @@ const CheckoutPage = () => {
               </Row>
               <Form.Group className="mt-2">
                 <Form.Control
-                  type="text"
+                  type="tel"
                   placeholder="Phone Number"
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
+                  onBlur={validatePhoneNumber} // Add blur validation
                   className="Box BoxFont"
+                  maxLength="15" // Limit input length
                 />
                 {errors.phoneNumber && (
                   <span className="error-flksssss">{errors.phoneNumber}</span>
@@ -354,9 +392,18 @@ const CheckoutPage = () => {
                       width="20"
                     />
                     <Form.Control
-                      type="text"
-                      placeholder="Mobile phone number"
-                    />
+                       type="tel"
+                       placeholder="Phone Number"
+                       name="payPhoneNumber"
+                       value={formData.payPhoneNumber}
+                       onChange={handleInputChange}
+                       onBlur={validatePhoneNumber} // Add blur validation
+                       className="Box BoxFont"
+                       maxLength="10" // Limit input length
+                     />
+                     {errors.payPhoneNumber && (
+                       <span className="error-flksssss">{errors.payPhoneNumber}</span>
+                     )}
                   </Col>
                 </Row>
               </div>
@@ -396,8 +443,8 @@ const CheckoutPage = () => {
               const displayPrice = item.productId.hasVariations
                 ? item.salePrice // Use the size-specific sale price
                 : item.productPrice?.$numberDecimal
-                ? parseFloat(item.productPrice.$numberDecimal)
-                : "Price not available";
+                  ? parseFloat(item.productPrice.$numberDecimal)
+                  : "Price not available";
               return (
                 <div className="order-item" key={index}>
                   <img

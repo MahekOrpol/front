@@ -486,6 +486,7 @@ const Home = () => {
         draggable
         pauseOnHover
         theme="light"
+        stacked 
       />
 
       <CartPopup

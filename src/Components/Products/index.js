@@ -51,6 +51,9 @@ const Products = () => {
   const [selectedOption, setSelectedOption] = useState('high-to-low');
   const dropdownRef = useRef(null);
 
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [isSearchActive, setIsSearchActive] = useState(false);
+
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   useEffect(() => {
@@ -85,7 +88,7 @@ const Products = () => {
 
   const closeCart = () => {
     setIsCartOpen(false);
-    setShowToast(false); 
+    setShowToast(false);
     document.body.classList.remove("no-scroll");
   };
 
@@ -148,6 +151,9 @@ const Products = () => {
 
     // Reset price range
     setPriceRange([1000, 15000]);
+    setSearchQuery("");
+    setIsSearchActive(false);
+    setFilteredProducts([]);
   };
 
   const toggleSection = (section) => {
@@ -176,8 +182,19 @@ const Products = () => {
     try {
       const response = await axios.get(url);
       const sortedProducts = sortProducts(response.data, selectedOption);
-      setProductList(sortedProducts); // Update product list with filtered and sorted results
-      setIsFilterVisible(false); // Close filter sidebar
+      setProductList(sortedProducts);
+      setIsFilterVisible(false);
+      setIsSearchActive(searchQuery.trim() !== "");
+      if (searchQuery.trim() !== "") {
+        const searchTerm = searchQuery.toLowerCase().trim();
+        const results = sortedProducts.filter(product =>
+          product.productName.toLowerCase().includes(searchTerm)
+        );
+        setFilteredProducts(results);
+      } else {
+        setFilteredProducts(sortedProducts)
+      }
+
     } catch (error) {
       console.error("Error fetching filtered products:", error);
     }
@@ -243,17 +260,9 @@ const Products = () => {
         );
         const wishlistData = response.data.data || [];
 
-        console.log("Fetched Wishlist Data:", wishlistData);
-
         const wishlistMap = {};
         wishlistData.forEach((item) => {
-          let productId = item.productId._id || item.productId.id; // Extract _id if present
-          console.log(
-            "Processed Product ID:",
-            productId,
-            "Type:",
-            typeof productId
-          );
+          let productId = item.productId._id || item.productId.id;
 
           if (typeof productId === "string" || typeof productId === "number") {
             wishlistMap[productId] = item.id;
@@ -271,14 +280,12 @@ const Products = () => {
     fetchWishlist();
   }, [userId]);
 
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const addToCart = async (product) => {
     try {
-
       const userId = localStorage.getItem("user_Id");
 
       if (!userId) {
@@ -290,7 +297,7 @@ const Products = () => {
         ? product.productSize.join(",")
         : product?.productSize || "";
       const variationIds = Array.isArray(product?.variations)
-        ? product.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
+        ? product.variations.map((variation) => variation.id)
         : [];
 
       const payload = {
@@ -302,10 +309,6 @@ const Products = () => {
         discount: product?.discount?.$numberDecimal || 0,
         variation: variationIds,
       };
-      console.log(
-        "product",
-        JSON.stringify(JSON.stringify(product?.variations))
-      );
 
       // Make the API request
       const response = await axios.post(
@@ -360,6 +363,7 @@ const Products = () => {
     return sortedProducts;
   };
 
+  const displayProducts = isSearchActive ? filteredProducts : productList;
   // // Update your handleApplyFilters function
   // const handleApplyFilters = async () => {
   //   let url = `http://localhost:3000/api/v1/product/get?`;
@@ -388,19 +392,20 @@ const Products = () => {
 
   return (
     <>
-       <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-          
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        stacked 
+      />
+
       <CartPopup
         isOpen={isCartOpen}
         closeCart={closeCart}
@@ -420,7 +425,7 @@ const Products = () => {
         </div> */}
         </div>
         <div className="container pb-5">
-          <div className="hdr_csdg d-flex flex-column align-items-center produ_sss">
+          <div className="hdr_csdg align-items-center produ_sss">
             <span className="produ_shsu">
               Choose Perfect Ring Style for You
             </span>
@@ -429,7 +434,6 @@ const Products = () => {
               stunning ring styles to match your unique taste and occasion
             </p>
             <div className="pt-3 Sfg">
-
               <button
                 className="ring_for_her"
                 onClick={() =>
@@ -461,27 +465,6 @@ const Products = () => {
                   Filter
                 </button>
               </div>
-              {/* <div className="d-flex justify-content-between w-100 mt-3 zsdc_555">
-                <div className="d-flex gap-3 filter_pro">
-                  <button
-                    className="flt_btn d-flex gap-3 align-items-center justify-content-center"
-                    onClick={toggleFilter}
-                  >
-                    <img
-                      src={require("../../Images/filter.png")}
-                      alt="Filter Icon"
-                    />{" "}
-                    Filter
-                  </button>
-
-                </div>
-                <div className="d-flex gap-3 align-items-center filter_pro2">
-                  <span className="sho_ddd filter_pro1">Sort by:</span>
-                  <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro3">
-                    High to Low <FaAngleDown />
-                  </button>
-                </div>
-              </div> */}
               <div className="d-flex gap-3 align-items-center filter_pro2">
                 <span className="sho_ddd filter_pro1">Sort by:</span>
                 <div className="dropdown" ref={dropdownRef}>
@@ -555,7 +538,6 @@ const Products = () => {
                 </div>
               </div>
             </div>
-            {/* Filter Sidebar Overlay */}
             {isFilterVisible && (
               <div className="filter-overlay" onClick={toggleFilter}>
                 <div
@@ -639,23 +621,19 @@ const Products = () => {
               </div>
             )}
             <div className="row pt-5">
-              {productList.length > 0 ? (
-                productList.map((product) => (
+              {displayProducts.length > 0 ? (
+                displayProducts.map((product) => (
                   <div
                     key={product.id}
-                    className="col-lg-3 col-md-4 col-6 mb-4 asxasx_card"
+                    className={`${isSearchActive ? 'masonry-item col-lg-3 col-md-4 col-6' : 'col-lg-3 col-md-4 col-6'} mb-4 asxasx_card`}
                     onMouseEnter={() => setHoveredProduct(product.id)}
                     onMouseLeave={() => setHoveredProduct(null)}
                   >
                     <div className="card prio_card scdscsed_sdss_pro">
-                      {/* Image Wrapper with position-relative */}
                       <div className="card-image-wrapper position-relative">
-                        {/* SALE Badge */}
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 trtrd">
                           SALE
                         </button>
-
-                        {/* Favorite Icon */}
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
                           onClick={() => toggleFavorite(product.id)}
@@ -667,10 +645,7 @@ const Products = () => {
                             <GoHeart className="heart-icon_ss" size={18} />
                           )}
                         </div>
-
-                        {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-
                           {product.image[imageIndexes[product.id]]?.endsWith(
                             ".mp4"
                           ) ? (
@@ -690,7 +665,6 @@ const Products = () => {
                               alt="Product"
                             />
                           )}
-
                           {hoveredProduct === product.id && (
                             <div className="hover-overlay w-100 d-none d-sm-flex">
                               <button
@@ -734,7 +708,6 @@ const Products = () => {
                           >
                             Add to Cart <BiShoppingBag size={25} />
                           </button>
-                          {/* <p className="mt-1"> */}
                           <a
                             onClick={() => handleProductClick(product.id)}
                             className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
@@ -750,11 +723,9 @@ const Products = () => {
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
-                        {/* <p className="mt-1"> */}
                         <a
                           onClick={() => handleProductClick(product.id)}
                           className="mt-2 text-body szdc_za d-flex gap-2 align-items-left justify-content-left w-100"
-                          style={{ cursor: "pointer" }}
                         >
                           Read more about the Product <FaArrowRight />
                         </a>
@@ -762,9 +733,23 @@ const Products = () => {
                     </div>
                   </div>
                 ))
+              ) : isSearchActive ? (
+                <div className="text-center w-100 py-5">
+                  <h4>No products found matching "{searchQuery}"</h4>
+                  <button
+                    className="btfdd mt-3"
+                    onClick={() => {
+                      setSearchQuery("");
+                      setIsSearchActive(false);
+                      setFilteredProducts([]);
+                    }}
+                  >
+                    Show All Products
+                  </button>
+                </div>
               ) : (
-                <div className="text-center w-100">
-                  <h3>No products found</h3>
+                <div className="text-center w-100 py-5">
+                  <h4>No products available</h4>
                 </div>
               )}
             </div>
