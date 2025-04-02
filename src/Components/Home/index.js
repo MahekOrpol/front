@@ -499,7 +499,7 @@ const Home = () => {
           <JewelrySale />
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd container p-0 mt-sm-3">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd p-0 mt-sm-3">
           <span className="category_name mt-2">Categories</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img
@@ -507,7 +507,7 @@ const Home = () => {
             className="home_tag_img"
           />
 
-          <div className="container p-0">
+          <div className=" p-0">
             <Swiper
               spaceBetween={10}
               loop={true}
@@ -515,7 +515,7 @@ const Home = () => {
               // modules={[ Autoplay]}
               breakpoints={{
                 0: { slidesPerView: 4 },
-                480: { slidesPerView: 4 },
+                480: { slidesPerView: 5 },
                 768: { slidesPerView: 5 },
                 1024: { slidesPerView: 6 },
                 1200: { slidesPerView: 6 },
@@ -1655,12 +1655,12 @@ const Home = () => {
       </div> */}
 
         <div className="testimonial-container d-flex align-items-center">
-          <button
+          {/* <button
             className="nav-button left"
             onClick={() => swiperRef.current?.slidePrev()}
           >
             <FaAngleLeft />
-          </button>
+          </button> */}
 
           <div
             className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
@@ -1715,12 +1715,12 @@ const Home = () => {
               )}
             </Swiper>
           </div>
-          <button
+          {/* <button
             className="nav-button right"
             onClick={() => swiperRef.current?.slideNext()}
           >
             <FaAngleRight />
-          </button>
+          </button> */}
         </div>
         <div className="pb-5"></div>
         <Footer />

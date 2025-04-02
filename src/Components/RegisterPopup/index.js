@@ -37,10 +37,10 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     return (
       <ForgotPass
         isOpen={showForgotPass}
-        onClose={() => {
-          setShowForgotPass(false);
-          onClose();
-        }}
+        // onClose={() => {
+        //   setShowForgotPass(false);
+        //   onClose();
+        // }}
       />
     );
   }

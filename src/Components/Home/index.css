@@ -1799,7 +1799,7 @@ img.ring-image {
   }
 }
 
-@media(max-width:991px) {
+@media(max-width:991px) and (min-width:858px) {
   .paddingdn {
 
     padding-top: 3rem !important;
