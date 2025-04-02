@@ -103,8 +103,8 @@ const RegisterPopup = ({ isOpen, onClose }) => {
           toast.success("Login Successful!");
           localStorage.setItem("user_Id", response.data.user.id);
           localStorage.setItem("user_token", response.data.token.access.token);
-          onClose();
-          setTimeout(() => onclose(), 1000);
+          
+          setTimeout(() => onClose(), 1000);
         }
       } catch (error) {
         toast.error(error.response?.data?.message || "Login failed");
@@ -204,6 +204,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
         draggable
         pauseOnHover
         theme="light"
+        stacked 
       />
       <Header />
       <div className="register-popup-overlay" onMouseDown={handleOverlayClick}>

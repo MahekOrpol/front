@@ -4,15 +4,77 @@ import Footer from "../../Pages/Footer";
 import "./index.css";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 import {
   faEnvelope,
   faLocationDot,
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 const Contact = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    message: ""
+  });
+
+  const openCart = () => {
+    setIsCartOpen(true);
+    document.body.classList.add("no-scroll");
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:3000/api/v1/contact-us/create', formData);
+
+      if (response.status === 201) {
+        toast.success("Thank you for contacting us! We'll get back to you soon.");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          phone: "",
+          email: "",
+          message: ""
+        });
+        
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+    }
+  };
+
   return (
     <>
-      <Header />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        stacked 
+      />
+      <Header openCart={openCart} />
       <div>
         <img
           src={require("../../Images/Group 1597884579.png")}
@@ -101,14 +163,18 @@ const Contact = () => {
                         </div> */}
             <Card className="contact-card con_ssss">
               <Card.Body>
-                <Form>
+                <Form onSubmit={handleSubmit}>
                   <Row className="con_row_sss">
                     <Col md={6} className="sx_row_sss">
                       <Form.Group className="my-4">
                         <Form.Control
                           type="text"
+                          name="firstName"
                           placeholder="First Name"
                           className="con_filddd"
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          required
                         />
                       </Form.Group>
                     </Col>
@@ -116,48 +182,53 @@ const Contact = () => {
                       <Form.Group className="my-4">
                         <Form.Control
                           type="text"
+                          name="lastName"
                           placeholder="Last Name"
                           className="con_filddd"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          required
                         />
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Row className="con_row_sss">
-                    <Col md={6} className="sx_row_sss">
-                      <Form.Group className="my-4">
-                        <Form.Control
-                          type="text"
-                          placeholder="Phone No."
-                          className="con_filddd"
-                        />
-                      </Form.Group>
-                    </Col>
-                    <Col md={6} className="sx_row_sss">
-                      <Form.Group className="my-4">
-                        <Form.Control
-                          type="email"
-                          placeholder="Email Address"
-                          className="con_filddd"
-                        />
-                      </Form.Group>
-                    </Col>
-                  </Row>
+
                   <Form.Group className="my-4">
                     <Form.Control
-                      type="text"
-                      placeholder="Company"
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
                       className="con_filddd"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                     />
                   </Form.Group>
+
+                  <Form.Group className="my-4">
+                    <Form.Control
+                      type="tel"
+                      name="phone"
+                      placeholder="Phone Number"
+                      className="con_filddd"
+                      value={formData.phone}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+
                   <Form.Group className="my-4">
                     <Form.Control
                       as="textarea"
-                      rows={2}
-                      placeholder="Message"
+                      rows={4}
+                      name="message"
+                      placeholder="Your message here..."
                       className="con_filddd"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
                     />
                   </Form.Group>
-                  <Button className="submit-btn my-3">Submit</Button>
+                  <Button type="submit" className="submit-btn my-3">Submit</Button>
                 </Form>
               </Card.Body>
             </Card>

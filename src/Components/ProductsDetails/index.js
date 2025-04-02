@@ -336,6 +336,7 @@ const ProductDetailss = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
+        stacked 
       />
       <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage}/>
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}

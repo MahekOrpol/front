@@ -200,6 +200,7 @@ const Wishlist = () => {
         draggable
         pauseOnHover
         theme="light"
+        stacked 
       />
        <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage}/>
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}

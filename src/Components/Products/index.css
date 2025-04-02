@@ -1617,3 +1617,22 @@
 .price-labels {
   font-family: "Cabin", sans-serif;
 }
+
+
+
+
+
+.btfdd {
+  color: white;
+  border: none;
+  padding: 0.6rem;
+  font-size: 14px;
+  font-family: "Cabin", sans-serif;
+  background-color: #611D2B;
+}
+.produ_shsu,
+.pro_p,
+.Sfg {
+  display: flex;
+  justify-content: center;
+}

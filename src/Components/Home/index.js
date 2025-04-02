@@ -486,6 +486,7 @@ const Home = () => {
         draggable
         pauseOnHover
         theme="light"
+        stacked 
       />
 
       <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage}/>

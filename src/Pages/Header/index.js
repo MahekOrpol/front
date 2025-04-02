@@ -23,9 +23,9 @@ import RegisterPopup from "../../Components/RegisterPopup";
 const Header = ({ openCart }) => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
-const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
-const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
+  const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
+  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
+  const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
 
 
   const toggleDrawer = () => {
@@ -68,11 +68,11 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
               type="text"
               placeholder="Search Product Here"
               className="flex-1 px-4 py-2 outline-none text-gray-700"
-              style={{borderRadius: "10px 0px 0px 10px"}}
+              style={{ borderRadius: "10px 0px 0px 10px" }}
             />
             <button
               className="p-3 rounded-r-full d-flex align-items-center justify-content-center search_hbdhj bg_prime"
-              style={{ height: "2.7rem", borderRadius: "0px 8px 8px 0px", border:"none",padding:"0.8rem"}}
+              style={{ height: "2.7rem", borderRadius: "0px 8px 8px 0px", border: "none", padding: "0.8rem" }}
             >
               <FaSearch />
             </button>
@@ -87,7 +87,7 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
         </div>
         {/* Icons Section (Desktop Only) */}
         <div className="walign-items-center d-flex dcxde_asx485 gap-3 gap-lg-5 w-25 align-items-center ps-lg-1 sdfcv_tgvtgv">
-          <div className="user_icon gap-3 d-flex align-items-center d-none d-lg-block d-lg-flex" onClick={() => setIsSignupPopupOpen(true)} style={{cursor:'pointer'}}>
+          <div className="user_icon gap-3 d-flex align-items-center d-none d-lg-block d-lg-flex" onClick={() => setIsSignupPopupOpen(true)} style={{ cursor: 'pointer' }}>
             <img src={usericon} alt="User Icon" />
             <div className="d-flex flex-column align-items-center pt-2" style={{ lineHeight: '21px' }}>
               <span className="sign_txt w-100">Sign In</span>
@@ -98,45 +98,45 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
             <SignInPopup isOpen={isSignupPopupOpen} onClose={() => setIsSignupPopupOpen(false)} />
           )}
           {/* <div><CiSearch size={25} /></div> */}
-          <div style={{cursor:'pointer'}} onClick={()=>{navigate('/wishlist')}}><CiHeart size={25} /></div>
-          <div style={{cursor:'pointer'}}><IoBagHandleOutline size={25} onClick={openCart}/></div>
+          <div style={{ cursor: 'pointer' }} onClick={() => { navigate('/wishlist') }}><CiHeart size={25} /></div>
+          <div style={{ cursor: 'pointer' }}><IoBagHandleOutline size={25} onClick={openCart} /></div>
         </div>
       </div>
-      
+
       <div className="dsn_mdcm">
         <div
           className="d-flex align-items-center justify-content-center jhdb_dhvh pt-1 pb-1 mt-2"
-          
+
           style={{ borderTop: "1px solid #797979" }}
         >
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Rings")}
           >
-            <img src={ring} width={25}/> Rings
+            <img src={ring} width={25} /> Rings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Earrings")}
           >
-            <img src={earing} width={25}/> Earrings
+            <img src={earing} width={25} /> Earrings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Pendant")}
           >
-           <GiGemPendant  size={20}/> Pendant
+            <GiGemPendant size={20} /> Pendant
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Bracelet")}
           >
-           <img src={bracelet} width={25}/> Bracelet
+            <img src={bracelet} width={25} /> Bracelet
           </div>
           <div className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
-          onClick={()=>navigate('/Customjewel')}
+            onClick={() => navigate('/Customjewel')}
           >
-          <img src={csome} width={20}/> Custom Jewellery</div>
+            <img src={csome} width={20} /> Custom Jewellery</div>
         </div>
       </div>
       {/* <div style={{ borderTop: "1px solid #797979",margin:"5px" }}></div> */}
