@@ -869,6 +869,7 @@ html, body {
     }
     .left-container {
         padding-top: 10px;
+    }}
 
 .form-check-input:checked {
     background-color: #611D2B;
@@ -894,6 +895,14 @@ html, body {
 
 @media (min-width:991px) {
     .check_outpgedetail{
-        width: 15%;
+        width: 399px;
     }
+    .order-price{
+        white-space: noWrap;
+    }
+}
+
+.error-flksssss{
+    color: red;
+    font-size: 12px;
 }

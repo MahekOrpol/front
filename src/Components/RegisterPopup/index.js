@@ -2,32 +2,20 @@ import React, { useEffect, useState } from "react";
 import "./index.css";
 import { Box, Tab, Tabs, TextField, Button, Fade, Slide } from "@mui/material";
 import { TabContext, TabPanel } from "@mui/lab";
-import registerImage from "../../Images/register.png";
+import registerImage from "../../Images/registerpage.png";
 import googleIcon from "../../Images/googleicon.png";
-  import ForgotPass from "../ForgotPopup";
+import ForgotPass from "../ForgotPopup";
 import ChangePass from "../ChangePass";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-bootstrap";
 import axios from "axios";
+import Header from "../../Pages/Header";
+import Footer from "../../Pages/Footer";
 
 const RegisterPopup = ({ isOpen, onClose }) => {
   const [tabValue, setTabValue] = useState("login");
   const [showForgotPass, setShowForgotPass] = useState(false);
   const [showChangePass, setShowChangePass] = useState(false);
-
-    if (!isOpen) return null;
-  if (showForgotPass) {
-    return <ForgotPass isOpen={showForgotPass} onClose={() => {
-      setShowForgotPass(false);
-      onClose();
-    }} />;
-  }
-  if (showChangePass) {
-    return <ChangePass isOpen={showChangePass} onClose={() => {
-      setShowChangePass(false);
-      onClose();
-    }} />;
-  }
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -41,11 +29,37 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [registerErrors, setRegisterErrors] = useState({});
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scrolls to the top when the component loads
+  }, []);
+
+  if (showForgotPass) {
+    return (
+      <ForgotPass
+        isOpen={showForgotPass}
+        // onClose={() => {
+        //   setShowForgotPass(false);
+        //   onClose();
+        // }}
+      />
+    );
+  }
+  if (showChangePass) {
+    return (
+      <ChangePass
+        isOpen={showChangePass}
+        onClose={() => {
+          setShowChangePass(false);
+          onClose();
+        }}
+      />
+    );
+  }
 
   const handleOverlayClick = (e) => {
-    if (e.target.classList.contains("register-popup-overlay")) {
-      onClose();
-    }
+    // if (e.target.classList.contains("register-popup-overlay")) {
+    //   onClose();
+    // }
   };
 
   // Validation functions
@@ -55,7 +69,9 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   };
 
   const validatePassword = (password) => {
-    return password.length >= 6 && /\d/.test(password) && /[a-zA-Z]/.test(password);
+    return (
+      password.length >= 6 && /\d/.test(password) && /[a-zA-Z]/.test(password)
+    );
   };
 
   const handleLoginSubmit = async (e) => {
@@ -67,23 +83,28 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     }
 
     if (!validatePassword(loginPassword)) {
-      errors.password = "Password must be at least 6 characters long and include numbers & letters";
+      errors.password =
+        "Password must be at least 6 characters long and include numbers & letters";
     }
 
     setLoginErrors(errors);
 
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await axios.post("https://crystova.cloudbusiness.cloud/api/v1/register/login", {
-          email: loginEmail,  
-          password: loginPassword,
-        });
+        const response = await axios.post(
+          "http://localhost:3000/api/v1/register/login",
+          {
+            email: loginEmail,
+            password: loginPassword,
+          }
+        );
 
         if (response.status === 200) {
-          // toast.success("Login Successful!");
+          toast.success("Login Successful!");
           localStorage.setItem("user_Id", response.data.user.id);
-          localStorage.setItem("user_token", response.data.token.access.token)
+          localStorage.setItem("user_token", response.data.token.access.token);
           onClose();
+          setTimeout(() => onclose(), 1000);
         }
       } catch (error) {
         toast.error(error.response?.data?.message || "Login failed");
@@ -104,7 +125,8 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     }
 
     if (!validatePassword(password)) {
-      errors.password = "Password must be at least 6 characters long and include numbers & letters";
+      errors.password =
+        "Password must be at least 6 characters long and include numbers & letters";
     }
 
     if (confirmPassword !== password) {
@@ -119,17 +141,32 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await axios.post("https://crystova.cloudbusiness.cloud/api/v1/register/register", {
-          name,
-          email,
-          phone,
-          password,
-          ConfirmPassword: confirmPassword
-        });
+        const response = await axios.post(
+          "http://localhost:3000/api/v1/register/register",
+          {
+            name,
+            email,
+            phone,
+            password,
+            ConfirmPassword: confirmPassword,
+          }
+        );
 
         if (response.status === 201) {
-          toast.success("Registration Successful!");
-          setTabValue("login");
+          const createProfileRes = await axios.post(
+            "http://localhost:3000/api/v1/users/create",
+            {
+              user_id: response.data.user.id,
+              firstName: name,
+              email,
+              phone,
+            }
+          );
+
+          if (createProfileRes.status === 200) {
+            toast.success("Registration Successful!");
+            setTabValue("login");
+          }
         }
       } catch (error) {
         toast.error(error.response?.data?.message || "Registration failed");
@@ -137,255 +174,370 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     }
   };
 
-  useEffect(() => {
-    // Reset login fields
-    setLoginEmail("");
-    setLoginPassword("");
-    setLoginErrors({});
+  // useEffect(() => {
+  //   // Reset login fields
+  //   setLoginEmail("");
+  //   setLoginPassword("");
+  //   setLoginErrors({});
 
-    // Reset register fields
-    setName("");
-    setEmail("");
-    setPhone("");
-    setPassword("");
-    setConfirmPassword("");
-    setRegisterErrors({});
-  }, [tabValue]);  
+  //   // Reset register fields
+  //   setName("");
+  //   setEmail("");
+  //   setPhone("");
+  //   setPassword("");
+  //   setConfirmPassword("");
+  //   setRegisterErrors({});
+  // }, [tabValue]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="register-popup-overlay" onClick={onClose} onMouseDown={handleOverlayClick}>
-      <div className="register-popup" onClick={(e) => e.stopPropagation()}>
-        <div className="register-container">
-          <div className="register-image">
-            <img src={registerImage} alt="Register" />
-          </div>
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <Header />
+      <div className="register-popup-overlay" onMouseDown={handleOverlayClick}>
+        <div className="register-popup" onClick={(e) => e.stopPropagation()}>
+          <div className="register-container">
+            <div className="register-image">
+              <img src={registerImage} alt="Register" />
+            </div>
 
-          <div className="register-form">
-            <TabContext value={tabValue}>
-              <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                <Tabs
-                  value={tabValue}
-                  onChange={(event, newValue) => setTabValue(newValue)}
-                  aria-label="Login/Register Tabs"
-                  variant="fullWidth"
-                  TabIndicatorProps={{
-                    style: { backgroundColor: "#703340" }, // Active indicator color
-                  }}
-                  sx={{
-                    "& .MuiTab-root": {
-                      color: "black",
-                    },
-                    "& .Mui-selected": {
-                      color: "#703340 !important",
-                      fontWeight: 600,
-                    },
-
-                  }}
-                >
-                  <Tab label="Login" value="login" className="taout_d" />
-                  <Tab label="Register" value="register" className="taout_d" />
-                </Tabs>
-              </Box>
-
-
-              {/* <Fade in={tabValue === "login"} timeout={500}> */}
-              <Slide direction="left" in={tabValue === "login"} timeout={500}>
-
-                <TabPanel value="login">
-                  <p className="register-text"><strong>Login using your Email and Password</strong></p>
-                  <p className="register-subtext">For the purpose of industry registration, your details are required and will be stored.</p>
-                  <form onSubmit={handleLoginSubmit}>
-                    <TextField
-                      label="E-mail"
-                      variant="outlined"
-                      fullWidth
-                      margin="normal"
-                      value={loginEmail}
-                      onChange={(e) => setLoginEmail(e.target.value)}
-                      error={!!loginErrors.email}
-                      helperText={loginErrors.email}
+            <div className="register-form">
+              <TabContext value={tabValue}>
+                <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                  <Tabs
+                    value={tabValue}
+                    onChange={(event, newValue) => setTabValue(newValue)}
+                    aria-label="Login/Register Tabs"
+                    variant="fullWidth"
+                    TabIndicatorProps={{
+                      style: { backgroundColor: "#703340" }, // Active indicator color
+                    }}
+                    sx={{
+                      "& .MuiTab-root": {
+                        color: "black",
+                        textTransform: "capitalize",
+                      },
+                      "& .Mui-selected": {
+                        color: "#703340 !important",
+                        fontWeight: 600,
+                      },
+                    }}
+                  >
+                    <Tab
+                      label="Login"
+                      value="login"
+                      className="taout_d"
+                      lg={{ textTransform: "capitalize" }}
                     />
-                    <TextField
-                      label="Password"
-                      variant="outlined"
-                      fullWidth
-                      type="password"
-                      margin="normal"
-                      value={loginPassword}
-                      onChange={(e) => setLoginPassword(e.target.value)}
-                      error={!!loginErrors.password}
-                      helperText={loginErrors.password}
+                    <Tab
+                      label="Register"
+                      value="register"
+                      className="taout_d"
+                      lg={{ textTransform: "capitalize" }}
                     />
-                    <div className="d-flex justify-content-between">
-                      <div className="remember-me-container">
-                        <input type="checkbox" id="remember-me" />
-                        <label htmlFor="remember-me" className="remember-me-label">Remember me</label>
+                  </Tabs>
+                </Box>
+
+                {/* <Fade in={tabValue === "login"} timeout={500}> */}
+                <Slide direction="left" in={tabValue === "login"} timeout={500}>
+                  <TabPanel value="login">
+                    <p className="register-text">
+                      <strong>Login using your Email and Password</strong>
+                    </p>
+                    <p className="register-subtext">
+                      For the purpose of industry registration, your details are
+                      required and will be stored.
+                    </p>
+                    <form onSubmit={handleLoginSubmit}>
+                      <TextField
+                        label="E-mail"
+                        variant="outlined"
+                        fullWidth
+                        margin="normal"
+                        value={loginEmail}
+                        onChange={(e) => setLoginEmail(e.target.value)}
+                        error={!!loginErrors.email}
+                        helperText={loginErrors.email}
+                      />
+                      <TextField
+                        label="Password"
+                        variant="outlined"
+                        fullWidth
+                        type="password"
+                        margin="normal"
+                        value={loginPassword}
+                        onChange={(e) => setLoginPassword(e.target.value)}
+                        error={!!loginErrors.password}
+                        helperText={loginErrors.password}
+                      />
+                      <div className="d-flex justify-content-between">
+                        <div className="remember-me-container">
+                          <input type="checkbox" id="remember-me" />
+                          <label
+                            htmlFor="remember-me"
+                            className="remember-me-label"
+                          >
+                            Remember me
+                          </label>
+                        </div>
+                        <p
+                          className="hrdd"
+                          onClick={() => setShowForgotPass(true)}
+                        >
+                          Forgot Password
+                        </p>
                       </div>
-<p className="hrdd" onClick={() => setShowForgotPass(true)}>Forgot Password</p>
 
-                    </div>
+                      <p className="otre1">
+                        By Continuing, I agree to{" "}
+                        <span className="hrdd"> Terms of Use </span> &{" "}
+                        <span className="hrdd">Privacy Policy</span>
+                      </p>
 
-                    <p className="otre1">By Continuing, I agree to <span className="hrdd"> Terms of Use </span> & <span className="hrdd">Privacy Policy</span></p>
+                      <button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        className="register-btn"
+                      >
+                        Login
+                      </button>
+                      <p className="or-text-container pt-1 pb-1">
+                        <span className="or-line"></span>
+                        <span className="or-text">or</span>
+                        <span className="or-line"></span>
+                      </p>
+                      <p className="otre">
+                        Already have an Account?{" "}
+                        <span className="tvjgds">Create Account</span>
+                      </p>
+                    </form>
+                  </TabPanel>
+                </Slide>
+                {/* </Fade> */}
+                {/* Register Panel */}
 
-                    <button type="submit" variant="contained" color="primary" fullWidth className="register-btn">
-                      Login
-                    </button>
-                    <p className="or-text-container pt-1 pb-1">
-                      <span className="or-line"></span>
-                      <span className="or-text">or</span>
-                      <span className="or-line"></span>
+                {/* <Fade in={tabValue === "register"} timeout={500}> */}
+                <Slide
+                  direction="right"
+                  in={tabValue === "register"}
+                  timeout={500}
+                >
+                  <TabPanel value="register">
+                    <p className="register-text">
+                      <strong>Don’t have an Account?</strong>
                     </p>
-                    <p className="otre">Already have an Account? <span className="tvjg">Create Account</span></p>
+                    <p className="register-subtext">
+                      For the purpose of industry registration, your details are
+                      required and will be stored.
+                    </p>
 
-                  </form>
-                </TabPanel>
-              </Slide>
-              {/* </Fade> */}
-              {/* Register Panel */}
-
-              {/* <Fade in={tabValue === "register"} timeout={500}> */}
-              <Slide direction="right" in={tabValue === "register"} timeout={500}>
-
-                <TabPanel value="register">
-                  <p className="register-text"><strong>Don’t have an Account?</strong></p>
-                  <p className="register-subtext">For the purpose of industry registration, your details are required and will be stored.</p>
-
-                  <form onSubmit={handleRegisterSubmit}>
-                    <TextField
-                      label="Name"
-                      variant="outlined"
-                      fullWidth
-                      margin="normal"
-                      value={name}
-                      // onChange={(e) => setName(e.target.value)}
-                      onChange={(e) => {
-                        setName(e.target.value);
-                        if (e.target.value.trim() !== "") {
-                          setRegisterErrors((prev) => ({ ...prev, name: "" }));
-                        }
-                      }}
-                      onBlur={() => {
-                        if (name.trim() === "") {
-                          setRegisterErrors((prev) => ({ ...prev, name: "Name is required" }));
-                        }
-                      }}
-                      error={!!registerErrors.name}
-                      helperText={registerErrors.name}
-                    />
-                    <TextField
-                      label="E-mail"
-                      variant="outlined"
-                      fullWidth
-                      margin="normal"
-                      value={email}
-                      // onChange={(e) => setEmail(e.target.value)}
-                      onChange={(e) => {
-                        setEmail(e.target.value);
-                        if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(e.target.value)) {
-                          setRegisterErrors((prev) => ({ ...prev, email: "" }));
-                        }
-                      }}
-                      onBlur={() => {
-                        if (!validateEmail(email)) {
-                          setRegisterErrors((prev) => ({ ...prev, email: "Please enter a valid email" }));
-                        }
-                      }}
-                      error={!!registerErrors.email}
-                      helperText={registerErrors.email}
-                    />
-                    <TextField
-                      label="Mobile Number"
-                      variant="outlined"
-                      fullWidth
-                      margin="normal"
-                      value={phone}
-                      // onChange={(e) => setPhone(e.target.value)}
-                      onChange={(e) => {
-                        const input = e.target.value;
-                        if (/^\d{0,10}$/.test(input)) {
-                          setPhone(input);
-                          if (input.length === 10) {
-                            setRegisterErrors((prev) => ({ ...prev, phone: "" }));
+                    <form onSubmit={handleRegisterSubmit}>
+                      <TextField
+                        label="Name"
+                        variant="outlined"
+                        fullWidth
+                        margin="normal"
+                        value={name}
+                        // onChange={(e) => setName(e.target.value)}
+                        onChange={(e) => {
+                          setName(e.target.value);
+                          if (e.target.value.trim() !== "") {
+                            setRegisterErrors((prev) => ({
+                              ...prev,
+                              name: "",
+                            }));
                           }
-                        }
-                      }}
-                      onBlur={() => {
-                        if (phone.length !== 10) {
-                          setRegisterErrors((prev) => ({ ...prev, phone: "Enter a valid 10-digit phone number" }));
-                        }
-                      }}
-                      error={!!registerErrors.phone}
-                      helperText={registerErrors.phone}
-                    />
-                    <TextField
-                      label="Password"
-                      variant="outlined"
-                      fullWidth
-                      type="password"
-                      margin="normal"
-                      value={password}
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                        if (validatePassword(e.target.value)) {
-                          setRegisterErrors((prev) => ({ ...prev, password: "" }));
-                        }
-                      }}
-                      onBlur={() => {
-                        if (!validatePassword(password)) {
-                          setRegisterErrors((prev) => ({ ...prev, password: "Password must be at least 6 characters long and include numbers & letters" }));
-                        }
-                      }} error={!!registerErrors.password}
-                      helperText={registerErrors.password}
-                    />
-                    <TextField
-                      label="Confirm Password"
-                      variant="outlined"
-                      fullWidth
-                      type="password"
-                      margin="normal"
-                      value={confirmPassword}
-                      onChange={(e) => {
-                        setConfirmPassword(e.target.value);
-                        if (e.target.value === password) {
-                          setRegisterErrors((prev) => ({ ...prev, confirmPassword: "" }));
-                        }
-                      }}
-                      onBlur={() => {
-                        if (confirmPassword !== password) {
-                          setRegisterErrors((prev) => ({ ...prev, confirmPassword: "Passwords do not match" }));
-                        }
-                      }} error={!!registerErrors.confirmPassword}
-                      helperText={registerErrors.confirmPassword}
-                    />
-                    <p className="otre">By Continuing, I agree to <span className="hrdd"> Terms of Use </span> & <span className="hrdd">Privacy Policy</span></p>
+                        }}
+                        onBlur={() => {
+                          if (name.trim() === "") {
+                            setRegisterErrors((prev) => ({
+                              ...prev,
+                              name: "Name is required",
+                            }));
+                          }
+                        }}
+                        error={!!registerErrors.name}
+                        helperText={registerErrors.name}
+                      />
+                      <div className="inpul">
+                        <TextField
+                          label="E-mail"
+                          variant="outlined"
+                          fullWidth
+                          margin="normal"
+                          value={email}
+                          // onChange={(e) => setEmail(e.target.value)}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                            if (
+                              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+                                e.target.value
+                              )
+                            ) {
+                              setRegisterErrors((prev) => ({
+                                ...prev,
+                                email: "",
+                              }));
+                            }
+                          }}
+                          onBlur={() => {
+                            if (!validateEmail(email)) {
+                              setRegisterErrors((prev) => ({
+                                ...prev,
+                                email: "Please enter a valid email",
+                              }));
+                            }
+                          }}
+                          error={!!registerErrors.email}
+                          helperText={registerErrors.email}
+                        />
+                        <TextField
+                          label="Mobile Number"
+                          variant="outlined"
+                          fullWidth
+                          margin="normal"
+                          value={phone}
+                          // onChange={(e) => setPhone(e.target.value)}
+                          onChange={(e) => {
+                            const input = e.target.value;
+                            if (/^\d{0,10}$/.test(input)) {
+                              setPhone(input);
+                              if (input.length === 10) {
+                                setRegisterErrors((prev) => ({
+                                  ...prev,
+                                  phone: "",
+                                }));
+                              }
+                            }
+                          }}
+                          onBlur={() => {
+                            if (phone.length !== 10) {
+                              setRegisterErrors((prev) => ({
+                                ...prev,
+                                phone: "Enter a valid 10-digit phone number",
+                              }));
+                            }
+                          }}
+                          error={!!registerErrors.phone}
+                          helperText={registerErrors.phone}
+                        />
+                      </div>
+                      <div className="inpul">
+                        <TextField
+                          label="Password"
+                          variant="outlined"
+                          fullWidth
+                          type="password"
+                          margin="normal"
+                          value={password}
+                          onChange={(e) => {
+                            setPassword(e.target.value);
+                            if (validatePassword(e.target.value)) {
+                              setRegisterErrors((prev) => ({
+                                ...prev,
+                                password: "",
+                              }));
+                            }
+                          }}
+                          onBlur={() => {
+                            if (!validatePassword(password)) {
+                              setRegisterErrors((prev) => ({
+                                ...prev,
+                                password:
+                                  "Password must be at least 6 characters long and include numbers & letters",
+                              }));
+                            }
+                          }}
+                          error={!!registerErrors.password}
+                          helperText={registerErrors.password}
+                        />
+                        <TextField
+                          label="Confirm Password"
+                          variant="outlined"
+                          fullWidth
+                          type="password"
+                          margin="normal"
+                          value={confirmPassword}
+                          onChange={(e) => {
+                            setConfirmPassword(e.target.value);
+                            if (e.target.value === password) {
+                              setRegisterErrors((prev) => ({
+                                ...prev,
+                                confirmPassword: "",
+                              }));
+                            }
+                          }}
+                          onBlur={() => {
+                            if (confirmPassword !== password) {
+                              setRegisterErrors((prev) => ({
+                                ...prev,
+                                confirmPassword: "Passwords do not match",
+                              }));
+                            }
+                          }}
+                          error={!!registerErrors.confirmPassword}
+                          helperText={registerErrors.confirmPassword}
+                        />
+                      </div>
+                      <p className="otre">
+                        By Continuing, I agree to{" "}
+                        <span className="hrdd"> Terms of Use </span> &{" "}
+                        <span className="hrdd">Privacy Policy</span>
+                      </p>
 
-                    <button type="submit" variant="contained" color="primary" fullWidth className="register-btn">
-                      Register
-                    </button>
+                      <button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                        className="register-btn"
+                      >
+                        Register
+                      </button>
 
-                    <p className="or-text-container pt-1 pb-1">
-                      <span className="or-line"></span>
-                      <span className="or-text">or</span>
-                      <span className="or-line"></span>
-                    </p>
-                    <div>
-                      <img src={googleIcon} alt="Google Icon" className="google-icon" />
-                      Register with Google
-                    </div>
-                    <p className="otre">Already have an Account? <span className="tvjg">Create Account</span></p>
-
-                  </form>
-                </TabPanel>
-              </Slide>
-              {/* </Fade> */}
-            </TabContext>
+                      <p className="or-text-container pt-1 pb-1">
+                        <span className="or-line"></span>
+                        <span className="or-text">or</span>
+                        <span className="or-line"></span>
+                      </p>
+                      <div>
+                        <img
+                          src={googleIcon}
+                          alt="Google Icon"
+                          className="google-icon"
+                        />
+                        Continue with Google
+                      </div>
+                      <p className="otre">
+                        Already have an Account?{" "}
+                        <span className="tvjg">Create Account</span>
+                      </p>
+                    </form>
+                  </TabPanel>
+                </Slide>
+                {/* </Fade> */}
+              </TabContext>
+            </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
-      <ToastContainer />
-    </div>
+      <Footer />
+    </>
   );
 };
 

@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
 import {
   FaAngleDown,
+  FaAngleUp,
+  FaArrowDownShortWide,
   FaArrowRight,
+  FaArrowUpWideShort,
   FaChevronDown,
   FaChevronLeft,
   FaChevronRight,
@@ -16,6 +19,9 @@ import { RxCross2 } from "react-icons/rx";
 import { useLocation, useNavigate } from "react-router-dom";
 import CartPopup from "../Add to Cart";
 import axios from "axios";
+import Wishlist from "./../wishlist/index";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Products = () => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -32,7 +38,41 @@ const Products = () => {
   const categoryName = queryParams.get("categoryName");
   const gender = queryParams.get("gender");
   const [productList, setProductList] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState({});
+  const [category, setCategory] = useState([]);
   const navigate = useNavigate();
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const userId = localStorage.getItem("user_Id");
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('high-to-low');
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // const handleProductClick = (productId) => {
+  //   navigate(`/product-details/${productId}`);
+  //   console.log('productId', productId)
+  // };
+  const handleProductClick = (productId, productData) => {
+    navigate(`/product-details/${productId}`, {
+      state: { product: productData },
+    });
+  };
 
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -45,27 +85,31 @@ const Products = () => {
 
   const closeCart = () => {
     setIsCartOpen(false);
+    setShowToast(false); 
     document.body.classList.remove("no-scroll");
   };
 
+
   useEffect(() => {
     const fetchProducts = async () => {
-      let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
+      let url = `http://localhost:3000/api/v1/product/get?`;
       if (categoryName) url += `categoryName=${categoryName}&`;
       if (gender) url += `gender=${gender}`;
 
       const response = await axios.get(url);
-      setProductList(response.data);
+      const sortedProducts = sortProducts(response.data, selectedOption);
+      setProductList(sortedProducts);
 
       const initialIndexes = {};
-        response.data.forEach((product) => {
-          initialIndexes[product.id] = 0;
-        });
-        setImageIndexes(initialIndexes);
-      };
+      sortedProducts.forEach((product) => {
+        initialIndexes[product.id] = 0;
+      });
+      setImageIndexes(initialIndexes);
+    };
 
     fetchProducts();
-  }, [categoryName, gender]);
+  }, [categoryName, gender, selectedOption]); // Add selectedOption to dependencies
+
 
   const handleNextImage = (productId, images) => {
     setImageIndexes((prevIndex) => ({
@@ -80,7 +124,7 @@ const Products = () => {
       [productId]: (prevIndex[productId] - 1 + images.length) % images.length,
     }));
   };
-  
+
   const handlePriceChange = (event, index) => {
     const newValue = Number(event.target.value);
     setPriceRange((prev) => {
@@ -114,24 +158,141 @@ const Products = () => {
     setIsFilterVisible((prev) => !prev);
   };
 
-  const toggleFavorite = (id) => {
-    setIsFavorite((prev) => ({
-      ...prev,
-      [id]: !prev[id], // Toggle the favorite state for the specific card
-    }));
+  const handleApplyFilters = async () => {
+    let url = `http://localhost:3000/api/v1/product/get?`;
+
+    // Append selected categories as query parameters
+    if (selectedCategories.length > 0) {
+      url += `categoryName=${selectedCategories.join(",")}&`;
+    }
+
+    // Append price range as query parameters
+    url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
+
+    if (searchQuery) {
+      url += `search=${searchQuery}&`; // Append search query parameter
+    }
+
+    try {
+      const response = await axios.get(url);
+      const sortedProducts = sortProducts(response.data, selectedOption);
+      setProductList(sortedProducts); // Update product list with filtered and sorted results
+      setIsFilterVisible(false); // Close filter sidebar
+    } catch (error) {
+      console.error("Error fetching filtered products:", error);
+    }
+  };
+
+  const toggleFavorite = async (productId) => {
+
+    // if (!userId) return toast.error("Please log in to add items to wishlist");
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
+
+    try {
+      if (wishlistItems[productId]) {
+        // Remove from wishlist
+        const wishlistItemId = wishlistItems[productId]; // Store the current ID
+        setWishlistItems((prev) => {
+          const updatedWishlist = { ...prev };
+          delete updatedWishlist[productId]; // Update UI immediately
+          return updatedWishlist;
+        });
+
+        const res = await axios.delete(
+          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
+        );
+        toast.success(res.data.message || "Removed from wishlist!");
+      } else {
+        // Add to wishlist
+        const response = await axios.post(
+          `http://localhost:3000/api/v1/wishlist/create`,
+          {
+            productId,
+            userId,
+          }
+        );
+
+        const newWishlistItemId = response.data.data.id;
+        setWishlistItems((prev) => ({
+          ...prev,
+          [productId]: newWishlistItemId, // Store wishlist ID properly
+        }));
+
+        toast.success(response.data.message || "Added to wishlist!");
+      }
+    } catch (error) {
+      console.error("Failed to update wishlist:", error);
+      toast.error("Failed to update wishlist. Please try again!");
+    }
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Scrolls to the top when the component loads
+    const fetchWishlist = async () => {
+
+
+      if (!userId) return;
+
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/v1/wishlist/${userId}`
+        );
+        const wishlistData = response.data.data || [];
+
+        console.log("Fetched Wishlist Data:", wishlistData);
+
+        const wishlistMap = {};
+        wishlistData.forEach((item) => {
+          let productId = item.productId._id || item.productId.id; // Extract _id if present
+          console.log(
+            "Processed Product ID:",
+            productId,
+            "Type:",
+            typeof productId
+          );
+
+          if (typeof productId === "string" || typeof productId === "number") {
+            wishlistMap[productId] = item.id;
+          } else {
+            console.error("Invalid productId format:", item.productId);
+          }
+        });
+
+        setWishlistItems(wishlistMap);
+      } catch (error) {
+        console.error("Error fetching wishlist:", error);
+      }
+    };
+
+    fetchWishlist();
+  }, [userId]);
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   const addToCart = async (product) => {
     try {
+
       const userId = localStorage.getItem("user_Id");
+
+      if (!userId) {
+        navigate("/register");
+        return;
+      }
+
       const productSize = Array.isArray(product?.productSize)
         ? product.productSize.join(",")
         : product?.productSize || "";
-      // Define the payload for the API request
+      const variationIds = Array.isArray(product?.variations)
+        ? product.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
+        : [];
+
       const payload = {
         userId: userId,
         productId: product?.id,
@@ -139,7 +300,12 @@ const Products = () => {
         quantity: product?.quantity || 1,
         productSize: productSize,
         discount: product?.discount?.$numberDecimal || 0,
+        variation: variationIds,
       };
+      console.log(
+        "product",
+        JSON.stringify(JSON.stringify(product?.variations))
+      );
 
       // Make the API request
       const response = await axios.post(
@@ -150,21 +316,97 @@ const Products = () => {
         }
       );
 
+      openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
-        openCart(); // Open cart after successful addition
       } else {
         console.error("Failed to add product to cart:", response);
       }
+      setToastMessage("Item added to cart successfully!");
+      setShowToast(true);
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
   };
-  
+
+  const getCategory = async () => {
+    const res = await axios.get("http://localhost:3000/api/v1/category/get");
+    setCategory(res.data);
+  };
+
+  useEffect(() => {
+    getCategory();
+  }, []);
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category) // Remove category if already selected
+        : [...prev, category] // Add category if not selected
+    );
+  };
+  // Add this function to handle sorting
+  const sortProducts = (products, sortOption) => {
+    const sortedProducts = [...products];
+    if (sortOption === 'high-to-low') {
+      sortedProducts.sort((a, b) =>
+        parseFloat(b.salePrice?.$numberDecimal || 0) - parseFloat(a.salePrice?.$numberDecimal || 0)
+      );
+    } else if (sortOption === 'low-to-high') {
+      sortedProducts.sort((a, b) =>
+        parseFloat(a.salePrice?.$numberDecimal || 0) - parseFloat(b.salePrice?.$numberDecimal || 0)
+      );
+    }
+    return sortedProducts;
+  };
+
+  // // Update your handleApplyFilters function
+  // const handleApplyFilters = async () => {
+  //   let url = `http://localhost:3000/api/v1/product/get?`;
+
+  //   // Append selected categories as query parameters
+  //   if (selectedCategories.length > 0) {
+  //     url += `categoryName=${selectedCategories.join(",")}&`;
+  //   }
+
+  //   // Append price range as query parameters
+  //   url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
+
+  //   if (searchQuery) {
+  //     url += `&search=${searchQuery}`; // Append search query parameter
+  //   }
+
+  //   try {
+  //     const response = await axios.get(url);
+  //     const sortedProducts = sortProducts(response.data, selectedOption);
+  //     setProductList(sortedProducts); // Update product list with filtered and sorted results
+  //     setIsFilterVisible(false); // Close filter sidebar
+  //   } catch (error) {
+  //     console.error("Error fetching filtered products:", error);
+  //   }
+  // };
 
   return (
     <>
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
+       <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          
+      <CartPopup
+        isOpen={isCartOpen}
+        closeCart={closeCart}
+        showToast={showToast}
+        toastMessage={toastMessage}
+      />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
@@ -177,20 +419,17 @@ const Products = () => {
           <h1 className='banner_exx'>Shop</h1>
         </div> */}
         </div>
-        <div className="container">
+        <div className="container pb-5">
           <div className="hdr_csdg d-flex flex-column align-items-center produ_sss">
-            <span className="produ_shsu">Choose Perfect Ring Style for You</span>
+            <span className="produ_shsu">
+              Choose Perfect Ring Style for You
+            </span>
             <p className="pro_p">
               Find the design that speaks to your heart. Explore a variety of
               stunning ring styles to match your unique taste and occasion
             </p>
             <div className="pt-3 Sfg">
-              {/* <button className="ring_for_her">
-              <img src={require("../../Images/her.png")} /> Rings for Her
-            </button>
-            <button className="ring_for_him">
-              <img src={require("../../Images/him.png")} /> Rings for Him
-            </button> */}
+
               <button
                 className="ring_for_her"
                 onClick={() =>
@@ -221,18 +460,101 @@ const Products = () => {
                   />{" "}
                   Filter
                 </button>
-                {/* <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro3">
-                Select Carat Weight <FaAngleDown />
-              </button> */}
               </div>
+              {/* <div className="d-flex justify-content-between w-100 mt-3 zsdc_555">
+                <div className="d-flex gap-3 filter_pro">
+                  <button
+                    className="flt_btn d-flex gap-3 align-items-center justify-content-center"
+                    onClick={toggleFilter}
+                  >
+                    <img
+                      src={require("../../Images/filter.png")}
+                      alt="Filter Icon"
+                    />{" "}
+                    Filter
+                  </button>
+
+                </div>
+                <div className="d-flex gap-3 align-items-center filter_pro2">
+                  <span className="sho_ddd filter_pro1">Sort by:</span>
+                  <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro3">
+                    High to Low <FaAngleDown />
+                  </button>
+                </div>
+              </div> */}
               <div className="d-flex gap-3 align-items-center filter_pro2">
                 <span className="sho_ddd filter_pro1">Sort by:</span>
-                <button className="hi_to_low p-3 d-flex gap-3 align-items-center justify-content-center filter_pro3">
-                  High to Low <FaAngleDown />
-                </button>
+                <div className="dropdown" ref={dropdownRef}>
+                  <button
+                    className="hi_to_low p-3 gap-2 align-items-center justify-content-center filter_pro3"
+                    type="button"
+                    id="sortDropdown"
+                    onClick={toggleDropdown}
+                    aria-expanded={isDropdownOpen}
+                    style={{ minWidth: '150px' }}
+                  >
+                    <span className="d-flex align-items-center gap-2 justify-content-between w-100">
+                      {selectedOption === 'low-to-high' ? (
+                        <>
+                          <span className="d-flex align-items-center gap-2">
+                            <FaArrowUpWideShort /> (low-to-high)
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="d-flex align-items-center gap-2">
+                            <FaArrowDownShortWide /> (high-to-low)
+                          </span>
+                        </>
+                      )}
+                      {isDropdownOpen ? (
+                        <FaAngleUp style={{ fontSize: '0.9rem' }} />
+                      ) : (
+                        <FaAngleDown style={{ fontSize: '0.9rem' }} />
+                      )}
+                    </span>
+                  </button>
+
+                  {isDropdownOpen && (
+                    <ul
+                      className="dropdown-menu show Nkejd"
+                      aria-labelledby="sortDropdown"
+                      style={{
+                        minWidth: '194px',
+                        padding: '0.5rem 0',
+                        border: '1px solid #e9ecef',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                      }}
+                    >
+                      <li>
+                        <a
+                          className="dropdown-item d-flex align-items-center gap-2 py-2 px-3 djddd"
+                          href="#"
+                          onClick={() => {
+                            setIsDropdownOpen(false);
+                            setSelectedOption('low-to-high');
+                          }}
+                        >
+                          <FaArrowUpWideShort /> Price (low-to-high)
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-item d-flex align-items-center gap-2 py-2 px-3 djddd"
+                          href="#"
+                          onClick={() => {
+                            setIsDropdownOpen(false);
+                            setSelectedOption('high-to-low');
+                          }}
+                        >
+                          <FaArrowDownShortWide /> Price (high-to-low)
+                        </a>
+                      </li>
+                    </ul>
+                  )}
+                </div>
               </div>
             </div>
-
             {/* Filter Sidebar Overlay */}
             {isFilterVisible && (
               <div className="filter-overlay" onClick={toggleFilter}>
@@ -250,6 +572,8 @@ const Products = () => {
                       type="text"
                       className="search-input"
                       placeholder="Search Products"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
                     />
                     <span className="search-button">
                       <BiSearch size={25} />
@@ -264,34 +588,18 @@ const Products = () => {
                         <FaChevronDown size={20} className="mr3" />
                       )}
                     </h5>
-                    {openSections.categories && (
-                      <>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Women's Ring
-                        </label>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Men's Ring
-                        </label>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Pendant
-                        </label>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Women's Bracelet
-                        </label>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Men's Bracelet
-                        </label>
-                        <label>
-                          <input type="checkbox" className="category-checkbox" />{" "}
-                          Earrings
-                        </label>
-                      </>
-                    )}
+                    {category.map((category) => (
+                      <label key={category._id}>
+                        <input
+                          type="checkbox"
+                          className="category-checkbox"
+                          value={category.categoryName}
+                          checked={selectedCategories.includes(category.categoryName)}
+                          onChange={() => handleCategoryChange(category.categoryName)}
+                        />{" "}
+                        {category.categoryName}
+                      </label>
+                    ))}
                   </div>
                   <div className="filter-category">
                     <h5 onClick={() => toggleSection("priceFilter")}>
@@ -319,20 +627,10 @@ const Products = () => {
                     )}
                   </div>
 
-                  {/* <div className="filter-category">
-                  <h5 onClick={() => toggleSection('weight')}>
-                    Weight {openSections.weight ? <FaChevronUp size={20} className="mr3" /> : <FaChevronDown size={20} className="mr3" />}
-                  </h5>
-                  {openSections.weight && (
-                    <>
-                      <label><input type="checkbox" /> 2 to 5 g</label>
-                      <label><input type="checkbox" /> 5 to 10 g</label>
-                      <label><input type="checkbox" /> 10 to 15 g</label>
-                      <label><input type="checkbox" /> &gt; 15 g</label>
-                    </>
-                  )}
-                </div> */}
-                  <div style={{ textAlign: "end" }}>
+                  <div className="d-flex align-items-center gap-2 justify-content-end" style={{ textAlign: "end" }}>
+                    <button className="Clen" onClick={handleApplyFilters}>
+                      Apply
+                    </button>
                     <button className="Clen" onClick={handleClearFilters}>
                       Clear
                     </button>
@@ -345,52 +643,15 @@ const Products = () => {
                 productList.map((product) => (
                   <div
                     key={product.id}
-                    className="col-lg-3 col-md-4 col-sm-6 mb-4 asxasx_card"
+                    className="col-lg-3 col-md-4 col-6 mb-4 asxasx_card"
                     onMouseEnter={() => setHoveredProduct(product.id)}
                     onMouseLeave={() => setHoveredProduct(null)}
                   >
-                    {/* Each column adapts based on screen size */}
-                    {/* <div className="card prio_card">
-                  <div className="card-title">
-                    <div>
-                      <button className="new_btnddx p-1 ms-3 mt-3">NEW</button>
-                      <div
-                        className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                        onClick={() => toggleFavorite(product.id)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {isFavorite[product.id] ? (
-                          <GoHeartFill className="heart-icon_ss" size={18} />
-                        ) : (
-                          <GoHeart className="heart-icon_ss" size={18} />
-                        )}
-                      </div>
-                    </div>
-                    <div className="card-body">
-                      <img
-                        src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                        className="p-1_proi w-100"
-                        alt="Product"
-                      />
-                      {hoveredProduct === product.id && (
-                        <div className="hover-overlay w-100 d-flex">
-                          <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3">
-                            <FaChevronLeft />
-                          </button>
-                          <button className="btn btn-light right-btn">
-                            <FaChevronRight />
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div> */}
-
                     <div className="card prio_card scdscsed_sdss_pro">
                       {/* Image Wrapper with position-relative */}
                       <div className="card-image-wrapper position-relative">
                         {/* SALE Badge */}
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 trtrd">
                           SALE
                         </button>
 
@@ -400,7 +661,7 @@ const Products = () => {
                           onClick={() => toggleFavorite(product.id)}
                           style={{ cursor: "pointer" }}
                         >
-                          {isFavorite[product.id] ? (
+                          {wishlistItems[product.id] ? (
                             <GoHeartFill className="heart-icon_ss" size={18} />
                           ) : (
                             <GoHeart className="heart-icon_ss" size={18} />
@@ -409,56 +670,95 @@ const Products = () => {
 
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          <img
-                            // src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
-                            src={`https://crystova.cloudbusiness.cloud${product.image[imageIndexes[product.id]]}`}
 
-                            className="p-1_proi img-fluid"
-                            alt="Product"
-                          />
+                          {product.image[imageIndexes[product.id]]?.endsWith(
+                            ".mp4"
+                          ) ? (
+                            <video
+                              src={`http://localhost:3000${product.image[imageIndexes[product.id]]
+                                }`}
+                              className="p-1_proi img-fluid"
+                              autoPlay
+                              loop
+                              muted
+                            />
+                          ) : (
+                            <img
+                              src={`http://localhost:3000${product.image[imageIndexes[product.id]]
+                                }`}
+                              className="p-1_proi img-fluid"
+                              alt="Product"
+                            />
+                          )}
+
                           {hoveredProduct === product.id && (
-                            <div className="hover-overlay w-100 d-flex">
-                              <button className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"  onClick={() => handlePrevImage(product.id, product.image)}
+                            <div className="hover-overlay w-100 d-none d-sm-flex">
+                              <button
+                                className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
+                                onClick={() =>
+                                  handlePrevImage(product.id, product.image)
+                                }
                               >
                                 <FaChevronLeft />
                               </button>
-                              <button className="btn btn-light right-btn" onClick={() => handleNextImage(product.id, product.image)}
+                              <button
+                                className="btn btn-light right-btn"
+                                onClick={() =>
+                                  handleNextImage(product.id, product.image)
+                                }
                               >
                                 <FaChevronRight />
                               </button>
                             </div>
                           )}
-
                         </div>
                       </div>
-
                     </div>
                     <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_asdaa pt-3">
+                      <span className="mikdec_try pt-3 text-truncate ">
                         {product.productName}
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
-                        <span className="mikdec_asdxsx">
-                          {product.salePrice?.$numberDecimal}
+                        <span className="mikdec_asdxsx htryf">
+                          ₹{product.salePrice?.$numberDecimal}
                         </span>
-                        <span className="mikdec_axsx">
-                          {product.regularPrice?.$numberDecimal}
+                        <span className="mikdec_axsx htryf">
+                          ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       {hoveredProduct === product.id && (
-                        <div className="hover-overlay DFC_NHJ w-100 d-flex">
-                          <button className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3" onClick={() => addToCart(product)}>
+                        <div className="hover-overlay DFC_NHJ w-100 d-none d-sm-flex">
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3"
+                            onClick={() => addToCart(product)}
+                          >
                             Add to Cart <BiShoppingBag size={25} />
                           </button>
                           {/* <p className="mt-1"> */}
                           <a
-                            href="/product-details"
+                            onClick={() => handleProductClick(product.id)}
                             className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
                           >
                             Read more about the Product <FaArrowRight />
                           </a>
                         </div>
                       )}
+                      <div className="d-flex d-sm-none flex-column mt-2">
+                        <button
+                          className="d-flex align-items-center add-to-crd-dd p-1 justify-content-center gap-3"
+                          onClick={() => addToCart(product)}
+                        >
+                          Add to Cart <BiShoppingBag size={25} />
+                        </button>
+                        {/* <p className="mt-1"> */}
+                        <a
+                          onClick={() => handleProductClick(product.id)}
+                          className="mt-2 text-body szdc_za d-flex gap-2 align-items-left justify-content-left w-100"
+                          style={{ cursor: "pointer" }}
+                        >
+                          Read more about the Product <FaArrowRight />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 ))

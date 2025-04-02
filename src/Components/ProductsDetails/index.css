@@ -150,6 +150,10 @@
   }
 }
 
+.sticky-top{
+  z-index: unset;
+}
+
 .bread_crumnbs {
   color: black;
 }
@@ -263,9 +267,9 @@
 }
 
 @media (max-width: 999px) and (min-width: 992px) {
-  .sdcsd_saxza {
+  /* .sdcsd_saxza {
     width: 50% !important;
-  }
+  } */
 
   .secrt_1 {
     font-family: "Cabin", sans-serif;
@@ -281,9 +285,9 @@
 }
 
 @media (max-width: 801px) {
-  .sdcsd_saxza {
+  /* .sdcsd_saxza {
     width: 50% !important;
-  }
+  } */
 
   .secrt_1 {
     font-family: "Cabin", sans-serif;
@@ -797,9 +801,9 @@
     flex-direction: column;
   }
 
-  .sdcsd_saxza {
+  /* .sdcsd_saxza {
     width: 100% !important;
-  }
+  } */
 
   .container {
     max-width: 952px !important;
@@ -1042,5 +1046,85 @@
   .slider_ssss_fdcdf {
     display: none !important;
     ;
+  }
+}
+
+
+
+
+.pro_sss_gubs {
+  display: flex;
+  gap: 40px;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .thumbnail-gallery-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .main-image-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    height: 560px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+  }
+  .pro_sss_gubs {
+    display: flex;
+    gap: 40px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .thumbnail-gallery-row {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    height: 561px;
+    overflow-y: scroll;
+    max-height: 677px;
+    padding-right: 5px;
+    scrollbar-width: none;
+    scrollbar-color: #888 #F1F1F1;
+  }
+  .thumbnail-gallery-row::-webkit-scrollbar {
+    width: 6px;
+  }
+  .thumbnail-gallery-row::-webkit-scrollbar-track {
+    background: #F1F1F1;
+  }
+  .thumbnail-gallery-row::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 3px;
+  }
+  .thumbnail-item {
+    width: 119px;
+    height: 134px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  /* .thumbnail-item.active {
+    border: 1px solid #000;
+  } */
+  .thumbnail-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}
+@media (min-width: 768px) {
+  .pro_sss_gubs {
+    display: flex;
+    gap: 40px;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1568px;
+  }
+  .dscd_54_Dscds {
+    width: 50%;
   }
 }

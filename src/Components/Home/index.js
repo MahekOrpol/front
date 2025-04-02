@@ -41,6 +41,7 @@ import ringVideo3 from "../../Videos/sdcsdcdfc.mp4";
 import ringVideo4 from "../../Videos/sdcxdscx.mp4";
 import ringVideo5 from "../../Videos/dsfcdfc.mp4";
 import JewelrySale from "../Contact Us/sdcsd/demo";
+import { ToastContainer, toast } from 'react-toastify';
 
 const images = [
   require("../../Images/ring222.png"),
@@ -122,6 +123,8 @@ const categories = [
   { img: require("../../Images/Group 1597884631.png"), label: "Rings" },
   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
 ];
 
 const Home = () => {
@@ -133,18 +136,38 @@ const Home = () => {
   const [topRated, setTopRated] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
-
+  const userId = localStorage.getItem("user_Id");
+  const [wishlistItems, setWishlistItems] = useState({});
+  const [toastMessage, setToastMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  // const [categories, setCategories] = useState();
+  
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
   };
 
+  const handleProductClick = (productId, productData) => {
+    navigate(`/product-details/${productId}`, {
+      state: { product: productData },
+    });
+  };
   // Function to add an item to the cart
   const addToCart = async (product) => {
     try {
       const userId = localStorage.getItem("user_Id");
+
+      if (!userId) {
+        navigate("/register");
+        return;
+      }
+
       const productSize = Array.isArray(product?.productSize)
         ? product.productSize.join(",")
         : product?.productSize || "";
+      const variationIds = Array.isArray(product?.variations)
+        ? product.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
+        : [];
+
       // Define the payload for the API request
       const payload = {
         userId: userId,
@@ -153,7 +176,12 @@ const Home = () => {
         quantity: product?.quantity || 1,
         productSize: productSize,
         discount: product?.discount?.$numberDecimal || 0,
+        variation: variationIds,
       };
+      console.log(
+        "product",
+        JSON.stringify(JSON.stringify(product?.variations))
+      );
 
       // Make the API request
       const response = await axios.post(
@@ -164,12 +192,15 @@ const Home = () => {
         }
       );
 
+      openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
-        openCart(); // Open cart after successful addition
+       
       } else {
         console.error("Failed to add product to cart:", response);
       }
+      setToastMessage("Item added to cart successfully!");
+      setShowToast(true);
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
@@ -208,60 +239,26 @@ const Home = () => {
 
   const closeCart = () => {
     setIsCartOpen(false);
+    setShowToast(false); // Reset toast state when closing
     document.body.classList.remove("no-scroll");
   };
 
-  const addWishlist = async (productId) => {
-    try {
-      const userId = localStorage.get("userId");
-      const response = await axios.post(
-        "https://crystova.cloudbusiness.cloud/api/v1/wishlist/create",
-        {
-          userId,
-          productId,
-        }
-      );
-      console.log("Wishlist Response:", response.data);
-      setIsFavorite(response.data);
-    } catch (error) {
-      console.error(
-        "Error adding to wishlist:",
-        error.response?.data || error.message
-      );
-    }
-  };
-
-  const deleteWishlist = async (productId) => {
-    try {
-      const userId = localStorage.getItem("userId");
-      const response = await axios.delete(
-        `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${productId}?userId=${userId}`
-      );
-      console.log("Wishlist Delete Response:", response.data);
-      setIsFavorite(response.data);
-    } catch (error) {
-      console.error(
-        "Error deleting from wishlist:",
-        error.response?.data || error.message
-      );
-    }
-  };
-
   const getTopRated = async () => {
-    const res = await axios(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated"
+    const res = await axios.get(
+      "http://localhost:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
+    console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
-    const res = await axios(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getBestSelling"
+    const res = await axios.get(
+      "http://localhost:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
-    const res = await axios(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale"
+    const res = await axios.get(
+      "http://localhost:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -286,6 +283,89 @@ const Home = () => {
       text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
     },
   ];
+
+  const toggleFavorite = async (productId) => {
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
+
+    try {
+      if (wishlistItems[productId]) {
+        // Remove from wishlist
+        const wishlistItemId = wishlistItems[productId]; // Store the current ID
+        setWishlistItems((prev) => {
+          const updatedWishlist = { ...prev };
+          delete updatedWishlist[productId]; // Update UI immediately
+          return updatedWishlist;
+        });
+
+        const res = await axios.delete(
+          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
+        );
+        toast.success(res.data.message || "Removed from wishlist!");
+      } else {
+        // Add to wishlist
+        const response = await axios.post(
+          `http://localhost:3000/api/v1/wishlist/create`,
+          {
+            productId,
+            userId,
+          }
+        );
+
+        const newWishlistItemId = response.data.data.id;
+        setWishlistItems((prev) => ({
+          ...prev,
+          [productId]: newWishlistItemId, // Store wishlist ID properly
+        }));
+
+        toast.success(response.data.message || "Added to wishlist!");
+      }
+    } catch (error) {
+      console.error("Failed to update wishlist:", error);
+      toast.error("Failed to update wishlist. Please try again!");
+    }
+  };
+
+  useEffect(() => {
+    const fetchWishlist = async () => {
+      if (!userId) return;
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/v1/wishlist/${userId}`
+        );
+        const wishlistData = response.data.data || [];
+
+        console.log("Fetched Wishlist Data:", wishlistData);
+
+        const wishlistMap = {};
+        wishlistData.forEach((item) => {
+          let productId = item.productId._id || item.productId.id; // Extract _id if present
+          console.log(
+            "Processed Product ID:",
+            productId,
+            "Type:",
+            typeof productId
+          );
+
+          if (typeof productId === "string" || typeof productId === "number") {
+            wishlistMap[productId] = item.id;
+          } else {
+            console.error("Invalid productId format:", item.productId);
+          }
+        });
+
+        setWishlistItems(wishlistMap);
+      } catch (error) {
+        console.error("Error fetching wishlist:", error);
+      }
+    };
+
+    fetchWishlist();
+  }, [userId]);
 
   useEffect(() => {
     const updateSlidesPerView = () => {
@@ -361,12 +441,12 @@ const Home = () => {
     return [diamondRings[currentIndex]]; // Return a single ring inside an array
   };
 
-  const toggleFavorite = (id) => {
-    setIsFavorite((prev) => ({
-      ...prev,
-      [id]: !prev[id], // Toggle the favorite state for the specific card
-    }));
-  };
+  // const toggleFavorite = (id) => {
+  //   setIsFavorite((prev) => ({
+  //     ...prev,
+  //     [id]: !prev[id], // Toggle the favorite state for the specific card
+  //   }));
+  // };
 
   useEffect(() => {
     const swiperInstance = swiperRef.current?.swiper;
@@ -395,7 +475,20 @@ const Home = () => {
 
   return (
     <>
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} />
+    <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
+      <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage}/>
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
@@ -406,7 +499,7 @@ const Home = () => {
           <JewelrySale />
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd container p-0 mt-sm-3">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd p-0 mt-sm-3">
           <span className="category_name mt-2">Categories</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img
@@ -414,7 +507,7 @@ const Home = () => {
             className="home_tag_img"
           />
 
-          <div className="container p-0">
+          <div className=" p-0">
             <Swiper
               spaceBetween={10}
               loop={true}
@@ -422,7 +515,7 @@ const Home = () => {
               // modules={[ Autoplay]}
               breakpoints={{
                 0: { slidesPerView: 4 },
-                480: { slidesPerView: 4 },
+                480: { slidesPerView: 5 },
                 768: { slidesPerView: 5 },
                 1024: { slidesPerView: 6 },
                 1200: { slidesPerView: 6 },
@@ -433,9 +526,7 @@ const Home = () => {
                 <SwiperSlide
                   key={index}
                   className="slide-item"
-                  onClick={() => {
-                    handleCategoryClick();
-                  }}
+                  onClick={() => handleCategoryClick(item.label)}
                 >
                   <div className="d-flex flex-column align-items-center fvfvfc_Zdcdsc">
                     <img
@@ -551,6 +642,7 @@ const Home = () => {
                 <button
                   className="w-25 spg_nb_sle"
                   style={{ whiteSpace: "nowrap" }}
+           
                 >
                   Shop Now
                 </button>
@@ -682,26 +774,23 @@ const Home = () => {
                         </button>
 
                         {/* Favorite Icon */}
+
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
                           onClick={() => toggleFavorite(product.id)}
                           style={{ cursor: "pointer" }}
                         >
-                          {isFavorite[product.id] ? (
+                          {wishlistItems[product.id] ? (
                             <GoHeartFill className="heart-icon_ss" size={18} />
                           ) : (
-                            <GoHeart
-                              className="heart-icon_ss"
-                              size={18}
-                              onClick={() => addWishlist(product._id)} // Use product._id from the backend
-                            />
+                            <GoHeart className="heart-icon_ss" size={18} />
                           )}
                         </div>
 
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -716,16 +805,17 @@ const Home = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx">
-                          {product.salePrice?.$numberDecimal}
+                        ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx">
-                          {product.regularPrice?.$numberDecimal}
+                        ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                         <button
                           className="more_btn_dsdd w-50"
-                          onClick={() => navigate("/product-details")}
+                          // onClick={() => navigate("/product-details")}
+                          onClick={() => handleProductClick(product.id)}
                         >
                           More Info
                         </button>
@@ -752,9 +842,9 @@ const Home = () => {
                     className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
                   >
                     <div className="card prio_card scdscsed_sdss">
-                      <div className="card-image-wrapper position-relative">
+                      <div className="card-image-wrapper position-relative best_saller_btn">
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          SALE
+                         BEST SALLER
                         </button>
 
                         <div
@@ -762,7 +852,7 @@ const Home = () => {
                           onClick={() => toggleFavorite(product.id)}
                           style={{ cursor: "pointer" }}
                         >
-                          {isFavorite[product.id] ? (
+                          {wishlistItems[product.id] ? (
                             <GoHeartFill className="heart-icon_ss" size={18} />
                           ) : (
                             <GoHeart className="heart-icon_ss" size={18} />
@@ -771,7 +861,7 @@ const Home = () => {
 
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -785,16 +875,17 @@ const Home = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx">
-                          {product.salePrice?.$numberDecimal}
+                         ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx">
-                          {product.regularPrice?.$numberDecimal}
+                         ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                         <button
                           className="more_btn_dsdd w-50"
-                          onClick={() => navigate("/products")}
+                          // onClick={() => navigate("/product-details")}
+                          onClick={() => handleProductClick(product.id)}
                         >
                           More Info
                         </button>
@@ -825,7 +916,7 @@ const Home = () => {
                       <div className="card-image-wrapper position-relative">
                         {/* SALE Badge */}
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          SALE
+                          NEW
                         </button>
 
                         {/* Favorite Icon */}
@@ -834,7 +925,7 @@ const Home = () => {
                           onClick={() => toggleFavorite(product.id)}
                           style={{ cursor: "pointer" }}
                         >
-                          {isFavorite[product.id] ? (
+                          {wishlistItems[product.id] ? (
                             <GoHeartFill className="heart-icon_ss" size={18} />
                           ) : (
                             <GoHeart className="heart-icon_ss" size={18} />
@@ -844,7 +935,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -859,16 +950,17 @@ const Home = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx">
-                          {product.salePrice?.$numberDecimal}
+                         ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx">
-                          {product.regularPrice?.$numberDecimal}
+                         ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                         <button
                           className="more_btn_dsdd w-50"
-                          onClick={() => navigate("/products")}
+                          // onClick={() => navigate("/product-details")}
+                          onClick={() => handleProductClick(product.id)}
                         >
                           More Info
                         </button>
@@ -1084,7 +1176,7 @@ const Home = () => {
 
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
           <div className="pt-4 container djb_dsjvn mx-2">
-            <div className="row justify-content-between scc_gift_edit_sdsd gap-2">
+            <div className="row justify-content-evenly scc_gift_edit_sdsd gap-2">
               <div className="d-flex flex-column align-items-center gap-3  offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
@@ -1242,7 +1334,7 @@ const Home = () => {
             </div>
           </div> */}
 
-          <div className="ring-slider-container " style={{width:"100%"}}>
+          <div className="ring-slider-container " style={{ width: "100%" }}>
             <Swiper
               ref={swiperRef}
               modules={[Navigation]}
@@ -1563,12 +1655,12 @@ const Home = () => {
       </div> */}
 
         <div className="testimonial-container d-flex align-items-center">
-          <button
+          {/* <button
             className="nav-button left"
             onClick={() => swiperRef.current?.slidePrev()}
           >
             <FaAngleLeft />
-          </button>
+          </button> */}
 
           <div
             className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
@@ -1595,9 +1687,8 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
+                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                        } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
@@ -1624,14 +1715,14 @@ const Home = () => {
               )}
             </Swiper>
           </div>
-          <button
+          {/* <button
             className="nav-button right"
             onClick={() => swiperRef.current?.slideNext()}
           >
             <FaAngleRight />
-          </button>
+          </button> */}
         </div>
-
+        <div className="pb-5"></div>
         <Footer />
       </div>
     </>

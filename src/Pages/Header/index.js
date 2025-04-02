@@ -41,7 +41,7 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
         <p className="header_text pt-2">Shop Gold and Diamond Jewellery</p>
       </div>
 
-      <div className="heder_sec_main d-flex align-items-center sdcsd_ss_ddd">
+      <div className="heder_sec_main  mt-lg-2 d-flex align-items-center sdcsd_ss_ddd">
         {/* 🟢 Menu Icon for Mobile */}
         <div className="menu-icon d-xl-none" onClick={toggleDrawer}>
           <LuTextSearch size={30} />
@@ -98,7 +98,7 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
             <SignInPopup isOpen={isSignupPopupOpen} onClose={() => setIsSignupPopupOpen(false)} />
           )}
           {/* <div><CiSearch size={25} /></div> */}
-          <div style={{cursor:'pointer'}}><CiHeart size={25} /></div>
+          <div style={{cursor:'pointer'}} onClick={()=>{navigate('/wishlist')}}><CiHeart size={25} /></div>
           <div style={{cursor:'pointer'}}><IoBagHandleOutline size={25} onClick={openCart}/></div>
         </div>
       </div>
@@ -133,7 +133,9 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
           >
            <img src={bracelet} width={25}/> Bracelet
           </div>
-          <div className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2">
+          <div className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+          onClick={()=>navigate('/Customjewel')}
+          >
           <img src={csome} width={20}/> Custom Jewellery</div>
         </div>
       </div>
@@ -179,7 +181,8 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
         {/* 🟢 Icons Section Inside Drawer (Mobile Only) */}
         <div className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3" onClick={() => {
           setIsDrawerOpen(false); // Close the drawer
-          setIsRegisterPopupOpen(true); // Open RegisterPopup
+          // setIsRegisterPopupOpen(true); // Open RegisterPopup
+          navigate("/register")
         }}>
           {isRegisterPopupOpen && (
             <RegisterPopup isOpen={isRegisterPopupOpen} onClose={() => setIsRegisterPopupOpen(false)} />

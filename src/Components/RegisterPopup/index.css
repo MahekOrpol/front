@@ -1,14 +1,16 @@
 .register-popup-overlay {
-    position: fixed;
+    /* position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    left: 0; */
+    margin: 3rem !important;
+    /* width: 100%;
+    height: 100%; */
     background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    background: white;
 }
 
 .register-popup {
@@ -19,7 +21,9 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    height: 95vh;
+    height: 77vh;
+    /* border: 1px solid black; */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .register-container {
@@ -41,9 +45,10 @@
     width: 60%;
     padding: 26px;
     text-align: center;
-     overflow: scroll;
+    overflow: scroll;
     scrollbar-width: none;
 }
+
 .form-header {
     display: flex;
     justify-content: space-evenly;
@@ -147,25 +152,39 @@
 }
 
 .otre {
-    font-size: 16px;
+    font-size: 15px;
     color: black;
     font-weight: 500;
+    margin-top: 12px;
+    font-family: "Cabin", sans-serif;
 }
 
 .otre1 {
-    font-size: 16px;
+    font-size: 15px;
     color: black;
     font-weight: 500;
     margin-top: 40px;
+    font-family: "Cabin", sans-serif;
 }
 
 .hrdd {
+    font-size: 15px;
     color: #611d2b;
     text-decoration: underline;
+    font-family: "Cabin", sans-serif;
+}
+
+.remember-me-label {
+    font-size: 15px;
+    font-family: "Cabin", sans-serif;
 }
 
 .tvjg {
     color: #173D2F;
+}
+
+.tvjgds {
+    color: #611d2b;
 }
 
 .taout_d {
@@ -206,14 +225,15 @@
 }
 
 .or-text {
-    font-size: 16px;
+    font-size: 15.5px;
     font-weight: bold;
     color: black;
+    font-family: "Cabin", sans-serif;
 }
 
 @media (max-width: 1024px) {
     .register-popup {
-        width: 85%;
+        width: 100%;
         height: 93%;
     }
 
@@ -222,13 +242,12 @@
         color: #4c0d16;
         text-align: left;
         font-weight: 400;
-        font-family: "Cabin", sans-serif;
         margin-bottom: 4px;
     }
 
     .register-form {
-        padding: 30px;
-        height: 100vh;
+        padding: 18px;
+        height: 80vh;
     }
 
     .taout_d {
@@ -239,42 +258,18 @@
 }
 
 .google-icon {
-    width: 7% !important;
+    width: 6% !important;
     height: auto !important;
 }
 
-@media (max-width: 200px) {
-    .register-popup {
-        flex-direction: column;
-        width: 90%;
-        max-width: 500px;
-    }
-
-    .register-container {
-        flex-direction: column;
-    }
-
-    .register-image {
-        display: none;
-    }
-
-    .register-form {
-        width: 100%;
-        padding: 20px;
-    }
-
-    .register-btn {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
+@media(min-width: 200px) and (max-width: 480px) {
     .styled-input input {
         font-size: 14px;
         padding: 12px 8px;
     }
 
     .register-text {
+        margin-top: 14px;
         font-size: 20px;
     }
 
@@ -286,6 +281,22 @@
         font-size: 14px;
         padding: 8px;
     }
+
+    .css-13xfq8m-MuiTabPanel-root {
+        padding: 0% !important;
+    }
+
+    .register-form {
+        height: 91vh !important;
+    }
+
+    .register-popup-overlay {
+        width: 100%;
+        height: 100%;
+        margin: 0% !important;
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
 }
 
 @media (max-width: 932px) {
@@ -293,6 +304,11 @@
         flex-direction: column;
         width: 100%;
         max-width: 594px;
+    }
+
+    .register-form {
+        padding: 18px;
+        height: 100vh;
     }
 
     .styled-input input {
@@ -373,7 +389,6 @@
     .register-popup {
         width: 95%;
         max-width: 485px;
-        max-height: 774px;
     }
 
     .register-container {
@@ -418,7 +433,7 @@
     .register-popup {
         width: 100%;
         max-width: 448px;
-        max-height: 765px;
+        max-height: 100vh;
         margin-left: 10px;
         margin-right: 10px;
     }
@@ -458,9 +473,13 @@
     .hrdd {
         font-size: 11px;
     }
+    .css-16wblaj-MuiInputBase-input-MuiOutlinedInput-input {
+        padding: 11px !important;
+    }
+    .css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root {
+        font-size: 12px !important;
+    }
 }
-
-
 
 .register-form button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.MuiTab-fullWidth.Mui-selected.taout_d.css-hmk518-MuiButtonBase-root-MuiTab-root {
     font-size: 28px !important;

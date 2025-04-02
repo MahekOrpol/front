@@ -1,10 +1,10 @@
-.jewelry-sale {
+/* .jewelry-sale {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
   background-color: #fff;
   gap: 2px;
-  flex-wrap: wrap;
+  
 }
 
 .left-image img,
@@ -12,7 +12,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* border-radius: 8px; */
+ 
 }
 
 .left-image {
@@ -21,12 +21,11 @@
 }
 
 .center-sale {
-  /* background-color: #6b0f1a; */
-  background-image: url("../../../Images/purple-ornament-indoors-decor-fabric-material 1.png");
+   background-image: url("../../../Images/purple-ornament-indoors-decor-fabric-material 1.png");
   color: #fff;
   text-align: center;
   padding: 40px 20px;
-  /* border-radius: 8px; */
+ 
   flex: 1;
   min-width: 280px;
   height: 100%;
@@ -112,8 +111,7 @@
     .right-images {
         flex: 1;
         display: flex;
-        flex-direction: row-reverse;
-        gap: 2px;
+         gap: 2px;
         min-width: 280px;
       }
 }
@@ -144,24 +142,7 @@
 .bottom-imgs img {
   width: 100%;
   height: 100%;
-  /* border-radius: 8px; */
 }
-
-/* Responsive Design */
-/* @media (max-width: 1024px) {
-  .jewelry-sale {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .bottom-imgs {
-    flex-direction: column;
-  }
-
-  .bottom-imgs img {
-    width: 100%;
-  }
-} */
 
 .banne_hr_dsdsd {
   height: 1px !important;
@@ -353,13 +334,11 @@
         width: 35%;
     }
     .center-sale {
-        /* background-color: #6b0f1a; */
         background-image: url("../../../Images/purple-ornament-indoors-decor-fabric-material 1.png");
         color: #fff;
         text-align: center;
         padding: 40px 20px;
-        /* border-radius: 8px; */
-        flex: 1;
+              flex: 1;
         min-width: 280px;
         height: 100%;
         background-size: cover;
@@ -416,13 +395,11 @@
         width: 35%;
     }
     .center-sale {
-        /* background-color: #6b0f1a; */
         background-image: url("../../../Images/purple-ornament-indoors-decor-fabric-material 1.png");
         color: #fff;
         text-align: center;
         padding: 40px 20px;
-        /* border-radius: 8px; */
-        flex: 1;
+              flex: 1;
         min-width: 280px;
         height: 100%;
         background-size: cover;
@@ -479,13 +456,11 @@
         width: 38%;
     }
     .center-sale {
-        /* background-color: #6b0f1a; */
         background-image: url("../../../Images/purple-ornament-indoors-decor-fabric-material 1.png");
         color: #fff;
         text-align: center;
         padding: 40px 20px;
-        /* border-radius: 8px; */
-        flex: 1;
+              flex: 1;
         min-width: 280px;
         height: 100%;
         background-size: cover;
@@ -542,13 +517,11 @@
         width: 35%;
     }
     .center-sale {
-        /* background-color: #6b0f1a; */
         background-image: url("../../../Images/purple-ornament-indoors-decor-fabric-material 1.png");
         color: #fff;
         text-align: center;
         padding: 40px 20px;
-        /* border-radius: 8px; */
-        flex: 1;
+              flex: 1;
         min-width: 280px;
         height: 100%;
         background-size: cover;
@@ -606,13 +579,11 @@
         width: 50%;
     }
     .center-sale {
-        /* background-color: #6b0f1a; */
         background-image: url("../../../Images/purple-ornament-indoors-decor-fabric-material 1.png");
         color: #fff;
         text-align: center;
         padding: 40px 20px;
-        /* border-radius: 8px; */
-        flex: 1;
+              flex: 1;
         min-width: 280px;
         height: 100%;
         background-size: cover;
@@ -632,3 +603,257 @@
     }
 
 
+ @media (max-width:857px) {
+    
+    .center-sale {
+        background-image: url("http://localhost:3001/static/media/purple-ornament-indoors-decor-fabric-material%201.bc48b76352c6094b584e.png");
+        color: #fff;
+        text-align: center;
+        padding: 27px 0;
+        flex: 1 1;
+        min-width: 201px;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        align-items: center;
+        flex-direction: column;
+    }
+    .left-image {
+        flex: 1 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 33%;
+    }
+    .right-images {
+        flex: 1 1;
+        display: flex;
+        gap: 2px;
+        min-width: 33%;
+    }
+    .paddingdn {
+        padding-top: 0rem !important;
+    }
+} 
+ @media (max-width:766px) {
+    
+    .center-sale {
+        background-image: url("http://localhost:3001/static/media/purple-ornament-indoors-decor-fabric-material%201.bc48b76352c6094b584e.png");
+        color: #fff;
+        text-align: center;
+        padding: 27px 0;
+        flex: 1 1;
+        min-width: 201px;
+        height: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        gap: 4px;
+        align-items: center;
+        flex-direction: column;
+    }
+    .left-image {
+        flex: 1 1;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 33%;
+    }
+    .right-images {
+        flex: 1 1;
+        display: flex;
+        gap: 2px;
+        min-width: 33%;
+    }
+    .paddingdn {
+        padding-top: 0rem !important;
+    }
+    .center-sale button {
+        padding: 12px 24px;
+        background-color: #fff;
+        color: #6b0f1a;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: "Judson", serif;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 100%;
+        letter-spacing: 2%;
+        width: auto;
+    }
+    .center-sale h2 {
+        font-size: 50px;
+        margin: 18px 0;
+        letter-spacing: 5px;
+    }
+}  */
+
+.jewelry-sale {
+    width: 100%;
+    padding: 0;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .container {
+    max-width: 1200px;
+    width: 100%;
+  }
+  
+  .jewelry-sale-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    gap: 2px;
+  }
+  
+  .left-images, .right-images {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .large-img {
+    width: 100%;
+    border-radius: 0px;
+  }
+  
+  .small-imgs img {
+    width: 100%;
+    border-radius: 0px;
+  }
+  
+  .center-content {
+    background-image: url("../../../Images/purple-ornament-indoors-decor-fabric-material 1.png");
+    text-align: center;
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+   
+    flex: 1;
+    min-width: 280px;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .logo-banner {
+    max-width: 250px;
+  }
+  
+  .tagline {
+        font-family: "Judson", serif;
+        font-weight: 400;
+        font-size: 45px;
+        line-height: 100%;
+        letter-spacing: 2%;
+      
+  }
+  
+  .sale-text {
+    color: #fff;
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-size: 100px !important;
+    line-height: 100%;
+    letter-spacing: 18%;
+  }
+  
+  .discount {
+    color: #fff;
+    font-family: "Judson", serif;
+    font-weight: 400;
+    font-size: 46px;
+    line-height: 100%;
+    letter-spacing: 14%;
+  }
+  
+  .shop-now {
+    background-color: #FFFBED;
+    color: #611D2B;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    border-radius: 50px;
+    padding: 12px 24px;
+    background-color: #fff;
+    color: #6b0f1a;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Judson", serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 100%;
+    letter-spacing: 2%;
+  }
+  
+  /* .shop-now:hover {
+    background-color: #6b0f1a;
+    color: #fff;
+    border: 1px solid white;
+  } */
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .jewelry-sale-grid {
+      /* grid-template-columns: 1fr; */
+      text-align: center;
+    }
+  
+    .left-images, .right-images {
+
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .small-imgs img {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .sale-text {
+      font-size: 40px;
+    }
+  
+    .discount {
+      font-size: 16px;
+    }
+  
+    .shop-now {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+    .small-imgs img {
+        width: 100%;
+      }
+  }
+  
+  @media (max-width: 480px) {
+    .small-imgs img {
+      width: 100%;
+    }
+  
+    .sale-text {
+      font-size: 35px;
+    }
+  }
+  
