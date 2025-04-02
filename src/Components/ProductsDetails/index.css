@@ -1121,8 +1121,8 @@
     display: flex;
     gap: 40px;
     margin: 0 auto;
-    padding: 20px;
-    max-width: 1568px;
+    padding: 20px 0;
+    /* max-width: 1568px; */
   }
   .dscd_54_Dscds {
     width: 50%;

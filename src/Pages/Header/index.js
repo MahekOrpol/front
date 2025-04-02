@@ -10,23 +10,23 @@ import { TfiMenuAlt } from "react-icons/tfi";
 import { FiSearch } from "react-icons/fi";
 import { GiBigDiamondRing } from "react-icons/gi";
 import { GiGemPendant } from "react-icons/gi";
-import bracelet from '../../Images/charm.png'
-import earing from '../../Images/earrings.png'
-import ring from '../../Images/diamond-ring.png'
-import csome from '../../Images/Vector (7).png'
+import bracelet from "../../Images/charm.png";
+import earing from "../../Images/earrings.png";
+import ring from "../../Images/diamond-ring.png";
+import csome from "../../Images/Vector (7).png";
 import { LuTextSearch } from "react-icons/lu";
 import { FormControl, InputGroup } from "react-bootstrap";
 
 import SignInPopup from "../../Components/SignupPopup/index";
 import RegisterPopup from "../../Components/RegisterPopup";
+import { RiUserLine } from "react-icons/ri";
 
 const Header = ({ openCart }) => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
-const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
-const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
-
+  const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
+  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
+  const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -46,7 +46,6 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
         <div className="menu-icon d-xl-none" onClick={toggleDrawer}>
           <LuTextSearch size={30} />
         </div>
-
 
         {/* <InputGroup className="d-lg-flex input-group1" style={{ borderRadius: "10px", marginTop: "6px" }}>
           <FormControl placeholder="Search Products Here" aria-label="Recipient's username" aria-describedby="basic-addon2" />
@@ -68,11 +67,16 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
               type="text"
               placeholder="Search Product Here"
               className="flex-1 px-4 py-2 outline-none text-gray-700"
-              style={{borderRadius: "10px 0px 0px 10px"}}
+              style={{ borderRadius: "10px 0px 0px 10px" }}
             />
             <button
               className="p-3 rounded-r-full d-flex align-items-center justify-content-center search_hbdhj bg_prime"
-              style={{ height: "2.7rem", borderRadius: "0px 8px 8px 0px", border:"none",padding:"0.8rem"}}
+              style={{
+                height: "2.7rem",
+                borderRadius: "0px 8px 8px 0px",
+                border: "none",
+                padding: "0.8rem",
+              }}
             >
               <FaSearch />
             </button>
@@ -86,57 +90,86 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
           <img src={logo} onClick={() => navigate("/")} alt="Logo" />
         </div>
         {/* Icons Section (Desktop Only) */}
-        <div className="walign-items-center d-flex dcxde_asx485 gap-3 gap-lg-5 w-25 align-items-center ps-lg-1 sdfcv_tgvtgv">
-          <div className="user_icon gap-3 d-flex align-items-center d-none d-lg-block d-lg-flex" onClick={() => setIsSignupPopupOpen(true)} style={{cursor:'pointer'}}>
-            <img src={usericon} alt="User Icon" />
-            <div className="d-flex flex-column align-items-center pt-2" style={{ lineHeight: '21px' }}>
-              <span className="sign_txt w-100">Sign In</span>
+        <div className="walign-items-center d-flex dcxde_asx485 gap-3 gap-lg-4 w-25 align-items-center ps-lg-1 sdfcv_tgvtgv">
+          <div
+            className="user_icon d-flex align-items-center d-none d-lg-block d-lg-flex flex-column"
+            onClick={() => setIsSignupPopupOpen(true)}
+            style={{ cursor: "pointer" }}
+          >
+            <RiUserLine size={30} />
+            <div className="align-items-center" style={{ lineHeight: "21px" }}>
               <span className="acco9_text w-100">Account</span>
             </div>
           </div>
           {isSignupPopupOpen && (
-            <SignInPopup isOpen={isSignupPopupOpen} onClose={() => setIsSignupPopupOpen(false)} />
+            <SignInPopup
+              isOpen={isSignupPopupOpen}
+              onClose={() => setIsSignupPopupOpen(false)}
+            />
           )}
           {/* <div><CiSearch size={25} /></div> */}
-          <div style={{cursor:'pointer'}} onClick={()=>{navigate('/wishlist')}}><CiHeart size={25} /></div>
-          <div style={{cursor:'pointer'}}><IoBagHandleOutline size={25} onClick={openCart}/></div>
+          <div
+            className="user_icon d-flex align-items-center d-none d-lg-block d-lg-flex flex-column"
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              navigate("/wishlist");
+            }}
+          >
+            <CiHeart
+              size={30}
+              style={{ strokeWidth: "0.5px", stroke: "black" }}
+            />
+            <div className="align-items-center" style={{ lineHeight: "21px" }}>
+              <span className="acco9_text w-100">Wishlist</span>
+            </div>
+          </div>
+          <div
+            className="user_icon d-flex align-items-center d-none d-lg-block d-lg-flex flex-column"
+            style={{ cursor: "pointer" }}
+          >
+            <IoBagHandleOutline size={30} onClick={openCart} />
+            <div className="align-items-center" style={{ lineHeight: "21px" }}>
+              <span className="acco9_text w-100">Cart</span>
+            </div>
+          </div>
         </div>
       </div>
-      
+
       <div className="dsn_mdcm">
         <div
           className="d-flex align-items-center justify-content-center jhdb_dhvh pt-1 pb-1 mt-2"
-          
           style={{ borderTop: "1px solid #797979" }}
         >
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Rings")}
           >
-            <img src={ring} width={25}/> Rings
+            <img src={ring} width={25} /> Rings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Earrings")}
           >
-            <img src={earing} width={25}/> Earrings
+            <img src={earing} width={25} /> Earrings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Pendant")}
           >
-           <GiGemPendant  size={20}/> Pendant
+            <GiGemPendant size={20} /> Pendant
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Bracelet")}
           >
-           <img src={bracelet} width={25}/> Bracelet
+            <img src={bracelet} width={25} /> Bracelet
           </div>
-          <div className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
-          onClick={()=>navigate('/Customjewel')}
+          <div
+            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+            onClick={() => navigate("/Customjewel")}
           >
-          <img src={csome} width={20}/> Custom Jewellery</div>
+            <img src={csome} width={20} /> Custom Jewellery
+          </div>
         </div>
       </div>
       {/* <div style={{ borderTop: "1px solid #797979",margin:"5px" }}></div> */}
@@ -170,25 +203,32 @@ const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
           >
             <img src={bracelet} width={20} /> Bracelet
           </div>
-          <div
-            className="drawer-item d-flex align-items-center gap-2 w-100"
-          >
+          <div className="drawer-item d-flex align-items-center gap-2 w-100">
             <img src={csome} width={20} /> Custom Jewellery
           </div>
         </div>
 
         {/* :large_green_circle: Icons Section Inside Drawer (Mobile Only) */}
         {/* 🟢 Icons Section Inside Drawer (Mobile Only) */}
-        <div className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3" onClick={() => {
-          setIsDrawerOpen(false); // Close the drawer
-          // setIsRegisterPopupOpen(true); // Open RegisterPopup
-          navigate("/register")
-        }}>
+        <div
+          className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3"
+          onClick={() => {
+            setIsDrawerOpen(false); // Close the drawer
+            // setIsRegisterPopupOpen(true); // Open RegisterPopup
+            navigate("/register");
+          }}
+        >
           {isRegisterPopupOpen && (
-            <RegisterPopup isOpen={isRegisterPopupOpen} onClose={() => setIsRegisterPopupOpen(false)} />
+            <RegisterPopup
+              isOpen={isRegisterPopupOpen}
+              onClose={() => setIsRegisterPopupOpen(false)}
+            />
           )}
           <img src={usericon} alt="User Icon" />
-          <div className="d-flex flex-column align-items-center pt-2" style={{ lineHeight: '25px' }}>
+          <div
+            className="d-flex flex-column align-items-center pt-2"
+            style={{ lineHeight: "25px" }}
+          >
             <span className="sign_txt w-100">Sign In</span>
             <span className="acco9_text w-100">Account</span>
           </div>

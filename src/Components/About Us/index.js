@@ -354,14 +354,14 @@ const AboutUs = () => {
       </div> */}
 
       <div className="testimonial-container d-flex align-items-center">
-        <button
+        {/* <button
           className="nav-button left"
           onClick={() => swiperRef.current?.slidePrev()}
         >
           <FaAngleLeft />
-        </button>
+        </button> */}
 
-        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
+        <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd pb-5">
           <span className="category_name">Client Testimonial</span>
           <p className="category_txt">What our Client’s say about us</p>
           <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
@@ -410,12 +410,12 @@ const AboutUs = () => {
           </Swiper>
 
         </div>
-        <button
+        {/* <button
           className="nav-button right"
           onClick={() => swiperRef.current?.slideNext()}
         >
           <FaAngleRight />
-        </button>
+        </button> */}
       </div >
       <Footer />
     </>
