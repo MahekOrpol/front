@@ -58,30 +58,54 @@ const JewelrySale = () => {
   const navigate = useNavigate();
   return (
     <section className="jewelry-sale">
-      <div className="container">
+      <div className="">
         <div className="jewelry-sale-grid">
           <div className="left-images">
-          <img src={require("../../../Images/image (29).png")} alt="Jewelry" className="large-img" />
+            <img
+              src={require("../../../Images/image (29).png")}
+              alt="Jewelry"
+              className="large-img"
+            />
             <div className="small-imgs">
-            <img src={require("../../../Images/Mask group (6).png")} alt="Ring" />
+              <img
+                src={require("../../../Images/Mask group (6).png")}
+                alt="Ring"
+              />
             </div>
           </div>
 
           <div className="center-content">
-            <img   src={require("../../../Images/crystovalogowhite (1) 2 (2).png")} className="logo-banner" alt="Crystova Logo" />
+            <img
+              src={require("../../../Images/crystovalogowhite (1) 2 (2).png")}
+              className="logo-banner"
+              alt="Crystova Logo"
+              width={350}
+            />
+            <hr />
             <span className="tagline">Jewellery Just for You</span>
+            <hr />
+
             <h2 className="sale-text">SALE</h2>
+            <hr />
+
             <span className="discount">Up to 30% Off</span>
-            <button className="shop-now" onClick={() => navigate('/products')}>
+            <button className="shop-now" onClick={() => navigate("/products")}>
               Shop Now
             </button>
           </div>
 
           <div className="right-images">
             <div className="small-imgs">
-            <img src={require("../../../Images/image (30).png")} alt="Bracelet" />
+              <img
+                src={require("../../../Images/image (30).png")}
+                alt="Bracelet"
+              />
             </div>
-            <img src={require("../../../Images/Mask group (7).png")} alt="Jewelry" className="large-img" />
+            <img
+              src={require("../../../Images/Mask group (7).png")}
+              alt="Jewelry"
+              className="large-img"
+            />
           </div>
         </div>
       </div>
