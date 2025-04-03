@@ -5,6 +5,10 @@ import { useNavigate } from "react-router-dom";
 import RegisterPopup from "../RegisterPopup/index";
 import axios from "axios";
 import { MdLogout } from "react-icons/md";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const SignupPopup = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
     const [showRegister, setShowRegister] = useState(false);
@@ -20,7 +24,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
         if (user_Id) {
             getProfileData();
         }
-    }, [user_Id]); 
+    }, [user_Id]);
 
     const getProfileData = async () => {
         try {
@@ -30,23 +34,37 @@ const SignupPopup = ({ isOpen, onClose }) => {
 
         } catch (err) {
             console.log(err);
-            localStorage.setItem("isExistingProfile", "false");  
+            localStorage.setItem("isExistingProfile", "false");
         }
     };
 
-      const handleLogout = () => {
+    const handleLogout = () => {
+        toast.success("Logout Successful!");
         localStorage.removeItem("user_Id");
         localStorage.removeItem("user_token");
         localStorage.setItem("isExistingProfile", "false");
         setData(null);
-        onClose(); // Close the popup after logout
+        setTimeout(() => onClose(), 500); // Close the popup after logout
         navigate("/"); // Redirect to homepage or login page
     };
-    
+
     if (!isOpen && !showRegister) return null;
 
     return (
         <>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                stacked
+            />
             {!showRegister ? (
                 <div className="signup-popup-overlay" onClick={handleClose}> {/* Close on outside click */}
                     <div className="signup-popup" onClick={(e) => e.stopPropagation()}>
@@ -130,13 +148,13 @@ const SignupPopup = ({ isOpen, onClose }) => {
                                 <FaAngleRight size={20} className="menu-arrow" />
                             </li>
                             {localStorage.getItem("user_Id") && localStorage.getItem("user_token") && (
-                                  <li onClick={handleLogout}>
-                                  <div className="menu-item">
-                                  <MdLogout size={22} />
-                                      <span className="sass ms-2">Logout</span>
-                                  </div>
-                                  <FaAngleRight size={20} className="menu-arrow" />
-                              </li>
+                                <li onClick={handleLogout}>
+                                    <div className="menu-item">
+                                        <MdLogout size={22} />
+                                        <span className="sass ms-2">Logout</span>
+                                    </div>
+                                    <FaAngleRight size={20} className="menu-arrow" />
+                                </li>
                             )}
                         </ul>
                     </div>
