@@ -343,7 +343,7 @@ const ProductDetailss = () => {
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
         <div className="container">
-          <section>
+          <section >
             <div class=" pb-2 pt-3 md:px-5">
               <div class="Breadcrumbs max-w-8xl d-flex align-items-center mx-auto flex items-center flex-nowrap whitespace-nowrap overflow-hidden gap-2">
                 <div class="BreadcrumbItem flex ">
@@ -525,7 +525,8 @@ const ProductDetailss = () => {
               </div>
             </div>
 
-            <div className="d-none d-md-flex w-100 gap-3 sticky">
+
+            <div className="d-none d-md-flex w-100 gap-3 " style={{position:'sticky',top: '50px'}}>
               <div className="sdcsd_saxza">
                 <div className="thumbnail-gallery-container">
                   <div className="thumbnail-gallery-row w-100 gap-2">
@@ -566,8 +567,8 @@ const ProductDetailss = () => {
                 )}
               </div>
             </div>
-            <div className="w-100 pt-5 sdcsd_saxza dscd_54_Dscds">
-              <div className="sticky-top" style={{ top: '50px' }}>
+            <div className="w-100 sdcsd_saxza dscd_54_Dscds">
+              <div>
 
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="secrt_1">{productDetails?.productName}</span>

@@ -41,13 +41,17 @@ import ringVideo3 from "../../Videos/sdcsdcdfc.mp4";
 import ringVideo4 from "../../Videos/sdcxdscx.mp4";
 import ringVideo5 from "../../Videos/dsfcdfc.mp4";
 import JewelrySale from "../Contact Us/sdcsd/demo";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
+import Instruction from "./instruction";
+import Ring from "../../Pages/Demo/ring";
+import OueColletion from "./ourColletion";
 
 const images = [
   require("../../Images/ring222.png"),
   require("../../Images/ring222.png"),
   require("../../Images/ring222.png"),
   require("../../Images/ring222.png"),
+
   require("../../Images/ring222.png"),
 ];
 
@@ -141,7 +145,7 @@ const Home = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   // const [categories, setCategories] = useState();
-  
+
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
   };
@@ -195,7 +199,6 @@ const Home = () => {
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
-       
       } else {
         console.error("Failed to add product to cart:", response);
       }
@@ -475,7 +478,7 @@ const Home = () => {
 
   return (
     <>
-    <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -486,10 +489,15 @@ const Home = () => {
         draggable
         pauseOnHover
         theme="light"
-        stacked 
+        stacked
       />
 
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage}/>
+      <CartPopup
+        isOpen={isCartOpen}
+        closeCart={closeCart}
+        showToast={showToast}
+        toastMessage={toastMessage}
+      />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
@@ -643,7 +651,6 @@ const Home = () => {
                 <button
                   className="w-25 spg_nb_sle"
                   style={{ whiteSpace: "nowrap" }}
-           
                 >
                   Shop Now
                 </button>
@@ -806,10 +813,10 @@ const Home = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx">
-                        ₹{product.salePrice?.$numberDecimal}
+                          ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx">
-                        ₹{product.regularPrice?.$numberDecimal}
+                          ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
@@ -845,7 +852,7 @@ const Home = () => {
                     <div className="card prio_card scdscsed_sdss">
                       <div className="card-image-wrapper position-relative best_saller_btn">
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                         BEST SALLER
+                          BEST SALLER
                         </button>
 
                         <div
@@ -876,10 +883,10 @@ const Home = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx">
-                         ₹{product.salePrice?.$numberDecimal}
+                          ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx">
-                         ₹{product.regularPrice?.$numberDecimal}
+                          ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
@@ -951,10 +958,10 @@ const Home = () => {
                       </span>
                       <div className="d-flex align-items-center gap-3 pt-1">
                         <span className="mikdec_asdxsx">
-                         ₹{product.salePrice?.$numberDecimal}
+                          ₹{product.salePrice?.$numberDecimal}
                         </span>
                         <span className="mikdec_axsx">
-                         ₹{product.regularPrice?.$numberDecimal}
+                          ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
@@ -1159,6 +1166,10 @@ const Home = () => {
             ))}
           </div>
         </div> */}
+        </div>
+
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+       <OueColletion />
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
@@ -1654,7 +1665,25 @@ const Home = () => {
           
         </div> 
       </div> */}
+        <div
+          className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
+          style={{ paddingTop: "4rem" }}
+        >
+          <span className="category_name mt-2">Instructions</span>
+          {/* <p className="category_txt">What our Client’s say about us</p> */}
+          <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
 
+          <Instruction />
+        </div>
+        {/* <div
+          className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
+          style={{ paddingTop: "4rem" }}
+        >
+          <span className="category_name mt-2">Instructions</span>
+          <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
+
+          <Ring />
+        </div> */}
         <div className="testimonial-container d-flex align-items-center">
           {/* <button
             className="nav-button left"
@@ -1665,7 +1694,7 @@ const Home = () => {
 
           <div
             className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
-            style={{ paddingTop: "4rem" }}
+            style={{ paddingTop: "3rem" }}
           >
             <span className="category_name mt-2">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
@@ -1688,8 +1717,9 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                        } mt-5`}
+                      className={`card testimonial-card${
+                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                      } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
