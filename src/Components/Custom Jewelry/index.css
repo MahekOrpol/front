@@ -6,7 +6,7 @@
 .bsn {
     position: relative;
     width: 100%;
-    max-height: 400px;
+    max-height: 700px;
     overflow: hidden;
 }
 .bsn img {
@@ -79,7 +79,7 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
-    box-shadow: 0px 0px 4px 0px #00000040;
+    /* box-shadow: 0px 0px 4px 0px #00000040; */
 }
 .custom-form textarea {
     width: 100%;

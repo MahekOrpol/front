@@ -138,7 +138,7 @@ const BlogDetails = () => {
               </div>
             </div>
           </div>
-          <div className="sdncsduch row">
+          <div className="sdncsduch row pb-5">
             <div className="ssss_ssd11">
               <div className="blog_fade_ds1">
                 <img src={require("../../Images/image (25).png")} className="deta_blg_dd" />

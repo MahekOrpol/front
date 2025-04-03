@@ -32,7 +32,8 @@
 //           <span className="dfecddv_dcd_bt">Upto 30% Off</span>
 //           <hr className="banne_hr_dsdsd" />
 
-//           <button className="shop_now_ww"onClick={()=>{navigate('/products')}}>Shop Now</button>
+//           <button className="
+// "onClick={()=>{navigate('/products')}}>Shop Now</button>
 //         </div>
 //       </div>
 
@@ -83,12 +84,12 @@ const JewelrySale = () => {
             />
             <hr />
             <span className="tagline">Jewellery Just for You</span>
-            <hr />
+      
 
             <h2 className="sale-text">SALE</h2>
-            <hr />
 
             <span className="discount">Up to 30% Off</span>
+            <hr />
             <button className="shop-now" onClick={() => navigate("/products")}>
               Shop Now
             </button>

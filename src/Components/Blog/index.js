@@ -44,7 +44,7 @@ const Blog = () => {
           <h1 className='banner_exx'>Blogs</h1>
         </div> */}
       </div>
-      <div className="container pt-5 ">
+      <div className="container pt-5 pb-5">
         <div className="d-flex gap-5 blog_main_dddd">
           <div className="sdncsduchs h-100 position-sticky blog_sins_ssss" style={{top:'12px'}}>
             <div className="card p-3 shadow-sm border-0 ">

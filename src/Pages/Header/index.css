@@ -17,10 +17,12 @@
 .heder_sec_main {
   background-color: #fff;
 }
+
 .acco9_text {
-  font-weight: 600;
-  font-size: 22px;
   font-family: "Cabin", sans-serif;
+  font-weight: 100;
+  font-size: 17px;
+  color: black;
 }
 
 .sign_txt {
@@ -345,7 +347,7 @@
 .user_icon {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 2px;
 }
 
 .mobile_user_icon img {
@@ -359,10 +361,6 @@
   /* color: #ccc; */
 }
 
-.acco9_text {
-  font-size: 19px;
-  color: black;
-}
 
 .input-group1 {
   display: flex;
