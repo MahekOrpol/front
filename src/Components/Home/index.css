@@ -3918,3 +3918,54 @@ font-size: 15px;
 
   opacity: 1;
 }
+
+.our_colles{
+  background-image: url('../../Images/banerbg.png');
+  width: 100%;
+  height: auto;
+  padding: 5rem 7rem;
+}
+.banner-img-op{
+  /* background-color: #8f5e63; */
+  background-image: url('../../Images/Rectangle 27.png');
+  border-radius:  36px ;
+  padding: 3rem;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+.banner_tezxt{
+  font-family: "Cabin", sans-serif;
+color: #fff;
+}
+
+.see_more{
+  border: 2px solid white;
+  border-radius: 50px;
+  color: white;
+  width: 150px;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  font-family: "Cabin", sans-serif;
+
+}
+
+.our_collection_text{
+  font-family: "DM Serif Text", serif;
+  color: white;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+.our_text_ddddd{
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 33px;
+  letter-spacing: 0;
+  color: white;
+
+}
+

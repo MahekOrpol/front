@@ -43,12 +43,15 @@ import ringVideo5 from "../../Videos/dsfcdfc.mp4";
 import JewelrySale from "../Contact Us/sdcsd/demo";
 import { ToastContainer, toast } from "react-toastify";
 import Instruction from "./instruction";
+import Ring from "../../Pages/Demo/ring";
+import OueColletion from "./ourColletion";
 
 const images = [
   require("../../Images/ring222.png"),
   require("../../Images/ring222.png"),
   require("../../Images/ring222.png"),
   require("../../Images/ring222.png"),
+
   require("../../Images/ring222.png"),
 ];
 
@@ -486,7 +489,7 @@ const Home = () => {
         draggable
         pauseOnHover
         theme="light"
-        stacked 
+        stacked
       />
 
       <CartPopup
@@ -1166,6 +1169,10 @@ const Home = () => {
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+       <OueColletion />
+        </div>
+
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
           <span className="category_name mt-0 mobile-hide">
             Celebrate love with our Collection
           </span>
@@ -1668,6 +1675,15 @@ const Home = () => {
 
           <Instruction />
         </div>
+        {/* <div
+          className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
+          style={{ paddingTop: "4rem" }}
+        >
+          <span className="category_name mt-2">Instructions</span>
+          <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
+
+          <Ring />
+        </div> */}
         <div className="testimonial-container d-flex align-items-center">
           {/* <button
             className="nav-button left"
@@ -1678,7 +1694,7 @@ const Home = () => {
 
           <div
             className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
-            style={{ paddingTop: "2rem" }}
+            style={{ paddingTop: "3rem" }}
           >
             <span className="category_name mt-2">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
