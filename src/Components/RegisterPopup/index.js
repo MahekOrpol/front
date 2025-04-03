@@ -7,7 +7,8 @@ import googleIcon from "../../Images/googleicon.png";
 import ForgotPass from "../ForgotPopup";
 import ChangePass from "../ChangePass";
 import { toast } from "react-toastify";
-import { ToastContainer } from "react-bootstrap";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
@@ -78,14 +79,14 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     e.preventDefault();
     let errors = {};
 
-    if (!validateEmail(loginEmail)) {
-      errors.email = "Please enter a valid email";
-    }
+    // if (!validateEmail(loginEmail)) {
+    //   errors.email = "Please enter a valid email";
+    // }
 
-    if (!validatePassword(loginPassword)) {
-      errors.password =
-        "Password must be at least 6 characters long and include numbers & letters";
-    }
+    // if (!validatePassword(loginPassword)) {
+    //   errors.password =
+    //     "Password must be at least 6 characters long and include numbers & letters";
+    // }
 
     setLoginErrors(errors);
 
