@@ -358,21 +358,21 @@ const ProductDetailss = () => {
                   </div>
                 </div>
                 <FaChevronRight />
-                <div class="BreadcrumbItem flex ">
+                <div class="BreadcrumbItem flex">
                   <div class="flex items-center flex-nowrap gap-1.5">
                     <a
                       class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
                       data-discover="true"
-                      href="/products"
+                      href={`/products?category=${productDetails?.categoryName || 'rings'}`}
                     >
-                      Ring
+                      {productDetails?.categoryName || "Rings"}
                     </a>
                   </div>
                 </div>
                 <FaChevronRight />
                 <div class="BreadcrumbItem flex max-w-1/3">
                   <span class="font-light text-1.25xs leading-tight line-clamp-1 whitespace-normal mt-0.5 bread_crumnbs">
-                    Halo Diamond Ring
+                  {productDetails.productName || "products"}
                   </span>
                 </div>
               </div>

@@ -499,3 +499,50 @@
   transform: translate3d(0px, 0px, 0px);
   transition-delay: 0ms;
 }
+
+@media(max-width:490px) {
+  .wel_sss {
+    font-size: 27px;
+  }
+
+  .sx_dec25 {
+    font-size: 17px;
+  }
+
+  .dsh_566_sss {
+    font-size: 14px;
+  }
+
+  .dcscds_xsx {
+    padding-left: 0rem !important;
+  }
+
+  .abt_vdio {
+    font-size: 25px;
+  }
+
+  .skijiws_256 {
+    font-size: 12px;
+  }
+
+  .eried {
+    width: 31%;
+  }
+
+  .visionb {
+    font-size: 20px;
+  }
+
+  .wqsjjhu_wwsw {
+    font-size: 10px;
+  }
+
+  .category_name_ss {
+    font-size: 28px;
+  }
+
+  .sdncsduchs_1 {
+    margin-left: auto;
+    gap: 0;
+  }
+}
