@@ -1,48 +1,28 @@
-import React from 'react'
+import React from 'react';
+import './index.css'; // Create a CSS file for additional styling if needed
+
+const instructions = [
+  { img: require('../../Images/material.png'), text: 'AVOID WATER / MOISTURE' },
+  { img: require('../../Images/oeeofiw.png'), text: 'REMOVE BEFORE SLEEPING' },
+  { img: require('../../Images/fragrance_6211860.png'), text: 'AVOID PERFUME / LOTION' },
+  { img: require('../../Images/box_14309182 (1).png'), text: 'USE SOFT / DRY FABRIC TO CLEAN' },
+  { img: require('../../Images/Frame 1.png'), text: 'REMOVE BEFORE EXERCISE'},
+  { img: require('../../Images/wash_7040452.png'), text: 'REMOVE BEFORE EXERCISE' }
+];
 
 const Instruction = () => {
   return (
-    <div className='pt-4 w-100 container'> 
-    <div className='d-flex justify-content-between'>
-      <div className='d-flex align-items-center flex-column gap-2 instruction'>
-        <img src={require('../../Images/material.png')} width={100}/>
-        <div className='instruction_tagline'>
-          AVOID WATER / MOISTURE
-        </div>
-      </div>
-      <div className='d-flex align-items-center flex-column gap-2 instruction'>
-        <img src={require('../../Images/oeeofiw.png')} width={100}/>
-        <div className='instruction_tagline'>
-          REMOVE BEFORE SLEEPING
-        </div>
-      </div>
-      <div className='d-flex align-items-center flex-column gap-2 instruction'>
-        <img src={require('../../Images/fragrance_6211860.png')} width={100}/>
-        <div className='instruction_tagline'>
-          AVOID PERFUME / LOTION
-        </div>
-      </div>
-      <div className='d-flex align-items-center flex-column gap-2 instruction'>
-        <img src={require('../../Images/box_14309182 (1).png')} width={100}/>
-        <div className='instruction_tagline'>
-          USE SOFT / DRY FABRIC TO CLEAN
-        </div>
-      </div>
-      <div className='d-flex align-items-center flex-column gap-2 instruction'>
-        <img src={require('../../Images/man_14431703.png')} width={83}/>
-        <div className='instruction_tagline'>
-          REMOVE BEFORE EXERCISE
-        </div>
-      </div>
-           <div className='d-flex align-items-center flex-column gap-2 instruction'>
-      <img src={require('../../Images/wash_7040452.png')} width={100}/>
-        <div className='instruction_tagline'>
-          REMOVE BEFORE EXERCISE
-        </div>
+    <div className='container py-4'>
+      <div className='row justify-content-center'>
+        {instructions.map((item, index) => (
+          <div key={index} className='col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column align-items-center gap-2 instruction-item'>
+            <img src={item.img} alt={item.text} width={100} />
+            <div className='instruction_tagline text-center'>{item.text}</div>
+          </div>
+        ))}
       </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default Instruction
+export default Instruction;
