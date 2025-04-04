@@ -49,10 +49,10 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     return (
       <ChangePass
         isOpen={showChangePass}
-        onClose={() => {
-          setShowChangePass(false);
-          onClose();
-        }}
+        // onClose={() => {
+        //   setShowChangePass(false);
+        //   onClose();
+        // }}
       />
     );
   }
@@ -296,6 +296,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         </div>
                         <p
                           className="hrdd"
+                          style={{cursor:"pointer"}}
                           onClick={() => setShowForgotPass(true)}
                         >
                           Forgot Password

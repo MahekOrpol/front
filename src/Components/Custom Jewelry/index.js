@@ -53,11 +53,7 @@ const CustomJewel = () => {
                 formDataToSend.append('file', formData.file);
             }
 
-            const response = await axios.post('http://localhost:3000/api/v1/custom-jewels/create', formDataToSend, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+            const response = await axios.post('http://localhost:3000/api/v1/custom-jewels/create', formDataToSend);
 
             if (response.status === 201) {
                 toast.success("We will get back to you soon!");
@@ -234,7 +230,6 @@ const CustomJewel = () => {
                         >
                             {isSubmitting ? 'Submitting...' : 'SUBMIT'}
                         </button>
-                        {submitMessage && <p className={submitMessage.includes('success') ? 'success' : 'error'}>{submitMessage}</p>}
                     </form>
                 </div>
             </div>

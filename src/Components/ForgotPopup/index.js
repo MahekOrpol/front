@@ -38,7 +38,7 @@ const ForgotPass = ({ isOpen, onClose }) => {
         setIsOtpVerified(true);
     };
     return (
-        <div className="forgot-popup-overlay" onClick={handleOverlayClick}>
+        <div className="forgot-popup-overlay" >
             <div className="forgot-popup" onClick={(e) => e.stopPropagation()}>
                 <div className="forgot-container">
                     <div className="forgot-form">
