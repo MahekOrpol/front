@@ -208,11 +208,11 @@
 }
 
 .left-btn {
-  left: 40%;
+  left: 35%;
 }
 
 .right-btn {
-  right: 40%;
+  right: 35%;
 }
 
 .add-to-cart {
@@ -1635,4 +1635,38 @@
 .Sfg {
   display: flex;
   justify-content: center;
+}
+
+@media (min-width:1750px) {
+  .asxasx_card{
+    width: 20%;
+  }
+  .scdscsed_sdss_pro {
+    height: 315px;
+}
+.asxasx_card:hover {
+  transform: translateY(-20px);
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  /* height: 548px !important; */
+  height: 462px !important;
+  border: 1px solid #611d2b;
+  padding-top: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.left-btn {
+  left: 35%;
+}
+.right-btn {
+  right: 35%;
+}
+}
+
+.asxasx_card .p-1_proi {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Ensures the image covers the div without stretching */
+  border-radius: 8px;
 }
