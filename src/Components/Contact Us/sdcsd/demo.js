@@ -32,8 +32,7 @@
 //           <span className="dfecddv_dcd_bt">Upto 30% Off</span>
 //           <hr className="banne_hr_dsdsd" />
 
-//           <button className="
-// "onClick={()=>{navigate('/products')}}>Shop Now</button>
+//           <button className="shop_now_ww"onClick={()=>{navigate('/products')}}>Shop Now</button>
 //         </div>
 //       </div>
 
@@ -82,14 +81,11 @@ const JewelrySale = () => {
               alt="Crystova Logo"
               width={350}
             />
-            <hr />
-            <span className="tagline">Jewellery Just for You</span>
-      
-
-            <h2 className="sale-text">SALE</h2>
-
+            <hr className="ehgdd"/>
+            <span className="tagline mb-2">Jewellery Just for You</span>
+            <h2 className="sale-text mb-2">SALE</h2>
             <span className="discount">Up to 30% Off</span>
-            <hr />
+            <hr className="ehgdd"/>
             <button className="shop-now" onClick={() => navigate("/products")}>
               Shop Now
             </button>
