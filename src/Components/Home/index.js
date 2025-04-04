@@ -45,6 +45,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Instruction from "./instruction";
 import Ring from "../../Pages/Demo/ring";
 import OueColletion from "./ourColletion";
+import RingSlider from "./ring";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -1456,6 +1457,9 @@ const Home = () => {
           </div>
         </div>
 
+<div>
+  <RingSlider />
+</div>
         {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Gifting Guide</span>
         <p className="category_txt">Jewelry makes the perfect gift</p>
@@ -1666,8 +1670,8 @@ const Home = () => {
         </div> 
       </div> */}
         <div
-          className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
-          style={{ paddingTop: "4rem" }}
+          className="heder_sec_main d-flex flex-column align-items-center "
+          style={{ paddingTop: "0rem" }}
         >
           <span className="category_name mt-2">Instructions</span>
           {/* <p className="category_txt">What our Client’s say about us</p> */}
