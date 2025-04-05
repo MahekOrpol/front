@@ -9,11 +9,11 @@ import { useNavigate } from "react-router-dom";
 import { TfiMenuAlt } from "react-icons/tfi";
 import { FiSearch } from "react-icons/fi";
 import { GiBigDiamondRing } from "react-icons/gi";
-import { GiGemPendant } from "react-icons/gi";
-import bracelet from "../../Images/charm.png";
+import GiGemPendant  from "../../Images/gem-pendant-svgrepo-com.svg";
+import bracelet from "../../Images/noun-bracelet-5323037.svg";
 import earing from "../../Images/earrings.png";
-import ring from "../../Images/diamond-ring.png";
-import csome from "../../Images/Vector (7).png";
+import ring from "../../Images/diamond-ring-diamond-svgrepo-com.svg";
+import csome from "../../Images/Group 1597884646.svg";
 import { LuTextSearch } from "react-icons/lu";
 import { FormControl, InputGroup } from "react-bootstrap";
 
@@ -157,7 +157,7 @@ const Header = ({ openCart }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Pendant")}
           >
-            <GiGemPendant size={20} /> Pendant
+            <img src={GiGemPendant} width={20} /> Pendant
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
@@ -196,7 +196,7 @@ const Header = ({ openCart }) => {
             className="drawer-item d-flex align-items-center gap-2 w-100"
             onClick={() => handleCategoryClick("Pendant")}
           >
-            <GiGemPendant size={20} /> Pendant
+            <img src={GiGemPendant} width={20}/> Pendant
           </div>
           <div
             className="drawer-item d-flex align-items-center gap-2 w-100"

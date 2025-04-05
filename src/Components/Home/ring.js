@@ -119,12 +119,12 @@ const RingSlider = () => {
   return (
     <div className="wrapper">
       <div className="center-slider">
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
+        <div><img className="slider_img_ssss" src={require("../../Images/styles-slider-hidden-halo.webp")} /></div>
+        <div><img className="slider_img_ssss" src={require("../../Images/styles-slider-solitaire.webp")} /></div>
+        <div><img className="slider_img_ssss" src={require("../../Images/styles-slider-halo.webp")} /></div>
+        <div><img className="slider_img_ssss" src={require("../../Images/styles-slider-three-stone.webp")} /></div>
+        <div><img className="slider_img_ssss" src={require("../../Images/styles-slider-vintage.webp")} /></div>
+        <div><img className="slider_img_ssss" src={require("../../Images/styles-slider-halo.webp")} /></div>
       </div>
     </div>
   );

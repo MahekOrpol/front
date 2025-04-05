@@ -46,6 +46,7 @@ import Instruction from "./instruction";
 import Ring from "../../Pages/Demo/ring";
 import OueColletion from "./ourColletion";
 import RingSlider from "./ring";
+import DimondJewellery from "./Dimond Jewellery/dimond";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -190,7 +191,7 @@ const Home = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://localhost:3000/api/v1/order-details/create",
+        "http://192.168.1.10:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -249,20 +250,20 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getTopRated"
+      "http://192.168.1.10:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
     console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getBestSelling"
+      "http://192.168.1.10:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getOnSale"
+      "http://192.168.1.10:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -307,13 +308,13 @@ const Home = () => {
         });
 
         const res = await axios.delete(
-          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://localhost:3000/api/v1/wishlist/create`,
+          `http://192.168.1.10:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -339,7 +340,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/wishlist/${userId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -725,6 +726,10 @@ const Home = () => {
           </div>
         </div>
 
+<div>
+<DimondJewellery />
+</div>
+
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd hnbgygjhh">
           <span className="category_name mt-2">Trending Collection</span>
           <p className="category_txt">
@@ -799,7 +804,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`http://192.168.1.10:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -870,7 +875,7 @@ const Home = () => {
 
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`http://192.168.1.10:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -944,7 +949,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`http://192.168.1.10:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
