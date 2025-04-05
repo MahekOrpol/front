@@ -10,6 +10,8 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import Header from "../../Pages/Header";
 import banner from "../../Images/Frame 200.png";
 import { Swiper, SwiperSlide } from "swiper/react";
+import best from "../../Images/best1.png";
+
 import {
   EffectCoverflow,
   Navigation,
@@ -726,9 +728,17 @@ const Home = () => {
           </div>
         </div>
 
-<div>
-<DimondJewellery />
-</div>
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-3">
+        <span className="category_name mt-2">Diamond Jewelry</span>
+          <p className="category_txt">
+          Minimal. Modern. Mesmerizing
+          </p>
+          <img
+            src={require("../../Images/Groupimg.png")}
+            className="home_tag_img"
+          />
+          <DimondJewellery />
+        </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd hnbgygjhh">
           <span className="category_name mt-2">Trending Collection</span>
@@ -827,7 +837,7 @@ const Home = () => {
                       </div>
                       <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                         <button
-                          className="more_btn_dsdd w-50"
+                          className="more_btn_dsdd ewdcscdsedcds w-50"
                           // onClick={() => navigate("/product-details")}
                           onClick={() => handleProductClick(product.id)}
                         >
@@ -991,191 +1001,106 @@ const Home = () => {
               </div>
             </div>
           )}
-          {/* <div className="container d-flex gap-3 justify-content-between position-relative pt-4 w-100">
-          <div className="grp_img position-relative box-trens-1 w-25">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/image 98.png")}
-                alt="Dainty Earrings"
-                className="img-fluid1"
-              />
-            </div>
-
-            <div
-              className="text-overlay position-absolute top-0 translate-middle2 text-white text-center d-flex flex-column"
-              style={{ left: "146px" }}
-            >
-              <button className="new_btndd">NEW</button>
-            </div>
-            <div className="snuf_dfv text-overlay position-absolute top-0 translate-middle3 p-1 text-white text-center d-flex flex-column">
-              <PiHeartThin className="heart-icon_ss" />
-            </div>
-            <div className="pt-3">
-              <span className="word_txtxt">Two Stone Diamond Ring</span>
-              <span className="word_txtxt1 d-flex align-items-center gap-3 pt-1">
-                ₹30,000 <span className="word_txtxt2">₹35,000</span>{" "}
-              </span>
-              <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                <button className="more_btn_dsdd w-50">More Info</button>
-                <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                  Add to Cart <BiShoppingBag size={25} />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="grp_img position-relative box-trens-1 w-25">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/tre-2.png")}
-                alt="Dainty Earrings"
-                className="img-fluid1"
-              />
-            </div>
-            <div
-              className="text-overlay position-absolute top-0 translate-middle2 text-white text-center d-flex flex-column"
-              style={{ left: "146px" }}
-            >
-              <button className="new_btndd">NEW</button>
-            </div>
-            <div className="snuf_dfv text-overlay position-absolute top-0 translate-middle3 p-1 text-white text-center d-flex flex-column">
-              <PiHeartThin className="heart-icon_ss" />
-            </div>
-            <div className="pt-3">
-              <span className="word_txtxt">Two Stone Diamond Ring</span>
-              <span className="word_txtxt1 d-flex align-items-center gap-3 pt-1">
-                ₹30,000 <span className="word_txtxt2">₹35,000</span>{" "}
-              </span>
-              <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                <button className="more_btn_dsdd w-50">More Info</button>
-                <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                  Add to Cart <BiShoppingBag size={25} />
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="grp_img position-relative box-trens-1 w-25">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/image 100.png")}
-                alt="Dainty Earrings"
-                className="img-fluid1"
-              />
-            </div>
-            <div
-              className="text-overlay position-absolute top-0 translate-middle2 text-white text-center d-flex flex-column"
-              style={{ left: "146px" }}
-            >
-              <button className="new_btndd">NEW</button>
-            </div>
-            <div className="snuf_dfv text-overlay position-absolute top-0 translate-middle3 p-1 text-white text-center d-flex flex-column">
-              <PiHeartThin className="heart-icon_ss" />
-            </div>
-            <div className="pt-3">
-              <span className="word_txtxt">Two Stone Diamond Ring</span>
-              <span className="word_txtxt1 d-flex align-items-center gap-3 pt-1">
-                ₹30,000 <span className="word_txtxt2">₹35,000</span>{" "}
-              </span>
-              <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                <button className="more_btn_dsdd w-50">More Info</button>
-                <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                  Add to Cart <BiShoppingBag size={25} />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="grp_img position-relative box-trens-1 w-25">
-            <div className="d-flex justify-content-center align-items-center h-100">
-              <img
-                src={require("../../Images/trending-5.png")}
-                alt="Dainty Earrings"
-                className="img-fluid1"
-              />
-            </div>
-            <div
-              className="text-overlay position-absolute top-0 translate-middle2 text-white text-center d-flex flex-column"
-              style={{ left: "146px" }}
-            >
-              <button className="new_btndd">NEW</button>
-            </div>
-            <div className="snuf_dfv text-overlay position-absolute top-0 translate-middle3 p-1 text-white text-center d-flex flex-column">
-              <PiHeartThin className="heart-icon_ss" />
-            </div>
-            <div className="pt-3">
-              <span className="word_txtxt">Two Stone Diamond Ring</span>
-              <span className="word_txtxt1 d-flex align-items-center gap-3 pt-1">
-                ₹30,000 <span className="word_txtxt2">₹35,000</span>{" "}
-              </span>
-              <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                <button className="more_btn_dsdd w-50">More Info</button>
-                <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                  Add to Cart <BiShoppingBag size={25} />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div> */}
-          {/* <div className="paddingdn d-flex flex-column container">
-          <div className="row pt-5">
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards"
-                // onMouseEnter={() => setHoveredProduct(product.id)}
-                // onMouseLeave={() => setHoveredProduct(null)}
-              >
-                <div className="card prio_card scdscsed_sdss">
-                  <div className="card-title">
-                    <div>
-                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3">NEW</button>
-                      <div
-                        className="snuf_dfv text-overlay position-absolute top-0 p-2 text-white text-center d-flex flex-column me-3 mt-3"
-                        onClick={() => toggleFavorite(product.id)}
-                        style={{ cursor: "pointer" }}
-                      >
-                        {isFavorite[product.id] ? (
-                          <GoHeartFill className="heart-icon_ss" size={18} />
-                        ) : (
-                          <GoHeart className="heart-icon_ss" size={18} />
-                        )}
-                      </div>
-                    </div>
-                    <div className="card-body d-flex justify-content-center ">
-                      <img
-                        src={product.imgSrc}
-                        className="p-1_proi"
-                        alt="Product"
-                      />
-                    
-                    </div>
-                  </div>
-                </div>
-                <div className="d-flex flex-column main_cdsss">
-                  <span className="mikdec_asdaa pt-3">{product.name}</span>
-                  <div className="d-flex align-items-center gap-3 pt-1">
-                    <span className="mikdec_asdxsx">{product.price}</span>
-                    <span className="mikdec_axsx">{product.cutPrice}</span>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                    <button
-                      className="more_btn_dsdd w-50"
-                      onClick={() => navigate("/products")}
-                    >
-                      More Info
-                    </button>
-                    <button className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3">
-                      Add to Cart <BiShoppingBag size={25} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div> */}
+         
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
-       <OueColletion />
+          <OueColletion />
+        </div>
+
+        <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-5">
+        <span className="category_name">Bestselling Jewelery</span>
+          <p className="category_txt">
+          Elevate the Everyday in Diamond Elegance          </p>
+          <img
+            src={require("../../Images/Groupimg.png")}
+            className="home_tag_img"
+          />
+          <div className="row d-flex align-items-stretch mt-5 ">
+            {/* Left Image Section */}
+            <div className="col-lg-6 ring_banner_szcdvc">
+              <div className="h-100 d-flex align-items-center justify-content-center">
+                <img
+                  src={best}
+                  className="img-fluid w-100 h-100 object-fit-cover rounded"
+                />
+              </div>
+            </div>
+
+            {/* Right Product Cards Section */}
+            <div className="col-lg-6">
+              <div className="h-100 d-flex flex-column justify-content-between ">
+                <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc">
+                  {bestSelling.slice(0, 2).map((product) => (
+                  <div
+                  key={product.id}
+                  className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 ring-collection-csssss h-100"
+                >
+                  <div className="h-100 d-flex flex-column">
+                    <div className="card prio_card scdscsed_sdss dimond_section dimof_sss sdcsdc_rinf_dimnsss">
+                      <div className="card-image-wrapper position-relative best_saller_btn">
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                          BEST SALLER
+                        </button>
+                
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                          onClick={() => toggleFavorite(product.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {wishlistItems[product.id] ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+                
+                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                          <img
+                            src={`http://192.168.1.10:3000${product.image[0]}`}
+                            className="p-1_proi img-fluid"
+                            alt="Product"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                
+                    {/* OUTSIDE the card but part of same block */}
+                    <div className="d-flex flex-column main_cdsss px-3 pt-2 pb-3 bg-white rounded-bottom shadow-sm ring_secededfcvd">
+                      <span className="mikdec_asdaa text-truncate">
+                        {product.productName}
+                      </span>
+                      <div className="d-flex align-items-center gap-3 pt-1">
+                        <span className="mikdec_asdxsx">
+                          ₹{product.salePrice?.$numberDecimal}
+                        </span>
+                        <span className="mikdec_axsx">
+                          ₹{product.regularPrice?.$numberDecimal}
+                        </span>
+                      </div>
+                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                        <button
+                          className="more_btn_dsdd w-50"
+                          onClick={() => handleProductClick(product.id)}
+                        >
+                          More Info
+                        </button>
+                        <button
+                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                          onClick={() => addToCart(product)}
+                        >
+                          Add to Cart <BiShoppingBag size={25} />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
@@ -1462,9 +1387,9 @@ const Home = () => {
           </div>
         </div>
 
-<div>
-  <RingSlider />
-</div>
+        <div>
+          <RingSlider />
+        </div>
         {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Gifting Guide</span>
         <p className="category_txt">Jewelry makes the perfect gift</p>
