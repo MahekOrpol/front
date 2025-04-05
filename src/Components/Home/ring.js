@@ -63,8 +63,16 @@ import './ring.css'
 
 // ✅ SlickSlider component
 const RingSlider = () => {
+  
   useEffect(() => {
-    $(".center-slider").slick({
+    const $slider = $(".center-slider");
+  
+    // Initialize Slick only if not already initialized
+    if ($slider.hasClass("slick-initialized")) {
+      $slider.slick("unslick");
+    }
+  
+    $slider.slick({
       slidesToShow: 5,
       slidesToScroll: 1,
       centerMode: true,
@@ -72,52 +80,25 @@ const RingSlider = () => {
       speed: 300,
       centerPadding: "0px",
       infinite: true,
-      arrows: true, // Ensure arrows are enabled
-      prevArrow: $('.slick-prev'), // Point to your custom prev button
-    nextArrow: $('.slick-next'), // Point to your custom next button
-
-      // autoplaySpeed: 5000,
-      // autoplay: true,
+      arrows: true,
+      prevArrow: $(".slick-prev"),
+      nextArrow: $(".slick-next"),
       responsive: [
-        {
-          breakpoint: 1200, // For screens <= 1200px
-          settings: {
-            slidesToShow: 5,
-          },
-        },
-        {
-          breakpoint: 990, // For screens <= 992px
-          settings: {
-            slidesToShow: 3,
-          },
-        },
-        {
-          breakpoint: 768, // For screens <= 768px (tablets)
-          settings: {
-            slidesToShow: 3,
-          },
-        },
-        {
-          breakpoint: 576, // For screens <= 576px (mobile)
-          settings: {
-            slidesToShow: 3,
-          },
-        },
-        {
-          breakpoint: 374, // For screens <= 576px (mobile)
-          settings: {
-            slidesToShow: 1,
-          },
-        },
+        { breakpoint: 1200, settings: { slidesToShow: 5 } },
+        { breakpoint: 990, settings: { slidesToShow: 3 } },
+        { breakpoint: 768, settings: { slidesToShow: 3 } },
+        { breakpoint: 576, settings: { slidesToShow: 3 } },
+        { breakpoint: 374, settings: { slidesToShow: 1 } },
       ],
     });
-
-
-    // Cleanup Slick on component unmount
+  
     return () => {
-      $(".center-slider").slick("unslick");
+      if ($slider.hasClass("slick-initialized")) {
+        $slider.slick("unslick");
+      }
     };
   }, []);
+  
 
   // Added ring data array
   const rings = [

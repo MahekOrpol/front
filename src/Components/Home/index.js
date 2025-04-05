@@ -1084,7 +1084,7 @@ const Home = () => {
                           onClick={() => handleProductClick(product.id)}
                         >
                           More Info
-                          
+
                         </button>
                         <button
                           className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
@@ -1208,116 +1208,9 @@ const Home = () => {
             className="home_tag_img"
           />
 
-          {/* <div className="rings-container home_ring_1">
-            <div className="rings-row">
-              {getVisibleRings().map((ring, index) => (
-                <div
-                  key={ring.id}
-                  className={`ring-item ${index === 1 ? "large" : "small"}`}
-                >
-                  <div className="ring-shadow">
-                    <img
-                      src={ring.image}
-                      alt={`Diamond Ring ${ring.id}`}
-                      className="ring-image"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="rings-container home_ring_3">
-            <div className="rings-row">
-              {getVisibleRing2().map((ring, index) => (
-                <div key={ring.id} className={`ring-item large`}>
-                  <div className="ring-shadow">
-                    <img
-                      src={ring.image}
-                      alt={`Diamond Ring ${ring.id}`}
-                      className="ring-image"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="rings-container home_ring_2">
-            <div className="rings-row">
-              {getVisibleRings1().map((ring, index) => (
-                <div
-                  key={ring.id}
-                  className={`ring-item ${
-                    index === 2
-                      ? "large"
-                      : index === 1 || index === 3
-                      ? "medium"
-                      : "small"
-                  }`}
-                >
-                  <div className="ring-shadow">
-                    <img
-                      src={ring.image}
-                      alt={`Diamond Ring ${ring.id}`}
-                      className="ring-image"
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div
-            className="carousel-controls d-flex justify-content-center gap-5"
-            style={{ cursor: "pointer" }}
-          >
-            <div onClick={prevSlide}>
-              <FaAngleLeft size={25} />
-            </div>
-            <span className="soli_txt_sccs">Solitare Rings</span>
-            <div onClick={nextSlide}>
-              <FaAngleRight size={25} />
-            </div>
-          </div> */}
-
-          <div className="ring-slider-container " style={{ width: "100%" }}>
-            <Swiper
-              ref={swiperRef}
-              modules={[Navigation]}
-              slidesPerView={20}
-              spaceBetween={0}
-              centeredSlides={true}
-              loop={true}
-              loopedSlides={ringData.length}
-              watchSlidesProgress={true}
-              speed={600}
-              initialSlide={2}
-              slideToClickedSlide={true}
-              navigation={{
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-              }}
-              breakpoints={{
-                320: { slidesPerView: 1, spaceBetween: 10 },
-                525: { slidesPerView: 3, spaceBetween: 10 },
-                768: { slidesPerView: 3, spaceBetween: 0 },
-                1024: { slidesPerView: 5, spaceBetween: 20 },
-                1700: { slidesPerView: 5, spaceBetween: 20 },
-              }}
-              className="swiper"
-            >
-              {ringData.map((item, index) => (
-                <SwiperSlide key={index} className="swiper-slide">
-                  <img src={item.image} alt={item.title} />
-                  <h2>{item.title}</h2>
-                  <p>{item.description}</p>
-                </SwiperSlide>
-              ))}
-              <div className="swiper-button-prev"></div>
-              <div className="swiper-button-next"></div>
-            </Swiper>
-
-            <img src={bgImage} alt="" className="bg" />
-            <img src={bgImage2} alt="" className="bg2" />
-          </div>
+        </div>
+        <div>
+          <RingSlider />
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center mt-2 asxs_sdxszx dxfcvdfsCV_ss">
@@ -1388,9 +1281,6 @@ const Home = () => {
           </div>
         </div>
 
-        <div>
-          <RingSlider />
-        </div>
         {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
         <span className="category_name">Gifting Guide</span>
         <p className="category_txt">Jewelry makes the perfect gift</p>
