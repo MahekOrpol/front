@@ -4701,3 +4701,12 @@ img.ring-image {
 .tooltip_home_sec:hover .tooltip_home_rrr_sec::after {
   opacity: 1;
 }
+
+@media (min-width:1068px) {
+  
+.our_colle_iumg_ssss {
+  transition: transform 0.4s ease-in-out, box-shadow 0.3s ease;
+  transform: scale(1);
+  height: 100% !important;
+}
+}
