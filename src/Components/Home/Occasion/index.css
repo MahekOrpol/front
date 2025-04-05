@@ -1,0 +1,105 @@
+
+  .slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    /* max-width: 1200px; */
+    margin: auto;
+  }
+  .slider-text {
+    flex: 1;
+  }
+  .slider-text h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    width: 61%;
+    text-align: left;
+}
+.occasions_text_p {
+    font-family: "Cabin", sans-serif;
+    font-weight: 400;
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    letter-spacing: 0%;
+    text-align: justify;
+    width: 75%;
+  }
+  
+  .slider-text p {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  .slider-text button {
+    background-color: #5c0f1b;
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 0.9rem;
+  }
+  .slider-image-section {
+    flex: 1;
+    position: relative;
+    text-align: right;
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+  }
+  .main-image {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    z-index: 1;
+  }
+  .thumbs {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: end;
+    margin-top: 1rem;
+    align-items: flex-end;
+    transform: translateX(0);
+}
+  .thumbs img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    cursor: pointer;
+    object-fit: cover;
+  }
+  .slide-number {
+    position: absolute;
+    transform: translateY(-320px) translateX(384px);
+    font-size: 9rem;
+    color: #c8a9b4;
+    font-weight: 100;
+}
+  .arrow-btn {
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    transform: translateY(-50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    padding: 0.5rem 0.75rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  img.thumb-image12 {
+    width: 100px;
+    height: 180px;
+  }
+  img.thumb-image13 {
+    width: 100px;
+    height: 150px;
+  }
+
+  img.main-image {
+    max-width: 417px;
+    width: 814px;
+    height: 600px;
+}
