@@ -4438,7 +4438,7 @@ img.ring-image {
 
 @media (max-width: 991px) {
   .our_colles {
-    background-image: url(http://192.168.1.10:3002/static/media/banerbg.01e3fc3794fbe8fa6318.png);
+    background-image: url(http://localhost:3002/static/media/banerbg.01e3fc3794fbe8fa6318.png);
     width: 100%;
     height: auto;
     padding: 1rem !important;
@@ -4607,7 +4607,7 @@ img.ring-image {
 }
 
 .our_colles {
-  background-image: url(http://192.168.1.10:3002/static/media/banerbg.01e3fc3794fbe8fa6318.png);
+  background-image: url(http://localhost:3002/static/media/banerbg.01e3fc3794fbe8fa6318.png);
   width: 100%;
   height: auto;
   padding: .6rem !important;
