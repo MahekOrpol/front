@@ -1066,7 +1066,7 @@ const Home = () => {
                     </div>
                 
                     {/* OUTSIDE the card but part of same block */}
-                    <div className="d-flex flex-column main_cdsss px-3 pt-2 pb-3 bg-white rounded-bottom ring_secededfcvd">
+                    <div className="d-flex flex-column main_cdsss px-3 pt-2 bg-white rounded-bottom ring_secededfcvd">
                       <span className="mikdec_asdaa text-truncate">
                         {product.productName}
                       </span>
@@ -1104,7 +1104,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-3">
           <span className="category_name mt-0 mobile-hide">
             Celebrate love with our Collection
           </span>
@@ -1281,218 +1281,9 @@ const Home = () => {
           </div>
         </div>
 
-        {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
-        <span className="category_name">Gifting Guide</span>
-        <p className="category_txt">Jewelry makes the perfect gift</p>
-        <img src={require("../../Images/Groupimg.png")} className="home_tag_img"/>
-
-        <div className="pt-5 d-flex position-relative w-100 justify-content-center">
-          <div className=" position-relative box-trens-2 w-25 ">
-            <div className="d-flex justify-content-center align-items-center h-100 first_bnnrrr">
-              <img
-                src={require("../../Images/earings.png")}
-                alt="Dainty Earrings"
-                className="img-fluid fir_bnr_rd"
-              />
-            </div>
-
-            <div className="text-overlay position-absolute top-50 translate-middle_frst text-white text-center d-flex flex-column gap-1">
-              <span className="bird_ddc">Birthday Gifts</span>
-              <a href="#" className="shop_now_lnk" style={{ color: "#fff" }}>
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-
-          <div className="w-25">
-            <div className=" position-relative box-trens-2 sec_bbbb">
-              <div className="d-flex justify-content-center align-items-center h-100">
-                <img
-                  src={require("../../Images/birth.png")}
-                  alt="Dainty Earrings"
-                  className="img-fluid fir_bnr_rd"
-                />
-              </div>
-              <div className="text-overlay position-absolute top-50 translate-middle_sec1 text-white text-center d-flex flex-column gap-1">
-                <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk " style={{ color: "#fff" }}>
-                  SHOP NOW <FaChevronRight />
-                </a>
-              </div>
-            </div>
-            <div className=" position-relative box-trens-2 sec_bbbb1">
-              <div className="d-flex justify-content-center align-items-center h-100">
-                <img
-                  src={require("../../Images/bar.png")}
-                  alt="Dainty Earrings"
-                  className="img-fluid fir_bnr_rd"
-                />
-              </div>
-              <div className="text-overlay position-absolute top-50 translate-middle_sec2 text-white text-center d-flex flex-column gap-1">
-                <span className="bird_ddc">Birthday Gifts</span>
-                <a href="#" className="shop_now_lnk" style={{ color: "#fff" }}>
-                  SHOP NOW <FaChevronRight />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-25">
-            <div className=" position-relative box-trens-2">
-              <div className="d-flex justify-content-center align-items-center h-100">
-                <img
-                  src={require("../../Images/chn.png")}
-                  alt="Dainty Earrings"
-                  className="img-fluid fir_bnr_rd"
-                />
-              </div>
-              <div className="text-overlay position-absolute top-50 translate-middle_sec3 text-white text-center d-flex flex-column gap-1">
-                <span className="bird_ddc">Birthday Gifts</span>
-                <a
-                  href="#"
-                  className="shop_now_lnk_lst "
-                  style={{ color: "#fff" }}
-                >
-                  SHOP NOW <FaChevronRight />
-                </a>
-              </div>
-            </div>
-            <div className=" position-relative box-trens-2 sec_bbbb2">
-              <div className="d-flex justify-content-center align-items-center h-100">
-                <img
-                  src={require("../../Images/ring.png")}
-                  alt="Dainty Earrings"
-                  className="img-fluid fir_bnr_rd"
-                />
-              </div>
-              <div className="text-overlay position-absolute top-50 translate-middle_sec3 text-white text-center d-flex flex-column gap-1">
-                <span className="bird_ddc">Birthday Gifts</span>
-                <a
-                  href="#"
-                  className="shop_now_lnk_lst "
-                  style={{ color: "#fff" }}
-                >
-                  SHOP NOW <FaChevronRight />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className=" position-relative box-trens-2 w-25">
-            <div className="d-flex justify-content-center align-items-center last_bnnn">
-              <img
-                src={require("../../Images/diam.png")}
-                alt="Dainty Earrings"
-                className="img-fluid fir_bnr_rd"
-              />
-            </div>
-            <div className="text-overlay position-absolute top-50 translate-middle_sec4 text-white text-center d-flex flex-column gap-1">
-              <span className="bird_ddc">Birthday Gifts</span>
-              <a
-                href="#"
-                className="shop_now_lnk_lst "
-                style={{ color: "#fff" }}
-              >
-                SHOP NOW <FaChevronRight />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
-        {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
-        <span className="category_name">Client Testimonial</span>
-        <p className="category_txt">What our Client’s say about us</p>
-        <img src={require("../../Images/Groupimg.png")} className="home_tag_img"/>
-
-        <div className="pt-5 container d-flex position-relative w-100 justify-content-between gap-3">
-          <div className="card testimonial-card mt-5">
-            <div className="card-body pt-5">
-              <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-              <p className="card-text sdcdscsd text-center">
-                I wanted a custom bracelet to honor my daughter’s birth, and the
-                designers exceeded my expectations. They listened to every
-                detail I envisioned and brought it to life. It’s a masterpiece
-                I’ll cherish forever.
-              </p>
-              <p className="text-center sdcdscsd">Client</p>
-
-              <div className="d-flex justify-content-center align-items-center">
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <CiStar />
-                <CiStar />
-              </div>
-            </div>
-          </div>
-          <div className="card  testimonial-card1 mt-5">
-            <div className="card-body pt-5">
-              <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-              <p className="card-text sdcdscsd text-center">
-                I wanted a custom bracelet to honor my daughter’s birth, and the
-                designers exceeded my expectations. They listened to every
-                detail I envisioned and brought it to life. It’s a masterpiece
-                I’ll cherish forever.
-              </p>
-              <p className="text-center sdcdscsd">Client</p>
-
-              <div className="d-flex justify-content-center align-items-center">
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <CiStar />
-                <CiStar />
-              </div>
-            </div>
-          </div>
-          <div className="card  testimonial-card2 mt-5">
-            <div className="card-body pt-5">
-              <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-              <p className="card-text sdcdscsd text-center">
-                I wanted a custom bracelet to honor my daughter’s birth, and the
-                designers exceeded my expectations. They listened to every
-                detail I envisioned and brought it to life. It’s a masterpiece
-                I’ll cherish forever.
-              </p>
-              <p className="text-center sdcdscsd">Client</p>
-
-              <div className="d-flex justify-content-center align-items-center">
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <CiStar />
-                <CiStar />
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* <div className="pt-5 d-flex position-relative w-100 justify-content-center gap-3">
-          <div class="card w-25 dfrderf_mhk">
-            <div class="card-body pt-5">
-              <h5 class="card-title scerff_sdcds d-flex justify-content-center">Emily Carol</h5>
-              <p class="card-text szdcsdz_txtx">
-              I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought 
-              it to life. It’s a masterpiece I’ll cherish forever.
-              </p>
-              
-              <p className="cl_sdcsd">Client</p>
-             <div className="d-flex justify-content-center align-items-center">
-             <FaStar color="#DBB439"/>
-             <FaStar color="#DBB439"/>
-             <FaStar color="#DBB439"/>
-             <CiStar />
-             <CiStar />
-             </div>
-            </div>
-          </div>
-          
-          
-        </div> 
-      </div> */}
+       
         <div
-          className="heder_sec_main d-flex flex-column align-items-center "
-          style={{ paddingTop: "0rem" }}
+          className="heder_sec_main d-flex flex-column align-items-center mt-5"
         >
           <span className="category_name mt-2">Instructions</span>
           {/* <p className="category_txt">What our Client’s say about us</p> */}
@@ -1500,26 +1291,13 @@ const Home = () => {
 
           <Instruction />
         </div>
-        {/* <div
-          className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
-          style={{ paddingTop: "4rem" }}
-        >
-          <span className="category_name mt-2">Instructions</span>
-          <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
-
-          <Ring />
-        </div> */}
+        
         <div className="testimonial-container d-flex align-items-center">
-          {/* <button
-            className="nav-button left"
-            onClick={() => swiperRef.current?.slidePrev()}
-          >
-            <FaAngleLeft />
-          </button> */}
+         
 
           <div
-            className="heder_sec_main d-flex flex-column align-items-center hdr_csd"
-            style={{ paddingTop: "3rem" }}
+            className="heder_sec_main d-flex flex-column align-items-center "
+            // style={{ paddingTop: "3rem" }}
           >
             <span className="category_name mt-2">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
