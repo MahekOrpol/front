@@ -1084,6 +1084,7 @@ const Home = () => {
                           onClick={() => handleProductClick(product.id)}
                         >
                           More Info
+                          
                         </button>
                         <button
                           className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
