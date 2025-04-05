@@ -1164,7 +1164,7 @@ const Home = () => {
         </div>
         
         <div>
-          {/* <Occasion /> */}
+          <Occasion />
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
