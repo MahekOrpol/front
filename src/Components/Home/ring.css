@@ -1,5 +1,23 @@
 .wrapper {
   padding: 0px 0;
+  margin-top: -221px;
+}
+
+@media (max-width:372px) {
+  .wrapper {
+    margin-top: -35px;
+  }
+}
+
+@media(min-width:373px) and (max-width:599px) {
+  .wrapper {
+    margin-top: -110px;
+  }
+}
+@media(min-width:599px) and (max-width:988px) {
+  .wrapper {
+    margin-top: -204px;
+  }
 }
 
 /* Default slide */
