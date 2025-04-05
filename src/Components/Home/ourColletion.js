@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css";
 const OueColletion = () => {
   return (
-    <div className="our_colles mb-5">
+    <div className="our_colles">
       <div className="banner-img-op">
         <div className="d-flex align-items-center gap-3 dfvdfvfv">
           <div className="d-flex flex-column gap-3 dfscdfsc_tyhdc_defrvfv">
