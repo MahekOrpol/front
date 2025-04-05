@@ -1,14 +1,45 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 const OueColletion = () => {
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Static image imports (keep as before)
+  const productImages = [
+    require("../../Images/sdcd111.png"),
+    require("../../Images/sec.png"),
+    require("../../Images/fri.png"),
+  ];
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("https://crystova.cloudbusiness.cloud/api/v1/product/get");
+        console.log(response);
+        setProducts(response.data.slice(0, 3)); // Get first 3 products
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleProductClick = (productId, productData) => {
     navigate(`/product-details/${productId}`, {
       state: { product: productData },
     });
   };
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
   return (
     <div className="our_colles">
       <div className="banner-img-op">
@@ -27,42 +58,38 @@ const OueColletion = () => {
             </button>
           </div>
           <div className="d-flex justify-content-between gap-4 w-100 defV_ybsxc">
-            <div
-              className="d-flex flex-column gap-2 banner_tezxt "
-              onClick={() => handleProductClick()}
-            >
-              <img
-                src={require("../../Images/sdcd111.png")}
-                className="our_colle_iumg_ssss"
-              />
-              <span className="ps-2">Engagement Rings</span>
-              <span className="ps-2">₹ 15,6234</span>
-            </div>
-            <div
-              className="d-flex flex-column gap-2 banner_tezxt"
-              onClick={() => handleProductClick()}
-            >
-              <img
-                src={require("../../Images/sec.png")}
-                className="our_colle_iumg_ssss"
-              />
-              <span className="ps-2">Engagement Rings</span>
-              <span className="ps-2">₹ 15,6234</span>
-            </div>
-            <div
-              className="d-flex flex-column gap-2 banner_tezxt"
-              onClick={() => handleProductClick()}
-            >
-              <img
-                src={require("../../Images/fri.png")}
-                className="our_colle_iumg_ssss"
-              />
-              <span className="ps-2">Engagement Rings</span>
-              <span className="ps-2">₹ 15,6234</span>
-            </div>
+            {products.map((product, index) => {
+              // Safely extract price (handles Decimal128 or plain number)
+              let price = "0.00";
+              if (product.salePrice) {
+                if (typeof product.salePrice === "object" && "$numberDecimal" in product.salePrice) {
+                  price = parseFloat(product.salePrice.$numberDecimal).toFixed(2);
+                } else {
+                  price = parseFloat(product.salePrice).toFixed(2);
+                }
+              }
+
+              return (
+                <div
+                  key={product._id}
+                  className="d-flex flex-column gap-2 banner_tezxt"
+                  onClick={() => handleProductClick(product.id)}
+                >
+                  <img
+                    src={productImages[index]}
+                    className="our_colle_iumg_ssss"
+                    alt={product.name}
+                  />
+                  <span className="ps-2">{product?.productName.length > 20
+                    ? product.productName.substring(0, 20) + "..."
+                    : product.productName
+                  }</span>
+                  <span className="ps-2">₹ {price}</span>
+                </div>
+              );
+            })}
           </div>
-          <button className="see_more_mobile d-none">See More</button>
-          <div></div>
+          <button className="see_more_mobile d-none"  onClick={() => navigate("/products")}>See More</button>
         </div>
       </div>
     </div>
