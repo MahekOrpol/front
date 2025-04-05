@@ -10,7 +10,7 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import Header from "../../Pages/Header";
 import banner from "../../Images/Frame 200.png";
 import { Swiper, SwiperSlide } from "swiper/react";
-import best from "../../Images/best1.png";
+import best from "../../Images/Mask group (9).png";
 
 import {
   EffectCoverflow,
@@ -49,6 +49,7 @@ import Ring from "../../Pages/Demo/ring";
 import OueColletion from "./ourColletion";
 import RingSlider from "./ring";
 import DimondJewellery from "./Dimond Jewellery/dimond";
+import Occasion from "./Occasion";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -1011,14 +1012,14 @@ const Home = () => {
         <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-5">
         <span className="category_name">Bestselling Jewelery</span>
           <p className="category_txt">
-          Elevate the Everyday in Diamond Elegance          </p>
+          Elevate the Everyday in Diamond Elegance</p>
           <img
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
           <div className="row d-flex align-items-stretch mt-5 ">
             {/* Left Image Section */}
-            <div className="col-lg-6 ring_banner_szcdvc">
+            <div className="col-lg-6 ring_banner_szcdvc position-relative">
               <div className="h-100 d-flex align-items-center justify-content-center">
                 <img
                   src={best}
@@ -1026,6 +1027,15 @@ const Home = () => {
                 />
               </div>
             </div>
+              <div className="tooltip_home">
+                <span className="tooltip_home_rrr">
+                </span>
+              </div>
+              
+              <div className="tooltip_home_sec">
+                <span className="tooltip_home_rrr_sec">
+                </span>
+              </div>
 
             {/* Right Product Cards Section */}
             <div className="col-lg-6">
@@ -1058,7 +1068,7 @@ const Home = () => {
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
                             src={`http://192.168.1.10:3000${product.image[0]}`}
-                            className="p-1_proi img-fluid"
+                            className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
                             alt="Product"
                           />
                         </div>
@@ -1151,6 +1161,10 @@ const Home = () => {
               </div>
             </div>
           </div>
+        </div>
+        
+        <div>
+          {/* <Occasion /> */}
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">

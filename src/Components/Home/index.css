@@ -4623,3 +4623,80 @@ img.ring-image {
   transform: scale(1.1);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+.BEST_SELLING_IMSESSSS {
+  transition: transform 0.4s ease-in-out, box-shadow 0.3s ease;
+  transform: scale(1);
+}
+
+.BEST_SELLING_IMSESSSS:hover {
+  transform: scale(1.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.tooltip_home_rrr {
+  background: white;
+  border-radius: 100px;
+  padding: 8px 16px;
+  margin-left: -4px;
+}
+.tooltip_home {
+  border: 1px solid white;
+  border-radius: 100px;
+  position: absolute;
+  width: 42px;
+  padding: 8px;
+  transform: translateY(113px) translateX(266px);
+}
+.tooltip_home_rrr_sec {
+  background: white;
+  border-radius: 100px;
+  padding: 8px 16px;
+  margin-left: -4px;
+}
+.tooltip_home_sec {
+  border: 1px solid white;
+  border-radius: 100px;
+  position: absolute;
+  width: 42px;
+  padding: 8px;
+  transform: translateY(360px) translateX(410px);
+}
+
+.tooltip_home_rrr::after {
+  content: "Details about spot 1";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  color: black;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.tooltip_home:hover .tooltip_home_rrr::after {
+  opacity: 1;
+}
+.tooltip_home_rrr_sec::after {
+  content: "Details about spot 1";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  color: black;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: 0.3s;
+  pointer-events: none;
+}
+
+.tooltip_home_sec:hover .tooltip_home_rrr_sec::after {
+  opacity: 1;
+}
