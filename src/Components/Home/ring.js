@@ -133,42 +133,42 @@ const RingSlider = () => {
       <div className="center-slider">
         {/* Added ring details to each slide while keeping original images */}
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <img className="slider_img_ssss" src={require("../../Images/styles-slider-hidden-halo.webp")} />
           <div className="ring-info" style={{display: 'none'}}>
             <h3 >{rings[0].title}</h3>
             <p>{rings[0].description}</p>
           </div>
         </div>
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <img className="slider_img_ssss" src={require("../../Images/styles-slider-solitaire.webp")} />
           <div className="ring-info" style={{display: 'none'}}>
             <h3 >{rings[1].title}</h3>
             <p>{rings[1].description}</p>
           </div>
         </div>
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <img className="slider_img_ssss" src={require("../../Images/styles-slider-halo.webp")} />
           <div className="ring-info" style={{display: 'none'}}>
             <h3 >{rings[2].title}</h3>
             <p>{rings[2].description}</p>
           </div>
         </div>
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <img className="slider_img_ssss" src={require("../../Images/styles-slider-three-stone.webp")} />
           <div className="ring-info" style={{display: 'none'}}>
             <h3 >{rings[3].title}</h3>
             <p>{rings[3].description}</p>
           </div>
         </div>
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <img className="slider_img_ssss" src={require("../../Images/styles-slider-vintage.webp")} />
           <div className="ring-info" style={{display: 'none'}}>
             <h3 >{rings[4].title}</h3>
             <p>{rings[4].description}</p>
           </div>
         </div>
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <img className="slider_img_ssss" src={require("../../Images/styles-slider-halo.webp")} />
           <div className="ring-info" style={{display: 'none'}}>
             <h3 >{rings[0].title}</h3>
             <p>{rings[0].description}</p>

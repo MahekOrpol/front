@@ -95,7 +95,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      let url = `http://localhost:3000/api/v1/product/get?`;
+      let url = `http://192.168.1.10:3000/api/v1/product/get?`;
       if (categoryName) url += `categoryName=${categoryName}&`;
       if (gender) url += `gender=${gender}`;
 
@@ -165,7 +165,7 @@ const Products = () => {
   };
 
   const handleApplyFilters = async () => {
-    let url = `http://localhost:3000/api/v1/product/get?`;
+    let url = `http://192.168.1.10:3000/api/v1/product/get?`;
 
     // Append selected categories as query parameters
     if (selectedCategories.length > 0) {
@@ -221,13 +221,13 @@ const Products = () => {
         });
 
         const res = await axios.delete(
-          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://localhost:3000/api/v1/wishlist/create`,
+          `http://192.168.1.10:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -256,7 +256,7 @@ const Products = () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/wishlist/${userId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -312,7 +312,7 @@ const Products = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://localhost:3000/api/v1/order-details/create",
+        "http://192.168.1.10:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -333,7 +333,7 @@ const Products = () => {
   };
 
   const getCategory = async () => {
-    const res = await axios.get("http://localhost:3000/api/v1/category/get");
+    const res = await axios.get("http://192.168.1.10:3000/api/v1/category/get");
     setCategory(res.data);
   };
 
@@ -366,7 +366,7 @@ const Products = () => {
   const displayProducts = isSearchActive ? filteredProducts : productList;
   // // Update your handleApplyFilters function
   // const handleApplyFilters = async () => {
-  //   let url = `http://localhost:3000/api/v1/product/get?`;
+  //   let url = `http://192.168.1.10:3000/api/v1/product/get?`;
 
   //   // Append selected categories as query parameters
   //   if (selectedCategories.length > 0) {
@@ -650,7 +650,7 @@ const Products = () => {
                             ".mp4"
                           ) ? (
                             <video
-                              src={`http://localhost:3000${product.image[imageIndexes[product.id]]
+                              src={`http://192.168.1.10:3000${product.image[imageIndexes[product.id]]
                                 }`}
                               className="p-1_proi img-fluid"
                               autoPlay
@@ -659,7 +659,7 @@ const Products = () => {
                             />
                           ) : (
                             <img
-                              src={`http://localhost:3000${product.image[imageIndexes[product.id]]
+                              src={`http://192.168.1.10:3000${product.image[imageIndexes[product.id]]
                                 }`}
                               className="p-1_proi img-fluid"
                               alt="Product"
