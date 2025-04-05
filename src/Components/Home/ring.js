@@ -53,7 +53,7 @@
 //   );
 // };
 
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import $ from "jquery";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -68,11 +68,14 @@ const RingSlider = () => {
       slidesToShow: 5,
       slidesToScroll: 1,
       centerMode: true,
-      arrows: true,
       dots: false,
       speed: 300,
       centerPadding: "0px",
       infinite: true,
+      arrows: true, // Ensure arrows are enabled
+      prevArrow: $('.slick-prev'), // Point to your custom prev button
+    nextArrow: $('.slick-next'), // Point to your custom next button
+
       // autoplaySpeed: 5000,
       // autoplay: true,
       responsive: [
@@ -108,7 +111,7 @@ const RingSlider = () => {
         },
       ],
     });
-    
+
 
     // Cleanup Slick on component unmount
     return () => {
@@ -116,15 +119,67 @@ const RingSlider = () => {
     };
   }, []);
 
+  // Added ring data array
+  const rings = [
+    { title: "Classic Ring", description: "Timeless elegance in its purest form" },
+    { title: "Modern Ring", description: "Contemporary brilliance with a sleek design" },
+    { title: "Vintage Ring", description: "Antique charm with intricate craftsmanship" },
+    { title: "Elegant Ring1", description: "Refined simplicity for everyday luxury" },
+    { title: "Elegant Ring", description: "Refined simplicity for everyday luxury" },
+  ];
+
   return (
     <div className="wrapper">
       <div className="center-slider">
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
-        <div><img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} /></div>
+        {/* Added ring details to each slide while keeping original images */}
+        <div>
+          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <div className="ring-info" style={{display: 'none'}}>
+            <h3 >{rings[0].title}</h3>
+            <p>{rings[0].description}</p>
+          </div>
+        </div>
+        <div>
+          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <div className="ring-info" style={{display: 'none'}}>
+            <h3 >{rings[1].title}</h3>
+            <p>{rings[1].description}</p>
+          </div>
+        </div>
+        <div>
+          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <div className="ring-info" style={{display: 'none'}}>
+            <h3 >{rings[2].title}</h3>
+            <p>{rings[2].description}</p>
+          </div>
+        </div>
+        <div>
+          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <div className="ring-info" style={{display: 'none'}}>
+            <h3 >{rings[3].title}</h3>
+            <p>{rings[3].description}</p>
+          </div>
+        </div>
+        <div>
+          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <div className="ring-info" style={{display: 'none'}}>
+            <h3 >{rings[4].title}</h3>
+            <p>{rings[4].description}</p>
+          </div>
+        </div>
+        <div>
+          <img className="slider_img_ssss" src={require("../../Images/Frame 197 (1).png")} />
+          <div className="ring-info" style={{display: 'none'}}>
+            <h3 >{rings[0].title}</h3>
+            <p>{rings[0].description}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Custom navigation box - kept original */}
+      <div className="slick-nav-container">
+        <button className="slick-prev custom-prev">&#9665;</button>
+        <button className="slick-next custom-next">&#9655;</button>
       </div>
     </div>
   );
