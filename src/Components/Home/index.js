@@ -1066,7 +1066,7 @@ const Home = () => {
                     </div>
                 
                     {/* OUTSIDE the card but part of same block */}
-                    <div className="d-flex flex-column main_cdsss px-3 pt-2 pb-3 bg-white rounded-bottom shadow-sm ring_secededfcvd">
+                    <div className="d-flex flex-column main_cdsss px-3 pt-2 pb-3 bg-white rounded-bottom ring_secededfcvd">
                       <span className="mikdec_asdaa text-truncate">
                         {product.productName}
                       </span>
