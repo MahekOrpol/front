@@ -5,7 +5,7 @@
 /* Default slide */
 .center-slider .slick-slide {
   color: #fff;
-  height: 600px;
+  height: 790px;
   margin: 0 10px;
   display: flex;
   align-items: center;
@@ -60,11 +60,15 @@
   /* Active center slide */
 
   .slick-active {
-    transform: scale(1) translateY(0) !important;
-
-    /* margin-top: 5rem;
-    transform: scale(1) !important; */
-  }
+    transform: scale(0.8) translateY(0) !important;
+    /*margin-top: 5rem;
+    transform: scale(1) !important;
+    */
+    -webkit-transform: scale(0.8) translateY(0) !important;
+    -moz-transform: scale(0.8) translateY(0) !important;
+    -ms-transform: scale(0.8) translateY(0) !important;
+    -o-transform: scale(0.8) translateY(0) !important;
+}
 
   .slick-active .slider_img_ssss {
     transform: scale(1) translateY(0px) !important;
@@ -110,11 +114,15 @@
 
   /* Active center slide */
   .slick-active {
-    transform: scale(1) translateY(0) !important;
-
-    /* margin-top: 5rem;
-    transform: scale(1) !important; */
-  }
+    transform: scale(0.8) translateY(0) !important;
+    /*margin-top: 5rem;
+    transform: scale(1) !important;
+    */
+    -webkit-transform: scale(0.8) translateY(0) !important;
+    -moz-transform: scale(0.8) translateY(0) !important;
+    -ms-transform: scale(0.8) translateY(0) !important;
+    -o-transform: scale(0.8) translateY(0) !important;
+}
 
   .slick-active .slider_img_ssss {
     transform: scale(1) translateY(0px) !important;
@@ -176,9 +184,12 @@
   }
 
   .center-slider .slick-current.slick-active {
-    transform: scale(1.7) translateY(53px) !important;
-
-  }
+    transform: scale(1.3) translateY(53px) !important;
+    -webkit-transform: scale(1.3) translateY(53px) !important;
+    -moz-transform: scale(1.3) translateY(53px) !important;
+    -ms-transform: scale(1.3) translateY(53px) !important;
+    -o-transform: scale(1.3) translateY(53px) !important;
+}
 
   .center-slider .slick-slide {
     color: #fff;
@@ -187,13 +198,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: scale(1) translateY(-45px) !important;
+    transform: scale(0.8) translateY(-45px) !important;
     transition: all 0.4s ease-in-out;
     background-color: none !important;
-    -webkit-transform: scale(1) translateY(-45px) !important;
-    -moz-transform: scale(1) translateY(-45px) !important;
-    -ms-transform: scale(1) translateY(-45px) !important;
-    -o-transform: scale(1) translateY(-45px) !important;
+    -webkit-transform: scale(0.8) translateY(-45px) !important;
+    -moz-transform: scale(0.8) translateY(-45px) !important;
+    -ms-transform: scale(0.8) translateY(-45px) !important;
+    -o-transform: scale(0.8) translateY(-45px) !important;
 }
 
   .slick-active {
@@ -203,8 +214,11 @@
 
   .slick-active+.slick-active+.slick-active .slider_img_ssss {
     transform: translateY(10px) !important;
-
-  }
+    -webkit-transform: translateY(10px) !important;
+    -moz-transform: translateY(10px) !important;
+    -ms-transform: translateY(10px) !important;
+    -o-transform: translateY(10px) !important;
+}
 
   .slick-active+.slick-active+.slick-active+.slick-active {
 
@@ -235,11 +249,11 @@
   }
 
   .center-slider .slick-current.slick-active {
-    transform: scale(1.7) translateY(123px) !important;
-    -webkit-transform: scale(1.7) translateY(123px) !important;
-    -moz-transform: scale(1.7) translateY(123px) !important;
-    -ms-transform: scale(1.7) translateY(123px) !important;
-    -o-transform: scale(1.7) translateY(123px) !important;
+    transform: scale(1.4) translateY(123px) !important;
+    -webkit-transform: scale(1.4) translateY(123px) !important;
+    -moz-transform: scale(1.4) translateY(123px) !important;
+    -ms-transform: scale(1.4) translateY(123px) !important;
+    -o-transform: scale(1.4) translateY(123px) !important;
 }
 
   .center-slider .slick-slide {
@@ -249,13 +263,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: scale(1) translateY(0) !important;
+    transform: scale(0.8) translateY(0) !important;
     transition: all 0.4s ease-in-out;
     background-color: none !important;
-    -webkit-transform: scale(1) translateY(0) !important;
-    -moz-transform: scale(1) translateY(0) !important;
-    -ms-transform: scale(1) translateY(0) !important;
-    -o-transform: scale(1) translateY(0) !important;
+    -webkit-transform: scale(0.8) translateY(0) !important;
+    -moz-transform: scale(0.8) translateY(0) !important;
+    -ms-transform: scale(0.8) translateY(0) !important;
+    -o-transform: scale(0.8) translateY(0) !important;
 }
 
   .slick-active {
@@ -282,24 +296,36 @@
 
 @media (max-width: 599px) and (min-width: 474px) {
   .slick-active+.slick-active {
-    transform: scale(1.2) translateY(50px) !important;
-
-  }
+    transform: scale(0.8) translateY(50px) !important;
+    -webkit-transform: scale(0.8) translateY(50px) !important;
+    -moz-transform: scale(0.8) translateY(50px) !important;
+    -ms-transform: scale(0.8) translateY(50px) !important;
+    -o-transform: scale(0.8) translateY(50px) !important;
+}
 
   .slick-active+.slick-active .slider_img_ssss {
-    transform: translateY(10px) !important;
-
-  }
+    transform: scale(0.8) translateY(10px) !important;
+    -webkit-transform: scale(0.8) translateY(10px) !important;
+    -moz-transform: scale(0.8) translateY(10px) !important;
+    -ms-transform: scale(0.8) translateY(10px) !important;
+    -o-transform: scale(0.8) translateY(10px) !important;
+}
 
   .slick-active .slider_img_ssss {
-    transform: scale(1.1) translateY(-25px) !important;
-
-  }
+    transform: scale(0.8) translateY(-25px) !important;
+    -webkit-transform: scale(0.8) translateY(-25px) !important;
+    -moz-transform: scale(0.8) translateY(-25px) !important;
+    -ms-transform: scale(0.8) translateY(-25px) !important;
+    -o-transform: scale(0.8) translateY(-25px) !important;
+}
 
   .slick-active {
     transform: scale(1.1) translateY(-25px) !important;
-
-  }
+    -webkit-transform: scale(1.1) translateY(-25px) !important;
+    -moz-transform: scale(1.1) translateY(-25px) !important;
+    -ms-transform: scale(1.1) translateY(-25px) !important;
+    -o-transform: scale(1.1) translateY(-25px) !important;
+}
 
   .center-slider .slick-current.slick-active {
     transform: scale(1.9) translateY(61px) !important;
@@ -311,7 +337,7 @@
 
   .center-slider .slick-slide {
     color: #fff;
-    height: 427px;
+    height: 554px;
     margin: 0 10px;
     display: flex;
     align-items: center;
@@ -326,9 +352,12 @@
   }
 
   .slick-active+.slick-active+.slick-active .slider_img_ssss {
-    transform: scale(1.1) translateY(-25px) !important;
-
-  }
+    transform: scale(0.8) translateY(-25px) !important;
+    -webkit-transform: scale(0.8) translateY(-25px) !important;
+    -moz-transform: scale(0.8) translateY(-25px) !important;
+    -ms-transform: scale(0.8) translateY(-25px) !important;
+    -o-transform: scale(0.8) translateY(-25px) !important;
+}
 
 }
 
@@ -339,14 +368,20 @@
   }
 
   .slick-active+.slick-active .slider_img_ssss {
-    transform: translateY(10px) !important;
-
-  }
+    transform:scale(0.8) translateY(10px) !important;
+    -webkit-transform:scale(0.8) translateY(10px) !important;
+    -moz-transform:scale(0.8) translateY(10px) !important;
+    -ms-transform:scale(0.8) translateY(10px) !important;
+    -o-transform:scale(0.8) translateY(10px) !important;
+}
 
   .slick-active .slider_img_ssss {
-    transform: scale(1.1) translateY(-25px) !important;
-
-  }
+    transform: scale(0.8) translateY(-25px) !important;
+    -webkit-transform: scale(0.8) translateY(-25px) !important;
+    -moz-transform: scale(0.8) translateY(-25px) !important;
+    -ms-transform: scale(0.8) translateY(-25px) !important;
+    -o-transform: scale(0.8) translateY(-25px) !important;
+}
 
   .slick-active {
     transform: scale(1.1) translateY(-25px) !important;
@@ -363,7 +398,7 @@
 
   .center-slider .slick-slide {
     color: #fff;
-    height: 370px;
+    height: 489px;
     margin: 0 10px;
     display: flex;
     align-items: center;
@@ -378,9 +413,12 @@
   }
 
   .slick-active+.slick-active+.slick-active .slider_img_ssss {
-    transform: scale(1.1) translateY(-25px) !important;
-
-  }
+    transform: scale(0.7) translateY(-25px) !important;
+    -webkit-transform: scale(0.7) translateY(-25px) !important;
+    -moz-transform: scale(0.7) translateY(-25px) !important;
+    -ms-transform: scale(0.7) translateY(-25px) !important;
+    -o-transform: scale(0.7) translateY(-25px) !important;
+}
 }
 
 @media (max-width: 374px) {
@@ -395,7 +433,7 @@
 
   .center-slider .slick-slide {
     color: #fff;
-    height: 314px;
+    height: 468px;
     margin: 0 10px;
     display: flex;
     align-items: center;
@@ -518,7 +556,7 @@
 .slick-prev,
 .slick-next {
   position: absolute;
-  top: -101px;
+  top: -102px;
 }
 
 
@@ -554,11 +592,11 @@
   }
   .slick-prev,
   .slick-next {
-    top: -34px;
+    top: -54px;
   }
 }
 
-@media(min-width:319px) and (max-width:372px) {
+@media(min-width:321px) and (max-width:372px) {
   .slick-prev,
   .slick-next {
     top: -16px;
@@ -578,7 +616,7 @@
 @media(min-width:374px) and (max-width:474px) {
   .slick-prev,
   .slick-next {
-    top: -30px;
+    top: -40px;
   }
   .center-slider .slick-center .ring-info h3 {
     font-size: 9px !important;
@@ -596,7 +634,7 @@
 @media(min-width:474px) and (max-width:599px) {
   .slick-prev,
   .slick-next {
-    top: -35px;
+    top: -67px;
   }
   .center-slider .slick-center .ring-info h3 {
     font-size: 10px !important;
@@ -614,7 +652,7 @@
 @media(min-width:599px) and (max-width:700px) {
   .slick-prev,
   .slick-next {
-    top: -45px;
+    top: -59px;
   }
   .center-slider .slick-center .ring-info h3 {
     font-size: 10px !important;
@@ -634,11 +672,11 @@
     top: -30px;
   }
   .center-slider .slick-center .ring-info h3 {
-    font-size: 10px !important;
+    font-size: 16px !important;
     margin: 0;
   }
   .center-slider .slick-center .ring-info p {
-    font-size: 8px !important;
+    font-size: 12px !important;
   }
   .center-slider .slick-center .ring-info {
     margin-top: 31px;
@@ -648,7 +686,7 @@
 @media(min-width:809px) and (max-width:822px) {
   .slick-prev,
   .slick-next {
-    top: -45px;
+    top: -50px;
   }
   .center-slider .slick-center .ring-info h3 {
     font-size: 10px !important;
@@ -709,15 +747,15 @@
   }
   .slick-prev,
   .slick-next {
-    top: -56px;
+    top: -100px;
   }
 }
 
 .center-slider .slick-center .ring-info h3 {
-  font-size: 13px;
+  font-size: 17px;
 }
 .center-slider .slick-center .ring-info p {
-  font-size: 11px;
+  font-size: 12px;
 }
 .ring-info h3 {
   font-weight: normal;
