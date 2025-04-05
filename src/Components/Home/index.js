@@ -46,6 +46,7 @@ import Instruction from "./instruction";
 import Ring from "../../Pages/Demo/ring";
 import OueColletion from "./ourColletion";
 import RingSlider from "./ring";
+import DimondJewellery from "./Dimond Jewellery/dimond";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -724,6 +725,10 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+<div>
+<DimondJewellery />
+</div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd hnbgygjhh">
           <span className="category_name mt-2">Trending Collection</span>
