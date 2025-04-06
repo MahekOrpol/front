@@ -103,229 +103,114 @@
     width: 814px;
     height: 600px;
 } */
+/* Main container */
 
 
+
+.one-way-slider {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  gap: 40px;
+}
+
+.slider-content {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
 .slider-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    margin: auto;
-  }
-  
-  .slider-text {
-    flex: 1;
-  }
-  
-  .slider-text h2 {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    width: 61%;
-    text-align: left;
-  }
-  
-  .occasions_text_p {
-    font-family: "Cabin", sans-serif;
-    font-weight: 400;
-    font-size: 1rem !important;
-    line-height: 1.7 !important;
-    letter-spacing: 0%;
-    text-align: justify;
-    width: 75%;
-  }
-  
-  .slider-text p {
-    margin-bottom: 2rem;
-    line-height: 1.6;
-    font-size: 0.95rem;
-  }
-  
-  .slider-text button {
-    background-color: #5C0F1B;
-    color: white;
-    padding: 0.75rem 1.25rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 0.9rem;
-  }
-  
-  .slider-image-section {
-    flex: 1;
-    position: relative;
-    text-align: right;
-    display: flex;
-    align-items: flex-end;
-    gap: 20px;
-  }
-  
-  .image-container {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    max-width: 417px;
-    border-radius: 10px;
-  }
-  
-  .main-image {
-    width: 100%;
-    max-width: 417px;
-    border-radius: 10px;
-    z-index: 1;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  }
-  
-  .main-image.scale-main {
-    transform: scale(1.05);
-  }
-  
-  .main-image.slide-right {
-    animation: slideRight 0.3s forwards;
-  }
-  
-  .main-image.slide-left {
-    animation: slideLeft 0.3s forwards;
-  }
-  
-  @keyframes slideRight {
-    0% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  
-  @keyframes slideLeft {
-    0% {
-      transform: translateX(-100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  
-  .thumbs {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: end;
-    margin-top: 1rem;
-    align-items: flex-end;
-    transform: translateX(0);
-  }
-  
-  .thumbs img {
-    width: 80px;
-    height: 100px;
-    border-radius: 8px;
-    cursor: pointer;
-    object-fit: cover;
-    transition: all 0.3s ease;
-  }
-  
-  .thumbs img.active-thumb {
-    border: 2px solid #5C0F1B;
-    opacity: 1;
-  }
-  
-  .thumbs img:not(.active-thumb) {
-    opacity: 0.7;
-  }
-  
-  .slide-number {
-    position: absolute;
-    transform: translateY(-400px) translateX(382px);
-    font-size: 9rem;
-    color: #C8A9B4;
-    font-weight: 100;
-    /* z-index: -1; */
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
 }
-  
-  .arrow-btn {
-    position: absolute;
-    top: 50%;
-    right: -60px;
-    transform: translateY(-50%);
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 999px;
-    padding: 0.5rem 0.75rem;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .arrow-btn:hover {
-    background-color: #f1f1f1;
-  }
-  
-  img.thumb-image12 {
-    width: 100px;
-    height: 180px;
-  }
-  
-  img.thumb-image13 {
-    width: 100px;
-    height: 150px;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 992px) {
-    .slider-container {
-      flex-direction: column;
-    }
-    
-    .slider-text h2,
-    .occasions_text_p {
-      width: 100%;
-    }
-    
-    .slide-number {
-      transform: translateY(-250px) translateX(250px);
-      font-size: 6rem;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .slide-number {
-      transform: translateY(-200px) translateX(150px);
-      font-size: 4rem;
-    }
-    
-    .arrow-btn {
-      right: -40px;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .thumbs {
-      justify-content: center;
-    }
-    
-    .slide-number {
-      transform: translateY(-150px) translateX(100px);
-      font-size: 3rem;
-    }
-    
-    img.thumb-image12,
-    img.thumb-image13 {
-        max-width: 417px;
-    width: 814px;
-    height: 600px;
-    }
-  }
-  
-    
-  img.main-image {
-    max-width: 417px;
-    width: 814px;
-    height: 600px;
+
+.slider-track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
 }
-  
+
+.slider-image {
+  position: absolute;
+  transition: all 0.5s ease;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.slider-image img {
+  width: 100%;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+/* Size and position classes */
+.image-large {
+  width: 320px;
+  height: 320px;
+  left: 20%;
+  transform: translate(-22%, 0%);
+  z-index: 3;
+  -webkit-transform: translate(-22%, 0%);
+  -moz-transform: translate(-22%, 0%);
+  -ms-transform: translate(-22%, 0%);
+  -o-transform: translate(-22%, 0%);
+}
+
+.image-medium {
+  width: 93px;
+  height: 158px;
+  left: 61%;
+  transform: translate(-22%, 51%);
+  z-index: 2;
+  opacity: 1;
+}
+
+.image-small {
+  width: 72px;
+  height: 121px;
+  left: 78%;
+  transform: translate(-50%, 29%);
+  z-index: 1;
+  opacity: 0.8;
+  -webkit-transform: translate(-50%, 81%);
+  -moz-transform: translate(-50%, 29%);
+  -ms-transform: translate(-50%, 29%);
+  -o-transform: translate(-50%, 29%);
+}
+
+.next-button {
+  position: absolute;
+  right: 97px;
+  top: 17%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: none;
+  width: 49px;
+  height: 40px;
+  border-radius: 37%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #611d2b;
+  font-weight: bold;
+  font-size: 1.2rem;
+  z-index: 10;
+}
+
+
+@media (max-width:1180px) {
+
+  .one-way-slider {
+    flex-wrap: wrap;
+  }
+
+}
