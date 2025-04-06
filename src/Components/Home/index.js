@@ -194,7 +194,7 @@ const Home = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://192.168.1.10:3000/api/v1/order-details/create",
+        "http://localhost:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -253,20 +253,20 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios.get(
-      "http://192.168.1.10:3000/api/v1/product/getTopRated"
+      "http://localhost:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
     console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
-      "http://192.168.1.10:3000/api/v1/product/getBestSelling"
+      "http://localhost:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios.get(
-      "http://192.168.1.10:3000/api/v1/product/getOnSale"
+      "http://localhost:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -311,13 +311,13 @@ const Home = () => {
         });
 
         const res = await axios.delete(
-          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://192.168.1.10:3000/api/v1/wishlist/create`,
+          `http://localhost:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -343,7 +343,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
+          `http://localhost:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -479,6 +479,43 @@ const Home = () => {
     return () => {
       swiperInstance.off("slideChangeTransitionStart", scaleSlides);
     };
+  }, []);
+
+  useEffect(() => {
+    let currentCardIndex = 0;
+    const cards = $('.we-card');
+    const totalCards = cards.length;
+
+    function updateCarousel() {
+      cards.removeClass('active prev-1 next-1 prev-2 next-2 prev-3 next-3');
+      $(cards[currentCardIndex]).addClass('active');
+
+      const prevIndex_1 = (currentCardIndex - 1 + totalCards) % totalCards;
+      const nextIndex_1 = (currentCardIndex + 1) % totalCards;
+      const prevIndex_2 = (currentCardIndex - 2 + totalCards) % totalCards;
+      const nextIndex_2 = (currentCardIndex + 2) % totalCards;
+      const prevIndex_3 = (currentCardIndex - 3 + totalCards) % totalCards;
+      const nextIndex_3 = (currentCardIndex + 3) % totalCards;
+
+      $(cards[prevIndex_1]).addClass('prev-1');
+      $(cards[nextIndex_1]).addClass('next-1');
+      $(cards[prevIndex_2]).addClass('prev-2');
+      $(cards[nextIndex_2]).addClass('next-2');
+      $(cards[prevIndex_3]).addClass('prev-3');
+      $(cards[nextIndex_3]).addClass('next-3');
+    }
+
+    updateCarousel();
+
+    $('.right').click(() => {
+      currentCardIndex = (currentCardIndex + 1) % totalCards;
+      updateCarousel();
+    });
+
+    $('.left').click(() => {
+      currentCardIndex = (currentCardIndex - 1 + totalCards) % totalCards;
+      updateCarousel();
+    });
   }, []);
 
   return (
@@ -815,7 +852,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://192.168.1.10:3000${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -886,7 +923,7 @@ const Home = () => {
 
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://192.168.1.10:3000${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -960,7 +997,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://192.168.1.10:3000${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1067,7 +1104,7 @@ const Home = () => {
                 
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://192.168.1.10:3000${product.image[0]}`}
+                            src={`http://localhost:3000${product.image[0]}`}
                             className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
                             alt="Product"
                           />
@@ -1164,7 +1201,7 @@ const Home = () => {
         </div>
         
         <div>
-          {/* <Occasion /> */}
+          <Occasion />
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
@@ -1306,7 +1343,88 @@ const Home = () => {
           <Instruction />
         </div>
         
-        <div className="testimonial-container d-flex align-items-center">
+        <div className="video-curved-tewd mb-5">
+        <div className="we-carousel">
+    <div className="we-arrow left">&#10094;</div>
+    <div className="we-card-container">
+      <div className="we-card"> 
+      <video
+                  src={ringVideo1}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+      </div>
+      <div className="we-card"> 
+      <video
+                  src={ringVideo2}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+      </div>
+      <div className="we-card"> 
+      <video
+                  src={ringVideo3}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+      </div>
+      <div className="we-card"> 
+      <video
+                  src={ringVideo4}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+      </div>
+      <div className="we-card"> 
+      <video
+                  src={ringVideo5}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+      </div>
+      <div className="we-card"> 
+      <video
+                  src={ringVideo1}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+      </div>
+      <div className="we-card"> 
+      <video
+                  src={ringVideo2}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+      </div>
+      <div className="we-card"> 
+      <video
+                  src={ringVideo3}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+      </div>
+    </div>
+    <div className="we-arrow right">&#10095;</div>
+  </div>
+          </div>
+
+        <div className="testimonial-container d-flex align-items-center mt-5">
          
 
           <div
