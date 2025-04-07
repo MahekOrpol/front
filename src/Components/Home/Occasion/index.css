@@ -1,8 +1,7 @@
-
 .occasions_text_p {
   font-family: "Cabin", sans-serif;
   font-weight: 400;
-  font-size:  1rem !important;
+  font-size: 1rem !important;
   line-height: 1.7 !important;
   letter-spacing: 0%;
   text-align: justify;
@@ -20,6 +19,7 @@
   display: flex;
   align-items: center;
   /* max-width: 1200px; */
+  max-width: 1700px;
   margin: 0 auto;
   padding: 40px 20px;
   gap: 40px;
@@ -29,7 +29,7 @@
 
 .slider-content {
   text-align: left;
-  max-width: 600px;
+  max-width: 1024px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -99,14 +99,14 @@
   width: fit-content;
   gap: 20px !important;
   } */
-  .shop-button {
-    padding: 0.5rem 1rem;
-    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-    gap: 10px !important;
-    width: fit-content;
-    gap: 20px !important;
-    display: flex;
-    align-items: center;
+.shop-button {
+  padding: 0.5rem 1rem;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  gap: 10px !important;
+  width: fit-content;
+  gap: 20px !important;
+  display: flex;
+  align-items: center;
 }
 
 .next-button {
@@ -114,7 +114,7 @@
   /* border: 1px solid gray; */
   right: 0px;
   top: 17%;
-  transform: translateY(-160%)translate(0px, -1px);
+  transform: translateY(-160%) translate(0px, -1px);
   background: rgba(255, 255, 255, 0.8);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
@@ -146,21 +146,20 @@
   }
 }
 
-
 .slide-number-indicator {
   position: absolute;
   /* scale: 3.4; */
   /* left: 43%; */
   font-size: 160px;
   font-family: "DM Serif Text", serif;
-  color: #C8B0B5;
+  color: #c8b0b5;
   font-weight: 100;
   /* z-index: 11; */
   /* transform: translate(40px, -270px); */
-  font-family: 'Cormorant Infant';
-font-weight: 700;
+  font-family: "Cormorant Infant";
+  font-weight: 700;
 
-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .slide-number-indicator {
@@ -172,75 +171,107 @@ transition: all 0.5s ease;
 @media (max-width: 1180px) {
   .one-way-slider {
     flex-wrap: wrap;
+    @media (max-width: 1171px) {
+      .image-medium {
+        transform: translate(7%, 51%);
+      }
+    }
+    .slider_img_bgggg {
+      backdrop-filter: blur(536.200012px);
+      position: absolute;
+      left: 58%;
+      background: #611d2b38;
+      opacity: 21%;
+      border-radius: 50%;
+      z-index: 1;
+      top: -125%;
+      filter: blur(7px);
+    }
+    .slider_img_bgggg {
+      width: 435px;
+      height: 435px;
+    }
   }
-}
-.slider_img_bgggg {
-  backdrop-filter: blur(536.200012px);
-  position: absolute;
-  left: 58%;
-  background: #611d2b38;
-  opacity: 21%;
-  border-radius: 50%;
-  z-index: 1;
-  top: -125%;
-  filter: blur(7px);
-}
-.slider_img_bgggg {
-  width: 435px;
-  height: 435px;
-}
+    @media (max-width: 768px) {
+      .slider_img_bgggg {
+        display: none;
+      }
+    }
 
-@media (max-width: 768px) {
-  .slider_img_bgggg {
-    display: none;
+    @media (max-width: 992px) {
+      .one-way-slider {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .slider-content {
+        max-width: 90%;
+        text-align: center;
+      }
+
+      .occasions_text_p {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .occation-content-h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+    }
+
+    .occasions_text_p {
+      font-size: clamp(0.9rem, 1.5vw, 1.2rem) !important;
+    }
+
+    .image-large {
+      width: clamp(250px, 30vw, 400px);
+      height: clamp(320px, 40vw, 512px);
+      left: 20%;
+      transform: translate(-22%, 0%);
+    }
+
+    .image-medium {
+      width: clamp(120px, 18vw, 183px);
+      height: clamp(180px, 25vw, 278px);
+      left: 57%;
+      transform: translate(-22%, 41%);
+    }
+
+    .image-small {
+      width: clamp(80px, 12vw, 111px);
+      height: clamp(120px, 16vw, 170px);
+      left: 78%;
+      transform: translate(-50%, 99%);
+    }
+    .image-small {
+      transform: translate(22%, 81%);
+      -webkit-transform: translate(22%, 81%);
+      -moz-transform: translate(22%, 81%);
+      -ms-transform: translate(22%, 81%);
+      -o-transform: translate(22%, 81%);
+    }
   }
-}
 
-
-@media (max-width: 992px) {
-  .one-way-slider {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  @media (max-width: 1126px) {
+    .image-medium {
+      transform: translate(18%, 51%);
+    }
   }
 
-  .slider-content {
-    max-width: 90%;
-    text-align: center;
+  @media (max-width: 1073px) {
+    .image-medium {
+      transform: translate(37%, 51%);
+    }
+    .image-small {
+      transform: translate(55%, 81%);
+      -webkit-transform: translate(55%, 81%);
+      -moz-transform: translate(55%, 81%);
+      -ms-transform: translate(55%, 81%);
+      -o-transform: translate(55%, 81%);
+    }
   }
 
-  .occasions_text_p {
-    width: 100%;
-    text-align: center;
+  @media (max-width: 1013px) {
   }
-}
 
-.occation-content-h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-}
-
-.occasions_text_p {
-  font-size: clamp(0.9rem, 1.5vw, 1.2rem) !important;
-}
-
-
-.image-large {
-  width: clamp(250px, 30vw, 400px);
-  height: clamp(320px, 40vw, 512px);
-  left: 20%;
-  transform: translate(-22%, 0%);
-}
-
-.image-medium {
-  width: clamp(120px, 18vw, 183px);
-  height: clamp(180px, 25vw, 278px);
-  left: 57%;
-  transform: translate(-22%, 41%);
-}
-
-.image-small {
-  width: clamp(80px, 12vw, 111px);
-  height: clamp(120px, 16vw, 170px);
-  left: 78%;
-  transform: translate(-50%, 99%);
-}
