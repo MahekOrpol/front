@@ -125,16 +125,16 @@ const diamondRings = [
   },
 ];
 
-const categories = [
-  { img: require("../../Images/Group 1597884634 (1).png"), label: "Pendant" },
-  { img: require("../../Images/Group 1597884629 (1).png"), label: "Bracelet" },
-  { img: require("../../Images/Group 1597884630.png"), label: "Earrings" },
-  { img: require("../../Images/Group 1597884631.png"), label: "Rings" },
-  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
-  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
-  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
-  { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
-];
+// const categories = [
+//   { img: require("../../Images/Group 1597884634 (1).png"), label: "Pendant" },
+//   { img: require("../../Images/Group 1597884629 (1).png"), label: "Bracelet" },
+//   { img: require("../../Images/Group 1597884630.png"), label: "Earrings" },
+//   { img: require("../../Images/Group 1597884631.png"), label: "Rings" },
+//   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+//   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+//   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+//   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
+// ];
 
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
@@ -149,7 +149,7 @@ const Home = () => {
   const [wishlistItems, setWishlistItems] = useState({});
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
-  // const [categories, setCategories] = useState();
+  const [categoriesa, setCategoriesa] = useState();
 
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
@@ -194,7 +194,7 @@ const Home = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://localhost:3000/api/v1/order-details/create",
+        "http://192.168.1.10:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -212,6 +212,16 @@ const Home = () => {
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getCategories = async () => {
+    const res = await axios.get("http://192.168.1.10:3000/api/v1/category/get");
+    setCategoriesa(res.data);
+    console.log("res.datassss :>> ", res.data);
   };
 
   useEffect(() => {
@@ -253,20 +263,20 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getTopRated"
+      "http://192.168.1.10:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
     console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getBestSelling"
+      "http://192.168.1.10:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getOnSale"
+      "http://192.168.1.10:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -311,13 +321,13 @@ const Home = () => {
         });
 
         const res = await axios.delete(
-          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://localhost:3000/api/v1/wishlist/create`,
+          `http://192.168.1.10:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -343,7 +353,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/wishlist/${userId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -481,41 +491,177 @@ const Home = () => {
     };
   }, []);
 
+  // useEffect(() => {
+  //   let currentCardIndex = 0;
+  //   const cards = $(".we-card");
+  //   const totalCards = cards.length;
+
+  //   function updateCarousel() {
+  //     cards.removeClass("active prev-1 next-1 prev-2 next-2 prev-3 next-3");
+  //     $(cards[currentCardIndex]).addClass("active");
+
+  //     const prevIndex_1 = (currentCardIndex - 1 + totalCards) % totalCards;
+  //     const nextIndex_1 = (currentCardIndex + 1) % totalCards;
+  //     const prevIndex_2 = (currentCardIndex - 2 + totalCards) % totalCards;
+  //     const nextIndex_2 = (currentCardIndex + 2) % totalCards;
+  //     const prevIndex_3 = (currentCardIndex - 3 + totalCards) % totalCards;
+  //     const nextIndex_3 = (currentCardIndex + 3) % totalCards;
+
+  //     $(cards[prevIndex_1]).addClass("prev-1");
+  //     $(cards[nextIndex_1]).addClass("next-1");
+  //     $(cards[prevIndex_2]).addClass("prev-2");
+  //     $(cards[nextIndex_2]).addClass("next-2");
+  //     $(cards[prevIndex_3]).addClass("prev-3");
+  //     $(cards[nextIndex_3]).addClass("next-3");
+  //   }
+
+  //   updateCarousel();
+
+  //   $(".right").click(() => {
+  //     currentCardIndex = (currentCardIndex + 1) % totalCards;
+  //     updateCarousel();
+  //   });
+
+  //   $(".left").click(() => {
+  //     currentCardIndex = (currentCardIndex - 1 + totalCards) % totalCards;
+  //     updateCarousel();
+  //   });
+  // }, []);
+
   useEffect(() => {
     let currentCardIndex = 0;
-    const cards = $('.we-card');
+    const cards = $(".we-card");
     const totalCards = cards.length;
-
+    let autoScrollInterval;
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    const slidesToScroll = 1;
+    const cardContainer = $(".we-card-container")[0];
     function updateCarousel() {
-      cards.removeClass('active prev-1 next-1 prev-2 next-2 prev-3 next-3');
-      $(cards[currentCardIndex]).addClass('active');
-
+      cards.removeClass("active prev-1 next-1 prev-2 next-2 prev-3 next-3");
+      $(cards[currentCardIndex]).addClass("active");
       const prevIndex_1 = (currentCardIndex - 1 + totalCards) % totalCards;
       const nextIndex_1 = (currentCardIndex + 1) % totalCards;
       const prevIndex_2 = (currentCardIndex - 2 + totalCards) % totalCards;
       const nextIndex_2 = (currentCardIndex + 2) % totalCards;
       const prevIndex_3 = (currentCardIndex - 3 + totalCards) % totalCards;
       const nextIndex_3 = (currentCardIndex + 3) % totalCards;
-
-      $(cards[prevIndex_1]).addClass('prev-1');
-      $(cards[nextIndex_1]).addClass('next-1');
-      $(cards[prevIndex_2]).addClass('prev-2');
-      $(cards[nextIndex_2]).addClass('next-2');
-      $(cards[prevIndex_3]).addClass('prev-3');
-      $(cards[nextIndex_3]).addClass('next-3');
+      $(cards[prevIndex_1]).addClass("prev-1");
+      $(cards[nextIndex_1]).addClass("next-1");
+      $(cards[prevIndex_2]).addClass("prev-2");
+      $(cards[nextIndex_2]).addClass("next-2");
+      $(cards[prevIndex_3]).addClass("prev-3");
+      $(cards[nextIndex_3]).addClass("next-3");
     }
-
+    function startAutoScroll() {
+      autoScrollInterval = setInterval(() => {
+        if (!isDragging) {
+          currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
+          updateCarousel();
+        }
+      }, 3000);
+    }
+    function stopAutoScroll() {
+      clearInterval(autoScrollInterval);
+    }
+    function handleDragStart(e) {
+      isDragging = true;
+      stopAutoScroll();
+      startX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
+      currentX = startX;
+      cardContainer.style.cursor = "grabbing";
+    }
+    function handleDragMove(e) {
+      if (!isDragging) return;
+      const x = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
+      const deltaX = x - currentX;
+      currentX = x;
+      // Visual feedback during drag
+      const activeCard = cards[currentCardIndex];
+      const activeCardRect = activeCard.getBoundingClientRect();
+      const cardWidth = activeCardRect.width;
+      if (Math.abs(deltaX) > cardWidth * 0.1) {
+        if (deltaX > 0) {
+          // Dragging right - go to previous card
+          $(activeCard).css("transform", `translateX(${deltaX}px)`);
+        } else {
+          // Dragging left - go to next card
+          $(activeCard).css("transform", `translateX(${deltaX}px)`);
+        }
+      }
+    }
+    function handleDragEnd(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      cardContainer.style.cursor = "grab";
+      const x =
+        e.type === "touchend"
+          ? e.changedTouches
+            ? e.changedTouches[0].clientX
+            : 0
+          : e.clientX;
+      const deltaX = x - startX;
+      const activeCard = cards[currentCardIndex];
+      // Reset position
+      $(activeCard).css("transform", "");
+      // Determine if swipe was significant enough to change cards
+      const activeCardRect = activeCard.getBoundingClientRect();
+      const cardWidth = activeCardRect.width;
+      if (Math.abs(deltaX) > cardWidth * 0.3) {
+        if (deltaX > 0) {
+          // Swiped right - previous card
+          currentCardIndex =
+            (currentCardIndex - slidesToScroll + totalCards) % totalCards;
+        } else {
+          // Swiped left - next card
+          currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
+        }
+        updateCarousel();
+      }
+      startAutoScroll();
+    }
+    // Initialize carousel
     updateCarousel();
-
-    $('.right').click(() => {
-      currentCardIndex = (currentCardIndex + 1) % totalCards;
+    startAutoScroll();
+    // Button navigation
+    $(".right").click(() => {
+      stopAutoScroll();
+      currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
       updateCarousel();
+      startAutoScroll();
     });
-
-    $('.left').click(() => {
-      currentCardIndex = (currentCardIndex - 1 + totalCards) % totalCards;
+    $(".left").click(() => {
+      stopAutoScroll();
+      currentCardIndex =
+        (currentCardIndex - slidesToScroll + totalCards) % totalCards;
       updateCarousel();
+      startAutoScroll();
     });
+    // Touch and mouse events for dragging
+    cardContainer.style.cursor = "grab";
+    cardContainer.addEventListener("mousedown", handleDragStart);
+    cardContainer.addEventListener("mousemove", handleDragMove);
+    cardContainer.addEventListener("mouseup", handleDragEnd);
+    cardContainer.addEventListener("mouseleave", handleDragEnd);
+    cardContainer.addEventListener("touchstart", handleDragStart, {
+      passive: true,
+    });
+    cardContainer.addEventListener("touchmove", handleDragMove, {
+      passive: false,
+    });
+    cardContainer.addEventListener("touchend", handleDragEnd);
+    // Clean up
+    return () => {
+      stopAutoScroll();
+      cardContainer.removeEventListener("mousedown", handleDragStart);
+      cardContainer.removeEventListener("mousemove", handleDragMove);
+      cardContainer.removeEventListener("mouseup", handleDragEnd);
+      cardContainer.removeEventListener("mouseleave", handleDragEnd);
+      cardContainer.removeEventListener("touchstart", handleDragStart);
+      cardContainer.removeEventListener("touchmove", handleDragMove);
+      cardContainer.removeEventListener("touchend", handleDragEnd);
+    };
   }, []);
 
   return (
@@ -573,19 +719,21 @@ const Home = () => {
               }}
               className="mySwiper xfvdfvdfvc "
             >
-              {categories.map((item, index) => (
+              {categoriesa?.map((category) => (
                 <SwiperSlide
-                  key={index}
+                  key={category.id}
                   className="slide-item"
-                  onClick={() => handleCategoryClick(item.label)}
+                  onClick={() => handleCategoryClick(category.categoryName)}
                 >
-                  <div className="d-flex flex-column align-items-center fvfvfc_Zdcdsc">
+                  <div className="d-flex flex-column align-items-center">
                     <img
-                      src={item.img}
-                      className="home-img home_img_ssssss"
-                      alt={item.label}
+                      src={`http://192.168.1.10:3000${category.categoryImage}`}
+                      className="home-img home_img_ssssss fvfvfc_Zdcdsc"
+                      alt={category.categoryName}
                     />
-                    <span className="category-label">{item.label}</span>
+                    <span className="category-label">
+                      {category.categoryName}
+                    </span>
                   </div>
                 </SwiperSlide>
               ))}
@@ -693,6 +841,7 @@ const Home = () => {
                 <button
                   className="w-25 spg_nb_sle"
                   style={{ whiteSpace: "nowrap" }}
+                  onClick={() => navigate("/products")}
                 >
                   Shop Now
                 </button>
@@ -766,11 +915,9 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-3">
-        <span className="category_name mt-2">Diamond Jewelry</span>
-          <p className="category_txt">
-          Minimal. Modern. Mesmerizing
-          </p>
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+          <span className="category_name ">Diamond Jewelry</span>
+          <p className="category_txt">Minimal. Modern. Mesmerizing</p>
           <img
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
@@ -778,8 +925,8 @@ const Home = () => {
           <DimondJewellery />
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd hnbgygjhh">
-          <span className="category_name mt-2">Trending Collection</span>
+        <div className="paddingdn d-flex flex-column align-items-center  hnbgygjhh">
+          <span className="category_name ">Trending Collection</span>
           <p className="category_txt">
             The Latest looks, Crafted to Perfection
           </p>
@@ -852,7 +999,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`http://192.168.1.10:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -923,7 +1070,7 @@ const Home = () => {
 
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`http://192.168.1.10:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -997,7 +1144,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`http://192.168.1.10:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1039,7 +1186,6 @@ const Home = () => {
               </div>
             </div>
           )}
-         
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
@@ -1047,9 +1193,10 @@ const Home = () => {
         </div>
 
         <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-5">
-        <span className="category_name">Bestselling Jewelery</span>
+          <span className="category_name">Bestselling Jewelery</span>
           <p className="category_txt">
-          Elevate the Everyday in Diamond Elegance</p>
+            Elevate the Everyday in Diamond Elegance
+          </p>
           <img
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
@@ -1064,86 +1211,78 @@ const Home = () => {
                 />
               </div>
             </div>
-              <div className="tooltip_home">
-                <span className="tooltip_home_rrr">
-                </span>
-              </div>
-              
-              <div className="tooltip_home_sec">
-                <span className="tooltip_home_rrr_sec">
-                </span>
-              </div>
 
             {/* Right Product Cards Section */}
             <div className="col-lg-6">
               <div className="h-100 d-flex flex-column justify-content-between ">
                 <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc">
                   {bestSelling.slice(0, 2).map((product) => (
-                  <div
-                  key={product.id}
-                  className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 ring-collection-csssss h-100"
-                >
-                  <div className="h-100 d-flex flex-column">
-                    <div className="card prio_card scdscsed_sdss dimond_section dimof_sss sdcsdc_rinf_dimnsss">
-                      <div className="card-image-wrapper position-relative best_saller_btn">
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          BEST SALLER
-                        </button>
-                
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {wishlistItems[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                
-                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          <img
-                            src={`http://localhost:3000${product.image[0]}`}
-                            className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
-                            alt="Product"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                
-                    {/* OUTSIDE the card but part of same block */}
-                    <div className="d-flex flex-column main_cdsss px-3 pt-2 bg-white rounded-bottom ring_secededfcvd">
-                      <span className="mikdec_asdaa text-truncate">
-                        {product.productName}
-                      </span>
-                      <div className="d-flex align-items-center gap-3 pt-1">
-                        <span className="mikdec_asdxsx">
-                          ₹{product.salePrice?.$numberDecimal}
-                        </span>
-                        <span className="mikdec_axsx">
-                          ₹{product.regularPrice?.$numberDecimal}
-                        </span>
-                      </div>
-                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                        <button
-                          className="more_btn_dsdd w-50"
-                          onClick={() => handleProductClick(product.id)}
-                        >
-                          More Info
+                    <div
+                      key={product.id}
+                      className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 ring-collection-csssss h-100"
+                    >
+                      <div className="h-100 d-flex flex-column">
+                        <div className="card prio_card scdscsed_sdss dimond_section dimof_sss sdcsdc_rinf_dimnsss">
+                          <div className="card-image-wrapper position-relative best_saller_btn">
+                            <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                              BEST SALLER
+                            </button>
 
-                        </button>
-                        <button
-                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                          onClick={() => addToCart(product)}
-                        >
-                          Add to Cart <BiShoppingBag size={25} />
-                        </button>
+                            <div
+                              className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                              onClick={() => toggleFavorite(product.id)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              {wishlistItems[product.id] ? (
+                                <GoHeartFill
+                                  className="heart-icon_ss"
+                                  size={18}
+                                />
+                              ) : (
+                                <GoHeart className="heart-icon_ss" size={18} />
+                              )}
+                            </div>
+
+                            <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                              <img
+                                src={`http://192.168.1.10:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
+                                alt="Product"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* OUTSIDE the card but part of same block */}
+                        <div className="d-flex flex-column main_cdsss pt-2 bg-white rounded-bottom ring_secededfcvd">
+                          <span className="mikdec_asdaa text-truncate">
+                            {product.productName}
+                          </span>
+                          <div className="d-flex align-items-center gap-3 pt-1">
+                            <span className="mikdec_asdxsx">
+                              ₹{product.salePrice?.$numberDecimal}
+                            </span>
+                            <span className="mikdec_axsx">
+                              ₹{product.regularPrice?.$numberDecimal}
+                            </span>
+                          </div>
+                          <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                            <button
+                              className="more_btn_dsdd w-50"
+                              onClick={() => handleProductClick(product.id)}
+                            >
+                              More Info
+                            </button>
+                            <button
+                              className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                              onClick={() => addToCart(product)}
+                            >
+                              Add to Cart <BiShoppingBag size={25} />
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                
                   ))}
                 </div>
               </div>
@@ -1151,7 +1290,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-3">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd ">
           <span className="category_name mt-0 mobile-hide">
             Celebrate love with our Collection
           </span>
@@ -1199,7 +1338,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        
+
         <div>
           <Occasion />
         </div>
@@ -1258,21 +1397,102 @@ const Home = () => {
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
-
         </div>
         <div>
           <RingSlider />
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center mt-2 asxs_sdxszx dxfcvdfsCV_ss">
-          <span className="category_name mt-0">New Arrivals</span>
+          <span className="category_name mt-3">New Arrivals</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
+        </div>
 
-          <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd ">
+        <div className="video-curved-tewd mb-5">
+          <div className="we-carousel">
+            {/* <div className="we-arrow left">&#10094;</div> */}
+            <div className="we-card-container">
+              <div className="we-card">
+                <video
+                  src={ringVideo1}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+              </div>
+              <div className="we-card">
+                <video
+                  src={ringVideo2}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+              </div>
+              <div className="we-card">
+                <video
+                  src={ringVideo3}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+              </div>
+              <div className="we-card">
+                <video
+                  src={ringVideo4}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+              </div>
+              <div className="we-card">
+                <video
+                  src={ringVideo5}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+              </div>
+              <div className="we-card">
+                <video
+                  src={ringVideo1}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+              </div>
+              <div className="we-card">
+                <video
+                  src={ringVideo2}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+              </div>
+              <div className="we-card">
+                <video
+                  src={ringVideo3}
+                  className=" bg-white video_new_arrr"
+                  autoPlay
+                  loop
+                  muted
+                />
+              </div>
+            </div>
+            {/* <div className="we-arrow right">&#10095;</div> */}
+          </div>
+        </div>
+
+        {/* <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd ">
             <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
               <div className="d-flex justify-content-center align-items-center h-100 w-100">
                 <video
@@ -1329,104 +1549,17 @@ const Home = () => {
                 />
               </div>
             </div>
-          </div>
-        </div>
+          </div> */}
 
-       
-        <div
-          className="heder_sec_main d-flex flex-column align-items-center mt-5"
-        >
+        <div className="heder_sec_main d-flex flex-column align-items-center mt-5">
           <span className="category_name mt-2">Instructions</span>
           {/* <p className="category_txt">What our Client’s say about us</p> */}
           <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
 
           <Instruction />
         </div>
-        
-        <div className="video-curved-tewd mb-5">
-        <div className="we-carousel">
-    <div className="we-arrow left">&#10094;</div>
-    <div className="we-card-container">
-      <div className="we-card"> 
-      <video
-                  src={ringVideo1}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-      </div>
-      <div className="we-card"> 
-      <video
-                  src={ringVideo2}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-      </div>
-      <div className="we-card"> 
-      <video
-                  src={ringVideo3}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-      </div>
-      <div className="we-card"> 
-      <video
-                  src={ringVideo4}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-      </div>
-      <div className="we-card"> 
-      <video
-                  src={ringVideo5}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-      </div>
-      <div className="we-card"> 
-      <video
-                  src={ringVideo1}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-      </div>
-      <div className="we-card"> 
-      <video
-                  src={ringVideo2}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-      </div>
-      <div className="we-card"> 
-      <video
-                  src={ringVideo3}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-      </div>
-    </div>
-    <div className="we-arrow right">&#10095;</div>
-  </div>
-          </div>
 
         <div className="testimonial-container d-flex align-items-center mt-5">
-         
-
           <div
             className="heder_sec_main d-flex flex-column align-items-center "
             // style={{ paddingTop: "3rem" }}

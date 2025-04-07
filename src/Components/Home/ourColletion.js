@@ -11,9 +11,9 @@ const OueColletion = () => {
 
   // Static image imports (keep as before)
   const productImages = [
-    require("../../Images/sdcd111.png"),
-    require("../../Images/sec.png"),
-    require("../../Images/fri.png"),
+    require("../../Images/our.png"),
+    require("../../Images/our2.png"),
+    require("../../Images/our3.png"),
   ];
 
   useEffect(() => {
@@ -80,11 +80,11 @@ const OueColletion = () => {
                     className="our_colle_iumg_ssss"
                     alt={product.name}
                   />
-                  <span className="ps-2">{product?.productName.length > 20
+                  <span className="our_coll_head">{product?.productName.length > 20
                     ? product.productName.substring(0, 20) + "..."
                     : product.productName
                   }</span>
-                  <span className="ps-2">₹ {price}</span>
+                  <span className="our_coll_head_tl">₹ {price}</span>
                 </div>
               );
             })}
