@@ -28,7 +28,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
 
     const getProfileData = async () => {
         try {
-            const res = await axios.get(`http://192.168.1.10:3000/api/v1/users/${user_Id}`);
+            const res = await axios.get(`http://localhost:3000/api/v1/users/${user_Id}`);
             setData(res.data)
 
 
@@ -68,6 +68,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
             {!showRegister ? (
                 <div className="signup-popup-overlay" onClick={handleClose}> {/* Close on outside click */}
                     <div className="signup-popup" onClick={(e) => e.stopPropagation()}>
+
                         <div className="popup-arrow"></div>
 
                         {/* Profile Section */}
@@ -76,7 +77,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
                             <div className="profile-details">
                                 {data ? (
                                     <>
-                                        <h5>{data.firstName} {data.lastName}</h5>
+                                        <h5>{data.firstName} {console.log('data', data)}{data.lastName}</h5>
                                         <p className="contact-number"><strong>{data.phone}</strong></p>
                                     </>
                                 ) : (
