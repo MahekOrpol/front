@@ -41,7 +41,7 @@ const Products = () => {
   const [wishlistItems, setWishlistItems] = useState({});
   const [category, setCategory] = useState([]);
   const navigate = useNavigate();
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedCategories, setSelectedCategories  ] = useState([]);
   const userId = localStorage.getItem("user_Id");
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -168,7 +168,7 @@ const Products = () => {
     let url = `http://localhost:3000/api/v1/product/get?`;
 
     // Append selected categories as query parameters
-    if (selectedCategories.length > 0) {
+    if (selectedCategories.length > 0) {  
       url += `categoryName=${selectedCategories.join(",")}&`;
     }
 

@@ -150,6 +150,8 @@ const Home = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   // const [categories, setCategories] = useState();
+  const [currentCategory, setCurrentCategory] = useState("");
+  const [filteredBestSellers, setFilteredBestSellers] = useState([]);
 
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
@@ -291,6 +293,23 @@ const Home = () => {
       text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
     },
   ];
+
+  const fetchBestSellersByCategory = async (category) => {
+    try {
+      const url = `http://localhost:3000/api/v1/product/get?categoryName=${category}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching ${category} products:`, error);
+      return [];
+    }
+  };
+  const handleTooltipClick = async (category) => {
+    setCurrentCategory(category);
+    const products = await fetchBestSellersByCategory(category);
+    setFilteredBestSellers(products);
+    console.log('products :>> ', products);
+  };
 
   const toggleFavorite = async (productId) => {
     const userId = localStorage.getItem("user_Id");
@@ -558,7 +577,7 @@ const Home = () => {
             className="home_tag_img"
           />
 
-          <div className=" p-0">
+          <div className="p-0 mx-2">
             <Swiper
               spaceBetween={10}
               loop={true}
@@ -767,9 +786,9 @@ const Home = () => {
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-3">
-        <span className="category_name mt-2">Diamond Jewelry</span>
+          <span className="category_name mt-2">Diamond Jewelry</span>
           <p className="category_txt">
-          Minimal. Modern. Mesmerizing
+            Minimal. Modern. Mesmerizing
           </p>
           <img
             src={require("../../Images/Groupimg.png")}
@@ -1039,7 +1058,7 @@ const Home = () => {
               </div>
             </div>
           )}
-         
+
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
@@ -1047,9 +1066,9 @@ const Home = () => {
         </div>
 
         <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-5">
-        <span className="category_name">Bestselling Jewelery</span>
+          <span className="category_name">Bestselling Jewelery</span>
           <p className="category_txt">
-          Elevate the Everyday in Diamond Elegance</p>
+            Elevate the Everyday in Diamond Elegance</p>
           <img
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
@@ -1062,89 +1081,108 @@ const Home = () => {
                   src={best}
                   className="img-fluid w-100 h-100 object-fit-cover rounded"
                 />
+                {/* Add hover spots with tooltips */}
+
+                <div
+                  className="tooltip-spot spot-1" onClick={() => handleTooltipClick("Earrings")}
+                >
+                  <div className="spot-marker"></div>
+                </div>
+                <div
+                  className="tooltip-spot spot-2" onClick={() => handleTooltipClick("Rings")}
+                >
+                  <div className="spot-marker"></div>
+                </div>
+                <div
+                  className="tooltip-spot spot-3" onClick={() => handleTooltipClick("Pendant")}
+                >
+                  <div className="spot-marker"></div>
+                </div>
+
               </div>
             </div>
-              <div className="tooltip_home">
-                <span className="tooltip_home_rrr">
-                </span>
-              </div>
-              
-              <div className="tooltip_home_sec">
-                <span className="tooltip_home_rrr_sec">
-                </span>
-              </div>
+            {/* <div className="tooltip_home">
+              <span className="tooltip_home_rrr">
+              </span>
+            </div>
+
+            <div className="tooltip_home_sec">
+              <span className="tooltip_home_rrr_sec">
+              </span>
+            </div> */}
 
             {/* Right Product Cards Section */}
-            <div className="col-lg-6">
-              <div className="h-100 d-flex flex-column justify-content-between ">
-                <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc">
-                  {bestSelling.slice(0, 2).map((product) => (
-                  <div
-                  key={product.id}
-                  className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 ring-collection-csssss h-100"
-                >
-                  <div className="h-100 d-flex flex-column">
-                    <div className="card prio_card scdscsed_sdss dimond_section dimof_sss sdcsdc_rinf_dimnsss">
-                      <div className="card-image-wrapper position-relative best_saller_btn">
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          BEST SALLER
-                        </button>
-                
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {wishlistItems[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                
-                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          <img
-                            src={`http://localhost:3000${product.image[0]}`}
-                            className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
-                            alt="Product"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                
-                    {/* OUTSIDE the card but part of same block */}
-                    <div className="d-flex flex-column main_cdsss px-3 pt-2 bg-white rounded-bottom ring_secededfcvd">
-                      <span className="mikdec_asdaa text-truncate">
-                        {product.productName}
-                      </span>
-                      <div className="d-flex align-items-center gap-3 pt-1">
-                        <span className="mikdec_asdxsx">
-                          ₹{product.salePrice?.$numberDecimal}
-                        </span>
-                        <span className="mikdec_axsx">
-                          ₹{product.regularPrice?.$numberDecimal}
-                        </span>
-                      </div>
-                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                        <button
-                          className="more_btn_dsdd w-50"
-                          onClick={() => handleProductClick(product.id)}
-                        >
-                          More Info
+            <div className="col-lg-6 kdjvb_jicn">
+              <div className="h-100 d-flex flex-column justify-content-center ">
+                <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc">
+                  {(filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling).slice(0, 4).map((product) => (
+                    <div
+                      key={product.id}
+                      className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100"
+                    >
+                      <div className="h-100 d-flex flex-column">
+                        <div className="card prio_card scdscsed_sdss dimond_section sdcsdc_rinf_dimnsss">
+                          <div className="card-image-wrapper position-relative best_saller_btn">
+                            <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                            {filteredBestSellers.length > 0 ? currentCategory.toUpperCase() : "BEST SELLER"}
+                            </button>
 
-                        </button>
-                        <button
-                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                          onClick={() => addToCart(product)}
-                        >
-                          Add to Cart <BiShoppingBag size={25} />
-                        </button>
+                            <div
+                              className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                              onClick={() => toggleFavorite(product.id)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              {wishlistItems[product.id] ? (
+                                <GoHeartFill className="heart-icon_ss" size={18} />
+                              ) : (
+                                <GoHeart className="heart-icon_ss" size={18} />
+                              )}
+                            </div>
+
+                            <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                              <img
+                                src={`http://localhost:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
+                                alt="Product"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* OUTSIDE the card but part of same block */}
+                        <div className="d-flex flex-column main_cdsss px-3 pt-2 bg-white rounded-bottom ring_secededfcvd">
+                          <span className="mikdec_asdaa text-truncate">
+                            {product.productName}
+                          </span>
+                          <div className="d-flex align-items-center gap-3 pt-1">
+                            <span className="mikdec_asdxsx">
+                              ₹{product.salePrice?.$numberDecimal}
+                            </span>
+                            <span className="mikdec_axsx">
+                              ₹{product.regularPrice?.$numberDecimal}
+                            </span>
+                          </div>
+                          <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                            <button
+                              className="more_btn_dsdd w-50"
+                              onClick={() => handleProductClick(product.id)}
+                            >
+                              More Info
+
+                            </button>
+                            <button
+                              className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                              onClick={() => addToCart(product)}
+                            >
+                              Add to Cart <BiShoppingBag size={25} />
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-                
+
                   ))}
+
                 </div>
               </div>
             </div>
@@ -1199,7 +1237,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        
+
         <div>
           <Occasion />
         </div>
@@ -1332,7 +1370,7 @@ const Home = () => {
           </div>
         </div>
 
-       
+
         <div
           className="heder_sec_main d-flex flex-column align-items-center mt-5"
         >
@@ -1342,94 +1380,94 @@ const Home = () => {
 
           <Instruction />
         </div>
-        
+
         <div className="video-curved-tewd mb-5">
-        <div className="we-carousel">
-    <div className="we-arrow left">&#10094;</div>
-    <div className="we-card-container">
-      <div className="we-card"> 
-      <video
+          <div className="we-carousel">
+            <div className="we-arrow left">&#10094;</div>
+            <div className="we-card-container">
+              <div className="we-card">
+                <video
                   src={ringVideo1}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
                   muted
                 />
-      </div>
-      <div className="we-card"> 
-      <video
+              </div>
+              <div className="we-card">
+                <video
                   src={ringVideo2}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
                   muted
                 />
-      </div>
-      <div className="we-card"> 
-      <video
+              </div>
+              <div className="we-card">
+                <video
                   src={ringVideo3}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
                   muted
                 />
-      </div>
-      <div className="we-card"> 
-      <video
+              </div>
+              <div className="we-card">
+                <video
                   src={ringVideo4}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
                   muted
                 />
-      </div>
-      <div className="we-card"> 
-      <video
+              </div>
+              <div className="we-card">
+                <video
                   src={ringVideo5}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
                   muted
                 />
-      </div>
-      <div className="we-card"> 
-      <video
+              </div>
+              <div className="we-card">
+                <video
                   src={ringVideo1}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
                   muted
                 />
-      </div>
-      <div className="we-card"> 
-      <video
+              </div>
+              <div className="we-card">
+                <video
                   src={ringVideo2}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
                   muted
                 />
-      </div>
-      <div className="we-card"> 
-      <video
+              </div>
+              <div className="we-card">
+                <video
                   src={ringVideo3}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
                   muted
                 />
-      </div>
-    </div>
-    <div className="we-arrow right">&#10095;</div>
-  </div>
+              </div>
+            </div>
+            <div className="we-arrow right">&#10095;</div>
           </div>
+        </div>
 
         <div className="testimonial-container d-flex align-items-center mt-5">
-         
+
 
           <div
             className="heder_sec_main d-flex flex-column align-items-center "
-            // style={{ paddingTop: "3rem" }}
+          // style={{ paddingTop: "3rem" }}
           >
             <span className="category_name mt-2">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
@@ -1452,9 +1490,8 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
+                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                        } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
