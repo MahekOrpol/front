@@ -1085,6 +1085,7 @@ const Home = () => {
 
                 <div
                   className="tooltip-spot spot-1" onClick={() => handleTooltipClick("Earrings")}
+                  
                 >
                   <div className="spot-marker"></div>
                 </div>
