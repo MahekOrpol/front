@@ -1522,11 +1522,11 @@ const Home = () => {
         <div className="video-curved-tewd mb-5">
           <div className="we-carousel">
             {/* <div className="we-arrow left">&#10094;</div> */}
-            <div className="we-card-container">
+            <div className="we-card-container snap-carousel">
               <div className="we-card">
                 <video
                   src={ringVideo1}
-                  className=" bg-white video_new_arrr"
+                  className=" bg-white video_new_arrr"  
                   autoPlay
                   loop
                   muted
