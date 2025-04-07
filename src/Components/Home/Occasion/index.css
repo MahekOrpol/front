@@ -7,6 +7,7 @@
   text-align: justify;
   width: 75%;
 }
+
 .occation-content-h2 {
   font-family: "DM Serif Text", serif;
   font-weight: 400;
@@ -40,6 +41,8 @@
   position: relative;
   width: 100%;
   height: 100%;
+  margin-top: 222px;
+  margin-bottom: 103px;
   /* overflow: hidden; */
 }
 
@@ -154,7 +157,7 @@
   font-family: "DM Serif Text", serif;
   color: #c8b0b5;
   font-weight: 100;
-  /* z-index: 11; */
+  z-index: 1;
   /* transform: translate(40px, -270px); */
   font-family: "Cormorant Infant";
   font-weight: 700;
@@ -168,20 +171,17 @@
   transform: translate(-20%, -270px);
 }
 
-@media (max-width: 1180px) {
-  .one-way-slider {
-    flex-wrap: wrap;
-  }
-}
+
 @media (max-width: 1171px) {
   .image-medium {
     transform: translate(7%, 51%);
   }
 }
+
 .slider_img_bgggg {
   backdrop-filter: blur(536.200012px);
   position: absolute;
-  left: 64%;
+  left: 55%;
   background: #611d2b38;
   opacity: 21%;
   border-radius: 50%;
@@ -189,6 +189,7 @@
   top: -62%;
   filter: blur(7px);
 }
+
 .slider_img_bgggg {
   width: 435px;
   height: 435px;
@@ -227,8 +228,8 @@
 }
 
 .image-large {
-  width: clamp(250px, 30vw, 400px);
-  height: clamp(320px, 40vw, 512px);
+  width: clamp(250px, 32vw, 400px);
+  height: clamp(320px, 43vw, 512px);
   left: 20%;
   transform: translate(-22%, 0%);
 }
@@ -246,6 +247,7 @@
   left: 78%;
   transform: translate(-50%, 99%) !important;
 }
+
 .image-small {
   transform: translate(22%, 81%);
   -webkit-transform: translate(22%, 81%);
@@ -264,6 +266,7 @@
   .image-medium {
     transform: translate(37%, 51%);
   }
+
   .image-small {
     transform: translate(55%, 81%);
     -webkit-transform: translate(55%, 81%);
@@ -273,5 +276,105 @@
   }
 }
 
-@media (max-width: 1013px) {
+
+@media (max-width:1581px) {
+  .slider_img_bgggg {
+    left: 48%;
+  }
+
+  .next-button {
+    right: 150px;
+  }
+
+  .slide-number-indicator {
+    left: 56%;
+  }
+}
+
+@media (max-width:1433px) {
+  .slider_img_bgggg {
+    left: 41%;
+    display: none;
+  }
+
+  .next-button {
+    right: 150px;
+  }
+
+  .slide-number-indicator {
+    left: 62%;
+  }
+}
+
+@media (max-width:1421px) {
+  .slider_img_bgggg {
+    left: 34%;
+    top: -80%;
+  }
+
+  .next-button {
+    right: 150px;
+  }
+
+  .slide-number-indicator {
+    left: 61%;
+  }
+}
+
+@media (max-width:1305px) {
+  .one-way-slider {
+    gap: 0;
+  }
+}
+
+@media (max-width: 1278px) {
+  .one-way-slider {
+    flex-wrap: wrap;
+  }
+
+  .image-medium {
+    left: 55%;
+    transform: translate(-22%, 39%);
+  }
+
+  .slide-number-indicator {
+    left: 45%;
+  }
+
+  .slider_img_bgggg {
+    display: block;
+    left: 39%;
+    top: -110%;
+  }
+
+  .slider-content {
+    max-width: 90%;
+    text-align: center !important;
+    align-items: center;
+  }
+
+  .occation-content-h2 {
+    font-size: clamp(1.8rem, 6vw, 3rem);
+  }
+
+  .occasions_text_p {
+    font-size: clamp(0.9rem, 6.5vw, 1.5rem) !important;
+  }
+}
+
+@media(max-width:1124px) {
+  .image-small {
+    transform: translate(-50%, 94%) !important;
+  }
+}
+
+@media(max-width:998px) {
+  .image-small {
+    transform: translate(-50%, 88%) !important;
+  }
+
+  .slide-number-indicator {
+    left: 46%;
+    top: 133%;
+  }
 }
