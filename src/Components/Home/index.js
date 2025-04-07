@@ -1209,6 +1209,25 @@ const Home = () => {
                   src={best}
                   className="img-fluid w-100 h-100 object-fit-cover rounded"
                 />
+                {/* Add hover spots with tooltips */}
+
+                <div
+                  className="tooltip-spot spot-1" onClick={() => handleTooltipClick("Earrings")}
+                  
+                >
+                  <div className="spot-marker"></div>
+                </div>
+                <div
+                  className="tooltip-spot spot-2" onClick={() => handleTooltipClick("Rings")}
+                >
+                  <div className="spot-marker"></div>
+                </div>
+                <div
+                  className="tooltip-spot spot-3" onClick={() => handleTooltipClick("Pendant")}
+                >
+                  <div className="spot-marker"></div>
+                </div>
+
               </div>
             </div>
 
