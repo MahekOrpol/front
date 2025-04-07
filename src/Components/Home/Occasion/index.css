@@ -128,7 +128,7 @@
   color: #611d2b;
   font-weight: initial;
   font-size: 1.2rem;
-  z-index: 10;
+  z-index: 1;
 }
 
 .next-button {
@@ -181,12 +181,12 @@
 .slider_img_bgggg {
   backdrop-filter: blur(536.200012px);
   position: absolute;
-  left: 64%;
+  left: 58%;
   background: #611d2b38;
   opacity: 21%;
   border-radius: 50%;
   z-index: 1;
-  top: -62%;
+  top: -132%;
   filter: blur(7px);
 }
 .slider_img_bgggg {

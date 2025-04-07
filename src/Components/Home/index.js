@@ -11,6 +11,8 @@ import Header from "../../Pages/Header";
 import banner from "../../Images/Frame 200.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import best from "../../Images/Mask group (9).png";
+import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 
 import {
   EffectCoverflow,
@@ -152,9 +154,27 @@ const Home = () => {
   const [categoriesa, setCategoriesa] = useState();
   const [currentCategory, setCurrentCategory] = useState("");
   const [filteredBestSellers, setFilteredBestSellers] = useState([]);
-  
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const productsPerPage = 4;
+
+  const productsToDisplay = filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
+
+
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
+  };
+
+  const handleNext = () => {
+    if (currentIndex + productsPerPage < productsToDisplay.length) {
+      setCurrentIndex(currentIndex + productsPerPage);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentIndex - productsPerPage >= 0) {
+      setCurrentIndex(currentIndex - productsPerPage);
+    }
   };
 
   const fetchBestSellersByCategory = async (category) => {
@@ -171,7 +191,8 @@ const Home = () => {
     setCurrentCategory(category);
     const products = await fetchBestSellersByCategory(category);
     setFilteredBestSellers(products);
-    console.log('products :>> ', products);
+    setCurrentIndex(0);
+    console.log("products :>> ", products);
   };
 
   const handleProductClick = (productId, productData) => {
@@ -443,7 +464,6 @@ const Home = () => {
     setValue(newValue);
   };
 
-  const [currentIndex, setCurrentIndex] = useState(0); // ID 3 is at index 2
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % diamondRings.length);
@@ -1231,97 +1251,148 @@ const Home = () => {
                 {/* Add hover spots with tooltips */}
 
                 <div
-                  className="tooltip-spot spot-1" onClick={() => handleTooltipClick("Earrings")}
-                  
+                  className="tooltip-spot spot-1"
+                  onClick={() => handleTooltipClick("Earrings")}
                 >
                   <div className="spot-marker"></div>
                 </div>
                 <div
-                  className="tooltip-spot spot-2" onClick={() => handleTooltipClick("Rings")}
+                  className="tooltip-spot spot-2"
+                  onClick={() => handleTooltipClick("Rings")}
                 >
                   <div className="spot-marker"></div>
                 </div>
                 <div
-                  className="tooltip-spot spot-3" onClick={() => handleTooltipClick("Pendant")}
+                  className="tooltip-spot spot-3"
+                  onClick={() => handleTooltipClick("Pendant")}
                 >
                   <div className="spot-marker"></div>
                 </div>
-
               </div>
             </div>
 
             {/* Right Product Cards Section */}
             <div className="col-lg-6 kdjvb_jicn">
               <div className="h-100 d-flex flex-column justify-content-center ">
-                <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc">
-                  {(filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling).slice(0, 4).map((product) => (
-                    <div
-                      key={product.id}
-                      className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100"
-                    >
-                      <div className="h-100 d-flex flex-column">
-                        <div className="card prio_card scdscsed_sdss dimond_section sdcsdc_rinf_dimnsss">
-                          <div className="card-image-wrapper position-relative best_saller_btn">
-                            <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                            {filteredBestSellers.length > 0 ? currentCategory.toUpperCase() : "BEST SELLER"}
-                            </button>
+                <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc m-0">
+                  {/* {(filteredBestSellers.length > 0
+                    ? filteredBestSellers
+                    : bestSelling
+                  )
+                    .slice(0, 4)
+                    .map((product) => (
+                      <div
+                        key={product.id}
+                        className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100"
+                      >
+                        <div className="h-100 d-flex flex-column">
+                          <div className="card prio_card scdscsed_sdss dimond_section sdcsdc_rinf_dimnsss">
+                            <div className="card-image-wrapper position-relative best_saller_btn">
+                              <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                                {filteredBestSellers.length > 0
+                                  ? currentCategory.toUpperCase()
+                                  : "BEST SELLER"}
+                              </button>
 
-                            <div
-                              className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                              onClick={() => toggleFavorite(product.id)}
-                              style={{ cursor: "pointer" }}
-                            >
-                              {wishlistItems[product.id] ? (
-                                <GoHeartFill className="heart-icon_ss" size={18} />
-                              ) : (
-                                <GoHeart className="heart-icon_ss" size={18} />
-                              )}
-                            </div>
+                              <div
+                                className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                                onClick={() => toggleFavorite(product.id)}
+                                style={{ cursor: "pointer" }}
+                              >
+                                {wishlistItems[product.id] ? (
+                                  <GoHeartFill
+                                    className="heart-icon_ss"
+                                    size={18}
+                                  />
+                                ) : (
+                                  <GoHeart
+                                    className="heart-icon_ss"
+                                    size={18}
+                                  />
+                                )}
+                              </div>
 
-                            <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                              <img
-                                src={`http://localhost:3000${product.image[0]}`}
-                                className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
-                                alt="Product"
-                              />
+                              <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                                <img
+                                  src={`http://localhost:3000${product.image[0]}`}
+                                  className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
+                                  alt="Product"
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-
-                          {/* OUTSIDE the card but part of same block */}
-                          <div className="d-flex flex-column main_cdsss px-3 pt-2 bg-white rounded-bottom ring_secededfcvd">
-                          <span className="mikdec_asdaa text-truncate">
-                            {product.productName}
-                          </span>
-                          <div className="d-flex align-items-center gap-3 pt-1">
-                            <span className="mikdec_asdxsx">
-                              ₹{product.salePrice?.$numberDecimal}
+                          <div className="d-flex flex-column main_cdsss pt-2 bg-white rounded-bottom ring_secededfcvd">
+                            <span className="mikdec_asdaa text-truncate">
+                              {product.productName}
                             </span>
-                            <span className="mikdec_axsx">
-                              ₹{product.regularPrice?.$numberDecimal}
-                            </span>
-                          </div>
-                          <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                            <button
-                              className="more_btn_dsdd w-50"
-                              onClick={() => handleProductClick(product.id)}
-                            >
-                              More Info
-
-                            </button>
-                            <button
-                              className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                              onClick={() => addToCart(product)}
-                            >
-                              Add to Cart <BiShoppingBag size={25} />
-                            </button>
+                            <div className="d-flex align-items-center gap-3 pt-1">
+                              <span className="mikdec_asdxsx">
+                                ₹{product.salePrice?.$numberDecimal}
+                              </span>
+                              <span className="mikdec_axsx">
+                                ₹{product.regularPrice?.$numberDecimal}
+                              </span>
+                            </div>
+                            <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                              <button
+                                className="more_btn_dsdd w-50"
+                                onClick={() => handleProductClick(product.id)}
+                              >
+                                More Info
+                              </button>
+                              <button
+                                className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                                onClick={() => addToCart(product)}
+                              >
+                                Add to Cart <BiShoppingBag size={25} />
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
+                    ))} */}
+                              {productsToDisplay.slice(currentIndex, currentIndex + productsPerPage).map((product) => (
+            <div key={product.id} className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100">
+              <div className="h-100 d-flex flex-column">
+                <div className="card prio_card scdscsed_sdss dimond_section sdcsdc_rinf_dimnsss">
+                  <div className="card-image-wrapper position-relative best_saller_btn">
+                    <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                      {filteredBestSellers.length > 0 ? currentCategory.toUpperCase() : "BEST SELLER"}
+                    </button>
+
+                    <div className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2" onClick={() => toggleFavorite(product.id)} style={{ cursor: "pointer" }}>
+                      {wishlistItems[product.id] ? <GoHeartFill className="heart-icon_ss" size={18} /> : <GoHeart className="heart-icon_ss" size={18} />}
                     </div>
-                  ))}
+                    <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                      <img src={`http://localhost:3000${product.image[0]}`} className="p-1_proi img-fluid BEST_SELLING_IMSESSSS" alt="Product" />
+                    </div>
+                  </div>
                 </div>
+
+                <div className="d-flex flex-column main_cdsss pt-2 bg-white rounded-bottom ring_secededfcvd">
+                  <span className="mikdec_asdaa text-truncate">{product.productName}</span>
+                  <div className="d-flex align-items-center gap-3 pt-1">
+                    <span className="mikdec_asdxsx">₹{product.salePrice?.$numberDecimal}</span>
+                    <span className="mikdec_axsx">₹{product.regularPrice?.$numberDecimal}</span>
+                  </div>
+                  <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                    <button className="more_btn_dsdd w-50" onClick={() => handleProductClick(product.id)}>More Info</button>
+                    <button className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3" onClick={() => addToCart(product)}>
+                      Add to Cart <BiShoppingBag size={25} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+
+                </div>
+               <div className="d-flex justify-content-center mt-3 gap-3">
+          <button onClick={handlePrevious} disabled={currentIndex === 0} className="btn btn-outline-secondary"><IoIosArrowBack />
+          </button>
+          <button onClick={handleNext} disabled={currentIndex + productsPerPage >= productsToDisplay.length} className="btn btn-outline-secondary"><IoIosArrowForward /></button>
+        </div>
               </div>
             </div>
           </div>
