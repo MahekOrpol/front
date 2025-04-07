@@ -124,16 +124,18 @@ const Occasion = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
+      // nextSlide();
     }, 2000);
     return () => clearInterval(interval);
   }, [currentIndex]);
 
   return (
-    <div className="one-way-slider">
+    <div className="one-way-slider container">
       <div className="slider-content">
-        <h2>Make your Occasions Special with our Jewelry</h2>
-        <p>
+        <h2 className="occation-content-h2">
+          Make your Occasions Special with our Jewelry
+        </h2>
+        <p className="occasions_text_p">
           Discover the perfect blend of elegance and exclusivity with our
           Limited Edition Collaboration jewelry collection.
         </p>
@@ -143,12 +145,17 @@ const Occasion = () => {
       </div>
 
       <div className="slider-container">
+        <div className="slide-number-indicator">
+          {String(currentIndex + 1).padStart(2, "0")}
+        </div>
+        <div className="slider_img_bgggg"></div>
         <div className="slider-track">
           {images.map((img, index) => {
-            const position = (index - currentIndex + images.length) % images.length;
+            const position =
+              (index - currentIndex + images.length) % images.length;
             let sizeClass = "";
             if (position === 0) sizeClass = "image-large";
-            else if (position === 1) sizeClass = "image-medium";
+            else if (position === 1) sizeClass = "image-medium";  
             else sizeClass = "image-small";
 
             return (
@@ -164,13 +171,13 @@ const Occasion = () => {
             );
           })}
         </div>
-        
+
         <button className="next-button" onClick={nextSlide}>
-          →
+          <FaArrowRightLong />
         </button>
       </div>
     </div>
   );
 };
 
-export default Occasion;  
+export default Occasion;
