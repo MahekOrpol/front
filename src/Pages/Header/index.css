@@ -47,7 +47,8 @@
 .mobile-drawer {
   position: fixed;
   top: 0;
-  left: -250px; /* Hide drawer by default */
+  left: -250px;
+  /* Hide drawer by default */
   width: 250px;
   height: 100%;
   background: #fff;
@@ -61,9 +62,10 @@
   left: 0;
 }
 
-.khcb_jcj.close{
+.khcb_jcj.close {
   display: none;
 }
+
 .drawer-header {
   display: flex;
   justify-content: flex-end;
@@ -104,7 +106,8 @@
     justify-content: space-between;
     padding: 10px 20px;
   }
-  .dsn_mdcm{
+
+  .dsn_mdcm {
     display: none;
   }
 
@@ -137,47 +140,55 @@
   }
 }
 
-.xdcxscd_sercv{
+.xdcxscd_sercv {
   display: none !important;
 }
 
 @media (max-width:990px) {
-  .menu-icon{
+  .menu-icon {
     display: block !important;
   }
-  .xdcxscd_sercv{
+
+  .xdcxscd_sercv {
     display: none !important;
   }
-  .dsn_mdcm{
+
+  .dsn_mdcm {
     display: none !important;
   }
-  
-.sdfcv_tgvtgv{
-  width: 10% !important;
-}
-.heder_sec_main {
+
+  .sdfcv_tgvtgv {
+    width: 10% !important;
+  }
+
+  .heder_sec_main {
     justify-content: start !important;
     gap: 20px !important;
     padding: 10px 20px;
+  }
+
+  .dsfcecv_dfvf {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: end !important;
+    width: 50% !important;
+  }
+
+  .dsfcdsfcsdfc_dcd {
+    width: 100% !important;
+  }
 }
-.dsfcecv_dfvf{
-  display: flex !important;
-  align-items: center !important;
-  justify-content: end !important;
-  width: 50% !important;
-}
-.dsfcdsfcsdfc_dcd{
-  width: 100% !important;
-}
-}
+
 @media (min-width:991px) {
-  .menu-icon{
+  .menu-icon {
     display: none !important;
   }
-  .xdcxscd_sercv{
+
+  .xdcxscd_sercv {
     display: block !important;
   }
-  .dsn_mdcm{
+
+  .dsn_mdcm {
     display: block !important;
   }
 
@@ -225,7 +236,7 @@
     font-family: "Cabin", sans-serif;
     cursor: pointer;
   }
-  
+
   .sign_txt {
     font-size: 14px;
   }
@@ -233,13 +244,16 @@
   .acco9_text {
     font-size: 14px;
   }
+
   .dcxde_asx485 {
     gap: 30px !important;
   }
+
   .sdcsd_ss_ddd {
     padding: 0.5rem;
   }
 }
+
 @media (max-width: 1293px) and (min-width: 1101px) {
   .header_list_tcty {
     font-weight: 500;
@@ -251,6 +265,7 @@
     font-family: "Cabin", sans-serif;
     cursor: pointer;
   }
+
   .sdchy_88__sxsxs {
 
     padding-right: 0% !important;
@@ -267,12 +282,15 @@
   .sign_txt {
     font-size: 12px;
   }
+
   .acco9_text {
     font-size: 12px;
   }
+
   .dcxde_asx485 {
     gap: 30px !important;
   }
+
   .sdcsd_ss_ddd {
     padding: 1rem;
   }
@@ -297,12 +315,15 @@
   .sign_txt {
     font-size: 18px;
   }
+
   .acco9_text {
     font-size: 18px;
   }
+
   .dcxde_asx485 {
     gap: 30px !important;
   }
+
   .sdcsd_ss_ddd {
     padding: 0.6rem;
   }
@@ -316,10 +337,10 @@
   .sdchy_88__sxsxs {
     width: 27%;
   }
- 
+
 }
 
-.dcxde_asx485{
+.dcxde_asx485 {
   justify-content: center;
 }
 
@@ -351,7 +372,7 @@
 }
 
 .mobile_user_icon img {
-  
+
   width: 12%;
   height: auto;
 }
@@ -369,8 +390,8 @@
   max-width: 100%;
 }
 
-@media(min-width:992px) and (max-width:1024px){
-  .input-group1{
+@media(min-width:992px) and (max-width:1024px) {
+  .input-group1 {
     width: 43% !important;
   }
 }
@@ -380,5 +401,201 @@
     max-width: 160px;
     height: auto;
   }
-  
+
+}
+
+.signup-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+}
+
+.signup-popup {
+  position: relative;
+  background: white;
+  width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+  text-align: left;
+  /* bottom: 10%; */
+  top: 14%;
+  right: 9%;
+}
+
+.popup-arrow {
+  position: absolute;
+  top: -10px;
+  right: 44%;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid white;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  padding: 16px 13px;
+  border-bottom: 1px solid #ddd;
+}
+
+.profile-pic {
+  width: 66px;
+  height: auto;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.profile-details h5 {
+  margin: 0;
+  font-size: 22px;
+  font-family: "Cabin", sans-serif;
+}
+
+.pope {
+  font-size: 16px;
+  font-family: "Cabin", sans-serif;
+}
+
+.contact-number {
+  margin: 0;
+  font-size: 17px;
+  font-weight: bold;
+  color: black;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border-top: 1px solid #f0f0f0;
+  transition: background 0.2s;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+}
+
+.mini_icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+}
+
+.sass {
+  font-size: 16px;
+  font-family: "Cabin", sans-serif !important;
+}
+
+@media(min-width:1881px) and (max-width:1920px) {
+  .signup-popup {
+    position: relative;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+    text-align: left;
+    top: 12%;
+    right: 6%;
+  }
+}
+
+@media(min-width:1431px) and (max-width:1880px) {
+  .signup-popup {
+    position: relative;
+    background: white;
+    width: 312px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2px 0;
+    text-align: left;
+    top: 13%;
+    right: 8%;
+  }
+
+  .profile-pic {
+    width: 57px;
+    height: auto;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+
+  .profile-details h5 {
+    margin: 0;
+    font-size: 20px;
+    font-family: "Cabin", sans-serif;
+  }
+
+  .contact-number {
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+  }
+
+  .sass {
+    font-size: 14px;
+
+  }
+}
+
+@media(min-width:1294px) and (max-width:1430px) {
+  .signup-popup {
+    position: relative;
+    background: white;
+    width: 312px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2px 0;
+    text-align: left;
+    top: 15%;
+    right: 8%;
+  }
+}
+
+@media(min-width:1115px) and (max-width:1293px) {
+  .signup-popup {
+    position: relative;
+    background: white;
+    width: 312px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2px 0;
+    text-align: left;
+    top: 15%;
+    right: 7%;
+  }
+}
+
+@media(min-width:992px) and (max-width:1114px) {
+  .signup-popup {
+    position: relative;
+    background: white;
+    width: 312px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 2px 0;
+    text-align: left;
+    top: 15%;
+    right: 6%;
+  }
 }

@@ -158,8 +158,8 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const productsPerPage = 4;
 
-  const productsToDisplay = filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
-
+  const productsToDisplay =
+    filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
 
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
@@ -463,7 +463,6 @@ const Home = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % diamondRings.length);
@@ -1352,47 +1351,98 @@ const Home = () => {
                         </div>
                       </div>
                     ))} */}
-                              {productsToDisplay.slice(currentIndex, currentIndex + productsPerPage).map((product) => (
-            <div key={product.id} className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100">
-              <div className="h-100 d-flex flex-column">
-                <div className="card prio_card scdscsed_sdss dimond_section sdcsdc_rinf_dimnsss">
-                  <div className="card-image-wrapper position-relative best_saller_btn">
-                    <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                      {filteredBestSellers.length > 0 ? currentCategory.toUpperCase() : "BEST SELLER"}
-                    </button>
+                  {productsToDisplay
+                    .slice(currentIndex, currentIndex + productsPerPage)
+                    .map((product) => (
+                      <div
+                        key={product.id}
+                        className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100"
+                      >
+                        <div className="h-100 d-flex flex-column">
+                          <div className="card prio_card scdscsed_sdss dimond_section sdcsdc_rinf_dimnsss">
+                            <div className="card-image-wrapper position-relative best_saller_btn">
+                              <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                                {filteredBestSellers.length > 0
+                                  ? currentCategory.toUpperCase()
+                                  : "BEST SELLER"}
+                              </button>
 
-                    <div className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2" onClick={() => toggleFavorite(product.id)} style={{ cursor: "pointer" }}>
-                      {wishlistItems[product.id] ? <GoHeartFill className="heart-icon_ss" size={18} /> : <GoHeart className="heart-icon_ss" size={18} />}
-                    </div>
-                    <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                      <img src={`http://localhost:3000${product.image[0]}`} className="p-1_proi img-fluid BEST_SELLING_IMSESSSS" alt="Product" />
-                    </div>
-                  </div>
-                </div>
+                              <div
+                                className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                                onClick={() => toggleFavorite(product.id)}
+                                style={{ cursor: "pointer" }}
+                              >
+                                {wishlistItems[product.id] ? (
+                                  <GoHeartFill
+                                    className="heart-icon_ss"
+                                    size={18}
+                                  />
+                                ) : (
+                                  <GoHeart
+                                    className="heart-icon_ss"
+                                    size={18}
+                                  />
+                                )}
+                              </div>
+                              <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                                <img
+                                  src={`http://localhost:3000${product.image[0]}`}
+                                  className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
+                                  alt="Product"
+                                />
+                              </div>
+                            </div>
+                          </div>
 
-                <div className="d-flex flex-column main_cdsss pt-2 bg-white rounded-bottom ring_secededfcvd">
-                  <span className="mikdec_asdaa text-truncate">{product.productName}</span>
-                  <div className="d-flex align-items-center gap-3 pt-1">
-                    <span className="mikdec_asdxsx">₹{product.salePrice?.$numberDecimal}</span>
-                    <span className="mikdec_axsx">₹{product.regularPrice?.$numberDecimal}</span>
-                  </div>
-                  <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                    <button className="more_btn_dsdd w-50" onClick={() => handleProductClick(product.id)}>More Info</button>
-                    <button className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3" onClick={() => addToCart(product)}>
-                      Add to Cart <BiShoppingBag size={25} />
-                    </button>
-                  </div>
+                          <div className="d-flex flex-column main_cdsss pt-2 bg-white rounded-bottom ring_secededfcvd">
+                            <span className="mikdec_asdaa text-truncate">
+                              {product.productName}
+                            </span>
+                            <div className="d-flex align-items-center gap-3 pt-1">
+                              <span className="mikdec_asdxsx">
+                                ₹{product.salePrice?.$numberDecimal}
+                              </span>
+                              <span className="mikdec_axsx">
+                                ₹{product.regularPrice?.$numberDecimal}
+                              </span>
+                            </div>
+                            <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                              <button
+                                className="more_btn_dsdd w-50"
+                                onClick={() => handleProductClick(product.id)}
+                              >
+                                More Info
+                              </button>
+                              <button
+                                className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                                onClick={() => addToCart(product)}
+                              >
+                                Add to Cart <BiShoppingBag size={25} />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                 </div>
-              </div>
-            </div>
-          ))}
-
+                <div className="d-flex justify-content-center mt-3 gap-3">
+                  <button
+                    onClick={handlePrevious}
+                    disabled={currentIndex === 0}
+                    className="btn btn-outline-secondary"
+                  >
+                    <IoIosArrowBack />
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    disabled={
+                      currentIndex + productsPerPage >= productsToDisplay.length
+                    }
+                    className="btn btn-outline-secondary "
+                  >
+                    <IoIosArrowForward />
+                  </button>
                 </div>
-               <div className="d-flex justify-content-center mt-3 gap-3">
-          <button onClick={handlePrevious} disabled={currentIndex === 0} className="btn btn-outline-secondary"><IoIosArrowBack />
-          </button>
-          <button onClick={handleNext} disabled={currentIndex + productsPerPage >= productsToDisplay.length} className="btn btn-outline-secondary"><IoIosArrowForward /></button>
-        </div>
               </div>
             </div>
           </div>
@@ -1519,14 +1569,14 @@ const Home = () => {
           />
         </div>
 
-        <div className="video-curved-tewd mb-5">
+        <div className="video-curved-tewd ">
           <div className="we-carousel">
             {/* <div className="we-arrow left">&#10094;</div> */}
             <div className="we-card-container snap-carousel">
               <div className="we-card">
                 <video
                   src={ringVideo1}
-                  className=" bg-white video_new_arrr"  
+                  className=" bg-white video_new_arrr"
                   autoPlay
                   loop
                   muted
@@ -1659,8 +1709,8 @@ const Home = () => {
             </div>
           </div> */}
 
-        <div className="heder_sec_main d-flex flex-column align-items-center mt-5">
-          <span className="category_name mt-2">Instructions</span>
+        <div className="heder_sec_main d-flex flex-column align-items-center ">
+          <span className="category_name">Instructions</span>
           {/* <p className="category_txt">What our Client’s say about us</p> */}
           <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
 
