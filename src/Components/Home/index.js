@@ -150,9 +150,28 @@ const Home = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [categoriesa, setCategoriesa] = useState();
-
+  const [currentCategory, setCurrentCategory] = useState("");
+  const [filteredBestSellers, setFilteredBestSellers] = useState([]);
+  
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
+  };
+
+  const fetchBestSellersByCategory = async (category) => {
+    try {
+      const url = `http://localhost:3000/api/v1/product/get?categoryName=${category}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching ${category} products:`, error);
+      return [];
+    }
+  };
+  const handleTooltipClick = async (category) => {
+    setCurrentCategory(category);
+    const products = await fetchBestSellersByCategory(category);
+    setFilteredBestSellers(products);
+    console.log('products :>> ', products);
   };
 
   const handleProductClick = (productId, productData) => {
@@ -1232,19 +1251,19 @@ const Home = () => {
             </div>
 
             {/* Right Product Cards Section */}
-            <div className="col-lg-6">
-              <div className="h-100 d-flex flex-column justify-content-between ">
-                <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc">
-                  {bestSelling.slice(0, 2).map((product) => (
+            <div className="col-lg-6 kdjvb_jicn">
+              <div className="h-100 d-flex flex-column justify-content-center ">
+                <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc">
+                  {(filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling).slice(0, 4).map((product) => (
                     <div
                       key={product.id}
-                      className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 ring-collection-csssss h-100"
+                      className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100"
                     >
                       <div className="h-100 d-flex flex-column">
-                        <div className="card prio_card scdscsed_sdss dimond_section dimof_sss sdcsdc_rinf_dimnsss">
+                        <div className="card prio_card scdscsed_sdss dimond_section sdcsdc_rinf_dimnsss">
                           <div className="card-image-wrapper position-relative best_saller_btn">
                             <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                              BEST SALLER
+                            {filteredBestSellers.length > 0 ? currentCategory.toUpperCase() : "BEST SELLER"}
                             </button>
 
                             <div
@@ -1253,10 +1272,7 @@ const Home = () => {
                               style={{ cursor: "pointer" }}
                             >
                               {wishlistItems[product.id] ? (
-                                <GoHeartFill
-                                  className="heart-icon_ss"
-                                  size={18}
-                                />
+                                <GoHeartFill className="heart-icon_ss" size={18} />
                               ) : (
                                 <GoHeart className="heart-icon_ss" size={18} />
                               )}
@@ -1264,7 +1280,7 @@ const Home = () => {
 
                             <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                               <img
-                                src={`http://192.168.1.10:3000${product.image[0]}`}
+                                src={`http://localhost:3000${product.image[0]}`}
                                 className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
                                 alt="Product"
                               />
@@ -1272,8 +1288,9 @@ const Home = () => {
                           </div>
                         </div>
 
-                        {/* OUTSIDE the card but part of same block */}
-                        <div className="d-flex flex-column main_cdsss pt-2 bg-white rounded-bottom ring_secededfcvd">
+
+                          {/* OUTSIDE the card but part of same block */}
+                          <div className="d-flex flex-column main_cdsss px-3 pt-2 bg-white rounded-bottom ring_secededfcvd">
                           <span className="mikdec_asdaa text-truncate">
                             {product.productName}
                           </span>
@@ -1291,6 +1308,7 @@ const Home = () => {
                               onClick={() => handleProductClick(product.id)}
                             >
                               More Info
+
                             </button>
                             <button
                               className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
