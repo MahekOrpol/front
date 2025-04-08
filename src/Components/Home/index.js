@@ -776,6 +776,8 @@ const Home = () => {
             <Swiper
               spaceBetween={10}
               loop={true}
+              // centeredSlides={true}
+                // slidesPerView="auto"
               // autoplay={{ delay: 2000, disableOnInteraction: false }}
               // modules={[ Autoplay]}
               breakpoints={{

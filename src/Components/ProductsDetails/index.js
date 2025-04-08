@@ -15,8 +15,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SiWhatsapp } from "react-icons/si";
+import { IoLogoWhatsapp } from "react-icons/io";
 
 const products = [
   {
@@ -64,6 +66,25 @@ const ProductDetailss = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [sku, setSku] = useState();
+  const [productName, setProductName] = useState();
+  const [salePrice, setSalePrice] = useState();
+  const [imageUrl, setImageUrl] = useState("");
+  const phoneNumber = "919099975424"; // Replace with your WhatsApp number
+
+  const message = `👋 Hi! Thank you for contacting us. I'm interested in placing an order.
+
+🛍 *Product:* ${productName}
+🆔 *SKU:* ${sku}
+💰 *Price:* ₹${salePrice}
+🖼 *Image:* ${imageUrl}
+🔗 *Product Link:* ${window.location.href}
+
+Please let me know the next steps.`;
+
+  const encodedMessage = encodeURIComponent(message);
+  // const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
   const openCart = () => {
     setIsCartOpen(true);
@@ -73,9 +94,10 @@ const ProductDetailss = () => {
   const navigate = useNavigate();
 
   const handleProductClick = (productId, productData) => {
-    navigate(`/product-details/${productId}`, { state: { product: productData } });
+    navigate(`/product-details/${productId}`, {
+      state: { product: productData },
+    });
   };
-
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
@@ -84,16 +106,23 @@ const ProductDetailss = () => {
   useEffect(() => {
     if (!productData) {
       // Fetch product data if not available in state
-      axios.get(`http://192.168.1.10:3000/api/v1/product/get-product-id/${productId}`)
+      axios
+        .get(
+          `http://192.168.1.10:3000/api/v1/product/get-product-id/${productId}`
+        )
         .then((response) => {
           console.log("Fetched product:", response.data);
           setProductDetails(response.data);
-          console.log('productDetails', productDetails)
+          setSku(response.data.sku);
+          setProductName(response.data.productName);
+          setSalePrice(response.data.salePrice?.$numberDecimal);
+          setImageUrl(response.data.image[0]);
+          console.log("response.data.image[0] :>> ", response.data.image[0]);
           if (response.data.categoryName) {
             fetchRelatedProducts(response.data.categoryName);
           }
         })
-        .catch(error => console.error("Error:", error));
+        .catch((error) => console.error("Error:", error));
     }
   }, [productId, productData]);
 
@@ -111,7 +140,6 @@ const ProductDetailss = () => {
         console.error("Error fetching related products:", error)
       );
   };
-
 
   const closeCart = () => {
     setIsCartOpen(false);
@@ -132,8 +160,6 @@ const ProductDetailss = () => {
 
   const handleSelect = (size) => {
     setSelectedSize(size);
-
-
 
     if (productDetails?.hasVariations) {
       const selectedVariation = productDetails.variations.find(
@@ -178,7 +204,6 @@ const ProductDetailss = () => {
       });
     }
   }, [productDetails]);
-
 
   const toggleFavorite = async (productId) => {
     const userId = localStorage.getItem("user_Id");
@@ -230,16 +255,22 @@ const ProductDetailss = () => {
     const fetchWishlist = async () => {
       if (!userId) return;
       try {
-        const response = await axios.get(`http://192.168.1.10:3000/api/v1/wishlist/${userId}`);
+        const response = await axios.get(
+          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
+        );
         const wishlistData = response.data.data || [];
 
         console.log("Fetched Wishlist Data:", wishlistData);
 
-
         const wishlistMap = {};
         wishlistData.forEach((item) => {
           let productId = item.productId._id || item.productId.id; // Extract _id if present
-          console.log("Processed Product ID:", productId, "Type:", typeof productId);
+          console.log(
+            "Processed Product ID:",
+            productId,
+            "Type:",
+            typeof productId
+          );
 
           if (typeof productId === "string" || typeof productId === "number") {
             wishlistMap[productId] = item.id;
@@ -336,14 +367,19 @@ const ProductDetailss = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        stacked 
+        stacked
       />
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage}/>
+      <CartPopup
+        isOpen={isCartOpen}
+        closeCart={closeCart}
+        showToast={showToast}
+        toastMessage={toastMessage}
+      />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header openCart={openCart} />
         <div className="container">
-          <section >
+          <section>
             <div class=" pb-2 pt-3 md:px-5">
               <div class="Breadcrumbs max-w-8xl d-flex align-items-center mx-auto flex items-center flex-nowrap whitespace-nowrap overflow-hidden gap-2">
                 <div class="BreadcrumbItem flex ">
@@ -363,7 +399,9 @@ const ProductDetailss = () => {
                     <a
                       class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
                       data-discover="true"
-                      href={`/products?category=${productDetails?.categoryName || 'rings'}`}
+                      href={`/products?category=${
+                        productDetails?.categoryName || "rings"
+                      }`}
                     >
                       {productDetails?.categoryName || "Rings"}
                     </a>
@@ -372,7 +410,7 @@ const ProductDetailss = () => {
                 <FaChevronRight />
                 <div class="BreadcrumbItem flex max-w-1/3">
                   <span class="font-light text-1.25xs leading-tight line-clamp-1 whitespace-normal mt-0.5 bread_crumnbs">
-                  {productDetails.productName || "products"}
+                    {productDetails.productName || "products"}
                   </span>
                 </div>
               </div>
@@ -382,54 +420,6 @@ const ProductDetailss = () => {
           <section className="d-flex gap-5 pro_sss_gubs ">
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
-                {/* <div className="d-flex gap-4 pro_dddd66">
-                  <div className="det_min_cd2">
-                    <video
-                      src={ringVideo}
-                      className="detr_img bg-white"
-                      autoPlay
-                      loop
-                      muted
-                    />
-                   
-                  
-                  </div>
-                  <div className="det_min_cds p-5 w-100">
-                    <img
-                      className="detr_img"
-                      src={require("../../Images/pd-2.png")}
-                    />
-                  </div>
-                </div>
-                <div className="d-flex gap-4 pro_dddd66">
-                  <div className="det_min_cd ">
-                    <img
-                      className="detr_img_d"
-                      src={require("../../Images/15 Model white.png")}
-                    />
-                  </div>
-                  <div className="det_min_cds p-5 w-100">
-                    <img
-                      className="detr_img_d"
-                      src={require("../../Images/1 (8).png")}
-                    />
-                  </div>
-                </div>
-                <div className="d-flex gap-4 pro_dddd66">
-                  <div className="det_min_cds p-5 xsddcsd">
-                    <img
-                      className="detr_img_d"
-                      src={require("../../Images/1 (6).png")}
-                    />
-                  </div>
-                  <div className="det_min_cd_1">
-                    <img
-                      className="detr_img_s_s"
-                      src={require("../../Images/lastttt.png")}
-                    />
-                  </div>
-                </div> */}
-
                 {productDetails?.image && productDetails.image.length > 0 ? (
                   productDetails.image.map((img, index) => {
                     const isVideo = img.endsWith(".mp4"); // Check if the file is a video
@@ -457,10 +447,8 @@ const ProductDetailss = () => {
                 ) : (
                   <p>Loading images...</p>
                 )}
-
               </div>
               <div className="mobile-slider">
-
                 <Swiper
                   spaceBetween={0}
                   loop={true}
@@ -470,7 +458,6 @@ const ProductDetailss = () => {
                     clickable: true,
                     dynamicBullets: true, // Enables a modern pagination style
                   }}
-
                   breakpoints={{
                     0: {
                       slidesPerView: 1, // Mobile - 1 item
@@ -525,21 +512,25 @@ const ProductDetailss = () => {
               </div>
             </div>
 
-
-            <div className="d-none d-md-flex w-100 gap-3 " style={{position:'sticky',top: '50px'}}>
+            <div
+              className="d-none d-md-flex w-100 gap-3 "
+              style={{ position: "sticky", top: "50px" }}
+            >
               <div className="sdcsd_saxza">
                 <div className="thumbnail-gallery-container">
                   <div className="thumbnail-gallery-row w-100 gap-2">
                     {productDetails?.image?.map((image, index) => (
                       <div
                         key={index}
-                        className={`thumbnail-item ${selectedImageIndex === index ? 'active' : ''}`}
+                        className={`thumbnail-item ${
+                          selectedImageIndex === index ? "active" : ""
+                        }`}
                         onClick={() => setSelectedImageIndex(index)}
                       >
                         <img
                           src={`http://192.168.1.10:3000${image}`}
-                        className="thumbnail-image"
-                        alt={`Thumbnail ${index + 1}`}
+                          className="thumbnail-image"
+                          alt={`Thumbnail ${index + 1}`}
                         />
                       </div>
                     ))}
@@ -547,8 +538,9 @@ const ProductDetailss = () => {
                 </div>
               </div>
               <div className="main-image-container">
-                {productDetails?.image && productDetails.image.length > 0 && (
-                  productDetails.image[selectedImageIndex].endsWith('.mp4') ? (
+                {productDetails?.image &&
+                  productDetails.image.length > 0 &&
+                  (productDetails.image[selectedImageIndex].endsWith(".mp4") ? (
                     <video
                       src={`http://192.168.1.10:3000${productDetails.image[selectedImageIndex]}`}
                       className="main-product-image w-100 object-fit-contain"
@@ -563,13 +555,11 @@ const ProductDetailss = () => {
                       className="main-product-image w-100 object-fit-contain"
                       alt={productDetails?.productName || "Product image"}
                     />
-                  )
-                )}
+                  ))}
               </div>
             </div>
             <div className="w-100 sdcsd_saxza dscd_54_Dscds">
               <div>
-
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="secrt_1">{productDetails?.productName}</span>
                   <div>
@@ -648,25 +638,23 @@ const ProductDetailss = () => {
                   <hr className="hr_pb_dtl" />
                 </div>
 
-                <div className="d-flex justify-content-between align-items-center gap-4">
+                <div className="d-flex justify-content-between align-items-center gap-3">
+                  <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
+
+                  <button
+                    className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                    onClick={() => addToCart(productDetails)}
+                  >
+                    Buy Now
+                  </button>
                   <button
                     className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
                     onClick={() => addToCart(productDetails)}
                   >
                     Add to Cart <BiShoppingBag size={25} />
                   </button>
-                  <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs">
-                    {/* <div
-                      className="gohrt_bod p-2"
-                      onClick={() => setLiked(!liked)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {liked ? (
-                        <GoHeartFill size={25} className="hert_fffs" />
-                      ) : (
-                        <GoHeart size={25} className="hert_fff" />
-                      )}
-                    </div> */}
+                  </div>
+                  <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
                     <div
                       className="gohrt_bod p-2"
                       onClick={() => toggleFavorite(productDetails.id)}
@@ -677,7 +665,6 @@ const ProductDetailss = () => {
                       ) : (
                         <GoHeart className="heart-icon_ss" size={25} />
                       )}
-
                     </div>
 
                     <div className="gohrt_bod p-2">
@@ -686,7 +673,23 @@ const ProductDetailss = () => {
                   </div>
                 </div>
 
-                <div className="d-flex justify-content-between align-items-center gap-4 pt-5 fdcvd_life_ttt">
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
+                  // onClick={() => {
+                  //   window.open("https://wa.me/919099975424", "_blank");
+                  // }}
+                  // onClick={() => addToCart(productDetails)}
+                >
+                  Order On Whatsapp{" "}
+                  <span className="whatsapp-icon">
+                    <IoLogoWhatsapp size={30} />
+                  </span>
+                </a>
+
+                <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_ttt">
                   <div className="icon-box">
                     <img
                       src={require("../../Images/lifetime.png")}
@@ -771,8 +774,8 @@ const ProductDetailss = () => {
                         <div className="pt-5">
                           <span className="mes_ddd">
                             It comes with the authenticity and gaurantee
-                            certificate of 925 Silver with lifetime
-                            exchange gaurantee.
+                            certificate of 925 Silver with lifetime exchange
+                            gaurantee.
                           </span>
                         </div>
                       </div>
@@ -788,8 +791,9 @@ const ProductDetailss = () => {
                       <div className="accordion-item" key={index}>
                         <h2 className="accordion-header">
                           <button
-                            className={`accordion-button ${openIndex === index ? "" : "collapsed"
-                              }`}
+                            className={`accordion-button ${
+                              openIndex === index ? "" : "collapsed"
+                            }`}
                             type="button"
                             onClick={() => toggleFAQ(index)}
                           >
@@ -799,8 +803,9 @@ const ProductDetailss = () => {
                           </button>
                         </h2>
                         <div
-                          className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
-                            }`}
+                          className={`accordion-collapse collapse ${
+                            openIndex === index ? "show" : ""
+                          }`}
                           data-bs-parent="#faqAccordion"
                         >
                           <div className="accordion-body srfferc">
@@ -822,75 +827,71 @@ const ProductDetailss = () => {
           </div>
           <div className="heder_sec_main d-flex flex-column">
             <div className="row">
-              {relatedProducts.map(
-                (product) => (
-                  (
-                    <div
-                      key={product.id}
-                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 pt-5 asxasx_cards tsrd_didhd_sdcs"
-                      onMouseEnter={() => setHoveredProduct(product.id)}
-                      onMouseLeave={() => setHoveredProduct(null)}
-                    >
-                      <div className="card prio_card scdscsed_sdss">
-                        <div className="card-image-wrapper position-relative">
-                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                            NEW
-                          </button>
-                          <div
-                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                            onClick={() => toggleFavorite(product.id)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {wishlistItems[product.id] ? (
-                              <GoHeartFill
-                                className="heart-icon_ss"
-                                size={18}
-                              />
-                            ) : (
-                              <GoHeart className="heart-icon_ss" size={18} />
-                            )}
-                          </div>
-
-                          <div
-                            className="card-body p-0 d-flex justify-content-center"
-                            style={{ height: "100%" }}
-                          >
-                            <img
-                              src={`http://192.168.1.10:3000${product.image[0]}`}
-                              className="p-1_proi img-fluid"
-                              alt="Product"
-                            />
-                          </div>
-                        </div>
+              {relatedProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 pt-5 asxasx_cards tsrd_didhd_sdcs"
+                  onMouseEnter={() => setHoveredProduct(product.id)}
+                  onMouseLeave={() => setHoveredProduct(null)}
+                >
+                  <div className="card prio_card scdscsed_sdss">
+                    <div className="card-image-wrapper position-relative">
+                      <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                        NEW
+                      </button>
+                      <div
+                        className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                        onClick={() => toggleFavorite(product.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {wishlistItems[product.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={18} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={18} />
+                        )}
                       </div>
-                      <div className="d-flex flex-column main_cdsss">
-                        <span className="mikdec_asdaa pt-3">
-                          {product.productName}
-                        </span>
-                        <div className="d-flex align-items-center gap-3 pt-1">
-                          <span className="mikdec_asdxsx">
-                            ₹{product.salePrice.$numberDecimal}
-                          </span>
-                          <span className="mikdec_axsx">
-                            ₹{product.regularPrice?.$numberDecimal}
-                          </span>
-                        </div>
-                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                          <button className="more_btn_dsdd w-50" onClick={() => handleProductClick(product.id)}>
-                            More Info
-                          </button>
-                          <button
-                            className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
-                            onClick={() => addToCart(productDetails)}
-                          >
-                            Add to Cart <BiShoppingBag size={25} />
-                          </button>
-                        </div>
+
+                      <div
+                        className="card-body p-0 d-flex justify-content-center"
+                        style={{ height: "100%" }}
+                      >
+                        <img
+                          src={`http://192.168.1.10:3000${product.image[0]}`}
+                          className="p-1_proi img-fluid"
+                          alt="Product"
+                        />
                       </div>
                     </div>
-                  )
-                )
-              )}
+                  </div>
+                  <div className="d-flex flex-column main_cdsss">
+                    <span className="mikdec_asdaa pt-3">
+                      {product.productName}
+                    </span>
+                    <div className="d-flex align-items-center gap-3 pt-1">
+                      <span className="mikdec_asdxsx">
+                        ₹{product.salePrice.$numberDecimal}
+                      </span>
+                      <span className="mikdec_axsx">
+                        ₹{product.regularPrice?.$numberDecimal}
+                      </span>
+                    </div>
+                    <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                      <button
+                        className="more_btn_dsdd w-50"
+                        onClick={() => handleProductClick(product.id)}
+                      >
+                        More Info
+                      </button>
+                      <button
+                        className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                        onClick={() => addToCart(productDetails)}
+                      >
+                        Add to Cart <BiShoppingBag size={25} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
 
               <div className="slider_ssss_fdcdf ">
                 <Swiper
@@ -903,11 +904,11 @@ const ProductDetailss = () => {
                     0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
-                // autoplay={{
-                //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                //   disableOnInteraction: false,
-                // }}
-                // modules={[Autoplay]}
+                  // autoplay={{
+                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                  //   disableOnInteraction: false,
+                  // }}
+                  // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
@@ -963,7 +964,8 @@ const ProductDetailss = () => {
                           </span>
                         </div>
                         <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
-                          <button className="more_btn_dsdd w-50"
+                          <button
+                            className="more_btn_dsdd w-50"
                             onClick={() => handleProductClick(product.id)}
                           >
                             More Info

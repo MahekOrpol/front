@@ -656,11 +656,13 @@ const Products = () => {
                               autoPlay
                               loop
                               muted
+                              onClick={() => handleProductClick(product.id)}
                             />
                           ) : (
                             <img
                               src={`http://192.168.1.10:3000${product.image[imageIndexes[product.id]]
                                 }`}
+                                onClick={() => handleProductClick(product.id)}
                               className="p-1_proi img-fluid"
                               alt="Product"
                             />
