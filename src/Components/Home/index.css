@@ -4443,7 +4443,7 @@ img.ring-image {
 
 @media (max-width: 991px) {
   .our_colles {
-    background-image: url(http://localhost:3002/static/media/banerbg.01e3fc3794fbe8fa6318.png);
+    background-image: url("../../Images/banerbg.png");
     width: 100%;
     height: auto;
     padding: 1rem !important;
@@ -4604,7 +4604,7 @@ img.ring-image {
   }
   .banner-img-op {
     /* background-color: #8f5e63; */
-    background-image: url("http://localhost:3002/static/media/Rectangle%2027.33e98175eb13317fc6c3.png");
+    background-image: url("../../Images/Rectangle 27.png");
     border-radius: 36px;
     padding: 2rem 1rem !important;
     background-repeat: no-repeat;
@@ -4612,7 +4612,7 @@ img.ring-image {
 }
 
 .our_colles {
-  background-image: url(http://localhost:3002/static/media/banerbg.01e3fc3794fbe8fa6318.png);
+  background-image: url("../../Images/banerbg.png");
   width: 100%;
   height: auto;
   padding: .6rem !important;
@@ -4622,7 +4622,7 @@ img.ring-image {
 .our_colle_iumg_ssss {
   transition: transform 0.4s ease-in-out, box-shadow 0.3s ease;
   transform: scale(1);
-  height: 57% !important;
+  height: 100% !important;
 }
 
 .our_colle_iumg_ssss:hover {
@@ -4716,6 +4716,27 @@ img.ring-image {
 }
 } 
 
+@media (max-width:520px) {
+  .our_coll_head{
+    font-size: 14px;
+  }
+  .our_colles {
+    background-image: url(http://localhost:3001/static/media/banerbg.01e3fc3794fbe8fa6318.png);
+    width: 100%;
+    height: auto;
+    padding: 1rem !important;
+    margin-top: 2rem;
+}
+}
+@media (max-width:475px) {
+  .our_coll_head{
+    font-size: 12px;
+  }
+  .see_more_mobile {
+    font-size: 14px;
+    border: 1px solid;
+}
+}
 .video-curved-tewd{
 
  .video-curved-tewd body {
@@ -9374,7 +9395,7 @@ img.ring-image {
 
 @media (max-width: 991px) {
   .our_colles {
-    background-image: url(http://localhost:3002/static/media/banerbg.01e3fc3794fbe8fa6318.png);
+    background-image: url("../../Images/banerbg.png");
     width: 100%;
     height: auto;
     padding: 1rem !important;
@@ -9534,7 +9555,7 @@ img.ring-image {
   }
   .banner-img-op {
     /* background-color: #8f5e63; */
-    background-image: url("http://localhost:3002/static/media/Rectangle%2027.33e98175eb13317fc6c3.png");
+    background-image: url("../../Images/Rectangle 27.png");
     border-radius: 36px;
     padding: 2rem 1rem !important;
     background-repeat: no-repeat;
@@ -9542,7 +9563,7 @@ img.ring-image {
   }
 
   .our_colles {
-    background-image: url(http://localhost:3002/static/media/banerbg.01e3fc3794fbe8fa6318.png);
+    background-image: url("../../Images/banerbg.png");
     width: 100%;
     height: auto;
     padding: 0.6rem !important;
@@ -9552,7 +9573,7 @@ img.ring-image {
 .our_colle_iumg_ssss {
   transition: transform 0.4s ease-in-out, box-shadow 0.3s ease;
   transform: scale(1);
-  height: 57% !important;
+  height: 100% !important;
 }
 
 .our_colle_iumg_ssss:hover {

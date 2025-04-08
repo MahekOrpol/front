@@ -11,35 +11,33 @@ const OueColletion = () => {
 
   // Static image imports (keep as before)
   const productImages = [
-    require("../../Images/our.png"),
-    require("../../Images/our2.png"),
-    require("../../Images/our3.png"),
+    { img: require("../../Images/our.png"), label: "Diamond Bracelet",path:'Bracelet' },
+    { img: require("../../Images/our2.png"), label: "Diamond Earrings" ,path:'Earrings'},
+    { img: require("../../Images/our3.png"), label: "Engagement Rings" ,path:'Rings'},
   ];
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("https://crystova.cloudbusiness.cloud/api/v1/product/get");
-        console.log(response);
-        setProducts(response.data.slice(0, 3)); // Get first 3 products
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "https://crystova.cloudbusiness.cloud/api/v1/product/get"
+  //       );
+  //       console.log(response);
+  //       setProducts(response.data.slice(0, 3)); // Get first 3 products
+  //     } catch (err) {
+  //       setError(err.message);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchProducts();
-  }, []);
+  //   fetchProducts();
+  // }, []);
 
-  const handleProductClick = (productId, productData) => {
-    navigate(`/product-details/${productId}`, {
-      state: { product: productData },
-    });
+  const handleCategoryClick = (category) => {
+    navigate(`/products?categoryName=${category}`);
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
   return (
     <div className="our_colles">
       <div className="banner-img-op">
@@ -58,38 +56,46 @@ const OueColletion = () => {
             </button>
           </div>
           <div className="d-flex justify-content-between gap-4 w-100 defV_ybsxc">
-            {products.map((product, index) => {
-              // Safely extract price (handles Decimal128 or plain number)
-              let price = "0.00";
-              if (product.salePrice) {
-                if (typeof product.salePrice === "object" && "$numberDecimal" in product.salePrice) {
-                  price = parseFloat(product.salePrice.$numberDecimal).toFixed(2);
-                } else {
-                  price = parseFloat(product.salePrice).toFixed(2);
-                }
-              }
+            {productImages.map((product, index) => {
+              // let price = "0.00";
+              // if (product.salePrice) {
+              //   if (
+              //     typeof product.salePrice === "object" &&
+              //     "$numberDecimal" in product.salePrice
+              //   ) {
+              //     price = parseFloat(product.salePrice.$numberDecimal).toFixed(
+              //       2
+              //     );
+              //   } else {
+              //     price = parseFloat(product.salePrice).toFixed(2);
+              //   }
+              // }
 
               return (
                 <div
                   key={product._id}
                   className="d-flex flex-column gap-2 banner_tezxt"
-                  onClick={() => handleProductClick(product.id)}
+                  onClick={() => handleCategoryClick(product.path)}
                 >
                   <img
-                    src={productImages[index]}
+                  src={product.img}
                     className="our_colle_iumg_ssss"
-                    alt={product.name}
+                    alt={product.label}
                   />
-                  <span className="our_coll_head">{product?.productName.length > 20
-                    ? product.productName.substring(0, 20) + "..."
-                    : product.productName
-                  }</span>
-                  <span className="our_coll_head_tl">₹ {price}</span>
+                  <span className="our_coll_head">
+                  {product.label.length > 20 ? product.label.substring(0, 20) + "..." : product.label}
+                  </span>
+                  {/* <span className="our_coll_head_tl">₹ {price}</span> */}
                 </div>
               );
             })}
           </div>
-          <button className="see_more_mobile d-none"  onClick={() => navigate("/products")}>See More</button>
+          <button
+            className="see_more_mobile d-none"
+            onClick={() => navigate("/products")}
+          >
+            See More
+          </button>
         </div>
       </div>
     </div>
@@ -97,4 +103,3 @@ const OueColletion = () => {
 };
 
 export default OueColletion;
-
