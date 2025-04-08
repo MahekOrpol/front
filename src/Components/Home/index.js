@@ -154,10 +154,8 @@ const Home = () => {
   const [categoriesa, setCategoriesa] = useState();
   const [currentCategory, setCurrentCategory] = useState("");
   const [filteredBestSellers, setFilteredBestSellers] = useState([]);
-
   const [currentIndex, setCurrentIndex] = useState(0);
-  const productsPerPage = 4;
-
+  const [productsPerPage, setProductsPerPage] = useState(0);
   const productsToDisplay =
     filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
 
@@ -167,13 +165,13 @@ const Home = () => {
 
   const handleNext = () => {
     if (currentIndex + productsPerPage < productsToDisplay.length) {
-      setCurrentIndex(currentIndex + productsPerPage);
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
   const handlePrevious = () => {
     if (currentIndex - productsPerPage >= 0) {
-      setCurrentIndex(currentIndex - productsPerPage);
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
@@ -234,7 +232,7 @@ const Home = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://localhost:3000/api/v1/order-details/create",
+        "http://192.168.1.10:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -259,7 +257,7 @@ const Home = () => {
   }, []);
 
   const getCategories = async () => {
-    const res = await axios.get("http://localhost:3000/api/v1/category/get");
+    const res = await axios.get("http://192.168.1.10:3000/api/v1/category/get");
     setCategoriesa(res.data);
     console.log("res.datassss :>> ", res.data);
   };
@@ -303,20 +301,20 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getTopRated"
+      "http://192.168.1.10:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
     console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getBestSelling"
+      "http://192.168.1.10:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getOnSale"
+      "http://192.168.1.10:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -361,13 +359,13 @@ const Home = () => {
         });
 
         const res = await axios.delete(
-          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://localhost:3000/api/v1/wishlist/create`,
+          `http://192.168.1.10:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -393,7 +391,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/wishlist/${userId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -765,7 +763,7 @@ const Home = () => {
                 >
                   <div className="d-flex flex-column align-items-center">
                     <img
-                      src={`http://localhost:3000${category.categoryImage}`}
+                      src={`http://192.168.1.10:3000${category.categoryImage}`}
                       className="home-img home_img_ssssss fvfvfc_Zdcdsc"
                       alt={category.categoryName}
                     />
@@ -1037,7 +1035,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`http://192.168.1.10:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1108,7 +1106,7 @@ const Home = () => {
 
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`http://192.168.1.10:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -1182,7 +1180,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://localhost:3000${product.image[0]}`}
+                            src={`http://192.168.1.10:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1239,7 +1237,7 @@ const Home = () => {
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
-          <div className="row d-flex align-items-stretch mt-5 ">
+          <div className="row d-flex align-items-stretch mt-5 w-100">
             {/* Left Image Section */}
             <div className="col-lg-6 ring_banner_szcdvc position-relative">
               <div className="h-100 d-flex align-items-center justify-content-center">
@@ -1313,7 +1311,7 @@ const Home = () => {
 
                               <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                                 <img
-                                  src={`http://localhost:3000${product.image[0]}`}
+                                  src={`http://192.168.1.10:3000${product.image[0]}`}
                                   className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
                                   alt="Product"
                                 />
@@ -1351,8 +1349,8 @@ const Home = () => {
                         </div>
                       </div>
                     ))} */}
-                  {productsToDisplay
-                    .slice(currentIndex, currentIndex + productsPerPage)
+                    {productsToDisplay
+                    .slice(currentIndex, currentIndex + productsToDisplay?.length)
                     .map((product) => (
                       <div
                         key={product.id}
@@ -1386,7 +1384,7 @@ const Home = () => {
                               </div>
                               <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                                 <img
-                                  src={`http://localhost:3000${product.image[0]}`}
+                                  src={`http://192.168.1.10:3000${product.image[0]}`}
                                   className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
                                   alt="Product"
                                 />
@@ -1436,7 +1434,7 @@ const Home = () => {
                   <button
                     onClick={handleNext}
                     disabled={
-                      currentIndex + productsPerPage >= productsToDisplay.length
+                      currentIndex + 1 >= productsToDisplay.length
                     }
                     className="btn btn-outline-secondary "
                   >
