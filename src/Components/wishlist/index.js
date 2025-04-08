@@ -76,7 +76,7 @@ const Wishlist = () => {
 
     try {
       const response = await axios.get(
-        `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
+        `http://localhost:3000/api/v1/wishlist/${userId}`
       );
       const wishlistData = response.data.data;
       setWishlist(wishlistData);
@@ -84,7 +84,7 @@ const Wishlist = () => {
       // Initialize image indexes for each product
       const initialIndexes = {};
       wishlistData.forEach((product) => {
-        initialIndexes[product.productId.id] = 0;
+        initialIndexes[product?.productId?.id] = 0;
       });
       setImageIndexes(initialIndexes);
     } catch (error) {
@@ -108,7 +108,7 @@ const Wishlist = () => {
 
     try {
       const res = await axios.delete(
-        `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItem.id}`
+        `http://localhost:3000/api/v1/wishlist/delete/${wishlistItem.id}`
       );
 
       // Remove item from the wishlist state
@@ -167,7 +167,7 @@ const Wishlist = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://192.168.1.10:3000/api/v1/order-details/create",
+        "http://localhost:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -242,7 +242,7 @@ const Wishlist = () => {
                           </div>
                         </div>
                         <div className="card-body">
-                          {productId.image[imageIndexes[productId.id]].endsWith(
+                          {productId?.image[imageIndexes[productId?.id]]?.endsWith(
                             ".mp4"
                           ) ? (
                             <video

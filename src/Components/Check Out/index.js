@@ -119,7 +119,7 @@ const CheckoutPage = () => {
       }
       // Step 1: Create an order via API
       const response = await axios.post(
-        // "http://192.168.1.10:3000/api/v1/order/create",
+        // "http://localhost:3000/api/v1/order/create",
         "http://localhost:3000/api/v1/payment/create-razorpay-order",
         payload
       );
@@ -146,7 +146,7 @@ const CheckoutPage = () => {
               razorpay_signature: response.razorpay_signature,
             };
             const verifyPayment = await axios.post(
-              "http://192.168.1.10:3000/api/v1/payment/verify-razorpay-order",
+              "http://localhost:3000/api/v1/payment/verify-razorpay-order",
               body
             );
             if (verifyPayment.status === 200) {
@@ -175,7 +175,7 @@ const CheckoutPage = () => {
               console.log("quantity :>> ", quantity);
 
               const res = await axios.post(
-                "http://192.168.1.10:3000/api/v1/order/create",
+                "http://localhost:3000/api/v1/order/create",
                 payload
               );
 

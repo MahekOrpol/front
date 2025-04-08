@@ -264,7 +264,7 @@ const Home = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://192.168.1.10:3000/api/v1/order-details/create",
+        "http://localhost:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -289,7 +289,7 @@ const Home = () => {
   }, []);
 
   const getCategories = async () => {
-    const res = await axios.get("http://192.168.1.10:3000/api/v1/category/get");
+    const res = await axios.get("http://localhost:3000/api/v1/category/get");
     setCategoriesa(res.data);
     console.log("res.datassss :>> ", res.data);
   };
@@ -333,20 +333,20 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios.get(
-      "http://192.168.1.10:3000/api/v1/product/getTopRated"
+      "http://localhost:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
     console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
-      "http://192.168.1.10:3000/api/v1/product/getBestSelling"
+      "http://localhost:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios.get(
-      "http://192.168.1.10:3000/api/v1/product/getOnSale"
+      "http://localhost:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -391,13 +391,13 @@ const Home = () => {
         });
 
         const res = await axios.delete(
-          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://192.168.1.10:3000/api/v1/wishlist/create`,
+          `http://localhost:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -423,7 +423,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
+          `http://localhost:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -1657,7 +1657,7 @@ const Home = () => {
         <div className="testimonial-container d-flex align-items-center mt-5">
           <div
             className="heder_sec_main d-flex flex-column align-items-center "
-          // style={{ paddingTop: "3rem" }}
+          style={{width:"100vw"}}
           >
             <span className="category_name mt-2">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
