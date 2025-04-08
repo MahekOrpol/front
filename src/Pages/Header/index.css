@@ -599,3 +599,7 @@
     right: 6%;
   }
 }
+
+.menu-icons{
+  border-radius: none !important;
+}

@@ -158,7 +158,7 @@ const Header = ({ openCart }) => {
                   <ul className="menu-list">
                     {localStorage.getItem("user_Id") && localStorage.getItem("user_token") ? (
                       <li onClick={() => navigate("/Editprofile")}>
-                        <div className="menu-item">
+                        <div className="menu-item gap-2">
                           <img
                             src={require("../../Images/profileicon.png")}
                             alt="Profile"
@@ -170,7 +170,7 @@ const Header = ({ openCart }) => {
                       </li>
                     ) : (
                       <li onClick={() => navigate("/register")}>
-                        <div className="menu-item">
+                        <div className="menu-item gap-2">
                           <img
                             src={require("../../Images/profileicon.png")}
                             alt="Profile"
@@ -183,7 +183,7 @@ const Header = ({ openCart }) => {
                     )}
 
                     <li onClick={() => navigate("/Order")}>
-                      <div className="menu-item">
+                      <div className="menu-item gap-2">
                         <img
                           src={require("../../Images/ordericon.png")}
                           alt="Orders"
@@ -194,7 +194,7 @@ const Header = ({ openCart }) => {
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
                     <li>
-                      <div className="menu-item">
+                      <div className="menu-item gap-2">
                         <img
                           src={require("../../Images/termsicon.png")}
                           alt="Terms"
@@ -205,7 +205,7 @@ const Header = ({ openCart }) => {
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
                     <li>
-                      <div className="menu-item">
+                      <div className="menu-item gap-2">
                         <img
                           src={require("../../Images/privacyicon.png")}
                           alt="Privacy"
@@ -216,7 +216,7 @@ const Header = ({ openCart }) => {
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
                     <li onClick={() => navigate("/contact-us")}>
-                      <div className="menu-item">
+                      <div className="menu-item gap-2">
                         <img
                           src={require("../../Images/contacticon.png")}
                           alt="Contact"
@@ -228,7 +228,7 @@ const Header = ({ openCart }) => {
                     </li>
                     {localStorage.getItem("user_Id") && localStorage.getItem("user_token") && (
                       <li onClick={handleLogout}>
-                        <div className="menu-item">
+                        <div className="menu-item gap-2">
                           <MdLogout size={22} />
                           <span className="sass ms-2">Logout</span>
                         </div>

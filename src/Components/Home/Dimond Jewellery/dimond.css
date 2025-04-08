@@ -5,10 +5,15 @@
   justify-content: space-between;
 }
 
-.dimond video,
-img {
+.diamond_section .dimond .demoiin-video_sec,
+.diamond_img {
   border-radius: 8px;
   object-fit: cover;
+}
+
+.demoiin-video_sec{
+  
+  border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -16,8 +21,8 @@ img {
     height: auto !important;
   }
 
- .dimond video,
-  img {
+ .dimond .demoiin-video_sec,
+ .diamond_img {
     height: auto !important;
   }
   .dimond-section{
