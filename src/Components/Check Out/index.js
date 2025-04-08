@@ -120,7 +120,7 @@ const CheckoutPage = () => {
       // Step 1: Create an order via API
       const response = await axios.post(
         // "http://192.168.1.10:3000/api/v1/order/create",
-        "http://192.168.1.10:3000/api/v1/payment/create-razorpay-order",
+        "http://localhost:3000/api/v1/payment/create-razorpay-order",
         payload
       );
 
@@ -448,7 +448,7 @@ const CheckoutPage = () => {
               return (
                 <div className="order-item" key={index}>
                   <img
-                    src={`http://192.168.1.10:3000${item.productId.image[0]}`}
+                    src={`http://localhost:3000${item.productId.image[0]}`}
                     alt={item.productId.productId}
                     className="order-item-img"
                   />

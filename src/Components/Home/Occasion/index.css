@@ -2,7 +2,7 @@
   font-family: "Cabin", sans-serif;
   font-weight: 400;
   font-size: 1rem !important;
-  line-height: 1.7 !important;
+  line-height: 1.5 !important;
   letter-spacing: 0%;
   text-align: justify;
   width: 75%;
@@ -23,20 +23,20 @@
   max-width: 1700px;
   margin: 0 auto;
   padding: 40px 20px;
-  gap: 40px;
+  /* gap: 40px; */
   margin-top: 9rem;
   margin-bottom: 5rem;
 }
 
 .slider-content {
   text-align: left;
-  max-width: 1024px;
+  /* max-width: 1024px; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 23px;
+  width: 80%;
 }
-
 .slider-container {
   position: relative;
   width: 100%;
@@ -167,8 +167,9 @@
 
 .slide-number-indicator {
   font-size: clamp(3rem, 10vw, 10rem);
-  left: 50%;
-  transform: translate(-20%, -270px);
+  left: 54%;
+  transform: translate(-20%, -299px);
+  z-index: 3;
 }
 
 @media (max-width: 1171px) {
@@ -180,13 +181,13 @@
 .slider_img_bgggg {
   backdrop-filter: blur(536.200012px);
   position: absolute;
-  left: 57%;
+  left: 50%;
   background: #611d2b38;
   opacity: 21%;
   border-radius: 50%;
   z-index: 1;
   top: -132%;
-  filter: blur(7px);
+  /* filter: blur(7px); */
 }
 
 .slider_img_bgggg {
@@ -268,14 +269,14 @@
 .image-medium {
   width: clamp(120px, 18vw, 183px);
   height: clamp(180px, 25vw, 278px);
-  left: 57%;
+  left: 61%;
   transform: translate(-22%, 41%);
 }
 
 .image-small {
   width: clamp(80px, 12vw, 111px) !important;
   height: clamp(120px, 16vw, 170px) !important;
-  left: 78%;
+  left: 85%;
   transform: translate(-50%, 99%) !important;
 }
 
@@ -323,9 +324,9 @@
 
 @media (max-width: 1433px) {
   .slider_img_bgggg {
-    left: 41%;
-    display: none;
-  }
+    left: 50%;
+    top: -80%;
+}
 
   .next-button {
     right: 0px;
@@ -334,9 +335,25 @@
   .slide-number-indicator {
     left: 62%;
   }
+  .slider_img_bgggg {
+    width: 370px;
+    height: 370px;
+}
+.image-medium {
+  width: clamp(120px, 18vw, 183px);
+  height: clamp(180px, 25vw, 278px);
+  left: 67%;
+  transform: translate(-22%, 41%);
+}
+.image-small {
+  width: clamp(80px, 12vw, 111px) !important;
+  height: clamp(120px, 16vw, 170px) !important;
+  left: 85%;
+  transform: translate(11%, 99%) !important;
+}
 }
 
-@media (max-width: 1421px) {
+@media (max-width: 1421px) and (min-width:1432px) {
   .slider_img_bgggg {
     left: 34%;
     top: -80%;
@@ -357,7 +374,7 @@
   max-width: 1700px;
   margin: 0 auto;
   padding: 40px 20px;
-  gap: 40px;
+  /* gap: 40px; */
   /* margin-top: 9rem; */
   margin-bottom: 5rem;
 }
