@@ -106,10 +106,7 @@ Please let me know the next steps.`;
   useEffect(() => {
     if (!productData) {
       // Fetch product data if not available in state
-      axios
-        .get(
-          `http://192.168.1.10:3000/api/v1/product/get-product-id/${productId}`
-        )
+      axios.get(`http://localhost:3000/api/v1/product/get-product-id/${productId}`)
         .then((response) => {
           console.log("Fetched product:", response.data);
           setProductDetails(response.data);
@@ -130,7 +127,7 @@ Please let me know the next steps.`;
     const formData = new FormData();
     formData.append("categoryName", categoryName);
     axios
-      .get(`http://192.168.1.10:3000/api/v1/product/get-related-product`, {
+      .get(`http://localhost:3000/api/v1/product/get-related-product`, {
         params: { categoryName },
       }) // Use params for GET
       .then((response) => {
@@ -224,13 +221,13 @@ Please let me know the next steps.`;
         });
 
         const res = await axios.delete(
-          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://192.168.1.10:3000/api/v1/wishlist/create`,
+          `http://localhost:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -255,9 +252,7 @@ Please let me know the next steps.`;
     const fetchWishlist = async () => {
       if (!userId) return;
       try {
-        const response = await axios.get(
-          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
-        );
+        const response = await axios.get(`http://localhost:3000/api/v1/wishlist/${userId}`);
         const wishlistData = response.data.data || [];
 
         console.log("Fetched Wishlist Data:", wishlistData);
@@ -335,7 +330,7 @@ Please let me know the next steps.`;
 
       // Make the API request
       const response = await axios.post(
-        "http://192.168.1.10:3000/api/v1/order-details/create",
+        "http://localhost:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },

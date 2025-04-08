@@ -2705,9 +2705,11 @@ img.ring-image {
   .sdcs_ASxsax_dfrvdxf {
     width: 33.33333%;
   }
-  .next_btn_scsdc{
+
+  .next_btn_scsdc {
     display: none !important;
   }
+
   /* 
   .dsjnurh_sx {
     width: 33.33333%;
@@ -10609,22 +10611,28 @@ img.ring-image {
     width: 100% !important;
   }
 }
+
 @media (max-width:575px) {
-  .our_colles{
+  .our_colles {
     margin-top: 2rem;
   }
-  .stunning_price_fvf{
+
+  .stunning_price_fvf {
     margin-top: 0rem !important;
     padding-top: 0rem !important;
   }
 }
+
 @media (width:576px) {
-  .our_colles{
+  .our_colles {
     margin-top: 10rem;
   }
 }
+
 @media (max-width:600px) {
-.asdxdsx_bases_sell{
-  margin-top: 0rem !important;
+  .asdxdsx_bases_sell {
+    margin-top: 0rem !important;
+  }
 }
-}
+
+

@@ -22,7 +22,7 @@ const OrderDetails = () => {
       try {
         const userId = localStorage.getItem("user_Id"); // Get user ID from localStorage
         const response = await axios.get(
-          `http://192.168.1.10:3000/api/v1/order/get-user/${userId}`
+          `http://localhost:3000/api/v1/order/get-user/${userId}`
         );
 
         if (response.data.status) {

@@ -36,7 +36,6 @@ const Header = ({ openCart }) => {
     navigate(`/products?categoryName=${category}`);
     setIsDrawerOpen(false);
   };
-
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (popupRef.current && !popupRef.current.contains(e.target)) {
