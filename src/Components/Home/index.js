@@ -1385,7 +1385,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd ">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd stunning_price_fvf">
           <span className="category_name mt-0 mobile-hide">
             Celebrate love with our Collection
           </span>

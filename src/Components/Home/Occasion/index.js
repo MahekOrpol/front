@@ -35,8 +35,7 @@ const Occasion = () => {
           Make your Occasions Special with our Jewelry
         </h2>
         <p className="occasions_text_p">
-          Discover the perfect blend of elegance and exclusivity with our
-          Limited Edition Collaboration jewelry collection.
+        Discover the perfect blend of elegance and exclusivity with our Limited Edition Collaboration jewelry collection. Crafted with precision and designed for those who appreciate timeless beauty, these unique pieces are available for a short time only!
         </p>
         <Button className="shop-button">
           Shop this look <FaArrowRightLong />
@@ -71,9 +70,9 @@ const Occasion = () => {
           })}
         </div>
 
-        <button className="next-button" onClick={nextSlide}>
+        {/* <button className="next-button" onClick={nextSlide}>
           <FaArrowRightLong />
-        </button>
+        </button> */}
       </div>
     </div>
   );

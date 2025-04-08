@@ -2705,7 +2705,9 @@ img.ring-image {
   .sdcs_ASxsax_dfrvdxf {
     width: 33.33333%;
   }
-
+  .next_btn_scsdc{
+    display: none !important;
+  }
   /* 
   .dsjnurh_sx {
     width: 33.33333%;
@@ -10608,42 +10610,22 @@ img.ring-image {
     width: 100% !important;
   }
 }
-
-
-/* Product card animation classes */
-/* .asxasx_cards {
-  animation: fadeIn 0.3s ease-in-out forwards;
-  -webkit-animation: fadeIn 0.3s ease-in-out forwards;
-} */
-
-/* Slide in from right (next animation) */
-.slide-next-enter {
-  transform: translateX(100%);
-  opacity: 0;
-}
-
-.slide-next-enter-active {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.slide-next-exit {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.slide-next-exit-active {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-
-
-
-@keyframes slideRightToLeft {
-  from {
-    transform: translateX(100%); /* Start off-screen to the right */
+@media (max-width:575px) {
+  .our_colles{
+    margin-top: 2rem;
   }
-  to {
-    transform: translateX(-100%); /* Move off-screen to the left */
+  .stunning_price_fvf{
+    margin-top: 0rem !important;
+    padding-top: 0rem !important;
   }
+}
+@media (width:576px) {
+  .our_colles{
+    margin-top: 10rem;
+  }
+}
+@media (max-width:600px) {
+.asdxdsx_bases_sell{
+  margin-top: 0rem !important;
+}
 }
