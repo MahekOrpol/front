@@ -1,30 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-import { FaSearch } from "react-icons/fa";
+import { FaAngleRight, FaSearch, FaUserAlt } from "react-icons/fa";
 import logo from "../../Images/Group 1597884561.png";
 import usericon from "../../Images/Group.png";
 import { CiHeart, CiSearch } from "react-icons/ci";
 import { IoBagHandleOutline, IoClose, IoMenu } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { TfiMenuAlt } from "react-icons/tfi";
-import { FiSearch } from "react-icons/fi";
-import { GiBigDiamondRing } from "react-icons/gi";
-import GiGemPendant  from "../../Images/gem-pendant-svgrepo-com.svg";
+import GiGemPendant from "../../Images/gem-pendant-svgrepo-com.svg";
 import bracelet from "../../Images/noun-bracelet-5323037.svg";
 import earing from "../../Images/earrings.png";
 import ring from "../../Images/diamond-ring-diamond-svgrepo-com.svg";
 import csome from "../../Images/Group 1597884646.svg";
 import { LuTextSearch } from "react-icons/lu";
-import { FormControl, InputGroup } from "react-bootstrap";
-
-import SignInPopup from "../../Components/SignupPopup/index";
 import RegisterPopup from "../../Components/RegisterPopup";
 import { RiUserLine } from "react-icons/ri";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { MdLogout } from "react-icons/md";
 
-const Header = ({ openCart }) => {
+const Header = ({ openCart ,onClose}) => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isSignupPopupOpen, setIsSignupPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
   const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
 
@@ -35,8 +33,67 @@ const Header = ({ openCart }) => {
     navigate(`/products?categoryName=${category}`);
     setIsDrawerOpen(false);
   };
+  const profileRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setIsProfilePopupOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  const [showRegister, setShowRegister] = useState(false);
+  const [data, setData] = useState();
+  const user_Id = localStorage.getItem("user_Id");
+
+  useEffect(() => {
+    if (user_Id) {
+      getProfileData();
+    }
+  }, [user_Id]);
+
+  const getProfileData = async () => {
+    try {
+      const res = await axios.get(`http://localhost:3000/api/v1/users/${user_Id}`);
+      setData(res.data)
+
+
+    } catch (err) {
+      console.log(err);
+      localStorage.setItem("isExistingProfile", "false");
+    }
+  };
+
+  const handleLogout = () => {
+    toast.success("Logout Successful!");
+    localStorage.removeItem("user_Id");
+    localStorage.removeItem("user_token");
+    localStorage.setItem("isExistingProfile", "false");
+  
+    setData(null);
+    setTimeout(() => onClose(), 500); // Close the popup after logout
+    navigate("/"); // Redirect to homepage or login page
+  };
+
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        stacked
+      />
       <div className="header_main">
         <p className="header_text pt-2">Shop Gold and Diamond Jewellery</p>
       </div>
@@ -93,20 +150,97 @@ const Header = ({ openCart }) => {
         <div className="walign-items-center d-flex dcxde_asx485 gap-3 gap-lg-4 w-25 align-items-center ps-lg-1 sdfcv_tgvtgv">
           <div
             className="user_icon d-flex align-items-center d-none d-lg-block d-lg-flex flex-column"
-            onClick={() => setIsSignupPopupOpen(true)}
+            onClick={() => setIsProfilePopupOpen((prev) => !prev)}
+            ref={profileRef}
             style={{ cursor: "pointer" }}
           >
             <RiUserLine size={30} />
             <div className="align-items-center" style={{ lineHeight: "21px" }}>
               <span className="acco9_text w-100">Account</span>
             </div>
+            {isProfilePopupOpen && (
+              <div className="signup-popup-overlay"> {/* Close on outside click */}
+                <div className="signup-popup" onClick={(e) => e.stopPropagation()}>
+
+                  <div className="popup-arrow"></div>
+
+                  {/* Profile Section */}
+                  <div className="profile-section">
+                    <img src={require("../../Images/15 Model white.png")} alt="Profile" className="profile-pic" />
+                    <div className="profile-details">
+                      {data ? (
+                        <>
+                          <h5>{data.firstName} {console.log('data', data)}{data.lastName}</h5>
+                          <p className="contact-number"><strong>{data.phone}</strong></p>
+                        </>
+                      ) : (
+                        <h5>Loading...</h5> 
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Menu List */}
+                  <ul className="menu-list">
+                    {localStorage.getItem("user_Id") && localStorage.getItem("user_token") ? (
+                      <li onClick={() => navigate('/Editprofile')}>
+                        <div className="menu-item">
+                          <img src={require("../../Images/profileicon.png")} alt="Profile" className="mini_icon" />
+                          <span className="sass">Your Profile</span>
+                        </div>
+                        <FaAngleRight size={20} className="menu-arrow" />
+                      </li>
+                    ) : (
+                      <li onClick={() => navigate('/register')}>
+                        <div className="menu-item">
+                          <img src={require("../../Images/profileicon.png")} alt="Profile" className="mini_icon" />
+                          <span className="sass">Login/Register</span>
+                        </div>
+                        <FaAngleRight size={20} className="menu-arrow" />
+                      </li>
+                    )}
+
+                    <li onClick={() => navigate('/Order')}>
+                      <div className="menu-item">
+                        <img src={require("../../Images/ordericon.png")} alt="Orders" className="mini_icon" />
+                        <span className="sass">My Orders</span>
+                      </div>
+                      <FaAngleRight size={20} className="menu-arrow" />
+                    </li>
+                    <li>
+                      <div className="menu-item">
+                        <img src={require("../../Images/termsicon.png")} alt="Terms" className="mini_icon" />
+                        <span className="sass">Terms & Conditions</span>
+                      </div>
+                      <FaAngleRight size={20} className="menu-arrow" />
+                    </li>
+                    <li>
+                      <div className="menu-item">
+                        <img src={require("../../Images/privacyicon.png")} alt="Privacy" className="mini_icon" />
+                        <span className="sass">Privacy Policy</span>
+                      </div>
+                      <FaAngleRight size={20} className="menu-arrow" />
+                    </li>
+                    <li onClick={() => navigate('/contact-us')}>
+                      <div className="menu-item">
+                        <img src={require("../../Images/contacticon.png")} alt="Contact" className="mini_icon" />
+                        <span className="sass">Contact Us</span>
+                      </div>
+                      <FaAngleRight size={20} className="menu-arrow" />
+                    </li>
+                    {localStorage.getItem("user_Id") && localStorage.getItem("user_token") && (
+                      <li onClick={handleLogout}>
+                        <div className="menu-item">
+                          <MdLogout size={22} />
+                          <span className="sass ms-2">Logout</span>
+                        </div>
+                        <FaAngleRight size={20} className="menu-arrow" />
+                      </li>
+                    )}
+                  </ul>
+                </div>
+              </div>
+            )}
           </div>
-          {isSignupPopupOpen && (
-            <SignInPopup
-              isOpen={isSignupPopupOpen}
-              onClose={() => setIsSignupPopupOpen(false)}
-            />
-          )}
           {/* <div><CiSearch size={25} /></div> */}
           <div
             className="user_icon d-flex align-items-center d-none d-lg-block d-lg-flex flex-column"
@@ -196,7 +330,7 @@ const Header = ({ openCart }) => {
             className="drawer-item d-flex align-items-center gap-2 w-100"
             onClick={() => handleCategoryClick("Pendant")}
           >
-            <img src={GiGemPendant} width={20}/> Pendant
+            <img src={GiGemPendant} width={20} /> Pendant
           </div>
           <div
             className="drawer-item d-flex align-items-center gap-2 w-100"

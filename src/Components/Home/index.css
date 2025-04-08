@@ -1534,6 +1534,17 @@ button.swiper-pagination-bullet {
   border: 1px solid #611d2b;
   border-radius: 5px;
 }
+.spg_nb_sle:hover{
+  font-family: "DM Serif Text", serif;
+  color: #f4eded;
+  font-weight: 400;
+  font-size: 28px;
+  background-color: #611d2b;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
 
 .slider-container {
   padding: 50px 0;
@@ -9650,7 +9661,7 @@ img.ring-image {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 254px;
+    margin-bottom: 234px;
     width: 100%;
     transform: scale(1.7);
     height: 500px;
