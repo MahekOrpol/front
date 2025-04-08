@@ -10325,3 +10325,9 @@ img.ring-image {
   scrollbar-width: none !important;
   overflow: auto;
 }
+
+@media (max-width:375px) {
+  .dcvdfxC_dfrvdfvf1 {
+    width: 100% !important;
+  }
+}

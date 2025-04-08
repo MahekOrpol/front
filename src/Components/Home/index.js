@@ -154,10 +154,8 @@ const Home = () => {
   const [categoriesa, setCategoriesa] = useState();
   const [currentCategory, setCurrentCategory] = useState("");
   const [filteredBestSellers, setFilteredBestSellers] = useState([]);
-
   const [currentIndex, setCurrentIndex] = useState(0);
-  const productsPerPage = 4;
-
+  const [productsPerPage, setProductsPerPage] = useState(0);
   const productsToDisplay =
     filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
 
@@ -167,19 +165,19 @@ const Home = () => {
 
   const handleNext = () => {
     if (currentIndex + productsPerPage < productsToDisplay.length) {
-      setCurrentIndex(currentIndex + productsPerPage);
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
   const handlePrevious = () => {
     if (currentIndex - productsPerPage >= 0) {
-      setCurrentIndex(currentIndex - productsPerPage);
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
   const fetchBestSellersByCategory = async (category) => {
     try {
-      const url = `http://192.168.1.10:3000/api/v1/product/get?categoryName=${category}`;
+      const url = `http://localhost:3000/api/v1/product/get?categoryName=${category}`;
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -1239,7 +1237,7 @@ const Home = () => {
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
-          <div className="row d-flex align-items-stretch mt-5 ">
+          <div className="row d-flex align-items-stretch mt-5 w-100">
             {/* Left Image Section */}
             <div className="col-lg-6 ring_banner_szcdvc position-relative">
               <div className="h-100 d-flex align-items-center justify-content-center">
@@ -1351,8 +1349,8 @@ const Home = () => {
                         </div>
                       </div>
                     ))} */}
-                  {productsToDisplay
-                    .slice(currentIndex, currentIndex + productsPerPage)
+                    {productsToDisplay
+                    .slice(currentIndex, currentIndex + productsToDisplay?.length)
                     .map((product) => (
                       <div
                         key={product.id}
@@ -1436,7 +1434,7 @@ const Home = () => {
                   <button
                     onClick={handleNext}
                     disabled={
-                      currentIndex + productsPerPage >= productsToDisplay.length
+                      currentIndex + 1 >= productsToDisplay.length
                     }
                     className="btn btn-outline-secondary "
                   >
