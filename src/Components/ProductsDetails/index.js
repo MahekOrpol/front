@@ -17,6 +17,8 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { SiWhatsapp } from "react-icons/si";
+import { IoLogoWhatsapp } from "react-icons/io";
 
 const products = [
   {
@@ -382,55 +384,7 @@ const ProductDetailss = () => {
           <section className="d-flex gap-5 pro_sss_gubs ">
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
-                {/* <div className="d-flex gap-4 pro_dddd66">
-                  <div className="det_min_cd2">
-                    <video
-                      src={ringVideo}
-                      className="detr_img bg-white"
-                      autoPlay
-                      loop
-                      muted
-                    />
-                   
-                  
-                  </div>
-                  <div className="det_min_cds p-5 w-100">
-                    <img
-                      className="detr_img"
-                      src={require("../../Images/pd-2.png")}
-                    />
-                  </div>
-                </div>
-                <div className="d-flex gap-4 pro_dddd66">
-                  <div className="det_min_cd ">
-                    <img
-                      className="detr_img_d"
-                      src={require("../../Images/15 Model white.png")}
-                    />
-                  </div>
-                  <div className="det_min_cds p-5 w-100">
-                    <img
-                      className="detr_img_d"
-                      src={require("../../Images/1 (8).png")}
-                    />
-                  </div>
-                </div>
-                <div className="d-flex gap-4 pro_dddd66">
-                  <div className="det_min_cds p-5 xsddcsd">
-                    <img
-                      className="detr_img_d"
-                      src={require("../../Images/1 (6).png")}
-                    />
-                  </div>
-                  <div className="det_min_cd_1">
-                    <img
-                      className="detr_img_s_s"
-                      src={require("../../Images/lastttt.png")}
-                    />
-                  </div>
-                </div> */}
-
-                {productDetails?.image && productDetails.image.length > 0 ? (
+                                {productDetails?.image && productDetails.image.length > 0 ? (
                   productDetails.image.map((img, index) => {
                     const isVideo = img.endsWith(".mp4"); // Check if the file is a video
                     return (
@@ -524,7 +478,6 @@ const ProductDetailss = () => {
                 </Swiper>
               </div>
             </div>
-
 
             <div className="d-none d-md-flex w-100 gap-3 " style={{position:'sticky',top: '50px'}}>
               <div className="sdcsd_saxza">
@@ -648,7 +601,13 @@ const ProductDetailss = () => {
                   <hr className="hr_pb_dtl" />
                 </div>
 
-                <div className="d-flex justify-content-between align-items-center gap-4">
+                <div className="d-flex justify-content-between align-items-center gap-3">
+                  <button
+                    className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                    onClick={() => addToCart(productDetails)}
+                  >
+                    Buy Now 
+                  </button>
                   <button
                     className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
                     onClick={() => addToCart(productDetails)}
@@ -656,17 +615,7 @@ const ProductDetailss = () => {
                     Add to Cart <BiShoppingBag size={25} />
                   </button>
                   <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs">
-                    {/* <div
-                      className="gohrt_bod p-2"
-                      onClick={() => setLiked(!liked)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {liked ? (
-                        <GoHeartFill size={25} className="hert_fffs" />
-                      ) : (
-                        <GoHeart size={25} className="hert_fff" />
-                      )}
-                    </div> */}
+                   
                     <div
                       className="gohrt_bod p-2"
                       onClick={() => toggleFavorite(productDetails.id)}
@@ -686,7 +635,19 @@ const ProductDetailss = () => {
                   </div>
                 </div>
 
-                <div className="d-flex justify-content-between align-items-center gap-4 pt-5 fdcvd_life_ttt">
+                <button
+                    className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
+                    onClick={() => {
+                      window.open("https://wa.me/919099975424", "_blank");
+
+                    }}
+                    // onClick={() => addToCart(productDetails)}
+                  >
+                   Order On Whatsapp <IoLogoWhatsapp color="#1FAF38" size={30}/>
+
+                  </button>
+
+                <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_ttt">
                   <div className="icon-box">
                     <img
                       src={require("../../Images/lifetime.png")}
