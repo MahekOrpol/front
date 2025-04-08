@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import $ from "jquery";
 import { FaArrowRight, FaChevronRight, FaStar } from "react-icons/fa6";
 import logobnddd from "../../Images/diamondring.png";
@@ -155,9 +156,40 @@ const Home = () => {
   const [currentCategory, setCurrentCategory] = useState("");
   const [filteredBestSellers, setFilteredBestSellers] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [productsPerPage, setProductsPerPage] = useState(0);
+  const [productsPerPage, setProductsPerPage] = useState(1); // Initialize with 1
+  const [isPaused, setIsPaused] = useState(false);
+  const [slideDirection, setSlideDirection] = useState('next'); // Track slide direction for animation
+
   const productsToDisplay =
     filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
+
+  const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
+
+  // Auto-slide effect
+  useEffect(() => {
+    if (isPaused || productsToDisplay.length <= productsPerPage) return;
+
+    const intervalId = setInterval(() => {
+      setSlideDirection('next');
+      setCurrentIndex(prevIndex =>
+        (prevIndex + 1) % (productsToDisplay.length - productsPerPage + 1)
+      );
+    }, AUTO_SLIDE_INTERVAL);
+
+    return () => clearInterval(intervalId);
+  }, [productsToDisplay.length, productsPerPage, isPaused]);
+
+  // Calculate productsPerPage based on screen size
+  useEffect(() => {
+    const updateProductsPerPage = () => {
+      const width = window.innerWidth;
+      setProductsPerPage(width < 768 ? 1 : 2);
+    };
+
+    updateProductsPerPage();
+    window.addEventListener('resize', updateProductsPerPage);
+    return () => window.removeEventListener('resize', updateProductsPerPage);
+  }, []);
 
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
@@ -1269,92 +1301,17 @@ const Home = () => {
             </div>
 
             {/* Right Product Cards Section */}
-            <div className="col-lg-6 kdjvb_jicn">
-              <div className="h-100 d-flex flex-column justify-content-center ">
+            <div className="col-lg-6 kdjvb_jicn" onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}>
+              <div className="h-100 d-flex flex-column justify-content-center">
                 <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc m-0">
-                  {/* {(filteredBestSellers.length > 0
-                    ? filteredBestSellers
-                    : bestSelling
-                  )
-                    .slice(0, 4)
-                    .map((product) => (
-                      <div
-                        key={product.id}
-                        className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100"
-                      >
-                        <div className="h-100 d-flex flex-column">
-                          <div className="card prio_card scdscsed_sdss dimond_section sdcsdc_rinf_dimnsss">
-                            <div className="card-image-wrapper position-relative best_saller_btn">
-                              <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                                {filteredBestSellers.length > 0
-                                  ? currentCategory.toUpperCase()
-                                  : "BEST SELLER"}
-                              </button>
-
-                              <div
-                                className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                                onClick={() => toggleFavorite(product.id)}
-                                style={{ cursor: "pointer" }}
-                              >
-                                {wishlistItems[product.id] ? (
-                                  <GoHeartFill
-                                    className="heart-icon_ss"
-                                    size={18}
-                                  />
-                                ) : (
-                                  <GoHeart
-                                    className="heart-icon_ss"
-                                    size={18}
-                                  />
-                                )}
-                              </div>
-
-                              <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                                <img
-                                  src={`http://192.168.1.10:3000${product.image[0]}`}
-                                  className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
-                                  alt="Product"
-                                />
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="d-flex flex-column main_cdsss pt-2 bg-white rounded-bottom ring_secededfcvd">
-                            <span className="mikdec_asdaa text-truncate">
-                              {product.productName}
-                            </span>
-                            <div className="d-flex align-items-center gap-3 pt-1">
-                              <span className="mikdec_asdxsx">
-                                ₹{product.salePrice?.$numberDecimal}
-                              </span>
-                              <span className="mikdec_axsx">
-                                ₹{product.regularPrice?.$numberDecimal}
-                              </span>
-                            </div>
-                            <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                              <button
-                                className="more_btn_dsdd w-50"
-                                onClick={() => handleProductClick(product.id)}
-                              >
-                                More Info
-                              </button>
-                              <button
-                                className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                                onClick={() => addToCart(product)}
-                              >
-                                Add to Cart <BiShoppingBag size={25} />
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))} */}
-                    {productsToDisplay
+                  {productsToDisplay
                     .slice(currentIndex, currentIndex + productsToDisplay?.length)
                     .map((product) => (
-                      <div
+                      <CSSTransition
                         key={product.id}
-                        className="col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100"
+                        className={`col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100 ${slideDirection === 'next' ? 'slide-next' : 'slide-prev'
+                          }`}
                       >
                         <div className="h-100 d-flex flex-column">
                           <div className="card prio_card scdscsed_sdss dimond_section sdcsdc_rinf_dimnsss">
@@ -1420,26 +1377,8 @@ const Home = () => {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </CSSTransition>
                     ))}
-                </div>
-                <div className="d-flex justify-content-center mt-3 gap-3 next_btn_scsdc">
-                  <button
-                    onClick={handlePrevious}
-                    disabled={currentIndex === 0}
-                    className="btn btn-outline-secondary"
-                  >
-                    <IoIosArrowBack />
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    disabled={
-                      currentIndex + 1 >= productsToDisplay.length
-                    }
-                    className="btn btn-outline-secondary "
-                  >
-                    <IoIosArrowForward />
-                  </button>
                 </div>
               </div>
             </div>
@@ -1718,7 +1657,7 @@ const Home = () => {
         <div className="testimonial-container d-flex align-items-center mt-5">
           <div
             className="heder_sec_main d-flex flex-column align-items-center "
-            // style={{ paddingTop: "3rem" }}
+          // style={{ paddingTop: "3rem" }}
           >
             <span className="category_name mt-2">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
@@ -1741,9 +1680,8 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
+                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                        } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">
