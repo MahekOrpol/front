@@ -1423,7 +1423,7 @@ const Home = () => {
                       </div>
                     ))}
                 </div>
-                <div className="d-flex justify-content-center mt-3 gap-3">
+                <div className="d-flex justify-content-center mt-3 gap-3 next_btn_scsdc">
                   <button
                     onClick={handlePrevious}
                     disabled={currentIndex === 0}
@@ -1446,7 +1446,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd ">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd stunning_price_fvf">
           <span className="category_name mt-0 mobile-hide">
             Celebrate love with our Collection
           </span>

@@ -583,7 +583,7 @@ const Products = () => {
                       </label>
                     ))}
                   </div>
-                  <div className="filter-category">
+                  {/* <div className="filter-category">
                     <h5 onClick={() => toggleSection("priceFilter")}>
                       Price Filter{" "}
                       {openSections.priceFilter ? (
@@ -607,7 +607,7 @@ const Products = () => {
                         </div>
                       </div>
                     )}
-                  </div>
+                  </div> */}
 
                   <div className="d-flex align-items-center gap-2 justify-content-end" style={{ textAlign: "end" }}>
                     <button className="Clen" onClick={handleApplyFilters}>

@@ -121,7 +121,7 @@ const OrderDetails = () => {
                 order.orderDetails.map((item, i) => (
                   <div key={i} className="order_ddd">
                     <img
-                      src={`http://192.168.1.10:3000${item.productId.image[0]}`}
+                      src={`http://localhost:3000${item?.productId?.image[0]}`}
                       alt={item.productId?.productName}
                       className="img_dd"
                     />
