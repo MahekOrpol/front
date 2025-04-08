@@ -8,14 +8,14 @@ const DimondJewellery = () => {
     navigate(`/products?categoryName=${category}`);
   };
   return (
-    <div className="mt-3 container dimond mb-5">
+    <div className="mt-3 container dimond diamond_section mb-5">
       <div className="row g-2 align-items-stretch">
         <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
           <div className="h-100">
-            <img src={require("../../../Images/rose.png")} className="w-100 h-100" onClick={() => handleCategoryClick("Rings")}/>
+            <img src={require("../../../Images/rose.png")} className="w-100 h-100 diamond_img" onClick={() => handleCategoryClick("Rings")}/>
           </div>
           <div className="h-100">
-            <img src={require("../../../Images/pen.png")} className="w-100 h-100" onClick={() => handleCategoryClick("Pendant")}/>
+            <img src={require("../../../Images/pen.png")} className="w-100 h-100 diamond_img" onClick={() => handleCategoryClick("Pendant")}/>
           </div>
         </div>
         <div className="col-md-4 d-flex flex-column dis_edjxfd">
@@ -26,10 +26,10 @@ const DimondJewellery = () => {
         </div>
         <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
           <div className="h-100">
-            <img src={require("../../../Images/bracletesss.png")} className="w-100 h-100" onClick={() => handleCategoryClick("Bracelet")}/>
+            <img src={require("../../../Images/bracletesss.png")} className="w-100 h-100 diamond_img" onClick={() => handleCategoryClick("Bracelet")}/>
           </div>
           <div className="h-100">
-            <img src={require("../../../Images/schbgdsccc.png")} className="w-100 h-100" onClick={() => handleCategoryClick("Earrings")}/>
+            <img src={require("../../../Images/schbgdsccc.png")} className="w-100 h-100 diamond_img" onClick={() => handleCategoryClick("Earrings")}/>
           </div>
         </div>
       </div>

@@ -1,54 +1,57 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-import { FaAngleRight, FaSearch, FaUserAlt } from "react-icons/fa";
+import { FaAngleRight, FaSearch } from "react-icons/fa";
+import { RiUserLine } from "react-icons/ri";
+import { CiHeart } from "react-icons/ci";
+import { IoBagHandleOutline, IoClose } from "react-icons/io5";
+import { LuTextSearch } from "react-icons/lu";
+import { MdLogout } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+// Image imports
 import logo from "../../Images/Group 1597884561.png";
 import usericon from "../../Images/Group.png";
-import { CiHeart, CiSearch } from "react-icons/ci";
-import { IoBagHandleOutline, IoClose, IoMenu } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
 import GiGemPendant from "../../Images/gem-pendant-svgrepo-com.svg";
 import bracelet from "../../Images/noun-bracelet-5323037.svg";
 import earing from "../../Images/earrings.png";
 import ring from "../../Images/diamond-ring-diamond-svgrepo-com.svg";
 import csome from "../../Images/Group 1597884646.svg";
-import { LuTextSearch } from "react-icons/lu";
-import RegisterPopup from "../../Components/RegisterPopup";
-import { RiUserLine } from "react-icons/ri";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { MdLogout } from "react-icons/md";
 
-const Header = ({ openCart ,onClose}) => {
+const Header = ({ openCart }) => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
-  const [isProfilePopupOpen, setIsProfilePopupOpen] = useState(false);
+  const [showSignup, setIsSignup] = useState(false);
+  const [data, setData] = useState(null);
+  const user_Id = localStorage.getItem("user_Id");
+  const popupRef = useRef(null);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
+
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
     setIsDrawerOpen(false);
   };
-  const profileRef = useRef();
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (profileRef.current && !profileRef.current.contains(event.target)) {
-        setIsProfilePopupOpen(false);
+    const handleClickOutside = (e) => {
+      if (popupRef.current && !popupRef.current.contains(e.target)) {
+        setIsSignup(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
+
+    if (showSignup) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
-  const [showRegister, setShowRegister] = useState(false);
-  const [data, setData] = useState();
-  const user_Id = localStorage.getItem("user_Id");
+  }, [showSignup]);
 
   useEffect(() => {
     if (user_Id) {
@@ -58,10 +61,8 @@ const Header = ({ openCart ,onClose}) => {
 
   const getProfileData = async () => {
     try {
-      const res = await axios.get(`http://192.168.1.10:3000/api/v1/users/${user_Id}`);
-      setData(res.data)
-
-
+      const res = await axios.get(`http://localhost:3000/api/v1/users/${user_Id}`);
+      setData(res.data);
     } catch (err) {
       console.log(err);
       localStorage.setItem("isExistingProfile", "false");
@@ -73,53 +74,26 @@ const Header = ({ openCart ,onClose}) => {
     localStorage.removeItem("user_Id");
     localStorage.removeItem("user_token");
     localStorage.setItem("isExistingProfile", "false");
-  
     setData(null);
-    setTimeout(() => onClose(), 500); // Close the popup after logout
-    navigate("/"); // Redirect to homepage or login page
+    setTimeout(() => setIsSignup(false), 500);
+    navigate("/");
   };
 
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        stacked
-      />
       <div className="header_main">
         <p className="header_text pt-2">Shop Gold and Diamond Jewellery</p>
       </div>
 
-      <div className="heder_sec_main  mt-lg-2 d-flex align-items-center sdcsd_ss_ddd">
-        {/* 🟢 Menu Icon for Mobile */}
+      <div className="heder_sec_main mt-lg-2 d-flex align-items-center sdcsd_ss_ddd">
+        {/* Mobile Menu Icon */}
         <div className="menu-icon d-xl-none" onClick={toggleDrawer}>
           <LuTextSearch size={30} />
         </div>
 
-        {/* <InputGroup className="d-lg-flex input-group1" style={{ borderRadius: "10px", marginTop: "6px" }}>
-          <FormControl placeholder="Search Products Here" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-          <span className="p-3 rounded-r-full d-flex align-items-center justify-content-center search_hbdhj bg_prime search-button" style={{ height: "38px", borderRadius: "0px 10px 10px 0px" }}>
-            <FaSearch />
-
-          </span>
-        </InputGroup>
-        <div className="d-flex justify-content-center w-lg-50 hedr_sss" style={{ cursor: "pointer" }}>
-          <img src={logo} onClick={() => navigate('/')} alt="Logo" />
-        </div> */}
-
+        {/* Search Bar */}
         <div className="w-25 justify-content-center d-flex ps-lg-5 xdcxscd_sercv">
-          <div
-            className="d-flex align-items-center sdchy_88__sxsxs"
-            style={{ width: "100%" }}
-          >
+          <div className="d-flex align-items-center sdchy_88__sxsxs" style={{ width: "100%" }}>
             <input
               type="text"
               placeholder="Search Product Here"
@@ -139,97 +113,123 @@ const Header = ({ openCart ,onClose}) => {
             </button>
           </div>
         </div>
+
         {/* Logo */}
         <div
           className="d-flex justify-content-center w-50 hedr_sss dsfcdsfcsdfc_dcd"
           style={{ cursor: "pointer" }}
+          onClick={() => navigate("/")}
         >
-          <img src={logo} onClick={() => navigate("/")} alt="Logo" />
+          <img src={logo} alt="Logo" />
         </div>
+
         {/* Icons Section (Desktop Only) */}
         <div className="walign-items-center d-flex dcxde_asx485 gap-3 gap-lg-4 w-25 align-items-center ps-lg-1 sdfcv_tgvtgv">
           <div
             className="user_icon d-flex align-items-center d-none d-lg-block d-lg-flex flex-column"
-            onClick={() => setIsProfilePopupOpen((prev) => !prev)}
-            ref={profileRef}
             style={{ cursor: "pointer" }}
-          >
+            onClick={() => setIsSignup(true)}>
             <RiUserLine size={30} />
             <div className="align-items-center" style={{ lineHeight: "21px" }}>
               <span className="acco9_text w-100">Account</span>
             </div>
-            {isProfilePopupOpen && (
-              <div className="signup-popup-overlay"> {/* Close on outside click */}
-                <div className="signup-popup" onClick={(e) => e.stopPropagation()}>
-
+            {/* Signup Popup */}
+            {showSignup ? (
+              <div className="signup-popup-overlay">
+                <div className="signup-popup" onClick={(e) => e.stopPropagation()} ref={popupRef}>
                   <div className="popup-arrow"></div>
-
-                  {/* Profile Section */}
                   <div className="profile-section">
-                    <img src={require("../../Images/15 Model white.png")} alt="Profile" className="profile-pic" />
+                    <img
+                      src={require("../../Images/15 Model white.png")}
+                      alt="Profile"
+                      className="profile-pic"
+                    />
                     <div className="profile-details">
                       {data ? (
                         <>
-                          <h5>{data.firstName} {console.log('data', data)}{data.lastName}</h5>
+                          <h5> {data.firstName} {data.lastName} </h5>
                           <p className="contact-number"><strong>{data.phone}</strong></p>
                         </>
                       ) : (
-                        <h5>Loading...</h5> 
+                        <h5>Loading...</h5>
                       )}
                     </div>
                   </div>
-
                   {/* Menu List */}
                   <ul className="menu-list">
                     {localStorage.getItem("user_Id") && localStorage.getItem("user_token") ? (
-                      <li onClick={() => navigate('/Editprofile')}>
-                        <div className="menu-item">
-                          <img src={require("../../Images/profileicon.png")} alt="Profile" className="mini_icon" />
+                      <li onClick={() => navigate("/Editprofile")}>
+                        <div className="menu-item gap-2">
+                          <img
+                            src={require("../../Images/profileicon.png")}
+                            alt="Profile"
+                            className="menu-icons"
+                          />
                           <span className="sass">Your Profile</span>
                         </div>
                         <FaAngleRight size={20} className="menu-arrow" />
                       </li>
                     ) : (
-                      <li onClick={() => navigate('/register')}>
-                        <div className="menu-item">
-                          <img src={require("../../Images/profileicon.png")} alt="Profile" className="mini_icon" />
+                      <li onClick={() => navigate("/register")}>
+                        <div className="menu-item gap-2">
+                          <img
+                            src={require("../../Images/profileicon.png")}
+                            alt="Profile"
+                            className="menu-icons"
+                          />
                           <span className="sass">Login/Register</span>
                         </div>
                         <FaAngleRight size={20} className="menu-arrow" />
                       </li>
                     )}
 
-                    <li onClick={() => navigate('/Order')}>
-                      <div className="menu-item">
-                        <img src={require("../../Images/ordericon.png")} alt="Orders" className="mini_icon" />
+                    <li onClick={() => navigate("/Order")}>
+                      <div className="menu-item gap-2">
+                        <img
+                          src={require("../../Images/ordericon.png")}
+                          alt="Orders"
+                          className="menu-icons"
+                        />
                         <span className="sass">My Orders</span>
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
                     <li>
-                      <div className="menu-item">
-                        <img src={require("../../Images/termsicon.png")} alt="Terms" className="mini_icon" />
+                      <div className="menu-item gap-2">
+                        <img
+                          src={require("../../Images/termsicon.png")}
+                          alt="Terms"
+                          className="menu-icons"
+                        />
                         <span className="sass">Terms & Conditions</span>
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
                     <li>
-                      <div className="menu-item">
-                        <img src={require("../../Images/privacyicon.png")} alt="Privacy" className="mini_icon" />
+                      <div className="menu-item gap-2">
+                        <img
+                          src={require("../../Images/privacyicon.png")}
+                          alt="Privacy"
+                          className="menu-icons"
+                        />
                         <span className="sass">Privacy Policy</span>
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
-                    <li onClick={() => navigate('/contact-us')}>
-                      <div className="menu-item">
-                        <img src={require("../../Images/contacticon.png")} alt="Contact" className="mini_icon" />
+                    <li onClick={() => navigate("/contact-us")}>
+                      <div className="menu-item gap-2">
+                        <img
+                          src={require("../../Images/contacticon.png")}
+                          alt="Contact"
+                          className="menu-icons"
+                        />
                         <span className="sass">Contact Us</span>
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
                     {localStorage.getItem("user_Id") && localStorage.getItem("user_token") && (
                       <li onClick={handleLogout}>
-                        <div className="menu-item">
+                        <div className="menu-item gap-2">
                           <MdLogout size={22} />
                           <span className="sass ms-2">Logout</span>
                         </div>
@@ -239,20 +239,16 @@ const Header = ({ openCart ,onClose}) => {
                   </ul>
                 </div>
               </div>
+            ) : (
+              null
             )}
           </div>
-          {/* <div><CiSearch size={25} /></div> */}
           <div
             className="user_icon d-flex align-items-center d-none d-lg-block d-lg-flex flex-column"
             style={{ cursor: "pointer" }}
-            onClick={() => {
-              navigate("/wishlist");
-            }}
+            onClick={() => navigate("/wishlist")}
           >
-            <CiHeart
-              size={30}
-              style={{ strokeWidth: "0.5px", stroke: "black" }}
-            />
+            <CiHeart size={30} style={{ strokeWidth: "0.5px", stroke: "black" }} />
             <div className="align-items-center" style={{ lineHeight: "21px" }}>
               <span className="acco9_text w-100">Wishlist</span>
             </div>
@@ -269,111 +265,86 @@ const Header = ({ openCart ,onClose}) => {
         </div>
       </div>
 
+      {/* Category Navigation */}
       <div className="dsn_mdcm">
         <div
           className="d-flex align-items-center justify-content-center jhdb_dhvh pt-1 pb-1 mt-2"
-
           style={{ borderTop: "1px solid #797979" }}
         >
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Rings")}
           >
-            <img src={ring} width={25} /> Rings
+            <img src={ring} width={25} alt="Rings" /> Rings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Earrings")}
           >
-            <img src={earing} width={25} /> Earrings
+            <img src={earing} width={25} alt="Earrings" /> Earrings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Pendant")}
           >
-            <img src={GiGemPendant} width={20} /> Pendant
+            <img src={GiGemPendant} width={20} alt="Pendant" /> Pendant
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Bracelet")}
           >
-            <img src={bracelet} width={25} /> Bracelet
+            <img src={bracelet} width={25} alt="Bracelet" /> Bracelet
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => navigate("/Customjewel")}
           >
-            <img src={csome} width={20} /> Custom Jewellery
+            <img src={csome} width={20} alt="Custom Jewellery" /> Custom Jewellery
           </div>
         </div>
       </div>
-      {/* <div style={{ borderTop: "1px solid #797979",margin:"5px" }}></div> */}
-      {/* 🟢 Mobile Drawer */}
+
+      {/* Mobile Drawer */}
       <div className={`mobile-drawer ${isDrawerOpen ? "open" : ""}`}>
         <div className="drawer-header">
           <IoClose size={30} onClick={toggleDrawer} />
         </div>
         <div className="drawer-menu">
-          <div
-            className="drawer-item"
-            onClick={() => handleCategoryClick("Rings")}
-          >
-            <img src={ring} width={20} /> Rings
+          <div className="drawer-item" onClick={() => handleCategoryClick("Rings")}>
+            <img src={ring} width={20} alt="Rings" /> Rings
           </div>
-          <div
-            className="drawer-item d-flex align-items-center gap-2 w-100"
-            onClick={() => handleCategoryClick("Earrings")}
-          >
-            <img src={earing} width={20} /> Earrings
+          <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Earrings")}>
+            <img src={earing} width={20} alt="Earrings" /> Earrings
           </div>
-          <div
-            className="drawer-item d-flex align-items-center gap-2 w-100"
-            onClick={() => handleCategoryClick("Pendant")}
-          >
-            <img src={GiGemPendant} width={20} /> Pendant
+          <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Pendant")}>
+            <img src={GiGemPendant} width={20} alt="Pendant" /> Pendant
           </div>
-          <div
-            className="drawer-item d-flex align-items-center gap-2 w-100"
-            onClick={() => handleCategoryClick("Bracelet")}
-          >
-            <img src={bracelet} width={20} /> Bracelet
+          <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Bracelet")}>
+            <img src={bracelet} width={20} alt="Bracelet" /> Bracelet
           </div>
-          <div className="drawer-item d-flex align-items-center gap-2 w-100">
-            <img src={csome} width={20} /> Custom Jewellery
+          <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => navigate("/Customjewel")}>
+            <img src={csome} width={20} alt="Custom Jewellery" /> Custom Jewellery
           </div>
         </div>
 
-        {/* :large_green_circle: Icons Section Inside Drawer (Mobile Only) */}
-        {/* 🟢 Icons Section Inside Drawer (Mobile Only) */}
+        {/* Mobile Drawer Account */}
         <div
           className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3"
           onClick={() => {
-            setIsDrawerOpen(false); // Close the drawer
-            // setIsRegisterPopupOpen(true); // Open RegisterPopup
-            navigate("/register");
+            setIsDrawerOpen(false);
           }}
         >
-          {isRegisterPopupOpen && (
-            <RegisterPopup
-              isOpen={isRegisterPopupOpen}
-              onClose={() => setIsRegisterPopupOpen(false)}
-            />
-          )}
           <img src={usericon} alt="User Icon" />
-          <div
-            className="d-flex flex-column align-items-center pt-2"
-            style={{ lineHeight: "25px" }}
-          >
+          <div className="d-flex flex-column align-items-center pt-2" style={{ lineHeight: "25px" }}>
             <span className="sign_txt w-100">Sign In</span>
             <span className="acco9_text w-100">Account</span>
           </div>
         </div>
       </div>
-      {/* :large_green_circle: Overlay for Drawer */}
-      {isDrawerOpen && (
-        <div className="drawer-overlay" onClick={toggleDrawer}></div>
-      )}
+
+      {isDrawerOpen && <div className="drawer-overlay" onClick={toggleDrawer}></div>}
     </>
   );
 };
+
 export default Header;

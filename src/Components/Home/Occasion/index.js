@@ -23,7 +23,7 @@ const Occasion = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // nextSlide();
+      nextSlide();
     }, 2000);
     return () => clearInterval(interval);
   }, [currentIndex]);

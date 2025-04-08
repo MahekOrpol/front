@@ -1142,4 +1142,26 @@
   padding: 8px;
   /* box-shadow: 0px 0px 8px 0px #00000040; */
   width: 85%;
+  text-decoration: none;
+}
+
+.whats_abtn:hover {
+  background-color: #1ebe5d;
+  color: white;
+}
+
+.whatsapp-icon svg {
+  color: #1FAF38; /* Default WhatsApp green */
+  transition: color 0.3s ease;
+}
+
+.whats_abtn:hover .whatsapp-icon svg {
+  color: white; /* On hover */
+}
+
+.but_buton_ssssxs{
+  width: 85%;
+}
+.ddsc_ybhfthfrt{
+  width: 10;
 }
