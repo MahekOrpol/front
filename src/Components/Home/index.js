@@ -53,6 +53,7 @@ import OueColletion from "./ourColletion";
 import RingSlider from "./ring";
 import DimondJewellery from "./Dimond Jewellery/dimond";
 import Occasion from "./Occasion";
+import Gift from "./gift";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -765,7 +766,7 @@ const Home = () => {
         </div>
 
         <div className="d-flex flex-column align-items-center hdr_csd p-0">
-          <span className="category_name mt-2">Categories</span>
+          <span className="category_name mt-md-4">Categories</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img
             src={require("../../Images/Groupimg.png")}
@@ -986,7 +987,7 @@ const Home = () => {
         </div>
 
         <div className="d-flex flex-column align-items-center">
-          <span className="category_name ">Diamond Jewelry</span>
+          <span className="category_name mt-md-4">Diamond Jewelry</span>
           <p className="category_txt">Minimal. Modern. Mesmerizing</p>
           <img
             src={require("../../Images/Groupimg.png")}
@@ -1261,8 +1262,11 @@ const Home = () => {
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
           <OueColletion />
         </div>
+        {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+          <Gift />
+        </div> */}
 
-        <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-5">
+        <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-md-4">
           <span className="category_name">Bestselling Jewelery</span>
           <p className="category_txt">
             Elevate the Everyday in Diamond Elegance
@@ -1661,7 +1665,7 @@ const Home = () => {
             className="heder_sec_main d-flex flex-column align-items-center "
           style={{width:"100vw"}}
           >
-            <span className="category_name ">Client Testimonial</span>
+            <span className="category_name mt-md-4">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
             <img src={require("../../Images/Groupimg.png")} alt="Decorative" className="home_tag_img"/>
 

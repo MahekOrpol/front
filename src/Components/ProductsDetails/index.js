@@ -609,7 +609,7 @@ Please let me know the next steps.`;
                 </>
               )}
             </div> */}
-            <div
+            <div id="product_deta"
               className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex"
          
             >
