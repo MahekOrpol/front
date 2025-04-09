@@ -10603,7 +10603,7 @@ img.ring-image {
   flex-wrap: nowrap !important;
   width: 100%;
   scrollbar-width: none !important;
-  overflow: auto;
+  overflow-x: auto;
 }
 
 @media (max-width:375px) {
