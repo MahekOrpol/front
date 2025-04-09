@@ -18,7 +18,7 @@ import { RiTwitterXFill } from "react-icons/ri";
 const Footer = () => {
   return (
     <>
-      <div className="footer_mdjj hdr_csdssdrcsdc pt-5">
+      <div className="footer_mdjj hdr_csdssdrcsdc pt-5 d-none d-md-block">
 
         <div className="justify-content-around d-flex w-100 fccc_asxs_footer">
           <div className=" footer_cont text-white sdc_sdds1">
@@ -153,7 +153,7 @@ const Footer = () => {
           {/* <p className="foot_ofcd text-white">Privacy Policy | Terms of Use </p> */}
         </div>
       </div>
-      <div className="footer_mdjj_1 hdr_csdssdrcsdc pt-5">
+      <div className="footer_mdjj_1 hdr_csdssdrcsdc pt-5 d-md-none">
 
         <div className="justify-content-center align-items-center d-flex flex-column w-100 fccc_asxs_footer">
           <div className=" footer_cont_1 text-white sdc_sdds1">
@@ -162,53 +162,61 @@ const Footer = () => {
               width={400}
             />
           </div>
-          <p className="sdcdscsdss_ss_1 mt-3 ">
-            At Crystova Jewellery, we believe that every piece tells a story.
-            Inspired by timeless elegance and modern trends, our collections
-            are designed to celebrate life’s precious moments.
+          <p className="sdcdscsdss_ss_1 mt-3 " style={{width:"88%"}}>
+            At Crystova Jewellery, we believe that every piece tells a story. Inspired by timeless elegance and modern trends, our collections are designed to celebrate life’s precious moments.
           </p>
 
           <Accordion>
             <AccordionSummary
-              expandIcon={<FaChevronDown />}
+              expandIcon={<FaChevronDown style={{ color: 'white' }} />}
               aria-controls="panel1-content"
               id="panel1-header"
             >
-              <Typography component="span">Useful Links</Typography>
+              <Typography component="span" className="use_sdc_2">Useful Links</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              malesuada lacus ex, sit amet blandit leo lobortis eget.
+              <ul className="my-0 pb-4" style={{ listStyle: "none", paddingLeft: "0rem" }}>
+                <li><a href="/" className="footr_lnk">Home</a></li>
+                <li><a href="/about-us" className="footr_lnk">About</a></li>
+                <li><a href="/products" className="footr_lnk">Shop</a></li>
+                <li><a href="/blog" className="footr_lnk">Blog</a></li>
+                <li><a href="/contact-us" className="footr_lnk">Contact Us</a></li>
+              </ul>
             </AccordionDetails>
           </Accordion>
           <Accordion>
             <AccordionSummary
-              expandIcon={<FaChevronDown />}
+              expandIcon={<FaChevronDown style={{ color: 'white' }} />}
               aria-controls="panel2-content"
               id="panel2-header"
             >
-              <Typography component="span">Customer Service</Typography>
+              <Typography component="span" className="use_sdc_2">Customer Service</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              malesuada lacus ex, sit amet blandit leo lobortis eget.
+              <ul className="my-0 pb-4" style={{ listStyle: "none", paddingLeft: "0rem" }}>
+                <li><a className="footr_lnk">Shipping</a></li>
+                <li><a className="footr_lnk">Order Status</a></li>
+                <li><a className="footr_lnk">Exchange</a></li>
+              </ul>
             </AccordionDetails>
           </Accordion>
-          <Accordion defaultExpanded>
+          <Accordion className="support_acc">
             <AccordionSummary
-              expandIcon={<FaChevronDown />}
+              expandIcon={<FaChevronDown style={{ color: 'white' }} />}
               aria-controls="panel3-content"
               id="panel3-header"
             >
-              <Typography component="span">Support</Typography>
+              <Typography component="span" className="use_sdc_2">Support</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-              malesuada lacus ex, sit amet blandit leo lobortis eget.
+              <ul className="my-0 pb-4" style={{ listStyle: "none", paddingLeft: "0rem" }}>
+                <li><a className="footr_lnk">Privacy Policy</a></li>
+                <li><a className="footr_lnk">Terms & Conditions</a></li>
+              </ul>
             </AccordionDetails>
           </Accordion>
 
-          <div className=" footer_cont1 ps-5 text-white sm-ms-0 lg-ms-5 mt-md-3 mt-sm-3 mt-lg-0 sdc_sdds">
+          {/* <div className=" footer_cont1 ps-5 text-white sm-ms-0 lg-ms-5 mt-md-3 mt-sm-3 mt-lg-0 sdc_sdds">
             <h2 className="use_sdc">Useful Links</h2>
             <ul
               style={{ listStyle: "none", paddingLeft: "0rem" }}
@@ -272,8 +280,8 @@ const Footer = () => {
                 <a className="footr_lnk">Terms & Conditions</a>
               </li>
             </ul>
-          </div>
-          <div className="d-flex flex-column align-items-center mbdjc_jsc text-white">
+          </div> */}
+          <div className="d-flex flex-column align-items-center mbdjc_jsc text-white mt-3">
             <h2 className="use_sdc_1">Subscribe our Newsletter</h2>
             <ul
               style={{ listStyle: "none", paddingLeft: "0rem" }}
@@ -321,9 +329,11 @@ const Footer = () => {
         </div>
 
         <hr className="hr_bootom" />
-        <div className="pb-2 d-flex justify-content-between sdxc_988_sss">
-          <p className="foot_ofcd text-white COPY_RIGHT_LINE w-100">
-            Copyright © 2024 <b> Crystova Jewels</b> All rights reserved.<br />
+        <div className="pb-2 d-flex flex-column justify-content-between sdxc_988_sss">
+          <p className="foot_ofcd_1 text-white COPY_RIGHT_LINE w-100">
+            Copyright © 2024 <b> Crystova Jewels</b> <br /> All rights reserved.
+          </p>
+          <p className="foot_ofcd_1 text-white COPY_RIGHT_LINE w-100">
             Design & Developed by: ORPOL Infotech{" "}
           </p>
           {/* <p className="foot_ofcd text-white">Privacy Policy | Terms of Use </p> */}

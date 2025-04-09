@@ -11,7 +11,7 @@
 .use_sdc {
   font-family: "DM Serif Text", serif;
   font-weight: 400;
-  font-size: 30px !important;
+  font-size: 25px !important;
   line-height: 100%;
   letter-spacing: 0%;
 }
@@ -480,9 +480,10 @@
 }
 
 
-@media (max-width:1216px) {
+@media (max-width:1411px) {
   .use_sdc {
     font-size: 20px !important;
+    white-space: nowrap;
   }
 
   .bcdhb_jcb {
@@ -589,15 +590,79 @@
 }
 
 .use_sdc_1 {
-  font-size: 33px;
+  font-size: 39px;
 }
 
 .footer_emi_1 {
-  font-size: 14px;
+  font-size: 17px;
   text-align: center;
   line-height: 24px;
 }
 
 .mbdjc_jsc {
   width: 80%;
+}
+
+.foot_ofcd_1 {
+  font-family: "Cabin", sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: center;
+  /* padding-left: 4rem; */
+  /* padding-right: 4rem; */
+}
+
+.use_sdc_2 {
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-size: 1.2rem !important;
+  line-height: 100%;
+  letter-spacing: 0%;
+}
+
+@media (max-width:571px) {
+  .footer_cont_1 {
+    width: 78%;
+  }
+
+  .sdcdscsdss_ss_1 {
+    font-size: 13px;
+  }
+}
+
+@media (max-width:493px) {
+  .use_sdc_1 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width:442) {
+  .footer_cont_1 {
+    width: 78%;
+  }
+
+  .use_sdc_1 {
+    font-size: 32px;
+  }
+}
+
+@media (max-width:405px) {
+  .use_sdc_1 {
+    font-size: 27px;
+  }
+
+  .footer_cont_1 {
+    width: 76%;
+  }
+}
+
+@media (max-width:341px) {
+  .use_sdc_1 {
+    font-size: 25px;
+  }
+}
+.support_acc{
+  border:none;
 }
