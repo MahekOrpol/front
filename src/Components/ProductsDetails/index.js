@@ -19,6 +19,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SiWhatsapp } from "react-icons/si";
 import { IoLogoWhatsapp } from "react-icons/io";
+import { Carousel } from "react-bootstrap";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const products = [
   {
@@ -103,10 +107,16 @@ Please let me know the next steps.`;
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, [location]);
 
+  const videos =
+    productDetails?.image?.filter((media) => media.endsWith(".mp4")) || [];
+  const images =
+    productDetails?.image?.filter((media) => !media.endsWith(".mp4")) || [];
+
   useEffect(() => {
     if (!productData) {
       // Fetch product data if not available in state
-      axios.get(`http://localhost:3000/api/v1/product/get-product-id/${productId}`)
+      axios
+        .get(`http://localhost:3000/api/v1/product/get-product-id/${productId}`)
         .then((response) => {
           console.log("Fetched product:", response.data);
           setProductDetails(response.data);
@@ -178,6 +188,10 @@ Please let me know the next steps.`;
       });
     }
   };
+
+  const isVideo = (file) => file?.endsWith(".mp4");
+
+  // const getMediaURL = (path) => `http://192.168.1.10:3000${path}`;
 
   useEffect(() => {
     if (
@@ -252,7 +266,9 @@ Please let me know the next steps.`;
     const fetchWishlist = async () => {
       if (!userId) return;
       try {
-        const response = await axios.get(`http://localhost:3000/api/v1/wishlist/${userId}`);
+        const response = await axios.get(
+          `http://localhost:3000/api/v1/wishlist/${userId}`
+        );
         const wishlistData = response.data.data || [];
 
         console.log("Fetched Wishlist Data:", wishlistData);
@@ -506,8 +522,237 @@ Please let me know the next steps.`;
                 </Swiper>
               </div>
             </div>
+            {/* <div
+              className="row col-md-6 gap-2 dfcdfsc_drtvdvdf"
+              style={{ position: "sticky", top: "5px" }}
+            >
+              {productDetails?.image?.length > 0 &&
+                productDetails.image.map((media, index) => (
+                  <div key={index} className="col-md-5 border vider_saxasxs">
+                    {media.endsWith(".mp4") ? (
+                      <video
+                        src={`http://192.168.1.10:3000${media}`}
+                        className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                        autoPlay
+                        loop
+                        muted
+                        // controls
+                      />
+                    ) : (
+                      <img
+                        src={`http://192.168.1.10:3000${media}`}
+                        className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                        alt={productDetails?.productName || "Product image"}
+                      />
+                    )}
+                  </div>
+                ))}
+            </div> */}
 
+            {/* <div
+              className="row col-md-6 gap-2 dfcdfsc_drtvdvdf"
+              style={{ position: "sticky", top: "5px" }}
+            >
+              {productDetails?.image?.length > 0 && (
+                <>
+                   <div className="col-md-5 border vider_saxasxs">
+                    {productDetails.image[0].endsWith(".mp4") ? (
+                      <video
+                        src={`http://192.168.1.10:3000${productDetails.image[0]}`}
+                        className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                        autoPlay
+                        loop
+                        muted
+                      />
+                    ) : (
+                      <img
+                        src={`http://192.168.1.10:3000${productDetails.image[0]}`}
+                        className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                        alt={productDetails?.productName || "Product image"}
+                      />
+                    )}
+                  </div>
+
+                   {productDetails.image.length > 1 && (
+                    <div className="col-md-5 border vider_saxasxs">
+                       <Slider
+                        dots={true}
+                        infinite={true}
+                        speed={500}
+                        slidesToShow={1}
+                        slidesToScroll={1}
+                      >
+                        {productDetails.image.slice(1).map((media, index) => (
+                          <div key={index}>
+                            {media.endsWith(".mp4") ? (
+                              <video
+                                src={`http://192.168.1.10:3000${media}`}
+                                className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                                autoPlay
+                                loop
+                                muted
+                              />
+                            ) : (
+                              <img
+                                src={`http://192.168.1.10:3000${media}`}
+                                className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                                alt={
+                                  productDetails?.productName || "Product image"
+                                }
+                              />
+                            )}
+                          </div>
+                        ))}
+                      </Slider>
+                    </div>
+                  )}
+                </>
+              )}
+            </div> */}
             <div
+              className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex"
+              style={{ position: "sticky", top: "5px" }}
+            >
+              {/* Box 1: Video(s) */}
+              <div className="col-md-6 border vider_saxasxs">
+                {videos.length === 1 ? (
+                  <video
+                    src={`http://192.168.1.10:3000${videos[0]}`}
+                    className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                    autoPlay
+                    loop
+                    muted
+                  />
+                ) : videos.length > 1 ? (
+                  <Slider
+                    className="custom-slick-slider"
+                    dots
+                    infinite
+                    speed={500}
+                    slidesToShow={1}
+                    slidesToScroll={1}
+                  >
+                    {videos.map((media, index) => (
+                      <div key={index}>
+                        <video
+                          src={`http://192.168.1.10:3000${media}`}
+                          className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                          autoPlay
+                          loop
+                          muted
+                        />
+                      </div>
+                    ))}
+                  </Slider>
+                ) : (
+                  <p className="text-center">No Video</p>
+                )}
+              </div>
+
+              {/* Box 2: Image[0] or Slider if more than 3 images */}
+              <div className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv">
+                {images.length > 3 ? (
+                  <Slider
+                  className="custom-slick-slider"
+
+                    dots
+                    infinite
+                    speed={500}
+                    slidesToShow={1}
+                    slidesToScroll={1}
+                  >
+                    {images.slice(0, images.length).map((media, index) => (
+                      <div key={index}>
+                        <img
+                          src={`http://192.168.1.10:3000${media}`}
+                          className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                          alt={productDetails?.productName || "Product image"}
+                        />
+                      </div>
+                    ))}
+                  </Slider>
+                ) : images[0] ? (
+                  <img
+                    src={`http://192.168.1.10:3000${images[0]}`}
+                    className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                    alt={productDetails?.productName || "Product image"}
+                  />
+                ) : (
+                  <p className="text-center">No Image</p>
+                )}
+              </div>
+
+              {/* Box 3: Image[1] */}
+              {images[1] && (
+                <div className="col-md-6 border vider_saxasxs">
+                  <img
+                    src={`http://192.168.1.10:3000${images[1]}`}
+                    className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                    alt={productDetails?.productName || "Product image"}
+                  />
+                </div>
+              )}
+
+              {/* Box 4: Image[2] */}
+              {images[2] && (
+                <div className="col-md-6 border vider_saxasxs">
+                  <img
+                    src={`http://192.168.1.10:3000${images[2]}`}
+                    className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                    alt={productDetails?.productName || "Product image"}
+                  />
+                </div>
+              )}
+            </div>
+            {/* <div
+              className="d-none d-md-flex w-100 gap-3"
+              style={{ position: "sticky", top: "50px", zIndex: 10 }}
+            >
+              
+              <div className="row mt-4 gx-3 gy-3">
+            
+
+                <div className="col-md-6">
+                  <Carousel interval={null} indicators={false}>
+                    {productDetails?.image &&
+                      productDetails.image.length > 0 && (
+                        <Carousel.Item key={selectedImageIndex}>
+                          {productDetails.image[selectedImageIndex].endsWith(
+                            ".mp4"
+                          ) ? (
+                            <video
+                              src={`http://192.168.1.10:3000${productDetails.image[selectedImageIndex]}`}
+                              className="img-fluid rounded w-100"
+                              autoPlay
+                              loop
+                              muted
+                              controls
+                              onClick={() =>
+                                setSelectedImageIndex(selectedImageIndex)
+                              }
+                              style={{ cursor: "pointer" }}
+                            />
+                          ) : (
+                            <img
+                              src={`http://192.168.1.10:3000${productDetails.image[selectedImageIndex]}`}
+                              className="img-fluid rounded w-100"
+                              alt={`Slide ${selectedImageIndex + 1}`}
+                              onClick={() =>
+                                setSelectedImageIndex(selectedImageIndex)
+                              }
+                              style={{ cursor: "pointer" }}
+                            />
+                          )}
+                        </Carousel.Item>
+                      )}
+                  </Carousel>
+                </div>
+
+              </div>
+            </div> */}
+
+            {/* 2x2 Grid Below Main Image */}
+            {/* <div
               className="d-none d-md-flex w-100 gap-3 "
               style={{ position: "sticky", top: "50px" }}
             >
@@ -522,6 +767,7 @@ Please let me know the next steps.`;
                         }`}
                         onClick={() => setSelectedImageIndex(index)}
                       >
+                      
                         <img
                           src={`http://192.168.1.10:3000${image}`}
                           className="thumbnail-image"
@@ -552,8 +798,8 @@ Please let me know the next steps.`;
                     />
                   ))}
               </div>
-            </div>
-            <div className="w-100 sdcsd_saxza dscd_54_Dscds">
+            </div> */}
+            <div className="w-100 sdcsd_saxza dscd_54_Dscds ">
               <div>
                 <div className="d-flex justify-content-between align-items-center">
                   <span className="secrt_1">{productDetails?.productName}</span>
@@ -635,19 +881,18 @@ Please let me know the next steps.`;
 
                 <div className="d-flex justify-content-between align-items-center gap-3">
                   <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
-
-                  <button
-                    className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                    onClick={() => addToCart(productDetails)}
-                  >
-                    Buy Now
-                  </button>
-                  <button
-                    className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                    onClick={() => addToCart(productDetails)}
-                  >
-                    Add to Cart <BiShoppingBag size={25} />
-                  </button>
+                    <button
+                      className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                      onClick={() => addToCart(productDetails)}
+                    >
+                      Buy Now
+                    </button>
+                    <button
+                      className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                      onClick={() => addToCart(productDetails)}
+                    >
+                      Add to Cart <BiShoppingBag size={25} />
+                    </button>
                   </div>
                   <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
                     <div
