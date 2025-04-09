@@ -8,8 +8,8 @@ const DimondJewellery = () => {
     navigate(`/products?categoryName=${category}`);
   };
   return (
-    <div className="mt-3 container dimond diamond_section mb-5">
-      <div className="row g-2 align-items-stretch">
+    <div className="mt-3 container dimond diamond_section mb-md-5">
+      <div className="row g-2 align-items-stretch sdcsz_rokdscs">
         <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
           <div className="h-100">
             <img src={require("../../../Images/rose.png")} className="w-100 h-100 diamond_img" onClick={() => handleCategoryClick("Rings")}/>

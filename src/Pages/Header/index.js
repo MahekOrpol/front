@@ -3,7 +3,7 @@ import "./index.css";
 import { FaAngleRight, FaSearch } from "react-icons/fa";
 import { RiUserLine } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
-import { IoBagHandleOutline, IoClose } from "react-icons/io5";
+import { IoBagHandleOutline, IoClose, IoSearch } from "react-icons/io5";
 import { LuTextSearch } from "react-icons/lu";
 import { MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +27,15 @@ const Header = ({ openCart }) => {
   const [data, setData] = useState(null);
   const user_Id = localStorage.getItem("user_Id");
   const popupRef = useRef(null);
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearch = () => {
+    if (searchValue.trim()) {
+      navigate(`/products?search=${encodeURIComponent(searchValue.trim())}`);
+      setSearchValue(""); // Clear the input field
+      setIsDrawerOpen(false); // Close the drawer after search
+    }
+  };
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -91,13 +100,16 @@ const Header = ({ openCart }) => {
         </div>
 
         {/* Search Bar */}
-        <div className="w-25 justify-content-center d-flex ps-lg-5 xdcxscd_sercv">
+        <div className="justify-content-center d-flex ps-xl-5 xdcxscd_sercv">
           <div className="d-flex align-items-center sdchy_88__sxsxs" style={{ width: "100%" }}>
             <input
               type="text"
               placeholder="Search Product Here"
-              className="flex-1 px-4 py-2 outline-none text-gray-700"
-              style={{ borderRadius: "10px 0px 0px 10px" }}
+              className="flex-1 px-4 py-2 outline-none text-gray-700 rfvfd_UHGYU"
+              style={{ borderRadius: "10px 0px 0px 10px", height: '2.7rem' }}
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            // onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
             />
             <button
               className="p-3 rounded-r-full d-flex align-items-center justify-content-center search_hbdhj bg_prime"
@@ -107,11 +119,13 @@ const Header = ({ openCart }) => {
                 border: "none",
                 padding: "0.8rem",
               }}
+              onClick={handleSearch}
             >
               <FaSearch />
             </button>
           </div>
         </div>
+
 
         {/* Logo */}
         <div
@@ -125,7 +139,7 @@ const Header = ({ openCart }) => {
         {/* Icons Section (Desktop Only) */}
         <div className="walign-items-center d-flex dcxde_asx485 gap-3 gap-lg-4 w-25 align-items-center ps-lg-1 sdfcv_tgvtgv">
           <div
-            className="user_icon d-flex align-items-center d-none d-lg-block d-lg-flex flex-column"
+            className="user_icon d-flex align-items-center flex-column new_ddd"
             style={{ cursor: "pointer" }}
             onClick={() => setIsSignup(true)}>
             <RiUserLine size={30} />
@@ -243,22 +257,22 @@ const Header = ({ openCart }) => {
             )}
           </div>
           <div
-            className="user_icon d-flex align-items-center d-none d-lg-block d-lg-flex flex-column"
+            className="user_icon d-flex align-items-center flex-column"
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/wishlist")}
           >
-            <CiHeart size={30} style={{ strokeWidth: "0.5px", stroke: "black" }} />
+            <CiHeart className="gsddd" size={30} style={{ strokeWidth: "0.5px", stroke: "black" }} />
             <div className="align-items-center" style={{ lineHeight: "21px" }}>
-              <span className="acco9_text w-100">Wishlist</span>
+              <span className="acco9_text w-100 new_ddd">Wishlist</span>
             </div>
           </div>
           <div
-            className="user_icon d-flex align-items-center d-none d-lg-block d-lg-flex flex-column"
+            className="user_icon d-flex align-items-center flex-column"
             style={{ cursor: "pointer" }}
           >
-            <IoBagHandleOutline size={30} onClick={openCart} />
+            <IoBagHandleOutline className="gsddd" size={30} onClick={openCart} />
             <div className="align-items-center" style={{ lineHeight: "21px" }}>
-              <span className="acco9_text w-100">Cart</span>
+              <span className="acco9_text w-100 new_ddd">Cart</span>
             </div>
           </div>
         </div>
@@ -309,6 +323,28 @@ const Header = ({ openCart }) => {
           <IoClose size={30} onClick={toggleDrawer} />
         </div>
         <div className="drawer-menu">
+          <div className="d-flex" style={{ padding: '10px 0' }}>
+            <input
+              type="text"
+              placeholder="Search Product Here"
+              className="flex-1 outline-none text-gray-700 w-100 px-2 rfvfd_UHGYU"
+              style={{ height: '2.5rem' }}
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <button
+              className="p-3 rounded-r-full d-flex align-items-center justify-content-center search_hbdhj bg_prime"
+              style={{
+                height: "2.5rem",
+                borderRadius: "0px 5px 6px 0px",
+                border: "none",
+                padding: "0.8rem",
+              }}
+              onClick={handleSearch}
+            >
+              <FaSearch />
+            </button>
+          </div>
           <div className="drawer-item" onClick={() => handleCategoryClick("Rings")}>
             <img src={ring} width={20} alt="Rings" /> Rings
           </div>
@@ -331,6 +367,7 @@ const Header = ({ openCart }) => {
           className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3"
           onClick={() => {
             setIsDrawerOpen(false);
+            navigate('/register')
           }}
         >
           <img src={usericon} alt="User Icon" />

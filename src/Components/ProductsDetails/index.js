@@ -116,7 +116,7 @@ Please let me know the next steps.`;
     if (!productData) {
       // Fetch product data if not available in state
       axios
-        .get(`http://localhost:3000/api/v1/product/get-product-id/${productId}`)
+        .get(`http://192.168.1.10:3000/api/v1/product/get-product-id/${productId}`)
         .then((response) => {
           console.log("Fetched product:", response.data);
           setProductDetails(response.data);
@@ -137,7 +137,7 @@ Please let me know the next steps.`;
     const formData = new FormData();
     formData.append("categoryName", categoryName);
     axios
-      .get(`http://localhost:3000/api/v1/product/get-related-product`, {
+      .get(`http://192.168.1.10:3000/api/v1/product/get-related-product`, {
         params: { categoryName },
       }) // Use params for GET
       .then((response) => {
@@ -235,13 +235,13 @@ Please let me know the next steps.`;
         });
 
         const res = await axios.delete(
-          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://localhost:3000/api/v1/wishlist/create`,
+          `http://192.168.1.10:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -267,7 +267,7 @@ Please let me know the next steps.`;
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/wishlist/${userId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -346,7 +346,7 @@ Please let me know the next steps.`;
 
       // Make the API request
       const response = await axios.post(
-        "http://localhost:3000/api/v1/order-details/create",
+        "http://192.168.1.10:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -611,7 +611,7 @@ Please let me know the next steps.`;
             </div> */}
             <div
               className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex"
-              style={{ position: "sticky", top: "5px" }}
+         
             >
               {/* Box 1: Video(s) */}
               <div className="col-md-6 border vider_saxasxs">
@@ -704,101 +704,8 @@ Please let me know the next steps.`;
                 </div>
               )}
             </div>
-            {/* <div
-              className="d-none d-md-flex w-100 gap-3"
-              style={{ position: "sticky", top: "50px", zIndex: 10 }}
-            >
-              
-              <div className="row mt-4 gx-3 gy-3">
-            
 
-                <div className="col-md-6">
-                  <Carousel interval={null} indicators={false}>
-                    {productDetails?.image &&
-                      productDetails.image.length > 0 && (
-                        <Carousel.Item key={selectedImageIndex}>
-                          {productDetails.image[selectedImageIndex].endsWith(
-                            ".mp4"
-                          ) ? (
-                            <video
-                              src={`http://192.168.1.10:3000${productDetails.image[selectedImageIndex]}`}
-                              className="img-fluid rounded w-100"
-                              autoPlay
-                              loop
-                              muted
-                              controls
-                              onClick={() =>
-                                setSelectedImageIndex(selectedImageIndex)
-                              }
-                              style={{ cursor: "pointer" }}
-                            />
-                          ) : (
-                            <img
-                              src={`http://192.168.1.10:3000${productDetails.image[selectedImageIndex]}`}
-                              className="img-fluid rounded w-100"
-                              alt={`Slide ${selectedImageIndex + 1}`}
-                              onClick={() =>
-                                setSelectedImageIndex(selectedImageIndex)
-                              }
-                              style={{ cursor: "pointer" }}
-                            />
-                          )}
-                        </Carousel.Item>
-                      )}
-                  </Carousel>
-                </div>
-
-              </div>
-            </div> */}
-
-            {/* 2x2 Grid Below Main Image */}
-            {/* <div
-              className="d-none d-md-flex w-100 gap-3 "
-              style={{ position: "sticky", top: "50px" }}
-            >
-              <div className="sdcsd_saxza">
-                <div className="thumbnail-gallery-container">
-                  <div className="thumbnail-gallery-row w-100 gap-2">
-                    {productDetails?.image?.map((image, index) => (
-                      <div
-                        key={index}
-                        className={`thumbnail-item ${
-                          selectedImageIndex === index ? "active" : ""
-                        }`}
-                        onClick={() => setSelectedImageIndex(index)}
-                      >
-                      
-                        <img
-                          src={`http://192.168.1.10:3000${image}`}
-                          className="thumbnail-image"
-                          alt={`Thumbnail ${index + 1}`}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="main-image-container">
-                {productDetails?.image &&
-                  productDetails.image.length > 0 &&
-                  (productDetails.image[selectedImageIndex].endsWith(".mp4") ? (
-                    <video
-                      src={`http://192.168.1.10:3000${productDetails.image[selectedImageIndex]}`}
-                      className="main-product-image w-100 object-fit-contain"
-                      autoPlay
-                      loop
-                      muted
-                      controls
-                    />
-                  ) : (
-                    <img
-                      src={`http://192.168.1.10:3000${productDetails.image[selectedImageIndex]}`}
-                      className="main-product-image w-100 object-fit-contain"
-                      alt={productDetails?.productName || "Product image"}
-                    />
-                  ))}
-              </div>
-            </div> */}
+           
             <div className="w-100 sdcsd_saxza dscd_54_Dscds ">
               <div>
                 <div className="d-flex justify-content-between align-items-center">

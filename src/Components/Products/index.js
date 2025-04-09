@@ -41,7 +41,7 @@ const Products = () => {
   const [wishlistItems, setWishlistItems] = useState({});
   const [category, setCategory] = useState([]);
   const navigate = useNavigate();
-  const [selectedCategories, setSelectedCategories  ] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const userId = localStorage.getItem("user_Id");
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -55,6 +55,57 @@ const Products = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+  const urlSearchQuery = queryParams.get("search");
+
+  useEffect(() => {
+    if (urlSearchQuery) {
+      setSearchQuery(urlSearchQuery);
+      setIsSearchActive(true);
+    } else {
+      setSearchQuery("");
+      setIsSearchActive(false);
+    }
+  }, [urlSearchQuery]);
+
+  useEffect(() => {
+    const fetchAndFilter = async () => {
+      try {
+        let url = `http://localhost:3000/api/v1/product/get?`;
+        if (categoryName) url += `categoryName=${categoryName}&`;
+        if (gender) url += `gender=${gender}`;
+
+        const response = await axios.get(url);
+        const sortedProducts = sortProducts(response.data, selectedOption);
+        setProductList(sortedProducts);
+
+        // Index for carousel
+        const initialIndexes = {};
+        sortedProducts.forEach((product) => {
+          initialIndexes[product.id] = 0;
+        });
+        setImageIndexes(initialIndexes);
+
+        // Search logic here
+        if (urlSearchQuery?.trim()) {
+          const searchTerm = urlSearchQuery.toLowerCase();
+          const filtered = sortedProducts.filter((p) =>
+            p.productName.toLowerCase().includes(searchTerm) ||
+            p.categoryName?.toLowerCase().includes(searchTerm)
+          );
+          setFilteredProducts(filtered);
+          setIsSearchActive(true);
+        } else {
+          setFilteredProducts(sortedProducts);
+          setIsSearchActive(false);
+        }
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+      }
+    };
+
+    fetchAndFilter();
+  }, [categoryName, gender, selectedOption, urlSearchQuery]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -149,11 +200,17 @@ const Products = () => {
         checkbox.checked = false;
       });
 
+    const checkboxes = document.querySelectorAll('.category-checkbox');
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
     // Reset price range
     setPriceRange([1000, 15000]);
     setSearchQuery("");
     setIsSearchActive(false);
     setFilteredProducts([]);
+    setSelectedCategories([]);
+    fetchAllProducts();
   };
 
   const toggleSection = (section) => {
@@ -168,7 +225,7 @@ const Products = () => {
     let url = `http://localhost:3000/api/v1/product/get?`;
 
     // Append selected categories as query parameters
-    if (selectedCategories.length > 0) {  
+    if (selectedCategories.length > 0) {
       url += `categoryName=${selectedCategories.join(",")}&`;
     }
 
@@ -250,10 +307,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchWishlist = async () => {
-
-
       if (!userId) return;
-
       try {
         const response = await axios.get(
           `http://localhost:3000/api/v1/wishlist/${userId}`
@@ -389,7 +443,15 @@ const Products = () => {
   //     console.error("Error fetching filtered products:", error);
   //   }
   // };
-
+  const fetchAllProducts = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/api/v1/product/get");
+      const sortedProducts = sortProducts(response.data, selectedOption);
+      setProductList(sortedProducts);
+    } catch (err) {
+      console.error("Failed to fetch products:", err);
+    }
+  };
   return (
     <>
       <ToastContainer
@@ -403,7 +465,7 @@ const Products = () => {
         draggable
         pauseOnHover
         theme="light"
-        stacked 
+        stacked
       />
 
       <CartPopup
@@ -656,17 +718,19 @@ const Products = () => {
                               autoPlay
                               loop
                               muted
+                              onClick={() => handleProductClick(product.id)}
                             />
                           ) : (
                             <img
                               src={`http://192.168.1.10:3000${product.image[imageIndexes[product.id]]
                                 }`}
+                              onClick={() => handleProductClick(product.id)}
                               className="p-1_proi img-fluid"
                               alt="Product"
                             />
                           )}
                           {hoveredProduct === product.id && (
-                            <div className="hover-overlay w-100 d-none d-sm-flex"  onClick={() => handleProductClick(product.id)}>
+                            <div className="hover-overlay w-100 d-none d-sm-flex">
                               <button
                                 className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
                                 onClick={() =>
@@ -708,12 +772,12 @@ const Products = () => {
                           >
                             Add to Cart <BiShoppingBag size={25} />
                           </button>
-                          {/* <a
+                          <a
                             onClick={() => handleProductClick(product.id)}
                             className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
                           >
                             Read more about the Product <FaArrowRight />
-                          </a> */}
+                          </a>
                         </div>
                       )}
                       <div className="d-flex d-sm-none flex-column mt-2">
@@ -723,12 +787,12 @@ const Products = () => {
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
-                        {/* <a
+                        <a
                           onClick={() => handleProductClick(product.id)}
                           className="mt-2 text-body szdc_za d-flex gap-2 align-items-left justify-content-left w-100"
                         >
                           Read more about the Product <FaArrowRight />
-                        </a> */}
+                        </a>
                       </div>
                     </div>
                   </div>

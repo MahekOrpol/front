@@ -46,7 +46,7 @@ const EditProfile = () => {
             if (isExistingProfile) {
                 console.log("Sending payload:", userData); // Debug log
                  response = await axios.put(
-                    `http://localhost:3000/api/v1/users/${user_Id}`,
+                    `http://192.168.1.10:3000/api/v1/users/${user_Id}`,
                     userData,
                     {
                         headers: {
@@ -58,7 +58,7 @@ const EditProfile = () => {
             }
             else{
                 response = await axios.post(
-                    `http://localhost:3000/api/v1/users/create`,
+                    `http://192.168.1.10:3000/api/v1/users/create`,
                     { ...userData, id: user_Id },
                     {
                         headers: { "Content-Type": "application/json" }
@@ -76,7 +76,7 @@ const EditProfile = () => {
     };
     const getProfileData = async () => {
         try {
-            const res = await axios.get(`http://localhost:3000/api/v1/users/${user_Id}`);
+            const res = await axios.get(`http://192.168.1.10:3000/api/v1/users/${user_Id}`);
             const data = res.data;
     
             setProfileData(data);

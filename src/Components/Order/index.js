@@ -22,7 +22,7 @@ const OrderDetails = () => {
       try {
         const userId = localStorage.getItem("user_Id"); // Get user ID from localStorage
         const response = await axios.get(
-          `http://localhost:3000/api/v1/order/get-user/${userId}`
+          `http://192.168.1.10:3000/api/v1/order/get-user/${userId}`
         );
 
         if (response.data.status) {
@@ -121,7 +121,7 @@ const OrderDetails = () => {
                 order.orderDetails.map((item, i) => (
                   <div key={i} className="order_ddd">
                     <img
-                      src={`http://localhost:3000${item?.productId?.image[0]}`}
+                      src={`http://192.168.1.10:3000${item?.productId?.image[0]}`}
                       alt={item.productId?.productName}
                       className="img_dd"
                     />
