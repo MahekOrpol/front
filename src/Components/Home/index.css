@@ -4726,6 +4726,7 @@ img.ring-image {
   transition: transform 0.4s ease-in-out, box-shadow 0.3s ease;
   transform: scale(1);
   height: 100% !important;
+  border-radius: 10px;
 }
 
 .our_colle_iumg_ssss:hover {
