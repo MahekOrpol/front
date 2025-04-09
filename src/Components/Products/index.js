@@ -656,19 +656,17 @@ const Products = () => {
                               autoPlay
                               loop
                               muted
-                              onClick={() => handleProductClick(product.id)}
                             />
                           ) : (
                             <img
                               src={`http://192.168.1.10:3000${product.image[imageIndexes[product.id]]
                                 }`}
-                                onClick={() => handleProductClick(product.id)}
                               className="p-1_proi img-fluid"
                               alt="Product"
                             />
                           )}
                           {hoveredProduct === product.id && (
-                            <div className="hover-overlay w-100 d-none d-sm-flex">
+                            <div className="hover-overlay w-100 d-none d-sm-flex"  onClick={() => handleProductClick(product.id)}>
                               <button
                                 className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
                                 onClick={() =>
@@ -710,12 +708,12 @@ const Products = () => {
                           >
                             Add to Cart <BiShoppingBag size={25} />
                           </button>
-                          <a
+                          {/* <a
                             onClick={() => handleProductClick(product.id)}
                             className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
                           >
                             Read more about the Product <FaArrowRight />
-                          </a>
+                          </a> */}
                         </div>
                       )}
                       <div className="d-flex d-sm-none flex-column mt-2">
@@ -725,12 +723,12 @@ const Products = () => {
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
-                        <a
+                        {/* <a
                           onClick={() => handleProductClick(product.id)}
                           className="mt-2 text-body szdc_za d-flex gap-2 align-items-left justify-content-left w-100"
                         >
                           Read more about the Product <FaArrowRight />
-                        </a>
+                        </a> */}
                       </div>
                     </div>
                   </div>

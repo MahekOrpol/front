@@ -302,20 +302,20 @@ const Wishlist = () => {
                       </span>
                     </div>
                     {hoveredProduct === productId.id && (
-                      <div className="hover-overlay DFC_NHJ w-100 d-none d-sm-flex">
+                      <div className="hover-overlay DFC_NHJ w-100 d-none d-sm-flex" onClick={() => handleProductClick(productId.id)}>
                         <button
                           className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3"
                           onClick={() => addToCart(productId)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
-                        <a
+                        {/* <a
                           onClick={() => handleProductClick(productId.id)}
 
                           className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
                         >
                           Read more about the Product <FaArrowRight />
-                        </a>
+                        </a> */}
                       </div>
                     )}
                     <div className="d-flex d-sm-none flex-column mt-2">
@@ -326,13 +326,13 @@ const Wishlist = () => {
                         Add to Cart <BiShoppingBag size={25} />
                       </button>
                       {/* <p className="mt-1"> */}
-                      <a
+                      {/* <a
                         onClick={() => handleProductClick(productId.id)}
 
                         className="mt-2 text-body szdc_za d-flex gap-2 align-items-left justify-content-left w-100"
                       >
                         Read more about the Product <FaArrowRight />
-                      </a>
+                      </a> */}
                     </div>
                   </div>
                 </div>
