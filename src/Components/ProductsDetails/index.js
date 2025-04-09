@@ -428,7 +428,7 @@ Please let me know the next steps.`;
             </div>
           </section>
 
-          <section className="d-flex gap-5 pro_sss_gubs ">
+          <section className="d-flex gap-lg-5 pro_sss_gubs">
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
                 {productDetails?.image && productDetails.image.length > 0 ? (
@@ -609,8 +609,8 @@ Please let me know the next steps.`;
                 </>
               )}
             </div> */}
-            <div id="product_deta"
-              className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex"
+            <div
+              className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3"
          
             >
               {/* Box 1: Video(s) */}
@@ -798,7 +798,7 @@ Please let me know the next steps.`;
                       className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
                       onClick={() => addToCart(productDetails)}
                     >
-                      Add to Cart <BiShoppingBag size={25} />
+                      Add to Cart <BiShoppingBag size={25} className="sopgdd"/>
                     </button>
                   </div>
                   <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
