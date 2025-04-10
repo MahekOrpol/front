@@ -10907,3 +10907,10 @@ img.ring-image {
     width: 96.5vw !important;
   }
 }
+
+@media (width:375px) {
+  .MHK1{
+    margin-top: 51px !important;
+  }
+  
+}

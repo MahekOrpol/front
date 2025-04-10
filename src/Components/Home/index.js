@@ -996,7 +996,7 @@ const Home = () => {
           <DimondJewellery />
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center  hnbgygjhh">
+        <div className="paddingdn d-flex flex-column align-items-center  hnbgygjhh mt-md-4">
           <span className="category_name ">Trending Collection</span>
           <p className="category_txt">
             The Latest looks, Crafted to Perfection
@@ -1259,10 +1259,10 @@ const Home = () => {
           )}
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd MHK1">
           <OueColletion />
         </div>
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-md-1">
           <span className="category_name best_sellig_sdcdc d-none">Jewelry for Occasions</span>
           <p className="category_txt best_sellig_sdcdc d-none">
           Celebrate Forever with a Sparkle
@@ -1408,7 +1408,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd stunning_price_fvf">
+        <div className="paddingdn d-flex flex-column align-items-center mt-md-4 stunning_price_fvf">
           <span className="category_name mt-0 mobile-hide">
             Celebrate love with our Collection
           </span>
@@ -1508,7 +1508,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd ">
+        <div className="paddingdn d-flex flex-column align-items-center mt-md-4 ">
           <span className="category_name mt-2">Discover Styles</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img
@@ -1520,8 +1520,8 @@ const Home = () => {
           <RingSlider />
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center mt-2 asxs_sdxszx dxfcvdfsCV_ss">
-          <span className="category_name mt-3">New Arrivals</span>
+        <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
+          <span className="category_name ">New Arrivals</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img
             src={require("../../Images/Groupimg.png")}
@@ -1683,10 +1683,10 @@ const Home = () => {
 
         <div className="testimonial-container d-flex align-items-center client_test cline_ytsdhcsd">
           <div
-            className="heder_sec_main d-flex flex-column align-items-center "
+            className="heder_sec_main d-flex flex-column align-items-center mt-md-4"
             style={{ width: "100vw" }}
           >
-            <span className="category_name mt-md-4">Client Testimonial</span>
+            <span className="category_name ">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
             <img
               src={require("../../Images/Groupimg.png")}
