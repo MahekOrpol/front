@@ -2870,11 +2870,6 @@ img.ring-image {
     letter-spacing: 0%;
     font-family: "Cabin", sans-serif;
   }
-
-  .stunning_price_fvf {
-    margin-top: -127px !important;
-  }
-
   .p-1_proi {
     object-fit: unset;
   }
@@ -3827,11 +3822,10 @@ img.ring-image {
 
   .instruction-item {
     margin-bottom: 10px !important;
-  }
-
-  .instruction_tagline {
-    font-size: 12px !important;
-  }
+}
+.instruction_tagline{
+  font-size: 12px !important;
+}
 }
 
 @media (max-width: 524px) and (min-width: 425px) {
@@ -6886,7 +6880,7 @@ img.ring-image {
 
 @media (max-width: 425px) {
   .paddingdn {
-    padding-top: 0rem !important;
+    padding-top: 1rem !important;
   }
 
   .xjc_dbv {
@@ -10735,6 +10729,15 @@ img.ring-image {
   }
 }
 
+@media (max-width: 425px) {
+  .asdxdsx_bases_sell {
+    margin-top: 1rem !important;
+  }
+  .stunning_price_fvf {
+    /* margin-top: 0rem !important; */
+    margin-top: 0rem !important;
+  }
+}
 @media (max-width: 600px) {
   .asdxdsx_bases_sell {
     margin-top: 0rem !important;
@@ -10792,7 +10795,7 @@ img.ring-image {
 
   .category_name {
     font-size: 32px;
-    margin-top: 23px !important;
+    margin-top: 30px !important;
   }
 
 }
@@ -10911,72 +10914,4 @@ img.ring-image {
   .xfvdfvdfvc {
     width: 96.5vw !important;
   }
-}
-
-@media (display-width:450px) {
-  .xfvdfvdfvc .swiper-slide img {
-    display: block;
-    margin: auto;
-    width: 100%;
-    border: none;
-    height: 119px !important;
-    top: 4753px;
-    left: 661px;
-    border-radius: 11px;
-  }
-}
-
-.mySwiper {
-  position: relative;
-}
-
-.mySwiper::before,
-.mySwiper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 3%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 100;
-}
-
-.mySwiper::before {
-  left: 0;
-  background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.54), white);
-}
-
-.mySwiper::after {
-  right: 0;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.54), white);
-}
-
-.xfvdfvdfvc .swiper-slide img {
-  display: block;
-  margin: auto;
-  width: 100%;
-  border: none;
-  height: 120px;
-  top: 4753px;
-  left: 661px;
-  border-radius: 11px;
-}
-
-
-.details-content {
-  height: 150vh; /* For demonstration purposes */
-}
-
-
-.product-details {
-  width: 50%;
-  padding-left: 20px;
-}
-
-
-.product-image {
-  width: 50%;
-  position: sticky;
-  top: 20px;
-  height: fit-content;
 }

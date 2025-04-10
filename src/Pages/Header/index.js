@@ -19,6 +19,7 @@ import bracelet from "../../Images/noun-bracelet-5323037.svg";
 import earing from "../../Images/earrings.png";
 import ring from "../../Images/diamond-ring-diamond-svgrepo-com.svg";
 import csome from "../../Images/Group 1597884646.svg";
+import { Search } from "lucide-react";
 
 const Header = ({ openCart }) => {
   const navigate = useNavigate();
@@ -319,11 +320,14 @@ const Header = ({ openCart }) => {
 
       {/* Mobile Drawer */}
       <div className={`mobile-drawer ${isDrawerOpen ? "open" : ""}`}>
-        <div className="drawer-header">
-          <IoClose size={30} onClick={toggleDrawer} />
+        <div className="mobile-img">
+          <img src={require("../../Images/crystovalogowhite (1) 2.png")} style={{ width: '60%' }} />
+          <div className="drawer-header">
+            <IoClose size={30} onClick={toggleDrawer} />
+          </div>
         </div>
         <div className="drawer-menu">
-          <div className="d-flex" style={{ padding: '10px 0' }}>
+          {/* <div className="d-flex" style={{ padding: '10px 0' }}>
             <input
               type="text"
               placeholder="Search Product Here"
@@ -344,21 +348,91 @@ const Header = ({ openCart }) => {
             >
               <FaSearch />
             </button>
+          </div> */}
+          <div className="position-relative mb-3 w-100">
+            <Search className="position-absolute top-50 start-0 translate-middle-y ms-2 text-muted" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="form-control pfds"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+            />
           </div>
-          <div className="drawer-item" onClick={() => handleCategoryClick("Rings")}>
-            <img src={ring} width={20} alt="Rings" /> Rings
-          </div>
-          <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Earrings")}>
-            <img src={earing} width={20} alt="Earrings" /> Earrings
-          </div>
-          <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Pendant")}>
-            <img src={GiGemPendant} width={20} alt="Pendant" /> Pendant
-          </div>
-          <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Bracelet")}>
-            <img src={bracelet} width={20} alt="Bracelet" /> Bracelet
-          </div>
-          <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => navigate("/Customjewel")}>
-            <img src={csome} width={20} alt="Custom Jewellery" /> Custom Jewellery
+
+          <div className="drawer-pro">
+            <div className="eeerd">
+              <span className="drawer-new">MAIN</span>
+              <div className="drawer-item" onClick={() => handleCategoryClick("Rings")}>
+                <img src={ring} width={20} alt="Rings" /> Rings
+              </div>
+              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Earrings")}>
+                <img src={earing} width={20} alt="Earrings" /> Earrings
+              </div>
+              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Pendant")}>
+                <img src={GiGemPendant} width={20} alt="Pendant" /> Pendant
+              </div>
+              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Bracelet")}>
+                <img src={bracelet} width={20} alt="Bracelet" /> Bracelet
+              </div>
+              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => navigate("/Customjewel")}>
+                <img src={csome} width={20} alt="Custom Jewellery" /> Custom Jewellery
+              </div>
+            </div>
+            <div className="eeerd pt-2 pb-3">
+              <span className="drawer-new">SUPPORT</span>
+              <div className="drawer-item" onClick={() => navigate("/contact-us")}>
+                <img src={require("../../Images/contacticon.png")} width={18} alt="Profile" /> Contact Us
+              </div>
+            </div>
+            {localStorage.getItem("user_Id") && localStorage.getItem("user_token") ? (
+              <>
+                <div className="pt-2">
+                  <span className="drawer-new">ACCOUNT</span>
+                  <div className="drawer-item" onClick={() => {
+                    setIsDrawerOpen(false);
+                    navigate('/Editprofile');
+                  }}>
+                    <img src={require("../../Images/profileicon.png")} width={18} alt="Profile" /> Your Profile
+                  </div>
+                  <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => {
+                    setIsDrawerOpen(false);
+                    navigate('/Order');
+                  }}>
+                    <img src={require("../../Images/ordericon.png")} width={18} alt="Orders" /> My Orders
+                  </div>
+                </div>
+                {/* Logout button at bottom with red background */}
+                <div className="drawer-logout-container">
+                  <div
+                    className="drawer-logout-button d-flex align-items-center gap-2 w-100"
+                    onClick={() => {
+                      setIsDrawerOpen(false);
+                      handleLogout();
+                    }}
+                  >
+                    <MdLogout width={18} /> Log Out
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="pt-2">
+                <span className="drawer-new">ACCOUNT</span>
+                <div
+                  className="drawer-item pt-3 d-flex align-items-center gap-2 w-100"
+                  onClick={() => {
+                    setIsDrawerOpen(false);
+                    navigate('/register');
+                  }}
+                >
+                  <img src={usericon} width={18} />
+                  <span>Sign in</span>
+                </div>
+              </div>
+            )}
+
+            {/* </div> */}
           </div>
         </div>
 
@@ -370,15 +444,16 @@ const Header = ({ openCart }) => {
             navigate('/register')
           }}
         >
-          <img src={usericon} alt="User Icon" />
-          <div className="d-flex flex-column align-items-center pt-2" style={{ lineHeight: "25px" }}>
-            <span className="sign_txt w-100">Sign In</span>
-            <span className="acco9_text w-100">Account</span>
-          </div>
+          {/* <img src={usericon} alt="User Icon" />
+        <div className="d-flex flex-column align-items-center pt-2" style={{ lineHeight: "25px" }}>
+          <span className="sign_txt w-100">Sign In</span>
+          <span className="acco9_text w-100">Account</span>
+        </div> */}
         </div>
-      </div>
+      </div >
 
-      {isDrawerOpen && <div className="drawer-overlay" onClick={toggleDrawer}></div>}
+      {isDrawerOpen && <div className="drawer-overlay" onClick={toggleDrawer}></div>
+      }
     </>
   );
 };

@@ -753,7 +753,7 @@
 }
 
 .logo-banner {
-  max-width: 300px !important;
+  max-width: 360px !important;
 }
 
 .tagline {
@@ -819,7 +819,7 @@
   }
 
   .logo-banner {
-    width: 282px !important;
+    width: 360px !important;
   }
 
   .ehgdd {
@@ -837,7 +837,7 @@
   }
 
   .logo-banner {
-    width: 274px !important;
+    width: 290px !important;
   }
 
   .ehgdd {
@@ -866,8 +866,8 @@
     width: 73%;
   }
 
-  .logo-banner {
-    width: 202px !important;
+    .logo-banner {
+    width: 270px !important;
   }
 
   .sale-text {
@@ -897,7 +897,7 @@
   }
 
   .logo-banner {
-    width: 160px !important;
+    width: 250px !important;
   }
 
   .ehgdd {
@@ -932,7 +932,7 @@
   }
 
   .logo-banner {
-    width: 160px !important;
+    width: 220px !important;
   }
 
   .ehgdd {
@@ -965,7 +965,7 @@
   }
 
   .logo-banner {
-    width: 160px !important;
+    width: 180px !important;
   }
 
   .ehgdd {
@@ -1003,7 +1003,7 @@
   }
 
   .logo-banner {
-    width: 87px !important;
+    width: 100px !important;
   }
 
   .sale-text {
@@ -1026,7 +1026,7 @@
   }
 }
 
-@media(min-width:300px) and (max-width:399px) {
+@media (max-width:399px) {
   .tagline {
     font-size: 8px;
   }
@@ -1037,7 +1037,7 @@
   }
 
   .logo-banner {
-    width: 60px !important;
+    width: 63px !important;
   }
 
   .sale-text {

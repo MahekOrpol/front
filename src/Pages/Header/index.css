@@ -55,7 +55,14 @@
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
   transition: left 0.3s ease-in-out;
   z-index: 1000;
-  padding-top: 20px;
+  /* padding-top: 20px; */
+}
+
+.mobile-img {
+  display: flex;
+  justify-content: space-between;
+  background-color: #611d2b;
+  padding: 12px;
 }
 
 .mobile-drawer.open {
@@ -69,7 +76,8 @@
 .drawer-header {
   display: flex;
   justify-content: flex-end;
-  padding: 10px 20px;
+  padding: 5px;
+  color: white;
 }
 
 .drawer-menu {
@@ -79,15 +87,36 @@
 }
 
 .drawer-item {
-  padding: 10px 0;
-  font-size: 18px;
+  padding: 6px 0;
+  font-size: 16px;
   font-weight: 500;
+  font-family: 'Cabin', sans-serif;
   cursor: pointer;
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
 }
 
 .drawer-item:hover {
   background: #f5f5f5;
+}
+
+.drawer-new {
+  color: grey;
+  font-size: 13px;
+  font-weight: bold;
+  font-family: 'Cabin', sans-serif;
+}
+
+.drawer-pro {
+  padding-top: 1rem;
+}
+
+.eeerd {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.pfds {
+  padding-left: 2.3rem !important;
 }
 
 /* Overlay Background when Drawer is Open */
@@ -99,6 +128,50 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
+}
+
+/* Mobile Drawer Logout Button */
+.drawer-logout-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.drawer-logout-button {
+  padding: 12px;
+  background-color: #611d2b;
+  color: white;
+  cursor: pointer;
+  font-size: 19px;
+  justify-content: center;
+  transition: background-color 0.3s;
+  font-family: "Cabin", sans-serif;
+
+}
+
+.drawer-logout-button svg {
+  color: white;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  font-family: "Cabin", sans-serif !important;
+
 }
 
 @media (max-width: 991px) {
@@ -367,11 +440,12 @@
   gap: 2px;
 }
 
+/* 
 .mobile_user_icon img {
 
   width: 12%;
   height: auto;
-}
+} */
 
 .sign_txt {
   font-size: 14px;
@@ -408,7 +482,7 @@
   }
 
   .hedr_sss img {
-    max-width: 140px !important;
+    max-width: 130px !important;
     height: auto;
   }
 
