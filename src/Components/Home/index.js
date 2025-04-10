@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import $ from "jquery";
 import { FaArrowRight, FaChevronRight, FaStar } from "react-icons/fa6";
 import logobnddd from "../../Images/diamondring.png";
@@ -9,7 +9,7 @@ import { PiHeartThin } from "react-icons/pi";
 import { BiShoppingBag } from "react-icons/bi";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import Header from "../../Pages/Header";
-import banner from "../../Images/Frame 200.png";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import best from "../../Images/Mask group (9).png";
 import { IoIosArrowForward } from "react-icons/io";
@@ -159,7 +159,7 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [productsPerPage, setProductsPerPage] = useState(1); // Initialize with 1
   const [isPaused, setIsPaused] = useState(false);
-  const [slideDirection, setSlideDirection] = useState('next'); // Track slide direction for animation
+  const [slideDirection, setSlideDirection] = useState("next"); // Track slide direction for animation
 
   const productsToDisplay =
     filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
@@ -188,8 +188,8 @@ const Home = () => {
     };
 
     updateProductsPerPage();
-    window.addEventListener('resize', updateProductsPerPage);
-    return () => window.removeEventListener('resize', updateProductsPerPage);
+    window.addEventListener("resize", updateProductsPerPage);
+    return () => window.removeEventListener("resize", updateProductsPerPage);
   }, []);
 
   const handleCategoryClick = (category) => {
@@ -210,7 +210,7 @@ const Home = () => {
 
   const fetchBestSellersByCategory = async (category) => {
     try {
-      const url = `http://192.168.1.10:3000/api/v1/product/get?categoryName=${category}`;
+      const url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?categoryName=${category}`;
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -265,7 +265,7 @@ const Home = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://192.168.1.10:3000/api/v1/order-details/create",
+        "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -290,7 +290,7 @@ const Home = () => {
   }, []);
 
   const getCategories = async () => {
-    const res = await axios.get("http://192.168.1.10:3000/api/v1/category/get");
+    const res = await axios.get("https://crystova.cloudbusiness.cloud/api/v1/category/get");
     setCategoriesa(res.data);
     console.log("res.datassss :>> ", res.data);
   };
@@ -334,20 +334,20 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios.get(
-      "http://192.168.1.10:3000/api/v1/product/getTopRated"
+      "https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
     console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
-      "http://192.168.1.10:3000/api/v1/product/getBestSelling"
+      "https://crystova.cloudbusiness.cloud/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios.get(
-      "http://192.168.1.10:3000/api/v1/product/getOnSale"
+      "https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -392,13 +392,13 @@ const Home = () => {
         });
 
         const res = await axios.delete(
-          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://192.168.1.10:3000/api/v1/wishlist/create`,
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -424,7 +424,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -760,9 +760,9 @@ const Home = () => {
         <Header openCart={openCart} />
 
         <div>
-          {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
+          <img src={require('../../Images/Frame 207.svg').default} className="img_fluid1_banner hoe_page_main_bvannei" />
           {/* <div className="hoe_page_main_bvannei"></div> */}
-          <JewelrySale />
+          {/* <JewelrySale /> */}
         </div>
 
         <div className="d-flex flex-column align-items-center hdr_csd p-0">
@@ -778,7 +778,7 @@ const Home = () => {
               spaceBetween={10}
               loop={true}
               // centeredSlides={true}
-                // slidesPerView="auto"
+              // slidesPerView="auto"
               // autoplay={{ delay: 2000, disableOnInteraction: false }}
               // modules={[ Autoplay]}
               breakpoints={{
@@ -798,7 +798,7 @@ const Home = () => {
                 >
                   <div className="d-flex flex-column align-items-center">
                     <img
-                      src={`http://192.168.1.10:3000${category.categoryImage}`}
+                      src={`https://crystova.cloudbusiness.cloud${category.categoryImage}`}
                       className="home-img home_img_ssssss fvfvfc_Zdcdsc"
                       alt={category.categoryName}
                     />
@@ -996,7 +996,7 @@ const Home = () => {
           <DimondJewellery />
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center  hnbgygjhh">
+        <div className="paddingdn d-flex flex-column align-items-center  hnbgygjhh mt-md-4">
           <span className="category_name ">Trending Collection</span>
           <p className="category_txt">
             The Latest looks, Crafted to Perfection
@@ -1070,7 +1070,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://192.168.1.10:3000${product.image[0]}`}
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1141,7 +1141,7 @@ const Home = () => {
 
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://192.168.1.10:3000${product.image[0]}`}
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -1215,7 +1215,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`http://192.168.1.10:3000${product.image[0]}`}
+                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1259,12 +1259,20 @@ const Home = () => {
           )}
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd MHK1">
           <OueColletion />
         </div>
-        {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-md-1">
+          <span className="category_name best_sellig_sdcdc d-none">Jewelry for Occasions</span>
+          <p className="category_txt best_sellig_sdcdc d-none">
+          Celebrate Forever with a Sparkle
+          </p>
+          <img
+            src={require("../../Images/Groupimg.png")}
+            className="home_tag_img best_sellig_sdcdc d-none"
+          />
           <Gift />
-        </div> */}
+        </div>
 
         <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-md-4">
           <span className="category_name">Bestselling Jewelery</span>
@@ -1307,17 +1315,26 @@ const Home = () => {
             </div>
 
             {/* Right Product Cards Section */}
-            <div className="col-lg-6 kdjvb_jicn" onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}>
+            <div
+              className="col-lg-6 kdjvb_jicn"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+            >
               <div className="h-100 d-flex flex-column justify-content-center domind_jew_sec">
                 <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc m-0">
                   {productsToDisplay
-                    .slice(currentIndex, currentIndex + productsToDisplay?.length)
+                    .slice(
+                      currentIndex,
+                      currentIndex + productsToDisplay?.length
+                    )
                     .map((product) => (
                       <CSSTransition
                         key={product.id}
-                        className={`col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100 ${slideDirection === 'next' ? 'slide-next' : 'slide-prev'
-                          }`}
+                        className={`col-lg-12 col-6 asxasx_cards dcvdfxC_dfrvdfvf1 m-0 ring-collection-csssss h-100 ${
+                          slideDirection === "next"
+                            ? "slide-next"
+                            : "slide-prev"
+                        }`}
                       >
                         <div className="h-100 d-flex flex-column">
                           <div className="card prio_card scdscsed_sdss dimond_section sdcsdc_rinf_dimnsss">
@@ -1347,7 +1364,7 @@ const Home = () => {
                               </div>
                               <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                                 <img
-                                  src={`http://192.168.1.10:3000${product.image[0]}`}
+                                  src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                                   className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
                                   alt="Product"
                                 />
@@ -1391,7 +1408,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd stunning_price_fvf">
+        <div className="paddingdn d-flex flex-column align-items-center mt-md-4 stunning_price_fvf">
           <span className="category_name mt-0 mobile-hide">
             Celebrate love with our Collection
           </span>
@@ -1491,7 +1508,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd ">
+        <div className="paddingdn d-flex flex-column align-items-center mt-md-4 ">
           <span className="category_name mt-2">Discover Styles</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img
@@ -1503,8 +1520,8 @@ const Home = () => {
           <RingSlider />
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center mt-2 asxs_sdxszx dxfcvdfsCV_ss">
-          <span className="category_name mt-3">New Arrivals</span>
+        <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
+          <span className="category_name ">New Arrivals</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img
             src={require("../../Images/Groupimg.png")}
@@ -1652,22 +1669,30 @@ const Home = () => {
             </div>
           </div> */}
 
-        <div className="heder_sec_main d-flex flex-column align-items-center ">
+        <div className="heder_sec_main d-flex flex-column align-items-center dscdsc_inst">
           <span className="category_name">Instructions</span>
           <p className="category_txt">Store it Soft, Shine it Often</p>
-          <img src={require("../../Images/Groupimg.png")} alt="Decorative" className="home_tag_img"/>
+          <img
+            src={require("../../Images/Groupimg.png")}
+            alt="Decorative"
+            className="home_tag_img"
+          />
 
           <Instruction />
         </div>
 
         <div className="testimonial-container d-flex align-items-center client_test cline_ytsdhcsd">
           <div
-            className="heder_sec_main d-flex flex-column align-items-center "
-          style={{width:"100vw"}}
+            className="heder_sec_main d-flex flex-column align-items-center mt-md-4 Client_xcTestimonial"
+            style={{ width: "100vw" }}
           >
-            <span className="category_name mt-md-4">Client Testimonial</span>
+            <span className="category_name ">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
-            <img src={require("../../Images/Groupimg.png")} alt="Decorative" className="home_tag_img"/>
+            <img
+              src={require("../../Images/Groupimg.png")}
+              alt="Decorative"
+              className="home_tag_img"
+            />
 
             <Swiper
               grabCursor={true}
@@ -1686,8 +1711,9 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                        } mt-5`}
+                      className={`card testimonial-card${
+                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                      } mt-5`}
                     >
                       <div className="card-body pt-5">
                         <h5 className="card-title text-center emi_ffcc">

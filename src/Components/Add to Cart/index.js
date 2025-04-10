@@ -80,7 +80,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
   const handleRemoveItem = async (orderId, index) => {
     try {
       const res = await axios.delete(
-        `http://192.168.1.10:3000/api/v1/order-details/delete/${orderId}`
+        `https://crystova.cloudbusiness.cloud/api/v1/order-details/delete/${orderId}`
       );
 
       if (res.status === 200) {
@@ -97,7 +97,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
     const userId = localStorage.getItem("user_Id");
     try {
       const res = await axios.get(
-        `http://192.168.1.10:3000/api/v1/order-details/get/${userId}`
+        `https://crystova.cloudbusiness.cloud/api/v1/order-details/get/${userId}`
       );
       if (res.status === 200) {
         setOrderDetails(
@@ -179,7 +179,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
               className="cart-item d-flex flex-column align-items-center"
             >
               <img
-                src={`http://192.168.1.10:3000${item.productId.image?.[0]}`}
+                src={`https://crystova.cloudbusiness.cloud${item.productId.image?.[0]}`}
                 alt={item.productId.productName}
                 style={{
                   borderRadius: "24px",
