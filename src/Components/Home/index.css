@@ -2908,11 +2908,6 @@ img.ring-image {
     letter-spacing: 0%;
     font-family: "Cabin", sans-serif;
   }
-
-  .stunning_price_fvf {
-    margin-top: -127px !important;
-  }
-
   .p-1_proi {
     object-fit: unset;
   }
@@ -3862,6 +3857,9 @@ img.ring-image {
 }
 .instruction_tagline{
   font-size: 12px !important;
+}
+.stunning_price_fvf .category_name{
+  margin-top: 0px !important;
 }
 }
 
@@ -6956,7 +6954,7 @@ img.ring-image {
 
 @media (max-width: 425px) {
   .paddingdn {
-    padding-top: 0rem !important;
+    padding-top: 1rem !important;
   }
 
   .xjc_dbv {
@@ -10757,6 +10755,15 @@ img.ring-image {
   }
 }
 
+@media (max-width: 425px) {
+  .asdxdsx_bases_sell {
+    margin-top: 1rem !important;
+  }
+  .stunning_price_fvf {
+    /* margin-top: 0rem !important; */
+    margin-top: 0rem !important;
+  }
+}
 @media (max-width: 600px) {
   .asdxdsx_bases_sell {
     margin-top: 0rem !important;
@@ -10807,7 +10814,7 @@ img.ring-image {
   }
   .category_name {
     font-size: 32px;
-    margin-top: 23px !important;
+    margin-top: 30px !important;
   }
 
 }

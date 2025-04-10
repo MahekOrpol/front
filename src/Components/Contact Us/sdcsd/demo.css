@@ -1026,7 +1026,7 @@
   }
 }
 
-@media(min-width:300px) and (max-width:399px) {
+@media (max-width:399px) {
   .tagline {
     font-size: 8px;
   }
@@ -1037,7 +1037,7 @@
   }
 
   .logo-banner {
-    width: 80px !important;
+    width: 63px !important;
   }
 
   .sale-text {

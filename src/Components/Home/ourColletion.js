@@ -13,7 +13,7 @@ const OueColletion = () => {
   const productImages = [
     { img: require("../../Images/our.png"), label: "Diamond Bracelet",path:'Bracelet' },
     { img: require("../../Images/our2.png"), label: "Diamond Earrings" ,path:'Earrings'},
-    { img: require("../../Images/our3.png"), label: "Engagement Rings" ,path:'Rings'},
+    { img: require("../../Images/our3.png"), label: "Couple Rings" ,path:'Rings'},
   ];
 
   // useEffect(() => {

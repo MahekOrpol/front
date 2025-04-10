@@ -103,7 +103,7 @@ const Footer = () => {
               style={{ listStyle: "none", paddingLeft: "0rem" }}
               className="doof_dd pt-2"
             >
-              <p className="footer_emi">Join our newsletter for exclusive updates, special offers, and the latest news delivered straight to your inbox!</p>
+              <p className="footer_emi ">Join our newsletter for exclusive updates, special offers, and the latest news delivered straight to your inbox!</p>
               <div className="d-flex flex-column w-100 gap-2">
                 <input name='email' className="email" placeholder="Enter your Email" />
                 <button className="sub_ss">Subscribe Now</button>

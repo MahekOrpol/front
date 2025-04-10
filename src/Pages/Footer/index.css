@@ -628,13 +628,16 @@
   }
 
   .sdcdscsdss_ss_1 {
-    font-size: 13px;
+    font-size: 13px !important;
+  }
+  .footer_emi_1 {
+    font-size: 13px !important;
   }
 }
 
 @media (max-width:493px) {
   .use_sdc_1 {
-    font-size: 32px;
+    font-size: 26px;
   }
 }
 

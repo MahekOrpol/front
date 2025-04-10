@@ -23,7 +23,7 @@ const Occasion = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // nextSlide();
+      nextSlide();
     }, 2000);
     return () => clearInterval(interval);
   }, [currentIndex]);
@@ -37,7 +37,7 @@ const Occasion = () => {
         <p className="occasions_text_p">
         Discover the perfect blend of elegance and exclusivity with our Limited Edition Collaboration jewelry collection. Crafted with precision and designed for those who appreciate timeless beauty, these unique pieces are available for a short time only!
         </p>
-        <Button className="shop-button">
+        <Button className="shop-button d-md-block d-none">
           Shop this look <FaArrowRightLong />
         </Button>
       </div>

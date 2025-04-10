@@ -158,7 +158,7 @@ const RingSlider = () => {
       </div>
 
       {/* Custom navigation box - kept original */}
-      <div className="slick-nav-container">
+      <div className="slick-nav-container slidere-roijidfndm">
         <button className="slick-prev custom-prev">&#9665;</button>
         <button className="slick-next custom-next">&#9655;</button>
       </div>

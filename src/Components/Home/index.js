@@ -9,7 +9,7 @@ import { PiHeartThin } from "react-icons/pi";
 import { BiShoppingBag } from "react-icons/bi";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import Header from "../../Pages/Header";
-import banner from "../../Images/Frame 200.png";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import best from "../../Images/Mask group (9).png";
 import { IoIosArrowForward } from "react-icons/io";
@@ -760,9 +760,9 @@ const Home = () => {
         <Header openCart={openCart} />
 
         <div>
-          {/* <img src={banner} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
+          <img src={require('../../Images/Frame 207.svg').default} className="img_fluid1_banner hoe_page_main_bvannei" />
           {/* <div className="hoe_page_main_bvannei"></div> */}
-          <JewelrySale />
+          {/* <JewelrySale /> */}
         </div>
 
         <div className="d-flex flex-column align-items-center hdr_csd p-0">
@@ -1669,7 +1669,7 @@ const Home = () => {
             </div>
           </div> */}
 
-        <div className="heder_sec_main d-flex flex-column align-items-center ">
+        <div className="heder_sec_main d-flex flex-column align-items-center dscdsc_inst">
           <span className="category_name">Instructions</span>
           <p className="category_txt">Store it Soft, Shine it Often</p>
           <img
@@ -1683,7 +1683,7 @@ const Home = () => {
 
         <div className="testimonial-container d-flex align-items-center client_test cline_ytsdhcsd">
           <div
-            className="heder_sec_main d-flex flex-column align-items-center mt-md-4"
+            className="heder_sec_main d-flex flex-column align-items-center mt-md-4 Client_xcTestimonial"
             style={{ width: "100vw" }}
           >
             <span className="category_name ">Client Testimonial</span>
