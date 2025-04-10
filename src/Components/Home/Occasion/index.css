@@ -414,14 +414,14 @@
 }
 
 .image-medium {
-  left: 47% !important;
+  left: 43% !important;
   transform: translate(10%, -15%) !important;
 }
 
 .image-small {
   width: clamp(80px, 11vw, 111px) !important;
   height: clamp(120px, 15vw, 170px) !important;
-  left: 70% !important;
+  left: 60% !important;
   transform: translate(40%, 2%) !important;
 }
 .one-way-slider {

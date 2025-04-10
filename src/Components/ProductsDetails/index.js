@@ -116,7 +116,7 @@ Please let me know the next steps.`;
     if (!productData) {
       // Fetch product data if not available in state
       axios
-        .get(`http://192.168.1.10:3000/api/v1/product/get-product-id/${productId}`)
+        .get(`https://crystova.cloudbusiness.cloud/api/v1/product/get-product-id/${productId}`)
         .then((response) => {
           console.log("Fetched product:", response.data);
           setProductDetails(response.data);
@@ -137,7 +137,7 @@ Please let me know the next steps.`;
     const formData = new FormData();
     formData.append("categoryName", categoryName);
     axios
-      .get(`http://192.168.1.10:3000/api/v1/product/get-related-product`, {
+      .get(`https://crystova.cloudbusiness.cloud/api/v1/product/get-related-product`, {
         params: { categoryName },
       }) // Use params for GET
       .then((response) => {
@@ -191,7 +191,7 @@ Please let me know the next steps.`;
 
   const isVideo = (file) => file?.endsWith(".mp4");
 
-  // const getMediaURL = (path) => `http://192.168.1.10:3000${path}`;
+  // const getMediaURL = (path) => `https://crystova.cloudbusiness.cloud${path}`;
 
   useEffect(() => {
     if (
@@ -235,13 +235,13 @@ Please let me know the next steps.`;
         });
 
         const res = await axios.delete(
-          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://192.168.1.10:3000/api/v1/wishlist/create`,
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -267,7 +267,7 @@ Please let me know the next steps.`;
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -346,7 +346,7 @@ Please let me know the next steps.`;
 
       // Make the API request
       const response = await axios.post(
-        "http://192.168.1.10:3000/api/v1/order-details/create",
+        "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -439,7 +439,7 @@ Please let me know the next steps.`;
                         {isVideo ? (
                           <video
                             className="detr_img bg-white"
-                            src={`http://192.168.1.10:3000${img}`}
+                            src={`https://crystova.cloudbusiness.cloud${img}`}
                             controls
                             autoPlay
                             loop
@@ -448,7 +448,7 @@ Please let me know the next steps.`;
                         ) : (
                           <img
                             className="detr_img bg-white"
-                            src={`http://192.168.1.10:3000${img}`}
+                            src={`https://crystova.cloudbusiness.cloud${img}`}
                             alt={`Product ${index + 1}`}
                           />
                         )}
@@ -500,7 +500,7 @@ Please let me know the next steps.`;
                           {isVideo ? (
                             <video
                               className="detr_img slider_ring_sss"
-                              src={`http://192.168.1.10:3000${img}`}
+                              src={`https://crystova.cloudbusiness.cloud${img}`}
                               controls
                               autoPlay
                               loop
@@ -509,7 +509,7 @@ Please let me know the next steps.`;
                           ) : (
                             <img
                               className="detr_img slider_ring_sss"
-                              src={`http://192.168.1.10:3000${img}`}
+                              src={`https://crystova.cloudbusiness.cloud${img}`}
                               alt={`Slide ${index + 1}`}
                             />
                           )}
@@ -531,7 +531,7 @@ Please let me know the next steps.`;
                   <div key={index} className="col-md-5 border vider_saxasxs">
                     {media.endsWith(".mp4") ? (
                       <video
-                        src={`http://192.168.1.10:3000${media}`}
+                        src={`https://crystova.cloudbusiness.cloud${media}`}
                         className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                         autoPlay
                         loop
@@ -540,7 +540,7 @@ Please let me know the next steps.`;
                       />
                     ) : (
                       <img
-                        src={`http://192.168.1.10:3000${media}`}
+                        src={`https://crystova.cloudbusiness.cloud${media}`}
                         className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                         alt={productDetails?.productName || "Product image"}
                       />
@@ -558,7 +558,7 @@ Please let me know the next steps.`;
                    <div className="col-md-5 border vider_saxasxs">
                     {productDetails.image[0].endsWith(".mp4") ? (
                       <video
-                        src={`http://192.168.1.10:3000${productDetails.image[0]}`}
+                        src={`https://crystova.cloudbusiness.cloud${productDetails.image[0]}`}
                         className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                         autoPlay
                         loop
@@ -566,7 +566,7 @@ Please let me know the next steps.`;
                       />
                     ) : (
                       <img
-                        src={`http://192.168.1.10:3000${productDetails.image[0]}`}
+                        src={`https://crystova.cloudbusiness.cloud${productDetails.image[0]}`}
                         className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                         alt={productDetails?.productName || "Product image"}
                       />
@@ -586,7 +586,7 @@ Please let me know the next steps.`;
                           <div key={index}>
                             {media.endsWith(".mp4") ? (
                               <video
-                                src={`http://192.168.1.10:3000${media}`}
+                                src={`https://crystova.cloudbusiness.cloud${media}`}
                                 className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                                 autoPlay
                                 loop
@@ -594,7 +594,7 @@ Please let me know the next steps.`;
                               />
                             ) : (
                               <img
-                                src={`http://192.168.1.10:3000${media}`}
+                                src={`https://crystova.cloudbusiness.cloud${media}`}
                                 className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                                 alt={
                                   productDetails?.productName || "Product image"
@@ -617,7 +617,7 @@ Please let me know the next steps.`;
               <div className="col-md-6 border vider_saxasxs">
                 {videos.length === 1 ? (
                   <video
-                    src={`http://192.168.1.10:3000${videos[0]}`}
+                    src={`https://crystova.cloudbusiness.cloud${videos[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     autoPlay
                     loop
@@ -635,7 +635,7 @@ Please let me know the next steps.`;
                     {videos.map((media, index) => (
                       <div key={index}>
                         <video
-                          src={`http://192.168.1.10:3000${media}`}
+                          src={`https://crystova.cloudbusiness.cloud${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           autoPlay
                           loop
@@ -664,7 +664,7 @@ Please let me know the next steps.`;
                     {images.slice(0, images.length).map((media, index) => (
                       <div key={index}>
                         <img
-                          src={`http://192.168.1.10:3000${media}`}
+                          src={`https://crystova.cloudbusiness.cloud${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           alt={productDetails?.productName || "Product image"}
                         />
@@ -673,7 +673,7 @@ Please let me know the next steps.`;
                   </Slider>
                 ) : images[0] ? (
                   <img
-                    src={`http://192.168.1.10:3000${images[0]}`}
+                    src={`https://crystova.cloudbusiness.cloud${images[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -686,7 +686,7 @@ Please let me know the next steps.`;
               {images[1] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    src={`http://192.168.1.10:3000${images[1]}`}
+                    src={`https://crystova.cloudbusiness.cloud${images[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -697,7 +697,7 @@ Please let me know the next steps.`;
               {images[2] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    src={`http://192.168.1.10:3000${images[2]}`}
+                    src={`https://crystova.cloudbusiness.cloud${images[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -1003,7 +1003,7 @@ Please let me know the next steps.`;
                         style={{ height: "100%" }}
                       >
                         <img
-                          src={`http://192.168.1.10:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi img-fluid"
                           alt="Product"
                         />
@@ -1088,7 +1088,7 @@ Please let me know the next steps.`;
                             style={{ height: "100%" }}
                           >
                             <img
-                              src={`http://192.168.1.10:3000${product.image[0]}`}
+                              src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                               className="p-1_proi img-fluid border-0"
                               alt="Product"
                               style={{ height: "100%" }}
