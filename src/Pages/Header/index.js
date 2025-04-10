@@ -380,64 +380,80 @@ const Header = ({ openCart }) => {
                 <img src={csome} width={20} alt="Custom Jewellery" /> Custom Jewellery
               </div>
             </div>
-            {localStorage.getItem("user_Id") && localStorage.getItem("user_token") ? (
-              <div className="eeerd pt-3 pb-3">
-                <span className="drawer-new">ACCOUNT</span>
-                <div className="drawer-item" onClick={() => {
-                  setIsDrawerOpen(false);
-                  navigate('/Editprofile');
-                }}>
-                  <img src={require("../../Images/profileicon.png")} width={18} alt="Profile" /> Your Profile
-                </div>
-                <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => {
-                  setIsDrawerOpen(false);
-                  navigate('/Order');
-                }}>
-                  <img src={require("../../Images/ordericon.png")} width={18} alt="Orders" /> My Orders
-                </div>
-                <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => {
-                  setIsDrawerOpen(false);
-                  handleLogout();
-                }}>
-                  <MdLogout width={18} /> Log Out
-                </div>
+            <div className="eeerd pt-2 pb-3">
+              <span className="drawer-new">SUPPORT</span>
+              <div className="drawer-item" onClick={() => navigate("/contact-us")}>
+                <img src={require("../../Images/contacticon.png")} width={18} alt="Profile" /> Contact Us
               </div>
+            </div>
+            {localStorage.getItem("user_Id") && localStorage.getItem("user_token") ? (
+              <>
+                <div className="pt-2">
+                  <span className="drawer-new">ACCOUNT</span>
+                  <div className="drawer-item" onClick={() => {
+                    setIsDrawerOpen(false);
+                    navigate('/Editprofile');
+                  }}>
+                    <img src={require("../../Images/profileicon.png")} width={18} alt="Profile" /> Your Profile
+                  </div>
+                  <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => {
+                    setIsDrawerOpen(false);
+                    navigate('/Order');
+                  }}>
+                    <img src={require("../../Images/ordericon.png")} width={18} alt="Orders" /> My Orders
+                  </div>
+                </div>
+                {/* Logout button at bottom with red background */}
+                <div className="drawer-logout-container">
+                  <div
+                    className="drawer-logout-button d-flex align-items-center gap-2 w-100"
+                    onClick={() => {
+                      setIsDrawerOpen(false);
+                      handleLogout();
+                    }}
+                  >
+                    <MdLogout width={18} /> Log Out
+                  </div>
+                </div>
+              </>
             ) : (
-              <div
-                className="drawer-item pt-3 d-flex align-items-center gap-2 w-100"
-                onClick={() => {
-                  setIsDrawerOpen(false);
-                  navigate('/register');
-                }}
-              >
-                <img src={usericon} width={18} />
-                {/* <div className="" style={{ lineHeight: "25px" }}> */}
-                  <span>Login</span>
-                {/* </div> */}
+              <div className="pt-2">
+                <span className="drawer-new">ACCOUNT</span>
+                <div
+                  className="drawer-item pt-3 d-flex align-items-center gap-2 w-100"
+                  onClick={() => {
+                    setIsDrawerOpen(false);
+                    navigate('/register');
+                  }}
+                >
+                  <img src={usericon} width={18} />
+                  <span>Sign in</span>
+                </div>
               </div>
             )}
-          {/* </div> */}
-        </div>
-      </div>
 
-      {/* Mobile Drawer Account */}
-      <div
-        className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3"
-        onClick={() => {
-          setIsDrawerOpen(false);
-          navigate('/register')
-        }}
-      >
-        {/* <img src={usericon} alt="User Icon" />
+            {/* </div> */}
+          </div>
+        </div>
+
+        {/* Mobile Drawer Account */}
+        <div
+          className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3"
+          onClick={() => {
+            setIsDrawerOpen(false);
+            navigate('/register')
+          }}
+        >
+          {/* <img src={usericon} alt="User Icon" />
         <div className="d-flex flex-column align-items-center pt-2" style={{ lineHeight: "25px" }}>
           <span className="sign_txt w-100">Sign In</span>
           <span className="acco9_text w-100">Account</span>
         </div> */}
-      </div>
-    </div >
+        </div>
+      </div >
 
-      { isDrawerOpen && <div className="drawer-overlay" onClick={toggleDrawer}></div>
-}
+      {isDrawerOpen && <div className="drawer-overlay" onClick={toggleDrawer}></div>
+      }
     </>
   );
 };

@@ -130,6 +130,50 @@
   z-index: 999;
 }
 
+/* Mobile Drawer Logout Button */
+.drawer-logout-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.drawer-logout-button {
+  padding: 12px;
+  background-color: #611d2b;
+  color: white;
+  cursor: pointer;
+  font-size: 19px;
+  justify-content: center;
+  transition: background-color 0.3s;
+  font-family: "Cabin", sans-serif;
+
+}
+
+.drawer-logout-button svg {
+  color: white;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  font-family: "Cabin", sans-serif !important;
+
+}
+
 @media (max-width: 991px) {
   .heder_sec_main {
     justify-content: space-between;
@@ -395,6 +439,7 @@
   align-items: center;
   gap: 2px;
 }
+
 /* 
 .mobile_user_icon img {
 
