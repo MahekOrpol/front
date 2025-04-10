@@ -71,7 +71,7 @@ const Products = () => {
   useEffect(() => {
     const fetchAndFilter = async () => {
       try {
-        let url = `http://192.168.1.10:3000/api/v1/product/get?`;
+        let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
         if (categoryName) url += `categoryName=${categoryName}&`;
         if (gender) url += `gender=${gender}`;
 
@@ -146,7 +146,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      let url = `http://192.168.1.10:3000/api/v1/product/get?`;
+      let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
       if (categoryName) url += `categoryName=${categoryName}&`;
       if (gender) url += `gender=${gender}`;
 
@@ -222,7 +222,7 @@ const Products = () => {
   };
 
   const handleApplyFilters = async () => {
-    let url = `http://192.168.1.10:3000/api/v1/product/get?`;
+    let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
 
     // Append selected categories as query parameters
     if (selectedCategories.length > 0) {
@@ -278,13 +278,13 @@ const Products = () => {
         });
 
         const res = await axios.delete(
-          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://192.168.1.10:3000/api/v1/wishlist/create`,
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -310,7 +310,7 @@ const Products = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -366,7 +366,7 @@ const Products = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://192.168.1.10:3000/api/v1/order-details/create",
+        "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -387,7 +387,7 @@ const Products = () => {
   };
 
   const getCategory = async () => {
-    const res = await axios.get("http://192.168.1.10:3000/api/v1/category/get");
+    const res = await axios.get("https://crystova.cloudbusiness.cloud/api/v1/category/get");
     setCategory(res.data);
   };
 
@@ -420,7 +420,7 @@ const Products = () => {
   const displayProducts = isSearchActive ? filteredProducts : productList;
   // // Update your handleApplyFilters function
   // const handleApplyFilters = async () => {
-  //   let url = `http://192.168.1.10:3000/api/v1/product/get?`;
+  //   let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
 
   //   // Append selected categories as query parameters
   //   if (selectedCategories.length > 0) {
@@ -445,7 +445,7 @@ const Products = () => {
   // };
   const fetchAllProducts = async () => {
     try {
-      const response = await axios.get("http://192.168.1.10:3000/api/v1/product/get");
+      const response = await axios.get("https://crystova.cloudbusiness.cloud/api/v1/product/get");
       const sortedProducts = sortProducts(response.data, selectedOption);
       setProductList(sortedProducts);
     } catch (err) {
@@ -501,7 +501,7 @@ const Products = () => {
             </p>
             <div className="pt-3 Sfg">
               <button
-                 className={selectedGender === "Women" ? "ring_for_her active" : "ring_for_him"}
+                className={selectedGender === "Women" ? "ring_for_her active" : "ring_for_him"}
                 // onClick={() =>
                 //   navigate("/products?categoryName=Rings&gender=Women")
                 // }
@@ -718,7 +718,7 @@ const Products = () => {
                             ".mp4"
                           ) ? (
                             <video
-                              src={`http://192.168.1.10:3000${product.image[imageIndexes[product.id]]
+                              src={`https://crystova.cloudbusiness.cloud${product.image[imageIndexes[product.id]]
                                 }`}
                               className="p-1_proi img-fluid"
                               autoPlay
@@ -728,7 +728,7 @@ const Products = () => {
                             />
                           ) : (
                             <img
-                              src={`http://192.168.1.10:3000${product.image[imageIndexes[product.id]]
+                              src={`https://crystova.cloudbusiness.cloud${product.image[imageIndexes[product.id]]
                                 }`}
                               onClick={() => handleProductClick(product.id)}
                               className="p-1_proi img-fluid"
@@ -736,7 +736,7 @@ const Products = () => {
                             />
                           )}
                           {hoveredProduct === product.id && (
-                            <div className="hover-overlay w-100 d-none d-sm-flex"  onClick={() => handleProductClick(product.id)}>
+                            <div className="hover-overlay w-100 d-none d-sm-flex" onClick={() => handleProductClick(product.id)}>
                               <button
                                 className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
                                 onClick={() =>
@@ -771,19 +771,20 @@ const Products = () => {
                         </span>
                       </div>
                       {hoveredProduct === product.id && (
-                        <div className="hover-overlay DFC_NHJ w-100 d-none d-sm-flex">
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                           <button
-                            className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3"
+                            className="more_btn_dsdd w-50"
+                            // onClick={() => navigate("/product-details")}
+                            onClick={() => handleProductClick(product.id)}
+                          >
+                            More Info
+                          </button>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
                             onClick={() => addToCart(product)}
                           >
                             Add to Cart <BiShoppingBag size={25} />
                           </button>
-                          {/* <a
-                            onClick={() => handleProductClick(product.id)}
-                            className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
-                          >
-                            Read more about the Product <FaArrowRight />
-                          </a> */}
                         </div>
                       )}
                       <div className="d-flex d-sm-none flex-column mt-2">

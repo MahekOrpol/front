@@ -116,7 +116,7 @@ Please let me know the next steps.`;
     if (!productData) {
       // Fetch product data if not available in state
       axios
-        .get(`http://192.168.1.10:3000/api/v1/product/get-product-id/${productId}`)
+        .get(`https://crystova.cloudbusiness.cloud/api/v1/product/get-product-id/${productId}`)
         .then((response) => {
           console.log("Fetched product:", response.data);
           setProductDetails(response.data);
@@ -137,7 +137,7 @@ Please let me know the next steps.`;
     const formData = new FormData();
     formData.append("categoryName", categoryName);
     axios
-      .get(`http://192.168.1.10:3000/api/v1/product/get-related-product`, {
+      .get(`https://crystova.cloudbusiness.cloud/api/v1/product/get-related-product`, {
         params: { categoryName },
       }) // Use params for GET
       .then((response) => {
@@ -191,7 +191,7 @@ Please let me know the next steps.`;
 
   const isVideo = (file) => file?.endsWith(".mp4");
 
-  // const getMediaURL = (path) => `http://192.168.1.10:3000${path}`;
+  // const getMediaURL = (path) => `https://crystova.cloudbusiness.cloud${path}`;
 
   useEffect(() => {
     if (
@@ -235,13 +235,13 @@ Please let me know the next steps.`;
         });
 
         const res = await axios.delete(
-          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://192.168.1.10:3000/api/v1/wishlist/create`,
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -267,7 +267,7 @@ Please let me know the next steps.`;
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
+          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -346,7 +346,7 @@ Please let me know the next steps.`;
 
       // Make the API request
       const response = await axios.post(
-        "http://192.168.1.10:3000/api/v1/order-details/create",
+        "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -410,9 +410,8 @@ Please let me know the next steps.`;
                     <a
                       class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
                       data-discover="true"
-                      href={`/products?category=${
-                        productDetails?.categoryName || "rings"
-                      }`}
+                      href={`/products?category=${productDetails?.categoryName || "rings"
+                        }`}
                     >
                       {productDetails?.categoryName || "Rings"}
                     </a>
@@ -439,7 +438,7 @@ Please let me know the next steps.`;
                         {isVideo ? (
                           <video
                             className="detr_img bg-white"
-                            src={`http://192.168.1.10:3000${img}`}
+                            src={`https://crystova.cloudbusiness.cloud${img}`}
                             controls
                             autoPlay
                             loop
@@ -448,7 +447,7 @@ Please let me know the next steps.`;
                         ) : (
                           <img
                             className="detr_img bg-white"
-                            src={`http://192.168.1.10:3000${img}`}
+                            src={`https://crystova.cloudbusiness.cloud${img}`}
                             alt={`Product ${index + 1}`}
                           />
                         )}
@@ -500,7 +499,7 @@ Please let me know the next steps.`;
                           {isVideo ? (
                             <video
                               className="detr_img slider_ring_sss"
-                              src={`http://192.168.1.10:3000${img}`}
+                              src={`https://crystova.cloudbusiness.cloud${img}`}
                               controls
                               autoPlay
                               loop
@@ -509,7 +508,7 @@ Please let me know the next steps.`;
                           ) : (
                             <img
                               className="detr_img slider_ring_sss"
-                              src={`http://192.168.1.10:3000${img}`}
+                              src={`https://crystova.cloudbusiness.cloud${img}`}
                               alt={`Slide ${index + 1}`}
                             />
                           )}
@@ -531,7 +530,7 @@ Please let me know the next steps.`;
                   <div key={index} className="col-md-5 border vider_saxasxs">
                     {media.endsWith(".mp4") ? (
                       <video
-                        src={`http://192.168.1.10:3000${media}`}
+                        src={`https://crystova.cloudbusiness.cloud${media}`}
                         className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                         autoPlay
                         loop
@@ -540,7 +539,7 @@ Please let me know the next steps.`;
                       />
                     ) : (
                       <img
-                        src={`http://192.168.1.10:3000${media}`}
+                        src={`https://crystova.cloudbusiness.cloud${media}`}
                         className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                         alt={productDetails?.productName || "Product image"}
                       />
@@ -558,7 +557,7 @@ Please let me know the next steps.`;
                    <div className="col-md-5 border vider_saxasxs">
                     {productDetails.image[0].endsWith(".mp4") ? (
                       <video
-                        src={`http://192.168.1.10:3000${productDetails.image[0]}`}
+                        src={`https://crystova.cloudbusiness.cloud${productDetails.image[0]}`}
                         className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                         autoPlay
                         loop
@@ -566,7 +565,7 @@ Please let me know the next steps.`;
                       />
                     ) : (
                       <img
-                        src={`http://192.168.1.10:3000${productDetails.image[0]}`}
+                        src={`https://crystova.cloudbusiness.cloud${productDetails.image[0]}`}
                         className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                         alt={productDetails?.productName || "Product image"}
                       />
@@ -586,7 +585,7 @@ Please let me know the next steps.`;
                           <div key={index}>
                             {media.endsWith(".mp4") ? (
                               <video
-                                src={`http://192.168.1.10:3000${media}`}
+                                src={`https://crystova.cloudbusiness.cloud${media}`}
                                 className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                                 autoPlay
                                 loop
@@ -594,7 +593,7 @@ Please let me know the next steps.`;
                               />
                             ) : (
                               <img
-                                src={`http://192.168.1.10:3000${media}`}
+                                src={`https://crystova.cloudbusiness.cloud${media}`}
                                 className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                                 alt={
                                   productDetails?.productName || "Product image"
@@ -609,15 +608,13 @@ Please let me know the next steps.`;
                 </>
               )}
             </div> */}
-            <div
-              className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3"
-         
-            >
+  
+            <div className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3" >
               {/* Box 1: Video(s) */}
               <div className="col-md-6 border vider_saxasxs">
                 {videos.length === 1 ? (
                   <video
-                    src={`http://192.168.1.10:3000${videos[0]}`}
+                    src={`https://crystova.cloudbusiness.cloud${videos[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     autoPlay
                     loop
@@ -635,7 +632,7 @@ Please let me know the next steps.`;
                     {videos.map((media, index) => (
                       <div key={index}>
                         <video
-                          src={`http://192.168.1.10:3000${media}`}
+                          src={`https://crystova.cloudbusiness.cloud${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           autoPlay
                           loop
@@ -653,7 +650,7 @@ Please let me know the next steps.`;
               <div className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv">
                 {images.length > 3 ? (
                   <Slider
-                  className="custom-slick-slider"
+                    className="custom-slick-slider"
 
                     dots
                     infinite
@@ -664,7 +661,7 @@ Please let me know the next steps.`;
                     {images.slice(0, images.length).map((media, index) => (
                       <div key={index}>
                         <img
-                          src={`http://192.168.1.10:3000${media}`}
+                          src={`https://crystova.cloudbusiness.cloud${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           alt={productDetails?.productName || "Product image"}
                         />
@@ -673,7 +670,7 @@ Please let me know the next steps.`;
                   </Slider>
                 ) : images[0] ? (
                   <img
-                    src={`http://192.168.1.10:3000${images[0]}`}
+                    src={`https://crystova.cloudbusiness.cloud${images[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -686,7 +683,7 @@ Please let me know the next steps.`;
               {images[1] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    src={`http://192.168.1.10:3000${images[1]}`}
+                    src={`https://crystova.cloudbusiness.cloud${images[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -697,7 +694,7 @@ Please let me know the next steps.`;
               {images[2] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    src={`http://192.168.1.10:3000${images[2]}`}
+                    src={`https://crystova.cloudbusiness.cloud${images[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -705,7 +702,7 @@ Please let me know the next steps.`;
               )}
             </div>
 
-           
+
             <div className="w-100 sdcsd_saxza dscd_54_Dscds ">
               <div>
                 <div className="d-flex justify-content-between align-items-center">
@@ -786,55 +783,111 @@ Please let me know the next steps.`;
                   <hr className="hr_pb_dtl" />
                 </div>
 
-                <div className="d-flex justify-content-between align-items-center gap-3">
-                  <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
-                    <button
-                      className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                      onClick={() => addToCart(productDetails)}
-                    >
-                      Buy Now
-                    </button>
-                    <button
-                      className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                      onClick={() => addToCart(productDetails)}
-                    >
-                      Add to Cart <BiShoppingBag size={25} className="sopgdd"/>
-                    </button>
-                  </div>
-                  <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
-                    <div
-                      className="gohrt_bod p-2"
-                      onClick={() => toggleFavorite(productDetails.id)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {wishlistItems[productDetails.id] ? (
-                        <GoHeartFill className="heart-icon_ss" size={25} />
-                      ) : (
-                        <GoHeart className="heart-icon_ss" size={25} />
-                      )}
+                <div className="dcb_jbcsc">
+                  <div className="d-flex justify-content-between align-items-center gap-3">
+                    <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
+                      <button
+                        className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                        onClick={() => addToCart(productDetails)}
+                      >
+                        Buy Now
+                      </button>
+                      <button
+                        className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                        onClick={() => addToCart(productDetails)}
+                      >
+                        Add to Cart <BiShoppingBag size={25} className="sopgdd" />
+                      </button>
                     </div>
+                    <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
+                      <div
+                        className="gohrt_bod p-2"
+                        onClick={() => toggleFavorite(productDetails.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {wishlistItems[productDetails.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={25} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={25} />
+                        )}
+                      </div>
 
-                    <div className="gohrt_bod p-2">
-                      <GoShareAndroid size={25} className="hert_fff" />
+                      <div className="gohrt_bod p-2">
+                        <GoShareAndroid size={25} className="hert_fff" />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
                   // onClick={() => {
                   //   window.open("https://wa.me/919099975424", "_blank");
                   // }}
                   // onClick={() => addToCart(productDetails)}
-                >
-                  Order On Whatsapp{" "}
-                  <span className="whatsapp-icon">
-                    <IoLogoWhatsapp size={30} />
-                  </span>
-                </a>
+                  >
+                    Order On Whatsapp{" "}
+                    <span className="whatsapp-icon">
+                      <IoLogoWhatsapp size={30} />
+                    </span>
+                  </a>
+                </div>
+
+                <div className="dcb_jbcsc_kn">
+                  <div className="d-flex justify-content-between align-items-center gap-3">
+                    <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
+                      <button
+                        className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                        onClick={() => addToCart(productDetails)}
+                      >
+                        Add to Cart <BiShoppingBag size={25} className="sopgdd" />
+                      </button>
+                    </div>
+                    <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
+                      <div
+                        className="gohrt_bod p-2"
+                        onClick={() => toggleFavorite(productDetails.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {wishlistItems[productDetails.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={25} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={25} />
+                        )}
+                      </div>
+
+                      <div className="gohrt_bod p-2">
+                        <GoShareAndroid size={25} className="hert_fff" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 d-flex gap-3" style={{ height: "4rem" }}>
+                    <button
+                      className="d-flex align-items-center add-to-crd-dd_dd w-50 p-2 justify-content-center gap-3"
+                      onClick={() => addToCart(productDetails)}
+                    >
+                      Buy Now
+                    </button>
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="d-flex align-items-center whats_abtn_1 txt_shu justify-content-center gap-3"
+                    // onClick={() => {
+                    //   window.open("https://wa.me/919099975424", "_blank");
+                    // }}
+                    // onClick={() => addToCart(productDetails)}
+                    >
+                      Order On Whatsapp{" "}
+                      <span className="whatsapp-icon">
+                        <IoLogoWhatsapp size={30} />
+                      </span>
+                    </a>
+                  </div>
+                </div>
 
                 <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_ttt">
                   <div className="icon-box">
@@ -938,9 +991,8 @@ Please let me know the next steps.`;
                       <div className="accordion-item" key={index}>
                         <h2 className="accordion-header">
                           <button
-                            className={`accordion-button ${
-                              openIndex === index ? "" : "collapsed"
-                            }`}
+                            className={`accordion-button ${openIndex === index ? "" : "collapsed"
+                              }`}
                             type="button"
                             onClick={() => toggleFAQ(index)}
                           >
@@ -950,9 +1002,8 @@ Please let me know the next steps.`;
                           </button>
                         </h2>
                         <div
-                          className={`accordion-collapse collapse ${
-                            openIndex === index ? "show" : ""
-                          }`}
+                          className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
+                            }`}
                           data-bs-parent="#faqAccordion"
                         >
                           <div className="accordion-body srfferc">
@@ -1003,7 +1054,7 @@ Please let me know the next steps.`;
                         style={{ height: "100%" }}
                       >
                         <img
-                          src={`http://192.168.1.10:3000${product.image[0]}`}
+                          src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                           className="p-1_proi img-fluid"
                           alt="Product"
                         />
@@ -1051,11 +1102,11 @@ Please let me know the next steps.`;
                     0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
-                  // autoplay={{
-                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                  //   disableOnInteraction: false,
-                  // }}
-                  // modules={[Autoplay]}
+                // autoplay={{
+                //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                //   disableOnInteraction: false,
+                // }}
+                // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
@@ -1088,7 +1139,7 @@ Please let me know the next steps.`;
                             style={{ height: "100%" }}
                           >
                             <img
-                              src={`http://192.168.1.10:3000${product.image[0]}`}
+                              src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
                               className="p-1_proi img-fluid border-0"
                               alt="Product"
                               style={{ height: "100%" }}
