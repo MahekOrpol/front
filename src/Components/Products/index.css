@@ -37,6 +37,10 @@
   letter-spacing: 0%;
 }
 
+.no_plfrdrfd{
+  
+  font-family: "Cabin", sans-serif;
+}
 .ring_for_her {
   background-color: #611d2b;
   padding: 10px;
@@ -291,7 +295,7 @@
 }
 
 .hdr_csdg {
-  padding-top: 3rem !important;
+  padding-top: 40px !important;
 }
 
 @media(min-width:400px) and (max-width:746px) {
@@ -1629,7 +1633,9 @@
   font-size: 14px;
   font-family: "Cabin", sans-serif;
   background-color: #611D2B;
+  border-radius: 8px;
 }
+
 .produ_shsu,
 .pro_p,
 .Sfg {

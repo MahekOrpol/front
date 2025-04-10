@@ -53,6 +53,7 @@ import OueColletion from "./ourColletion";
 import RingSlider from "./ring";
 import DimondJewellery from "./Dimond Jewellery/dimond";
 import Occasion from "./Occasion";
+import Gift from "./gift";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -166,18 +167,18 @@ const Home = () => {
   const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
 
   // Auto-slide effect
-  useEffect(() => {
-    if (isPaused || productsToDisplay.length <= productsPerPage) return;
+  // useEffect(() => {
+  //   if (isPaused || productsToDisplay.length <= productsPerPage) return;
 
-    const intervalId = setInterval(() => {
-      setSlideDirection('next');
-      setCurrentIndex(prevIndex =>
-        (prevIndex + 1) % (productsToDisplay.length - productsPerPage + 1)
-      );
-    }, AUTO_SLIDE_INTERVAL);
+  //   const intervalId = setInterval(() => {
+  //     setSlideDirection('next');
+  //     setCurrentIndex(prevIndex =>
+  //       (prevIndex + 1) % (productsToDisplay.length - productsPerPage + 1)
+  //     );
+  //   }, AUTO_SLIDE_INTERVAL);
 
-    return () => clearInterval(intervalId);
-  }, [productsToDisplay.length, productsPerPage, isPaused]);
+  //   return () => clearInterval(intervalId);
+  // }, [productsToDisplay.length, productsPerPage, isPaused]);
 
   // Calculate productsPerPage based on screen size
   useEffect(() => {
@@ -209,7 +210,7 @@ const Home = () => {
 
   const fetchBestSellersByCategory = async (category) => {
     try {
-      const url = `http://localhost:3000/api/v1/product/get?categoryName=${category}`;
+      const url = `http://192.168.1.10:3000/api/v1/product/get?categoryName=${category}`;
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -264,7 +265,7 @@ const Home = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://localhost:3000/api/v1/order-details/create",
+        "http://192.168.1.10:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -289,7 +290,7 @@ const Home = () => {
   }, []);
 
   const getCategories = async () => {
-    const res = await axios.get("http://localhost:3000/api/v1/category/get");
+    const res = await axios.get("http://192.168.1.10:3000/api/v1/category/get");
     setCategoriesa(res.data);
     console.log("res.datassss :>> ", res.data);
   };
@@ -333,20 +334,20 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getTopRated"
+      "http://192.168.1.10:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
     console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getBestSelling"
+      "http://192.168.1.10:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios.get(
-      "http://localhost:3000/api/v1/product/getOnSale"
+      "http://192.168.1.10:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -391,13 +392,13 @@ const Home = () => {
         });
 
         const res = await axios.delete(
-          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://localhost:3000/api/v1/wishlist/create`,
+          `http://192.168.1.10:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -423,7 +424,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/wishlist/${userId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -764,8 +765,8 @@ const Home = () => {
           <JewelrySale />
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd p-0 mt-sm-3">
-          <span className="category_name mt-2">Categories</span>
+        <div className="d-flex flex-column align-items-center hdr_csd p-0">
+          <span className="category_name mt-md-4">Categories</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img
             src={require("../../Images/Groupimg.png")}
@@ -811,7 +812,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn hdr_csd sdcxsdcx_Sdcxszdcx">
+        <div className="hdr_csd sdcxsdcx_Sdcxszdcx">
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
@@ -985,8 +986,8 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
-          <span className="category_name ">Diamond Jewelry</span>
+        <div className="d-flex flex-column align-items-center">
+          <span className="category_name mt-md-4">Diamond Jewelry</span>
           <p className="category_txt">Minimal. Modern. Mesmerizing</p>
           <img
             src={require("../../Images/Groupimg.png")}
@@ -1004,7 +1005,7 @@ const Home = () => {
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
-          <div className="w-auto mt-3">
+          <div className="w-auto mt-1">
             <TabContext value={value}>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <Tabs
@@ -1261,8 +1262,11 @@ const Home = () => {
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
           <OueColletion />
         </div>
+        {/* <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+          <Gift />
+        </div> */}
 
-        <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-5">
+        <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-md-4">
           <span className="category_name">Bestselling Jewelery</span>
           <p className="category_txt">
             Elevate the Everyday in Diamond Elegance
@@ -1271,7 +1275,7 @@ const Home = () => {
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
-          <div className="row d-flex align-items-stretch mt-5 w-100">
+          <div className="row d-flex align-items-stretch mt-3 w-100">
             {/* Left Image Section */}
             <div className="col-lg-6 ring_banner_szcdvc position-relative">
               <div className="h-100 d-flex align-items-center justify-content-center">
@@ -1305,7 +1309,7 @@ const Home = () => {
             {/* Right Product Cards Section */}
             <div className="col-lg-6 kdjvb_jicn" onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}>
-              <div className="h-100 d-flex flex-column justify-content-center">
+              <div className="h-100 d-flex flex-column justify-content-center domind_jew_sec">
                 <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc m-0">
                   {productsToDisplay
                     .slice(currentIndex, currentIndex + productsToDisplay?.length)
@@ -1402,7 +1406,7 @@ const Home = () => {
           />
 
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
-          <div className="pt-4 container djb_dsjvn mx-2">
+          <div className="pt-3 container djb_dsjvn mx-2">
             <div className="row justify-content-evenly scc_gift_edit_sdsd gap-2">
               <div className="d-flex flex-column align-items-center gap-3  offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
                 <span className="under_cimn">Under</span>
@@ -1436,18 +1440,18 @@ const Home = () => {
           </div>
         </div>
 
-        <div>
+        <div className="">
           <Occasion />
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd sdcsdc_rtgrtfdxcasxNJK">
           <span className="category_name mt-2">Gifting Edition</span>
           <p className="category_txt">Elegant & Versatile Gifts</p>
           <img
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
-          <div className="row pt-4 w-100 scc_gift_edit container">
+          <div className="row pt-3 w-100 scc_gift_edit container">
             <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
               <img
                 className="img-sssssss"
@@ -1650,20 +1654,20 @@ const Home = () => {
 
         <div className="heder_sec_main d-flex flex-column align-items-center ">
           <span className="category_name">Instructions</span>
-          {/* <p className="category_txt">What our Client’s say about us</p> */}
-          <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
+          <p className="category_txt">Store it Soft, Shine it Often</p>
+          <img src={require("../../Images/Groupimg.png")} alt="Decorative" className="home_tag_img"/>
 
           <Instruction />
         </div>
 
-        <div className="testimonial-container d-flex align-items-center mt-5">
+        <div className="testimonial-container d-flex align-items-center client_test cline_ytsdhcsd">
           <div
             className="heder_sec_main d-flex flex-column align-items-center "
           style={{width:"100vw"}}
           >
-            <span className="category_name mt-2">Client Testimonial</span>
+            <span className="category_name mt-md-4">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
-            <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
+            <img src={require("../../Images/Groupimg.png")} alt="Decorative" className="home_tag_img"/>
 
             <Swiper
               grabCursor={true}

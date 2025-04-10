@@ -23,7 +23,7 @@ const Occasion = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
+      // nextSlide();
     }, 2000);
     return () => clearInterval(interval);
   }, [currentIndex]);
@@ -43,7 +43,7 @@ const Occasion = () => {
       </div>
 
       <div className="slider-container">
-        <div className="slide-number-indicator">
+        <div className="slide-number-indicator ">
           {String(currentIndex + 1).padStart(2, "0")}
         </div>
         <div className="slider_img_bgggg"></div>

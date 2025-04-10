@@ -80,7 +80,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
   const handleRemoveItem = async (orderId, index) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3000/api/v1/order-details/delete/${orderId}`
+        `http://192.168.1.10:3000/api/v1/order-details/delete/${orderId}`
       );
 
       if (res.status === 200) {
@@ -97,7 +97,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
     const userId = localStorage.getItem("user_Id");
     try {
       const res = await axios.get(
-        `http://localhost:3000/api/v1/order-details/get/${userId}`
+        `http://192.168.1.10:3000/api/v1/order-details/get/${userId}`
       );
       if (res.status === 200) {
         setOrderDetails(

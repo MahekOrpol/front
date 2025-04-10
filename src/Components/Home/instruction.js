@@ -12,8 +12,8 @@ const instructions = [
 
 const Instruction = () => {
   return (
-    <div className='container py-4'>
-      <div className='row justify-content-center'>
+    <div className='container mt-4'>
+      <div className='row justify-content-center '>
         {instructions.map((item, index) => (
           <div key={index} className='col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column align-items-center gap-2 instruction-item'>
             <img src={item.img} alt={item.text} width={100} />

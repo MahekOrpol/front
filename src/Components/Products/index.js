@@ -41,7 +41,7 @@ const Products = () => {
   const [wishlistItems, setWishlistItems] = useState({});
   const [category, setCategory] = useState([]);
   const navigate = useNavigate();
-  const [selectedCategories, setSelectedCategories  ] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const userId = localStorage.getItem("user_Id");
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -53,8 +53,59 @@ const Products = () => {
 
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isSearchActive, setIsSearchActive] = useState(false);
-
+  const [selectedGender, setSelectedGender] = useState("Women");
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+  const urlSearchQuery = queryParams.get("search");
+
+  useEffect(() => {
+    if (urlSearchQuery) {
+      setSearchQuery(urlSearchQuery);
+      setIsSearchActive(true);
+    } else {
+      setSearchQuery("");
+      setIsSearchActive(false);
+    }
+  }, [urlSearchQuery]);
+
+  useEffect(() => {
+    const fetchAndFilter = async () => {
+      try {
+        let url = `http://192.168.1.10:3000/api/v1/product/get?`;
+        if (categoryName) url += `categoryName=${categoryName}&`;
+        if (gender) url += `gender=${gender}`;
+
+        const response = await axios.get(url);
+        const sortedProducts = sortProducts(response.data, selectedOption);
+        setProductList(sortedProducts);
+
+        // Index for carousel
+        const initialIndexes = {};
+        sortedProducts.forEach((product) => {
+          initialIndexes[product.id] = 0;
+        });
+        setImageIndexes(initialIndexes);
+
+        // Search logic here
+        if (urlSearchQuery?.trim()) {
+          const searchTerm = urlSearchQuery.toLowerCase();
+          const filtered = sortedProducts.filter((p) =>
+            p.productName.toLowerCase().includes(searchTerm) ||
+            p.categoryName?.toLowerCase().includes(searchTerm)
+          );
+          setFilteredProducts(filtered);
+          setIsSearchActive(true);
+        } else {
+          setFilteredProducts(sortedProducts);
+          setIsSearchActive(false);
+        }
+      } catch (err) {
+        console.error("Failed to fetch products:", err);
+      }
+    };
+
+    fetchAndFilter();
+  }, [categoryName, gender, selectedOption, urlSearchQuery]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -95,7 +146,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      let url = `http://localhost:3000/api/v1/product/get?`;
+      let url = `http://192.168.1.10:3000/api/v1/product/get?`;
       if (categoryName) url += `categoryName=${categoryName}&`;
       if (gender) url += `gender=${gender}`;
 
@@ -149,11 +200,17 @@ const Products = () => {
         checkbox.checked = false;
       });
 
+    const checkboxes = document.querySelectorAll('.category-checkbox');
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
     // Reset price range
     setPriceRange([1000, 15000]);
     setSearchQuery("");
     setIsSearchActive(false);
     setFilteredProducts([]);
+    setSelectedCategories([]);
+    fetchAllProducts();
   };
 
   const toggleSection = (section) => {
@@ -165,10 +222,10 @@ const Products = () => {
   };
 
   const handleApplyFilters = async () => {
-    let url = `http://localhost:3000/api/v1/product/get?`;
+    let url = `http://192.168.1.10:3000/api/v1/product/get?`;
 
     // Append selected categories as query parameters
-    if (selectedCategories.length > 0) {  
+    if (selectedCategories.length > 0) {
       url += `categoryName=${selectedCategories.join(",")}&`;
     }
 
@@ -221,13 +278,13 @@ const Products = () => {
         });
 
         const res = await axios.delete(
-          `http://localhost:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://localhost:3000/api/v1/wishlist/create`,
+          `http://192.168.1.10:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -250,13 +307,10 @@ const Products = () => {
 
   useEffect(() => {
     const fetchWishlist = async () => {
-
-
       if (!userId) return;
-
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/v1/wishlist/${userId}`
+          `http://192.168.1.10:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -312,7 +366,7 @@ const Products = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://localhost:3000/api/v1/order-details/create",
+        "http://192.168.1.10:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -333,7 +387,7 @@ const Products = () => {
   };
 
   const getCategory = async () => {
-    const res = await axios.get("http://localhost:3000/api/v1/category/get");
+    const res = await axios.get("http://192.168.1.10:3000/api/v1/category/get");
     setCategory(res.data);
   };
 
@@ -366,7 +420,7 @@ const Products = () => {
   const displayProducts = isSearchActive ? filteredProducts : productList;
   // // Update your handleApplyFilters function
   // const handleApplyFilters = async () => {
-  //   let url = `http://localhost:3000/api/v1/product/get?`;
+  //   let url = `http://192.168.1.10:3000/api/v1/product/get?`;
 
   //   // Append selected categories as query parameters
   //   if (selectedCategories.length > 0) {
@@ -389,7 +443,19 @@ const Products = () => {
   //     console.error("Error fetching filtered products:", error);
   //   }
   // };
-
+  const fetchAllProducts = async () => {
+    try {
+      const response = await axios.get("http://192.168.1.10:3000/api/v1/product/get");
+      const sortedProducts = sortProducts(response.data, selectedOption);
+      setProductList(sortedProducts);
+    } catch (err) {
+      console.error("Failed to fetch products:", err);
+    }
+  };
+  const handleClick = (gender) => {
+    setSelectedGender(gender);
+    navigate(`/products?categoryName=Rings&gender=${gender}`);
+  };
   return (
     <>
       <ToastContainer
@@ -403,7 +469,7 @@ const Products = () => {
         draggable
         pauseOnHover
         theme="light"
-        stacked 
+        stacked
       />
 
       <CartPopup
@@ -435,18 +501,20 @@ const Products = () => {
             </p>
             <div className="pt-3 Sfg">
               <button
-                className="ring_for_her"
-                onClick={() =>
-                  navigate("/products?categoryName=Rings&gender=Women")
-                }
+                 className={selectedGender === "Women" ? "ring_for_her active" : "ring_for_him"}
+                // onClick={() =>
+                //   navigate("/products?categoryName=Rings&gender=Women")
+                // }
+                onClick={() => handleClick("Women")}
               >
                 <img src={require("../../Images/her.png")} /> Rings for Her
               </button>
               <button
-                className="ring_for_him"
-                onClick={() =>
-                  navigate("/products?categoryName=Rings&gender=Men")
-                }
+                className={selectedGender === "Men" ? "ring_for_her active" : "ring_for_him"}
+                // onClick={() =>
+                //   navigate("/products?categoryName=Rings&gender=Men")
+                // }
+                onClick={() => handleClick("Men")}
               >
                 <img src={require("../../Images/him.png")} /> Rings for Him
               </button>
@@ -656,11 +724,13 @@ const Products = () => {
                               autoPlay
                               loop
                               muted
+                              onClick={() => handleProductClick(product.id)}
                             />
                           ) : (
                             <img
                               src={`http://192.168.1.10:3000${product.image[imageIndexes[product.id]]
                                 }`}
+                              onClick={() => handleProductClick(product.id)}
                               className="p-1_proi img-fluid"
                               alt="Product"
                             />
@@ -735,7 +805,7 @@ const Products = () => {
                 ))
               ) : isSearchActive ? (
                 <div className="text-center w-100 py-5">
-                  <h4>No products found matching "{searchQuery}"</h4>
+                  <h4 className="no_plfrdrfd">No products found matching "{searchQuery}"</h4>
                   <button
                     className="btfdd mt-3"
                     onClick={() => {
