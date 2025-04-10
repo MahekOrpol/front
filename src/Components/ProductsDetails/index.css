@@ -1166,7 +1166,23 @@
   width: 100%;
   text-decoration: none;
 }
+.whats_abtn_1 {
+  background-color: #EAEAEA;
+  color: #000;
+  border-radius: 5px;
+  font-family: "Cabin", sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  border: none;
+  padding: 25px;
+  /* box-shadow: 0px 0px 8px 0px #00000040; */
+  width: 50%;
+  text-decoration: none;
+}
 
+.txt_shu{
+  font-size: 13px;
+}
 .whats_abtn:hover {
   background-color: #1ebe5d;
   color: white;
@@ -1379,7 +1395,7 @@
 
 @media(min-width:300px) and (max-width:464px) {
   .add-to-crd-dd_dd {
-    font-size: 10px !important;
+    font-size: 13px !important;
   }
 
   .sopgdd {
@@ -1422,3 +1438,23 @@
     min-height: 250px !important;
   }
 }
+
+
+@media (max-width:522px) {
+  .dcb_jbcsc_kn{
+    display:block;
+  }
+  .dcb_jbcsc{
+    display: none;
+  }
+}
+
+@media (min-width:522px) {
+  .dcb_jbcsc_kn{
+    display:none;
+  }
+  .dcb_jbcsc{
+    display: block;
+  }
+}
+

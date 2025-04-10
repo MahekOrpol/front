@@ -606,7 +606,7 @@
  @media (max-width:857px) {
     
     .center-sale {
-        background-image: url("http://localhost:3001/static/media/purple-ornament-indoors-decor-fabric-material%201.bc48b76352c6094b584e.png");
+        background-image: url("http://192.168.1.12:3001/static/media/purple-ornament-indoors-decor-fabric-material%201.bc48b76352c6094b584e.png");
         color: #fff;
         text-align: center;
         padding: 27px 0;
@@ -641,7 +641,7 @@
  @media (max-width:766px) {
     
     .center-sale {
-        background-image: url("http://localhost:3001/static/media/purple-ornament-indoors-decor-fabric-material%201.bc48b76352c6094b584e.png");
+        background-image: url("http://192.168.1.12:3001/static/media/purple-ornament-indoors-decor-fabric-material%201.bc48b76352c6094b584e.png");
         color: #fff;
         text-align: center;
         padding: 27px 0;

@@ -410,9 +410,8 @@ Please let me know the next steps.`;
                     <a
                       class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
                       data-discover="true"
-                      href={`/products?category=${
-                        productDetails?.categoryName || "rings"
-                      }`}
+                      href={`/products?category=${productDetails?.categoryName || "rings"
+                        }`}
                     >
                       {productDetails?.categoryName || "Rings"}
                     </a>
@@ -609,10 +608,8 @@ Please let me know the next steps.`;
                 </>
               )}
             </div> */}
-            <div
-              className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3"
-         
-            >
+  
+            <div className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3" >
               {/* Box 1: Video(s) */}
               <div className="col-md-6 border vider_saxasxs">
                 {videos.length === 1 ? (
@@ -653,7 +650,7 @@ Please let me know the next steps.`;
               <div className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv">
                 {images.length > 3 ? (
                   <Slider
-                  className="custom-slick-slider"
+                    className="custom-slick-slider"
 
                     dots
                     infinite
@@ -705,7 +702,7 @@ Please let me know the next steps.`;
               )}
             </div>
 
-           
+
             <div className="w-100 sdcsd_saxza dscd_54_Dscds ">
               <div>
                 <div className="d-flex justify-content-between align-items-center">
@@ -786,55 +783,111 @@ Please let me know the next steps.`;
                   <hr className="hr_pb_dtl" />
                 </div>
 
-                <div className="d-flex justify-content-between align-items-center gap-3">
-                  <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
-                    <button
-                      className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                      onClick={() => addToCart(productDetails)}
-                    >
-                      Buy Now
-                    </button>
-                    <button
-                      className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                      onClick={() => addToCart(productDetails)}
-                    >
-                      Add to Cart <BiShoppingBag size={25} className="sopgdd"/>
-                    </button>
-                  </div>
-                  <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
-                    <div
-                      className="gohrt_bod p-2"
-                      onClick={() => toggleFavorite(productDetails.id)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {wishlistItems[productDetails.id] ? (
-                        <GoHeartFill className="heart-icon_ss" size={25} />
-                      ) : (
-                        <GoHeart className="heart-icon_ss" size={25} />
-                      )}
+                <div className="dcb_jbcsc">
+                  <div className="d-flex justify-content-between align-items-center gap-3">
+                    <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
+                      <button
+                        className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                        onClick={() => addToCart(productDetails)}
+                      >
+                        Buy Now
+                      </button>
+                      <button
+                        className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                        onClick={() => addToCart(productDetails)}
+                      >
+                        Add to Cart <BiShoppingBag size={25} className="sopgdd" />
+                      </button>
                     </div>
+                    <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
+                      <div
+                        className="gohrt_bod p-2"
+                        onClick={() => toggleFavorite(productDetails.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {wishlistItems[productDetails.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={25} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={25} />
+                        )}
+                      </div>
 
-                    <div className="gohrt_bod p-2">
-                      <GoShareAndroid size={25} className="hert_fff" />
+                      <div className="gohrt_bod p-2">
+                        <GoShareAndroid size={25} className="hert_fff" />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
+                  <a
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
                   // onClick={() => {
                   //   window.open("https://wa.me/919099975424", "_blank");
                   // }}
                   // onClick={() => addToCart(productDetails)}
-                >
-                  Order On Whatsapp{" "}
-                  <span className="whatsapp-icon">
-                    <IoLogoWhatsapp size={30} />
-                  </span>
-                </a>
+                  >
+                    Order On Whatsapp{" "}
+                    <span className="whatsapp-icon">
+                      <IoLogoWhatsapp size={30} />
+                    </span>
+                  </a>
+                </div>
+
+                <div className="dcb_jbcsc_kn">
+                  <div className="d-flex justify-content-between align-items-center gap-3">
+                    <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
+                      <button
+                        className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
+                        onClick={() => addToCart(productDetails)}
+                      >
+                        Add to Cart <BiShoppingBag size={25} className="sopgdd" />
+                      </button>
+                    </div>
+                    <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
+                      <div
+                        className="gohrt_bod p-2"
+                        onClick={() => toggleFavorite(productDetails.id)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {wishlistItems[productDetails.id] ? (
+                          <GoHeartFill className="heart-icon_ss" size={25} />
+                        ) : (
+                          <GoHeart className="heart-icon_ss" size={25} />
+                        )}
+                      </div>
+
+                      <div className="gohrt_bod p-2">
+                        <GoShareAndroid size={25} className="hert_fff" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 d-flex gap-3" style={{ height: "4rem" }}>
+                    <button
+                      className="d-flex align-items-center add-to-crd-dd_dd w-50 p-2 justify-content-center gap-3"
+                      onClick={() => addToCart(productDetails)}
+                    >
+                      Buy Now
+                    </button>
+                    <a
+                      href={whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="d-flex align-items-center whats_abtn_1 txt_shu justify-content-center gap-3"
+                    // onClick={() => {
+                    //   window.open("https://wa.me/919099975424", "_blank");
+                    // }}
+                    // onClick={() => addToCart(productDetails)}
+                    >
+                      Order On Whatsapp{" "}
+                      <span className="whatsapp-icon">
+                        <IoLogoWhatsapp size={30} />
+                      </span>
+                    </a>
+                  </div>
+                </div>
 
                 <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_ttt">
                   <div className="icon-box">
@@ -938,9 +991,8 @@ Please let me know the next steps.`;
                       <div className="accordion-item" key={index}>
                         <h2 className="accordion-header">
                           <button
-                            className={`accordion-button ${
-                              openIndex === index ? "" : "collapsed"
-                            }`}
+                            className={`accordion-button ${openIndex === index ? "" : "collapsed"
+                              }`}
                             type="button"
                             onClick={() => toggleFAQ(index)}
                           >
@@ -950,9 +1002,8 @@ Please let me know the next steps.`;
                           </button>
                         </h2>
                         <div
-                          className={`accordion-collapse collapse ${
-                            openIndex === index ? "show" : ""
-                          }`}
+                          className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
+                            }`}
                           data-bs-parent="#faqAccordion"
                         >
                           <div className="accordion-body srfferc">
@@ -1051,11 +1102,11 @@ Please let me know the next steps.`;
                     0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
-                  // autoplay={{
-                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                  //   disableOnInteraction: false,
-                  // }}
-                  // modules={[Autoplay]}
+                // autoplay={{
+                //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                //   disableOnInteraction: false,
+                // }}
+                // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>

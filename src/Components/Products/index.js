@@ -501,7 +501,7 @@ const Products = () => {
             </p>
             <div className="pt-3 Sfg">
               <button
-                 className={selectedGender === "Women" ? "ring_for_her active" : "ring_for_him"}
+                className={selectedGender === "Women" ? "ring_for_her active" : "ring_for_him"}
                 // onClick={() =>
                 //   navigate("/products?categoryName=Rings&gender=Women")
                 // }
@@ -736,7 +736,7 @@ const Products = () => {
                             />
                           )}
                           {hoveredProduct === product.id && (
-                            <div className="hover-overlay w-100 d-none d-sm-flex"  onClick={() => handleProductClick(product.id)}>
+                            <div className="hover-overlay w-100 d-none d-sm-flex" onClick={() => handleProductClick(product.id)}>
                               <button
                                 className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
                                 onClick={() =>
@@ -771,19 +771,20 @@ const Products = () => {
                         </span>
                       </div>
                       {hoveredProduct === product.id && (
-                        <div className="hover-overlay DFC_NHJ w-100 d-none d-sm-flex">
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                           <button
-                            className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3"
+                            className="more_btn_dsdd w-50"
+                            // onClick={() => navigate("/product-details")}
+                            onClick={() => handleProductClick(product.id)}
+                          >
+                            More Info
+                          </button>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
                             onClick={() => addToCart(product)}
                           >
                             Add to Cart <BiShoppingBag size={25} />
                           </button>
-                          {/* <a
-                            onClick={() => handleProductClick(product.id)}
-                            className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
-                          >
-                            Read more about the Product <FaArrowRight />
-                          </a> */}
                         </div>
                       )}
                       <div className="d-flex d-sm-none flex-column mt-2">
