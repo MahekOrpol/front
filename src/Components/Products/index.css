@@ -1206,11 +1206,10 @@
     text-align: center;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-size: 14px;
-    line-height: 100%;
+    font-size: 12px;
+    line-height: 15px;
     letter-spacing: 0%;
-  }
-
+}
   .filter_pro1 {
     width: 39%;
   }
@@ -1675,4 +1674,33 @@
   object-fit: cover;
   /* Ensures the image covers the div without stretching */
   border-radius: 8px;
+}
+
+@media(max-width:813px){
+  .jjcsindn_jcb{
+    display: none;
+  }
+  .jjcsindn_jcb_ccs{
+    display:block;
+  }
+}
+@media(min-width:814px){
+  .jjcsindn_jcb{
+    display: block;
+  }
+  .jjcsindn_jcb_ccs{
+    display:none !important;
+  }
+}
+@media(min-width:992px) and (max-width:1080px){
+  .fvdvdf_Ththgf{
+    display: flex;
+    flex-direction: column;
+  }
+  .more_btn_dsdd{
+    width:100% !important;
+  }
+  .gfbfgbvgfcbfb{
+    width: 100% !important;
+  }
 }

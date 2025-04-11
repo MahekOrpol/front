@@ -57,6 +57,31 @@ const Products = () => {
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
   const urlSearchQuery = queryParams.get("search");
+  const [wishlistCount, setWishlistCount] = useState(0);
+  const [cartCount, setCartCount] = useState(() => {
+    const savedCount = localStorage.getItem('cartCount');
+    return savedCount ? parseInt(savedCount) : 0;
+  });
+
+  useEffect(() => {
+    const fetchCartCount = async () => {
+      const userId = localStorage.getItem("user_Id");
+      if (!userId) return;
+
+      try {
+        const response = await axios.get(
+          `http://192.168.1.9:3000/api/v1/order-details/user/${userId}`
+        );
+        const count = response.data.length || 0;
+        setCartCount(count);
+        localStorage.setItem('cartCount', count);
+      } catch (error) {
+        console.error("Error fetching cart count:", error);
+      }
+    };
+
+    fetchCartCount();
+  }, []);
 
   useEffect(() => {
     if (urlSearchQuery) {
@@ -71,7 +96,7 @@ const Products = () => {
   useEffect(() => {
     const fetchAndFilter = async () => {
       try {
-        let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
+        let url = `http://192.168.1.9:3000/api/v1/product/get?`;
         if (categoryName) url += `categoryName=${categoryName}&`;
         if (gender) url += `gender=${gender}`;
 
@@ -146,7 +171,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
+      let url = `http://192.168.1.9:3000/api/v1/product/get?`;
       if (categoryName) url += `categoryName=${categoryName}&`;
       if (gender) url += `gender=${gender}`;
 
@@ -222,7 +247,7 @@ const Products = () => {
   };
 
   const handleApplyFilters = async () => {
-    let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
+    let url = `http://192.168.1.9:3000/api/v1/product/get?`;
 
     // Append selected categories as query parameters
     if (selectedCategories.length > 0) {
@@ -276,15 +301,15 @@ const Products = () => {
           delete updatedWishlist[productId]; // Update UI immediately
           return updatedWishlist;
         });
-
+        setWishlistCount(prev => prev - 1);
         const res = await axios.delete(
-          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://192.168.1.9:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/create`,
+          `http://192.168.1.9:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -296,7 +321,7 @@ const Products = () => {
           ...prev,
           [productId]: newWishlistItemId, // Store wishlist ID properly
         }));
-
+        setWishlistCount(prev => prev + 1);
         toast.success(response.data.message || "Added to wishlist!");
       }
     } catch (error) {
@@ -310,7 +335,7 @@ const Products = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${userId}`
+          `http://192.168.1.9:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -326,6 +351,7 @@ const Products = () => {
         });
 
         setWishlistItems(wishlistMap);
+        setWishlistCount(wishlistData.length);
       } catch (error) {
         console.error("Error fetching wishlist:", error);
       }
@@ -366,7 +392,7 @@ const Products = () => {
 
       // Make the API request
       const response = await axios.post(
-        "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
+        "http://192.168.1.9:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -387,7 +413,7 @@ const Products = () => {
   };
 
   const getCategory = async () => {
-    const res = await axios.get("https://crystova.cloudbusiness.cloud/api/v1/category/get");
+    const res = await axios.get("http://192.168.1.9:3000/api/v1/category/get");
     setCategory(res.data);
   };
 
@@ -420,7 +446,7 @@ const Products = () => {
   const displayProducts = isSearchActive ? filteredProducts : productList;
   // // Update your handleApplyFilters function
   // const handleApplyFilters = async () => {
-  //   let url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?`;
+  //   let url = `http://192.168.1.9:3000/api/v1/product/get?`;
 
   //   // Append selected categories as query parameters
   //   if (selectedCategories.length > 0) {
@@ -445,7 +471,7 @@ const Products = () => {
   // };
   const fetchAllProducts = async () => {
     try {
-      const response = await axios.get("https://crystova.cloudbusiness.cloud/api/v1/product/get");
+      const response = await axios.get("http://192.168.1.9:3000/api/v1/product/get");
       const sortedProducts = sortProducts(response.data, selectedOption);
       setProductList(sortedProducts);
     } catch (err) {
@@ -476,11 +502,12 @@ const Products = () => {
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
+        setCartCount={setCartCount}
         toastMessage={toastMessage}
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-        <Header openCart={openCart} />
+        <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount} />
         <div>
           <img
             src={require("../../Images/productt_sss.png")}
@@ -502,21 +529,29 @@ const Products = () => {
             <div className="pt-3 Sfg">
               <button
                 className={selectedGender === "Women" ? "ring_for_her active" : "ring_for_him"}
-                // onClick={() =>
-                //   navigate("/products?categoryName=Rings&gender=Women")
-                // }
                 onClick={() => handleClick("Women")}
               >
-                <img src={require("../../Images/her.png")} /> Rings for Her
+                <img
+                  src={
+                    selectedGender === "Women"
+                      ? require("../../Images/her.png")
+                      : require("../../Images/her-active.png")
+                  }
+                />
+                <span className="ms-2">Rings for Her</span>
               </button>
               <button
                 className={selectedGender === "Men" ? "ring_for_her active" : "ring_for_him"}
-                // onClick={() =>
-                //   navigate("/products?categoryName=Rings&gender=Men")
-                // }
                 onClick={() => handleClick("Men")}
               >
-                <img src={require("../../Images/him.png")} /> Rings for Him
+                <img
+                  src={
+                    selectedGender === "Men"
+                      ? require("../../Images/him-active.png")
+                      : require("../../Images/him.png")
+                  }
+                />
+                <span className="ms-2">Rings for Him</span>
               </button>
             </div>
             <hr className="prod_hr mt-5 w-100" />
@@ -718,7 +753,7 @@ const Products = () => {
                             ".mp4"
                           ) ? (
                             <video
-                              src={`https://crystova.cloudbusiness.cloud${product.image[imageIndexes[product.id]]
+                              src={`http://192.168.1.9:3000${product.image[imageIndexes[product.id]]
                                 }`}
                               className="p-1_proi img-fluid"
                               autoPlay
@@ -728,7 +763,7 @@ const Products = () => {
                             />
                           ) : (
                             <img
-                              src={`https://crystova.cloudbusiness.cloud${product.image[imageIndexes[product.id]]
+                              src={`http://192.168.1.9:3000${product.image[imageIndexes[product.id]]
                                 }`}
                               onClick={() => handleProductClick(product.id)}
                               className="p-1_proi img-fluid"
@@ -770,24 +805,26 @@ const Products = () => {
                           ₹{product.regularPrice?.$numberDecimal}
                         </span>
                       </div>
-                      {hoveredProduct === product.id && (
-                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                          <button
-                            className="more_btn_dsdd w-50"
-                            // onClick={() => navigate("/product-details")}
-                            onClick={() => handleProductClick(product.id)}
-                          >
-                            More Info
-                          </button>
-                          <button
-                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                            onClick={() => addToCart(product)}
-                          >
-                            Add to Cart <BiShoppingBag size={25} />
-                          </button>
-                        </div>
-                      )}
-                      <div className="d-flex d-sm-none flex-column mt-2">
+                      <div className="jjcsindn_jcb">
+                        {hoveredProduct === product.id && (
+                          <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                            <button
+                              className="more_btn_dsdd w-50"
+                              // onClick={() => navigate("/product-details")}
+                              onClick={() => handleProductClick(product.id)}
+                            >
+                              More Info
+                            </button>
+                            <button
+                              className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                              onClick={() => addToCart(product)}
+                            >
+                              Add to Cart <BiShoppingBag size={25} />
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                      <div className="d-flex jjcsindn_jcb_ccs flex-column mt-2">
                         <button
                           className="d-flex align-items-center add-to-crd-dd p-1 justify-content-center gap-3"
                           onClick={() => addToCart(product)}

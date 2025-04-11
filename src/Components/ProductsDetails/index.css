@@ -955,7 +955,7 @@
   }
 }
 
-@media (min-width:496px) and (max-width:644px) {
+@media (max-width:644px) {
   .slider_ssss_fdcdf .swiper-slide {
     width: 46% !important;
     margin: 10px;
@@ -1174,14 +1174,14 @@
   font-weight: 600;
   font-size: 17px;
   border: none;
-  padding: 25px;
+  padding: 9px;
   /* box-shadow: 0px 0px 8px 0px #00000040; */
   width: 50%;
   text-decoration: none;
 }
-
-.txt_shu{
+.txt_shu {
   font-size: 13px;
+  white-space: nowrap;
 }
 .whats_abtn:hover {
   background-color: #1ebe5d;
@@ -1458,3 +1458,52 @@
   }
 }
 
+
+.accordion-button:not(.collapsed) {
+  background-color: #fff;
+  color: #000;
+  box-shadow: none;
+}
+.accordion-button {
+  background-color: #fff;
+  font-weight: 500;
+  padding: 1rem;
+}
+.mhkmhkfdv .accordion-item {
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  font-family: "Cabin", sans-serif;
+}
+.offe_dscdfcc {
+  font-family: "Cabin", sans-serif;
+  color: black;
+}
+.coupon-code {
+  color: #000;
+  padding: 4px 10px;
+  font-weight: 400;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: -10px;
+  background-color: #fff;
+  box-shadow: none;
+  font-family: "Cabin", sans-serif;
+}
+
+.offer-icon {
+  width: 40px;
+  margin-right: 10px;
+}
+.accordion-button::after {
+  transform: scale(1.2);
+}
+.accordion-collapse {
+  border-top: 1px solid black;
+}
+
+
+.dxvfdfrv{
+  font-size: 19px;
+}

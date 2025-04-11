@@ -21,7 +21,7 @@ import ring from "../../Images/diamond-ring-diamond-svgrepo-com.svg";
 import csome from "../../Images/Group 1597884646.svg";
 import { Search } from "lucide-react";
 
-const Header = ({ openCart }) => {
+const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showSignup, setIsSignup] = useState(false);
@@ -70,7 +70,7 @@ const Header = ({ openCart }) => {
 
   const getProfileData = async () => {
     try {
-      const res = await axios.get(`https://crystova.cloudbusiness.cloud/api/v1/users/${user_Id}`);
+      const res = await axios.get(`http://192.168.1.9:3000//api/v1/users/${user_Id}`);
       setData(res.data);
     } catch (err) {
       console.log(err);
@@ -258,20 +258,54 @@ const Header = ({ openCart }) => {
             )}
           </div>
           <div
-            className="user_icon d-flex align-items-center flex-column"
+            className="user_icon d-flex align-items-center flex-column position-relative"
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/wishlist")}
           >
             <CiHeart className="gsddd" size={30} style={{ strokeWidth: "0.5px", stroke: "black" }} />
+            {/* <span className="position-absolute top-0 start-100 badge rounded-pill bg-danger"
+              style={{
+                fontSize: "0.6rem",
+                padding: "5px 8px",
+                minWidth: "1.2rem"
+              }}
+            > */}
+            {wishlistCount > 0 && (
+              <span className="position-absolute top-0 start-100 badge rounded-pill"
+                style={{
+                  fontSize: "11px",
+                  padding: "5px 8px",
+                  minWidth: "1.2rem",
+                  backgroundColor: "#611d2b",
+                  fontFamily: "Cabin, sans-serif"
+                }}
+              >
+                {wishlistCount}
+              </span>
+            )}
+            {/* </span> */}
             <div className="align-items-center" style={{ lineHeight: "21px" }}>
               <span className="acco9_text w-100 new_ddd">Wishlist</span>
             </div>
           </div>
           <div
-            className="user_icon d-flex align-items-center flex-column"
+            className="user_icon d-flex align-items-center flex-column position-relative"
             style={{ cursor: "pointer" }}
           >
             <IoBagHandleOutline className="gsddd" size={30} onClick={openCart} />
+            {cartCount > 0 && (
+              <span className="position-absolute top-0 start-100 badge badge1 rounded-pill"
+                style={{
+                  fontSize: "11px",
+                  padding: "5px 8px",
+                  minWidth: "1.2rem",
+                  backgroundColor: "#611d2b",
+                  fontFamily: "Cabin, sans-serif"
+                }}
+              >
+                {cartCount}
+              </span>
+            )}
             <div className="align-items-center" style={{ lineHeight: "21px" }}>
               <span className="acco9_text w-100 new_ddd">Cart</span>
             </div>
@@ -363,8 +397,8 @@ const Header = ({ openCart }) => {
 
           <div className="drawer-pro">
             <div className="eeerd">
-              <span className="drawer-new">MAIN</span>
-              <div className="drawer-item" onClick={() => handleCategoryClick("Rings")}>
+              <span className="drawer-new">CATEGORY</span>
+              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Rings")}>
                 <img src={ring} width={20} alt="Rings" /> Rings
               </div>
               <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Earrings")}>
@@ -382,7 +416,7 @@ const Header = ({ openCart }) => {
             </div>
             <div className="eeerd pt-2 pb-3">
               <span className="drawer-new">SUPPORT</span>
-              <div className="drawer-item" onClick={() => navigate("/contact-us")}>
+              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => navigate("/contact-us")}>
                 <img src={require("../../Images/contacticon.png")} width={18} alt="Profile" /> Contact Us
               </div>
             </div>
@@ -390,7 +424,7 @@ const Header = ({ openCart }) => {
               <>
                 <div className="pt-2">
                   <span className="drawer-new">ACCOUNT</span>
-                  <div className="drawer-item" onClick={() => {
+                  <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => {
                     setIsDrawerOpen(false);
                     navigate('/Editprofile');
                   }}>
