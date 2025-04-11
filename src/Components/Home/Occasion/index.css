@@ -425,11 +425,11 @@
   .occasions_text_p {
     width: 100%;
   }
-  .Client_xcTestimonial{
+  .Client_xcTestimonial {
     margin-top: 1rem !important;
     gap: 2px !important;
   }
-  .dscdsc_inst{
+  .dscdsc_inst {
     gap: 2px !important;
   }
 }
@@ -491,11 +491,11 @@
     transform: translate(40%, 2%) !important;
   }
 
-  .one-way-slider {
+  /* .one-way-slider {
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
+  } */
 
   .sdcsdc_rtgrtfdxcasxNJK {
     margin-top: -40% !important;
@@ -506,6 +506,13 @@
   }
 }
 
+@media (max-width: 426px) {
+  .one-way-slider {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+  }
+}
 @media (max-width: 891px) and (min-width: 769px) {
   .one-way-slider {
     margin-top: 0rem !important;
@@ -936,8 +943,8 @@
   }
 }
 
-@media (width:768px) {
+@media (width: 768px) {
   .paddingdn {
     padding-top: 2rem !important;
-}
+  }
 }

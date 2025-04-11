@@ -773,7 +773,7 @@ const Home = () => {
             className="home_tag_img"
           />
 
-          <div className=" p-0">
+          <div className=" p-0" style={{width:'100vw'}}>
             <Swiper
               spaceBetween={10}
               loop={true}

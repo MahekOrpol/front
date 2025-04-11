@@ -179,7 +179,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
               className="cart-item d-flex flex-column align-items-center"
             >
               <img
-                src={`https://crystova.cloudbusiness.cloud${item.productId.image?.[0]}`}
+                src={`https://crystova.cloudbusiness.cloud${item.productId.image?.[0 ? 0 :1]}`}
                 alt={item.productId.productName}
                 style={{
                   borderRadius: "24px",
