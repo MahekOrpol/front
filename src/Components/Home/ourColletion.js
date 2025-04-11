@@ -13,14 +13,14 @@ const OueColletion = () => {
   const productImages = [
     { img: require("../../Images/our.png"), label: "Diamond Bracelet",path:'Bracelet' },
     { img: require("../../Images/our2.png"), label: "Diamond Earrings" ,path:'Earrings'},
-    { img: require("../../Images/our3.png"), label: "Couple Rings" ,path:'Rings'},
+    { img: require("../../Images/our3.png"), label: "Diamond Rings" ,path:'Rings'},
   ];
 
   // useEffect(() => {
   //   const fetchProducts = async () => {
   //     try {
   //       const response = await axios.get(
-  //         "https://crystova.cloudbusiness.cloud/api/v1/product/get"
+  //         "http://192.168.1.9:3000/api/v1/product/get"
   //       );
   //       console.log(response);
   //       setProducts(response.data.slice(0, 3)); // Get first 3 products

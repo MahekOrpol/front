@@ -34,10 +34,14 @@ const Occasion = () => {
         <h2 className="occation-content-h2">
           Make your Occasions Special with our Jewelry
         </h2>
-        <p className="occasions_text_p">
+          <img
+            src={require("../../../Images/Groupimg.png")}
+            className="home_tag_img mobile_rcvdfcvfd"
+          />
+        <p className="occasions_text_p mb-0">
         Discover the perfect blend of elegance and exclusivity with our Limited Edition Collaboration jewelry collection. Crafted with precision and designed for those who appreciate timeless beauty, these unique pieces are available for a short time only!
         </p>
-        <Button className="shop-button d-md-block d-none">
+        <Button className="shop-button ">
           Shop this look <FaArrowRightLong />
         </Button>
       </div>

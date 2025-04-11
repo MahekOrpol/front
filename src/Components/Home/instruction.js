@@ -5,9 +5,9 @@ const instructions = [
   { img: require('../../Images/material.png'), text: 'AVOID WATER / MOISTURE' },
   { img: require('../../Images/oeeofiw.png'), text: 'REMOVE BEFORE SLEEPING' },
   { img: require('../../Images/fragrance_6211860.png'), text: 'AVOID PERFUME / LOTION' },
-  { img: require('../../Images/box_14309182 (1).png'), text: 'USE SOFT / DRY FABRIC TO CLEAN' },
+  { img: require('../../Images/box_14309182 (1).png'), text: 'STORE IN AN AIR TIGHTBOX' },
   { img: require('../../Images/Frame 1.png'), text: 'REMOVE BEFORE EXERCISE'},
-  { img: require('../../Images/wash_7040452.png'), text: 'REMOVE BEFORE EXERCISE' }
+  { img: require('../../Images/wash_7040452.png'), text: 'USE SOFT / DRY FABRIC TO CLEAN' }
 ];
 
 const Instruction = () => {

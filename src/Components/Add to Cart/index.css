@@ -150,7 +150,7 @@ body {
   display: flex;
   width: 1.5rem;
   background-repeat: no-repeat;
-  background-image: url(https://crystova.cloudbusiness.cloud/static/media/trash-solid.14227052dac2e311a885.svg);
+  background-image: url(http://192.168.1.9:3000/static/media/trash-solid.14227052dac2e311a885.svg);
 }
 
   .wr_sss_dd_sssss {

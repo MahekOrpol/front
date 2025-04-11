@@ -53,7 +53,7 @@ const CustomJewel = () => {
                 formDataToSend.append('file', formData.file);
             }
 
-            const response = await axios.post('https://crystova.cloudbusiness.cloud/api/v1/custom-jewels/create', formDataToSend);
+            const response = await axios.post('http://192.168.1.9:3000/api/v1/custom-jewels/create', formDataToSend);
 
             if (response.status === 201) {
                 toast.success("We will get back to you soon!");

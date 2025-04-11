@@ -7,7 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
-const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
+const CartPopup = ({ isOpen, closeCart, showToast, toastMessage, setCartCount }) => {
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState([]);
 
@@ -51,7 +51,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
     );
     setOrderDetails(updatedItems);
   };
-  
+
   useEffect(() => {
     if (showToast && toastMessage) {
       toast.success(toastMessage, {
@@ -80,12 +80,14 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
   const handleRemoveItem = async (orderId, index) => {
     try {
       const res = await axios.delete(
-        `https://crystova.cloudbusiness.cloud/api/v1/order-details/delete/${orderId}`
+        `http://192.168.1.9:3000/api/v1/order-details/delete/${orderId}`
       );
 
       if (res.status === 200) {
         const updatedItems = orderDetails.filter((_, i) => i !== index);
         setOrderDetails(updatedItems);
+        setCartCount(updatedItems.length);
+        localStorage.setItem('cartCount', updatedItems.length);
         toast.success("Removed from Cart!");
       }
     } catch (err) {
@@ -97,41 +99,44 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
     const userId = localStorage.getItem("user_Id");
     try {
       const res = await axios.get(
-        `https://crystova.cloudbusiness.cloud/api/v1/order-details/get/${userId}`
+        `http://192.168.1.9:3000/api/v1/order-details/get/${userId}`
       );
       if (res.status === 200) {
-        setOrderDetails(
-          res.data.data.map((item) => {
-            const hasVariations = item.productId?.hasVariations;
-            let selectedSize = "";
-            let salePrice = parseFloat(
-              item.productId?.salePrice?.$numberDecimal || 0
-            );
+        const items = res.data.data.map((item) => {
+          const hasVariations = item.productId?.hasVariations;
+          let selectedSize = "";
+          let salePrice = parseFloat(
+            item.productId?.salePrice?.$numberDecimal || 0
+          );
 
-            if (
-              hasVariations &&
-              Array.isArray(item.variation) &&
-              item.variation.length > 0
-            ) {
-              selectedSize = item.variation[0]?.productSize || "";
-              salePrice = parseFloat(item.variation[0]?.salePrice || 0);
-            } else if (!hasVariations) {
-              // selectedSize = Array.isArray(item.productId?.productSize)
-              //   ? item.productId?.productSize[0] || ""
-              //   : "";
-              selectedSize = Array.isArray(item.productId?.productSize)
-                ? item.productId?.productSize[0].split(",")[0] || "" // Pick first size from comma-separated list
-                : "";
-            }
+          if (
+            hasVariations &&
+            Array.isArray(item.variation) &&
+            item.variation.length > 0
+          ) {
+            selectedSize = item.variation[0]?.productSize || "";
+            salePrice = parseFloat(item.variation[0]?.salePrice || 0);
+          } else if (!hasVariations) {
+            // selectedSize = Array.isArray(item.productId?.productSize)
+            //   ? item.productId?.productSize[0] || ""
+            //   : "";
+            selectedSize = Array.isArray(item.productId?.productSize)
+              ? item.productId?.productSize[0].split(",")[0] || "" // Pick first size from comma-separated list
+              : "";
+          }
 
-            return {
-              ...item,
-              quantity: 1,
-              selectedSize,
-              salePrice,
-            };
-          })
-        );
+          return {
+            ...item,
+            quantity: 1,
+            selectedSize,
+            salePrice,
+          };
+        })
+        setOrderDetails(items);
+        if (setCartCount) {
+          setCartCount(items.length);
+          localStorage.setItem('cartCount', items.length);
+        }
       }
     } catch (err) {
       console.error("Error fetching order details:", err);
@@ -179,8 +184,8 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
               className="cart-item d-flex flex-column align-items-center"
             >
               <img
-                src={`https://crystova.cloudbusiness.cloud${item.productId.image?.[0 ? 0 :1]}`}
-                alt={item.productId.productName}
+                src={`http://192.168.1.9:3000${item.productId?.image?.[0]}`}
+                alt={item.productId?.productName}
                 style={{
                   borderRadius: "24px",
                   width: "100%",
@@ -191,7 +196,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
               />
               <div className="cart_item_detail">
                 <h5 className="fw-bold mb-1 text-truncate">
-                  {item.productId.productName}
+                  {item.productId?.productName}
                 </h5>
                 <div className="d-flex align-items-center justify-content-between">
                   <div className="d-flex align-items-center w-100">
@@ -219,7 +224,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
                       onChange={(e) => handleSizeChange(index, e.target.value)}
                     >
                       {(Array.isArray(item.productId?.productSize) &&
-                      item.productId?.productSize.length > 0
+                        item.productId?.productSize.length > 0
                         ? item.productId?.productSize[0].split(",") // Convert string to array
                         : []
                       ).map((size, i) => (

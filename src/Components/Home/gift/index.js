@@ -15,11 +15,11 @@ const Gift = () => {
   };
 
   return (
-    <div className="container row align-items-center ring_sec_gifff">
+    <div className="container row align-items-center ring_sec_gifff ">
       {/* LEFT SIDE TEXT */}
-      <div className="col-md-6 d-flex flex-column gap-3">
+      <div className="col-md-6 d-flex flex-column gap-3 ">
         <h2 className="mack_pox_headfr">
-          Make your Occasions Special with our Jewelry
+          Make your Occasions Special with our Jewellry
         </h2>
         <p className="mack_pox_headfrp">
           Discover the perfect blend of elegance and exclusivity with our

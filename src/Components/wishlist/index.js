@@ -23,6 +23,31 @@ const Wishlist = () => {
   const [imageIndexes, setImageIndexes] = useState({});
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [wishlistCount, setWishlistCount] = useState(0);
+  const [cartCount, setCartCount] = useState(() => {
+    const savedCount = localStorage.getItem('cartCount');
+    return savedCount ? parseInt(savedCount) : 0;
+  });
+
+  useEffect(() => {
+    const fetchCartCount = async () => {
+      const userId = localStorage.getItem("user_Id");
+      if (!userId) return;
+
+      try {
+        const response = await axios.get(
+          `http://192.168.1.9:3000/api/v1/order-details/user/${userId}`
+        );
+        const count = response.data.length || 0;
+        setCartCount(count);
+        localStorage.setItem('cartCount', count);
+      } catch (error) {
+        console.error("Error fetching cart count:", error);
+      }
+    };
+
+    fetchCartCount();
+  }, []);
 
   useEffect(() => {
     if (wishlist.length > 0) {
@@ -76,11 +101,11 @@ const Wishlist = () => {
 
     try {
       const response = await axios.get(
-        `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${userId}`
+        `http://192.168.1.9:3000/api/v1/wishlist/${userId}`
       );
       const wishlistData = response.data.data;
       setWishlist(wishlistData);
-
+      setWishlistCount(wishlistData.length);
       // Initialize image indexes for each product
       const initialIndexes = {};
       wishlistData.forEach((product) => {
@@ -108,7 +133,7 @@ const Wishlist = () => {
 
     try {
       const res = await axios.delete(
-        `https://crystova.cloudbusiness.cloud/api/v1/wishlist/delete/${wishlistItem.id}`
+        `http://192.168.1.9:3000/api/v1/wishlist/delete/${wishlistItem.id}`
       );
 
       // Remove item from the wishlist state
@@ -117,6 +142,7 @@ const Wishlist = () => {
         setWishlist((prev) =>
           prev.filter((item) => item.productId.id !== productId)
         );
+        setWishlistCount(prev => prev - 1);
         console.log("res.data.message", res.data.message);
         fetchWishlist(); // Fetch updated wishlist after deletion
         toast.success(res.data.message);
@@ -167,7 +193,7 @@ const Wishlist = () => {
 
       // Make the API request
       const response = await axios.post(
-        "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
+        "http://192.168.1.9:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -200,12 +226,12 @@ const Wishlist = () => {
         draggable
         pauseOnHover
         theme="light"
-        stacked 
+        stacked
       />
-       <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage}/>
+      <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage} setCartCount={setCartCount}/>
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-        <Header openCart={openCart} />
+        <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount}/>
         <div className="container">
           <div className="hdr_csd flex-column align-items-center produ_sss">
             <div className="row pt-sm-5">
@@ -246,7 +272,7 @@ const Wishlist = () => {
                             ".mp4"
                           ) ? (
                             <video
-                              src={`https://crystova.cloudbusiness.cloud${productId.image[imageIndexes[productId.id]]
+                              src={`http://192.168.1.9:3000${productId.image[imageIndexes[productId.id]]
                                 }`}
                               className="w-100"
                               autoPlay
@@ -256,7 +282,7 @@ const Wishlist = () => {
                             />
                           ) : (
                             <img
-                              src={`https://crystova.cloudbusiness.cloud${productId.image[imageIndexes[productId.id]]
+                              src={`http://192.168.1.9:3000${productId.image[imageIndexes[productId.id]]
                                 }`}
                               className="w-100"
                               alt={productId.productName}

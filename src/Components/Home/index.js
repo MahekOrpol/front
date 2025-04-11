@@ -161,6 +161,29 @@ const Home = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [slideDirection, setSlideDirection] = useState("next"); // Track slide direction for animation
 
+  const [wishlistCount, setWishlistCount] = useState(0);
+  const [cartCount, setCartCount] = useState(() => {
+    const savedCount = localStorage.getItem('cartCount');
+    return savedCount ? parseInt(savedCount) : 0;
+  });
+  useEffect(() => {
+    const fetchCartCount = async () => {
+      const userId = localStorage.getItem("user_Id");
+      if (!userId) return;
+      try {
+        const response = await axios.get(
+          `http://192.168.1.9:3000/api/v1/order-details/user/${userId}`
+        );
+        const count = response.data.length || 0;
+        setCartCount(count);
+        localStorage.setItem('cartCount', count);
+      } catch (error) {
+        console.error("Error fetching cart count:", error);
+      }
+    };
+    fetchCartCount();
+  }, []);
+
   const productsToDisplay =
     filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
 
@@ -210,7 +233,7 @@ const Home = () => {
 
   const fetchBestSellersByCategory = async (category) => {
     try {
-      const url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?categoryName=${category}`;
+      const url = `http://192.168.1.9:3000/api/v1/product/get?categoryName=${category}`;
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -265,7 +288,7 @@ const Home = () => {
 
       // Make the API request
       const response = await axios.post(
-        "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
+        "http://192.168.1.9:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -290,7 +313,7 @@ const Home = () => {
   }, []);
 
   const getCategories = async () => {
-    const res = await axios.get("https://crystova.cloudbusiness.cloud/api/v1/category/get");
+    const res = await axios.get("http://192.168.1.9:3000/api/v1/category/get");
     setCategoriesa(res.data);
     console.log("res.datassss :>> ", res.data);
   };
@@ -334,20 +357,20 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios.get(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated"
+      "http://192.168.1.9:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
     console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getBestSelling"
+      "http://192.168.1.9:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios.get(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale"
+      "http://192.168.1.9:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -390,21 +413,22 @@ const Home = () => {
           delete updatedWishlist[productId]; // Update UI immediately
           return updatedWishlist;
         });
-
+        setWishlistCount(prev => prev - 1);
+      
         const res = await axios.delete(
-          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://192.168.1.9:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/create`,
+          `http://192.168.1.9:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
           }
         );
-
+        setWishlistCount(prev => prev + 1);
         const newWishlistItemId = response.data.data.id;
         setWishlistItems((prev) => ({
           ...prev,
@@ -424,7 +448,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${userId}`
+          `http://192.168.1.9:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -448,6 +472,7 @@ const Home = () => {
         });
 
         setWishlistItems(wishlistMap);
+        setWishlistCount(wishlistData.length);
       } catch (error) {
         console.error("Error fetching wishlist:", error);
       }
@@ -754,10 +779,11 @@ const Home = () => {
         closeCart={closeCart}
         showToast={showToast}
         toastMessage={toastMessage}
+        setCartCount={setCartCount}
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-        <Header openCart={openCart} />
+      <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount}/>
 
         <div>
           <img src={require('../../Images/Frame 207.svg').default} className="img_fluid1_banner hoe_page_main_bvannei" />
@@ -765,7 +791,7 @@ const Home = () => {
           {/* <JewelrySale /> */}
         </div>
 
-        <div className="d-flex flex-column align-items-center hdr_csd p-0">
+        <div className="d-flex flex-column align-items-center hdr_csd p-0 sdcds_cate">
           <span className="category_name mt-md-4">Categories</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img
@@ -798,7 +824,7 @@ const Home = () => {
                 >
                   <div className="d-flex flex-column align-items-center">
                     <img
-                      src={`https://crystova.cloudbusiness.cloud${category.categoryImage}`}
+                      src={`http://192.168.1.9:3000${category.categoryImage}`}
                       className="home-img home_img_ssssss fvfvfc_Zdcdsc"
                       alt={category.categoryName}
                     />
@@ -986,7 +1012,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="d-flex flex-column align-items-center">
+        <div className="d-flex flex-column align-items-center diamon_jewe">
           <span className="category_name mt-md-4">Diamond Jewelry</span>
           <p className="category_txt">Minimal. Modern. Mesmerizing</p>
           <img
@@ -1070,7 +1096,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://192.168.1.9:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1141,7 +1167,7 @@ const Home = () => {
 
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://192.168.1.9:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -1215,7 +1241,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://192.168.1.9:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1262,7 +1288,7 @@ const Home = () => {
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd MHK1">
           <OueColletion />
         </div>
-        <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-md-1">
+        <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-md-1 ewcdsecesdfc">
           <span className="category_name best_sellig_sdcdc d-none">Jewelry for Occasions</span>
           <p className="category_txt best_sellig_sdcdc d-none">
           Celebrate Forever with a Sparkle
@@ -1364,7 +1390,7 @@ const Home = () => {
                               </div>
                               <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                                 <img
-                                  src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                                  src={`http://192.168.1.9:3000${product.image[0]}`}
                                   className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
                                   alt="Product"
                                 />
@@ -1508,7 +1534,7 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center mt-md-4 ">
+        <div className="paddingdn d-flex flex-column align-items-center mt-md-4 szdxksdx_HGVBH">
           <span className="category_name mt-2">Discover Styles</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img

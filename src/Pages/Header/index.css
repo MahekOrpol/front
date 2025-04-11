@@ -106,10 +106,6 @@
   font-family: 'Cabin', sans-serif;
 }
 
-.drawer-pro {
-  padding-top: 1rem;
-}
-
 .eeerd {
   border-bottom: 1px solid #ccc;
   padding-bottom: 8px;
@@ -174,6 +170,30 @@
 
 }
 
+.badge {
+  font-size: 0.6rem;
+  padding: 0.2rem 0.4rem;
+  min-width: 1.2rem;
+  transform: translate(-118%, -21%) !important;
+}
+
+.badge1 {
+  font-size: 0.6rem;
+  padding: 0.2rem 0.4rem;
+  min-width: 1.2rem;
+  transform: translate(-69%, -21%) !important;
+}
+
+@media(max-width:992px) {
+  .badge {
+    transform: translate(-74%, -21%) !important;
+  }
+}
+
+.user_icon {
+  position: relative;
+}
+
 @media (max-width: 991px) {
   .heder_sec_main {
     justify-content: space-between;
@@ -236,7 +256,7 @@
 
   .heder_sec_main {
     justify-content: start !important;
-    gap: 20px !important;
+    /* gap: 20px !important; */
     padding: 10px 23px;
   }
 
@@ -265,6 +285,12 @@
     display: block !important;
   }
 
+}
+@media (max-width:400PX) {
+  
+  .sdfcv_tgvtgv {
+    padding-right: 2rem !important;
+  }
 }
 
 @media(max-width:990px) {
@@ -472,10 +498,14 @@
   }
 }
 
-@media(max-width:430px) {
+@media (max-width:990px) {
+  
   .dsfcdsfcsdfc_dcd {
-    justify-content: start !important;
+    justify-content: center !important;
   }
+}
+@media(max-width:430px) {
+
 
   .heder_sec_main {
     padding: 10px 20px;
@@ -721,3 +751,9 @@
 .rfvfd_UHGYU:focus {
   outline: none !important;
 }
+
+@media (max-width: 600px) and (min-width:400px){
+  .sdfcv_tgvtgv{
+   padding-right: 1.5rem !important;
+  }
+ }
