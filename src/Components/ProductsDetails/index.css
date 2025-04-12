@@ -1487,6 +1487,12 @@
   .sopgdd {
     height: 15px !important;
   }
+  .pro_sss_gubs{
+    padding-left: 1rem !important;
+  }
+  .escjh_drftvbfbvfcv .slick-list {
+    height: 203px !important;
+}
 }
 
 @media(max-width:430px) {
@@ -1541,13 +1547,28 @@
   }
 }
 
-@media(min-width:768px) and (max-width:950px) {
+@media(min-width:768px) and (max-width:805px) {
   .escjh_drftvbfbvfcv .slick-list {
-    height: 240px !important;
+    height: 223px !important;
   }
 
   .vider_saxasxs_sec {
-    height: 240px !important;
+    height: 223px !important;
+  }
+
+  .vider_saxasxs {
+    height: 50px !important;
+    border: none !important;
+    min-height: 223px !important;
+  }
+}
+@media(min-width:805px) and (max-width:950px) {
+  .escjh_drftvbfbvfcv .slick-list {
+    height: 250px !important;
+  }
+
+  .vider_saxasxs_sec {
+    height: 250px !important;
   }
 
   .vider_saxasxs {
