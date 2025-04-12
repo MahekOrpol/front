@@ -40,13 +40,13 @@ const RingSlider = () => {
         { breakpoint: 990, settings: { slidesToShow: 3 } },
         { breakpoint: 768, settings: { slidesToShow: 3 } },
         { breakpoint: 576, settings: { slidesToShow: 3 } },
-        { breakpoint: 375, settings: { slidesToShow: 1 } },
+        { breakpoint: 375, settings: { slidesToShow: 3 } },
       ],
       onAfterChange: function (currentSlide) {
         const screenWidth = window.innerWidth;
         let visibleSlides = 5;
 
-        if (screenWidth < 576) visibleSlides = 1;
+        if (screenWidth < 576) visibleSlides = 3;
         else if (screenWidth < 768) visibleSlides = 3;
         else if (screenWidth < 990) visibleSlides = 3;
         else if (screenWidth < 1200) visibleSlides = 5;

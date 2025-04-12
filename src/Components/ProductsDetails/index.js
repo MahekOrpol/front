@@ -101,7 +101,7 @@ Please let me know the next steps.`;
 
       try {
         const response = await axios.get(
-          `http://192.168.1.9:3000/api/v1/order-details/user/${userId}`
+          `http://192.168.1.9:3000/api/v1/order-details/get/${userId}`
         );
         const count = response.data.length || 0;
         setCartCount(count);
@@ -1088,7 +1088,7 @@ Please let me know the next steps.`;
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
             <img src={require("../../Images/Groupimg.png")} />
           </div>
-          <div className="heder_sec_main d-flex flex-column">
+          <div className="heder_sec_main d-flex flex-column p-0">
             <div className="row">
               {relatedProducts.map((product) => (
                 <div
@@ -1156,36 +1156,37 @@ Please let me know the next steps.`;
                 </div>
               ))}
 
-              <div className="slider_ssss_fdcdf ">
+<div className="slider_ssss_fdcdf ">
                 <Swiper
                   spaceBetween={0}
+                  slidesPerView={2}
                   breakpoints={{
-                    1200: { slidesPerView: 4 }, // Large screen - 4 cards
-                    992: { slidesPerView: 3 }, // Below 1200px - 3 cards
-                    768: { slidesPerView: 3 }, // Below 992px - 2 cards
-                    500: { slidesPerView: 2 }, // Below 992px - 2 cards
-                    0: { slidesPerView: 1 }, // Mobile - 1 card
+                    1200: { slidesPerView: 4 },
+                    810: { slidesPerView: 3 },
+                    768: { slidesPerView: 2 },
+                    500: { slidesPerView: 2 },
+                    // 0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
-                  // autoplay={{
-                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                  //   disableOnInteraction: false,
-                  // }}
-                  // modules={[Autoplay]}
+                // autoplay={{
+                //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                //   disableOnInteraction: false,
+                // }}
+                // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
                       <div
-                        className="card prio_card scdscsed_sdss"
+                        className="card prio_card scdscsed_sdss fgfdddds"
                         onMouseEnter={() => setHoveredProduct(product.id)}
                         onMouseLeave={() => setHoveredProduct(null)}
                       >
                         <div className="card-image-wrapper position-relative">
-                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 dssdd">
                             NEW
                           </button>
                           <div
-                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2 fhhdd"
                             onClick={() => toggleFavorite(product.id)}
                             style={{ cursor: "pointer" }}
                           >
@@ -1214,7 +1215,7 @@ Please let me know the next steps.`;
                       </div>
 
                       <div className="d-flex flex-column main_cdsss">
-                        <span className="mikdec_asdaa pt-3">
+                        <span className="mikdec_asdaa pt-3 wssddd text-truncate">
                           {product.productName}
                         </span>
                         <div className="d-flex align-items-center gap-3 pt-1">
@@ -1226,15 +1227,15 @@ Please let me know the next steps.`;
                             {product.regularPrice?.$numberDecimal}
                           </span>
                         </div>
-                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 hjghfd">
                           <button
-                            className="more_btn_dsdd w-50"
+                            className="more_btn_dsdd w-50 rtrddg"
                             onClick={() => handleProductClick(product.id)}
                           >
                             More Info
                           </button>
                           <button
-                            className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                            className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3 add_avai"
                             onClick={() => addToCart(productDetails)}
                           >
                             Add to Cart <BiShoppingBag size={25} />
@@ -1248,6 +1249,7 @@ Please let me know the next steps.`;
             </div>
           </div>
         </div>
+        <div class="pb-5"></div>
         <Footer />
       </div>
     </div>

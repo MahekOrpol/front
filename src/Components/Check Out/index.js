@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import logo1 from '../../Images/Frame 193.png';
+import logo1 from "../../Images/Frame 193.png";
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({}); // State to store error messages
@@ -30,12 +30,12 @@ const CheckoutPage = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-      
+
     // Special handling for phone number
-    if (name === 'phoneNumber') {
+    if (name === "phoneNumber") {
       // Remove all non-digit characters and limit to 10 digits
-      const cleanedValue = value.replace(/\D/g, '').slice(0, 10);
-      
+      const cleanedValue = value.replace(/\D/g, "").slice(0, 10);
+
       setFormData((prevData) => ({
         ...prevData,
         [name]: cleanedValue, // Store only the raw digits
@@ -50,27 +50,27 @@ const CheckoutPage = () => {
 
   const validatePhoneNumber = (e) => {
     const { name, value } = e.target;
-    const cleanedValue = value.replace(/\D/g, ''); // Remove formatting
-    
-    let error = '';
-    
+    const cleanedValue = value.replace(/\D/g, ""); // Remove formatting
+
+    let error = "";
+
     if (!value) {
-      error = 'Phone number is required';
+      error = "Phone number is required";
     } else if (cleanedValue.length < 10) {
-      error = 'Phone number must be at least 10 digits';
+      error = "Phone number must be at least 10 digits";
     } else if (!/^[0-9]{10,15}$/.test(cleanedValue)) {
-      error = 'Please enter a valid phone number';
+      error = "Please enter a valid phone number";
     }
-    
-    setErrors(prev => ({
+
+    setErrors((prev) => ({
       ...prev,
-      [name]: error
+      [name]: error,
     }));
-    
+
     // Return true if valid (optional)
     return !error;
   };
-  
+
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
@@ -216,12 +216,7 @@ const CheckoutPage = () => {
   return (
     <div>
       <div className="d-flex p-0 justify-content-center w-100 bdsh_mIN">
-        <img
-          src={logo1}
-          onClick={() => navigate("/")}
-          alt="Logo"
-          width={200}
-        />
+        <img src={logo1} onClick={() => navigate("/")} alt="Logo" width={200} />
       </div>
       {/* <Header /> */}
       <div className="gffg d-md-flex">
@@ -392,18 +387,20 @@ const CheckoutPage = () => {
                       width="20"
                     />
                     <Form.Control
-                       type="tel"
-                       placeholder="Phone Number"
-                       name="payPhoneNumber"
-                       value={formData.payPhoneNumber}
-                       onChange={handleInputChange}
-                       onBlur={validatePhoneNumber} // Add blur validation
-                       className="Box BoxFont"
-                       maxLength="10" // Limit input length
-                     />
-                     {errors.payPhoneNumber && (
-                       <span className="error-flksssss">{errors.payPhoneNumber}</span>
-                     )}
+                      type="tel"
+                      placeholder="Phone Number"
+                      name="payPhoneNumber"
+                      value={formData.payPhoneNumber}
+                      onChange={handleInputChange}
+                      onBlur={validatePhoneNumber} // Add blur validation
+                      className="Box BoxFont"
+                      maxLength="10" // Limit input length
+                    />
+                    {errors.payPhoneNumber && (
+                      <span className="error-flksssss">
+                        {errors.payPhoneNumber}
+                      </span>
+                    )}
                   </Col>
                 </Row>
               </div>
@@ -443,8 +440,8 @@ const CheckoutPage = () => {
               const displayPrice = item.productId.hasVariations
                 ? item.salePrice // Use the size-specific sale price
                 : item.productPrice?.$numberDecimal
-                  ? parseFloat(item.productPrice.$numberDecimal)
-                  : "Price not available";
+                ? parseFloat(item.productPrice.$numberDecimal)
+                : "Price not available";
               return (
                 <div className="order-item" key={index}>
                   <img
@@ -458,9 +455,11 @@ const CheckoutPage = () => {
                       <span className="fs5 check_outpgedetail text-truncate">
                         {item.productId.productsDescription}
                       </span>{" "}
-                      <span className="fs5">
-                        Ring size: {item.selectedSize}
-                      </span>
+                      {item.selectedSize !== "[]" && (
+                        <span className="fs5">
+                          Ring size: {item.selectedSize}
+                        </span>
+                      )}
                     </div>
                     <strong className="order-price">
                       {/* {item?.productPrice?.$numberDecimal

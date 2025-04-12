@@ -4,10 +4,16 @@ import { GoTrash } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const CartPopup = ({ isOpen, closeCart, showToast, toastMessage, setCartCount }) => {
+const CartPopup = ({
+  isOpen,
+  closeCart,
+  showToast,
+  toastMessage,
+  setCartCount,
+}) => {
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState([]);
 
@@ -43,13 +49,46 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage, setCartCount })
       .toFixed(2);
   };
 
-  const handleQuantityChange = (index, change) => {
+  // const handleQuantityChange = (index, change) => {
+  //   const updatedItems = orderDetails.map((item, i) =>
+  //     i === index
+  //       ? { ...item, quantity: Math.max(1, item.quantity + change) }
+  //       : item
+  //   );
+  //   setOrderDetails(updatedItems);
+  // };
+
+  const handleQuantityChange = async (index, change) => {
     const updatedItems = orderDetails.map((item, i) =>
       i === index
         ? { ...item, quantity: Math.max(1, item.quantity + change) }
         : item
     );
+
+    const updatedItem = updatedItems[index];
     setOrderDetails(updatedItems);
+
+    const userId = localStorage.getItem("user_Id");
+    const productId = updatedItem.productId?.id;
+
+    console.log("Calling update API with:");
+    console.log("User ID:", userId);
+    console.log("Product ID:", productId);
+    console.log("Quantity:", updatedItem.quantity);
+
+    if (userId && productId) {
+      try {
+        await axios.put(
+          `http://localhost:3000/api/v1/order-details/update/${userId}/${productId}`,
+          {
+            selectedqty: JSON.stringify(updatedItem.quantity),
+          }
+        );
+        console.log("Quantity updated");
+      } catch (error) {
+        console.error("Error updating quantity:", error);
+      }
+    }
   };
 
   useEffect(() => {
@@ -87,7 +126,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage, setCartCount })
         const updatedItems = orderDetails.filter((_, i) => i !== index);
         setOrderDetails(updatedItems);
         setCartCount(updatedItems.length);
-        localStorage.setItem('cartCount', updatedItems.length);
+        localStorage.setItem("cartCount", updatedItems.length);
         toast.success("Removed from Cart!");
       }
     } catch (err) {
@@ -131,11 +170,11 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage, setCartCount })
             selectedSize,
             salePrice,
           };
-        })
+        });
         setOrderDetails(items);
         if (setCartCount) {
           setCartCount(items.length);
-          localStorage.setItem('cartCount', items.length);
+          localStorage.setItem("cartCount", items.length);
         }
       }
     } catch (err) {
@@ -195,46 +234,76 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage, setCartCount })
                 }}
               />
               <div className="cart_item_detail">
-                <h5 className="fw-bold mb-1 text-truncate">
+                <h5 className="fw-bold mb-1 text-truncate d-flex align-items-center justify-content-between secure_chckotfre">
                   {item.productId?.productName}
                 </h5>
                 <div className="d-flex align-items-center justify-content-between">
-                  <div className="d-flex align-items-center w-100">
+                  {/* <div className="d-flex align-items-center w-100 secure_chckotfre">
                     <p className="m-0">Ring Size :</p>
-                    {/* <select
-                      className="dropdown_size w-50 p-1"
-                      style={{ borderRadius: "5px" }}
-                      value={item.selectedSize}
-                      onChange={(e) => handleSizeChange(index, e.target.value)}
-                    >
-                      {(Array.isArray(item.productId?.productSize) &&
-                      item.productId?.productSize.length > 0
-                        ? item.productId?.productSize[0].split(",") // Convert string to array
-                        : []
-                      ).map((size, i) => (
-                        <option key={i} value={size}>
-                          {size}
-                        </option>
-                      ))}
-                    </select> */}
+            
                     <select
                       className="dropdown_size w-50 p-1"
                       style={{ borderRadius: "5px" }}
-                      value={orderDetails[index]?.selectedSize || item.selectedSize} // Ensure state value is correctly assigned
+                      value={
+                        orderDetails[index]?.selectedSize ||
+                        item.selectedSize ||
+                        "" // fallback to empty string if no value
+                      }
                       onChange={(e) => handleSizeChange(index, e.target.value)}
+                      required
                     >
-                      {(Array.isArray(item.productId?.productSize) &&
-                        item.productId?.productSize.length > 0
-                        ? item.productId?.productSize[0].split(",") // Convert string to array
-                        : []
-                      ).map((size, i) => (
-                        <option key={i} value={size}>
-                          {size}
-                        </option>
-                      ))}
+                      <option value="" disabled>
+                        Select Size
+                      </option>
+
+                      {Array.isArray(item.productId?.productSize) &&
+                        item.productId?.productSize.length > 0 &&
+                        item.productId?.productSize[0]
+                          .split(",")
+                          .map((size, i) => (
+                            <option key={i} value={size}>
+                              {size}
+                            </option>
+                          ))}
                     </select>
-                  </div>
-                  <p className="fw-bold m-0">
+
+                  </div> */}
+                  {Array.isArray(item.productId?.productSize) &&
+                    item.productId.productSize.length > 0 &&
+                    item.productId.productSize[0] !== "[]" && // filter out invalid stringified array
+                    item.productId.productSize[0]
+                      .split(",")
+                      .filter((size) => size.trim() !== "").length > 0 && (
+                      <div className="d-flex align-items-center w-100 secure_chckotfre w-100" style={{whiteSpace:'nowrap'}}>
+                        <p className="m-0">Ring Size :</p>
+                        <select
+                          className="dropdown_size w-50 p-1"
+                          style={{ borderRadius: "5px" }}
+                          value={
+                            orderDetails[index]?.selectedSize ||
+                            item.selectedSize ||
+                            ""
+                          }
+                          onChange={(e) =>
+                            handleSizeChange(index, e.target.value)
+                          }
+                          required
+                        >
+                          <option value="" disabled>
+                            Select Size
+                          </option>
+                          {item.productId.productSize[0]
+                            .split(",")
+                            .map((size, i) => (
+                              <option key={i} value={size}>
+                                {size}
+                              </option>
+                            ))}
+                        </select>
+                      </div>
+                    )}
+
+                  <p className="fw-bold m-0 secure_chckotfre d-flex justify-content-end w-100">
                     {/* ₹
                     {(
                       parseFloat(
@@ -266,7 +335,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage, setCartCount })
                   <div
                     className="delete mt-2"
                     onClick={() => handleRemoveItem(item.id, index)}
-                    style={{cursor:'pointer'}}
+                    style={{ cursor: "pointer" }}
                   >
                     <GoTrash size={25} />
                   </div>
@@ -286,8 +355,27 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage, setCartCount })
             <h5 className="fw-bold">₹{calculateTotal()}</h5>
           </div>
           <button
-            className="btn btn_check_out w-100"
+            className="btn btn_check_out w-100 secure_chckotfre"
             onClick={() => {
+              const invalidItem = orderDetails.find(
+                (item) => !item.selectedSize || item.selectedSize === ""
+              );
+
+              if (invalidItem) {
+                toast.error(
+                  "Please select size for all items before checkout",
+                  {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                  }
+                );
+                return;
+              }
+
               navigate("/checkout", {
                 state: {
                   total: calculateTotal(),

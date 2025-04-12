@@ -172,7 +172,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://192.168.1.9:3000/api/v1/order-details/user/${userId}`
+          `http://192.168.1.9:3000/api/v1/order-details/get/${userId}`
         );
         const count = response.data.length || 0;
         setCartCount(count);
@@ -786,9 +786,9 @@ const Home = () => {
       <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount}/>
 
         <div>
-          <img src={require('../../Images/Frame 207.svg').default} className="img_fluid1_banner hoe_page_main_bvannei" />
+          {/* <img src={require('../../Images/Frame 207.svg').default} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
           {/* <div className="hoe_page_main_bvannei"></div> */}
-          {/* <JewelrySale /> */}
+          <JewelrySale />
         </div>
 
         <div className="d-flex flex-column align-items-center hdr_csd p-0 sdcds_cate">

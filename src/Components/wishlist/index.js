@@ -36,7 +36,7 @@ const Wishlist = () => {
 
       try {
         const response = await axios.get(
-          `http://192.168.1.9:3000/api/v1/order-details/user/${userId}`
+          `http://192.168.1.9:3000/api/v1/order-details/get/${userId}`
         );
         const count = response.data.length || 0;
         setCartCount(count);
