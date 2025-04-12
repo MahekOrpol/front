@@ -163,12 +163,9 @@ Please let me know the next steps.`;
     const formData = new FormData();
     formData.append("categoryName", categoryName);
     axios
-      .get(
-        `http://192.168.1.9:3000/api/v1/product/get-related-product`,
-        {
-          params: { categoryName },
-        }
-      ) // Use params for GET
+      .get(`http://192.168.1.9:3000/api/v1/product/get-related-product`, {
+        params: { categoryName },
+      }) // Use params for GET
       .then((response) => {
         setRelatedProducts(response.data || []);
       })
@@ -877,7 +874,8 @@ Please let me know the next steps.`;
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
                         onClick={() => addToCart(productDetails)}
                       >
-                        Add to Cart <BiShoppingBag size={25} className="sopgdd" />
+                        Add to Cart{" "}
+                        <BiShoppingBag size={25} className="sopgdd" />
                       </button>
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
@@ -893,10 +891,10 @@ Please let me know the next steps.`;
                       target="_blank"
                       rel="noopener noreferrer"
                       className="d-flex align-items-center w-100 whats_abtn_1 txt_shu justify-content-center gap-1"
-                    // onClick={() => {
-                    //   window.open("https://wa.me/919099975424", "_blank");
-                    // }}
-                    // onClick={() => addToCart(productDetails)}
+                      // onClick={() => {
+                      //   window.open("https://wa.me/919099975424", "_blank");
+                      // }}
+                      // onClick={() => addToCart(productDetails)}
                     >
                       Order On Whatsapp{" "}
                       <span className="whatsapp-icon">
@@ -921,33 +919,37 @@ Please let me know the next steps.`;
                     </div>
                   </div>
                 </div>
-                <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_ttt">
-                  <div className="icon-box">
+                <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_tttdd">
+                  <div className="icon-bdf">
                     <img
-                      src={require("../../Images/lifetime.png")}
-                      alt="Lifetime Exchange"
+                      src={require('../../Images/material.png')}
+                      alt="AVOID WATER / MOISTURE"
                     />
+                    <span>AVOID WATER / MOISTURE</span>
                   </div>
                   <div className="divider"></div>
-                  <div className="icon-box">
+                  <div className="icon-bdf">
                     <img
-                      src={require("../../Images/cirti.png")}
-                      alt="Certified Jewellery"
+                      src={require('../../Images/oeeofiw.png')}
+                      alt="REMOVE BEFORE SLEEPING"
                     />
+                    <span>REMOVE BEFORE SLEEPING</span>
                   </div>
                   <div className="divider szcxds_fix"></div>
-                  <div className="icon-box">
+                  <div className="icon-bdf">
                     <img
-                      src={require("../../Images/sev.png")}
-                      alt="Secure Payment"
+                      src={require('../../Images/fragrance_6211860.png')}
+                      alt="AVOID PERFUME / LOTION"
                     />
+                    <span>AVOID PERFUME / LOTION</span>
                   </div>
                   <div className="divider"></div>
-                  <div className="icon-box">
+                  <div className="icon-bdf">
                     <img
-                      src={require("../../Images/day.png")}
-                      alt="30 Days Return"
+                      src={require('../../Images/box_14309182 (1).png')}
+                      alt="USE SOFT / DRY FABRIC TO CLEAN"
                     />
+                    <span>USE SOFT / DRY FABRIC TO CLEAN</span>
                   </div>
                 </div>
 
@@ -982,13 +984,18 @@ Please let me know the next steps.`;
                       <div className="offer-container w-100">
                         <h5 className="fw-bold mb-4 offe_dscdfcc">
                           Offers For You{" "}
-                         
                         </h5>
 
-                        <div className="accordion w-100 mhkmhkfdv" id="offerAccordion">
+                        <div
+                          className="accordion w-100 mhkmhkfdv"
+                          id="offerAccordion"
+                        >
                           {/* Offer 1 */}
                           <div className="accordion-item w-100">
-                            <h2 className="accordion-header w-100" id="headingOne">
+                            <h2
+                              className="accordion-header w-100"
+                              id="headingOne"
+                            >
                               <button
                                 className="accordion-button d-flex align-items-center w-100 dxvfdfrv"
                                 type="button"
@@ -998,13 +1005,14 @@ Please let me know the next steps.`;
                                 aria-controls="collapseOne"
                               >
                                 <img
-                                  src={require('../../Images/Frame (23).svg').default}
+                                  src={
+                                    require("../../Images/Frame (23).svg")
+                                      .default
+                                  }
                                   className="offer-icon"
                                   alt="Offer Icon"
                                 />
-                               <b> 
-                                FLAT 100₹ off
-                                </b> 
+                                <b>FLAT 100₹ off</b>
                               </button>
                             </h2>
                             <div
@@ -1156,7 +1164,7 @@ Please let me know the next steps.`;
                 </div>
               ))}
 
-<div className="slider_ssss_fdcdf ">
+              <div className="slider_ssss_fdcdf ">
                 <Swiper
                   spaceBetween={0}
                   slidesPerView={2}
@@ -1168,11 +1176,11 @@ Please let me know the next steps.`;
                     // 0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
-                // autoplay={{
-                //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                //   disableOnInteraction: false,
-                // }}
-                // modules={[Autoplay]}
+                  // autoplay={{
+                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                  //   disableOnInteraction: false,
+                  // }}
+                  // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>

@@ -79,7 +79,7 @@ const CartPopup = ({
     if (userId && productId) {
       try {
         await axios.put(
-          `http://localhost:3000/api/v1/order-details/update/${userId}/${productId}`,
+          `http://192.168.1.9:3000/api/v1/order-details/update/${userId}/${productId}`,
           {
             selectedqty: JSON.stringify(updatedItem.quantity),
           }
@@ -234,7 +234,7 @@ const CartPopup = ({
                 }}
               />
               <div className="cart_item_detail">
-                <h5 className="fw-bold mb-1 text-truncate d-flex align-items-center justify-content-between secure_chckotfre">
+                <h5 className="fw-bold mb-1 d-flex align-items-center justify-content-between secure_chckotfre">
                   {item.productId?.productName}
                 </h5>
                 <div className="d-flex align-items-center justify-content-between">
@@ -277,7 +277,7 @@ const CartPopup = ({
                       <div className="d-flex align-items-center w-100 secure_chckotfre w-100" style={{whiteSpace:'nowrap'}}>
                         <p className="m-0">Ring Size :</p>
                         <select
-                          className="dropdown_size w-50 p-1"
+                          className="dropdown_size p-1"
                           style={{ borderRadius: "5px" }}
                           value={
                             orderDetails[index]?.selectedSize ||

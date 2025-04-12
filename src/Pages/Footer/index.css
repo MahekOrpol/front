@@ -9,7 +9,7 @@
 }
 
 .use_sdc {
-  font-family: "DM Serif Text", serif;
+  font-family: "DM Serif Text", serif !important;
   font-weight: 400;
   font-size: 25px !important;
   line-height: 100%;
@@ -435,6 +435,17 @@
     font-size: 15px;
   }
 }
+@media (max-width:768px) {
+  .COPY_RIGHT_LINE {
+    line-height: 18px !important;
+    margin: auto;
+    padding: 0;
+    padding-bottom: 4px;
+    font-size: 15px;
+  }
+
+}
+
 
 .COPY_RIGHT_LINE {
   line-height: 24px;
@@ -591,6 +602,8 @@
 
 .use_sdc_1 {
   font-size: 39px;
+  font-family: "Cabin", sans-serif;
+  
 }
 
 .footer_emi_1 {
@@ -615,7 +628,7 @@
 }
 
 .use_sdc_2 {
-  font-family: "DM Serif Text", serif;
+  font-family: "DM Serif Text", serif !important;
   font-weight: 400;
   font-size: 1.2rem !important;
   line-height: 100%;

@@ -1646,3 +1646,122 @@
 .dxvfdfrv{
   font-size: 19px;
 }
+
+.fdcvd_life_tttdd {
+  display: flex;
+  flex-wrap: wrap;
+  font-family: 'Cabin', sans-serif;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.fdcvd_life_tttdd .icon-bdf {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  text-align: center;
+}
+
+.fdcvd_life_tttdd .icon-bdf img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.fdcvd_life_tttdd .icon-bdf span {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: normal;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.fdcvd_life_tttdd .divider {
+  width: 1px;
+  height: 100px;
+  background-color: black;
+}
+
+@media(min-width:1085px) and (max-width:1200px) {
+  .fdcvd_life_tttdd .icon-bdf span {
+    font-size: 14px;
+  }
+
+  .fdcvd_life_tttdd .icon-bdf img {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+@media(min-width:992px) and (max-width:1084px) {
+  .fdcvd_life_tttdd .icon-bdf span {
+    font-size: 12px;
+  }
+}
+
+@media(min-width:857px) and (max-width:991px) {
+  .fdcvd_life_tttdd .icon-bdf span {
+    font-size: 10px;
+  }
+
+  .fdcvd_life_tttdd .icon-bdf img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media(min-width:768px) and (max-width:856px) {
+  .fdcvd_life_tttdd .icon-bdf span {
+    font-size: 8px;
+  }
+
+  .fdcvd_life_tttdd .icon-bdf img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .fdcvd_life_tttdd .divider {
+    height: 80px;
+  }
+}
+
+@media(min-width:440px) and (max-width:606px) {
+  .fdcvd_life_tttdd .icon-bdf span {
+    font-size: 13px;
+  }
+}
+
+@media(min-width:390px) and (max-width:439px) {
+  .fdcvd_life_tttdd .icon-bdf span {
+    font-size: 9px;
+  }
+
+  .fdcvd_life_tttdd .icon-bdf img {
+    width: 51px;
+    height: 51px;
+  }
+}
+
+@media(min-width:300px) and (max-width:389px) {
+  .fdcvd_life_tttdd .icon-bdf span {
+    font-size: 8px;
+  }
+
+  .fdcvd_life_tttdd .icon-bdf img {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media(max-width:496px) {
+  .fdcvd_life_tttdd .divider {
+    display: none;
+  }
+
+  .szcxds_fix {
+    display: none !important;
+  }
+}

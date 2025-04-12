@@ -88,6 +88,21 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
     navigate("/");
   };
 
+  useEffect(() => {
+    const body = document.body;
+  
+    if (isDrawerOpen || showSignup) {
+      body.classList.add("no-scroll");
+    } else {
+      body.classList.remove("no-scroll");
+    }
+  
+    return () => {
+      body.classList.remove("no-scroll");
+    };
+  }, [isDrawerOpen,showSignup]);
+  
+
   return (
     <>
       <div className="header_main">
@@ -360,29 +375,8 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             <IoClose size={30} onClick={toggleDrawer} />
           </div>
         </div>
-        <div className="drawer-menu">
-          {/* <div className="d-flex" style={{ padding: '10px 0' }}>
-            <input
-              type="text"
-              placeholder="Search Product Here"
-              className="flex-1 outline-none text-gray-700 w-100 px-2 rfvfd_UHGYU"
-              style={{ height: '2.5rem' }}
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-            />
-            <button
-              className="p-3 rounded-r-full d-flex align-items-center justify-content-center search_hbdhj bg_prime"
-              style={{
-                height: "2.5rem",
-                borderRadius: "0px 5px 6px 0px",
-                border: "none",
-                padding: "0.8rem",
-              }}
-              onClick={handleSearch}
-            >
-              <FaSearch />
-            </button>
-          </div> */}
+        <div className="drawer-menu ">
+        
           <div className="position-relative mb-3 w-100">
             <Search className="position-absolute top-50 start-0 translate-middle-y ms-2 text-muted" />
             <input
@@ -395,7 +389,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             />
           </div>
 
-          <div className="drawer-pro">
+          <div className="drawer-pro ">
             <div className="eeerd">
               <span className="drawer-new">CATEGORY</span>
               <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Rings")}>
@@ -478,11 +472,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             navigate('/register')
           }}
         >
-          {/* <img src={usericon} alt="User Icon" />
-        <div className="d-flex flex-column align-items-center pt-2" style={{ lineHeight: "25px" }}>
-          <span className="sign_txt w-100">Sign In</span>
-          <span className="acco9_text w-100">Account</span>
-        </div> */}
+         
         </div>
       </div >
 

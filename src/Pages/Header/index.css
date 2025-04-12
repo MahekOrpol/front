@@ -762,3 +762,11 @@
    padding-right: 1.5rem !important;
   }
  }
+
+
+ .no-scroll {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+}
+

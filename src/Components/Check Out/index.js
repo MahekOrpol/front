@@ -462,11 +462,7 @@ const CheckoutPage = () => {
                       )}
                     </div>
                     <strong className="order-price">
-                      {/* {item?.productPrice?.$numberDecimal
-                        ? parseFloat(
-                            item.productPrice.$numberDecimal
-                          ).toLocaleString()
-                        : "Price not available"} */}
+                      
                       ₹ {displayPrice}
                     </strong>
                   </div>
