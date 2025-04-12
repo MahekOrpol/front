@@ -8,6 +8,10 @@
   margin-top: 10rem;
 }
 
+.footr_lnk{
+  font-family: "Cabin", sans-serif;
+
+}
 .use_sdc {
   font-family: "DM Serif Text", serif !important;
   font-weight: 400;

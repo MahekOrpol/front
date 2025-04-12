@@ -70,7 +70,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
 
   const getProfileData = async () => {
     try {
-      const res = await axios.get(`http://192.168.1.9:3000/api/v1/users/${user_Id}`);
+      const res = await axios.get(`https://crystova.cloudbusiness.cloud/api/v1/users/${user_Id}`);
       setData(res.data);
     } catch (err) {
       console.log(err);

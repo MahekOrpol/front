@@ -119,8 +119,8 @@ const CheckoutPage = () => {
       }
       // Step 1: Create an order via API
       const response = await axios.post(
-        // "http://192.168.1.9:3000/api/v1/order/create",
-        "http://192.168.1.9:3000/api/v1/payment/create-razorpay-order",
+        // "https://crystova.cloudbusiness.cloud/api/v1/order/create",
+        "https://crystova.cloudbusiness.cloud/api/v1/payment/create-razorpay-order",
         payload
       );
 
@@ -146,7 +146,7 @@ const CheckoutPage = () => {
               razorpay_signature: response.razorpay_signature,
             };
             const verifyPayment = await axios.post(
-              "http://192.168.1.9:3000/api/v1/payment/verify-razorpay-order",
+              "https://crystova.cloudbusiness.cloud/api/v1/payment/verify-razorpay-order",
               body
             );
             if (verifyPayment.status === 200) {
@@ -175,7 +175,7 @@ const CheckoutPage = () => {
               console.log("quantity :>> ", quantity);
 
               const res = await axios.post(
-                "http://192.168.1.9:3000/api/v1/order/create",
+                "https://crystova.cloudbusiness.cloud/api/v1/order/create",
                 payload
               );
 
@@ -445,7 +445,7 @@ const CheckoutPage = () => {
               return (
                 <div className="order-item" key={index}>
                   <img
-                    src={`http://192.168.1.9:3000${item.productId.image[0]}`}
+                    src={`https://crystova.cloudbusiness.cloud${item.productId.image[0]}`}
                     alt={item.productId.productId}
                     className="order-item-img"
                   />
