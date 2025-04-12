@@ -234,7 +234,7 @@ const Wishlist = () => {
         <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount}/>
         <div className="container">
           <div className="hdr_csd flex-column align-items-center produ_sss">
-            <div className="row pt-sm-5">
+            <div className="row">
               {wishlist.map(({ productId, id }) => (
                 <div
                   key={id}

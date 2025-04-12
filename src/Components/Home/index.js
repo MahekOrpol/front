@@ -1452,30 +1452,35 @@ const Home = () => {
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
           <div className="pt-3 container djb_dsjvn mx-2">
             <div className="row justify-content-evenly scc_gift_edit_sdsd gap-2">
-              <div className="d-flex flex-column align-items-center gap-3  offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
+            <div
+  title="Explore products under ₹999"
+  className="d-flex flex-column align-items-center gap-3 offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss"
+  onClick={() => navigate('/products?price=under-999')}
+>
+  <span className="under_cimn">Under</span>
+  <span className="under_cimn">₹999</span>
+  <span className="next_arrow p-2">
+    <GrNext size={28} />
+  </span>
+</div>
+
+              <div  title="Explore products under ₹1,999" className="d-flex flex-column align-items-center gap-3 offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss" onClick={() => navigate('/products?price=under-1999')}>
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3  offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
+              <div   title="Explore products under ₹2,999" className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss" onClick={() => navigate('/products?price=under-2999')}>
                 <span className="under_cimn">Under</span>
-                <span className="under_cimn">₹1,999</span>
+                <span className="under_cimn">₹2,9999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3  offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
+              <div   title="Explore products under ₹3,999" className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss" onClick={() => navigate('/products?price=under-3999')}>
                 <span className="under_cimn">Under</span>
-                <span className="under_cimn">₹1,999</span>
-                <span className="next_arrow p-2">
-                  <GrNext size={28} />
-                </span>
-              </div>
-              <div className="d-flex flex-column align-items-center gap-3  offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
-                <span className="under_cimn">Under</span>
-                <span className="under_cimn">₹1,999</span>
+                <span className="under_cimn">₹3,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
