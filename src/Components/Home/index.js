@@ -1758,8 +1758,8 @@ const Home = () => {
               slidesPerView={slidesPerView}
               slidesPerGroup={1}
               loopedSlides={testimonials.length}
-              modules={[Pagination, Autoplay]}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              modules={[Pagination]}
+              // autoplay={{ delay: 3000, disableOnInteraction: false }}
               observer={true} // Observe changes
               observeParents={true} // Observe parent element changes
               onSwiper={(swiper) => (swiperRef.current = swiper)}
@@ -1774,17 +1774,15 @@ const Home = () => {
                         index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
                       } mt-5`}
                     >
-                      <div className="card-body pt-5">
+                      <div className="card-body pt-4">
                         <h5 className="card-title text-center emi_ffcc">
                           Emily Carol
                         </h5>
                         <p className="card-text sdcdscsd text-center">
                           I wanted a custom bracelet to honor my daughter’s
                           birth, and the designers exceeded my expectations.
-                          They listened to every detail I envisioned and brought
-                          it to life. It’s a masterpiece I’ll cherish forever.
                         </p>
-                        <p className="text-center sdcdscsd">Client</p>
+                        <p className="text-center sdcdscsd pb-0 mb-1">Client</p>
                         <div className="d-flex justify-content-center align-items-center">
                           <FaStar color="#DBB439" />
                           <FaStar color="#DBB439" />
