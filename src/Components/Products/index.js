@@ -250,35 +250,42 @@ const Products = () => {
 
   const handleApplyFilters = async () => {
     let url = `http://192.168.1.9:3000/api/v1/product/get?`;
-
-    // Append selected categories as query parameters
-    if (selectedCategories.length > 0) {
-      url += `categoryName=${selectedCategories.join(",")}&`;
-    }
-
-    // Append price range as query parameters
+    let products = [];
+    // Build base URL with price range
     url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
-
-    if (searchQuery) {
-      url += `search=${searchQuery}&`; // Append search query parameter
-    }
-
     try {
-      const response = await axios.get(url);
-      const sortedProducts = sortProducts(response.data, selectedOption);
+      if (selectedCategories.length > 0) {
+        // Fetch products for each selected category
+        const fetchPromises = selectedCategories.map(async (category) => {
+          const categoryUrl = `${url}&categoryName=${category}`;
+          const response = await axios.get(categoryUrl);
+          return response.data;
+        });
+        // Wait for all promises to resolve and flatten results
+        const results = await Promise.all(fetchPromises);
+        products = results.flat();
+      } else {
+        // If no categories selected, fetch all products
+        const response = await axios.get(url);
+        products = response.data;
+      }
+      // Sort products
+      const sortedProducts = sortProducts(products, selectedOption);
+      // Apply search filter if search query exists
+      if (searchQuery.trim() !== "") {
+        const searchTerm = searchQuery.toLowerCase().trim();
+        const filtered = sortedProducts.filter(product =>
+          product.productName.toLowerCase().includes(searchTerm) ||
+          (product.categoryName?.toLowerCase().includes(searchTerm))
+        );
+        setFilteredProducts(filtered);
+      } else {
+        setFilteredProducts(sortedProducts);
+      }
+      // Update states
       setProductList(sortedProducts);
       setIsFilterVisible(false);
       setIsSearchActive(searchQuery.trim() !== "");
-      if (searchQuery.trim() !== "") {
-        const searchTerm = searchQuery.toLowerCase().trim();
-        const results = sortedProducts.filter(product =>
-          product.productName.toLowerCase().includes(searchTerm)
-        );
-        setFilteredProducts(results);
-      } else {
-        setFilteredProducts(sortedProducts)
-      }
-
     } catch (error) {
       console.error("Error fetching filtered products:", error);
     }

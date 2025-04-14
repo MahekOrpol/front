@@ -554,94 +554,7 @@ Please let me know the next steps.`;
                 </Swiper>
               </div>
             </div>
-            {/* <div
-              className="row col-md-6 gap-2 dfcdfsc_drtvdvdf"
-              style={{ position: "sticky", top: "5px" }}
-            >
-              {productDetails?.image?.length > 0 &&
-                productDetails.image.map((media, index) => (
-                  <div key={index} className="col-md-5 border vider_saxasxs">
-                    {media.endsWith(".mp4") ? (
-                      <video
-                        src={`http://192.168.1.9:3000${media}`}
-                        className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                        autoPlay
-                        loop
-                        muted
-                        // controls
-                      />
-                    ) : (
-                      <img
-                        src={`http://192.168.1.9:3000${media}`}
-                        className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                        alt={productDetails?.productName || "Product image"}
-                      />
-                    )}
-                  </div>
-                ))}
-            </div> */}
-
-            {/* <div
-              className="row col-md-6 gap-2 dfcdfsc_drtvdvdf"
-              style={{ position: "sticky", top: "5px" }}
-            >
-              {productDetails?.image?.length > 0 && (
-                <>
-                   <div className="col-md-5 border vider_saxasxs">
-                    {productDetails.image[0].endsWith(".mp4") ? (
-                      <video
-                        src={`http://192.168.1.9:3000${productDetails.image[0]}`}
-                        className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                        autoPlay
-                        loop
-                        muted
-                      />
-                    ) : (
-                      <img
-                        src={`http://192.168.1.9:3000${productDetails.image[0]}`}
-                        className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                        alt={productDetails?.productName || "Product image"}
-                      />
-                    )}
-                  </div>
-
-                   {productDetails.image.length > 1 && (
-                    <div className="col-md-5 border vider_saxasxs">
-                       <Slider
-                        dots={true}
-                        infinite={true}
-                        speed={500}
-                        slidesToShow={1}
-                        slidesToScroll={1}
-                      >
-                        {productDetails.image.slice(1).map((media, index) => (
-                          <div key={index}>
-                            {media.endsWith(".mp4") ? (
-                              <video
-                                src={`http://192.168.1.9:3000${media}`}
-                                className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                                autoPlay
-                                loop
-                                muted
-                              />
-                            ) : (
-                              <img
-                                src={`http://192.168.1.9:3000${media}`}
-                                className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                                alt={
-                                  productDetails?.productName || "Product image"
-                                }
-                              />
-                            )}
-                          </div>
-                        ))}
-                      </Slider>
-                    </div>
-                  )}
-                </>
-              )}
-            </div> */}
-
+           
             <div className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3">
               {/* Box 1: Video(s) */}
               <div className="col-md-6 border vider_saxasxs">
@@ -679,7 +592,6 @@ Please let me know the next steps.`;
                 )}
               </div>
 
-              {/* Box 2: Image[0] or Slider if more than 3 images */}
               <div className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv">
                 {images.length > 3 ? (
                   <Slider

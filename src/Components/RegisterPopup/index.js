@@ -38,10 +38,6 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     return (
       <ForgotPass
         isOpen={showForgotPass}
-        // onClose={() => {
-        //   setShowForgotPass(false);
-        //   onClose();
-        // }}
       />
     );
   }
@@ -58,12 +54,9 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   }
 
   const handleOverlayClick = (e) => {
-    // if (e.target.classList.contains("register-popup-overlay")) {
-    //   onClose();
-    // }
+ 
   };
-
-  // Validation functions
+ 
   const validateEmail = (email) => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
@@ -78,16 +71,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     let errors = {};
-
-    // if (!validateEmail(loginEmail)) {
-    //   errors.email = "Please enter a valid email";
-    // }
-
-    // if (!validatePassword(loginPassword)) {
-    //   errors.password =
-    //     "Password must be at least 6 characters long and include numbers & letters";
-    // }
-
+ 
     setLoginErrors(errors);
 
     if (Object.keys(errors).length === 0) {
@@ -174,22 +158,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
       }
     }
   };
-
-  // useEffect(() => {
-  //   // Reset login fields
-  //   setLoginEmail("");
-  //   setLoginPassword("");
-  //   setLoginErrors({});
-
-  //   // Reset register fields
-  //   setName("");
-  //   setEmail("");
-  //   setPhone("");
-  //   setPassword("");
-  //   setConfirmPassword("");
-  //   setRegisterErrors({});
-  // }, [tabValue]);
-
+ 
   if (!isOpen) return null;
 
   return (
@@ -325,7 +294,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                       </p>
                       <p className="otre">
                         Already have an Account?{" "}
-                        <span className="tvjgds">Create Account</span>
+                        <span className="tvjgds" onClick={() => setTabValue("register")}>Create Account</span>
                       </p>
                     </form>
                   </TabPanel>
@@ -517,7 +486,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         <span className="or-text">or</span>
                         <span className="or-line"></span>
                       </p>
-                      <div>
+                      <div className="ggl_text d-flex align-items-center gap-2 justify-content-center">
                         <img
                           src={googleIcon}
                           alt="Google Icon"
@@ -527,7 +496,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                       </div>
                       <p className="otre">
                         Already have an Account?{" "}
-                        <span className="tvjg">Create Account</span>
+                        <span className="tvjg" onClick={() => setTabValue("login")}>sign in</span>
                       </p>
                     </form>
                   </TabPanel>
