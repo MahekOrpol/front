@@ -41,7 +41,7 @@ const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://192.168.1.9:3000/api/v1/contact-us/create', formData);
+      const response = await axios.post('http://147.93.104.196/api/v1/contact-us/create', formData);
 
       if (response.status === 201) {
         toast.success("Thank you for contacting us! We'll get back to you soon.");
