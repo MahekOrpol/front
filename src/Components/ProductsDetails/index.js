@@ -101,7 +101,7 @@ Please let me know the next steps.`;
 
       try {
         const response = await axios.get(
-          `http://147.93.104.196/api/v1/order-details/get/${userId}`
+          `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
         );
         const count = response.data.length || 0;
         setCartCount(count);
@@ -141,7 +141,7 @@ Please let me know the next steps.`;
       // Fetch product data if not available in state
       axios
         .get(
-          `http://147.93.104.196/api/v1/product/get-product-id/${productId}`
+          `http://147.93.104.196:3000/api/v1/product/get-product-id/${productId}`
         )
         .then((response) => {
           console.log("Fetched product:", response.data);
@@ -163,7 +163,7 @@ Please let me know the next steps.`;
     const formData = new FormData();
     formData.append("categoryName", categoryName);
     axios
-      .get(`http://147.93.104.196/api/v1/product/get-related-product`, {
+      .get(`http://147.93.104.196:3000/api/v1/product/get-related-product`, {
         params: { categoryName },
       }) // Use params for GET
       .then((response) => {
@@ -217,7 +217,7 @@ Please let me know the next steps.`;
 
   const isVideo = (file) => file?.endsWith(".mp4");
 
-  // const getMediaURL = (path) => `http://147.93.104.196${path}`;
+  // const getMediaURL = (path) => `http://147.93.104.196:3000${path}`;
 
   useEffect(() => {
     if (
@@ -261,13 +261,13 @@ Please let me know the next steps.`;
         });
         setWishlistCount((prev) => prev - 1);
         const res = await axios.delete(
-          `http://147.93.104.196/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://147.93.104.196/api/v1/wishlist/create`,
+          `http://147.93.104.196:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -293,7 +293,7 @@ Please let me know the next steps.`;
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://147.93.104.196/api/v1/wishlist/${userId}`
+          `http://147.93.104.196:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -373,7 +373,7 @@ Please let me know the next steps.`;
 
       // Make the API request
       const response = await axios.post(
-        "http://147.93.104.196/api/v1/order-details/create",
+        "http://147.93.104.196:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -471,7 +471,7 @@ Please let me know the next steps.`;
                         {isVideo ? (
                           <video
                             className="detr_img bg-white"
-                            src={`http://147.93.104.196${img}`}
+                            src={`http://147.93.104.196:3000${img}`}
                             controls
                             autoPlay
                             loop
@@ -480,7 +480,7 @@ Please let me know the next steps.`;
                         ) : (
                           <img
                             className="detr_img bg-white"
-                            src={`http://147.93.104.196${img}`}
+                            src={`http://147.93.104.196:3000${img}`}
                             alt={`Product ${index + 1}`}
                           />
                         )}
@@ -532,7 +532,7 @@ Please let me know the next steps.`;
                           {isVideo ? (
                             <video
                               className="detr_img slider_ring_sss"
-                              src={`http://147.93.104.196${img}`}
+                              src={`http://147.93.104.196:3000${img}`}
                               controls
                               autoPlay
                               loop
@@ -541,7 +541,7 @@ Please let me know the next steps.`;
                           ) : (
                             <img
                               className="detr_img slider_ring_sss"
-                              src={`http://147.93.104.196${img}`}
+                              src={`http://147.93.104.196:3000${img}`}
                               alt={`Slide ${index + 1}`}
                             />
                           )}
@@ -560,7 +560,7 @@ Please let me know the next steps.`;
               <div className="col-md-6 border vider_saxasxs">
                 {videos.length === 1 ? (
                   <video
-                    src={`http://147.93.104.196${videos[0]}`}
+                    src={`http://147.93.104.196:3000${videos[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     autoPlay
                     loop
@@ -578,7 +578,7 @@ Please let me know the next steps.`;
                     {videos.map((media, index) => (
                       <div key={index}>
                         <video
-                          src={`http://147.93.104.196${media}`}
+                          src={`http://147.93.104.196:3000${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           autoPlay
                           loop
@@ -605,7 +605,7 @@ Please let me know the next steps.`;
                     {images.slice(0, images.length).map((media, index) => (
                       <div key={index}>
                         <img
-                          src={`http://147.93.104.196${media}`}
+                          src={`http://147.93.104.196:3000${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           alt={productDetails?.productName || "Product image"}
                         />
@@ -614,7 +614,7 @@ Please let me know the next steps.`;
                   </Slider>
                 ) : images[0] ? (
                   <img
-                    src={`http://147.93.104.196${images[0]}`}
+                    src={`http://147.93.104.196:3000${images[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -627,7 +627,7 @@ Please let me know the next steps.`;
               {images[1] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    src={`http://147.93.104.196${images[1]}`}
+                    src={`http://147.93.104.196:3000${images[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -638,7 +638,7 @@ Please let me know the next steps.`;
               {images[2] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    src={`http://147.93.104.196${images[2]}`}
+                    src={`http://147.93.104.196:3000${images[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -1039,7 +1039,7 @@ Please let me know the next steps.`;
                         style={{ height: "100%" }}
                       >
                         <img
-                          src={`http://147.93.104.196${product.image[0]}`}
+                          src={`http://147.93.104.196:3000${product.image[0]}`}
                           className="p-1_proi img-fluid"
                           alt="Product"
                         />
@@ -1125,7 +1125,7 @@ Please let me know the next steps.`;
                             style={{ height: "100%" }}
                           >
                             <img
-                              src={`http://147.93.104.196${product.image[0]}`}
+                              src={`http://147.93.104.196:3000${product.image[0]}`}
                               className="p-1_proi img-fluid border-0"
                               alt="Product"
                               style={{ height: "100%" }}
