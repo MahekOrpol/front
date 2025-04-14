@@ -94,7 +94,8 @@ body {
   width: 100%;
 }
 .head_cart {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: "Cabin", sans-serif;
+
 }
 
 .cart-item-img {
@@ -150,7 +151,7 @@ body {
   display: flex;
   width: 1.5rem;
   background-repeat: no-repeat;
-  background-image: url(http://192.168.1.9:3000/static/media/trash-solid.14227052dac2e311a885.svg);
+  /* background-image: url('http://192.168.1.9:3000/static/media/trash-solid.14227052dac2e311a885.svg'); */
 }
 
   .wr_sss_dd_sssss {
@@ -158,6 +159,11 @@ body {
     box-shadow: 0px 0px 2px 0px #00000080;
     background: #E9E9E9;
 border-radius: 5px !important;
+
+}
+
+.secure_chckotfre{
+  font-family: "Cabin", sans-serif;
 
 }
 

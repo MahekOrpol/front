@@ -1441,6 +1441,7 @@
 }
 
 .Clen {
+  font-family: "Cabin", sans-serif;
   background-color: #611d2b;
   color: white;
   padding: 9px 29px;
@@ -1692,6 +1693,7 @@
     display:none !important;
   }
 }
+
 @media(min-width:992px) and (max-width:1080px){
   .fvdvdf_Ththgf{
     display: flex;

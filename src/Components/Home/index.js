@@ -163,20 +163,21 @@ const Home = () => {
 
   const [wishlistCount, setWishlistCount] = useState(0);
   const [cartCount, setCartCount] = useState(() => {
-    const savedCount = localStorage.getItem('cartCount');
+    const savedCount = localStorage.getItem("cartCount");
     return savedCount ? parseInt(savedCount) : 0;
   });
+  
   useEffect(() => {
     const fetchCartCount = async () => {
       const userId = localStorage.getItem("user_Id");
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://192.168.1.9:3000/api/v1/order-details/user/${userId}`
+          `http://192.168.1.9:3000/api/v1/order-details/get/${userId}`
         );
         const count = response.data.length || 0;
         setCartCount(count);
-        localStorage.setItem('cartCount', count);
+        localStorage.setItem("cartCount", count);
       } catch (error) {
         console.error("Error fetching cart count:", error);
       }
@@ -413,8 +414,8 @@ const Home = () => {
           delete updatedWishlist[productId]; // Update UI immediately
           return updatedWishlist;
         });
-        setWishlistCount(prev => prev - 1);
-      
+        setWishlistCount((prev) => prev - 1);
+
         const res = await axios.delete(
           `http://192.168.1.9:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
@@ -428,7 +429,7 @@ const Home = () => {
             userId,
           }
         );
-        setWishlistCount(prev => prev + 1);
+        setWishlistCount((prev) => prev + 1);
         const newWishlistItemId = response.data.data.id;
         setWishlistItems((prev) => ({
           ...prev,
@@ -783,12 +784,16 @@ const Home = () => {
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-      <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount}/>
+        <Header
+          openCart={openCart}
+          wishlistCount={wishlistCount}
+          cartCount={cartCount}
+        />
 
         <div>
-          <img src={require('../../Images/Frame 207.svg').default} className="img_fluid1_banner hoe_page_main_bvannei" />
+          {/* <img src={require('../../Images/Frame 207.svg').default} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
           {/* <div className="hoe_page_main_bvannei"></div> */}
-          {/* <JewelrySale /> */}
+          <JewelrySale />
         </div>
 
         <div className="d-flex flex-column align-items-center hdr_csd p-0 sdcds_cate">
@@ -799,7 +804,7 @@ const Home = () => {
             className="home_tag_img"
           />
 
-          <div className=" p-0" style={{width:'100vw'}}>
+          <div className=" p-0" style={{ width: "100vw" }}>
             <Swiper
               spaceBetween={10}
               loop={true}
@@ -1289,9 +1294,11 @@ const Home = () => {
           <OueColletion />
         </div>
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-md-1 ewcdsecesdfc">
-          <span className="category_name best_sellig_sdcdc d-none">Jewelry for Occasions</span>
+          <span className="category_name best_sellig_sdcdc d-none">
+            Jewelry for Occasions
+          </span>
           <p className="category_txt best_sellig_sdcdc d-none">
-          Celebrate Forever with a Sparkle
+            Celebrate Forever with a Sparkle
           </p>
           <img
             src={require("../../Images/Groupimg.png")}
@@ -1451,30 +1458,47 @@ const Home = () => {
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
           <div className="pt-3 container djb_dsjvn mx-2">
             <div className="row justify-content-evenly scc_gift_edit_sdsd gap-2">
-              <div className="d-flex flex-column align-items-center gap-3  offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
+              <div
+                title="Explore products under ₹999"
+                className="d-flex flex-column align-items-center gap-3 offer_prixx p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss"
+                onClick={() => navigate("/products?price=999")}
+              >
+                <span className="under_cimn">Under</span>
+                <span className="under_cimn">₹999</span>
+                <span className="next_arrow p-2">
+                  <GrNext size={28} />
+                </span>
+              </div>
+
+              <div
+                title="Explore products under ₹1,999"
+                className="d-flex flex-column align-items-center gap-3 offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss"
+                onClick={() => navigate("/products?price=1999")}
+              >
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹1,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3  offer_prixx1 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
+              <div
+                title="Explore products under ₹2,999"
+                className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss"
+                onClick={() => navigate("/products?price=under-2999")}
+              >
                 <span className="under_cimn">Under</span>
-                <span className="under_cimn">₹1,999</span>
+                <span className="under_cimn">₹2,9999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
               </div>
-              <div className="d-flex flex-column align-items-center gap-3  offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
+              <div
+                title="Explore products under ₹3,999"
+                className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss"
+                onClick={() => navigate("/products?price=under-3999")}
+              >
                 <span className="under_cimn">Under</span>
-                <span className="under_cimn">₹1,999</span>
-                <span className="next_arrow p-2">
-                  <GrNext size={28} />
-                </span>
-              </div>
-              <div className="d-flex flex-column align-items-center gap-3  offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss">
-                <span className="under_cimn">Under</span>
-                <span className="under_cimn">₹1,999</span>
+                <span className="under_cimn">₹3,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
@@ -1562,6 +1586,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo1}
+                  onClick={()=>handleCategoryClick("Pendant")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1571,6 +1596,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo2}
+                  onClick={()=>handleCategoryClick("Earrings")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1580,6 +1606,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo3}
+                  onClick={()=>handleCategoryClick("Rings")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1589,6 +1616,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo4}
+                  onClick={()=>handleCategoryClick("Bracelets")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1598,6 +1626,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo5}
+                  onClick={()=>handleCategoryClick("Pendant")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1607,6 +1636,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo1}
+                  onClick={()=>handleCategoryClick("Pendant")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1616,6 +1646,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo2}
+                  onClick={()=>handleCategoryClick("Earrings")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1625,6 +1656,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo3}
+                  onClick={()=>handleCategoryClick("Rings")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1732,6 +1764,7 @@ const Home = () => {
               observeParents={true} // Observe parent element changes
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               className="swiper_testimonial container"
+              
             >
               {[...testimonials, ...testimonials, ...testimonials].map(
                 (item, index) => (

@@ -101,7 +101,7 @@ Please let me know the next steps.`;
 
       try {
         const response = await axios.get(
-          `http://192.168.1.9:3000/api/v1/order-details/user/${userId}`
+          `http://192.168.1.9:3000/api/v1/order-details/get/${userId}`
         );
         const count = response.data.length || 0;
         setCartCount(count);
@@ -163,12 +163,9 @@ Please let me know the next steps.`;
     const formData = new FormData();
     formData.append("categoryName", categoryName);
     axios
-      .get(
-        `http://192.168.1.9:3000/api/v1/product/get-related-product`,
-        {
-          params: { categoryName },
-        }
-      ) // Use params for GET
+      .get(`http://192.168.1.9:3000/api/v1/product/get-related-product`, {
+        params: { categoryName },
+      }) // Use params for GET
       .then((response) => {
         setRelatedProducts(response.data || []);
       })
@@ -877,7 +874,8 @@ Please let me know the next steps.`;
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
                         onClick={() => addToCart(productDetails)}
                       >
-                        Add to Cart <BiShoppingBag size={25} className="sopgdd" />
+                        Add to Cart{" "}
+                        <BiShoppingBag size={25} className="sopgdd" />
                       </button>
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
@@ -893,10 +891,10 @@ Please let me know the next steps.`;
                       target="_blank"
                       rel="noopener noreferrer"
                       className="d-flex align-items-center w-100 whats_abtn_1 txt_shu justify-content-center gap-1"
-                    // onClick={() => {
-                    //   window.open("https://wa.me/919099975424", "_blank");
-                    // }}
-                    // onClick={() => addToCart(productDetails)}
+                      // onClick={() => {
+                      //   window.open("https://wa.me/919099975424", "_blank");
+                      // }}
+                      // onClick={() => addToCart(productDetails)}
                     >
                       Order On Whatsapp{" "}
                       <span className="whatsapp-icon">
@@ -921,33 +919,37 @@ Please let me know the next steps.`;
                     </div>
                   </div>
                 </div>
-                <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_ttt">
-                  <div className="icon-box">
+                <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_tttdd">
+                  <div className="icon-bdf">
                     <img
-                      src={require("../../Images/lifetime.png")}
-                      alt="Lifetime Exchange"
+                      src={require('../../Images/material.png')}
+                      alt="AVOID WATER / MOISTURE"
                     />
+                    <span>AVOID WATER / MOISTURE</span>
                   </div>
                   <div className="divider"></div>
-                  <div className="icon-box">
+                  <div className="icon-bdf">
                     <img
-                      src={require("../../Images/cirti.png")}
-                      alt="Certified Jewellery"
+                      src={require('../../Images/oeeofiw.png')}
+                      alt="REMOVE BEFORE SLEEPING"
                     />
+                    <span>REMOVE BEFORE SLEEPING</span>
                   </div>
                   <div className="divider szcxds_fix"></div>
-                  <div className="icon-box">
+                  <div className="icon-bdf">
                     <img
-                      src={require("../../Images/sev.png")}
-                      alt="Secure Payment"
+                      src={require('../../Images/fragrance_6211860.png')}
+                      alt="AVOID PERFUME / LOTION"
                     />
+                    <span>AVOID PERFUME / LOTION</span>
                   </div>
                   <div className="divider"></div>
-                  <div className="icon-box">
+                  <div className="icon-bdf">
                     <img
-                      src={require("../../Images/day.png")}
-                      alt="30 Days Return"
+                      src={require('../../Images/box_14309182 (1).png')}
+                      alt="USE SOFT / DRY FABRIC TO CLEAN"
                     />
+                    <span>USE SOFT / DRY FABRIC TO CLEAN</span>
                   </div>
                 </div>
 
@@ -982,13 +984,18 @@ Please let me know the next steps.`;
                       <div className="offer-container w-100">
                         <h5 className="fw-bold mb-4 offe_dscdfcc">
                           Offers For You{" "}
-                         
                         </h5>
 
-                        <div className="accordion w-100 mhkmhkfdv" id="offerAccordion">
+                        <div
+                          className="accordion w-100 mhkmhkfdv"
+                          id="offerAccordion"
+                        >
                           {/* Offer 1 */}
                           <div className="accordion-item w-100">
-                            <h2 className="accordion-header w-100" id="headingOne">
+                            <h2
+                              className="accordion-header w-100"
+                              id="headingOne"
+                            >
                               <button
                                 className="accordion-button d-flex align-items-center w-100 dxvfdfrv"
                                 type="button"
@@ -998,13 +1005,14 @@ Please let me know the next steps.`;
                                 aria-controls="collapseOne"
                               >
                                 <img
-                                  src={require('../../Images/Frame (23).svg').default}
+                                  src={
+                                    require("../../Images/Frame (23).svg")
+                                      .default
+                                  }
                                   className="offer-icon"
                                   alt="Offer Icon"
                                 />
-                               <b> 
-                                FLAT 100₹ off
-                                </b> 
+                                <b>FLAT 100₹ off</b>
                               </button>
                             </h2>
                             <div
@@ -1088,7 +1096,7 @@ Please let me know the next steps.`;
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
             <img src={require("../../Images/Groupimg.png")} />
           </div>
-          <div className="heder_sec_main d-flex flex-column">
+          <div className="heder_sec_main d-flex flex-column p-0">
             <div className="row">
               {relatedProducts.map((product) => (
                 <div
@@ -1159,12 +1167,13 @@ Please let me know the next steps.`;
               <div className="slider_ssss_fdcdf ">
                 <Swiper
                   spaceBetween={0}
+                  slidesPerView={2}
                   breakpoints={{
-                    1200: { slidesPerView: 4 }, // Large screen - 4 cards
-                    992: { slidesPerView: 3 }, // Below 1200px - 3 cards
-                    768: { slidesPerView: 3 }, // Below 992px - 2 cards
-                    500: { slidesPerView: 2 }, // Below 992px - 2 cards
-                    0: { slidesPerView: 1 }, // Mobile - 1 card
+                    1200: { slidesPerView: 4 },
+                    810: { slidesPerView: 3 },
+                    768: { slidesPerView: 2 },
+                    500: { slidesPerView: 2 },
+                    // 0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
                   // autoplay={{
@@ -1176,16 +1185,16 @@ Please let me know the next steps.`;
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
                       <div
-                        className="card prio_card scdscsed_sdss"
+                        className="card prio_card scdscsed_sdss fgfdddds"
                         onMouseEnter={() => setHoveredProduct(product.id)}
                         onMouseLeave={() => setHoveredProduct(null)}
                       >
                         <div className="card-image-wrapper position-relative">
-                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 dssdd">
                             NEW
                           </button>
                           <div
-                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2 fhhdd"
                             onClick={() => toggleFavorite(product.id)}
                             style={{ cursor: "pointer" }}
                           >
@@ -1214,7 +1223,7 @@ Please let me know the next steps.`;
                       </div>
 
                       <div className="d-flex flex-column main_cdsss">
-                        <span className="mikdec_asdaa pt-3">
+                        <span className="mikdec_asdaa pt-3 wssddd text-truncate">
                           {product.productName}
                         </span>
                         <div className="d-flex align-items-center gap-3 pt-1">
@@ -1226,15 +1235,15 @@ Please let me know the next steps.`;
                             {product.regularPrice?.$numberDecimal}
                           </span>
                         </div>
-                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2">
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 hjghfd">
                           <button
-                            className="more_btn_dsdd w-50"
+                            className="more_btn_dsdd w-50 rtrddg"
                             onClick={() => handleProductClick(product.id)}
                           >
                             More Info
                           </button>
                           <button
-                            className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3"
+                            className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3 add_avai"
                             onClick={() => addToCart(productDetails)}
                           >
                             Add to Cart <BiShoppingBag size={25} />
@@ -1248,6 +1257,7 @@ Please let me know the next steps.`;
             </div>
           </div>
         </div>
+        <div class="pb-5"></div>
         <Footer />
       </div>
     </div>
