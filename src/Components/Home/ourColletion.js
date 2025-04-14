@@ -20,7 +20,7 @@ const OueColletion = () => {
   //   const fetchProducts = async () => {
   //     try {
   //       const response = await axios.get(
-  //         "https://crystova.cloudbusiness.cloud/api/v1/product/get"
+  //         "http://192.168.1.9:3000/api/v1/product/get"
   //       );
   //       console.log(response);
   //       setProducts(response.data.slice(0, 3)); // Get first 3 products

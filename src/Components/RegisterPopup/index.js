@@ -93,7 +93,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post(
-          "https://crystova.cloudbusiness.cloud/api/v1/register/login",
+          "http://192.168.1.9:3000/api/v1/register/login",
           {
             email: loginEmail,
             password: loginPassword,
@@ -143,7 +143,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post(
-          "https://crystova.cloudbusiness.cloud/api/v1/register/register",
+          "http://192.168.1.9:3000/api/v1/register/register",
           {
             name,
             email,
@@ -155,7 +155,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
         if (response.status === 201) {
           const createProfileRes = await axios.post(
-            "https://crystova.cloudbusiness.cloud/api/v1/users/create",
+            "http://192.168.1.9:3000/api/v1/users/create",
             {
               user_id: response.data.user.id,
               firstName: name,

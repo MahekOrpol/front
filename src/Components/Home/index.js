@@ -173,7 +173,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `https://crystova.cloudbusiness.cloud/api/v1/order-details/get/${userId}`
+          `http://192.168.1.9:3000/api/v1/order-details/get/${userId}`
         );
         const count = response.data.length || 0;
         setCartCount(count);
@@ -234,7 +234,7 @@ const Home = () => {
 
   const fetchBestSellersByCategory = async (category) => {
     try {
-      const url = `https://crystova.cloudbusiness.cloud/api/v1/product/get?categoryName=${category}`;
+      const url = `http://192.168.1.9:3000/api/v1/product/get?categoryName=${category}`;
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -289,7 +289,7 @@ const Home = () => {
 
       // Make the API request
       const response = await axios.post(
-        "https://crystova.cloudbusiness.cloud/api/v1/order-details/create",
+        "http://192.168.1.9:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -314,7 +314,7 @@ const Home = () => {
   }, []);
 
   const getCategories = async () => {
-    const res = await axios.get("https://crystova.cloudbusiness.cloud/api/v1/category/get");
+    const res = await axios.get("http://192.168.1.9:3000/api/v1/category/get");
     setCategoriesa(res.data);
     console.log("res.datassss :>> ", res.data);
   };
@@ -358,20 +358,20 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios.get(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getTopRated"
+      "http://192.168.1.9:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
     console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getBestSelling"
+      "http://192.168.1.9:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios.get(
-      "https://crystova.cloudbusiness.cloud/api/v1/product/getOnSale"
+      "http://192.168.1.9:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -417,13 +417,13 @@ const Home = () => {
         setWishlistCount((prev) => prev - 1);
 
         const res = await axios.delete(
-          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/delete/${wishlistItemId}`
+          `http://192.168.1.9:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/create`,
+          `http://192.168.1.9:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -449,7 +449,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `https://crystova.cloudbusiness.cloud/api/v1/wishlist/${userId}`
+          `http://192.168.1.9:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -829,7 +829,7 @@ const Home = () => {
                 >
                   <div className="d-flex flex-column align-items-center">
                     <img
-                      src={`https://crystova.cloudbusiness.cloud${category.categoryImage}`}
+                      src={`http://192.168.1.9:3000${category.categoryImage}`}
                       className="home-img home_img_ssssss fvfvfc_Zdcdsc"
                       alt={category.categoryName}
                     />
@@ -1101,7 +1101,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://192.168.1.9:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1172,7 +1172,7 @@ const Home = () => {
 
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://192.168.1.9:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
                           />
@@ -1246,7 +1246,7 @@ const Home = () => {
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
-                            src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                            src={`http://192.168.1.9:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
                           />
@@ -1397,7 +1397,7 @@ const Home = () => {
                               </div>
                               <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                                 <img
-                                  src={`https://crystova.cloudbusiness.cloud${product.image[0]}`}
+                                  src={`http://192.168.1.9:3000${product.image[0]}`}
                                   className="p-1_proi img-fluid BEST_SELLING_IMSESSSS"
                                   alt="Product"
                                 />
@@ -1764,6 +1764,7 @@ const Home = () => {
               observeParents={true} // Observe parent element changes
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               className="swiper_testimonial container"
+              
             >
               {[...testimonials, ...testimonials, ...testimonials].map(
                 (item, index) => (
