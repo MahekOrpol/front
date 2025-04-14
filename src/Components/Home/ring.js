@@ -87,14 +87,14 @@ const RingSlider = () => {
       </div>
 
       <div className="slick-nav-container slidere-roijidfndm">
-        <button className="slick-prev1 custom-prev"><MdArrowBackIos /></button>
+        <button className="slick-next1 custom-prev"><MdArrowBackIos /></button>
 
         <div className="center-ring-info">
           <h3>{rings[centerIndex]?.title}</h3>
           <p>{rings[centerIndex]?.description}</p>
         </div>
 
-        <button className="slick-next1 custom-next"><MdArrowForwardIos /></button>
+        <button className="slick-prev1 custom-next"><MdArrowForwardIos /></button>
       </div>
     </div>
   );
