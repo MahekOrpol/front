@@ -28,7 +28,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
 
     const getProfileData = async () => {
         try {
-            const res = await axios.get(`http://192.168.1.9:3000/api/v1/users/${user_Id}`);
+            const res = await axios.get(`http://147.93.104.196/api/v1/users/${user_Id}`);
             setData(res.data)
 
 
