@@ -79,7 +79,7 @@ const CartPopup = ({
     if (userId && productId) {
       try {
         await axios.put(
-          `http://147.93.104.196/api/v1/order-details/update/${userId}/${productId}`,
+          `http://147.93.104.196:3000/api/v1/order-details/update/${userId}/${productId}`,
           {
             selectedqty: JSON.stringify(updatedItem.quantity),
           }
@@ -119,7 +119,7 @@ const CartPopup = ({
   const handleRemoveItem = async (orderId, index) => {
     try {
       const res = await axios.delete(
-        `http://147.93.104.196/api/v1/order-details/delete/${orderId}`
+        `http://147.93.104.196:3000/api/v1/order-details/delete/${orderId}`
       );
 
       if (res.status === 200) {
@@ -138,7 +138,7 @@ const CartPopup = ({
     const userId = localStorage.getItem("user_Id");
     try {
       const res = await axios.get(
-        `http://147.93.104.196/api/v1/order-details/get/${userId}`
+        `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
       );
       if (res.status === 200) {
         const items = res.data.data.map((item) => {
@@ -223,7 +223,7 @@ const CartPopup = ({
               className="cart-item d-flex flex-column align-items-center"
             >
               <img
-                src={`http://147.93.104.196${item.productId?.image?.[0]}`}
+                src={`http://147.93.104.196:3000${item.productId?.image?.[0]}`}
                 alt={item.productId?.productName}
                 style={{
                   borderRadius: "24px",
