@@ -950,10 +950,7 @@
     margin-top: 9px;
     height: 52px;
   }
-  .instruction_tagline.text-center {
-    white-space: noWrap;
-    font-size: 9px !important;
-}
+
 }
 
 @media (min-width: 474px) and (max-width: 599px) {
