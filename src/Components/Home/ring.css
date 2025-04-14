@@ -880,6 +880,7 @@
     margin-top: 9px;
     height: 52px;
   }
+  
 }
 @media (max-width: 320px) {
   .center-slider .slick-center .ring-info h3 {
@@ -893,6 +894,8 @@
   .slidere-roijidfndm .slick-next {
     top: -54px !important;
   }
+
+  
 }
 
 @media (min-width: 354px) and (max-width: 375px) {
@@ -929,6 +932,9 @@
     margin-top: 9px;
     height: 52px;
   }
+  .instruction_tagline.text-center {
+    font-size: 9px !important;
+}
 }
 @media (min-width: 375px) and (max-width: 474px) {
   .slidere-roijidfndm .slick-prev,
@@ -946,6 +952,9 @@
     margin-top: 9px;
     height: 52px;
   }
+  .instruction_tagline.text-center {
+    font-size: 10px !important;
+}
 }
 
 @media (min-width: 474px) and (max-width: 599px) {
