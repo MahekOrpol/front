@@ -932,9 +932,7 @@
     margin-top: 9px;
     height: 52px;
   }
-  .instruction_tagline.text-center {
-    font-size: 9px !important;
-}
+
 }
 @media (min-width: 375px) and (max-width: 474px) {
   .slidere-roijidfndm .slick-prev,
@@ -953,7 +951,8 @@
     height: 52px;
   }
   .instruction_tagline.text-center {
-    font-size: 10px !important;
+    white-space: noWrap;
+    font-size: 9px !important;
 }
 }
 
