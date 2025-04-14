@@ -1484,10 +1484,10 @@ const Home = () => {
               <div
                 title="Explore products under ₹2,999"
                 className="d-flex flex-column align-items-center gap-3 offer_prixx2 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss"
-                onClick={() => navigate("/products?price=under-2999")}
+                onClick={() => navigate("/products?price=2999")}
               >
                 <span className="under_cimn">Under</span>
-                <span className="under_cimn">₹2,9999</span>
+                <span className="under_cimn">₹2,999</span>
                 <span className="next_arrow p-2">
                   <GrNext size={28} />
                 </span>
@@ -1495,7 +1495,7 @@ const Home = () => {
               <div
                 title="Explore products under ₹3,999"
                 className="d-flex flex-column align-items-center gap-3 offer_prixx3 p-5 col-12 col-sm-12 col-md-6 col-lg-3 sdcijdic_ass_sssssswx_ss"
-                onClick={() => navigate("/products?price=under-3999")}
+                onClick={() => navigate("/products?price=3999")}
               >
                 <span className="under_cimn">Under</span>
                 <span className="under_cimn">₹3,999</span>
