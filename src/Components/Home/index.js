@@ -797,7 +797,7 @@ const Home = () => {
         </div>
 
         <div className="d-flex flex-column align-items-center hdr_csd p-0 sdcds_cate">
-          <span className="category_name mt-md-4">Categories</span>
+          <span className="category_name mt-md-4">Categories13</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img
             src={require("../../Images/Groupimg.png")}
