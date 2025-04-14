@@ -1102,7 +1102,17 @@
     width: 100%;
     height: 100% !important;
   }
+  .left-images{
+    height: 100% !important;
+  }
   
+  .right-images {
+    height: 100% !important;
+}
+
+.small-imgs {
+  height: 100% !important;
+}
   .left-images img.large-img{
   height: 100% !important;
   
