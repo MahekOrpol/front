@@ -167,6 +167,7 @@ const Home = () => {
     return savedCount ? parseInt(savedCount) : 0;
   });
   
+
   useEffect(() => {
     const fetchCartCount = async () => {
       const userId = localStorage.getItem("user_Id");
