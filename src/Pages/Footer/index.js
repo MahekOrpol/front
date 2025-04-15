@@ -187,7 +187,7 @@ const Footer = () => {
             </AccordionSummary>
             <AccordionDetails>
               <ul
-                className="my-0 "
+                className="my-0 pb-4"
                 style={{ listStyle: "none", paddingLeft: "0rem" }}
               >
                 <li>
@@ -230,7 +230,7 @@ const Footer = () => {
             </AccordionSummary>
             <AccordionDetails>
               <ul
-                className="my-0 "
+                className="my-0 pb-4"
                 style={{ listStyle: "none", paddingLeft: "0rem" }}
               >
                 <li>
@@ -257,7 +257,7 @@ const Footer = () => {
             </AccordionSummary>
             <AccordionDetails>
               <ul
-                className="my-0 "
+                className="my-0 pb-4"
                 style={{ listStyle: "none", paddingLeft: "0rem" }}
               >
                 <li>
