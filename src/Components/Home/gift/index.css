@@ -15,6 +15,18 @@
   justify-content: center;
 }
 
+.ordddd {
+  display: flex;
+  align-items: stretch; /* Ensures both children take full height */
+  gap: 20px; /* optional spacing */
+}
+
+.slider-card-wrapper {
+  flex: 1;
+  max-width: 55%;
+  height: 100%;
+}
+
 .mack_pox_headfrp {
   font-family: "Cabin", sans-serif;
   width: 90%;
@@ -30,6 +42,17 @@
 .slider-card-wrapper {
   width: 55%;
 }
+
+.slider-card {
+  height: 100%;
+}
+
+.slider-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Or use contain, based on design */
+}
+
 
 .slider-card {
   position: relative;
@@ -74,7 +97,8 @@
 .static-gift-card {
   background: #dfd2d5;
   padding: 20px;
-  width: 43%;
+  width: 40%;
+  flex: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -311,7 +335,7 @@
   }
 
   .slider-card-wrapper {
-    width: 56% !important;
+    width: 60% !important;
     height: 240px !important;
   }
   .static-gift-card {

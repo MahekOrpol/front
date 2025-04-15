@@ -13,7 +13,7 @@ const RingSlider = () => {
     { title: "Classic Ring", description: "Timeless elegance in its purest form" },
     { title: "Modern Ring", description: "Contemporary brilliance with a sleek design" },
     { title: "Vintage Ring", description: "Antique charm with intricate craftsmanship" },
-    { title: "Elegant Ring1", description: "Refined simplicity for everyday luxury" },
+    { title: "Elegant Rings", description: "Refined simplicity for everyday luxury" },
     { title: "Elegant Ring", description: "Refined simplicity for everyday luxury" },
   ];
 
@@ -42,7 +42,11 @@ const RingSlider = () => {
         { breakpoint: 576, settings: { slidesToShow: 3 } },
         { breakpoint: 375, settings: { slidesToShow: 3 } },
       ],
-      onAfterChange: function (currentSlide) {
+    });
+      
+      $slider.on('afterChange', function (event, slick, currentSlide) {
+
+      // onAfterChange: function (currentSlide) {
         const screenWidth = window.innerWidth;
         let visibleSlides = 5;
 
@@ -53,7 +57,7 @@ const RingSlider = () => {
 
         const center = (currentSlide + Math.floor(visibleSlides / 2)) % rings.length;
         setCenterIndex(center);
-      },
+      
     });
 
     return () => {
@@ -67,22 +71,28 @@ const RingSlider = () => {
     <div className="wrapper">
       <div className="center-slider dis_sty_ssss">
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/styles-slider-hidden-halo.webp")} alt="Ring" />
+          <img className="slider_img_ssss" src={require("../../Images/1.png")} alt="Ring" />
         </div>
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/styles-slider-solitaire.webp")} alt="Ring" />
+          <img className="slider_img_ssss" src={require("../../Images/8.png")} alt="Ring" />
         </div>
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/styles-slider-halo.webp")} alt="Ring" />
+          <img className="slider_img_ssss" src={require("../../Images/3.png")} alt="Ring" />
         </div>
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/styles-slider-three-stone.webp")} alt="Ring" />
+          <img className="slider_img_ssss" src={require("../../Images/5.png")} alt="Ring" />
         </div>
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/styles-slider-vintage.webp")} alt="Ring" />
+          <img className="slider_img_ssss" src={require("../../Images/6.png")} alt="Ring" />
+        </div>
+        {/* <div>
+          <img className="slider_img_ssss" src={require("../../Images/7.png")} alt="Ring" />
+        </div> */}
+        <div>
+          <img className="slider_img_ssss" src={require("../../Images/8.png")} alt="Ring" />
         </div>
         <div>
-          <img className="slider_img_ssss" src={require("../../Images/styles-slider-halo.webp")} alt="Ring" />
+          <img className="slider_img_ssss" src={require("../../Images/9.png")} alt="Ring" />
         </div>
       </div>
 

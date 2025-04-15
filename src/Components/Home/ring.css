@@ -9,7 +9,7 @@
   }
   .slick-active + .slick-active .slider_img_ssss {
     transform: scale(0.8) translateY(0px) !important;
-    -webkit-transform: scale(0.9) translateY(-20px) !important;
+    -webkit-transform: scale(1.2) translateY(-15px) !important;
     -moz-transform: scale(0.8) translateY(10px) !important;
     -ms-transform: scale(0.8) translateY(10px) !important;
     -o-transform: scale(0.8) translateY(10px) !important;
@@ -20,7 +20,7 @@
 
   .slick-active .slider_img_ssss {
     transform: scale(0.8) translateY(-25px) !important;
-    -webkit-transform: scale(1) translateY(0px) !important;
+    -webkit-transform: scale(1.4) translateY(0px) !important;
     -moz-transform: scale(0.8) translateY(-25px) !important;
     -ms-transform: scale(0.8) translateY(-25px) !important;
     -o-transform: scale(0.8) translateY(-25px) !important;
@@ -63,7 +63,7 @@
 
   .slick-active + .slick-active + .slick-active .slider_img_ssss {
     transform: scale(0.7) translateY(-25px) !important;
-    -webkit-transform: scale(1) translateY(0px) !important;
+    -webkit-transform: scale(1.4) translateY(0px) !important;
     -moz-transform: scale(0.7) translateY(-25px) !important;
     -ms-transform: scale(0.7) translateY(-25px) !important;
     -o-transform: scale(0.7) translateY(-25px) !important;
@@ -209,18 +209,18 @@
   /* Active center slide */
 
   .slick-active {
-    transform: scale(0.8) translateY(0) !important;
+    transform: scale(1) translateY(0) !important;
     /*margin-top: 5rem;
     transform: scale(1) !important;
     */
-    -webkit-transform: scale(0.8) translateY(0) !important;
+    -webkit-transform: scale(1) translateY(0) !important;
     -moz-transform: scale(0.8) translateY(0) !important;
     -ms-transform: scale(0.8) translateY(0) !important;
     -o-transform: scale(0.8) translateY(0) !important;
   }
 
   .slick-active .slider_img_ssss {
-    transform: scale(0.7) translateY(0px) !important;
+    transform: scale(1) translateY(0px) !important;
 
     margin-left: 0px;
   }
@@ -461,7 +461,7 @@
 
   .slick-active + .slick-active .slider_img_ssss {
     transform: scale(0.8) translateY(10px) !important;
-    -webkit-transform: scale(0.8) translateY(10px) !important;
+    -webkit-transform: scale(1.4) translateY(0px) !important;
     -moz-transform: scale(0.8) translateY(10px) !important;
     -ms-transform: scale(0.8) translateY(10px) !important;
     -o-transform: scale(0.8) translateY(10px) !important;
@@ -469,7 +469,7 @@
 
   .slick-active .slider_img_ssss {
     transform: scale(0.8) translateY(-25px) !important;
-    -webkit-transform: scale(0.8) translateY(-25px) !important;
+    -webkit-transform: scale(1.2) translateY(-25px) !important;
     -moz-transform: scale(0.8) translateY(-25px) !important;
     -ms-transform: scale(0.8) translateY(-25px) !important;
     -o-transform: scale(0.8) translateY(-25px) !important;
@@ -508,7 +508,7 @@
 
   .slick-active + .slick-active + .slick-active .slider_img_ssss {
     transform: scale(0.8) translateY(-25px) !important;
-    -webkit-transform: scale(0.8) translateY(-25px) !important;
+    -webkit-transform: scale(1.2) translateY(-25px) !important;
     -moz-transform: scale(0.8) translateY(-25px) !important;
     -ms-transform: scale(0.8) translateY(-25px) !important;
     -o-transform: scale(0.8) translateY(-25px) !important;
@@ -522,7 +522,7 @@
 
   .slick-active + .slick-active .slider_img_ssss {
     transform: scale(0.8) translateY(10px) !important;
-    -webkit-transform: scale(0.9) translateY(10px) !important;
+    -webkit-transform: scale(1.4) translateY(0px) !important;
     -moz-transform: scale(0.8) translateY(10px) !important;
     -ms-transform: scale(0.8) translateY(10px) !important;
     -o-transform: scale(0.8) translateY(10px) !important;
@@ -530,7 +530,7 @@
 
   .slick-active .slider_img_ssss {
     transform: scale(0.8) translateY(-25px) !important;
-    -webkit-transform: scale(1) translateY(0px) !important;
+    -webkit-transform: scale(1.2) translateY(0px) !important;
     -moz-transform: scale(0.8) translateY(-25px) !important;
     -ms-transform: scale(0.8) translateY(-25px) !important;
     -o-transform: scale(0.8) translateY(-25px) !important;
@@ -566,7 +566,7 @@
 
   .slick-active + .slick-active + .slick-active .slider_img_ssss {
     transform: scale(0.7) translateY(-25px) !important;
-    -webkit-transform: scale(1) translateY(0px) !important;
+    -webkit-transform: scale(1.2) translateY(0px) !important;
     -moz-transform: scale(0.7) translateY(-25px) !important;
     -ms-transform: scale(0.7) translateY(-25px) !important;
     -o-transform: scale(0.7) translateY(-25px) !important;
@@ -633,8 +633,8 @@
 
 @media (min-width: 373px) and (max-width: 374px) {
   .slick-active .slider_img_ssss {
-    transform: scale(0.8) translateY(-25px) !important;
-    -webkit-transform: scale(0.7) translateY(-0px) !important;
+    transform: scale(1.2) translateY(-25px) !important;
+    -webkit-transform: scale(1.4) translateY(-0px) !important;
     -moz-transform: scale(0.8) translateY(-25px) !important;
     -ms-transform: scale(0.8) translateY(-25px) !important;
     -o-transform: scale(0.8) translateY(-25px) !important;
@@ -649,7 +649,7 @@
 }
 
   .wrapper {
-    margin-top: -94px;
+    margin-top: -89px;
   }
 
   .slick-active + .slick-active .slider_img_ssss {
@@ -664,7 +664,7 @@
   }
 
   .center-slider .slick-current.slick-active {
-    transform: scale(1.2) translateY(50px) !important;
+    transform: scale(1.4) translateY(50px) !important;
   }
 
   .center-slider .slick-slide {
@@ -1104,7 +1104,7 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  margin-top: -4rem;
+  margin-top: -10rem;
 }
 
 .slick-nav-container .custom-prev,
@@ -1140,6 +1140,30 @@
     gap: 1rem;
     margin-top: -1rem;
   }
+  
+}
+@media (max-width: 374px) {
+  .slick-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: -1rem;
+  }
+  .slick-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: -18rem !important;
+}
+.slick-nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem !important;
+  margin-top: -5rem;
+}
 }
 /* @media (max-width:991px) {
   .slick-nav-container {
@@ -1176,7 +1200,7 @@
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
-    margin-top: -2rem;
+    margin-top: -5rem;
   }
 }
 @media (width: 372px) {
