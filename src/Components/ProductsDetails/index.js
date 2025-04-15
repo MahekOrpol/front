@@ -23,6 +23,7 @@ import { Carousel } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import ProductViewCounter from "../../ProductViewCounter";
 
 const products = [
   {
@@ -666,7 +667,8 @@ Please let me know the next steps.`;
                       <FaStar color="#DBB439" />
                     </div>
                     <div>
-                      <span className="rv_ssss">24 Reviews</span>
+                      <span className="rv_ssss "><ProductViewCounter productId={productId} />
+                      </span>
                     </div>
                   </div>
                   <div className="gap-3 d-flex align-items-center df_rrrrr">

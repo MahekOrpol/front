@@ -33,13 +33,14 @@
     "react-toastify": "^11.0.5",
     "redux-persist": "^6.0.0",
     "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.8.1",
     "swiper": "^11.2.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "craco start",
-  "build": "craco build",
-  "test": "craco test",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
