@@ -97,7 +97,7 @@ const RingSlider = () => {
       </div>
 
       <div className="slick-nav-container slidere-roijidfndm">
-        <button className="slick-next1 custom-prev"><MdArrowBackIos /></button>
+        <button className="slick-next1 custom-prev  ps-2 ps-md-0"><MdArrowBackIos /></button>
 
         <div className="center-ring-info">
           <h3>{rings[centerIndex]?.title}</h3>

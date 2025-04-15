@@ -867,7 +867,7 @@ Please let me know the next steps.`;
                   </div>
                 </div>
 
-                <div className="pt-5">
+                <div className="pt-2">
                   <div className="card det_cddd p-3">
                     {/* <div className="d-flex gap-3 align-items-center align-content-center">
                       <img
@@ -1005,7 +1005,7 @@ Please let me know the next steps.`;
             </div>
           </section>
 
-          <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd mt-md-5 szdcd_99909">
+          <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd mt-md-3 szdcd_99909">
             <span className="category_name">Related Products</span>
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
             <img src={require("../../Images/Groupimg.png")} />

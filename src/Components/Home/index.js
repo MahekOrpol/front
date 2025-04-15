@@ -6,7 +6,7 @@ import { FaArrowRight, FaChevronRight, FaStar } from "react-icons/fa6";
 import logobnddd from "../../Images/diamondring.png";
 import vector from "../../Images/Vector.png";
 import { PiHeartThin } from "react-icons/pi";
-import { BiShoppingBag } from "react-icons/bi";
+import { BiRightArrowAlt, BiShoppingBag } from "react-icons/bi";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import Header from "../../Pages/Header";
 
@@ -167,6 +167,22 @@ const Home = () => {
     return savedCount ? parseInt(savedCount) : 0;
   });
   
+  const [showArrow, setShowArrow] = useState(false);
+  const scrollContainerRef = useRef(null);
+  const scrollRef = useRef(null);
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", handleScroll);
+    return () => el.removeEventListener("scroll", handleScroll);
+  }, []);
+  const handleScroll = () => {
+    const el = scrollContainerRef.current;
+    if (!el) return;
+    const isAtEnd =
+      el.scrollLeft + el.clientWidth >= el.scrollWidth - 10; // 10px threshold
+    setShowArrow(isAtEnd);
+  };
 
   useEffect(() => {
     const fetchCartCount = async () => {
@@ -1028,7 +1044,7 @@ const Home = () => {
           <DimondJewellery />
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center  hnbgygjhh mt-md-4 ">
+        <div className="paddingdn d-flex flex-column align-items-center hnbgygjhh mt-md-4">
           <span className="category_name ">Trending Collection</span>
           <p className="category_txt">
             The Latest looks, Crafted to Perfection
@@ -1068,10 +1084,15 @@ const Home = () => {
               </Box>
             </TabContext>
           </div>
-
           {value === "1" && (
-            <div className="d-flex flex-column container">
-              <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
+            <div className="d-flex flex-column container position-relative">
+              <div className="row pt-5 dscsdc_fdvfv_sdcdsc scroll-container" ref={scrollContainerRef}
+                onScroll={handleScroll}
+                style={{
+                  overflowX: "auto",
+                  whiteSpace: "nowrap",
+                  scrollBehavior: "smooth",
+                }}>
                 {onSale.map((product) => (
                   <div
                     key={product.id}
@@ -1084,9 +1105,7 @@ const Home = () => {
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
                           SALE
                         </button>
-
                         {/* Favorite Icon */}
-
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
                           onClick={() => toggleFavorite(product.id)}
@@ -1098,7 +1117,6 @@ const Home = () => {
                             <GoHeart className="heart-icon_ss" size={18} />
                           )}
                         </div>
-
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
@@ -1109,7 +1127,6 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
-
                     {/* Product Details */}
                     <div className="d-flex flex-column main_cdsss">
                       <span className="mikdec_asdaa text-truncate pt-3 ">
@@ -1142,12 +1159,25 @@ const Home = () => {
                   </div>
                 ))}
               </div>
+              {showArrow && (
+                <button
+                  className="position-absolute end-0 btn btn-arrow-go"
+                  onClick={() => navigate("/products")}
+                >
+                  <BiRightArrowAlt size={30} />
+                </button>
+              )}
             </div>
           )}
-
           {value === "2" && (
-            <div className="d-flex flex-column container">
-              <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
+            <div className="d-flex flex-column container position-relative">
+              <div className="row pt-5 dscsdc_fdvfv_sdcdsc" ref={scrollContainerRef}
+                onScroll={handleScroll}
+                style={{
+                  overflowX: "auto",
+                  whiteSpace: "nowrap",
+                  scrollBehavior: "smooth",
+                }}>
                 {bestSelling.map((product) => (
                   <div
                     key={product.id}
@@ -1158,7 +1188,6 @@ const Home = () => {
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
                           BEST SALLER
                         </button>
-
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
                           onClick={() => toggleFavorite(product.id)}
@@ -1170,7 +1199,6 @@ const Home = () => {
                             <GoHeart className="heart-icon_ss" size={18} />
                           )}
                         </div>
-
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
                             src={`http://147.93.104.196:3000${product.image[0]}`}
@@ -1180,7 +1208,6 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="d-flex flex-column main_cdsss">
                       <span className="mikdec_asdaa pt-3 text-truncate">
                         {product.productName}
@@ -1212,12 +1239,25 @@ const Home = () => {
                   </div>
                 ))}
               </div>
+              {showArrow && (
+                <button
+                  className="position-absolute end-0 btn btn-arrow-go"
+                  onClick={() => navigate("/products")}
+                >
+                  <BiRightArrowAlt size={30} />
+                </button>
+              )}
             </div>
           )}
-
           {value === "3" && (
-            <div className="d-flex flex-column container">
-              <div className="row pt-5 dscsdc_fdvfv_sdcdsc">
+            <div className="d-flex flex-column container position-relative">
+              <div className="row pt-5 dscsdc_fdvfv_sdcdsc" ref={scrollContainerRef}
+                onScroll={handleScroll}
+                style={{
+                  overflowX: "auto",
+                  whiteSpace: "nowrap",
+                  scrollBehavior: "smooth",
+                }}>
                 {topRated.map((product) => (
                   <div
                     key={product.id}
@@ -1230,7 +1270,6 @@ const Home = () => {
                         <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
                           NEW
                         </button>
-
                         {/* Favorite Icon */}
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
@@ -1243,7 +1282,6 @@ const Home = () => {
                             <GoHeart className="heart-icon_ss" size={18} />
                           )}
                         </div>
-
                         {/* Product Image */}
                         <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           <img
@@ -1254,7 +1292,6 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
-
                     {/* Product Details */}
                     <div className="d-flex flex-column main_cdsss">
                       <span className="mikdec_asdaa pt-3 text-truncate">
@@ -1287,6 +1324,14 @@ const Home = () => {
                   </div>
                 ))}
               </div>
+              {showArrow && (
+                <button
+                  className="position-absolute end-0 btn btn-arrow-go"
+                  onClick={() => navigate("/products")}
+                >
+                  <BiRightArrowAlt size={30} />
+                </button>
+              )}
             </div>
           )}
         </div>

@@ -144,7 +144,7 @@
 .center-slider .slick-slide {
   color: #fff;
   height: 790px;
-  margin: 0 10px;
+  margin: 0 9.7px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -169,15 +169,15 @@
   /* Active center slide */
 
   .slick-active + .slick-active {
-    transform: scale(0.9) translateY(50px) !important;
+    transform: scale(1.1) translateY(50px) !important;
   }
 
   .slick-active {
-    transform: scale(0.7) translateY(0px) !important;
+    transform: scale(1) translateY(0px) !important;
   }
 
   .slick-active + .slick-active + .slick-active {
-    transform: scale(1.4) translateY(100px) !important;
+    transform: scale(1.5) translateY(100px) !important;
   }
 
   .slick-active + .slick-active + .slick-active .slider_img_ssss {
@@ -185,7 +185,7 @@
   }
 
   .slick-active + .slick-active + .slick-active + .slick-active {
-    transform: scale(0.9) translateY(50px) !important;
+    transform: scale(1.1) translateY(50px) !important;
   }
 
   .slick-active
@@ -201,7 +201,7 @@
     + .slick-active
     + .slick-active
     + .slick-active {
-    transform: scale(0.7) translateY(0px) !important;
+    transform: scale(1) translateY(0px) !important;
   }
 }
 
@@ -1118,6 +1118,12 @@
 .center-ring-info {
   text-align: center;
   max-width: 300px;
+  width: 52%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: "Cabin", sans-serif;
+
 }
 
 .center-ring-info h3 {
@@ -1130,6 +1136,9 @@
   margin: 0;
   font-size: 0.9rem;
   color: #555;
+  line-height: 18px;
+  font-family: "Cabin", sans-serif;
+
 }
 
 @media (max-width: 375px) {
@@ -1140,7 +1149,9 @@
     gap: 1rem;
     margin-top: -1rem;
   }
-  
+  .spg_nb_sle {
+    width: 60% !important;
+}
 }
 @media (max-width: 374px) {
   .slick-nav-container {
