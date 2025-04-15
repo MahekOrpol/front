@@ -1517,7 +1517,7 @@
   }
 }
 
-@media(min-width:300px) and (max-width:464px) {
+@media(min-width:300px) and (max-width:521px) {
   .add-to-crd-dd_dd {
     font-size: 17px !important;
   }
