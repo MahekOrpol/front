@@ -2371,6 +2371,12 @@ img.ring-image {
     display: block !important;
   }
 
+
+.cline_ytsdhcsd .swiper-wrapper {
+  gap: 0rem;
+  margin: auto;
+  margin-top: 1rem !important;
+}
   .home_ring_1 {
     display: none !important;
   }
@@ -6951,6 +6957,9 @@ img.ring-image {
   .paddingdn {
     padding-top: 4rem;
   }
+ .dxfcvdfsCV_ss  {
+    padding-top: 0rem !important;
+  }
 
   .category_txt {
     margin: 0;
@@ -6964,6 +6973,9 @@ img.ring-image {
 @media (max-width: 991px) and (min-width: 858px) {
   .paddingdn {
     padding-top: 3rem !important;
+  }
+  .asxs_sdxszx {
+    padding-top: 0rem !important;
   }
 }
 
@@ -10887,7 +10899,7 @@ img.ring-image {
 
 @media (max-width: 575px) {
   .our_colles {
-    margin-top: 40px;
+    margin-top: 159px;
   }
 
   .stunning_price_fvf {
@@ -10899,10 +10911,10 @@ img.ring-image {
     margin-top: -40%;
   }
 
-  .video-curved-tewd {
+  /* .video-curved-tewd {
     margin-top: 2% !important;
     height: 466px !important;
-  }
+  } */
 
   .heder_sec_main {
     gap: 2px !important;
@@ -10912,7 +10924,148 @@ img.ring-image {
     margin-top: 0px !important;
   }
 }
+@media (min-width:425px) and (max-width:499px){
+  .we-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 234px;
+    width: 100%;
+    transform: scale(1.7);
+    height: 500px;
 
+    margin-top: 20px !important;
+}
+.sdcxsdcx_Sdcxszdcx {
+  margin-top: -7% !important;
+}
+}
+
+@media  (width:500px) {
+  .dxfcvdfsCV_ss {
+    margin-top: 0% !important;
+}
+.sdcsdc_rtgrtfdxcasxNJK {
+  margin-top: -24% !important;
+}
+
+.diamon_jewe .category_name{
+  margin-top: 3% !important;
+}
+.hnbgygjhh .category_name{
+  margin-top: 3% !important;
+}
+.ewcdsecesdfc .category_name{
+  margin-top: 1% !important;
+}
+.asdxdsx_bases_sell .category_name{
+  margin-top: 3% !important;
+}
+.stunning_price_fvf .category_name{
+  margin-top: 3% !important;
+}
+.sdcsdc_rtgrtfdxcasxNJK .category_name{
+  margin-top: 1% !important;
+}
+.szdxksdx_HGVBH .category_name{
+  margin-top: 0% !important;
+}
+.sdcxsdcx_Sdcxszdcx {
+  margin-top: -7% !important;
+}
+
+.szdxksdx_HGVBH{
+  margin-top: 0% !important;
+}
+.our_colles{
+  margin-top: 0% !important;
+}
+.image-medium {
+  width: clamp(120px, 18vw, 183px);
+  height: clamp(180px, 25vw, 278px);
+  left: 61%;
+  transform: translate(-22%, -4%) !important;
+}
+.image-small {
+  transform: translate(22%, 81%);
+  -webkit-transform: translate(-50%, 19%) !important;
+  -moz-transform: translate(22%, 81%);
+  -ms-transform: translate(22%, 81%);
+  -o-transform: translate(22%, 81%);
+}
+.image-large {
+  width: clamp(250px, 32vw, 400px);
+  height: clamp(320px, 43vw, 512px);
+  left: 20%;
+  transform: translate(-22%, -24%) !important;
+}
+
+
+.one-way-slider {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 0rem !important;
+    margin-bottom: 1.5rem !important;
+}
+.sdcds_cate .category_name{
+  margin-top: 3% !important;
+}
+.hnbgygjhh{
+  margin-top: 0% !important;
+}
+.diamon_jewe{
+  margin-top: 0% !important;
+}
+.asdxdsx_bases_sell{
+  margin-top: -5% !important;
+}
+.ewcdsecesdfc{
+  margin-top: 0% !important;
+}
+.stunning_price_fvf{
+  margin-top: 0% !important;
+}
+
+.dscdsc_inst{
+  margin-top: -10% !important;
+}
+.cline_ytsdhcsd{
+  margin-top: -4% !important;
+}
+.occasions_text_p {
+  width: 100%;
+}
+.we-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 234px;
+  width: 100%;
+  transform: scale(1.7);
+  height: 500px;
+  margin-top: 36px !important;
+}
+.dscdsc_inst {
+  margin-top: -66% !important;
+}
+}
+@media (min-width:501px) and (max-width:575px){
+  .we-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 234px;
+    width: 100%;
+    transform: scale(1.7);
+    height: 500px;
+
+    margin-top: 120px !important;
+}
+}
 @media (max-width: 475px) and (min-width: 375px) {
   .stunning_price_fvf {
     margin-top: -40px !important;
@@ -11258,7 +11411,7 @@ img.ring-image {
     padding-top: 0rem !important;
   }
 }
-@media (max-width: 500px) and (min-width: 424px) {
+@media (max-width: 499px) and (min-width: 424px) {
   .sdcsdc_rtgrtfdxcasxNJK .category_name {
     font-size: 32px;
     margin-top: 60px !important;

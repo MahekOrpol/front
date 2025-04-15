@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
+import GoogleLogin from "../../GoogleLogin";
 
 const RegisterPopup = ({ isOpen, onClose }) => {
   const [tabValue, setTabValue] = useState("login");
@@ -494,6 +495,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         />
                         Continue with Google
                       </div>
+                      <GoogleLogin />
                       <p className="otre">
                         Already have an Account?{" "}
                         <span className="tvjg" onClick={() => setTabValue("login")}>sign in</span>
