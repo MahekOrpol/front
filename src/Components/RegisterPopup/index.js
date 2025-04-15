@@ -495,7 +495,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         />
                         Continue with Google
                       </div>
-                      <GoogleLogin />
+                      {/* <GoogleLogin /> */}
                       <p className="otre">
                         Already have an Account?{" "}
                         <span className="tvjg" onClick={() => setTabValue("login")}>sign in</span>
