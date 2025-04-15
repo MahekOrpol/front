@@ -780,6 +780,11 @@
   box-shadow: none !important;
   border-bottom: 1px solid white;
 }
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.support_acc.css-1pug5wj {
+  --Paper-shadow: none !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid white;
+}
 .support_acc .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.css-1808mag-MuiPaper-root-MuiAccordion-root {
   --Paper-shadow: none !important;
   box-shadow: none !important;
