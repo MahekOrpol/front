@@ -1123,6 +1123,7 @@ const Home = () => {
                             src={`http://147.93.104.196:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
+                            onClick={() => handleProductClick(product.id)}
                           />
                         </div>
                       </div>
@@ -1204,6 +1205,7 @@ const Home = () => {
                             src={`http://147.93.104.196:3000${product.image[0]}`}
                             className="p-1_proi img-fluid"
                             alt="Product"
+                            onClick={() => handleProductClick(product.id)}
                           />
                         </div>
                       </div>
@@ -1288,6 +1290,7 @@ const Home = () => {
                             src={`http://147.93.104.196:3000${product.image[0]}`}
                             className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                             alt="Product"
+                            onClick={() => handleProductClick(product.id)}
                           />
                         </div>
                       </div>
