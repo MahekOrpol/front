@@ -1158,7 +1158,7 @@ const Home = () => {
               </div>
               <div className="d-flex flex-column container position-relative">
                 <div
-                  className="row pt-3 dscsdc_fdvfv_sdcdsc scroll-container"
+                  className="row pt-3 dscsdc_fdvfv_sdcdsc"
                   ref={scrollContainerRef}
                   style={{
                     overflowX: "auto",
