@@ -62,6 +62,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
     };
   }, [showSignup]);
 
+  
   useEffect(() => {
     if (user_Id) {
       getProfileData();

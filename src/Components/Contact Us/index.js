@@ -37,6 +37,14 @@ const Contact = () => {
     }));
   };
 
+  useEffect(() => {
+    const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
+    if (cameFromCheckout) {
+      setIsCartOpen(true);
+      sessionStorage.removeItem("cameFromCheckout");
+    }
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

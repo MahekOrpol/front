@@ -159,6 +159,14 @@ const Wishlist = () => {
     }));
   };
 
+    useEffect(() => {
+      const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
+      if (cameFromCheckout) {
+        setIsCartOpen(true);
+        sessionStorage.removeItem("cameFromCheckout");
+      }
+    }, []);
+    
   const handlePrevImage = (productId, images) => {
     setImageIndexes((prevIndexes) => ({
       ...prevIndexes,
