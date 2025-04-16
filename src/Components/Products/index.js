@@ -73,7 +73,7 @@ const Products = () => {
         const response = await axios.get(
           `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
         );
-        const count = response.data.length || 0;
+        const count = response.data.data.length || 0;
         setCartCount(count);
         localStorage.setItem('cartCount', count);
       } catch (error) {
@@ -99,21 +99,22 @@ const Products = () => {
       try {
         let url = `http://147.93.104.196:3000/api/v1/product/get?`;
         if (categoryName) url += `categoryName=${categoryName}&`;
-        if (gender) url += `gender=${gender}`;
-        if (price) url += `salePrice=${price}`;
-
-        
+        if (gender) url += `gender=${gender}&`;
+        if (price) url += `salePrice=${price}&`;
+        if (selectedCategories.length > 0) {
+          url += `categoryName=${selectedCategories.join(',')}&`;
+        }
+        // Remove trailing '&' if present
+        url = url.replace(/&$/, '');
         const response = await axios.get(url);
         const sortedProducts = sortProducts(response.data, selectedOption);
         setProductList(sortedProducts);
-
         // Index for carousel
         const initialIndexes = {};
         sortedProducts.forEach((product) => {
           initialIndexes[product.id] = 0;
         });
         setImageIndexes(initialIndexes);
-
         // Search logic here
         if (urlSearchQuery?.trim()) {
           const searchTerm = urlSearchQuery.toLowerCase();
@@ -131,9 +132,8 @@ const Products = () => {
         console.error("Failed to fetch products:", err);
       }
     };
-
     fetchAndFilter();
-  }, [categoryName, gender, selectedOption, urlSearchQuery,price]);
+  }, [categoryName, gender, selectedOption, urlSearchQuery, price, selectedCategories]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -177,28 +177,28 @@ const Products = () => {
   };
 
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      let url = `http://147.93.104.196:3000/api/v1/product/get?`;
-      if (categoryName) url += `categoryName=${categoryName}&`;
-      if (gender) url += `gender=${gender}`;
-      if (price) url += `salePrice=${price}`;
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     let url = `http://147.93.104.196:3000/api/v1/product/get?`;
+  //     if (categoryName) url += `categoryName=${categoryName}&`;
+  //     if (gender) url += `gender=${gender}`;
+  //     if (price) url += `salePrice=${price}`;
 
-      const response = await axios.get(url);
-      const sortedProducts = sortProducts(response.data, selectedOption);
-      setProductList(sortedProducts);
+  //     const response = await axios.get(url);
+  //     const sortedProducts = sortProducts(response.data, selectedOption);
+  //     setProductList(sortedProducts);
 
-      const initialIndexes = {};
-      sortedProducts.forEach((product) => {
-        initialIndexes[product.id] = 0;
-      });
-      setImageIndexes(initialIndexes);
+  //     const initialIndexes = {};
+  //     sortedProducts.forEach((product) => {
+  //       initialIndexes[product.id] = 0;
+  //     });
+  //     setImageIndexes(initialIndexes);
 
-      console.log('price :>> ', price);
-    };
+  //     console.log('price :>> ', price);
+  //   };
 
-    fetchProducts();
-  }, [categoryName, gender, selectedOption,price]); // Add selectedOption to dependencies
+  //   fetchProducts();
+  // }, [categoryName, gender, selectedOption,price]); // Add selectedOption to dependencies
 
 
   const handleNextImage = (productId, images) => {
@@ -256,9 +256,10 @@ const Products = () => {
     setSelectedCategories([]);
     fetchAllProducts();
   };
-  const fetchProductsWithPriceFilter = async () => {
+const fetchProductsWithPriceFilter = async () => {
     try {
       const response = await axios.get(`http://147.93.104.196:3000/api/v1/product/get?salePrice=${price}`);
+      setSelectedGender(gender);
       const sortedProducts = sortProducts(response.data, selectedOption);
       setProductList(sortedProducts);
       setFilteredProducts(sortedProducts);
