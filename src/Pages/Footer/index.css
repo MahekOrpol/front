@@ -803,7 +803,7 @@
 
 
 .MuiAccordion-root {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* or your preferred color */
+  border-bottom: 1px solid #fff; /* or your preferred color */
   border-top: none !important;
   box-shadow: none !important;
 }
@@ -814,6 +814,10 @@
 
 .MuiAccordionDetails-root {
   border-top: none !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* keep border on open */
+  border-bottom: 1px solid #fff; /* keep border on open */
   padding-bottom: 1rem;
+}
+
+.css-l9xe8y {
+  padding: 0px 16px 0px !important;
 }
