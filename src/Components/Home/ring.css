@@ -955,10 +955,6 @@
 }
 
 @media (min-width: 474px) and (max-width: 599px) {
-  .slick-prev,
-  .slick-next {
-    top: -67px;
-  }
   .center-slider .slick-center .ring-info h3 {
     font-size: 10px !important;
     margin: 0;
@@ -973,6 +969,7 @@
 }
 
 @media (min-width: 599px) and (max-width: 700px) {
+  
   .slidere-roijidfndm .slick-prev,
   .slidere-roijidfndm .slick-next {
     top: -59px !important;
