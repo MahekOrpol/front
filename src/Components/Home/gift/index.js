@@ -15,9 +15,9 @@ const Gift = () => {
   };
 
   return (
-    <div className="container row align-items-center ring_sec_gifff ">
+    <div className="container row col-md-12 d-flex align-items-center ring_sec_gifff p-0">
       {/* LEFT SIDE TEXT */}
-      <div className="col-md-6 d-flex flex-column gap-3 ">
+      <div className="col-md-6 gap-3">
         <h2 className="mack_pox_headfr">
           Make your Occasions Special with our Jewellry
         </h2>
@@ -33,18 +33,18 @@ const Gift = () => {
       </div>
 
       {/* RIGHT SIDE SLIDER + STATIC CARD */}
-      <div className="col-md-6 d-flex justify-content-between ordddd p-0 align-items-center">
+      <div className="col-md-6 ordddd">
         {/* Slider Card */}
         <div className="slider-card-wrapper">
-          <Slider {...sliderSettings} className="h-100">
-            <div className="slider-card position-relative">
+          <Slider {...sliderSettings}>
+            <div className="slider-card">
               <img
                 src={require("../../../Images/slider.svg").default}
                 alt="Gift Slide"
                 className=" "
               />
             </div>
-            <div className="slider-card position-relative">
+            <div className="slider-card">
               <img
                 src={require("../../../Images/slider.svg").default}
                 alt="Gift Slide 2"
