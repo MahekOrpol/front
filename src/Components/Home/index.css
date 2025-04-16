@@ -3138,6 +3138,9 @@ img.ring-image {
   .sdcs_ASxsax_dfrvdxf {
     width: 100% !important;
   }
+  .our_colles{
+    margin-top: 19% !important;
+  }
 }
 
 .home_img_ssssss {
@@ -9060,9 +9063,9 @@ img.ring-image {
     width: 100% !important;
   }
 
-  .our_colles {
+  /* .our_colles {
     margin-top: 1.5rem !important;
-  }
+  } */
 }
 
 @media (max-width: 524px) and (min-width: 425px) {
@@ -9279,6 +9282,10 @@ img.ring-image {
     transition-duration: 0ms;
     transform: translate3d(0px, 0px, 0px);
     transition-delay: 0ms;
+  }
+
+  .our_colles{
+    margin-top: -4% !important;
   }
 
   .xfvdfvdfvc .swiper-wrapper {
@@ -10917,7 +10924,7 @@ img.ring-image {
 
 @media (max-width: 575px) {
   .our_colles {
-    margin-top: 159px;
+    margin-top: 14rem;
   }
 
   .stunning_price_fvf {
@@ -10997,7 +11004,7 @@ img.ring-image {
   margin-top: 0% !important;
 }
 .our_colles{
-  margin-top: 0% !important;
+  margin-top: 4rem !important;
 }
 .image-medium {
   width: clamp(120px, 18vw, 183px);
@@ -11092,7 +11099,7 @@ img.ring-image {
 
 @media (width: 576px) {
   .our_colles {
-    margin-top: 10rem;
+    margin-top: 15rem;
   }
 }
 

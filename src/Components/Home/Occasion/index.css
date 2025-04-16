@@ -566,7 +566,7 @@
     margin-top: -10% !important;
   }
   .our_colles{
-    margin-top: 6% !important;
+    margin-top: 19% !important;
   }
   .sdcds_cate .category_name{
     margin-top: 3% !important;
@@ -692,6 +692,10 @@
     display: none !important;
   }
 
+  .our_colles{
+    margin-top: 19% !important;
+  }
+  
   .slider-content {
     text-align: left;
     /* max-width: 1024px; */
