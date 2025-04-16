@@ -12,10 +12,10 @@ const instructions = [
 
 const Instruction = () => {
   return (
-    <div className='container mt-4'>
+    <div className='container mt-2 mt-sm-4'>
       <div className='row justify-content-center '>
         {instructions.map((item, index) => (
-          <div key={index} className='col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column align-items-center gap-2 instruction-item'>
+          <div key={index} className='col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column align-items-center gap-2 instruction-item p-0'>
             <img src={item.img} alt={item.text} width={100} />
             <div className='instruction_tagline text-center'>{item.text}</div>
           </div>
