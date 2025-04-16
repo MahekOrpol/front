@@ -104,7 +104,7 @@ Please let me know the next steps.`;
         const response = await axios.get(
           `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
         );
-        const count = response.data.length || 0;
+        const count = response.data.data.length || 0;
         setCartCount(count);
         localStorage.setItem("cartCount", count);
       } catch (error) {
@@ -139,7 +139,7 @@ Please let me know the next steps.`;
         sessionStorage.removeItem("cameFromCheckout");
       }
     }, []);
-    
+
   const videos =
     productDetails?.image?.filter((media) => media.endsWith(".mp4")) || [];
   const images =
