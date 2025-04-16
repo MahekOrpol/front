@@ -19,19 +19,24 @@ const RingSlider = () => {
 
   useEffect(() => {
     const $slider = $(".center-slider");
-
+  
     if ($slider.hasClass("slick-initialized")) {
       $slider.slick("unslick");
     }
-
+  
     $slider.slick({
       slidesToShow: 5,
       slidesToScroll: 1,
       centerMode: true,
       dots: false,
       speed: 300,
+      cssEase: "ease-in-out",
       centerPadding: "0px",
       infinite: true,
+      swipe: false,
+      draggable: false,
+      touchMove: false,
+      swipeToSlide: true,
       arrows: true,
       prevArrow: $(".slick-prev1"),
       nextArrow: $(".slick-next1"),
@@ -43,30 +48,26 @@ const RingSlider = () => {
         { breakpoint: 375, settings: { slidesToShow: 3 } },
       ],
     });
-      
-      $slider.on('afterChange', function (event, slick, currentSlide) {
-
-      // onAfterChange: function (currentSlide) {
-        const screenWidth = window.innerWidth;
-        let visibleSlides = 5;
-
-        if (screenWidth < 576) visibleSlides = 3;
-        else if (screenWidth < 768) visibleSlides = 3;
-        else if (screenWidth < 990) visibleSlides = 3;
-        else if (screenWidth < 1200) visibleSlides = 5;
-
-        const center = (currentSlide + Math.floor(visibleSlides / 2)) % rings.length;
-        setCenterIndex(center);
-      
+  
+    $slider.on('afterChange', function (event, slick, currentSlide) {
+      const screenWidth = window.innerWidth;
+      let visibleSlides = 5;
+      if (screenWidth < 1200) visibleSlides = 5;
+      if (screenWidth < 990) visibleSlides = 3;
+      if (screenWidth < 768) visibleSlides = 3;
+      if (screenWidth < 576) visibleSlides = 3;
+  
+      const center = (currentSlide + Math.floor(visibleSlides / 2)) % rings.length;
+      setCenterIndex(center);
     });
-
+  
     return () => {
       if ($slider.hasClass("slick-initialized")) {
         $slider.slick("unslick");
       }
     };
   }, [rings.length]);
-
+  
   return (
     <div className="wrapper">
       <div className="center-slider dis_sty_ssss">

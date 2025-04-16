@@ -2,11 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import $ from "jquery";
-import { FaArrowRight, FaChevronRight, FaStar } from "react-icons/fa6";
+import {
+  FaArrowRight,
+  FaAward,
+  FaChevronRight,
+  FaMedal,
+  FaStar,
+} from "react-icons/fa6";
 import logobnddd from "../../Images/diamondring.png";
 import vector from "../../Images/Vector.png";
 import { PiHeartThin } from "react-icons/pi";
-import { BiRightArrowAlt, BiShoppingBag } from "react-icons/bi";
+import { BiRightArrowAlt, BiShoppingBag, BiSolidOffer } from "react-icons/bi";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 import Header from "../../Pages/Header";
 
@@ -54,6 +60,8 @@ import RingSlider from "./ring";
 import DimondJewellery from "./Dimond Jewellery/dimond";
 import Occasion from "./Occasion";
 import Gift from "./gift";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -161,6 +169,10 @@ const Home = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [slideDirection, setSlideDirection] = useState("next"); // Track slide direction for animation
 
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
+
   const [wishlistCount, setWishlistCount] = useState(0);
   const [cartCount, setCartCount] = useState(() => {
     const savedCount = localStorage.getItem("cartCount");
@@ -170,6 +182,7 @@ const Home = () => {
   const [showArrow, setShowArrow] = useState(false);
   const scrollContainerRef = useRef(null);
   const scrollRef = useRef(null);
+
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -183,6 +196,15 @@ const Home = () => {
       el.scrollLeft + el.clientWidth >= el.scrollWidth - 10; // 10px threshold
     setShowArrow(isAtEnd);
   };
+
+  // useEffect(() => {
+  //   const el = scrollContainerRef.current;
+  //   if (!el) return;
+  //   el.addEventListener("scroll", handleScroll);
+  //   handleScroll(); // initialize visibility on mount
+
+  //   return () => el.removeEventListener("scroll", handleScroll);
+  // }, []);
 
   useEffect(() => {
     const fetchCartCount = async () => {
@@ -331,7 +353,9 @@ const Home = () => {
   }, []);
 
   const getCategories = async () => {
-    const res = await axios.get("http://147.93.104.196:3000/api/v1/category/get");
+    const res = await axios.get(
+      "http://147.93.104.196:3000/api/v1/category/get"
+    );
     setCategoriesa(res.data);
     console.log("res.datassss :>> ", res.data);
   };
@@ -1077,265 +1101,327 @@ const Home = () => {
                     },
                   }}
                 >
-                  <Tab className="xjc_dbv" label="On Sale" value="1" />
-                  <Tab className="xjc_dbv" label="Best Seller" value="2" />
-                  <Tab className="xjc_dbv" label="Top Rated" value="3" />
+                  <Tab
+                    className="xjc_dbv flex-row align-items-center "
+                    icon={
+                      <BiSolidOffer
+                        color="#611D2B"
+                        className="pt-1"
+                        size={30}
+                      />
+                    }
+                    label="On Sale"
+                    value="1"
+                  />
+
+                  <Tab
+                    className="xjc_dbv flex-row align-items-center "
+                    icon={
+                      <FaAward color="#611D2B" className="pt-1" size={30} />
+                    }
+                    label="Best Seller"
+                    value="2"
+                  />
+                  <Tab
+                    className="xjc_dbv flex-row align-items-center "
+                    icon={
+                      <FaMedal color="#611D2B" className="pt-1" size={30} />
+                    }
+                    label="Top Rated"
+                    value="3"
+                  />
                 </Tabs>
               </Box>
             </TabContext>
           </div>
           {value === "1" && (
-            <div className="d-flex flex-column container position-relative">
-              <div className="row pt-5 dscsdc_fdvfv_sdcdsc scroll-container" ref={scrollContainerRef}
-                onScroll={handleScroll}
-                style={{
-                  overflowX: "auto",
-                  whiteSpace: "nowrap",
-                  scrollBehavior: "smooth",
-                }}>
-                {onSale.map((product) => (
-                  <div
-                    key={product.id}
-                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
-                  >
-                    <div className="card prio_card scdscsed_sdss ">
-                      {/* Image Wrapper with position-relative */}
-                      <div className="card-image-wrapper position-relative">
-                        {/* SALE Badge */}
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          SALE
-                        </button>
-                        {/* Favorite Icon */}
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {wishlistItems[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                        {/* Product Image */}
-                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          <img
-                            src={`http://147.93.104.196:3000${product.image[0]}`}
-                            className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                            alt="Product"
-                            onClick={() => handleProductClick(product.id)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    {/* Product Details */}
-                    <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_asdaa text-truncate pt-3 ">
-                        {product.productName}
-                      </span>
-                      <div className="d-flex align-items-center gap-3 pt-1">
-                        <span className="mikdec_asdxsx">
-                          ₹{product.salePrice?.$numberDecimal}
-                        </span>
-                        <span className="mikdec_axsx">
-                          ₹{product.regularPrice?.$numberDecimal}
-                        </span>
-                      </div>
-                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                        <button
-                          className="more_btn_dsdd ewdcscdsedcds w-50"
-                          // onClick={() => navigate("/product-details")}
-                          onClick={() => handleProductClick(product.id)}
-                        >
-                          More Info
-                        </button>
-                        <button
-                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                          onClick={() => addToCart(product)}
-                        >
-                          Add to Cart <BiShoppingBag size={25} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {showArrow && (
-                <button
-                  className="position-absolute end-0 btn btn-arrow-go"
-                  onClick={() => navigate("/products")}
+            <>
+              <div
+                className="d-flex align-items-center justify-content-end w-100 container pt-2"
+                style={{ cursor: "pointer" }}
+              >
+                <div className="view_more_round"></div>
+                <a
+                  href="/products"
+                  className="d-flex align-items-center gap-2 more_link"
                 >
-                  <BiRightArrowAlt size={30} />
-                </button>
-              )}
-            </div>
+                  View All <FontAwesomeIcon icon={faArrowRight} />
+                </a>
+              </div>
+              <div className="d-flex flex-column container position-relative">
+                <div
+                  className="row pt-3 dscsdc_fdvfv_sdcdsc scroll-container"
+                  ref={scrollContainerRef}
+                  style={{
+                    overflowX: "auto",
+                    whiteSpace: "nowrap",
+                    scrollBehavior: "smooth",
+                  }}
+                >
+                  {onSale.map((product) => (
+                    <div
+                      key={product.id}
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                      style={{
+                        flex: "0 0 auto",
+                      }}
+                    >
+                      <div className="card prio_card scdscsed_sdss ">
+                        {/* Image Wrapper with position-relative */}
+                        <div className="card-image-wrapper position-relative">
+                          {/* SALE Badge */}
+                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                            SALE
+                          </button>
+                          {/* Favorite Icon */}
+                          <div
+                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                            onClick={() => toggleFavorite(product.id)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {wishlistItems[product.id] ? (
+                              <GoHeartFill
+                                className="heart-icon_ss"
+                                size={18}
+                              />
+                            ) : (
+                              <GoHeart className="heart-icon_ss" size={18} />
+                            )}
+                          </div>
+                          {/* Product Image */}
+                          <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                            <img
+                              src={`http://147.93.104.196:3000${product.image[0]}`}
+                              className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                              alt="Product"
+                              onClick={() => handleProductClick(product.id)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      {/* Product Details */}
+                      <div className="d-flex flex-column main_cdsss">
+                        <span className="mikdec_asdaa text-truncate pt-3 ">
+                          {product.productName}
+                        </span>
+                        <div className="d-flex align-items-center gap-3 pt-1">
+                          <span className="mikdec_asdxsx">
+                            ₹{product.salePrice?.$numberDecimal}
+                          </span>
+                          <span className="mikdec_axsx">
+                            ₹{product.regularPrice?.$numberDecimal}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                          <button
+                            className="more_btn_dsdd ewdcscdsedcds w-50"
+                            // onClick={() => navigate("/product-details")}
+                            onClick={() => handleProductClick(product.id)}
+                          >
+                            More Info
+                          </button>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                            onClick={() => addToCart(product)}
+                          >
+                            Add to Cart <BiShoppingBag size={25} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
           )}
           {value === "2" && (
-            <div className="d-flex flex-column container position-relative">
-              <div className="row pt-5 dscsdc_fdvfv_sdcdsc" ref={scrollContainerRef}
-                onScroll={handleScroll}
-                style={{
-                  overflowX: "auto",
-                  whiteSpace: "nowrap",
-                  scrollBehavior: "smooth",
-                }}>
-                {bestSelling.map((product) => (
-                  <div
-                    key={product.id}
-                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
-                  >
-                    <div className="card prio_card scdscsed_sdss">
-                      <div className="card-image-wrapper position-relative best_saller_btn">
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          BEST SALLER
-                        </button>
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {wishlistItems[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          <img
-                            src={`http://147.93.104.196:3000${product.image[0]}`}
-                            className="p-1_proi img-fluid"
-                            alt="Product"
-                            onClick={() => handleProductClick(product.id)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_asdaa pt-3 text-truncate">
-                        {product.productName}
-                      </span>
-                      <div className="d-flex align-items-center gap-3 pt-1">
-                        <span className="mikdec_asdxsx">
-                          ₹{product.salePrice?.$numberDecimal}
-                        </span>
-                        <span className="mikdec_axsx">
-                          ₹{product.regularPrice?.$numberDecimal}
-                        </span>
-                      </div>
-                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                        <button
-                          className="more_btn_dsdd w-50"
-                          // onClick={() => navigate("/product-details")}
-                          onClick={() => handleProductClick(product.id)}
-                        >
-                          More Info
-                        </button>
-                        <button
-                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                          onClick={() => addToCart(product)}
-                        >
-                          Add to Cart <BiShoppingBag size={25} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {showArrow && (
-                <button
-                  className="position-absolute end-0 btn btn-arrow-go"
-                  onClick={() => navigate("/products")}
+            <>
+              <div
+                className="d-flex align-items-center justify-content-end w-100 container pt-2"
+                style={{ cursor: "pointer" }}
+              >
+                <div className="view_more_round"></div>
+                <a
+                  href="/products"
+                  className="d-flex align-items-center gap-2 more_link"
                 >
-                  <BiRightArrowAlt size={30} />
-                </button>
-              )}
-            </div>
+                  View All <FontAwesomeIcon icon={faArrowRight} />
+                </a>
+              </div>
+              <div className="d-flex flex-column container position-relative">
+                <div
+                  className="row pt-3 dscsdc_fdvfv_sdcdsc"
+                  ref={scrollContainerRef}
+                  style={{
+                    overflowX: "auto",
+                    whiteSpace: "nowrap",
+                    scrollBehavior: "smooth",
+                  }}
+                >
+                  {bestSelling.map((product) => (
+                    <div
+                      key={product.id}
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                    >
+                      <div className="card prio_card scdscsed_sdss">
+                        <div className="card-image-wrapper position-relative best_saller_btn">
+                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                            BEST SALLER
+                          </button>
+                          <div
+                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                            onClick={() => toggleFavorite(product.id)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {wishlistItems[product.id] ? (
+                              <GoHeartFill
+                                className="heart-icon_ss"
+                                size={18}
+                              />
+                            ) : (
+                              <GoHeart className="heart-icon_ss" size={18} />
+                            )}
+                          </div>
+                          <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                            <img
+                              src={`http://147.93.104.196:3000${product.image[0]}`}
+                              className="p-1_proi img-fluid"
+                              alt="Product"
+                              onClick={() => handleProductClick(product.id)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="d-flex flex-column main_cdsss">
+                        <span className="mikdec_asdaa pt-3 text-truncate">
+                          {product.productName}
+                        </span>
+                        <div className="d-flex align-items-center gap-3 pt-1">
+                          <span className="mikdec_asdxsx">
+                            ₹{product.salePrice?.$numberDecimal}
+                          </span>
+                          <span className="mikdec_axsx">
+                            ₹{product.regularPrice?.$numberDecimal}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                          <button
+                            className="more_btn_dsdd w-50"
+                            // onClick={() => navigate("/product-details")}
+                            onClick={() => handleProductClick(product.id)}
+                          >
+                            More Info
+                          </button>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                            onClick={() => addToCart(product)}
+                          >
+                            Add to Cart <BiShoppingBag size={25} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
           )}
           {value === "3" && (
-            <div className="d-flex flex-column container position-relative">
-              <div className="row pt-5 dscsdc_fdvfv_sdcdsc" ref={scrollContainerRef}
-                onScroll={handleScroll}
-                style={{
-                  overflowX: "auto",
-                  whiteSpace: "nowrap",
-                  scrollBehavior: "smooth",
-                }}>
-                {topRated.map((product) => (
-                  <div
-                    key={product.id}
-                    className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
-                  >
-                    <div className="card prio_card scdscsed_sdss">
-                      {/* Image Wrapper with position-relative */}
-                      <div className="card-image-wrapper position-relative">
-                        {/* SALE Badge */}
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          NEW
-                        </button>
-                        {/* Favorite Icon */}
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {wishlistItems[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                        {/* Product Image */}
-                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          <img
-                            src={`http://147.93.104.196:3000${product.image[0]}`}
-                            className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                            alt="Product"
-                            onClick={() => handleProductClick(product.id)}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    {/* Product Details */}
-                    <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_asdaa pt-3 text-truncate">
-                        {product.productName}
-                      </span>
-                      <div className="d-flex align-items-center gap-3 pt-1">
-                        <span className="mikdec_asdxsx">
-                          ₹{product.salePrice?.$numberDecimal}
-                        </span>
-                        <span className="mikdec_axsx">
-                          ₹{product.regularPrice?.$numberDecimal}
-                        </span>
-                      </div>
-                      <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                        <button
-                          className="more_btn_dsdd w-50"
-                          // onClick={() => navigate("/product-details")}
-                          onClick={() => handleProductClick(product.id)}
-                        >
-                          More Info
-                        </button>
-                        <button
-                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                          onClick={() => addToCart(product)}
-                        >
-                          Add to Cart <BiShoppingBag size={25} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              {showArrow && (
-                <button
-                  className="position-absolute end-0 btn btn-arrow-go"
-                  onClick={() => navigate("/products")}
+            <>
+              <div
+                className="d-flex align-items-center justify-content-end w-100 container pt-2"
+                style={{ cursor: "pointer" }}
+              >
+                <div className="view_more_round"></div>
+                <a
+                  href="/products"
+                  className="d-flex align-items-center gap-2 more_link"
                 >
-                  <BiRightArrowAlt size={30} />
-                </button>
-              )}
-            </div>
+                  View All <FontAwesomeIcon icon={faArrowRight} />
+                </a>
+              </div>
+              <div className="d-flex flex-column container position-relative">
+                <div
+                  className="row pt-3 dscsdc_fdvfv_sdcdsc"
+                  ref={scrollContainerRef}
+                  style={{
+                    overflowX: "auto",
+                    whiteSpace: "nowrap",
+                    scrollBehavior: "smooth",
+                  }}
+                >
+                  {topRated.map((product) => (
+                    <div
+                      key={product.id}
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                    >
+                      <div className="card prio_card scdscsed_sdss">
+                        {/* Image Wrapper with position-relative */}
+                        <div className="card-image-wrapper position-relative">
+                          {/* SALE Badge */}
+                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                            NEW
+                          </button>
+                          {/* Favorite Icon */}
+                          <div
+                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                            onClick={() => toggleFavorite(product.id)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {wishlistItems[product.id] ? (
+                              <GoHeartFill
+                                className="heart-icon_ss"
+                                size={18}
+                              />
+                            ) : (
+                              <GoHeart className="heart-icon_ss" size={18} />
+                            )}
+                          </div>
+                          {/* Product Image */}
+                          <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                            <img
+                              src={`http://147.93.104.196:3000${product.image[0]}`}
+                              className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                              alt="Product"
+                              onClick={() => handleProductClick(product.id)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      {/* Product Details */}
+                      <div className="d-flex flex-column main_cdsss">
+                        <span className="mikdec_asdaa pt-3 text-truncate">
+                          {product.productName}
+                        </span>
+                        <div className="d-flex align-items-center gap-3 pt-1">
+                          <span className="mikdec_asdxsx">
+                            ₹{product.salePrice?.$numberDecimal}
+                          </span>
+                          <span className="mikdec_axsx">
+                            ₹{product.regularPrice?.$numberDecimal}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                          <button
+                            className="more_btn_dsdd w-50"
+                            // onClick={() => navigate("/product-details")}
+                            onClick={() => handleProductClick(product.id)}
+                          >
+                            More Info
+                          </button>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                            onClick={() => addToCart(product)}
+                          >
+                            Add to Cart <BiShoppingBag size={25} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
           )}
         </div>
 
@@ -1402,8 +1488,23 @@ const Home = () => {
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
+              <div
+                className="d-flex align-items-center justify-content-end w-100 container pb-3 pt-1 pe-2"
+                style={{ cursor: "pointer" }}
+              >
+                <div className="view_more_round"></div>
+                <a
+                  href="/products"
+                  className="d-flex align-items-center gap-2 more_link"
+                >
+                  View All <FontAwesomeIcon icon={faArrowRight} />
+                </a>
+              </div>
               <div className="h-100 d-flex flex-column justify-content-center domind_jew_sec">
-                <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc m-0">
+                <div
+                  className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc m-0 product-scroll-container"
+                 
+                >
                   {productsToDisplay
                     .slice(
                       currentIndex,
@@ -1635,7 +1736,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo1}
-                  onClick={()=>handleCategoryClick("Pendant")}
+                  onClick={() => handleCategoryClick("Pendant")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1645,7 +1746,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo2}
-                  onClick={()=>handleCategoryClick("Earrings")}
+                  onClick={() => handleCategoryClick("Earrings")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1655,7 +1756,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo3}
-                  onClick={()=>handleCategoryClick("Rings")}
+                  onClick={() => handleCategoryClick("Rings")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1665,7 +1766,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo4}
-                  onClick={()=>handleCategoryClick("Bracelets")}
+                  onClick={() => handleCategoryClick("Bracelets")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1675,7 +1776,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo5}
-                  onClick={()=>handleCategoryClick("Pendant")}
+                  onClick={() => handleCategoryClick("Pendant")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1685,7 +1786,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo1}
-                  onClick={()=>handleCategoryClick("Pendant")}
+                  onClick={() => handleCategoryClick("Pendant")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1695,7 +1796,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo2}
-                  onClick={()=>handleCategoryClick("Earrings")}
+                  onClick={() => handleCategoryClick("Earrings")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1705,7 +1806,7 @@ const Home = () => {
               <div className="we-card">
                 <video
                   src={ringVideo3}
-                  onClick={()=>handleCategoryClick("Rings")}
+                  onClick={() => handleCategoryClick("Rings")}
                   className=" bg-white video_new_arrr"
                   autoPlay
                   loop
@@ -1813,7 +1914,6 @@ const Home = () => {
               observeParents={true} // Observe parent element changes
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               className="swiper_testimonial container"
-              
             >
               {[...testimonials, ...testimonials, ...testimonials].map(
                 (item, index) => (

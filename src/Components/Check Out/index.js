@@ -28,6 +28,11 @@ const CheckoutPage = () => {
     payPhoneNumber: "",
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    sessionStorage.setItem("cameFromCheckout", "true");
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
