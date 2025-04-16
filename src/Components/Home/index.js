@@ -184,11 +184,19 @@ const Home = () => {
   const scrollRef = useRef(null);
 
   useEffect(() => {
+    const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
+    if (cameFromCheckout) {
+      setIsCartOpen(true);
+      sessionStorage.removeItem("cameFromCheckout");
+    }
+    
     const el = scrollRef.current;
     if (!el) return;
     el.addEventListener("scroll", handleScroll);
     return () => el.removeEventListener("scroll", handleScroll);
+
   }, []);
+
   const handleScroll = () => {
     const el = scrollContainerRef.current;
     if (!el) return;

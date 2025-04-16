@@ -146,6 +146,15 @@ const Products = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+
+  useEffect(() => {
+    const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
+    if (cameFromCheckout) {
+      setIsCartOpen(true);
+      sessionStorage.removeItem("cameFromCheckout");
+    }
+  }, []);
+  
   const handleProductClick = (productId, productData) => {
     navigate(`/product-details/${productId}`, {
       state: { product: productData },
@@ -220,17 +229,25 @@ const Products = () => {
     document.querySelectorAll(".category-checkbox").forEach((checkbox) => {
       checkbox.checked = false;
     });
-
     document
       .querySelectorAll('.filter-category input[type="checkbox"]')
       .forEach((checkbox) => {
         checkbox.checked = false;
       });
-
     const checkboxes = document.querySelectorAll('.category-checkbox');
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
+    // Reset price range only if not coming from home page price filter
+    if (!price) {
+      setPriceRange([1000, 15000]);
+    }
+    // If price filter exists, fetch products with only that filter
+    if (price) {
+      fetchProductsWithPriceFilter();
+    } else {
+      fetchAllProducts();
+    }
     // Reset price range
     setPriceRange([1000, 15000]);
     setSearchQuery("");
@@ -238,6 +255,16 @@ const Products = () => {
     setFilteredProducts([]);
     setSelectedCategories([]);
     fetchAllProducts();
+  };
+  const fetchProductsWithPriceFilter = async () => {
+    try {
+      const response = await axios.get(`http://147.93.104.196:3000/api/v1/product/get?salePrice=${price}`);
+      const sortedProducts = sortProducts(response.data, selectedOption);
+      setProductList(sortedProducts);
+      setFilteredProducts(sortedProducts);
+    } catch (err) {
+      console.error("Failed to fetch products:", err);
+    }
   };
 
   const toggleSection = (section) => {
@@ -247,12 +274,16 @@ const Products = () => {
   const toggleFilter = () => {
     setIsFilterVisible((prev) => !prev);
   };
-
   const handleApplyFilters = async () => {
     let url = `http://147.93.104.196:3000/api/v1/product/get?`;
     let products = [];
     // Build base URL with price range
-    url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`;
+    if (price) {
+      url += `salePrice=${price}&`;
+    } else {
+      // Otherwise use the price range from the filter
+      url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}&`;
+    }
     try {
       if (selectedCategories.length > 0) {
         // Fetch products for each selected category

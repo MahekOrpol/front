@@ -132,6 +132,14 @@ Please let me know the next steps.`;
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, [location]);
 
+    useEffect(() => {
+      const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
+      if (cameFromCheckout) {
+        setIsCartOpen(true);
+        sessionStorage.removeItem("cameFromCheckout");
+      }
+    }, []);
+    
   const videos =
     productDetails?.image?.filter((media) => media.endsWith(".mp4")) || [];
   const images =
