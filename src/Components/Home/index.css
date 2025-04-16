@@ -2929,6 +2929,9 @@ img.ring-image {
   .dscsdc_fdvfv_sdcdsc {
     padding-top: 1rem !important;
   }
+  .our_colles{
+    margin-top: 22% !important;
+  }
 
   .mikdec_asdaa {
     font-weight: 600;
@@ -3139,7 +3142,7 @@ img.ring-image {
     width: 100% !important;
   }
   .our_colles{
-    margin-top: 19% !important;
+    margin-top: -4% !important;
   }
 }
 
@@ -3148,7 +3151,11 @@ img.ring-image {
   transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
   display: inline-block;
 }
-
+@media (max-width:294px) {
+  .our_colles{
+    margin-top: -15% !important;
+  }
+}
 @media (min-width: 1440px) {
   .xfvdfvdfvc .swiper-wrapper {
     display: flex;
@@ -7773,6 +7780,10 @@ img.ring-image {
   .home_img_ssssss {
     width: 85% !important;
   }
+  .our_colles{
+    margin-top: 22% !important;
+  }
+
   .hyyt {
     font-size: 18px !important;
   }
@@ -8085,9 +8096,6 @@ img.ring-image {
   .cart-popup {
     width: 100% !important;
   }
-  .our_colles {
-    margin-top: -95px !important;
-}
 
   .scdscsed_sdss {
     height: 40% !important;
@@ -9282,10 +9290,6 @@ img.ring-image {
     transition-duration: 0ms;
     transform: translate3d(0px, 0px, 0px);
     transition-delay: 0ms;
-  }
-
-  .our_colles{
-    margin-top: -4% !important;
   }
 
   .xfvdfvdfvc .swiper-wrapper {
@@ -11455,7 +11459,7 @@ img.ring-image {
     width: 100%;
     height: auto;
     padding: 0.6rem !important;
-    margin-top: 1rem !important;
+    margin-top: 6rem !important;
   }
 }
 
