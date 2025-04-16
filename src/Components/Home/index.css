@@ -10820,10 +10820,10 @@ img.ring-image {
 
 .tooltip-spot .spot-marker {
   position: absolute;
-  width: 21px;
-  top: 3%;
-  left: 6%;
-  height: 21px;
+  width: 19px;
+  top: 8%;
+  left: 9%;
+  height: 19px;
   border-radius: 50%;
   background-color: white;
   border: 2px solid white;
@@ -10879,7 +10879,7 @@ img.ring-image {
 /* Add this to your existing CSS */
 .spot-3 {
   top: 78%;
-  left: 81%;
+  left: 82%;
 }
 
 .spot-3 .spot-tooltip {
