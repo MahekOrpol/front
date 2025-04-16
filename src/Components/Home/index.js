@@ -893,7 +893,7 @@ const Home = () => {
         </div>
 
         <div className="hdr_csd sdcxsdcx_Sdcxszdcx">
-          <div className="scrolling-wrapper">
+          <div className="scrolling-wrapper fastival-offerssss">
             <div className="scroll-content">
               <div className="scroll-item">
                 <img src={vector} alt="icon" />

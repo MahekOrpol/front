@@ -3137,6 +3137,12 @@ img.ring-image {
   } */
 }
 
+@media (width:425px) {
+  .fastival-offerssss {
+    margin-top: 2rem !important;
+}
+}
+
 @media (max-width: 400px) {
   .sdcs_ASxsax_dfrvdxf {
     width: 100% !important;
