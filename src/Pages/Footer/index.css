@@ -710,6 +710,13 @@
     display: none;
 }
 
+.MuiAccordionSummary-root {
+  border-bottom: 1px solid white !important;
+}
+.Mui-expanded {
+  border-bottom: 0px !important;
+}
+
 .css-1808mag-MuiPaper-root-MuiAccordion-root {
   background-color: transparent !important;
   width: 95%;
