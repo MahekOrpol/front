@@ -9,15 +9,134 @@ import ringVideo from "../../Videos/abouy_sss.mp4";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import CartPopup from "../Add to Cart";
 
 const AboutUs = () => {
-  const swiperRef = useRef(null); 
+  const swiperRef = useRef(null);
   const [slidesPerView, setSlidesPerView] = useState(1);
   const testimonials = [
     { name: "Emily Carol", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
     { name: "John Doe", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
     { name: "Jane Smith", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
   ];
+  const [wishlistCount, setWishlistCount] = useState(0);
+  const [wishlistItems, setWishlistItems] = useState({});
+  const [cartCount, setCartCount] = useState(() => {
+    const savedCount = localStorage.getItem('cartCount');
+    return savedCount ? parseInt(savedCount) : 0;
+  });
+  const navigate = useNavigate('')
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const userId = localStorage.getItem("user_Id");
+
+  useEffect(() => {
+    const fetchCartCount = async () => {
+      const userId = localStorage.getItem("user_Id");
+      if (!userId) return;
+      try {
+        const response = await axios.get(
+          `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+        );
+        const count = response.data.data.length || 0;
+        setCartCount(count);
+        localStorage.setItem("cartCount", count);
+      } catch (error) {
+        console.error("Error fetching cart count:", error);
+      }
+    };
+    fetchCartCount();
+  }, []);
+
+  const openCart = () => {
+    setIsCartOpen(true);
+    document.body.classList.add("no-scroll");
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false);
+    setShowToast(false);
+    document.body.classList.remove("no-scroll");
+  };
+
+  const toggleFavorite = async (productId) => {
+    // if (!userId) return toast.error("Please log in to add items to wishlist");
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
+    try {
+      if (wishlistItems[productId]) {
+        // Remove from wishlist
+        const wishlistItemId = wishlistItems[productId]; // Store the current ID
+        setWishlistItems((prev) => {
+          const updatedWishlist = { ...prev };
+          delete updatedWishlist[productId]; // Update UI immediately
+          return updatedWishlist;
+        });
+        setWishlistCount(prev => prev - 1);
+        const res = await axios.delete(
+          `http://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItemId}`
+        );
+        toast.success(res.data.message || "Removed from wishlist!");
+      } else {
+        // Add to wishlist
+        const response = await axios.post(
+          `http://147.93.104.196:3000/api/v1/wishlist/create`,
+          {
+            productId,
+            userId,
+          }
+        );
+
+        const newWishlistItemId = response.data.data.id;
+        setWishlistItems((prev) => ({
+          ...prev,
+          [productId]: newWishlistItemId, // Store wishlist ID properly
+        }));
+        setWishlistCount(prev => prev + 1);
+        toast.success(response.data.message || "Added to wishlist!");
+      }
+    } catch (error) {
+      console.error("Failed to update wishlist:", error);
+      toast.error("Failed to update wishlist. Please try again!");
+    }
+  };
+
+  useEffect(() => {
+    const fetchWishlist = async () => {
+      if (!userId) return;
+      try {
+        const response = await axios.get(
+          `http://147.93.104.196:3000/api/v1/wishlist/${userId}`
+        );
+        const wishlistData = response.data.data || [];
+
+        const wishlistMap = {};
+        wishlistData.forEach((item) => {
+          let productId = item.productId._id || item.productId.id;
+
+          if (typeof productId === "string" || typeof productId === "number") {
+            wishlistMap[productId] = item.id;
+          } else {
+            console.error("Invalid productId format:", item.productId);
+          }
+        });
+
+        setWishlistItems(wishlistMap);
+        setWishlistCount(wishlistData.length);
+      } catch (error) {
+        console.error("Error fetching wishlist:", error);
+      }
+    };
+
+    fetchWishlist();
+  }, [userId]);
 
   useEffect(() => {
     const updateSlidesPerView = () => {
@@ -44,7 +163,27 @@ const AboutUs = () => {
 
   return (
     <>
-      <Header />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        stacked
+      />
+      <CartPopup
+        isOpen={isCartOpen}
+        closeCart={closeCart}
+        showToast={showToast}
+        setCartCount={setCartCount}
+      // toastMessage={toastMessage}
+      />
+      <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount} />
       <div>
         <img
           src={require("../../Images/Group 1597884580.png")}

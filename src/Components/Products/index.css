@@ -232,8 +232,16 @@
   background-color: #a52a2a;
 }
 
-.add-to-crd-dd {
-  width: 93%;
+.add-to-crd-dd1 {
+  width: 100%;
+  background-color: #611d2b;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  height: 40px;
+  font-weight: 600;
+  align-items: center;
+  font-family: "Cabin", sans-serif;
 }
 
 .container {
@@ -298,16 +306,23 @@
   padding-top: 40px !important;
 }
 
-@media(min-width:400px) and (max-width:746px) {
+@media(min-width:400px) and (max-width:600px) {
   .hdr_csdg {
-    padding-top: 3rem !important;
+    padding-top: 0% !important;
   }
+ 
+}
+@media(min-width:601px) and (max-width:746px) {
+  .hdr_csdg {
+    padding-top: 5px !important;
+  }
+ 
 }
 
 @media(min-width:200px) and (max-width:399px) {
   .hdr_csdg {
-    padding-top: 2rem !important;
-  }
+    padding-top: 2% !important;
+}
 }
 
 @media(min-width:300px) and (max-width:500px) {
@@ -864,10 +879,21 @@
   .produ_shsu {
     font-family: "DM Serif Text", serif;
     font-weight: 400;
-    font-size: 45px;
+    font-size: 38px;
     line-height: 6rem;
     letter-spacing: 0%;
   }
+  .pro_p {
+    font-family: "Cabin", sans-serif;
+    font-weight: 400;
+    text-align: center;
+    /* padding-left: 2rem; */
+    /* padding-right: 2rem; */
+    font-size: 16px !important;
+    line-height: 100%;
+    letter-spacing: 0%;
+    justify-content: center;
+}
 }
 
 @media (min-width: 653px) and (max-width: 686px) {
@@ -954,7 +980,7 @@
     text-align: center;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 100%;
     letter-spacing: 0%;
   }
@@ -1042,7 +1068,7 @@
     text-align: center;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-size: 18px;
+    font-size: 13px;
     line-height: 100%;
     letter-spacing: 0%;
   }
@@ -1082,7 +1108,7 @@
     text-align: center;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-size: 17px;
+    font-size: 13px;
     line-height: 100%;
     letter-spacing: 0%;
   }
@@ -1122,7 +1148,7 @@
     text-align: center;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-size: 16px;
+    font-size: 13px;
     line-height: 100%;
     letter-spacing: 0%;
   }
@@ -1162,7 +1188,7 @@
     text-align: center;
     padding-left: 2rem;
     padding-right: 2rem;
-    font-size: 15px;
+    font-size: 13px;
     line-height: 100%;
     letter-spacing: 0%;
   }
@@ -1561,7 +1587,15 @@
   }
 
   .add-to-crd-dd {
-    width: 98%;
+    width: 100%;
+    background-color: #611d2b;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    height: 40px;
+    font-weight: 600;
+    align-items: center;
+    font-family: "Cabin", sans-serif;
   }
 }
 

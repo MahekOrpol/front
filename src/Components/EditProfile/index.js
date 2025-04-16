@@ -3,7 +3,127 @@ import "./index.css"; // Ensure this CSS file is created
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import CartPopup from "../Add to Cart";
+
 const EditProfile = () => {
+    const [wishlistCount, setWishlistCount] = useState(0);
+    const [wishlistItems, setWishlistItems] = useState({});
+    const [cartCount, setCartCount] = useState(() => {
+        const savedCount = localStorage.getItem('cartCount');
+        return savedCount ? parseInt(savedCount) : 0;
+    });
+    const navigate = useNavigate('');
+    const [isCartOpen, setIsCartOpen] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+    const userId = localStorage.getItem("user_Id");
+
+    useEffect(() => {
+        const fetchCartCount = async () => {
+            const userId = localStorage.getItem("user_Id");
+            if (!userId) return;
+            try {
+                const response = await axios.get(
+                    `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+                );
+                const count = response.data.data.length || 0;
+                setCartCount(count);
+                localStorage.setItem("cartCount", count);
+            } catch (error) {
+                console.error("Error fetching cart count:", error);
+            }
+        };
+        fetchCartCount();
+    }, []);
+
+    const openCart = () => {
+        setIsCartOpen(true);
+        document.body.classList.add("no-scroll");
+    };
+
+    const closeCart = () => {
+        setIsCartOpen(false);
+        setShowToast(false);
+        document.body.classList.remove("no-scroll");
+    };
+
+    const toggleFavorite = async (productId) => {
+        // if (!userId) return toast.error("Please log in to add items to wishlist");
+        const userId = localStorage.getItem("user_Id");
+
+        if (!userId) {
+            navigate("/register");
+            return;
+        }
+        try {
+            if (wishlistItems[productId]) {
+                // Remove from wishlist
+                const wishlistItemId = wishlistItems[productId]; // Store the current ID
+                setWishlistItems((prev) => {
+                    const updatedWishlist = { ...prev };
+                    delete updatedWishlist[productId]; // Update UI immediately
+                    return updatedWishlist;
+                });
+                setWishlistCount(prev => prev - 1);
+                const res = await axios.delete(
+                    `http://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItemId}`
+                );
+                toast.success(res.data.message || "Removed from wishlist!");
+            } else {
+                // Add to wishlist
+                const response = await axios.post(
+                    `http://147.93.104.196:3000/api/v1/wishlist/create`,
+                    {
+                        productId,
+                        userId,
+                    }
+                );
+
+                const newWishlistItemId = response.data.data.id;
+                setWishlistItems((prev) => ({
+                    ...prev,
+                    [productId]: newWishlistItemId, // Store wishlist ID properly
+                }));
+                setWishlistCount(prev => prev + 1);
+                toast.success(response.data.message || "Added to wishlist!");
+            }
+        } catch (error) {
+            console.error("Failed to update wishlist:", error);
+            toast.error("Failed to update wishlist. Please try again!");
+        }
+    };
+
+    useEffect(() => {
+        const fetchWishlist = async () => {
+            if (!userId) return;
+            try {
+                const response = await axios.get(
+                    `http://147.93.104.196:3000/api/v1/wishlist/${userId}`
+                );
+                const wishlistData = response.data.data || [];
+
+                const wishlistMap = {};
+                wishlistData.forEach((item) => {
+                    let productId = item.productId._id || item.productId.id;
+
+                    if (typeof productId === "string" || typeof productId === "number") {
+                        wishlistMap[productId] = item.id;
+                    } else {
+                        console.error("Invalid productId format:", item.productId);
+                    }
+                });
+
+                setWishlistItems(wishlistMap);
+                setWishlistCount(wishlistData.length);
+            } catch (error) {
+                console.error("Error fetching wishlist:", error);
+            }
+        };
+
+        fetchWishlist();
+    }, [userId]);
+
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -16,15 +136,15 @@ const EditProfile = () => {
     const [gender, setGender] = useState("");
     const [birthday, setBirthday] = useState("");
     const [editProfileErrors, setEditProfileErrors] = useState({});
-    const [profileData,setProfileData] = useState("");
+    const [profileData, setProfileData] = useState("");
     // Validation functions
     const validateEmail = (email) => {
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return emailPattern.test(email);
     };
     const user_Id = localStorage.getItem("user_Id");
-    localStorage.setItem("isExistingProfile","false");
-    const isExistingProfile =localStorage.getItem("isExistingProfile");
+    localStorage.setItem("isExistingProfile", "false");
+    const isExistingProfile = localStorage.getItem("isExistingProfile");
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -45,7 +165,7 @@ const EditProfile = () => {
             let response;
             if (isExistingProfile) {
                 console.log("Sending payload:", userData); // Debug log
-                 response = await axios.put(
+                response = await axios.put(
                     `http://147.93.104.196:3000/api/v1/users/${user_Id}`,
                     userData,
                     {
@@ -54,9 +174,9 @@ const EditProfile = () => {
                         }
                     }
                 );
-                localStorage.setItem("setIsExistingProfile","true");
+                localStorage.setItem("setIsExistingProfile", "true");
             }
-            else{
+            else {
                 response = await axios.post(
                     `http://147.93.104.196:3000/api/v1/users/create`,
                     { ...userData, id: user_Id },
@@ -67,20 +187,20 @@ const EditProfile = () => {
             }
             if (response.status === 200 || response.status === 201) {
                 alert(isExistingProfile ? "Profile updated successfully!" : "Profile created successfully!");
-                localStorage.setItem("setIsExistingProfile","true");    
+                localStorage.setItem("setIsExistingProfile", "true");
             }
         } catch (error) {
             console.error("Error saving profile:", error);
             alert(error.response?.data?.message || "Failed to save profile");
-        } 
+        }
     };
     const getProfileData = async () => {
         try {
             const res = await axios.get(`http://147.93.104.196:3000/api/v1/users/${user_Id}`);
             const data = res.data;
-    
+
             setProfileData(data);
-    
+
             // Form fields update
             setFirstName(data.firstName || "");
             setLastName(data.lastName || "");
@@ -93,21 +213,41 @@ const EditProfile = () => {
             setPostalCode(data.postalCode || "");
             setGender(data.gender || "");
             setBirthday(data.birthday || "");
-            
+
             localStorage.setItem("isExistingProfile", "true"); // User profile exists
         } catch (err) {
             console.log(err);
             localStorage.setItem("isExistingProfile", "false"); // No existing profile
         }
     };
-    
+
     useEffect(() => {
         getProfileData();
     }, []);
 
     return (
         <>
-            <Header />
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                stacked
+            />
+            <CartPopup
+                isOpen={isCartOpen}
+                closeCart={closeCart}
+                showToast={showToast}
+                setCartCount={setCartCount}
+            // toastMessage={toastMessage}
+            />
+            <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount} />
             <div className="d-flex align-items-center justify-content-center mt-5">
                 <div className="bg-white d-flex flex-wrap overflow-hidden fjeef">
                     {/* Left Image Section - Always visible, but smaller on smaller screens */}
@@ -259,7 +399,7 @@ const EditProfile = () => {
                                 </div>
                             </div>
                             <button type="submit" className="btn btn-dark w-100 mt-4 fs-5 mb-5" style={{ backgroundColor: "#611d2b", border: "none" }}>
-                                {isExistingProfile?"Upadte":"Create"} Profile
+                                {isExistingProfile ? "Upadte" : "Create"} Profile
                             </button>
                         </form>
                     </div>

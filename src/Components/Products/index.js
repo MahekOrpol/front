@@ -822,7 +822,7 @@ const fetchProductsWithPriceFilter = async () => {
                               More Info
                             </button>
                             <button
-                              className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                              className="d-flex align-items-center add-to-crd-dd1 gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
                               onClick={() => addToCart(product)}
                             >
                               Add to Cart <BiShoppingBag size={25} />
@@ -832,7 +832,7 @@ const fetchProductsWithPriceFilter = async () => {
                       </div>
                       <div className="d-flex jjcsindn_jcb_ccs flex-column mt-2">
                         <button
-                          className="d-flex align-items-center add-to-crd-dd p-1 justify-content-center gap-3"
+                          className="d-flex align-items-center add-to-crd-dd1 p-1 justify-content-center gap-3"
                           onClick={() => addToCart(product)}
                         >
                           Add to Cart <BiShoppingBag size={25} />
