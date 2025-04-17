@@ -48,6 +48,7 @@ const Contact = () => {
   const closeCart = () => {
     setIsCartOpen(false);
     setShowToast(false);
+    dispatch(fetchCartCount());
     document.body.classList.remove("no-scroll");
   };
 

@@ -178,7 +178,8 @@ Please let me know the next steps.`;
 
   const closeCart = () => {
     setIsCartOpen(false);
-    setShowToast(false); // Reset toast state when closing
+    setShowToast(false); 
+    dispatch(fetchCartCount());
     document.body.classList.remove("no-scroll");
   };
 
@@ -385,11 +386,11 @@ Please let me know the next steps.`;
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
-                dispatch(fetchCartCount()); 
         
       } else {
         console.error("Failed to add product to cart:", response);
       }
+      dispatch(fetchCartCount()); 
       setToastMessage("Item added to cart successfully!");
       setShowToast(true);
     } catch (error) {
