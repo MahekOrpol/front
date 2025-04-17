@@ -47,7 +47,7 @@ import CartPopup from "../Add to Cart";
 import axios from "axios";
 import "swiper/css/navigation";
 import ringVideo1 from "../../Videos/dfcvdfx.mp4";
-import ringVideo2 from "../../Videos/dfvdfvd.mp4";
+import ringVideo2 from "../../Videos/abouy_sss.mp4";
 import ringVideo3 from "../../Videos/sdcsdcdfc.mp4";
 import ringVideo4 from "../../Videos/sdcxdscx.mp4";
 import ringVideo5 from "../../Videos/dsfcdfc.mp4";
@@ -68,12 +68,12 @@ import { Video } from "lucide-react";
 
 const videoData = [
   { src: ringVideo1, category: "Pendant" },
-  { src: ringVideo2, category: "Earrings" },
+  { src: ringVideo2, category: "Necklace" },
   { src: ringVideo3, category: "Rings" },
   { src: ringVideo4, category: "Bracelets" },
   { src: ringVideo5, category: "Pendant" },
   { src: ringVideo1, category: "Pendant" },
-  { src: ringVideo2, category: "Earrings" },
+  { src: ringVideo2, category: "Necklace" },
   { src: ringVideo3, category: "Rings" },
   { src: ringVideo4, category: "Bracelets" },
   { src: ringVideo5, category: "Pendant" },
