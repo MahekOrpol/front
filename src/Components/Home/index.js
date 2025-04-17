@@ -62,6 +62,8 @@ import Occasion from "./Occasion";
 import Gift from "./gift";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { fetchCartCount } from "../../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const images = [
   require("../../Images/ring222.png"),
@@ -172,12 +174,9 @@ const Home = () => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-
   const [wishlistCount, setWishlistCount] = useState(0);
-  const [cartCount, setCartCount] = useState(() => {
-    const savedCount = localStorage.getItem("cartCount");
-    return savedCount ? parseInt(savedCount) : 0;
-  });
+  const dispatch = useDispatch();
+  const {count: cartCount, loading, error} = useSelector((state) => state.cart);
   
   const [showArrow, setShowArrow] = useState(false);
   const scrollContainerRef = useRef(null);
@@ -205,32 +204,28 @@ const Home = () => {
     setShowArrow(isAtEnd);
   };
 
-  // useEffect(() => {
-  //   const el = scrollContainerRef.current;
-  //   if (!el) return;
-  //   el.addEventListener("scroll", handleScroll);
-  //   handleScroll(); // initialize visibility on mount
-
-  //   return () => el.removeEventListener("scroll", handleScroll);
-  // }, []);
-
   useEffect(() => {
-    const fetchCartCount = async () => {
-      const userId = localStorage.getItem("user_Id");
-      if (!userId) return;
-      try {
-        const response = await axios.get(
-          `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
-        );
-        const count = response.data.data.length || 0;
-        setCartCount(count);
-        localStorage.setItem("cartCount", count);
-      } catch (error) {
-        console.error("Error fetching cart count:", error);
-      }
-    };
-    fetchCartCount();
-  }, []);
+    dispatch(fetchCartCount());
+  }, [dispatch]);
+
+
+  // useEffect(() => {
+  //   const fetchCartCount = async () => {
+  //     const userId = localStorage.getItem("user_Id");
+  //     if (!userId) return;
+  //     try {
+  //       const response = await axios.get(
+  //         `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+  //       );
+  //       const count = response.data.data.length || 0;
+  //       setCartCount(count);
+  //       localStorage.setItem("cartCount", count);
+  //     } catch (error) {
+  //       console.error("Error fetching cart count:", error);
+  //     }
+  //   };
+  //   fetchCartCount();
+  // }, []);
 
   const productsToDisplay =
     filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
@@ -346,6 +341,7 @@ const Home = () => {
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
+        dispatch(fetchCartCount()); 
       } else {
         console.error("Failed to add product to cart:", response);
       }
@@ -395,6 +391,12 @@ const Home = () => {
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const openCart = () => {
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
   };
@@ -829,14 +831,13 @@ const Home = () => {
         closeCart={closeCart}
         showToast={showToast}
         toastMessage={toastMessage}
-        setCartCount={setCartCount}
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header
           openCart={openCart}
-          wishlistCount={wishlistCount}
-          cartCount={cartCount}
+          wishlistCount={userId ? wishlistCount : null}
+          cartCount={userId ? cartCount : null}
         />
 
         <div>

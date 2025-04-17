@@ -20,8 +20,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CartPopup from "../Add to Cart";
 import axios from "axios";
 import Wishlist from "./../wishlist/index";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartCount } from "../../redux/cartSlice";
 
 const Products = () => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -49,40 +51,45 @@ const Products = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('high-to-low');
+  const [selectedOption, setSelectedOption] = useState("high-to-low");
   const dropdownRef = useRef(null);
 
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [selectedGender, setSelectedGender] = useState("Women");
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-
+  const dispatch = useDispatch();
+  const {
+    count: cartCount,
+    loading,
+    error,
+  } = useSelector((state) => state.cart);
   const urlSearchQuery = queryParams.get("search");
   const [wishlistCount, setWishlistCount] = useState(0);
-  const [cartCount, setCartCount] = useState(() => {
-    const savedCount = localStorage.getItem('cartCount');
-    return savedCount ? parseInt(savedCount) : 0;
-  });
+  // const [cartCount, setCartCount] = useState(() => {
+  //   const savedCount = localStorage.getItem('cartCount');
+  //   return savedCount ? parseInt(savedCount) : 0;
+  // });
 
-  useEffect(() => {
-    const fetchCartCount = async () => {
-      const userId = localStorage.getItem("user_Id");
-      if (!userId) return;
+  // useEffect(() => {
+  //   const fetchCartCount = async () => {
+  //     const userId = localStorage.getItem("user_Id");
+  //     if (!userId) return;
 
-      try {
-        const response = await axios.get(
-          `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
-        );
-        const count = response.data.data.length || 0;
-        setCartCount(count);
-        localStorage.setItem('cartCount', count);
-      } catch (error) {
-        console.error("Error fetching cart count:", error);
-      }
-    };
+  //     try {
+  //       const response = await axios.get(
+  //         `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+  //       );
+  //       const count = response.data.data.length || 0;
+  //       setCartCount(count);
+  //       localStorage.setItem('cartCount', count);
+  //     } catch (error) {
+  //       console.error("Error fetching cart count:", error);
+  //     }
+  //   };
 
-    fetchCartCount();
-  }, []);
+  //   fetchCartCount();
+  // }, []);
 
   useEffect(() => {
     if (urlSearchQuery) {
@@ -95,6 +102,10 @@ const Products = () => {
   }, [urlSearchQuery]);
 
   useEffect(() => {
+    dispatch(fetchCartCount());
+  }, [dispatch]);
+
+  useEffect(() => {
     const fetchAndFilter = async () => {
       try {
         let url = `http://147.93.104.196:3000/api/v1/product/get?`;
@@ -102,10 +113,10 @@ const Products = () => {
         if (gender) url += `gender=${gender}&`;
         if (price) url += `salePrice=${price}&`;
         if (selectedCategories.length > 0) {
-          url += `categoryName=${selectedCategories.join(',')}&`;
+          url += `categoryName=${selectedCategories.join(",")}&`;
         }
         // Remove trailing '&' if present
-        url = url.replace(/&$/, '');
+        url = url.replace(/&$/, "");
         const response = await axios.get(url);
         const sortedProducts = sortProducts(response.data, selectedOption);
         setProductList(sortedProducts);
@@ -118,9 +129,10 @@ const Products = () => {
         // Search logic here
         if (urlSearchQuery?.trim()) {
           const searchTerm = urlSearchQuery.toLowerCase();
-          const filtered = sortedProducts.filter((p) =>
-            p.productName.toLowerCase().includes(searchTerm) ||
-            p.categoryName?.toLowerCase().includes(searchTerm)
+          const filtered = sortedProducts.filter(
+            (p) =>
+              p.productName.toLowerCase().includes(searchTerm) ||
+              p.categoryName?.toLowerCase().includes(searchTerm)
           );
           setFilteredProducts(filtered);
           setIsSearchActive(true);
@@ -133,7 +145,14 @@ const Products = () => {
       }
     };
     fetchAndFilter();
-  }, [categoryName, gender, selectedOption, urlSearchQuery, price, selectedCategories]);
+  }, [
+    categoryName,
+    gender,
+    selectedOption,
+    urlSearchQuery,
+    price,
+    selectedCategories,
+  ]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -142,10 +161,9 @@ const Products = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
 
   useEffect(() => {
     const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
@@ -154,7 +172,7 @@ const Products = () => {
       sessionStorage.removeItem("cameFromCheckout");
     }
   }, []);
-  
+
   const handleProductClick = (productId, productData) => {
     navigate(`/product-details/${productId}`, {
       state: { product: productData },
@@ -166,6 +184,12 @@ const Products = () => {
   const [imageIndexes, setImageIndexes] = useState({});
 
   const openCart = () => {
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
   };
@@ -175,7 +199,6 @@ const Products = () => {
     setShowToast(false);
     document.body.classList.remove("no-scroll");
   };
-
 
   // useEffect(() => {
   //   const fetchProducts = async () => {
@@ -199,7 +222,6 @@ const Products = () => {
 
   //   fetchProducts();
   // }, [categoryName, gender, selectedOption,price]); // Add selectedOption to dependencies
-
 
   const handleNextImage = (productId, images) => {
     setImageIndexes((prevIndex) => ({
@@ -234,7 +256,7 @@ const Products = () => {
       .forEach((checkbox) => {
         checkbox.checked = false;
       });
-    const checkboxes = document.querySelectorAll('.category-checkbox');
+    const checkboxes = document.querySelectorAll(".category-checkbox");
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
@@ -256,9 +278,11 @@ const Products = () => {
     setSelectedCategories([]);
     fetchAllProducts();
   };
-const fetchProductsWithPriceFilter = async () => {
+  const fetchProductsWithPriceFilter = async () => {
     try {
-      const response = await axios.get(`http://147.93.104.196:3000/api/v1/product/get?salePrice=${price}`);
+      const response = await axios.get(
+        `http://147.93.104.196:3000/api/v1/product/get?salePrice=${price}`
+      );
       setSelectedGender(gender);
       const sortedProducts = sortProducts(response.data, selectedOption);
       setProductList(sortedProducts);
@@ -306,9 +330,10 @@ const fetchProductsWithPriceFilter = async () => {
       // Apply search filter if search query exists
       if (searchQuery.trim() !== "") {
         const searchTerm = searchQuery.toLowerCase().trim();
-        const filtered = sortedProducts.filter(product =>
-          product.productName.toLowerCase().includes(searchTerm) ||
-          (product.categoryName?.toLowerCase().includes(searchTerm))
+        const filtered = sortedProducts.filter(
+          (product) =>
+            product.productName.toLowerCase().includes(searchTerm) ||
+            product.categoryName?.toLowerCase().includes(searchTerm)
         );
         setFilteredProducts(filtered);
       } else {
@@ -324,7 +349,6 @@ const fetchProductsWithPriceFilter = async () => {
   };
 
   const toggleFavorite = async (productId) => {
-
     // if (!userId) return toast.error("Please log in to add items to wishlist");
     const userId = localStorage.getItem("user_Id");
 
@@ -342,7 +366,7 @@ const fetchProductsWithPriceFilter = async () => {
           delete updatedWishlist[productId]; // Update UI immediately
           return updatedWishlist;
         });
-        setWishlistCount(prev => prev - 1);
+        setWishlistCount((prev) => prev - 1);
         const res = await axios.delete(
           `http://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
@@ -362,7 +386,7 @@ const fetchProductsWithPriceFilter = async () => {
           ...prev,
           [productId]: newWishlistItemId, // Store wishlist ID properly
         }));
-        setWishlistCount(prev => prev + 1);
+        setWishlistCount((prev) => prev + 1);
         toast.success(response.data.message || "Added to wishlist!");
       }
     } catch (error) {
@@ -443,6 +467,7 @@ const fetchProductsWithPriceFilter = async () => {
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
+        dispatch(fetchCartCount());
       } else {
         console.error("Failed to add product to cart:", response);
       }
@@ -454,7 +479,9 @@ const fetchProductsWithPriceFilter = async () => {
   };
 
   const getCategory = async () => {
-    const res = await axios.get("http://147.93.104.196:3000/api/v1/category/get");
+    const res = await axios.get(
+      "http://147.93.104.196:3000/api/v1/category/get"
+    );
     setCategory(res.data);
   };
 
@@ -463,32 +490,39 @@ const fetchProductsWithPriceFilter = async () => {
   }, []);
 
   const handleCategoryChange = (category) => {
-    setSelectedCategories((prev) =>
-      prev.includes(category)
-        ? prev.filter((c) => c !== category) // Remove category if already selected
-        : [...prev, category] // Add category if not selected
+    setSelectedCategories(
+      (prev) =>
+        prev.includes(category)
+          ? prev.filter((c) => c !== category) // Remove category if already selected
+          : [...prev, category] // Add category if not selected
     );
   };
   // Add this function to handle sorting
   const sortProducts = (products, sortOption) => {
     const sortedProducts = [...products];
-    if (sortOption === 'high-to-low') {
-      sortedProducts.sort((a, b) =>
-        parseFloat(b.salePrice?.$numberDecimal || 0) - parseFloat(a.salePrice?.$numberDecimal || 0)
+    if (sortOption === "high-to-low") {
+      sortedProducts.sort(
+        (a, b) =>
+          parseFloat(b.salePrice?.$numberDecimal || 0) -
+          parseFloat(a.salePrice?.$numberDecimal || 0)
       );
-    } else if (sortOption === 'low-to-high') {
-      sortedProducts.sort((a, b) =>
-        parseFloat(a.salePrice?.$numberDecimal || 0) - parseFloat(b.salePrice?.$numberDecimal || 0)
+    } else if (sortOption === "low-to-high") {
+      sortedProducts.sort(
+        (a, b) =>
+          parseFloat(a.salePrice?.$numberDecimal || 0) -
+          parseFloat(b.salePrice?.$numberDecimal || 0)
       );
     }
     return sortedProducts;
   };
 
   const displayProducts = isSearchActive ? filteredProducts : productList;
-  
+
   const fetchAllProducts = async () => {
     try {
-      const response = await axios.get("http://147.93.104.196:3000/api/v1/product/get");
+      const response = await axios.get(
+        "http://147.93.104.196:3000/api/v1/product/get"
+      );
       const sortedProducts = sortProducts(response.data, selectedOption);
       setProductList(sortedProducts);
     } catch (err) {
@@ -500,20 +534,19 @@ const fetchProductsWithPriceFilter = async () => {
     navigate(`/products?categoryName=Rings&gender=${gender}`);
   };
 
-    useEffect(() => {
-      const body = document.body;
-    
-      if (isFilterVisible  ) {
-        body.classList.add("no-scroll");
-      } else {
-        body.classList.remove("no-scroll");
-      }
-    
-      return () => {
-        body.classList.remove("no-scroll");
-      };
-    }, [isFilterVisible]);
-    
+  useEffect(() => {
+    const body = document.body;
+
+    if (isFilterVisible) {
+      body.classList.add("no-scroll");
+    } else {
+      body.classList.remove("no-scroll");
+    }
+
+    return () => {
+      body.classList.remove("no-scroll");
+    };
+  }, [isFilterVisible]);
 
   return (
     <>
@@ -535,18 +568,20 @@ const fetchProductsWithPriceFilter = async () => {
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-        setCartCount={setCartCount}
         toastMessage={toastMessage}
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-        <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount} />
+        <Header
+          openCart={openCart}
+          wishlistCount={userId ? wishlistCount : null}
+          cartCount={userId ? cartCount : null}
+        />
         <div>
           <img
             src={require("../../Images/productt_sss.png")}
             className="img_fluid1_banner"
           />
-      
         </div>
         <div className="container pb-5">
           <div className="hdr_csdg align-items-center produ_sss">
@@ -559,7 +594,11 @@ const fetchProductsWithPriceFilter = async () => {
             </p>
             <div className="pt-3 Sfg">
               <button
-                className={selectedGender === "Women" ? "ring_for_her active" : "ring_for_him"}
+                className={
+                  selectedGender === "Women"
+                    ? "ring_for_her active"
+                    : "ring_for_him"
+                }
                 onClick={() => handleClick("Women")}
               >
                 <img
@@ -572,7 +611,11 @@ const fetchProductsWithPriceFilter = async () => {
                 <span className="ms-2">Rings for Her</span>
               </button>
               <button
-                className={selectedGender === "Men" ? "ring_for_her active" : "ring_for_him"}
+                className={
+                  selectedGender === "Men"
+                    ? "ring_for_her active"
+                    : "ring_for_him"
+                }
                 onClick={() => handleClick("Men")}
               >
                 <img
@@ -608,10 +651,10 @@ const fetchProductsWithPriceFilter = async () => {
                     id="sortDropdown"
                     onClick={toggleDropdown}
                     aria-expanded={isDropdownOpen}
-                    style={{ minWidth: '150px' }}
+                    style={{ minWidth: "150px" }}
                   >
                     <span className="d-flex align-items-center gap-2 justify-content-between w-100">
-                      {selectedOption === 'low-to-high' ? (
+                      {selectedOption === "low-to-high" ? (
                         <>
                           <span className="d-flex align-items-center gap-2">
                             <FaArrowUpWideShort /> (low-to-high)
@@ -625,9 +668,9 @@ const fetchProductsWithPriceFilter = async () => {
                         </>
                       )}
                       {isDropdownOpen ? (
-                        <FaAngleUp style={{ fontSize: '0.9rem' }} />
+                        <FaAngleUp style={{ fontSize: "0.9rem" }} />
                       ) : (
-                        <FaAngleDown style={{ fontSize: '0.9rem' }} />
+                        <FaAngleDown style={{ fontSize: "0.9rem" }} />
                       )}
                     </span>
                   </button>
@@ -637,10 +680,10 @@ const fetchProductsWithPriceFilter = async () => {
                       className="dropdown-menu show Nkejd"
                       aria-labelledby="sortDropdown"
                       style={{
-                        minWidth: '194px',
-                        padding: '0.5rem 0',
-                        border: '1px solid #e9ecef',
-                        boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+                        minWidth: "194px",
+                        padding: "0.5rem 0",
+                        border: "1px solid #e9ecef",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
                       }}
                     >
                       <li>
@@ -649,7 +692,7 @@ const fetchProductsWithPriceFilter = async () => {
                           href="#"
                           onClick={() => {
                             setIsDropdownOpen(false);
-                            setSelectedOption('low-to-high');
+                            setSelectedOption("low-to-high");
                           }}
                         >
                           <FaArrowUpWideShort /> Price (low-to-high)
@@ -661,7 +704,7 @@ const fetchProductsWithPriceFilter = async () => {
                           href="#"
                           onClick={() => {
                             setIsDropdownOpen(false);
-                            setSelectedOption('high-to-low');
+                            setSelectedOption("high-to-low");
                           }}
                         >
                           <FaArrowDownShortWide /> Price (high-to-low)
@@ -710,15 +753,22 @@ const fetchProductsWithPriceFilter = async () => {
                           type="checkbox"
                           className="category-checkbox"
                           value={category.categoryName}
-                          checked={selectedCategories.includes(category.categoryName)}
-                          onChange={() => handleCategoryChange(category.categoryName)}
+                          checked={selectedCategories.includes(
+                            category.categoryName
+                          )}
+                          onChange={() =>
+                            handleCategoryChange(category.categoryName)
+                          }
                         />{" "}
                         {category.categoryName}
                       </label>
                     ))}
                   </div>
-                
-                  <div className="d-flex align-items-center gap-2 justify-content-end" style={{ textAlign: "end" }}>
+
+                  <div
+                    className="d-flex align-items-center gap-2 justify-content-end"
+                    style={{ textAlign: "end" }}
+                  >
                     <button className="Clen" onClick={handleApplyFilters}>
                       Apply
                     </button>
@@ -734,7 +784,11 @@ const fetchProductsWithPriceFilter = async () => {
                 displayProducts.map((product) => (
                   <div
                     key={product.id}
-                    className={`${isSearchActive ? 'masonry-item col-lg-3 col-md-4 col-6' : 'col-lg-3 col-md-4 col-6'} mb-4 asxasx_card`}
+                    className={`${
+                      isSearchActive
+                        ? "masonry-item col-lg-3 col-md-4 col-6"
+                        : "col-lg-3 col-md-4 col-6"
+                    } mb-4 asxasx_card`}
                     onMouseEnter={() => setHoveredProduct(product.id)}
                     onMouseLeave={() => setHoveredProduct(null)}
                   >
@@ -759,8 +813,9 @@ const fetchProductsWithPriceFilter = async () => {
                             ".mp4"
                           ) ? (
                             <video
-                              src={`http://147.93.104.196:3000${product.image[imageIndexes[product.id]]
-                                }`}
+                              src={`http://147.93.104.196:3000${
+                                product.image[imageIndexes[product.id]]
+                              }`}
                               className="p-1_proi img-fluid"
                               autoPlay
                               loop
@@ -769,15 +824,16 @@ const fetchProductsWithPriceFilter = async () => {
                             />
                           ) : (
                             <img
-                              src={`http://147.93.104.196:3000${product.image[imageIndexes[product.id]]
-                                }`}
+                              src={`http://147.93.104.196:3000${
+                                product.image[imageIndexes[product.id]]
+                              }`}
                               onClick={() => handleProductClick(product.id)}
                               className="p-1_proi img-fluid"
                               alt="Product"
                             />
                           )}
                           {hoveredProduct === product.id && (
-                            <div className="hover-overlay w-100 d-none d-sm-flex" >
+                            <div className="hover-overlay w-100 d-none d-sm-flex">
                               <button
                                 className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
                                 onClick={() =>
@@ -849,7 +905,9 @@ const fetchProductsWithPriceFilter = async () => {
                 ))
               ) : isSearchActive ? (
                 <div className="text-center w-100 py-5">
-                  <h4 className="no_plfrdrfd">No products found matching "{searchQuery}"</h4>
+                  <h4 className="no_plfrdrfd">
+                    No products found matching "{searchQuery}"
+                  </h4>
                   <button
                     className="btfdd mt-3"
                     onClick={() => {

@@ -6,38 +6,35 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import CartPopup from "../Add to Cart";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartCount } from "../../redux/cartSlice";
 
 const EditProfile = () => {
     const [wishlistCount, setWishlistCount] = useState(0);
     const [wishlistItems, setWishlistItems] = useState({});
-    const [cartCount, setCartCount] = useState(() => {
-        const savedCount = localStorage.getItem('cartCount');
-        return savedCount ? parseInt(savedCount) : 0;
-    });
+    const dispatch = useDispatch();
+  const {
+    count: cartCount,
+    loading,
+    error,
+  } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    dispatch(fetchCartCount());
+  }, [dispatch]);
     const navigate = useNavigate('');
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const userId = localStorage.getItem("user_Id");
 
-    useEffect(() => {
-        const fetchCartCount = async () => {
-            const userId = localStorage.getItem("user_Id");
-            if (!userId) return;
-            try {
-                const response = await axios.get(
-                    `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
-                );
-                const count = response.data.data.length || 0;
-                setCartCount(count);
-                localStorage.setItem("cartCount", count);
-            } catch (error) {
-                console.error("Error fetching cart count:", error);
-            }
-        };
-        fetchCartCount();
-    }, []);
 
     const openCart = () => {
+        const userId = localStorage.getItem("user_Id");
+
+        if (!userId) {
+          navigate("/register");
+          return;
+        }
         setIsCartOpen(true);
         document.body.classList.add("no-scroll");
     };
@@ -244,10 +241,10 @@ const EditProfile = () => {
                 isOpen={isCartOpen}
                 closeCart={closeCart}
                 showToast={showToast}
-                setCartCount={setCartCount}
             // toastMessage={toastMessage}
             />
-            <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount} />
+            <Header openCart={openCart}  wishlistCount={userId ? wishlistCount : null}
+          cartCount={userId ? cartCount : null} />
             <div className="d-flex align-items-center justify-content-center mt-5">
                 <div className="bg-white d-flex flex-wrap overflow-hidden fjeef">
                     {/* Left Image Section - Always visible, but smaller on smaller screens */}
@@ -398,7 +395,7 @@ const EditProfile = () => {
                                     <label className="form-check-label" htmlFor="female">Female</label>
                                 </div>
                             </div>
-                            <button type="submit" className="btn btn-dark w-100 mt-4 fs-5 mb-5" style={{ backgroundColor: "#611d2b", border: "none" }}>
+                            <button type="submit" className="btn btn-dark w-100 mt-4 fs-5 mb-5 profile_font_s" style={{ backgroundColor: "#611d2b", border: "none" }}>
                                 {isExistingProfile ? "Upadte" : "Create"} Profile
                             </button>
                         </form>

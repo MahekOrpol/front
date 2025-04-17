@@ -24,6 +24,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductViewCounter from "../../ProductViewCounter";
+import { fetchCartCount } from "../../redux/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const products = [
   {
@@ -77,6 +79,9 @@ const ProductDetailss = () => {
   const [imageUrl, setImageUrl] = useState("");
   const phoneNumber = "919099975424"; // Replace with your WhatsApp number
   const [wishlistCount, setWishlistCount] = useState(0);
+   const dispatch = useDispatch();
+    const {count: cartCount, loading, error} = useSelector((state) => state.cart);
+
   const message = `👋 Hi! Thank you for contacting us. I'm interested in placing an order.
 
 🛍 *Product:* ${productName}
@@ -90,32 +95,16 @@ Please let me know the next steps.`;
   const encodedMessage = encodeURIComponent(message);
   // const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
   const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-  const [cartCount, setCartCount] = useState(() => {
-    const savedCount = localStorage.getItem("cartCount");
-    return savedCount ? parseInt(savedCount) : 0;
-  });
 
-  useEffect(() => {
-    const fetchCartCount = async () => {
-      const userId = localStorage.getItem("user_Id");
-      if (!userId) return;
 
-      try {
-        const response = await axios.get(
-          `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
-        );
-        const count = response.data.data.length || 0;
-        setCartCount(count);
-        localStorage.setItem("cartCount", count);
-      } catch (error) {
-        console.error("Error fetching cart count:", error);
-      }
-    };
-
-    fetchCartCount();
-  }, []);
-
+  
   const openCart = () => {
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
   };
@@ -127,6 +116,10 @@ Please let me know the next steps.`;
       state: { product: productData },
     });
   };
+
+   useEffect(() => {
+        dispatch(fetchCartCount());
+      }, [dispatch]);
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
@@ -392,6 +385,8 @@ Please let me know the next steps.`;
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
+                dispatch(fetchCartCount()); 
+        
       } else {
         console.error("Failed to add product to cart:", response);
       }
@@ -420,15 +415,14 @@ Please let me know the next steps.`;
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-        setCartCount={setCartCount}
         toastMessage={toastMessage}
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <Header
           openCart={openCart}
-          wishlistCount={wishlistCount}
-          cartCount={cartCount}
+          wishlistCount={userId ? wishlistCount : null}
+          cartCount={userId ? cartCount : null}
         />
         <div className="container">
           <section>
