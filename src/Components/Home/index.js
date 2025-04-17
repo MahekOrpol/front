@@ -68,12 +68,12 @@ import { Video } from "lucide-react";
 
 const videoData = [
   { src: ringVideo1, category: "Pendant" },
-  { src: ringVideo2, category: "Earrings" },
+  { src: ringVideo2, category: "Necklace" },
   { src: ringVideo3, category: "Rings" },
   { src: ringVideo4, category: "Bracelets" },
   { src: ringVideo5, category: "Pendant" },
   { src: ringVideo1, category: "Pendant" },
-  { src: ringVideo2, category: "Earrings" },
+  { src: ringVideo2, category: "Necklace" },
   { src: ringVideo3, category: "Rings" },
   { src: ringVideo4, category: "Bracelets" },
   { src: ringVideo5, category: "Pendant" },
