@@ -31,7 +31,7 @@ const DimondJewellery = () => {
               className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
               onClick={() => navigate('/products')}
             >
-              <source src={require("../../../Videos/pinterestdownloader.mp4")} type="video/mp4" />
+              <source src={require("../../../Videos/pinterestdownloader (1).mp4")} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
