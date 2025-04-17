@@ -170,34 +170,25 @@ function VideoCard({ src, onClick }) {
     const vid = vidRef.current;
     if (!vid) return;
 
-    // 1) force‑download entire file (so first frame is available)
-    vid.setAttribute("preload", "auto");
-
-    // 2) iOS inline flags
-    vid.setAttribute("playsinline", "");
-    vid.setAttribute("webkit-playsinline", "true");
-    vid.setAttribute("x5-playsinline", "true");
-
-    // 3) make sure it’s muted + looping
+    // instruct browser to fetch metadata (first frame)
+    vid.preload = "metadata";
+    vid.playsInline = true;
     vid.muted = true;
     vid.loop = true;
 
-    // 4) load & immediately paint first frame
+    // load & pause on first frame
     vid.load();
-    const onLoaded = () => {
-      // “loadeddata” means the first video frame is in memory
+    const handleLoaded = () => {
       vid.pause();
-      vid.removeEventListener("loadeddata", onLoaded);
+      vid.removeEventListener("loadeddata", handleLoaded);
     };
-    vid.addEventListener("loadeddata", onLoaded);
+    vid.addEventListener("loadeddata", handleLoaded);
 
-    // Safari sometimes needs an explicit play→pause 
+    // Safari quirk: sometimes needs an explicit play→pause
     vid
       .play()
       .then(() => vid.pause())
-      .catch(() => {
-        /* ignore if autoplay is blocked */
-      });
+      .catch(() => { /* ignore autoplay block */ });
   }, []);
 
   return (
