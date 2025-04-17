@@ -111,7 +111,7 @@ body {
 /* Cart Footer */
 .cart-footer {
   position: sticky;
-  bottom: 10px;
+  bottom: 0px;
   width: 100%;
   left: 0;
   padding: 15px;
