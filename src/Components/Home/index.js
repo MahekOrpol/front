@@ -67,16 +67,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Video } from "lucide-react";
 
 const videoData = [
-  { src: "/videos/dfcvdfx.mp4", category: "Pendant" },
-  { src: "/videos/dfvdfvd.mp4", category: "Earrings" },
-  { src: "/Videos/sdcsdcdfc.mp4", category: "Rings" },
-  { src: "/Videos/sdcxdscx.mp4", category: "Bracelets" },
-  { src: "/Videos/dsfcdfc.mp4", category: "Pendant" },
-  { src: "/videos/dfcvdfx.mp4", category: "Pendant" },
-  { src: "/videos/dfvdfvd.mp4", category: "Earrings" },
-  { src: "/Videos/sdcsdcdfc.mp4", category: "Rings" },
-  { src: "/Videos/sdcxdscx.mp4", category: "Bracelets" },
-  { src: "/Videos/dsfcdfc.mp4", category: "Pendant" },
+  { src: ringVideo1, category: "Pendant" },
+  { src: ringVideo2, category: "Earrings" },
+  { src: ringVideo3, category: "Rings" },
+  { src: ringVideo4, category: "Bracelets" },
+  { src: ringVideo5, category: "Pendant" },
+  { src: ringVideo1, category: "Pendant" },
+  { src: ringVideo2, category: "Earrings" },
+  { src: ringVideo3, category: "Rings" },
+  { src: ringVideo4, category: "Bracelets" },
+  { src: ringVideo5, category: "Pendant" },
 ];
 const images = [
   require("../../Images/ring222.png"),
