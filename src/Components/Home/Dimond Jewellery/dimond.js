@@ -26,6 +26,8 @@ const DimondJewellery = () => {
               loop
               muted
               playsInline
+              webkit-playsinline="true"
+              x5-playsinline="true" 
               className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
               onClick={() => navigate('/products')}
             >

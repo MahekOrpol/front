@@ -57,7 +57,7 @@ import Instruction from "./instruction";
 import Ring from "../../Pages/Demo/ring";
 import OueColletion from "./ourColletion";
 import RingSlider from "./ring";
-import DimondJewellery from "./Dimond Jewellery/dimond";
+import DimondJewelery from "./Dimond Jewellery/dimond";
 import Occasion from "./Occasion";
 import Gift from "./gift";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -341,10 +341,10 @@ const Home = () => {
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
-        dispatch(fetchCartCount()); 
       } else {
         console.error("Failed to add product to cart:", response);
       }
+      dispatch(fetchCartCount()); 
       setToastMessage("Item added to cart successfully!");
       setShowToast(true);
     } catch (error) {
@@ -403,7 +403,8 @@ const Home = () => {
 
   const closeCart = () => {
     setIsCartOpen(false);
-    setShowToast(false); // Reset toast state when closing
+    setShowToast(false); 
+    dispatch(fetchCartCount());
     document.body.classList.remove("no-scroll");
   };
 
@@ -899,7 +900,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -909,7 +910,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -919,7 +920,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -929,7 +930,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -939,7 +940,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -949,7 +950,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -1006,7 +1007,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -1016,7 +1017,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -1026,7 +1027,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -1036,7 +1037,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -1046,7 +1047,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -1056,7 +1057,7 @@ const Home = () => {
               <div className="scroll-item">
                 <img src={vector} alt="icon" />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewellery
+                  Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
@@ -1074,7 +1075,7 @@ const Home = () => {
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
-          <DimondJewellery />
+          <DimondJewelery />
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center hnbgygjhh mt-md-4">
@@ -1747,6 +1748,7 @@ const Home = () => {
                   src={ringVideo1}
                   onClick={() => handleCategoryClick("Pendant")}
                   className=" bg-white video_new_arrr"
+                  playsInline
                   autoPlay
                   loop
                   muted
@@ -1757,6 +1759,7 @@ const Home = () => {
                   src={ringVideo2}
                   onClick={() => handleCategoryClick("Earrings")}
                   className=" bg-white video_new_arrr"
+                  playsInline
                   autoPlay
                   loop
                   muted
@@ -1767,6 +1770,7 @@ const Home = () => {
                   src={ringVideo3}
                   onClick={() => handleCategoryClick("Rings")}
                   className=" bg-white video_new_arrr"
+                  playsInline
                   autoPlay
                   loop
                   muted
@@ -1777,6 +1781,7 @@ const Home = () => {
                   src={ringVideo4}
                   onClick={() => handleCategoryClick("Bracelets")}
                   className=" bg-white video_new_arrr"
+                  playsInline
                   autoPlay
                   loop
                   muted
@@ -1787,6 +1792,7 @@ const Home = () => {
                   src={ringVideo5}
                   onClick={() => handleCategoryClick("Pendant")}
                   className=" bg-white video_new_arrr"
+                  playsInline
                   autoPlay
                   loop
                   muted
@@ -1797,6 +1803,7 @@ const Home = () => {
                   src={ringVideo1}
                   onClick={() => handleCategoryClick("Pendant")}
                   className=" bg-white video_new_arrr"
+                  playsInline
                   autoPlay
                   loop
                   muted
@@ -1807,6 +1814,7 @@ const Home = () => {
                   src={ringVideo2}
                   onClick={() => handleCategoryClick("Earrings")}
                   className=" bg-white video_new_arrr"
+                  playsInline
                   autoPlay
                   loop
                   muted
@@ -1817,6 +1825,7 @@ const Home = () => {
                   src={ringVideo3}
                   onClick={() => handleCategoryClick("Rings")}
                   className=" bg-white video_new_arrr"
+                  playsInline
                   autoPlay
                   loop
                   muted
