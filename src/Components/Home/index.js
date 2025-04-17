@@ -164,51 +164,60 @@ const diamondRings = [
 // ];
 
 function VideoCard({ src, onClick }) {
-  const vidRef = useRef(null);
+  const ref = useRef(null);
 
   useEffect(() => {
-    const vid = vidRef.current;
+    const vid = ref.current;
     if (!vid) return;
 
-    // 1) force‑download entire file (so first frame is available)
-    vid.setAttribute("preload", "auto");
+    // 1) force fetch so first frame is ready
+    vid.setAttribute("preload", "metadata");
 
-    // 2) iOS inline flags
+    // 2) inline‑play flags
     vid.setAttribute("playsinline", "");
     vid.setAttribute("webkit-playsinline", "true");
     vid.setAttribute("x5-playsinline", "true");
 
-    // 3) make sure it’s muted + looping
+    // 3) muted, looping
     vid.muted = true;
     vid.loop = true;
 
-    // 4) load & immediately paint first frame
-    vid.load();
-    const onLoaded = () => {
-      // “loadeddata” means the first video frame is in memory
-      vid.pause();
-      vid.removeEventListener("loadeddata", onLoaded);
-    };
-    vid.addEventListener("loadeddata", onLoaded);
+    // 4) observer to play/pause only when visible
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          vid.play().catch(() => {});
+        } else {
+          vid.pause();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(vid);
 
-    // Safari sometimes needs an explicit play→pause 
-    vid
-      .play()
-      .then(() => vid.pause())
-      .catch(() => {
-        /* ignore if autoplay is blocked */
-      });
+    // ensure the very first frame paints
+    const handleLoaded = () => {
+      vid.pause();
+      vid.removeEventListener("loadeddata", handleLoaded);
+    };
+    vid.addEventListener("loadeddata", handleLoaded);
+    vid.load();
+
+    return () => {
+      obs.disconnect();
+    };
   }, []);
 
   return (
     <video
-      ref={vidRef}
+      ref={ref}
       src={src}
       className="bg-white video_new_arrr"
       onClick={onClick}
     />
   );
 }
+
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
   const [liked, setLiked] = useState(false);
