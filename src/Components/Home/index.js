@@ -157,6 +157,14 @@ function VideoCard({ src, onClick }) {
     const vid = ref.current;
     if (!vid) return;
 
+    const handleLoaded = () => {
+      // iOS sometimes needs a forced pause to show the first frame
+      vid.pause();
+    };
+
+    vid.addEventListener("loadeddata", handleLoaded);
+
+    // Intersection Observer for autoplay
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -173,6 +181,7 @@ function VideoCard({ src, onClick }) {
     observer.observe(vid);
 
     return () => {
+      vid.removeEventListener("loadeddata", handleLoaded);
       observer.disconnect();
     };
   }, []);
@@ -187,10 +196,12 @@ function VideoCard({ src, onClick }) {
       playsInline
       autoPlay
       loop
-      preload="auto"
+      preload="metadata" // metadata is safer for iOS
+      type="video/mp4"
     />
   );
 }
+
 
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
