@@ -157,51 +157,63 @@ function VideoCard({ src, onClick }) {
     const vid = ref.current;
     if (!vid) return;
 
-    const handleLoaded = () => {
-      // iOS sometimes needs a forced pause to show the first frame
-      vid.pause();
-    };
+    // 1) force fetch so first frame is ready
+    vid.setAttribute("preload", "metadata");
 
-    vid.addEventListener("loadeddata", handleLoaded);
+    // 2) inline‑play flags
+    vid.setAttribute("playsinline", "");
+    vid.setAttribute("webkit-playsinline", "true");
+    vid.setAttribute("x5-playsinline", "true");
 
-    // Intersection Observer for autoplay
-    const observer = new IntersectionObserver(
+    // 3) muted, looping
+    vid.muted = true;
+    vid.loop = true;
+
+    // 4) observer to play/pause only when visible
+    const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          vid.play().catch((e) => {
-            console.warn("Autoplay failed", e);
-          });
+          vid.play().catch(() => {});
         } else {
           vid.pause();
         }
       },
       { threshold: 0.5 }
     );
+    obs.observe(vid);
 
-    observer.observe(vid);
+    // ensure the very first frame paints
+    const handleLoaded = () => {
+      vid.pause();
+      vid.removeEventListener("loadeddata", handleLoaded);
+    };
+    vid.addEventListener("loadeddata", handleLoaded);
+    vid.load();
 
     return () => {
-      vid.removeEventListener("loadeddata", handleLoaded);
-      observer.disconnect();
+      obs.disconnect();
     };
   }, []);
 
   return (
-    <video
-      ref={ref}
-      src={src}
-      className="bg-white video_new_arrr"
-      onClick={onClick}
-      muted
-      playsInline
-      autoPlay
-      loop
-      preload="metadata" // metadata is safer for iOS
-      type="video/mp4"
-    />
+<video
+  key={src}
+  ref={ref}
+  src={src}
+  muted
+  autoPlay
+  loop
+  playsInline
+  preload="metadata"
+  webkit-playsinline="true"
+  x5-playsinline="true"
+  className="bg-white video_new_arrr"
+  onClick={onClick}
+/>
+
+
   );
 }
-
 
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
