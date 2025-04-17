@@ -233,11 +233,11 @@ const CartPopup = ({
                   objectFit: "contain",
                 }}
               />
-              <div className="cart_item_detail">
+              <div className="cart_item_detail ">
                 <h5 className="fw-bold mb-1 d-flex align-items-center justify-content-between secure_chckotfre">
                   {item.productId?.productName}
                 </h5>
-                <div className="d-flex align-items-center justify-content-between">
+                <div className="d-flex align-items-center justify-content-between secure_chckotfre1">
                   {/* <div className="d-flex align-items-center w-100 secure_chckotfre">
                     <p className="m-0">Ring Size :</p>
             
@@ -352,7 +352,7 @@ const CartPopup = ({
         <div className="cart-footer">
           <div className="d-flex align-items-center justify-content-between my-2">
             <h5 className="fw-bold">Total:</h5>
-            <h5 className="fw-bold">₹{calculateTotal()}</h5>
+            <h5 className="fw-bold sdcxdscde">₹{calculateTotal()}</h5>
           </div>
           <button
             className="btn btn_check_out w-100 secure_chckotfre"
