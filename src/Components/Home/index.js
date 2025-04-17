@@ -75,6 +75,8 @@ const videoData = [
   { src: ringVideo1, category: "Pendant" },
   { src: ringVideo2, category: "Earrings" },
   { src: ringVideo3, category: "Rings" },
+  { src: ringVideo4, category: "Bracelets" },
+  { src: ringVideo5, category: "Pendant" },
 ];
 const images = [
   require("../../Images/ring222.png"),
@@ -168,25 +170,34 @@ function VideoCard({ src, onClick }) {
     const vid = vidRef.current;
     if (!vid) return;
 
-    // instruct browser to fetch metadata (first frame)
-    vid.preload = "metadata";
-    vid.playsInline = true;
+    // 1) force‑download entire file (so first frame is available)
+    vid.setAttribute("preload", "auto");
+
+    // 2) iOS inline flags
+    vid.setAttribute("playsinline", "");
+    vid.setAttribute("webkit-playsinline", "true");
+    vid.setAttribute("x5-playsinline", "true");
+
+    // 3) make sure it’s muted + looping
     vid.muted = true;
     vid.loop = true;
 
-    // load & pause on first frame
+    // 4) load & immediately paint first frame
     vid.load();
-    const handleLoaded = () => {
+    const onLoaded = () => {
+      // “loadeddata” means the first video frame is in memory
       vid.pause();
-      vid.removeEventListener("loadeddata", handleLoaded);
+      vid.removeEventListener("loadeddata", onLoaded);
     };
-    vid.addEventListener("loadeddata", handleLoaded);
+    vid.addEventListener("loadeddata", onLoaded);
 
-    // Safari quirk: sometimes needs an explicit play→pause
+    // Safari sometimes needs an explicit play→pause 
     vid
       .play()
       .then(() => vid.pause())
-      .catch(() => { /* ignore autoplay block */ });
+      .catch(() => {
+        /* ignore if autoplay is blocked */
+      });
   }, []);
 
   return (
