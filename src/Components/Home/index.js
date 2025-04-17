@@ -47,7 +47,7 @@ import CartPopup from "../Add to Cart";
 import axios from "axios";
 import "swiper/css/navigation";
 import ringVideo1 from "../../Videos/dfcvdfx.mp4";
-import ringVideo2 from "../../Videos/abouy_sss.mp4";
+import ringVideo2 from "../../Videos/dfvdfvd.mp4";
 import ringVideo3 from "../../Videos/sdcsdcdfc.mp4";
 import ringVideo4 from "../../Videos/sdcxdscx.mp4";
 import ringVideo5 from "../../Videos/dsfcdfc.mp4";
@@ -67,16 +67,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Video } from "lucide-react";
 
 const videoData = [
-  { src: ringVideo1, category: "Pendant" },
-  { src: ringVideo2, category: "Necklace" },
-  { src: ringVideo3, category: "Rings" },
-  { src: ringVideo4, category: "Bracelets" },
-  { src: ringVideo5, category: "Pendant" },
-  { src: ringVideo1, category: "Pendant" },
-  { src: ringVideo2, category: "Necklace" },
-  { src: ringVideo3, category: "Rings" },
-  { src: ringVideo4, category: "Bracelets" },
-  { src: ringVideo5, category: "Pendant" },
+  { src: "/videos/dfcvdfx.mp4", category: "Pendant" },
+  { src: "/videos/dfvdfvd.mp4", category: "Earrings" },
+  { src: "/Videos/sdcsdcdfc.mp4", category: "Rings" },
+  { src: "/Videos/sdcxdscx.mp4", category: "Bracelets" },
+  { src: "/Videos/dsfcdfc.mp4", category: "Pendant" },
+  { src: "/videos/dfcvdfx.mp4", category: "Pendant" },
+  { src: "/videos/dfvdfvd.mp4", category: "Earrings" },
+  { src: "/Videos/sdcsdcdfc.mp4", category: "Rings" },
+  { src: "/Videos/sdcxdscx.mp4", category: "Bracelets" },
+  { src: "/Videos/dsfcdfc.mp4", category: "Pendant" },
 ];
 const images = [
   require("../../Images/ring222.png"),
@@ -171,7 +171,6 @@ function VideoCard({ src, onClick }) {
     if (!vid) return;
 
     // 1) force fetch so first frame is ready
-    vid.setAttribute("muted", "true");
     vid.setAttribute("preload", "metadata");
 
     // 2) inline‑play flags
@@ -213,9 +212,6 @@ function VideoCard({ src, onClick }) {
     <video
       ref={ref}
       src={src}
-      muted
-      playsInline
-      preload="metadata"
       className="bg-white video_new_arrr"
       onClick={onClick}
     />
