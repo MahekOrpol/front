@@ -171,6 +171,7 @@ function VideoCard({ src, onClick }) {
     if (!vid) return;
 
     // 1) force fetch so first frame is ready
+    vid.setAttribute("muted", "true");
     vid.setAttribute("preload", "metadata");
 
     // 2) inline‑play flags
@@ -212,6 +213,9 @@ function VideoCard({ src, onClick }) {
     <video
       ref={ref}
       src={src}
+      muted
+      playsInline
+      preload="metadata"
       className="bg-white video_new_arrr"
       onClick={onClick}
     />
