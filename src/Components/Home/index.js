@@ -64,7 +64,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { Video } from "lucide-react";
 
+const videoData = [
+  { src: ringVideo1, category: "Pendant" },
+  { src: ringVideo2, category: "Earrings" },
+  { src: ringVideo3, category: "Rings" },
+  { src: ringVideo4, category: "Bracelets" },
+  { src: ringVideo5, category: "Pendant" },
+  { src: ringVideo1, category: "Pendant" },
+  { src: ringVideo2, category: "Earrings" },
+  { src: ringVideo3, category: "Rings" },
+];
 const images = [
   require("../../Images/ring222.png"),
   require("../../Images/ring222.png"),
@@ -150,6 +161,43 @@ const diamondRings = [
 //   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
 // ];
 
+function VideoCard({ src, onClick }) {
+  const vidRef = useRef(null);
+
+  useEffect(() => {
+    const vid = vidRef.current;
+    if (!vid) return;
+
+    // instruct browser to fetch metadata (first frame)
+    vid.preload = "metadata";
+    vid.playsInline = true;
+    vid.muted = true;
+    vid.loop = true;
+
+    // load & pause on first frame
+    vid.load();
+    const handleLoaded = () => {
+      vid.pause();
+      vid.removeEventListener("loadeddata", handleLoaded);
+    };
+    vid.addEventListener("loadeddata", handleLoaded);
+
+    // Safari quirk: sometimes needs an explicit play→pause
+    vid
+      .play()
+      .then(() => vid.pause())
+      .catch(() => { /* ignore autoplay block */ });
+  }, []);
+
+  return (
+    <video
+      ref={vidRef}
+      src={src}
+      className="bg-white video_new_arrr"
+      onClick={onClick}
+    />
+  );
+}
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
   const [liked, setLiked] = useState(false);
@@ -170,44 +218,45 @@ const Home = () => {
   const [productsPerPage, setProductsPerPage] = useState(1); // Initialize with 1
   const [isPaused, setIsPaused] = useState(false);
   const [slideDirection, setSlideDirection] = useState("next"); // Track slide direction for animation
-
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
   const [wishlistCount, setWishlistCount] = useState(0);
   const dispatch = useDispatch();
-  const {count: cartCount, loading, error} = useSelector((state) => state.cart);
-  
+  const {
+    count: cartCount,
+    loading,
+    error,
+  } = useSelector((state) => state.cart);
+
   const [showArrow, setShowArrow] = useState(false);
   const scrollContainerRef = useRef(null);
   const scrollRef = useRef(null);
 
+  
   useEffect(() => {
     const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
     if (cameFromCheckout) {
       setIsCartOpen(true);
       sessionStorage.removeItem("cameFromCheckout");
     }
-    
+
     const el = scrollRef.current;
     if (!el) return;
     el.addEventListener("scroll", handleScroll);
     return () => el.removeEventListener("scroll", handleScroll);
-
   }, []);
 
   const handleScroll = () => {
     const el = scrollContainerRef.current;
     if (!el) return;
-    const isAtEnd =
-      el.scrollLeft + el.clientWidth >= el.scrollWidth - 10; // 10px threshold
+    const isAtEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 10; // 10px threshold
     setShowArrow(isAtEnd);
   };
 
   useEffect(() => {
     dispatch(fetchCartCount());
   }, [dispatch]);
-
 
   // useEffect(() => {
   //   const fetchCartCount = async () => {
@@ -344,7 +393,7 @@ const Home = () => {
       } else {
         console.error("Failed to add product to cart:", response);
       }
-      dispatch(fetchCartCount()); 
+      dispatch(fetchCartCount());
       setToastMessage("Item added to cart successfully!");
       setShowToast(true);
     } catch (error) {
@@ -403,7 +452,7 @@ const Home = () => {
 
   const closeCart = () => {
     setIsCartOpen(false);
-    setShowToast(false); 
+    setShowToast(false);
     dispatch(fetchCartCount());
     document.body.classList.remove("no-scroll");
   };
@@ -1511,10 +1560,7 @@ const Home = () => {
                 </a>
               </div>
               <div className="h-100 d-flex flex-column justify-content-center domind_jew_sec">
-                <div
-                  className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc m-0 product-scroll-container"
-                 
-                >
+                <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc m-0 product-scroll-container">
                   {productsToDisplay
                     .slice(
                       currentIndex,
@@ -1743,7 +1789,7 @@ const Home = () => {
           <div className="we-carousel">
             {/* <div className="we-arrow left">&#10094;</div> */}
             <div className="we-card-container snap-carousel">
-              <div className="we-card">
+              {/* <div className="we-card">
                 <video
                   src={ringVideo1}
                   onClick={() => handleCategoryClick("Pendant")}
@@ -1830,7 +1876,15 @@ const Home = () => {
                   loop
                   muted
                 />
+              </div> */}
+               {videoData.map((v, i) => (
+              <div className="we-card" key={i}>
+                <VideoCard
+                  src={v.src}
+                  onClick={() => handleCategoryClick(v.category)}
+                />
               </div>
+            ))}
             </div>
             {/* <div className="we-arrow right">&#10095;</div> */}
           </div>
