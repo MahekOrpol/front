@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import CartPopup from "../Add to Cart";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartCount } from "../../redux/cartSlice";
 
 const posts = [
   {
@@ -40,34 +42,46 @@ const posts = [
 const Blog = () => {
   const [wishlistCount, setWishlistCount] = useState(0);
   const [wishlistItems, setWishlistItems] = useState({});
-  const [cartCount, setCartCount] = useState(() => {
-    const savedCount = localStorage.getItem('cartCount');
-    return savedCount ? parseInt(savedCount) : 0;
-  });
+  const dispatch = useDispatch();
+  const {
+    count: cartCount,
+    loading,
+    error,
+  } = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    dispatch(fetchCartCount());
+  }, [dispatch]);
   const navigate = useNavigate('');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const userId = localStorage.getItem("user_Id");
 
-  useEffect(() => {
-    const fetchCartCount = async () => {
-      const userId = localStorage.getItem("user_Id");
-      if (!userId) return;
-      try {
-        const response = await axios.get(
-          `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
-        );
-        const count = response.data.data.length || 0;
-        setCartCount(count);
-        localStorage.setItem("cartCount", count);
-      } catch (error) {
-        console.error("Error fetching cart count:", error);
-      }
-    };
-    fetchCartCount();
-  }, []);
+  // useEffect(() => {
+  //   const fetchCartCount = async () => {
+  //     const userId = localStorage.getItem("user_Id");
+  //     if (!userId) return;
+  //     try {
+  //       const response = await axios.get(
+  //         `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+  //       );
+  //       const count = response.data.data.length || 0;
+  //       setCartCount(count);
+  //       localStorage.setItem("cartCount", count);
+  //     } catch (error) {
+  //       console.error("Error fetching cart count:", error);
+  //     }
+  //   };
+  //   fetchCartCount();
+  // }, []);
 
   const openCart = () => {
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
   };
@@ -173,10 +187,10 @@ const Blog = () => {
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-        setCartCount={setCartCount}
       // toastMessage={toastMessage}
       />
-      <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount} />
+      <Header openCart={openCart}  wishlistCount={userId ? wishlistCount : null}
+          cartCount={userId ? cartCount : null} />
       <div>
         <img
           src={require("../../Images/Group 1597884577.png")}

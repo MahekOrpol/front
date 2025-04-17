@@ -33,7 +33,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const handleSearch = () => {
     if (searchValue.trim()) {
       navigate(`/products?search=${encodeURIComponent(searchValue.trim())}`);
-      setSearchValue(""); // Clear the input field
+      // setSearchValue(""); 
       setIsDrawerOpen(false); // Close the drawer after search
     }
   };
@@ -82,8 +82,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const handleLogout = () => {
     toast.success("Logout Successful!");
     localStorage.removeItem("user_Id");
-    localStorage.removeItem("user_token");
     localStorage.setItem("isExistingProfile", "false");
+    localStorage.removeItem("user_token");
+    localStorage.removeItem("cartCount");
     setData(null);
     setTimeout(() => setIsSignup(false), 500);
     navigate("/");
@@ -126,7 +127,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               style={{ borderRadius: "10px 0px 0px 10px", height: '2.7rem' }}
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-            // onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
             />
             <button
               className="p-3 rounded-r-full d-flex align-items-center justify-content-center search_hbdhj bg_prime"

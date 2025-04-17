@@ -10,10 +10,12 @@ import {
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { BiShoppingBag } from "react-icons/bi";
 import axios from "axios";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import CartPopup from "../Add to Cart";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartCount } from "../../redux/cartSlice";
 
 const Wishlist = () => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -24,30 +26,36 @@ const Wishlist = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [wishlistCount, setWishlistCount] = useState(0);
-  const [cartCount, setCartCount] = useState(() => {
-    const savedCount = localStorage.getItem('cartCount');
-    return savedCount ? parseInt(savedCount) : 0;
-  });
+  const dispatch = useDispatch();
+  const {
+    count: cartCount,
+    loading,
+    error,
+  } = useSelector((state) => state.cart);
 
   useEffect(() => {
-    const fetchCartCount = async () => {
-      const userId = localStorage.getItem("user_Id");
-      if (!userId) return;
+    dispatch(fetchCartCount());
+  }, [dispatch]);
 
-      try {
-        const response = await axios.get(
-          `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
-        );
-        const count = response.data.data.length || 0;
-        setCartCount(count);
-        localStorage.setItem('cartCount', count);
-      } catch (error) {
-        console.error("Error fetching cart count:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchCartCount = async () => {
+  //     const userId = localStorage.getItem("user_Id");
+  //     if (!userId) return;
 
-    fetchCartCount();
-  }, []);
+  //     try {
+  //       const response = await axios.get(
+  //         `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+  //       );
+  //       const count = response.data.data.length || 0;
+  //       setCartCount(count);
+  //       localStorage.setItem('cartCount', count);
+  //     } catch (error) {
+  //       console.error("Error fetching cart count:", error);
+  //     }
+  //   };
+
+  //   fetchCartCount();
+  // }, []);
 
   useEffect(() => {
     if (wishlist.length > 0) {
@@ -65,9 +73,10 @@ const Wishlist = () => {
   const navigate = useNavigate();
 
   const handleProductClick = (productId, productData) => {
-    navigate(`/product-details/${productId}`, { state: { product: productData } });
+    navigate(`/product-details/${productId}`, {
+      state: { product: productData },
+    });
   };
-
 
   //   const toggleFavorite = (id) => {
   //     setIsFavorite((prev) => ({
@@ -82,6 +91,12 @@ const Wishlist = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const openCart = () => {
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
   };
@@ -142,7 +157,7 @@ const Wishlist = () => {
         setWishlist((prev) =>
           prev.filter((item) => item.productId.id !== productId)
         );
-        setWishlistCount(prev => prev - 1);
+        setWishlistCount((prev) => prev - 1);
         console.log("res.data.message", res.data.message);
         fetchWishlist(); // Fetch updated wishlist after deletion
         toast.success(res.data.message);
@@ -159,13 +174,13 @@ const Wishlist = () => {
     }));
   };
 
-    useEffect(() => {
-      const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
-      if (cameFromCheckout) {
-        setIsCartOpen(true);
-        sessionStorage.removeItem("cameFromCheckout");
-      }
-    }, []);
+  useEffect(() => {
+    const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
+    if (cameFromCheckout) {
+      setIsCartOpen(true);
+      sessionStorage.removeItem("cameFromCheckout");
+    }
+  }, []);
 
   const handlePrevImage = (productId, images) => {
     setImageIndexes((prevIndexes) => ({
@@ -182,7 +197,7 @@ const Wishlist = () => {
         ? productId.productSize.join(",")
         : productId?.productSize || "";
       const variationIds = Array.isArray(productId?.variations)
-        ? productId.variations.map(variation => variation.id) // Ensure only ObjectIds are sent
+        ? productId.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
         : [];
 
       // Define the payload for the API request
@@ -193,11 +208,12 @@ const Wishlist = () => {
         quantity: productId?.quantity || 1,
         productSize: productSize,
         discount: productId?.discount?.$numberDecimal || 0,
-        variation: variationIds
-
+        variation: variationIds,
       };
-      console.log('product', JSON.stringify(JSON.stringify(productId?.variations)
-      ))
+      console.log(
+        "product",
+        JSON.stringify(JSON.stringify(productId?.variations))
+      );
 
       // Make the API request
       const response = await axios.post(
@@ -211,6 +227,7 @@ const Wishlist = () => {
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
+        dispatch(fetchCartCount());
       } else {
         console.error("Failed to add product to cart:", response);
       }
@@ -236,10 +253,19 @@ const Wishlist = () => {
         theme="light"
         stacked
       />
-      <CartPopup isOpen={isCartOpen} closeCart={closeCart} showToast={showToast} toastMessage={toastMessage} setCartCount={setCartCount}/>
+      <CartPopup
+        isOpen={isCartOpen}
+        closeCart={closeCart}
+        showToast={showToast}
+        toastMessage={toastMessage}
+      />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-        <Header openCart={openCart} wishlistCount={wishlistCount} cartCount={cartCount}/>
+        <Header
+          openCart={openCart}
+          wishlistCount={userId ? wishlistCount : null}
+          cartCount={userId ? cartCount : null}
+        />
         <div className="container">
           <div className="hdr_csd flex-column align-items-center produ_sss">
             <div className="row">
@@ -276,12 +302,13 @@ const Wishlist = () => {
                           </div>
                         </div>
                         <div className="card-body">
-                          {productId?.image[imageIndexes[productId?.id]]?.endsWith(
-                            ".mp4"
-                          ) ? (
+                          {productId?.image[
+                            imageIndexes[productId?.id]
+                          ]?.endsWith(".mp4") ? (
                             <video
-                              src={`http://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
-                                }`}
+                              src={`http://147.93.104.196:3000${
+                                productId.image[imageIndexes[productId.id]]
+                              }`}
                               className="w-100"
                               autoPlay
                               loop
@@ -290,8 +317,9 @@ const Wishlist = () => {
                             />
                           ) : (
                             <img
-                              src={`http://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
-                                }`}
+                              src={`http://147.93.104.196:3000${
+                                productId.image[imageIndexes[productId.id]]
+                              }`}
                               className="w-100"
                               alt={productId.productName}
                             />
@@ -336,7 +364,10 @@ const Wishlist = () => {
                       </span>
                     </div>
                     {hoveredProduct === productId.id && (
-                      <div className="hover-overlay DFC_NHJ w-100 d-none d-sm-flex" onClick={() => handleProductClick(productId.id)}>
+                      <div
+                        className="hover-overlay DFC_NHJ w-100 d-none d-sm-flex"
+                        onClick={() => handleProductClick(productId.id)}
+                      >
                         <button
                           className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3"
                           onClick={() => addToCart(productId)}
