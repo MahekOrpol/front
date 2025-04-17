@@ -64,7 +64,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Video } from "lucide-react";
 
 const videoData = [
   { src: ringVideo1, category: "Pendant" },
@@ -151,18 +150,6 @@ const diamondRings = [
     size: "small",
   },
 ];
-
-// const categories = [
-//   { img: require("../../Images/Group 1597884634 (1).png"), label: "Pendant" },
-//   { img: require("../../Images/Group 1597884629 (1).png"), label: "Bracelet" },
-//   { img: require("../../Images/Group 1597884630.png"), label: "Earrings" },
-//   { img: require("../../Images/Group 1597884631.png"), label: "Rings" },
-//   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
-//   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
-//   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
-//   { img: require("../../Images/Group 1597884632.png"), label: "Pendant" },
-// ];
-
 function VideoCard({ src, onClick }) {
   const ref = useRef(null);
 
@@ -170,41 +157,23 @@ function VideoCard({ src, onClick }) {
     const vid = ref.current;
     if (!vid) return;
 
-    // 1) force fetch so first frame is ready
-    vid.setAttribute("preload", "metadata");
-
-    // 2) inline‑play flags
-    vid.setAttribute("playsinline", "");
-    vid.setAttribute("webkit-playsinline", "true");
-    vid.setAttribute("x5-playsinline", "true");
-
-    // 3) muted, looping
-    vid.muted = true;
-    vid.loop = true;
-
-    // 4) observer to play/pause only when visible
-    const obs = new IntersectionObserver(
+    const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          vid.play().catch(() => {});
+          vid.play().catch((e) => {
+            console.warn("Autoplay failed", e);
+          });
         } else {
           vid.pause();
         }
       },
       { threshold: 0.5 }
     );
-    obs.observe(vid);
 
-    // ensure the very first frame paints
-    const handleLoaded = () => {
-      vid.pause();
-      vid.removeEventListener("loadeddata", handleLoaded);
-    };
-    vid.addEventListener("loadeddata", handleLoaded);
-    vid.load();
+    observer.observe(vid);
 
     return () => {
-      obs.disconnect();
+      observer.disconnect();
     };
   }, []);
 
@@ -214,6 +183,11 @@ function VideoCard({ src, onClick }) {
       src={src}
       className="bg-white video_new_arrr"
       onClick={onClick}
+      muted
+      playsInline
+      autoPlay
+      loop
+      preload="auto"
     />
   );
 }
