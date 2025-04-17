@@ -164,42 +164,60 @@ const diamondRings = [
 // ];
 
 function VideoCard({ src, onClick }) {
-  const vidRef = useRef(null);
+  const ref = useRef(null);
 
   useEffect(() => {
-    const vid = vidRef.current;
+    const vid = ref.current;
     if (!vid) return;
 
-    // instruct browser to fetch metadata (first frame)
-    vid.preload = "metadata";
-    vid.playsInline = true;
+    // 1) force fetch so first frame is ready
+    vid.setAttribute("preload", "metadata");
+
+    // 2) inline‑play flags
+    vid.setAttribute("playsinline", "");
+    vid.setAttribute("webkit-playsinline", "true");
+    vid.setAttribute("x5-playsinline", "true");
+
+    // 3) muted, looping
     vid.muted = true;
     vid.loop = true;
 
-    // load & pause on first frame
-    vid.load();
+    // 4) observer to play/pause only when visible
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          vid.play().catch(() => {});
+        } else {
+          vid.pause();
+        }
+      },
+      { threshold: 0.5 }
+    );
+    obs.observe(vid);
+
+    // ensure the very first frame paints
     const handleLoaded = () => {
       vid.pause();
       vid.removeEventListener("loadeddata", handleLoaded);
     };
     vid.addEventListener("loadeddata", handleLoaded);
+    vid.load();
 
-    // Safari quirk: sometimes needs an explicit play→pause
-    vid
-      .play()
-      .then(() => vid.pause())
-      .catch(() => { /* ignore autoplay block */ });
+    return () => {
+      obs.disconnect();
+    };
   }, []);
 
   return (
     <video
-      ref={vidRef}
+      ref={ref}
       src={src}
       className="bg-white video_new_arrr"
       onClick={onClick}
     />
   );
 }
+
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
   const [liked, setLiked] = useState(false);
