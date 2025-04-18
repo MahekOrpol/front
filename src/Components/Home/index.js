@@ -197,6 +197,7 @@ function VideoCard({ src, onClick }) {
 
   return (
     <video
+      key={src}
       ref={ref}
       src={src}
       muted
@@ -206,14 +207,7 @@ function VideoCard({ src, onClick }) {
       preload="metadata"
       webkit-playsinline="true"
       x5-playsinline="true"
-      style={{
-        width: "100%",
-        height: "auto",
-        maxWidth: "100%",
-        display: "block",
-        objectFit: "cover",
-        borderRadius: "16px",
-      }}
+      className="bg-white video_new_arrr"
       onClick={onClick}
     />
   );
@@ -712,6 +706,13 @@ const Home = () => {
   //   });
   // }, []);
 
+  useEffect(() => {
+    const ua = navigator.userAgent;
+    if (ua.includes("OnePlus A6000") || ua.includes("OnePlus A6010")) {
+      document.body.classList.add("oneplus-7");
+    }
+  }, []);
+  
   useEffect(() => {
     let currentCardIndex = 0;
     const cards = $(".we-card");
