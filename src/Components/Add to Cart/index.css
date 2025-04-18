@@ -1,11 +1,10 @@
-/* Cart Popup Styles
 html,
 body {
   height: auto;
   min-height: 100%;
   overflow-y: auto;
   scrollbar-width: none;
-} */
+}
 .cart-popup {
   position: fixed;
   top: 0;
