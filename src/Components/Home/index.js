@@ -196,22 +196,26 @@ function VideoCard({ src, onClick }) {
   }, []);
 
   return (
-<video
-  key={src}
-  ref={ref}
-  src={src}
-  muted
-  autoPlay
-  loop
-  playsInline
-  preload="metadata"
-  webkit-playsinline="true"
-  x5-playsinline="true"
-  className="bg-white video_new_arrr"
-  onClick={onClick}
-/>
-
-
+    <video
+      ref={ref}
+      src={src}
+      muted
+      autoPlay
+      loop
+      playsInline
+      preload="metadata"
+      webkit-playsinline="true"
+      x5-playsinline="true"
+      style={{
+        width: "100%",
+        height: "auto",
+        maxWidth: "100%",
+        display: "block",
+        objectFit: "cover",
+        borderRadius: "16px",
+      }}
+      onClick={onClick}
+    />
   );
 }
 
@@ -250,7 +254,6 @@ const Home = () => {
   const scrollContainerRef = useRef(null);
   const scrollRef = useRef(null);
 
-  
   useEffect(() => {
     const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
     if (cameFromCheckout) {
@@ -275,42 +278,10 @@ const Home = () => {
     dispatch(fetchCartCount());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   const fetchCartCount = async () => {
-  //     const userId = localStorage.getItem("user_Id");
-  //     if (!userId) return;
-  //     try {
-  //       const response = await axios.get(
-  //         `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
-  //       );
-  //       const count = response.data.data.length || 0;
-  //       setCartCount(count);
-  //       localStorage.setItem("cartCount", count);
-  //     } catch (error) {
-  //       console.error("Error fetching cart count:", error);
-  //     }
-  //   };
-  //   fetchCartCount();
-  // }, []);
-
   const productsToDisplay =
     filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
 
   const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
-
-  // Auto-slide effect
-  // useEffect(() => {
-  //   if (isPaused || productsToDisplay.length <= productsPerPage) return;
-
-  //   const intervalId = setInterval(() => {
-  //     setSlideDirection('next');
-  //     setCurrentIndex(prevIndex =>
-  //       (prevIndex + 1) % (productsToDisplay.length - productsPerPage + 1)
-  //     );
-  //   }, AUTO_SLIDE_INTERVAL);
-
-  //   return () => clearInterval(intervalId);
-  // }, [productsToDisplay.length, productsPerPage, isPaused]);
 
   // Calculate productsPerPage based on screen size
   useEffect(() => {
@@ -1894,14 +1865,14 @@ const Home = () => {
                   muted
                 />
               </div> */}
-               {videoData.map((v, i) => (
-              <div className="we-card" key={i}>
-                <VideoCard
-                  src={v.src}
-                  onClick={() => handleCategoryClick(v.category)}
-                />
-              </div>
-            ))}
+              {videoData.map((v, i) => (
+                <div className="we-card" key={i}>
+                  <VideoCard
+                    src={v.src}
+                    onClick={() => handleCategoryClick(v.category)}
+                  />
+                </div>
+              ))}
             </div>
             {/* <div className="we-arrow right">&#10095;</div> */}
           </div>

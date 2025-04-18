@@ -539,7 +539,7 @@
 
 @media (max-width: 889px) {
   .use_sdc {
-    font-size: 15px !important;
+    font-size: 14px !important;
   }
 
   .bcdhb_jcb {
@@ -564,6 +564,7 @@
 
   .email {
     padding-left: 18px;
+    height: 46px;
   }
 }
 
@@ -824,4 +825,35 @@
 
 .css-1pug5wj.Mui-expanded {
   margin: 0px 0px !important;
+}
+
+@media (max-width:767px) {
+  .sub_ss {
+    line-height: 44px;
+    font-size: 13px;
+    width: 50%;
+  }
+  .email {
+    padding-left: 18px;
+    height: 46px;
+    width: 100%;
+}
+.sub_emailsss{
+  flex-direction: row !important;
+}
+}
+@media (max-width:427px) {
+  .sub_ss {
+    line-height: 44px;
+    font-size: 13px;
+    width: 100%;
+  }
+  .email {
+    padding-left: 18px;
+    height: 46px;
+    width: 100%;
+}
+.sub_emailsss{
+  flex-direction: column !important;
+}
 }

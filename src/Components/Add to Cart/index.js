@@ -125,7 +125,7 @@ const CartPopup = ({
       if (res.status === 200) {
         const updatedItems = orderDetails.filter((_, i) => i !== index);
         setOrderDetails(updatedItems);
-        setCartCount(updatedItems.length);
+        // setCartCount(updatedItems.length);
         localStorage.setItem("cartCount", updatedItems.length);
         toast.success("Removed from Cart!");
       }

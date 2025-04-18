@@ -345,7 +345,7 @@ const Footer = () => {
                 Join our newsletter for exclusive updates, special offers, and
                 the latest news delivered straight to your inbox!
               </p>
-              <div className="d-flex flex-column w-100 gap-2">
+              <div className="d-flex flex-column w-100 gap-2 sub_emailsss">
                 <input
                   name="email"
                   className="email"
