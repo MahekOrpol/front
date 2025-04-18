@@ -39,3 +39,8 @@
   }
 }
 
+html,
+body {
+  min-height: 100%;
+  scrollbar-width: none;
+}
