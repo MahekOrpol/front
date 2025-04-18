@@ -18,6 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-bootstrap";
 import RegisterPopup from "./Components/RegisterPopup";
 import ProtectedRoute from "./Pages/Protected Route/protectedRoute";
+import Ring1 from "./Components/Home/ring demo 1/ring";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/Customjewel" element={<CustomJewel />} />
         <Route path="/demo" element={<JewelrySale />} />
+        <Route path="/rings1" element={<Ring1 />} />
 
         {/* <Route path="/Order" element={<OrderDetails />} />
         <Route path="/add_to_cart" element={<CartPopup />} />
