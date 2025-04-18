@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
 import { FaChevronRight, FaStar } from "react-icons/fa6";
@@ -139,10 +139,14 @@ Please let me know the next steps.`;
     }
   }, []);
 
-  const videos =
-    productDetails?.image?.filter((media) => media.endsWith(".mp4")) || [];
-  const images =
-    productDetails?.image?.filter((media) => !media.endsWith(".mp4")) || [];
+// Filter images and videos from productDetails.image
+const images = useMemo(() => 
+  productDetails?.image?.filter((img) => !img.endsWith(".mp4")) || [],
+[productDetails]);
+
+const videos = useMemo(() => 
+  productDetails?.image?.filter((vid) => vid.endsWith(".mp4")) || [],
+[productDetails]);
 
   useEffect(() => {
     if (!productData) {
