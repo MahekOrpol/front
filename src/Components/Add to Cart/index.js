@@ -234,47 +234,18 @@ const CartPopup = ({
                 }}
               />
               <div className="cart_item_detail ">
-                <h5 className="fw-bold mb-1 d-flex align-items-center justify-content-between secure_chckotfre">
+                <h5 className="fw-bold mb-1 d-flex align-items-center justify-content-between secure_chckotfre cart_headre_ssss">
                   {item.productId?.productName}
                 </h5>
                 <div className="d-flex align-items-center justify-content-between secure_chckotfre1">
-                  {/* <div className="d-flex align-items-center w-100 secure_chckotfre">
-                    <p className="m-0">Ring Size :</p>
-            
-                    <select
-                      className="dropdown_size w-50 p-1"
-                      style={{ borderRadius: "5px" }}
-                      value={
-                        orderDetails[index]?.selectedSize ||
-                        item.selectedSize ||
-                        "" // fallback to empty string if no value
-                      }
-                      onChange={(e) => handleSizeChange(index, e.target.value)}
-                      required
-                    >
-                      <option value="" disabled>
-                        Select Size
-                      </option>
-
-                      {Array.isArray(item.productId?.productSize) &&
-                        item.productId?.productSize.length > 0 &&
-                        item.productId?.productSize[0]
-                          .split(",")
-                          .map((size, i) => (
-                            <option key={i} value={size}>
-                              {size}
-                            </option>
-                          ))}
-                    </select>
-
-                  </div> */}
+                 
                   {Array.isArray(item.productId?.productSize) &&
                     item.productId.productSize.length > 0 &&
                     item.productId.productSize[0] !== "[]" && // filter out invalid stringified array
                     item.productId.productSize[0]
                       .split(",")
                       .filter((size) => size.trim() !== "").length > 0 && (
-                      <div className="d-flex align-items-center w-100 secure_chckotfre w-100" style={{whiteSpace:'nowrap'}}>
+                      <div className="d-flex align-items-center w-100 secure_chckotfre cart_headre_ssss1 w-100" style={{whiteSpace:'nowrap'}}>
                         <p className="m-0">Ring Size :</p>
                         <select
                           className="dropdown_size p-1"
@@ -304,19 +275,14 @@ const CartPopup = ({
                     )}
 
                   <p className="fw-bold m-0 secure_chckotfre d-flex justify-content-end w-100">
-                    {/* ₹
-                    {(
-                      parseFloat(
-                        item.productId.salePrice?.$numberDecimal || 0
-                      ) * parseInt(item.quantity)
-                    ).toFixed(2)} */}
+                   
                     ₹
                     {(
                       parseFloat(item.salePrice) * parseInt(item.quantity)
                     ).toFixed(2)}
                   </p>
                 </div>
-                <div className="d-flex align-items-center justify-content-between mt-3">
+                <div className="d-flex align-items-center justify-content-between mt-3 size_selectttt">
                   <div className="d-inline-flex align-items-center p-2 gap-3 wr_sss_dd_sssss ">
                     <button
                       className="btn bg_prime rounded-circle fw-bold"
