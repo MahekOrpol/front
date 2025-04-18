@@ -11609,18 +11609,20 @@ color: #611D2B;
   background-color: transparent;
 }
 
-
-.oneplus-7 .we-carousel {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 234px;
-  width: 100%;
-  transform: scale(1.4) !important;
-  height: 500px;
-}
-
-.oneplus-7 .we-card-container{
-  display: flex;
+@media (width:767.98px) {
+  
+  .we-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 234px;
+    width: 100%;
+    transform: scale(1.4) !important;
+    height: 500px;
+  }
+  
+  .we-card-container{
+    display: flex;
+  }
 }
