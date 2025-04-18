@@ -10740,18 +10740,6 @@ img.ring-image {
     height: 500px;
   }
 }
-.we-carousel {
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 234px;
-  width: 100%;
-  transform: scale(1.2) !important;
-  height: 500px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
 
 @media (min-width: 1441px) and (max-width: 1500px) {
   .fvfvfc_Zdcdsc {
