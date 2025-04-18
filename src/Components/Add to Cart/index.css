@@ -76,8 +76,8 @@ body {
 
 .cart-items-bg {
   overflow: hidden;
-  /* padding-bottom: 20%; */
-  height: 80vh;
+  padding-bottom: 20%;
+  height: 74vh;
   overflow-y: auto;
   padding: 10px;
   overflow-x: hidden; /* Prevent horizontal scroll */
@@ -88,7 +88,7 @@ body {
 .cart-item {
   margin: 15px;
   display: flex;
-  gap: 10px;
+  gap: 0px;
   padding: 15px;
   border: 1px solid rgb(51, 51, 51);
   border-radius: 24px;
@@ -108,12 +108,14 @@ body {
   border-radius: 5px;
 }
 
+/* Cart Footer */
 .cart-footer {
   position: absolute;
   bottom: 0;
-  left: 0;
   width: 100%;
+  left: 0;
   padding: 15px;
+  overflow: visible;
   background: white;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   z-index: 10;
@@ -186,7 +188,8 @@ body {
 .secure_chckotfre {
   font-family: "Cabin", sans-serif;
   width: 100%;
-
+height: 50px;
+margin-bottom: 20px;
 }
 
 .inc_btn_dddd {
@@ -214,10 +217,44 @@ body {
   background-color: #611d2b;
 }
 
-/* .cart-footer {
+.cart-footer {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
 .cart-footer {
   z-index: 9999;
-} */
+}
+
+@media (max-width:500px) {
+  .cart-footer {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    left: 0;
+    padding: 15px;
+    overflow: visible;
+    background: white;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+  }
+  .cart-items-bg {
+    overflow: hidden;
+    padding-bottom: 20%;
+    height: 70vh;
+    overflow-y: auto;
+    padding: 10px;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+  
+  .size_selectttt{
+    margin-top: 0rem !important;
+  }
+}
+.cart_headre_ssss{
+  margin-bottom: 0px !important;
+  height: fit-content;
+}
+.cart_headre_ssss1{
+  margin-bottom: 0px !important;
+}
