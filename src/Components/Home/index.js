@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./index.css";
+import "./index.css?v=2";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import $ from "jquery";
 import {
