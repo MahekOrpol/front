@@ -11609,7 +11609,7 @@ color: #611D2B;
   background-color: transparent;
 }
 
-@media (width:767.98px) {
+@media screen and (width:767.98px) {
   
   .we-carousel {
     position: relative;
