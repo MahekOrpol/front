@@ -41,21 +41,56 @@ const Gift = () => {
               <img
                 src={require("../../../Images/slider.svg").default}
                 alt="Gift Slide"
-                className=" "
+                className="gift_img_round"
               />
             </div>
             <div className="slider-card">
               <img
-                src={require("../../../Images/slider.svg").default}
+                src={require("../../../Images/g4.svg").default}
                 alt="Gift Slide 2"
-                className=" "
+                className="gift_img_round"
+              />
+            </div>
+            <div className="slider-card">
+              <img
+                src={require("../../../Images/gift2.svg").default}
+                alt="Gift Slide 2"
+                className="gift_img_round"
+              />
+            </div>
+            <div className="slider-card">
+              <img
+                src={require("../../../Images/gift3.svg").default}
+                alt="Gift Slide 2"
+                className="gift_img_round"
+              />
+            </div>
+            <div className="slider-card">
+              <img
+                src={require("../../../Images/gift4.svg").default}
+                alt="Gift Slide 2"
+                className="gift_img_round"
+              />
+            </div>
+            <div className="slider-card">
+              <img
+                src={require("../../../Images/gift5.svg").default}
+                alt="Gift Slide 2"
+                className="gift_img_round"
+              />
+            </div>
+            <div className="slider-card">
+              <img
+                src={require("../../../Images/gift3 (1).svg").default}
+                alt="Gift Slide 2"
+                className="gift_img_round"
               />
             </div>
           </Slider>
         </div>
 
         {/* Static Card */}
-        <div className="static-gift-card text-center MHK position-relative gap-2">
+        <div className="static-gift-card text-center MHK position-relative gap-2 gift_img_round">
           <img
             src={require("../../../Images/first.svg").default}
             className="img-fluid gift-img gift_box_dsdd"

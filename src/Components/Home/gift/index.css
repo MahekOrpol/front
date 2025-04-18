@@ -1832,3 +1832,7 @@
     gap: 1rem !important;
   }
 }
+
+.gift_img_round{
+  border-radius: 10px;
+}

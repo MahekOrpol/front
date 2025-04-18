@@ -1,0 +1,35 @@
+.ring_head .carousel {
+  overflow-x: clip;
+}
+
+.ring_head .swiper {
+  padding: 5rem 0;
+  overflow: visible;
+ 
+}
+.single{
+
+    height: 670px;
+}
+.ring_head .single {
+  position: relative;
+  pointer-events: none;
+  user-select: none;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+ .ring_head img {
+    width: 100%;
+    height: auto;
+    vertical-align: top;
+    border-radius: 8px;
+    pointer-events: none;
+  }
+}
+
+
+.carousel1 {
+    position: relative;
+    /* max-width: 800px; */
+    margin: auto;
+}
