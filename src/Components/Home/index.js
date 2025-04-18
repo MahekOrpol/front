@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./index.css?v=2";
+import "./index.css";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import $ from "jquery";
 import {
@@ -196,20 +196,22 @@ function VideoCard({ src, onClick }) {
   }, []);
 
   return (
-    <video
-      key={src}
-      ref={ref}
-      src={src}
-      muted
-      autoPlay
-      loop
-      playsInline
-      preload="metadata"
-      webkit-playsinline="true"
-      x5-playsinline="true"
-      className="bg-white video_new_arrr"
-      onClick={onClick}
-    />
+<video
+  key={src}
+  ref={ref}
+  src={src}
+  muted
+  autoPlay
+  loop
+  playsInline
+  preload="metadata"
+  webkit-playsinline="true"
+  x5-playsinline="true"
+  className="bg-white video_new_arrr"
+  onClick={onClick}
+/>
+
+
   );
 }
 
@@ -248,6 +250,7 @@ const Home = () => {
   const scrollContainerRef = useRef(null);
   const scrollRef = useRef(null);
 
+  
   useEffect(() => {
     const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
     if (cameFromCheckout) {
@@ -271,6 +274,24 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchCartCount());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   const fetchCartCount = async () => {
+  //     const userId = localStorage.getItem("user_Id");
+  //     if (!userId) return;
+  //     try {
+  //       const response = await axios.get(
+  //         `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+  //       );
+  //       const count = response.data.data.length || 0;
+  //       setCartCount(count);
+  //       localStorage.setItem("cartCount", count);
+  //     } catch (error) {
+  //       console.error("Error fetching cart count:", error);
+  //     }
+  //   };
+  //   fetchCartCount();
+  // }, []);
 
   const productsToDisplay =
     filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
@@ -706,13 +727,6 @@ const Home = () => {
   //   });
   // }, []);
 
-  useEffect(() => {
-    const ua = navigator.userAgent;
-    if (ua.includes("OnePlus A6000") || ua.includes("OnePlus A6010")) {
-      document.body.classList.add("oneplus-7");
-    }
-  }, []);
-  
   useEffect(() => {
     let currentCardIndex = 0;
     const cards = $(".we-card");
@@ -1772,7 +1786,7 @@ const Home = () => {
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
-        </div> 
+        </div>
 
         <div className="video-curved-tewd ">
           <div className="we-carousel">
@@ -1866,14 +1880,14 @@ const Home = () => {
                   muted
                 />
               </div> */}
-              {videoData.map((v, i) => (
-                <div className="we-card" key={i}>
-                  <VideoCard
-                    src={v.src}
-                    onClick={() => handleCategoryClick(v.category)}
-                  />
-                </div>
-              ))}
+               {videoData.map((v, i) => (
+              <div className="we-card" key={i}>
+                <VideoCard
+                  src={v.src}
+                  onClick={() => handleCategoryClick(v.category)}
+                />
+              </div>
+            ))}
             </div>
             {/* <div className="we-arrow right">&#10095;</div> */}
           </div>
