@@ -12,7 +12,6 @@
   z-index: 1000;
   background: white;
 }
-
 .register-popup {
   background: white;
   width: 90%;
@@ -21,26 +20,22 @@
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  height: 77vh;
+  height: fit-content;
   /* border: 1px solid black; */
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-
 .register-container {
   display: flex;
   width: 100%;
 }
-
 .register-image {
   width: 40%;
 }
-
 .register-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .register-form {
   width: 60%;
   padding: 26px;
@@ -48,71 +43,60 @@
   overflow: scroll;
   scrollbar-width: none;
 }
-
 .form-header {
   display: flex;
   justify-content: space-evenly;
   font-size: 24px;
   font-family: "Cabin", sans-serif;
 }
-
 .active-tab {
   font-weight: bold;
 }
-
 .inactive-tab {
   color: gray;
 }
-
 .tab-underline {
   border: 0;
   height: 3px;
-  background: #4c0d16;
+  background: #4C0D16;
   width: 99%;
   margin: 5px auto 20px;
 }
-
 .register-text {
   font-size: 24px;
-  color: #4c0d16;
+  color: #4C0D16;
   text-align: left;
   font-weight: 400;
   font-family: "Cabin", sans-serif;
   margin-bottom: auto;
 }
-
 .register-subtext {
   font-size: 13px;
   color: gray;
   text-align: left;
   font-family: "Cabin", sans-serif;
 }
-
 .inpul {
   display: flex;
   gap: 15px;
 }
-
 .full-width {
   width: 100%;
   margin-bottom: 10px;
 }
-
 .terms-text {
   font-size: 12px;
   color: gray;
   margin: 10px 0;
 }
-
 .terms-text a {
-  color: #4c0d16;
+  color: #4C0D16;
   text-decoration: none;
   font-weight: bold;
 }
-
 .register-btn {
   width: 39%;
-  background: #4c0d16;
+  background: #4C0D16;
   color: white;
   padding: 10px;
   border: none;
@@ -121,7 +105,6 @@
   cursor: pointer;
   font-family: "Cabin", sans-serif;
 }
-
 .linetxt {
   margin: 15px 0;
   font-size: 14px;
@@ -129,19 +112,16 @@
   font-weight: bold;
   font-family: "Cabin", sans-serif;
 }
-
 .google-login {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-
 .google-icon {
   width: 20px;
   height: 20px;
 }
-
 .already-text {
   display: flex;
   justify-content: center;
@@ -150,7 +130,6 @@
   color: gray;
   margin-top: 20px;
 }
-
 .otre {
   font-size: 15px;
   color: black;
@@ -158,7 +137,6 @@
   margin-top: 12px;
   font-family: "Cabin", sans-serif;
 }
-
 .otre1 {
   font-size: 15px;
   color: black;
@@ -166,41 +144,34 @@
   margin-top: 40px;
   font-family: "Cabin", sans-serif;
 }
-
 .hrdd {
   font-size: 15px;
-  color: #611d2b;
+  color: #611D2B;
   text-decoration: underline;
   font-family: "Cabin", sans-serif;
 }
-
 .remember-me-label {
   font-size: 15px;
   font-family: "Cabin", sans-serif;
 }
-
 .tvjg {
 cursor: pointer;
-  color: #611d2b;
+  color: #611D2B;
 }
-
 .tvjgds {
-  color: #611d2b;
+  color: #611D2B;
   cursor: pointer;
 }
-
 .taout_d {
   font-size: 20px !important;
   color: black !important;
   font-weight: bold;
 }
-
 .remember-me-container {
   display: flex;
   align-items: center;
   gap: 5px;
 }
-
 .register-popup {
   background: white;
   width: 90%;
@@ -210,7 +181,6 @@ cursor: pointer;
   flex-direction: row;
   overflow: hidden;
 }
-
 .or-text-container {
   display: flex;
   align-items: center;
@@ -218,101 +188,84 @@ cursor: pointer;
   width: 100%;
   margin: 7px;
 }
-
 .or-line {
   flex-grow: 1;
   height: 1px;
   background-color: gray;
   margin: 0 10px;
 }
-
 .or-text {
   font-size: 15.5px;
   font-weight: bold;
   color: black;
   font-family: "Cabin", sans-serif;
 }
-
 @media (max-width: 1024px) {
   .register-popup {
     width: 100%;
-    height: 93%;
+    height: fit-content;
   }
-
   .register-text {
     font-size: 22px;
-    color: #4c0d16;
+    color: #4C0D16;
     text-align: left;
     font-weight: 400;
     margin-bottom: 4px;
   }
-
   .register-form {
     padding: 18px;
-    height: 80vh;
+    height: fit-content;
   }
-
   .taout_d {
     font-size: 26px !important;
     color: black !important;
     font-weight: bold;
   }
 }
-
 .google-icon {
   width: 6% !important;
   height: auto !important;
 }
-
 @media (min-width: 200px) and (max-width: 480px) {
   .styled-input input {
     font-size: 14px;
     padding: 12px 8px;
   }
-
   .register-text {
     margin-top: 14px;
     font-size: 20px;
   }
-
   .register-subtext {
     font-size: 12px;
   }
-
   .register-btn {
     font-size: 14px;
     padding: 8px;
   }
-
   .css-13xfq8m-MuiTabPanel-root {
     padding: 0% !important;
   }
-
   .register-form {
-    height: 91vh !important;
+    height: fit-content !important;
   }
-
   .register-popup-overlay {
     width: 100%;
-    height: 100%;
+    height: fit-content;
     margin: 0% !important;
     margin-top: 1rem !important;
     margin-bottom: 1rem !important;
   }
 }
-
 @media (max-width: 932px) {
   .register-popup {
     flex-direction: column;
     width: 100%;
     max-width: 594px;
   }
-
   .register-form {
     padding: 18px;
-    height: 100vh;
+    height: fit-content;
   }
-
   .styled-input input {
     width: 100%;
     padding: 13px 10px 4px;
@@ -323,62 +276,51 @@ cursor: pointer;
     outline: none;
     background: transparent;
   }
-
   .inpul {
     display: grid;
     gap: 0px;
   }
-
   .register-container {
     flex-direction: column;
   }
-
   .register-image {
     display: none;
   }
-
   .register-form {
     width: 100%;
     padding: 20px;
   }
-
   .register-btn {
     width: 44%;
   }
-
   .register-subtext {
     font-size: 13px;
     color: gray;
     text-align: left;
     font-family: "Cabin", sans-serif;
   }
-
   .register-text {
     font-size: 21px;
-    color: #4c0d16;
+    color: #4C0D16;
     text-align: left;
     font-weight: 400;
     font-family: "Cabin", sans-serif;
     margin-bottom: 4px;
   }
-
   .taout_d {
     font-size: 26px !important;
   }
-
   .styled-input {
     position: relative;
     width: 100%;
     margin-bottom: 15px;
   }
-
   .otre1 {
     font-size: 13px;
     color: black;
     font-weight: 500;
     margin-top: 19px;
   }
-
   .otre {
     font-size: 13px;
     color: black;
@@ -386,42 +328,34 @@ cursor: pointer;
     margin-top: 19px;
   }
 }
-
 @media (max-width: 600px) {
   .register-popup {
     width: 95%;
     max-width: 485px;
   }
-
   .register-container {
     flex-direction: column;
   }
-
   .register-image {
     width: 100%;
     height: 200px;
   }
-
   .register-form {
     width: 100%;
     padding: 20px;
   }
-
   .register-btn {
     width: 50%;
   }
-
   .taout_d {
     font-size: 23px !important;
   }
-
   .register-subtext {
     font-size: 10px;
     color: gray;
     text-align: left;
     font-family: "Cabin", sans-serif;
   }
-
   .styled-input input:focus + label,
   .styled-input input:not(:placeholder-shown) + label {
     top: 5px;
@@ -430,47 +364,40 @@ cursor: pointer;
     color: #565656;
   }
 }
-
 @media (max-width: 489px) {
   .register-popup {
     width: 100%;
     max-width: 448px;
-    max-height: 100vh;
+    max-height: fit-content;
     margin-left: 10px;
     margin-right: 10px;
   }
-
   .taout_d {
     font-size: 22px !important;
   }
-
   .otre {
     font-size: 9px;
     color: black;
     font-weight: 500;
     margin-top: 19px;
   }
-
   .otre1 {
     font-size: 9px;
     color: black;
     font-weight: 500;
     margin-top: 19px;
   }
-
   .register-text {
     font-size: 18px;
-    color: #4c0d16;
+    color: #4C0D16;
     text-align: left;
     font-weight: 400;
     font-family: "Cabin", sans-serif;
   }
-
   .register-btn {
     width: 44%;
     font-size: 13px;
   }
-
   .remember-me-label,
   .hrdd {
     font-size: 11px;
@@ -482,12 +409,10 @@ cursor: pointer;
     font-size: 12px !important;
   }
 }
-
 .register-form
   button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.MuiTab-fullWidth.Mui-selected.taout_d.css-hmk518-MuiButtonBase-root-MuiTab-root {
   font-size: 28px !important;
 }
-
 .ggl_text {
   font-family: "Cabin", sans-serif;
 }

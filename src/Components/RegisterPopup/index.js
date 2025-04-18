@@ -484,7 +484,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
                       <p className="or-text-container pt-1 pb-1">
                         <span className="or-line"></span>
-                        <span className="or-text">or</span>
+                        <span className="or-text">OR</span>
                         <span className="or-line"></span>
                       </p>
                       <div className="ggl_text d-flex align-items-center gap-2 justify-content-center">
