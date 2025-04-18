@@ -1772,7 +1772,7 @@ const Home = () => {
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
-        </div>
+        </div> 
 
         <div className="video-curved-tewd ">
           <div className="we-carousel">
