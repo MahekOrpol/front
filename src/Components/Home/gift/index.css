@@ -71,6 +71,30 @@
   height: 35px;
   z-index: 1;
 }
+.detail_arrowW_xss .slick-prev, .detail_arrowW_xss
+.slick-next {
+  /* top: 50%; */
+  position: absolute;
+  background-color: #660f2e;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  z-index: 1;
+}
+
+.detail_arrowW_xss .slick-prev:before, .detail_arrowW_xss .slick-next:before {
+  content: "";
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  color: #660f2e;
+  font-size: 24px;
+  box-sizing: border-box;
+}
 
 .slick-next {
   right: 2%;

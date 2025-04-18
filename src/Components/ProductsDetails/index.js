@@ -430,7 +430,7 @@ Please let me know the next steps.`;
           wishlistCount={userId ? wishlistCount : null}
           cartCount={userId ? cartCount : null}
         />
-        <div className="container">
+        <div className="container detail_arrowW_xss">
           <section>
             <div class=" pb-2 pt-3 md:px-5">
               <div class="Breadcrumbs max-w-8xl d-flex align-items-center mx-auto flex items-center flex-nowrap whitespace-nowrap overflow-hidden gap-2">
