@@ -298,6 +298,20 @@ const Home = () => {
 
   const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
 
+  // Auto-slide effect
+  // useEffect(() => {
+  //   if (isPaused || productsToDisplay.length <= productsPerPage) return;
+
+  //   const intervalId = setInterval(() => {
+  //     setSlideDirection('next');
+  //     setCurrentIndex(prevIndex =>
+  //       (prevIndex + 1) % (productsToDisplay.length - productsPerPage + 1)
+  //     );
+  //   }, AUTO_SLIDE_INTERVAL);
+
+  //   return () => clearInterval(intervalId);
+  // }, [productsToDisplay.length, productsPerPage, isPaused]);
+
   // Calculate productsPerPage based on screen size
   useEffect(() => {
     const updateProductsPerPage = () => {
