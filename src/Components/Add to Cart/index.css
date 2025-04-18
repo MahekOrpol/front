@@ -214,3 +214,11 @@ body {
   color: white;
   background-color: #611d2b;
 }
+
+.cart-footer {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.cart-footer {
+  z-index: 9999;
+}
