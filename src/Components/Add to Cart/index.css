@@ -1,11 +1,11 @@
-/* Cart Popup Styles */
+/* Cart Popup Styles
 html,
 body {
   height: auto;
   min-height: 100%;
   overflow-y: auto;
   scrollbar-width: none;
-}
+} */
 .cart-popup {
   position: fixed;
   top: 0;
@@ -76,8 +76,8 @@ body {
 
 .cart-items-bg {
   overflow: hidden;
-  padding-bottom: 20%;
-  height: 75vh;
+  /* padding-bottom: 20%; */
+  height: 80vh;
   overflow-y: auto;
   padding: 10px;
   overflow-x: hidden; /* Prevent horizontal scroll */
@@ -108,16 +108,15 @@ body {
   border-radius: 5px;
 }
 
-/* Cart Footer */
 .cart-footer {
-  position: sticky;
-  bottom: 0px;
-  width: 100%;
+  position: absolute;
+  bottom: 0;
   left: 0;
+  width: 100%;
   padding: 15px;
-  overflow: visible;
   background: white;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 /* Open Cart Button */
@@ -215,10 +214,10 @@ body {
   background-color: #611d2b;
 }
 
-.cart-footer {
+/* .cart-footer {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
 .cart-footer {
   z-index: 9999;
-}
+} */
