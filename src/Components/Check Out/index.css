@@ -694,12 +694,12 @@
         padding-top: 10px;
     }
 }
-html, body {
+/* html, body {
     height: auto;
     min-height: 100%;
     overflow-y: auto;
     scrollbar-width: none;
-  }
+  } */
 .order-item-details {
     flex: 1;
     display: flex;

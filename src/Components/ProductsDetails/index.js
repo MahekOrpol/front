@@ -79,8 +79,14 @@ const ProductDetailss = () => {
   const [imageUrl, setImageUrl] = useState("");
   const phoneNumber = "919099975424"; // Replace with your WhatsApp number
   const [wishlistCount, setWishlistCount] = useState(0);
-   const dispatch = useDispatch();
-    const {count: cartCount, loading, error} = useSelector((state) => state.cart);
+  const videoSliderRef = useRef(null);
+  const imageSliderRef = useRef(null);
+
+  const [currentVideoSlide, setCurrentVideoSlide] = useState(0);
+  const [currentImageSlide, setCurrentImageSlide] = useState(0);
+
+  const dispatch = useDispatch();
+  const { count: cartCount, loading, error } = useSelector((state) => state.cart);
 
   const message = `👋 Hi! Thank you for contacting us. I'm interested in placing an order.
 
@@ -97,7 +103,7 @@ Please let me know the next steps.`;
   const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
 
-  
+
   const openCart = () => {
     const userId = localStorage.getItem("user_Id");
 
@@ -117,21 +123,21 @@ Please let me know the next steps.`;
     });
   };
 
-   useEffect(() => {
-        dispatch(fetchCartCount());
-      }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchCartCount());
+  }, [dispatch]);
 
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, [location]);
 
-    useEffect(() => {
-      const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
-      if (cameFromCheckout) {
-        setIsCartOpen(true);
-        sessionStorage.removeItem("cameFromCheckout");
-      }
-    }, []);
+  useEffect(() => {
+    const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
+    if (cameFromCheckout) {
+      setIsCartOpen(true);
+      sessionStorage.removeItem("cameFromCheckout");
+    }
+  }, []);
 
   const videos =
     productDetails?.image?.filter((media) => media.endsWith(".mp4")) || [];
@@ -178,8 +184,7 @@ Please let me know the next steps.`;
 
   const closeCart = () => {
     setIsCartOpen(false);
-    setShowToast(false); 
-    dispatch(fetchCartCount());
+    setShowToast(false); // Reset toast state when closing
     document.body.classList.remove("no-scroll");
   };
 
@@ -386,11 +391,11 @@ Please let me know the next steps.`;
       openCart(); // Open cart after successful addition
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
-        
+        dispatch(fetchCartCount());
+
       } else {
         console.error("Failed to add product to cart:", response);
       }
-      dispatch(fetchCartCount()); 
       setToastMessage("Item added to cart successfully!");
       setShowToast(true);
     } catch (error) {
@@ -446,9 +451,8 @@ Please let me know the next steps.`;
                     <a
                       class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
                       data-discover="true"
-                      href={`/products?category=${
-                        productDetails?.categoryName || "rings"
-                      }`}
+                      href={`/products?category=${productDetails?.categoryName || "rings"
+                        }`}
                     >
                       {productDetails?.categoryName || "Rings"}
                     </a>
@@ -463,7 +467,7 @@ Please let me know the next steps.`;
               </div>
             </div>
           </section>
-
+          {/* {product details} */}
           <section className="d-flex gap-lg-5 p-0 pro_sss_gubs">
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
@@ -558,8 +562,8 @@ Please let me know the next steps.`;
                 </Swiper>
               </div>
             </div>
-           
-            <div className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3">
+
+            <div className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3 sticky-gallery">
               {/* Box 1: Video(s) */}
               <div className="col-md-6 border vider_saxasxs">
                 {videos.length === 1 ? (
@@ -573,11 +577,58 @@ Please let me know the next steps.`;
                 ) : videos.length > 1 ? (
                   <Slider
                     className="custom-slick-slider"
+                    ref={videoSliderRef}
                     dots
                     infinite
                     speed={500}
                     slidesToShow={1}
                     slidesToScroll={1}
+                    beforeChange={(oldIndex, newIndex) => setCurrentVideoSlide(newIndex)}
+                    appendDots={(dots) => {
+                      const totalDots = dots.length;
+                      const maxVisible = 3;
+                      let startDot = 0;
+
+                      if (currentVideoSlide >= maxVisible - 1) {
+                        startDot = Math.min(currentVideoSlide - 1, totalDots - maxVisible);
+                      }
+
+                      const visibleDots = dots.slice(startDot, startDot + maxVisible);
+
+                      return (
+                        <div className="dots-container" style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          gap: '10px',
+                          marginTop: '10px'
+                        }}>
+                          {visibleDots.map((dot, index) => {
+                            const dotIndex = startDot + index;
+                            const isActive = dotIndex === currentVideoSlide;
+
+                            return (
+                              <div
+                                key={dotIndex}
+                                className={`dot ${isActive ? 'active' : ''}`}
+                                onClick={() => {
+                                  videoSliderRef.current.slickGoTo(dotIndex);
+                                  setCurrentVideoSlide(dotIndex);
+                                }}
+                                style={{
+                                  width: isActive ? '12px' : '8px',
+                                  height: isActive ? '12px' : '8px',
+                                  borderRadius: '50%',
+                                  background: isActive ? '#811331' : '#ccc',
+                                  transition: 'all 0.3s ease',
+                                  cursor: 'pointer'
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                      );
+                    }}
                   >
                     {videos.map((media, index) => (
                       <div key={index}>
@@ -605,8 +656,54 @@ Please let me know the next steps.`;
                     speed={500}
                     slidesToShow={1}
                     slidesToScroll={1}
+                    beforeChange={(oldIndex, newIndex) => setCurrentImageSlide(newIndex)}
+                    appendDots={(dots) => {
+                      const totalDots = dots.length;
+                      const maxVisible = 3;
+                      let startDot = 0;
+
+                      if (currentImageSlide >= maxVisible - 1) {
+                        startDot = Math.min(currentImageSlide - 1, totalDots - maxVisible);
+                      }
+
+                      const visibleDots = dots.slice(startDot, startDot + maxVisible);
+
+                      return (
+                        <div className="dots-container" style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          gap: '10px',
+                          marginTop: '10px'
+                        }}>
+                          {visibleDots.map((dot, index) => {
+                            const dotIndex = startDot + index;
+                            const isActive = dotIndex === currentImageSlide;
+
+                            return (
+                              <div
+                                key={dotIndex}
+                                className={`dot ${isActive ? 'active' : ''}`}
+                                onClick={() => {
+                                  imageSliderRef.current.slickGoTo(dotIndex);
+                                  setCurrentImageSlide(dotIndex);
+                                }}
+                                style={{
+                                  width: isActive ? '12px' : '8px',
+                                  height: isActive ? '12px' : '8px',
+                                  borderRadius: '50%',
+                                  background: isActive ? '#811331' : '#ccc',
+                                  transition: 'all 0.3s ease',
+                                  cursor: 'pointer'
+                                }}
+                              />
+                            );
+                          })}
+                        </div>
+                      );
+                    }}
                   >
-                    {images.slice(0, images.length).map((media, index) => (
+                    {images.map((media, index) => (
                       <div key={index}>
                         <img
                           src={`http://147.93.104.196:3000${media}`}
@@ -626,7 +723,6 @@ Please let me know the next steps.`;
                   <p className="text-center">No Image</p>
                 )}
               </div>
-
               {/* Box 3: Image[1] */}
               {images[1] && (
                 <div className="col-md-6 border vider_saxasxs">
@@ -772,10 +868,10 @@ Please let me know the next steps.`;
                     target="_blank"
                     rel="noopener noreferrer"
                     className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
-                    // onClick={() => {
-                    //   window.open("https://wa.me/919099975424", "_blank");
-                    // }}
-                    // onClick={() => addToCart(productDetails)}
+                  // onClick={() => {
+                  //   window.open("https://wa.me/919099975424", "_blank");
+                  // }}
+                  // onClick={() => addToCart(productDetails)}
                   >
                     Order On Whatsapp{" "}
                     <span className="whatsapp-icon">
@@ -808,10 +904,10 @@ Please let me know the next steps.`;
                       target="_blank"
                       rel="noopener noreferrer"
                       className="d-flex align-items-center w-100 whats_abtn_1 txt_shu justify-content-center gap-1"
-                      // onClick={() => {
-                      //   window.open("https://wa.me/919099975424", "_blank");
-                      // }}
-                      // onClick={() => addToCart(productDetails)}
+                    // onClick={() => {
+                    //   window.open("https://wa.me/919099975424", "_blank");
+                    // }}
+                    // onClick={() => addToCart(productDetails)}
                     >
                       Order On Whatsapp{" "}
                       <span className="whatsapp-icon">
@@ -979,9 +1075,8 @@ Please let me know the next steps.`;
                       <div className="accordion-item" key={index}>
                         <h2 className="accordion-header">
                           <button
-                            className={`accordion-button ${
-                              openIndex === index ? "" : "collapsed"
-                            }`}
+                            className={`accordion-button ${openIndex === index ? "" : "collapsed"
+                              }`}
                             type="button"
                             onClick={() => toggleFAQ(index)}
                           >
@@ -991,9 +1086,8 @@ Please let me know the next steps.`;
                           </button>
                         </h2>
                         <div
-                          className={`accordion-collapse collapse ${
-                            openIndex === index ? "show" : ""
-                          }`}
+                          className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
+                            }`}
                           data-bs-parent="#faqAccordion"
                         >
                           <div className="accordion-body srfferc">
@@ -1093,11 +1187,11 @@ Please let me know the next steps.`;
                     // 0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
-                  // autoplay={{
-                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                  //   disableOnInteraction: false,
-                  // }}
-                  // modules={[Autoplay]}
+                // autoplay={{
+                //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                //   disableOnInteraction: false,
+                // }}
+                // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>

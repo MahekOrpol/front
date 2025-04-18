@@ -1765,3 +1765,12 @@
     display: none !important;
   }
 }
+
+
+.sticky-gallery {
+  position: sticky;
+  top: 13px;
+  height: fit-content;
+  align-self: flex-start;
+  z-index: 10;
+}
