@@ -21,7 +21,9 @@ const OrderDetails = () => {
     delivered: "Delivered",
     cancelled: "Cancelled",
   };
-  const [wishlistCount, setWishlistCount] = useState(0);
+const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem('wishlistCount')) || 0
+  );
   const [wishlistItems, setWishlistItems] = useState({});
  
   const navigate = useNavigate('');

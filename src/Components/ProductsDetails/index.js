@@ -78,7 +78,9 @@ const ProductDetailss = () => {
   const [salePrice, setSalePrice] = useState();
   const [imageUrl, setImageUrl] = useState("");
   const phoneNumber = "919099975424"; // Replace with your WhatsApp number
-  const [wishlistCount, setWishlistCount] = useState(0);
+const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem('wishlistCount')) || 0
+  );
   const videoSliderRef = useRef(null);
   const imageSliderRef = useRef(null);
 
@@ -258,14 +260,17 @@ Please let me know the next steps.`;
     }
   }, [productDetails]);
 
+  const updateWishlistCount = (count) => {
+    setWishlistCount(count);
+    localStorage.setItem('wishlistCount', count.toString());
+  };
+
   const toggleFavorite = async (productId) => {
     const userId = localStorage.getItem("user_Id");
-
     if (!userId) {
       navigate("/register");
       return;
     }
-
     try {
       if (wishlistItems[productId]) {
         // Remove from wishlist
@@ -275,7 +280,7 @@ Please let me know the next steps.`;
           delete updatedWishlist[productId]; // Update UI immediately
           return updatedWishlist;
         });
-        setWishlistCount((prev) => prev - 1);
+        updateWishlistCount(wishlistCount - 1);
         const res = await axios.delete(
           `http://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
@@ -289,13 +294,12 @@ Please let me know the next steps.`;
             userId,
           }
         );
-
+        updateWishlistCount(wishlistCount + 1);
         const newWishlistItemId = response.data.data.id;
         setWishlistItems((prev) => ({
           ...prev,
           [productId]: newWishlistItemId, // Store wishlist ID properly
         }));
-        setWishlistCount((prev) => prev + 1);
         toast.success(response.data.message || "Added to wishlist!");
       }
     } catch (error) {
@@ -303,7 +307,6 @@ Please let me know the next steps.`;
       toast.error("Failed to update wishlist. Please try again!");
     }
   };
-
   useEffect(() => {
     const fetchWishlist = async () => {
       if (!userId) return;
@@ -312,33 +315,23 @@ Please let me know the next steps.`;
           `http://147.93.104.196:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
-
-        console.log("Fetched Wishlist Data:", wishlistData);
-
+        const count = wishlistData.length;
+        updateWishlistCount(count); // Initialize count properly
         const wishlistMap = {};
         wishlistData.forEach((item) => {
-          let productId = item.productId._id || item.productId.id; // Extract _id if present
-          console.log(
-            "Processed Product ID:",
-            productId,
-            "Type:",
-            typeof productId
-          );
-
+          let productId = item.productId._id || item.productId.id;
           if (typeof productId === "string" || typeof productId === "number") {
             wishlistMap[productId] = item.id;
           } else {
             console.error("Invalid productId format:", item.productId);
           }
         });
-
         setWishlistItems(wishlistMap);
         setWishlistCount(wishlistData.length);
       } catch (error) {
         console.error("Error fetching wishlist:", error);
       }
     };
-
     fetchWishlist();
   }, [userId]);
 
