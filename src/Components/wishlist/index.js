@@ -25,7 +25,9 @@ const Wishlist = () => {
   const [imageIndexes, setImageIndexes] = useState({});
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
-  const [wishlistCount, setWishlistCount] = useState(0);
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem('wishlistCount')) || 0
+  );
   const dispatch = useDispatch();
   const {
     count: cartCount,
@@ -103,7 +105,7 @@ const Wishlist = () => {
 
   const closeCart = () => {
     setIsCartOpen(false);
-    setShowToast(false); 
+    setShowToast(false);
     dispatch(fetchCartCount());
     document.body.classList.remove("no-scroll");
   };
@@ -122,6 +124,7 @@ const Wishlist = () => {
       const wishlistData = response.data.data;
       setWishlist(wishlistData);
       setWishlistCount(wishlistData.length);
+      localStorage.setItem('wishlistCount', wishlistData.length);
       // Initialize image indexes for each product
       const initialIndexes = {};
       wishlistData.forEach((product) => {
@@ -273,44 +276,37 @@ const Wishlist = () => {
               {wishlist.map(({ productId, id }) => (
                 <div
                   key={id}
-                  className="col-lg-3 col-md-4 col-6 mb-4 asxasx_card"
+                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf" style={{ flex: "0 0 auto" }}
                   onMouseEnter={() => setHoveredProduct(productId.id)}
                   onMouseLeave={() => setHoveredProduct(null)}
                 >
-                  {/* Each column adapts based on screen size */}
-                  <div className="card prio_card scdscsed_sdss_pro">
-                    <div className="card-image-wrapper position-relative">
-                      <div className="card-title">
-                        <div>
-                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 trtrd">
-                            SALE
-                          </button>
-                          <div
-                            className="snuf_dfv text-overlay position-absolute top-0 p-sm-2 text-white text-center d-flex flex-column me-3 mt-sm-3"
-                            onClick={() => toggleWishlist(productId?.id)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {wishlist.some(
-                              (item) => item.productId.id === productId.id
-                            ) ? (
-                              <GoHeartFill
-                                className="heart-icon_ss"
-                                size={18}
-                              />
-                            ) : (
-                              <GoHeart className="heart-icon_ss" size={18} />
-                            )}
-                          </div>
+                  {/* For medium screen size */}
+                  <div className="jjcsindn_jcb">
+                    <div className="card prio_card scdscsed_sdss">
+                      <div className="card-image-wrapper position-relative">
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                          SALE
+                        </button>
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                          onClick={() => toggleWishlist(productId?.id)}
+                          style={{ cursor: "pointer" }}   >
+                          {wishlist.some(
+                            (item) => item.productId.id === productId.id
+                          ) ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
                         </div>
-                        <div className="card-body">
+                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                           {productId?.image[
                             imageIndexes[productId?.id]
                           ]?.endsWith(".mp4") ? (
                             <video
-                              src={`http://147.93.104.196:3000${
-                                productId.image[imageIndexes[productId.id]]
-                              }`}
-                              className="w-100"
+                              src={`http://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
+                                }`}
+                              className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                               autoPlay
                               loop
                               muted
@@ -318,10 +314,9 @@ const Wishlist = () => {
                             />
                           ) : (
                             <img
-                              src={`http://147.93.104.196:3000${
-                                productId.image[imageIndexes[productId.id]]
-                              }`}
-                              className="w-100"
+                              src={`http://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
+                                }`}
+                              className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                               alt={productId.productName}
                             />
                           )}
@@ -330,19 +325,13 @@ const Wishlist = () => {
                               <div className="hover-overlay w-100 d-none d-sm-flex">
                                 <button
                                   className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
-                                  onClick={() =>
-                                    handlePrevImage(productId, productId.image)
-                                  }
-                                >
+                                  onClick={() => handlePrevImage(productId, productId.image)}>
                                   <FaChevronLeft />
                                 </button>
 
                                 <button
                                   className="btn btn-light right-btn"
-                                  onClick={() =>
-                                    handleNextImage(productId, productId.image)
-                                  }
-                                >
+                                  onClick={() => handleNextImage(productId, productId.image)}>
                                   <FaChevronRight />
                                 </button>
                               </div>
@@ -350,55 +339,116 @@ const Wishlist = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="d-flex flex-column main_cdsss">
-                    <span className="mikdec_try pt-3 text-truncate">
-                      {" "}
-                      {productId.productName}
-                    </span>
-                    <div className="d-flex align-items-center gap-3 pt-1">
-                      <span className="mikdec_asdxsx judd">
-                        {productId.salePrice?.$numberDecimal}
+                    <div className="d-flex flex-column main_cdsss">
+                      <span className="mikdec_asdaa text-truncate pt-3 ">
+                        {" "}
+                        {productId.productName}
                       </span>
-                      <span className="mikdec_axsx judd">
-                        {productId.regularPrice?.$numberDecimal}
-                      </span>
-                    </div>
-                    {hoveredProduct === productId.id && (
+                      <div className="d-flex align-items-center gap-3 pt-1">
+                        <span className="mikdec_asdxsx">
+                          {productId.salePrice?.$numberDecimal}
+                        </span>
+                        <span className="mikdec_axsx">
+                          {productId.regularPrice?.$numberDecimal}
+                        </span>
+                      </div>
                       <div
-                        className="hover-overlay DFC_NHJ w-100 d-none d-sm-flex"
-                        onClick={() => handleProductClick(productId.id)}
-                      >
-                        <button
-                          className="d-flex align-items-center add-to-crd-dd p-1 mt-2 justify-content-center gap-3"
-                          onClick={() => addToCart(productId)}
-                        >
+                        className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf"
+                        onClick={() => handleProductClick(productId.id)}>
+                        <button className="more_btn_dsdd ewdcscdsedcds w-50"
+                          // onClick={() => navigate("/product-details")}
+                          onClick={() => handleProductClick(productId.id)} >
+                          More Info
+                        </button>
+                        <button className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                          onClick={() => addToCart(productId)} >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
-                        {/* <a
-                          onClick={() => handleProductClick(productId.id)}
-
-                          className="mt-2 text-body szdc_zasxl d-flex gap-2 align-items-center justify-content-left w-100 ms-4"
-                        >
-                          Read more about the Product <FaArrowRight />
-                        </a> */}
                       </div>
-                    )}
-                    <div className="d-flex d-sm-none flex-column mt-2">
-                      <button
-                        className="d-flex align-items-center add-to-crd-dd rtuy p-1 justify-content-center gap-3"
-                        onClick={() => addToCart(productId)}
-                      >
-                        Add to Cart <BiShoppingBag size={25} />
-                      </button>
-                      {/* <p className="mt-1"> */}
-                      {/* <a
-                        onClick={() => handleProductClick(productId.id)}
+                    </div>
+                  </div>
 
-                        className="mt-2 text-body szdc_za d-flex gap-2 align-items-left justify-content-left w-100"
-                      >
-                        Read more about the Product <FaArrowRight />
-                      </a> */}
+                  {/* For small screen size */}
+                  <div className="jjcsindn_jcb_ccs">
+                    <div className="card prio_card scdscsed_sdss_pro">
+                      <div className="card-image-wrapper position-relative">
+                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 trtrd">
+                          SALE
+                        </button>
+                        <div
+                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                          onClick={() => toggleWishlist(productId?.id)}
+                          style={{ cursor: "pointer" }}
+                        >
+                          {wishlist.some(
+                            (item) => item.productId.id === productId.id
+                          ) ? (
+                            <GoHeartFill className="heart-icon_ss" size={18} />
+                          ) : (
+                            <GoHeart className="heart-icon_ss" size={18} />
+                          )}
+                        </div>
+                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                          {productId?.image[
+                            imageIndexes[productId?.id]
+                          ]?.endsWith(".mp4") ? (
+                            <video
+                              src={`http://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
+                                }`}
+                              className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                            />
+                          ) : (
+                            <img
+                              src={`http://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
+                                }`}
+                              className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                              alt={productId.productName}
+                            />
+                          )}
+                          {hoveredProduct === productId.id &&
+                            productId.image.length > 1 && (
+                              <div className="hover-overlay w-100 d-none d-sm-flex">
+                                <button
+                                  className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
+                                  onClick={() => handlePrevImage(productId, productId.image)}>
+                                  <FaChevronLeft />
+                                </button>
+                                <button
+                                  className="btn btn-light right-btn"
+                                  onClick={() => handleNextImage(productId, productId.image)} >
+                                  <FaChevronRight />
+                                </button>
+                              </div>
+                            )}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="d-flex flex-column main_cdsss">
+                      <span className="mikdec_try pt-3 text-truncate ">
+                        {" "}
+                        {productId.productName}
+                      </span>
+                      <div className="d-flex align-items-center gap-3 pt-1">
+                        <span className="mikdec_asdxsx htryf">
+                          {productId.salePrice?.$numberDecimal}
+                        </span>
+                        <span className="mikdec_axsx htryf">
+                          {productId.regularPrice?.$numberDecimal}
+                        </span>
+                      </div>
+                      <div
+                        className="d-flex jjcsindn_jcb_ccs flex-column mt-2"
+                        onClick={() => handleProductClick(productId.id)}>
+                        <button
+                          className="d-flex align-items-center add-to-crd-dd1 justify-content-center gap-3"
+                          onClick={() => addToCart(productId)} >
+                          Add to Cart <BiShoppingBag size={25} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
