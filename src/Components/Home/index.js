@@ -1574,7 +1574,7 @@ const [wishlistCount, setWishlistCount] = useState(
                 </div>
                 <div
                   className="tooltip-spot spot-3"
-                  onClick={() => handleTooltipClick("Pendant")}
+                  onClick={() => handleTooltipClick("Necklace")}
                 >
                   <div className="spot-marker"></div>
                 </div>
@@ -1706,7 +1706,7 @@ const [wishlistCount, setWishlistCount] = useState(
                         ).map((product) => (
                           <SwiperSlide key={product.id}>
                             <div
-                              className="card prio_card scdscsed_sdss fgfdddds"
+                              className="card prio_card scdscsed_sdss_jdfn fgfdddds_hvb"
                               onMouseEnter={() => setHoveredProduct(product.id)}
                               onMouseLeave={() => setHoveredProduct(null)}
                             >
@@ -1756,7 +1756,7 @@ const [wishlistCount, setWishlistCount] = useState(
                                 ₹{product.regularPrice?.$numberDecimal}
                                 </span>
                               </div>
-                              <div className="d-flex align-items-center justify-content-between gap-2 pt-2 hjghfd flex-wrap">
+                              <div className="d-flex align-items-center justify-content-between gap-2 pt-2 hjghfd">
                                 <button
                                   className="w-100 more_btn_dsdd w-50 rtrddg"
                                   onClick={() => handleProductClick(product.id)}

@@ -276,7 +276,7 @@ const Wishlist = () => {
               {wishlist.map(({ productId, id }) => (
                 <div
                   key={id}
-                  className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf" style={{ flex: "0 0 auto" }}
+                  className="col-lg-3 col-md-4 col-6 mb-4 col-5ths asxasx_cards dcvdfxC_dfrvdfvf" style={{ flex: "0 0 auto" }}
                   onMouseEnter={() => setHoveredProduct(productId.id)}
                   onMouseLeave={() => setHoveredProduct(null)}
                 >

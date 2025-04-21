@@ -2359,7 +2359,7 @@ img.ring-image {
 .p-1_proi {
   width: 100%;
   height: 100%;
-  object-fit: unset;
+  object-fit: cover;
   /* Ensures the image covers the div without stretching */
   border-radius: 8px;
 }
@@ -9156,4 +9156,18 @@ img.ring-image {
 
 .khdcj_csj .swiper-wrapper {
   margin-top: 0 !important;
+}
+
+.scdscsed_sdss_jdfn {
+  height: 310px;
+}
+@media(min-width:992px) and (max-width:1235px) {
+  .scdscsed_sdss_jdfn {
+    height: 254px;
+  }
+}
+@media(min-width:992px) and (max-width:1042px) {
+    .more_btn_dsdd {
+      font-size: 13px;
+    }
 }
