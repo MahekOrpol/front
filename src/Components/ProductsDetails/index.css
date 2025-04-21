@@ -34,13 +34,19 @@
   }
 }
 
+@media (max-width:378px) {
+  .new_btnddx {
+    font-size: 9px !important;
+    padding: 6px !important;
+  }
+}
 @media (min-width: 379px) and (max-width: 472px) {
   .fgfdddds {
     height: 199px !important;
   }
 
   .new_btnddx {
-    font-size: 10px !important;
+    font-size: 9px !important;
   }
 
   .snuf_dfv {
@@ -987,7 +993,7 @@
 
 @media(min-width:150px) and (max-width:349px) {
   .slider_ssss_fdcdf .swiper-slide {
-    width: 43.5% !important;
+    width: 47% !important;
     margin: 10px;
   }
 

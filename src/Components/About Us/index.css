@@ -363,6 +363,11 @@
     margin: auto;
     margin-top: 4rem;
   }
+  .slider_ssss_fdcdf .swiper-wrapper {
+    gap: 0rem;
+    margin: auto;
+    margin-top: 0rem !important;
+  }
 
   .swiper-slide_ssssss_sss_dexsdx{
     width: 100% !important;

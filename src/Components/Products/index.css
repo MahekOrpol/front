@@ -133,7 +133,7 @@
   background-color: #611d2b;
   color: #fff;
   border: none;
-  width: fit-content;
+  width: fit-content !important;
   height: 26px;
   padding: 9px !important;
 }
