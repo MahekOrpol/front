@@ -221,6 +221,7 @@ const Home = () => {
   const navigate = useNavigate();
   const swiperRef = useRef(null); // Store Swiper instance
   const [slidesPerView, setSlidesPerView] = useState(1);
+  const [hoveredProduct, setHoveredProduct] = useState(null);
   const [topRated, setTopRated] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
@@ -1189,7 +1190,6 @@ const Home = () => {
                     label="On Sale"
                     value="1"
                   />
-
                   <Tab
                     className="xjc_dbv flex-row align-items-center "
                     icon={
@@ -1264,14 +1264,24 @@ const Home = () => {
                               <GoHeart className="heart-icon_ss" size={18} />
                             )}
                           </div>
-                          {/* Product Image */}
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            <img
-                              src={`http://147.93.104.196:3000${product.image[0]}`}
-                              className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                              alt="Product"
-                              onClick={() => handleProductClick(product.id)}
-                            />
+                            {product.image[0]?.endsWith(".mp4") ? (
+                              <video
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                autoPlay
+                                loop
+                                muted
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            ) : (
+                              <img
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                alt="Product"
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>
@@ -1337,12 +1347,12 @@ const Home = () => {
                   {bestSelling.map((product) => (
                     <div
                       key={product.id}
-                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"  style={{ flex: "0 0 auto" }}
                     >
                       <div className="card prio_card scdscsed_sdss">
                         <div className="card-image-wrapper position-relative best_saller_btn">
                           <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                            BEST SALLER
+                            BEST SELLER
                           </button>
                           <div
                             className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
@@ -1359,12 +1369,23 @@ const Home = () => {
                             )}
                           </div>
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            <img
-                              src={`http://147.93.104.196:3000${product.image[0]}`}
-                              className="p-1_proi img-fluid"
-                              alt="Product"
-                              onClick={() => handleProductClick(product.id)}
-                            />
+                            {product.image[0]?.endsWith(".mp4") ? (
+                              <video
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid"
+                                autoPlay
+                                loop
+                                muted
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            ) : (
+                              <img
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid"
+                                alt="Product"
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>
@@ -1383,7 +1404,6 @@ const Home = () => {
                         <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                           <button
                             className="more_btn_dsdd w-50"
-                            // onClick={() => navigate("/product-details")}
                             onClick={() => handleProductClick(product.id)}
                           >
                             More Info
@@ -1429,7 +1449,7 @@ const Home = () => {
                   {topRated.map((product) => (
                     <div
                       key={product.id}
-                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf" style={{ flex: "0 0 auto" }}
                     >
                       <div className="card prio_card scdscsed_sdss">
                         {/* Image Wrapper with position-relative */}
@@ -1455,12 +1475,23 @@ const Home = () => {
                           </div>
                           {/* Product Image */}
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            <img
-                              src={`http://147.93.104.196:3000${product.image[0]}`}
-                              className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                              alt="Product"
-                              onClick={() => handleProductClick(product.id)}
-                            />
+                            {product.image[0]?.endsWith(".mp4") ? (
+                              <video
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                autoPlay
+                                loop
+                                muted
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            ) : (
+                              <img
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                alt="Product"
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>
@@ -1578,7 +1609,7 @@ const Home = () => {
               </div>
               <div className="h-100 d-flex flex-column justify-content-center domind_jew_sec">
                 <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc m-0 product-scroll-container">
-                  {productsToDisplay
+                  {/* {productsToDisplay
                     .slice(
                       currentIndex,
                       currentIndex + productsToDisplay?.length
@@ -1657,14 +1688,108 @@ const Home = () => {
                           </div>
                         </div>
                       </CSSTransition>
-                    ))}
+                    ))} */}
+                    <div className="slider_ssss_fdcdf khdcj_csj p-0 mt-0">
+                    <Swiper
+                      spaceBetween={0}
+                      slidesPerView={2}
+                      breakpoints={{
+                        1200: { slidesPerView: 2 },
+                        810: { slidesPerView: 2 },
+                        768: { slidesPerView: 2 },
+                        500: { slidesPerView: 2 },
+                        // 0: { slidesPerView: 1 }, // Mobile - 1 card
+                      }}
+                      loop={true}
+                    // autoplay={{
+                    //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                    //   disableOnInteraction: false,
+                    // }}
+                    // modules={[Autoplay]}
+                    >
+                      {productsToDisplay
+                        .slice(
+                          currentIndex,
+                          currentIndex + productsToDisplay?.length
+                        ).map((product) => (
+                          <SwiperSlide key={product.id}>
+                            <div
+                              className="card prio_card scdscsed_sdss fgfdddds"
+                              onMouseEnter={() => setHoveredProduct(product.id)}
+                              onMouseLeave={() => setHoveredProduct(null)}
+                            >
+                              <div className="card-image-wrapper position-relative">
+                                <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                                {filteredBestSellers.length > 0
+                                  ? currentCategory.toUpperCase()
+                                  : "BEST SELLER"}
+                                </button>
+                                <div
+                                  className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2 fhhdd"
+                                  onClick={() => toggleFavorite(product.id)}
+                                  style={{ cursor: "pointer" }}
+                                >
+                                  {wishlistItems[product.id] ? (
+                                    <GoHeartFill
+                                      className="heart-icon_ss"
+                                      size={18}
+                                    />
+                                  ) : (
+                                    <GoHeart className="heart-icon_ss" size={18} />
+                                  )}
+                                </div>
+                                <div
+                                  className="card-body p-0 d-flex justify-content-center"
+                                  style={{ height: "100%" }}
+                                >
+                                  <img
+                                    src={`http://147.93.104.196:3000${product.image[0]}`}
+                                    className="p-1_proi img-fluid border-0"
+                                    alt="Product"
+                                    style={{ height: "100%" }}
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div className="d-flex flex-column main_cdsss">
+                              <span className="mikdec_asdaa pt-3 wssddd text-truncate">
+                                {product.productName}
+                              </span>
+                              <div className="d-flex align-items-center gap-3 pt-1">
+                                <span className="mikdec_asdxsx">
+                                  {" "}
+                                  ₹{product.salePrice.$numberDecimal}
+                                </span>
+                                <span className="mikdec_axsx">
+                                ₹{product.regularPrice?.$numberDecimal}
+                                </span>
+                              </div>
+                              <div className="d-flex align-items-center justify-content-between gap-2 pt-2 hjghfd flex-wrap">
+                                <button
+                                  className="w-100 more_btn_dsdd w-50 rtrddg"
+                                  onClick={() => handleProductClick(product.id)}
+                                >
+                                  More Info
+                                </button>
+                                <button
+                                  className="w-100 d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3 add_avai"
+                                  onClick={() => addToCart(product)}
+                                >
+                                  Add to Cart <BiShoppingBag size={25} />
+                                </button>
+                              </div>
+                            </div>
+                          </SwiperSlide>
+                        ))}
+                    </Swiper>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="paddingdn d-flex flex-column align-items-center mt-md-4 stunning_price_fvf">
+        <div className="abc1 paddingdn d-flex flex-column align-items-center mt-md-4 stunning_price_fvf">
           <span className="category_name mt-0 mobile-hide">
             Celebrate love with our Collection
           </span>

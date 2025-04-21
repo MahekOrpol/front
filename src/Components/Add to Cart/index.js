@@ -310,7 +310,7 @@ const CartPopup = ({
             </div>
           ))
         ) : (
-          <p className="text-center mt-3">Your cart is empty.</p>
+          <p className="text-center mt-3 your_cart_txt">Your cart is empty.</p>
         )}
       </div>
 

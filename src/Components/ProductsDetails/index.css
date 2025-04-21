@@ -987,7 +987,7 @@
 
 @media(min-width:150px) and (max-width:349px) {
   .slider_ssss_fdcdf .swiper-slide {
-    width: 43% !important;
+    width: 43.5% !important;
     margin: 10px;
   }
 
@@ -1002,7 +1002,7 @@
 
 @media(min-width:350px) and (max-width:379px) {
   .slider_ssss_fdcdf .swiper-slide {
-    width: 44% !important;
+    width: 44.5% !important;
     margin: 10px;
   }
 
@@ -1032,7 +1032,7 @@
 
 @media (min-width:380px) and (max-width:496px) {
   .slider_ssss_fdcdf .swiper-slide {
-    width: 44.5% !important;
+    width: 45% !important;
     margin: 10px;
   }
 
@@ -1054,7 +1054,7 @@
 
 @media (min-width:644px) and (max-width:809px) {
   .slider_ssss_fdcdf .swiper-slide {
-    width: 47% !important;
+    width: 47.5% !important;
     margin: 10px;
   }
 
@@ -1092,11 +1092,21 @@
     width: 31.5% !important;
     margin: 10px;
   }
+  .khdcj_csj .swiper-slide {
+    width: 46% !important;
+    margin: 10px;
+  }
+  .more_btn_dsdd{
+    width: 50% !important;
+  }
 }
-
 @media (min-width:1201px) and (max-width:1440px) {
   .slider_ssss_fdcdf .swiper-slide {
     width: 23.6% !important;
+    margin: 10px;
+  }
+  .khdcj_csj .swiper-slide {
+    width: 47% !important;
     margin: 10px;
   }
 }
@@ -1104,7 +1114,11 @@
 
 @media (min-width:1441px) and (max-width:1920px) {
   .slider_ssss_fdcdf .swiper-slide {
-    width: 23.9% !important;
+    width: 23.8% !important;
+    margin: 10px;
+  }
+  .khdcj_csj .swiper-slide {
+    width: 47% !important;
     margin: 10px;
   }
 }
