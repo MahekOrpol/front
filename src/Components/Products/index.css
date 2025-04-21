@@ -1741,3 +1741,13 @@
     width: 100% !important;
   }
 }
+
+.col-5ths {
+  width: 20%;
+  flex: 0 0 auto;
+}
+@media (max-width: 1750px) {
+  .col-5ths {
+    width: 25%;
+  }
+}

@@ -34,19 +34,15 @@
   }
 }
 
-@media (max-width:378px) {
-  .new_btnddx {
-    font-size: 9px !important;
-    padding: 6px !important;
-  }
-}
 @media (min-width: 379px) and (max-width: 472px) {
   .fgfdddds {
     height: 199px !important;
   }
 
   .new_btnddx {
-    font-size: 9px !important;
+    font-size: 8px !important;
+    white-space: nowrap;
+    width: fit-content !important;
   }
 
   .snuf_dfv {
@@ -57,10 +53,82 @@
     font-size: 14px !important;
   }
 }
-
-@media (min-width: 473px) and (max-width: 767px) {
+@media (max-width:378px) {
+  .new_btnddx {
+    font-size: 8px !important;
+    white-space: nowrap;
+    width: fit-content !important;
+  }
+}
+@media(max-width: 576px) {
   .fgfdddds {
     height: 273px !important;
+  }
+
+  .fgfdddds_hvb {
+    height: 242px !important;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 767px) {
+  .fgfdddds {
+    height: 273px !important;
+  }
+
+  .fgfdddds_hvb {
+    height: 349px !important;
+  }
+}
+
+@media (min-width: 473px) and (max-width: 540px) {
+  .fgfdddds {
+    height: 273px !important;
+  }
+
+  .fgfdddds_hvb {
+    height: 201px !important;
+  }
+}
+
+@media(min-width:395px) and (max-width: 473px) {
+  .scdscsed_sdss_jdfn {
+    height: 284px;
+  }
+
+  .fgfdddds {
+    height: 273px !important;
+  }
+
+  .fgfdddds_hvb {
+    height: 195px !important;
+  }
+}
+
+@media(min-width:348px) and (max-width: 395px) {
+  .scdscsed_sdss_jdfn {
+    height: 284px;
+  }
+
+  .fgfdddds {
+    height: 273px !important;
+  }
+
+  .fgfdddds_hvb {
+    height: 180px !important;
+  }
+}
+
+@media(max-width: 348px) {
+  .scdscsed_sdss_jdfn {
+    height: 284px;
+  }
+
+  .fgfdddds {
+    height: 273px !important;
+  }
+
+  .fgfdddds_hvb {
+    height: 155px !important;
   }
 }
 
@@ -993,7 +1061,7 @@
 
 @media(min-width:150px) and (max-width:349px) {
   .slider_ssss_fdcdf .swiper-slide {
-    width: 47% !important;
+    width: 43.5% !important;
     margin: 10px;
   }
 
@@ -1084,6 +1152,11 @@
     margin: 10px;
   }
 
+  .khdcj_csj .swiper-slide {
+    width: 47.5% !important;
+    margin: 10px;
+  }
+
   .slider_ssss_fdcdf .add-to-crd-dd {
     font-size: 13px;
   }
@@ -1098,19 +1171,23 @@
     width: 31.5% !important;
     margin: 10px;
   }
+
   .khdcj_csj .swiper-slide {
     width: 46% !important;
     margin: 10px;
   }
-  .more_btn_dsdd{
+
+  .more_btn_dsdd {
     width: 50% !important;
   }
 }
+
 @media (min-width:1201px) and (max-width:1440px) {
   .slider_ssss_fdcdf .swiper-slide {
     width: 23.6% !important;
     margin: 10px;
   }
+
   .khdcj_csj .swiper-slide {
     width: 47% !important;
     margin: 10px;
@@ -1123,6 +1200,7 @@
     width: 23.8% !important;
     margin: 10px;
   }
+
   .khdcj_csj .swiper-slide {
     width: 47% !important;
     margin: 10px;
@@ -1300,6 +1378,7 @@
   width: 100%;
   text-decoration: none;
 }
+
 .whats_abtn_1 {
   background-color: #EAEAEA;
   color: #000;
@@ -1314,9 +1393,10 @@
   text-decoration: none;
 }
 
-.txt_shu{
+.txt_shu {
   font-size: 13px;
 }
+
 .whats_abtn:hover {
   background-color: #1ebe5d;
   color: white;
@@ -1326,6 +1406,7 @@
 .whats_abtn a:hover {
   color: white;
 }
+
 .whatsapp-icon svg {
   color: #1FAF38;
   /* Default WhatsApp green */
@@ -1507,12 +1588,14 @@
   .sopgdd {
     height: 15px !important;
   }
-  .pro_sss_gubs{
+
+  .pro_sss_gubs {
     padding-left: 1rem !important;
   }
+
   .escjh_drftvbfbvfcv .slick-list {
     height: 203px !important;
-}
+  }
 }
 
 @media(max-width:430px) {
@@ -1545,7 +1628,8 @@
   .sopgdd {
     height: 17px !important;
   }
-  .but_buton_ssssxs{
+
+  .but_buton_ssssxs {
     gap: 0.2rem !important;
   }
 }
@@ -1583,6 +1667,7 @@
     min-height: 225px !important;
   }
 }
+
 @media(min-width:805px) and (max-width:950px) {
   .escjh_drftvbfbvfcv .slick-list {
     height: 250px !important;
@@ -1597,24 +1682,26 @@
     border: 1px solid #DEE2E6 !important;
     min-height: 253px !important;
   }
- 
+
 }
 
 
 @media (max-width:522px) {
-  .dcb_jbcsc_kn{
-    display:block;
+  .dcb_jbcsc_kn {
+    display: block;
   }
-  .dcb_jbcsc{
+
+  .dcb_jbcsc {
     display: none;
   }
 }
 
 @media (min-width:522px) {
-  .dcb_jbcsc_kn{
-    display:none;
+  .dcb_jbcsc_kn {
+    display: none;
   }
-  .dcb_jbcsc{
+
+  .dcb_jbcsc {
     display: block;
   }
 }
@@ -1625,11 +1712,13 @@
   color: #000;
   box-shadow: none;
 }
+
 .accordion-button {
   background-color: #fff;
   font-weight: 500;
   padding: 1rem;
 }
+
 .mhkmhkfdv .accordion-item {
   border: none;
   border-radius: 10px;
@@ -1637,10 +1726,12 @@
   overflow: hidden;
   font-family: "Cabin", sans-serif;
 }
+
 .offe_dscdfcc {
   font-family: "Cabin", sans-serif;
   color: black;
 }
+
 .coupon-code {
   color: #000;
   padding: 4px 10px;
@@ -1657,15 +1748,17 @@
   width: 40px;
   margin-right: 10px;
 }
+
 .accordion-button::after {
   transform: scale(1.2);
 }
+
 .accordion-collapse {
   border-top: 1px solid black;
 }
 
 
-.dxvfdfrv{
+.dxvfdfrv {
   font-size: 19px;
 }
 
