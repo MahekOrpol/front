@@ -86,7 +86,11 @@ const ProductDetailss = () => {
   const [currentImageSlide, setCurrentImageSlide] = useState(0);
 
   const dispatch = useDispatch();
-  const { count: cartCount, loading, error } = useSelector((state) => state.cart);
+  const {
+    count: cartCount,
+    loading,
+    error,
+  } = useSelector((state) => state.cart);
 
   const message = `👋 Hi! Thank you for contacting us. I'm interested in placing an order.
 
@@ -101,8 +105,6 @@ Please let me know the next steps.`;
   const encodedMessage = encodeURIComponent(message);
   // const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
   const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-
-
 
   const openCart = () => {
     const userId = localStorage.getItem("user_Id");
@@ -139,14 +141,16 @@ Please let me know the next steps.`;
     }
   }, []);
 
-// Filter images and videos from productDetails.image
-const images = useMemo(() => 
-  productDetails?.image?.filter((img) => !img.endsWith(".mp4")) || [],
-[productDetails]);
+  // Filter images and videos from productDetails.image
+  const images = useMemo(
+    () => productDetails?.image?.filter((img) => !img.endsWith(".mp4")) || [],
+    [productDetails]
+  );
 
-const videos = useMemo(() => 
-  productDetails?.image?.filter((vid) => vid.endsWith(".mp4")) || [],
-[productDetails]);
+  const videos = useMemo(
+    () => productDetails?.image?.filter((vid) => vid.endsWith(".mp4")) || [],
+    [productDetails]
+  );
 
   useEffect(() => {
     if (!productData) {
@@ -396,7 +400,6 @@ const videos = useMemo(() =>
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
         dispatch(fetchCartCount());
-
       } else {
         console.error("Failed to add product to cart:", response);
       }
@@ -455,8 +458,9 @@ const videos = useMemo(() =>
                     <a
                       class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
                       data-discover="true"
-                      href={`/products?category=${productDetails?.categoryName || "rings"
-                        }`}
+                      href={`/products?category=${
+                        productDetails?.categoryName || "rings"
+                      }`}
                     >
                       {productDetails?.categoryName || "Rings"}
                     </a>
@@ -587,26 +591,37 @@ const videos = useMemo(() =>
                     speed={500}
                     slidesToShow={1}
                     slidesToScroll={1}
-                    beforeChange={(oldIndex, newIndex) => setCurrentVideoSlide(newIndex)}
+                    beforeChange={(oldIndex, newIndex) =>
+                      setCurrentVideoSlide(newIndex)
+                    }
                     appendDots={(dots) => {
                       const totalDots = dots.length;
                       const maxVisible = 3;
                       let startDot = 0;
 
                       if (currentVideoSlide >= maxVisible - 1) {
-                        startDot = Math.min(currentVideoSlide - 1, totalDots - maxVisible);
+                        startDot = Math.min(
+                          currentVideoSlide - 1,
+                          totalDots - maxVisible
+                        );
                       }
 
-                      const visibleDots = dots.slice(startDot, startDot + maxVisible);
+                      const visibleDots = dots.slice(
+                        startDot,
+                        startDot + maxVisible
+                      );
 
                       return (
-                        <div className="dots-container" style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          gap: '10px',
-                          marginTop: '10px'
-                        }}>
+                        <div
+                          className="dots-container"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            gap: "10px",
+                            marginTop: "10px",
+                          }}
+                        >
                           {visibleDots.map((dot, index) => {
                             const dotIndex = startDot + index;
                             const isActive = dotIndex === currentVideoSlide;
@@ -614,18 +629,18 @@ const videos = useMemo(() =>
                             return (
                               <div
                                 key={dotIndex}
-                                className={`dot ${isActive ? 'active' : ''}`}
+                                className={`dot ${isActive ? "active" : ""}`}
                                 onClick={() => {
                                   videoSliderRef.current.slickGoTo(dotIndex);
                                   setCurrentVideoSlide(dotIndex);
                                 }}
                                 style={{
-                                  width: isActive ? '12px' : '8px',
-                                  height: isActive ? '12px' : '8px',
-                                  borderRadius: '50%',
-                                  background: isActive ? '#811331' : '#ccc',
-                                  transition: 'all 0.3s ease',
-                                  cursor: 'pointer'
+                                  width: isActive ? "12px" : "8px",
+                                  height: isActive ? "12px" : "8px",
+                                  borderRadius: "50%",
+                                  background: isActive ? "#811331" : "#ccc",
+                                  transition: "all 0.3s ease",
+                                  cursor: "pointer",
                                 }}
                               />
                             );
@@ -660,26 +675,37 @@ const videos = useMemo(() =>
                     speed={500}
                     slidesToShow={1}
                     slidesToScroll={1}
-                    beforeChange={(oldIndex, newIndex) => setCurrentImageSlide(newIndex)}
+                    beforeChange={(oldIndex, newIndex) =>
+                      setCurrentImageSlide(newIndex)
+                    }
                     appendDots={(dots) => {
                       const totalDots = dots.length;
                       const maxVisible = 3;
                       let startDot = 0;
 
                       if (currentImageSlide >= maxVisible - 1) {
-                        startDot = Math.min(currentImageSlide - 1, totalDots - maxVisible);
+                        startDot = Math.min(
+                          currentImageSlide - 1,
+                          totalDots - maxVisible
+                        );
                       }
 
-                      const visibleDots = dots.slice(startDot, startDot + maxVisible);
+                      const visibleDots = dots.slice(
+                        startDot,
+                        startDot + maxVisible
+                      );
 
                       return (
-                        <div className="dots-container" style={{
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          gap: '10px',
-                          marginTop: '10px'
-                        }}>
+                        <div
+                          className="dots-container"
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            gap: "10px",
+                            marginTop: "10px",
+                          }}
+                        >
                           {visibleDots.map((dot, index) => {
                             const dotIndex = startDot + index;
                             const isActive = dotIndex === currentImageSlide;
@@ -687,18 +713,18 @@ const videos = useMemo(() =>
                             return (
                               <div
                                 key={dotIndex}
-                                className={`dot ${isActive ? 'active' : ''}`}
+                                className={`dot ${isActive ? "active" : ""}`}
                                 onClick={() => {
                                   imageSliderRef.current.slickGoTo(dotIndex);
                                   setCurrentImageSlide(dotIndex);
                                 }}
                                 style={{
-                                  width: isActive ? '12px' : '8px',
-                                  height: isActive ? '12px' : '8px',
-                                  borderRadius: '50%',
-                                  background: isActive ? '#811331' : '#ccc',
-                                  transition: 'all 0.3s ease',
-                                  cursor: 'pointer'
+                                  width: isActive ? "12px" : "8px",
+                                  height: isActive ? "12px" : "8px",
+                                  borderRadius: "50%",
+                                  background: isActive ? "#811331" : "#ccc",
+                                  transition: "all 0.3s ease",
+                                  cursor: "pointer",
                                 }}
                               />
                             );
@@ -770,7 +796,8 @@ const videos = useMemo(() =>
                       <FaStar color="#DBB439" />
                     </div>
                     <div>
-                      <span className="rv_ssss "><ProductViewCounter productId={productId} />
+                      <span className="rv_ssss ">
+                        <ProductViewCounter productId={productId} />
                       </span>
                     </div>
                   </div>
@@ -872,10 +899,10 @@ const videos = useMemo(() =>
                     target="_blank"
                     rel="noopener noreferrer"
                     className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
-                  // onClick={() => {
-                  //   window.open("https://wa.me/919099975424", "_blank");
-                  // }}
-                  // onClick={() => addToCart(productDetails)}
+                    // onClick={() => {
+                    //   window.open("https://wa.me/919099975424", "_blank");
+                    // }}
+                    // onClick={() => addToCart(productDetails)}
                   >
                     Order On Whatsapp{" "}
                     <span className="whatsapp-icon">
@@ -908,10 +935,10 @@ const videos = useMemo(() =>
                       target="_blank"
                       rel="noopener noreferrer"
                       className="d-flex align-items-center w-100 whats_abtn_1 txt_shu justify-content-center gap-1"
-                    // onClick={() => {
-                    //   window.open("https://wa.me/919099975424", "_blank");
-                    // }}
-                    // onClick={() => addToCart(productDetails)}
+                      // onClick={() => {
+                      //   window.open("https://wa.me/919099975424", "_blank");
+                      // }}
+                      // onClick={() => addToCart(productDetails)}
                     >
                       Order On Whatsapp{" "}
                       <span className="whatsapp-icon">
@@ -939,7 +966,7 @@ const videos = useMemo(() =>
                 <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_tttdd">
                   <div className="icon-bdf">
                     <img
-                      src={require('../../Images/material.png')}
+                      src={require("../../Images/material.png")}
                       alt="AVOID WATER / MOISTURE"
                     />
                     <span>AVOID WATER / MOISTURE</span>
@@ -947,7 +974,7 @@ const videos = useMemo(() =>
                   <div className="divider"></div>
                   <div className="icon-bdf">
                     <img
-                      src={require('../../Images/oeeofiw.png')}
+                      src={require("../../Images/oeeofiw.png")}
                       alt="REMOVE BEFORE SLEEPING"
                     />
                     <span>REMOVE BEFORE SLEEPING</span>
@@ -955,7 +982,7 @@ const videos = useMemo(() =>
                   <div className="divider szcxds_fix"></div>
                   <div className="icon-bdf">
                     <img
-                      src={require('../../Images/fragrance_6211860.png')}
+                      src={require("../../Images/fragrance_6211860.png")}
                       alt="AVOID PERFUME / LOTION"
                     />
                     <span>AVOID PERFUME / LOTION</span>
@@ -963,7 +990,7 @@ const videos = useMemo(() =>
                   <div className="divider"></div>
                   <div className="icon-bdf">
                     <img
-                      src={require('../../Images/box_14309182 (1).png')}
+                      src={require("../../Images/box_14309182 (1).png")}
                       alt="USE SOFT / DRY FABRIC TO CLEAN"
                     />
                     <span>USE SOFT / DRY FABRIC TO CLEAN</span>
@@ -1079,8 +1106,9 @@ const videos = useMemo(() =>
                       <div className="accordion-item" key={index}>
                         <h2 className="accordion-header">
                           <button
-                            className={`accordion-button ${openIndex === index ? "" : "collapsed"
-                              }`}
+                            className={`accordion-button ${
+                              openIndex === index ? "" : "collapsed"
+                            }`}
                             type="button"
                             onClick={() => toggleFAQ(index)}
                           >
@@ -1090,8 +1118,9 @@ const videos = useMemo(() =>
                           </button>
                         </h2>
                         <div
-                          className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
-                            }`}
+                          className={`accordion-collapse collapse ${
+                            openIndex === index ? "show" : ""
+                          }`}
                           data-bs-parent="#faqAccordion"
                         >
                           <div className="accordion-body srfferc">
@@ -1191,11 +1220,11 @@ const videos = useMemo(() =>
                     // 0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
-                // autoplay={{
-                //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                //   disableOnInteraction: false,
-                // }}
-                // modules={[Autoplay]}
+                  // autoplay={{
+                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                  //   disableOnInteraction: false,
+                  // }}
+                  // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
@@ -1227,12 +1256,24 @@ const videos = useMemo(() =>
                             className="card-body p-0 d-flex justify-content-center"
                             style={{ height: "100%" }}
                           >
-                            <img
-                              src={`http://147.93.104.196:3000${product.image[0]}`}
-                              className="p-1_proi img-fluid border-0"
-                              alt="Product"
-                              style={{ height: "100%" }}
-                            />
+                            {product.image[0]?.endsWith(".mp4") ? (
+                              <video
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid"
+                                autoPlay
+                                loop
+                                muted
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            ) : (
+                              <img
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid border-0"
+                                alt="Product"
+                                onClick={() => handleProductClick(product.id)}
+                                style={{ height: "100%" }}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>
