@@ -8388,7 +8388,12 @@ img.ring-image {
     width: 100%;
     transform: scale(1.2) !important;
     height: 500px;
+    margin-top: -3rem;
   }
+  .dscdsc_inst {
+    gap: 2px !important;
+    margin-top: -92% !important;
+}
 }
 
 @media (min-width: 1441px) and (max-width: 1500px) {
@@ -8737,9 +8742,6 @@ img.ring-image {
     margin-top: 0% !important;
   }
 
-  .dscdsc_inst {
-    margin-top: -10% !important;
-  }
   .cline_ytsdhcsd {
     margin-top: -4% !important;
   }
