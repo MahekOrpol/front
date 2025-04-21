@@ -677,10 +677,10 @@
     transition: all 0.4s ease-in-out;
     background-color: none !important;
   }
-
+/* 
   .slick-active {
     margin-top: -2rem !important;
-  }
+  } */
 
   .slick-active + .slick-active + .slick-active {
     margin-top: -2rem !important;
@@ -869,6 +869,13 @@
   .slidere-roijidfndm .slick-next {
     top: -30px;
   }
+  .slick-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: -7rem !important;
+}
   .center-slider .slick-center .ring-info h3 {
     font-size: 9px !important;
     margin: 0;
@@ -1163,7 +1170,7 @@
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
-    margin-top: -18rem !important;
+    margin-top: -36rem ;
 }
 .slick-nav-container {
   display: flex;
