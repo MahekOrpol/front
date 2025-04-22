@@ -17,19 +17,28 @@ const Ring1 = () => {
       loop: true,
       grabCursor: true,
       breakpoints: {
-        320: {
-          slidesPerView: 3,
+        220: {
+          slidesPerView: 1.5, // shows part of next/prev slides
+          spaceBetween: 20,
+          centeredSlides: true,
         },
         640: {
-          slidesPerView: 3,
+          slidesPerView: 2.5,
+          spaceBetween: 50,
+          centeredSlides: true,
         },
         1024: {
           slidesPerView: 3,
+          spaceBetween: 50,
+          centeredSlides: true,
         },
         1280: {
           slidesPerView: 5,
+          spaceBetween: 50,
+          centeredSlides: true,
         },
       },
+      
     });
 
     function calculateWheel() {
@@ -40,9 +49,7 @@ const Ring1 = () => {
         let ty =
           Math.abs(r) * multiplier.translate -
           rect.width * multiplier.translate;
-
         if (ty < 0) ty = 0;
-
         const transformOrigin = r < 0 ? "left top" : "right top";
         slide.style.transform = `translate(0, ${ty}px) rotate(${
           -r * multiplier.rotate
@@ -60,8 +67,7 @@ const Ring1 = () => {
   }, []);
 
   return (
-    <div>
-     
+    <div className="ringSection">
       <div className="carousel1">
         <div className="swiper">
           <div className="swiper-wrapper">
