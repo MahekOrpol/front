@@ -1335,7 +1335,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  z-index: 999;
+  z-index: 1080;
 }
 
 .filter-sidebar {
