@@ -11,7 +11,7 @@ import ringVideo5 from "../../../Videos/dsfcdfc.mp4";
 
 const multiplier = {
   translate: 0.1,
-  rotate: 0.01,
+  rotate: 0.02,
 };
 
 const videoData = [
@@ -38,7 +38,7 @@ const Ring1 = () => {
       breakpoints: {
         220: {
           slidesPerView: 1.5, // shows part of next/prev slides
-          spaceBetween: 20,
+          spaceBetween: 60,
           centeredSlides: true,
         },
         640: {
