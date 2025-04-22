@@ -523,7 +523,7 @@ Please let me know the next steps.`;
                     },
                   }}
                 >
-                  <SwiperSlide className="swiper-slide_sssss">
+                  {/* <SwiperSlide className="swiper-slide_sssss">
                     <video
                       src={ringVideo}
                       className="detr_img slider_ring_sss bg-white"
@@ -533,7 +533,7 @@ Please let me know the next steps.`;
                       playsInline
                       controls={false}
                     />
-                  </SwiperSlide>
+                  </SwiperSlide> */}
 
                   {productDetails?.image && productDetails.image.length > 0 ? (
                     productDetails.image.map((img, index) => {
