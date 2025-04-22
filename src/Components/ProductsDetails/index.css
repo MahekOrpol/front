@@ -1149,7 +1149,7 @@
   overflow-y: hidden;
 }
 
-@media (min-width:810px) and (max-width:990px) {
+@media (min-width:901px) and (max-width:990px) {
   .slider_ssss_fdcdf .swiper-slide {
     width: 31% !important;
     margin: 10px;
@@ -1158,6 +1158,25 @@
   .khdcj_csj .swiper-slide {
     width: 47.5% !important;
     margin: 10px;
+  }
+
+  .slider_ssss_fdcdf .add-to-crd-dd {
+    font-size: 13px;
+  }
+
+  .more_btn_dsdd {
+    font-size: 14px;
+  }
+}
+@media (min-width:810px) and (max-width:902px) {
+  .slider_ssss_fdcdf .swiper-slide {
+    width: 31% !important;
+    margin: 10px;
+  }
+
+  .khdcj_csj .swiper-slide {
+    width: 47.5% !important;
+    margin: 11px;
   }
 
   .slider_ssss_fdcdf .add-to-crd-dd {
