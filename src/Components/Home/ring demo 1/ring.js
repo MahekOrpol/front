@@ -31,13 +31,18 @@ const Ring1 = () => {
   useEffect(() => {
     const swiper = new Swiper(".swiper", {
       slidesPerView: 5,
+      
       spaceBetween: 50,
       centeredSlides: true,
       loop: true,
       grabCursor: true,
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
       breakpoints: {
         220: {
-          slidesPerView: 1.5, // shows part of next/prev slides
+          slidesPerView: 1.5,
           spaceBetween: 50,
           centeredSlides: true,
         },
@@ -57,6 +62,11 @@ const Ring1 = () => {
           centeredSlides: true,
         },
       },
+      // on: {
+      //   slideChangeTransitionEnd: () => {
+      //     setTimeout(calculateWheel, 30); // recalculate after transition
+      //   },
+      // },
     });
 
     const updateRotateMultiplier = () => {
