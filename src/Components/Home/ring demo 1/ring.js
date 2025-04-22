@@ -3,10 +3,29 @@ import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 import "./ring.css";
 
+import ringVideo1 from "../../../Videos/dfcvdfx.mp4";
+import ringVideo2 from "../../../Videos/dfvdfvd.mp4";
+import ringVideo3 from "../../../Videos/sdcsdcdfc.mp4";
+import ringVideo4 from "../../../Videos/sdcxdscx.mp4";
+import ringVideo5 from "../../../Videos/dsfcdfc.mp4";
+
 const multiplier = {
   translate: 0.1,
   rotate: 0.01,
 };
+
+const videoData = [
+  { src: ringVideo1, category: "Pendant" },
+  { src: ringVideo2, category: "Earrings" },
+  { src: ringVideo3, category: "Rings" },
+  { src: ringVideo4, category: "Bracelets" },
+  { src: ringVideo5, category: "Pendant" },
+  { src: ringVideo1, category: "Pendant" },
+  { src: ringVideo2, category: "Earrings" },
+  { src: ringVideo3, category: "Rings" },
+  { src: ringVideo4, category: "Bracelets" },
+  { src: ringVideo5, category: "Pendant" },
+];
 
 const Ring1 = () => {
   useEffect(() => {
@@ -38,7 +57,6 @@ const Ring1 = () => {
           centeredSlides: true,
         },
       },
-      
     });
 
     function calculateWheel() {
@@ -71,12 +89,19 @@ const Ring1 = () => {
       <div className="carousel1">
         <div className="swiper">
           <div className="swiper-wrapper">
-            {[...Array(10)].map((_, i) => (
+            {videoData.map((video, i) => (
               <div className="swiper-slide" key={i}>
                 <div className="single">
-                  <img
-                    src={`https://picsum.photos/800/1200?random=${i + 1}`}
-                    alt={`slide-${i + 1}`}
+                  <video
+                    src={video.src}
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                    webkit-playsinline="true"
+                    x5-playsinline="true"
+                    preload="auto"
+                    className="ring-video"
                   />
                 </div>
               </div>
