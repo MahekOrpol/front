@@ -822,6 +822,7 @@ const Products = () => {
                               loop
                               muted
                               playsInline
+                              controls={false}
                               onClick={() => handleProductClick(product.id)}
                             />
                           ) : (
