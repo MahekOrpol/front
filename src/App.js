@@ -39,7 +39,7 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/Customjewel" element={<CustomJewel />} />
         <Route path="/demo" element={<JewelrySale />} />
-        <Route path="/rings1" element={<Ring1 />} />
+        {/* <Route path="/rings1" element={<Ring1 />} /> */}
 
         {/* <Route path="/Order" element={<OrderDetails />} />
         <Route path="/add_to_cart" element={<CartPopup />} />
