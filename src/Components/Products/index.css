@@ -1732,7 +1732,7 @@
 @media(min-width:992px) and (max-width:1080px){
   .fvdvdf_Ththgf{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
   }
   .more_btn_dsdd{
     width:100% !important;

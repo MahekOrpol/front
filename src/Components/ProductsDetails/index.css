@@ -1132,6 +1132,11 @@
     margin: 10px;
   }
 
+  .khdcj_csj .swiper-slide {
+    width: 47% !important;
+    margin: 10px;
+  }
+
   .slider_ssss_fdcdf .add-to-crd-dd {
     font-size: 14px;
   }
@@ -1195,7 +1200,7 @@
 }
 
 
-@media (min-width:1441px) and (max-width:1920px) {
+@media (min-width:1441px) {
   .slider_ssss_fdcdf .swiper-slide {
     width: 23.8% !important;
     margin: 10px;
@@ -1203,7 +1208,7 @@
 
   .khdcj_csj .swiper-slide {
     width: 47% !important;
-    margin: 10px;
+    margin: 11px;
   }
 }
 
