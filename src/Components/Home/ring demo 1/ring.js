@@ -72,20 +72,21 @@ const Ring1 = () => {
     window.addEventListener("resize", updateRotateMultiplier);
 
     function calculateWheel() {
-      const slides = document.querySelectorAll(".single");
+      const slides = document.querySelectorAll(".swiper-slide");
       slides.forEach((slide) => {
+        const inner = slide.querySelector(".single");
         const rect = slide.getBoundingClientRect();
         const r = window.innerWidth * 0.5 - (rect.x + rect.width * 0.5);
         let ty =
-          Math.abs(r) * multiplier.translate -
-          rect.width * multiplier.translate;
+          Math.abs(r) * multiplier.translate - rect.width * multiplier.translate;
         if (ty < 0) ty = 0;
         const transformOrigin = r < 0 ? "left top" : "right top";
-        slide.style.transform = `translate(0, ${ty}px) rotate(${
+        inner.style.transform = `translateY(${ty}px) rotate(${
           -r * multiplier.rotate
         }deg)`;
-        slide.style.transformOrigin = transformOrigin;
+        inner.style.transformOrigin = transformOrigin;
       });
+      
     }
     
 
