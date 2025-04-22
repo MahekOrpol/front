@@ -1343,7 +1343,7 @@ const Home = () => {
                       <div className="card prio_card scdscsed_sdss">
                         <div className="card-image-wrapper position-relative best_saller_btn">
                           <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                            BEST SELLER
+                            Top
                           </button>
                           <div
                             className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
@@ -1715,7 +1715,7 @@ const Home = () => {
                                 <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
                                   {filteredBestSellers.length > 0
                                     ? currentCategory.toUpperCase()
-                                    : "BEST SELLER"}
+                                    : "Top"}
                                 </button>
                                 <div
                                   className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2 fhhdd"
