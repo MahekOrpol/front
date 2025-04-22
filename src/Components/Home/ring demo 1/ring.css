@@ -1,11 +1,7 @@
-.ringSection .ring_head .carousel {
-  overflow-x: clip;
-}
-
 
 .ringSection .ring_head .swiper {
   padding: 5rem 0;
-  overflow: visible;
+  /* overflow: visible; */
 }
 .ringSection .single {
   height: 720px;
@@ -35,25 +31,22 @@
 
 } */
 
-@media (max-width:1700px) {
-  
-.swiper-slide:nth-child(1) {
-  transform: translateY(15px) !important;
-}
-.swiper-slide:nth-child(7) {
-  transform: translateY(15px) !important;
-}
+/* @media (max-width: 1700px) {
+  .swiper-slide:nth-child(1),
+  .swiper-slide:nth-child(7) {
+    transform: translateY(15px) !important;
+  }
+} */
 
-}
-
-.swiper-slide:nth-child(1) {
-  transform: translateY(20px);
-}
+/* .swiper-slide:nth-child(1),
 .swiper-slide:nth-child(7) {
   transform: translateY(20px);
 }
-
-
+.swiper-slide:nth-child(3),
+.swiper-slide:nth-child(4),
+.swiper-slide:nth-child(5) {
+  transform: translateY(10px);
+} */
 .ringSection .carousel1 {
   position: relative;
   /* max-width: 800px; */
@@ -78,7 +71,7 @@
 }
 
 .ringSection .swiper-wrapper {
-margin-top: 0rem;
+  margin-top: 0rem;
 }
 
 /* 
@@ -88,11 +81,12 @@ margin-top: 0rem;
   position: absolute;
   top: 299px;
   right: -30px;
-  width: 10%;
+  width: 5%;
   height: 100%;
   transform: rotate(10deg);
   z-index: 1000000;
-  background: linear-gradient(to right, transparent, white);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.652), rgba(255, 255, 255, 1));
+
 }
 
 .ringSection::before {
@@ -101,9 +95,35 @@ margin-top: 0rem;
   position: absolute;
   top: 299px;
   left: -35px;
-  width: 10%;
+  width: 6%;
   height: 100%;
   transform: rotate(-10deg);
   z-index: 10000;
-  background: linear-gradient(to right, white,transparent);
+  background: linear-gradient(to left, rgb(255, 255, 255), #FFFFFF);
+} */
+/* 
+oneplus 7
+@media screen and (max-width: 412px) and (max-height: 732px) and (device-pixel-ratio: 2.625) {
+  .ve-carousel, .ve-card-container {
+    width: 100%;
+    max-width: 100%;
+  }
+} */
+
+/* .swiper-slide:nth-child(1),
+.swiper-slide:nth-child(7) {
+  display: none;
+} */
+
+.ringSection .ring_head .swiper {
+  padding: 5rem 5rem; /* Equal horizontal padding */
+  overflow: visible; /* Allow slides to overflow without being cut */
+}
+
+/* Hide partially visible edge slides */
+/* .ringSection .carousel1 .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-next):not(.swiper-slide-prev) {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
 } */
