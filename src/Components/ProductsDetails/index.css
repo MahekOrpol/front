@@ -1211,6 +1211,17 @@
     margin: 11px;
   }
 }
+@media (min-width:1600px) {
+  .slider_ssss_fdcdf .swiper-slide {
+    width: 23.8% !important;
+    margin: 10px;
+  }
+
+  .khdcj_csj .swiper-slide {
+    width: 47% !important;
+    margin: 13px;
+  }
+}
 
 
 @media (max-width: 992px) {
