@@ -64,6 +64,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Ring1 from "./ring demo 1/ring";
 
 const videoData = [
   { src: ringVideo1, category: "Pendant" },
@@ -150,70 +151,68 @@ const diamondRings = [
     size: "small",
   },
 ];
-function VideoCard({ src, onClick }) {
-  const ref = useRef(null);
+// function VideoCard({ src, onClick }) {
+//   const ref = useRef(null);
 
-  useEffect(() => {
-    const vid = ref.current;
-    if (!vid) return;
+//   useEffect(() => {
+//     const vid = ref.current;
+//     if (!vid) return;
 
-    // 1) force fetch so first frame is ready
-    vid.setAttribute("preload", "metadata");
+//     // 1) force fetch so first frame is ready
+//     vid.setAttribute("preload", "metadata");
 
-    // 2) inline‑play flags
-    vid.setAttribute("playsinline", "");
-    vid.setAttribute("webkit-playsinline", "true");
-    vid.setAttribute("x5-playsinline", "true");
+//     // 2) inline‑play flags
+//     vid.setAttribute("playsinline", "");
+//     vid.setAttribute("webkit-playsinline", "true");
+//     vid.setAttribute("x5-playsinline", "true");
 
-    // 3) muted, looping
-    vid.muted = true;
-    vid.loop = true;
+//     // 3) muted, looping
+//     vid.muted = true;
+//     vid.loop = true;
 
-    // 4) observer to play/pause only when visible
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          vid.play().catch(() => {});
-        } else {
-          vid.pause();
-        }
-      },
-      { threshold: 0.5 }
-    );
-    obs.observe(vid);
+//     // 4) observer to play/pause only when visible
+//     const obs = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           vid.play().catch(() => {});
+//         } else {
+//           vid.pause();
+//         }
+//       },
+//       { threshold: 0.5 }
+//     );
+//     obs.observe(vid);
 
-    // ensure the very first frame paints
-    const handleLoaded = () => {
-      vid.pause();
-      vid.removeEventListener("loadeddata", handleLoaded);
-    };
-    vid.addEventListener("loadeddata", handleLoaded);
-    vid.load();
+//     // ensure the very first frame paints
+//     const handleLoaded = () => {
+//       vid.pause();
+//       vid.removeEventListener("loadeddata", handleLoaded);
+//     };
+//     vid.addEventListener("loadeddata", handleLoaded);
+//     vid.load();
 
-    return () => {
-      obs.disconnect();
-    };
-  }, []);
+//     return () => {
+//       obs.disconnect();
+//     };
+//   }, []);
 
-  return (
-<video
-  key={src}
-  ref={ref}
-  src={src}
-  muted
-  autoPlay
-  loop
-  playsInline
-  preload="metadata"
-  webkit-playsinline="true"
-  x5-playsinline="true"
-  className="bg-white video_new_arrr"
-  onClick={onClick}
-/>
-
-
-  );
-}
+//   return (
+//     <video
+//       key={src}
+//       ref={ref}
+//       src={src}
+//       muted
+//       autoPlay
+//       loop
+//       playsInline
+//       preload="metadata"
+//       webkit-playsinline="true"
+//       x5-playsinline="true"
+//       className="bg-white video_new_arrr"
+//       onClick={onClick}
+//     />
+//   );
+// }
 
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
@@ -239,8 +238,8 @@ const Home = () => {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-const [wishlistCount, setWishlistCount] = useState(
-    parseInt(localStorage.getItem('wishlistCount')) || 0
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
   );
   const dispatch = useDispatch();
   const {
@@ -253,7 +252,6 @@ const [wishlistCount, setWishlistCount] = useState(
   const scrollContainerRef = useRef(null);
   const scrollRef = useRef(null);
 
-  
   useEffect(() => {
     const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
     if (cameFromCheckout) {
@@ -520,7 +518,7 @@ const [wishlistCount, setWishlistCount] = useState(
 
   const updateWishlistCount = (count) => {
     setWishlistCount(count);
-    localStorage.setItem('wishlistCount', count.toString());
+    localStorage.setItem("wishlistCount", count.toString());
   };
 
   const toggleFavorite = async (productId) => {
@@ -734,141 +732,141 @@ const [wishlistCount, setWishlistCount] = useState(
   //   });
   // }, []);
 
-  useEffect(() => {
-    let currentCardIndex = 0;
-    const cards = $(".we-card");
-    const totalCards = cards.length;
-    let autoScrollInterval;
-    let isDragging = false;
-    let startX = 0;
-    let currentX = 0;
-    const slidesToScroll = 1;
-    const cardContainer = $(".we-card-container")[0];
-    function updateCarousel() {
-      cards.removeClass("active prev-1 next-1 prev-2 next-2 prev-3 next-3");
-      $(cards[currentCardIndex]).addClass("active");
-      const prevIndex_1 = (currentCardIndex - 1 + totalCards) % totalCards;
-      const nextIndex_1 = (currentCardIndex + 1) % totalCards;
-      const prevIndex_2 = (currentCardIndex - 2 + totalCards) % totalCards;
-      const nextIndex_2 = (currentCardIndex + 2) % totalCards;
-      const prevIndex_3 = (currentCardIndex - 3 + totalCards) % totalCards;
-      const nextIndex_3 = (currentCardIndex + 3) % totalCards;
-      $(cards[prevIndex_1]).addClass("prev-1");
-      $(cards[nextIndex_1]).addClass("next-1");
-      $(cards[prevIndex_2]).addClass("prev-2");
-      $(cards[nextIndex_2]).addClass("next-2");
-      $(cards[prevIndex_3]).addClass("prev-3");
-      $(cards[nextIndex_3]).addClass("next-3");
-    }
-    function startAutoScroll() {
-      autoScrollInterval = setInterval(() => {
-        if (!isDragging) {
-          currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
-          updateCarousel();
-        }
-      }, 3000);
-    }
-    function stopAutoScroll() {
-      clearInterval(autoScrollInterval);
-    }
-    function handleDragStart(e) {
-      isDragging = true;
-      stopAutoScroll();
-      startX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
-      currentX = startX;
-      cardContainer.style.cursor = "grabbing";
-    }
-    function handleDragMove(e) {
-      if (!isDragging) return;
-      const x = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
-      const deltaX = x - currentX;
-      currentX = x;
-      // Visual feedback during drag
-      const activeCard = cards[currentCardIndex];
-      const activeCardRect = activeCard.getBoundingClientRect();
-      const cardWidth = activeCardRect.width;
-      if (Math.abs(deltaX) > cardWidth * 0.1) {
-        if (deltaX > 0) {
-          // Dragging right - go to previous card
-          $(activeCard).css("transform", `translateX(${deltaX}px)`);
-        } else {
-          // Dragging left - go to next card
-          $(activeCard).css("transform", `translateX(${deltaX}px)`);
-        }
-      }
-    }
-    function handleDragEnd(e) {
-      if (!isDragging) return;
-      isDragging = false;
-      cardContainer.style.cursor = "grab";
-      const x =
-        e.type === "touchend"
-          ? e.changedTouches
-            ? e.changedTouches[0].clientX
-            : 0
-          : e.clientX;
-      const deltaX = x - startX;
-      const activeCard = cards[currentCardIndex];
-      // Reset position
-      $(activeCard).css("transform", "");
-      // Determine if swipe was significant enough to change cards
-      const activeCardRect = activeCard.getBoundingClientRect();
-      const cardWidth = activeCardRect.width;
-      if (Math.abs(deltaX) > cardWidth * 0.3) {
-        if (deltaX > 0) {
-          // Swiped right - previous card
-          currentCardIndex =
-            (currentCardIndex - slidesToScroll + totalCards) % totalCards;
-        } else {
-          // Swiped left - next card
-          currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
-        }
-        updateCarousel();
-      }
-      startAutoScroll();
-    }
-    // Initialize carousel
-    updateCarousel();
-    startAutoScroll();
-    // Button navigation
-    $(".right").click(() => {
-      stopAutoScroll();
-      currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
-      updateCarousel();
-      startAutoScroll();
-    });
-    $(".left").click(() => {
-      stopAutoScroll();
-      currentCardIndex =
-        (currentCardIndex - slidesToScroll + totalCards) % totalCards;
-      updateCarousel();
-      startAutoScroll();
-    });
-    // Touch and mouse events for dragging
-    cardContainer.style.cursor = "grab";
-    cardContainer.addEventListener("mousedown", handleDragStart);
-    cardContainer.addEventListener("mousemove", handleDragMove);
-    cardContainer.addEventListener("mouseup", handleDragEnd);
-    cardContainer.addEventListener("mouseleave", handleDragEnd);
-    cardContainer.addEventListener("touchstart", handleDragStart, {
-      passive: true,
-    });
-    cardContainer.addEventListener("touchmove", handleDragMove, {
-      passive: false,
-    });
-    cardContainer.addEventListener("touchend", handleDragEnd);
-    // Clean up
-    return () => {
-      stopAutoScroll();
-      cardContainer.removeEventListener("mousedown", handleDragStart);
-      cardContainer.removeEventListener("mousemove", handleDragMove);
-      cardContainer.removeEventListener("mouseup", handleDragEnd);
-      cardContainer.removeEventListener("mouseleave", handleDragEnd);
-      cardContainer.removeEventListener("touchstart", handleDragStart);
-      cardContainer.removeEventListener("touchmove", handleDragMove);
-      cardContainer.removeEventListener("touchend", handleDragEnd);
-    };
-  }, []);
+  // useEffect(() => {
+  //   let currentCardIndex = 0;
+  //   const cards = $(".we-card");
+  //   const totalCards = cards.length;
+  //   let autoScrollInterval;
+  //   let isDragging = false;
+  //   let startX = 0;
+  //   let currentX = 0;
+  //   const slidesToScroll = 1;
+  //   const cardContainer = $(".we-card-container")[0];
+  //   function updateCarousel() {
+  //     cards.removeClass("active prev-1 next-1 prev-2 next-2 prev-3 next-3");
+  //     $(cards[currentCardIndex]).addClass("active");
+  //     const prevIndex_1 = (currentCardIndex - 1 + totalCards) % totalCards;
+  //     const nextIndex_1 = (currentCardIndex + 1) % totalCards;
+  //     const prevIndex_2 = (currentCardIndex - 2 + totalCards) % totalCards;
+  //     const nextIndex_2 = (currentCardIndex + 2) % totalCards;
+  //     const prevIndex_3 = (currentCardIndex - 3 + totalCards) % totalCards;
+  //     const nextIndex_3 = (currentCardIndex + 3) % totalCards;
+  //     $(cards[prevIndex_1]).addClass("prev-1");
+  //     $(cards[nextIndex_1]).addClass("next-1");
+  //     $(cards[prevIndex_2]).addClass("prev-2");
+  //     $(cards[nextIndex_2]).addClass("next-2");
+  //     $(cards[prevIndex_3]).addClass("prev-3");
+  //     $(cards[nextIndex_3]).addClass("next-3");
+  //   }
+  //   function startAutoScroll() {
+  //     autoScrollInterval = setInterval(() => {
+  //       if (!isDragging) {
+  //         currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
+  //         updateCarousel();
+  //       }
+  //     }, 3000);
+  //   }
+  //   function stopAutoScroll() {
+  //     clearInterval(autoScrollInterval);
+  //   }
+  //   function handleDragStart(e) {
+  //     isDragging = true;
+  //     stopAutoScroll();
+  //     startX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
+  //     currentX = startX;
+  //     cardContainer.style.cursor = "grabbing";
+  //   }
+  //   function handleDragMove(e) {
+  //     if (!isDragging) return;
+  //     const x = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
+  //     const deltaX = x - currentX;
+  //     currentX = x;
+  //     // Visual feedback during drag
+  //     const activeCard = cards[currentCardIndex];
+  //     const activeCardRect = activeCard.getBoundingClientRect();
+  //     const cardWidth = activeCardRect.width;
+  //     if (Math.abs(deltaX) > cardWidth * 0.1) {
+  //       if (deltaX > 0) {
+  //         // Dragging right - go to previous card
+  //         $(activeCard).css("transform", `translateX(${deltaX}px)`);
+  //       } else {
+  //         // Dragging left - go to next card
+  //         $(activeCard).css("transform", `translateX(${deltaX}px)`);
+  //       }
+  //     }
+  //   }
+  //   function handleDragEnd(e) {
+  //     if (!isDragging) return;
+  //     isDragging = false;
+  //     cardContainer.style.cursor = "grab";
+  //     const x =
+  //       e.type === "touchend"
+  //         ? e.changedTouches
+  //           ? e.changedTouches[0].clientX
+  //           : 0
+  //         : e.clientX;
+  //     const deltaX = x - startX;
+  //     const activeCard = cards[currentCardIndex];
+  //     // Reset position
+  //     $(activeCard).css("transform", "");
+  //     // Determine if swipe was significant enough to change cards
+  //     const activeCardRect = activeCard.getBoundingClientRect();
+  //     const cardWidth = activeCardRect.width;
+  //     if (Math.abs(deltaX) > cardWidth * 0.3) {
+  //       if (deltaX > 0) {
+  //         // Swiped right - previous card
+  //         currentCardIndex =
+  //           (currentCardIndex - slidesToScroll + totalCards) % totalCards;
+  //       } else {
+  //         // Swiped left - next card
+  //         currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
+  //       }
+  //       updateCarousel();
+  //     }
+  //     startAutoScroll();
+  //   }
+  //   // Initialize carousel
+  //   updateCarousel();
+  //   startAutoScroll();
+  //   // Button navigation
+  //   $(".right").click(() => {
+  //     stopAutoScroll();
+  //     currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
+  //     updateCarousel();
+  //     startAutoScroll();
+  //   });
+  //   $(".left").click(() => {
+  //     stopAutoScroll();
+  //     currentCardIndex =
+  //       (currentCardIndex - slidesToScroll + totalCards) % totalCards;
+  //     updateCarousel();
+  //     startAutoScroll();
+  //   });
+  //   // Touch and mouse events for dragging
+  //   cardContainer.style.cursor = "grab";
+  //   cardContainer.addEventListener("mousedown", handleDragStart);
+  //   cardContainer.addEventListener("mousemove", handleDragMove);
+  //   cardContainer.addEventListener("mouseup", handleDragEnd);
+  //   cardContainer.addEventListener("mouseleave", handleDragEnd);
+  //   cardContainer.addEventListener("touchstart", handleDragStart, {
+  //     passive: true,
+  //   });
+  //   cardContainer.addEventListener("touchmove", handleDragMove, {
+  //     passive: false,
+  //   });
+  //   cardContainer.addEventListener("touchend", handleDragEnd);
+  //   // Clean up
+  //   return () => {
+  //     stopAutoScroll();
+  //     cardContainer.removeEventListener("mousedown", handleDragStart);
+  //     cardContainer.removeEventListener("mousemove", handleDragMove);
+  //     cardContainer.removeEventListener("mouseup", handleDragEnd);
+  //     cardContainer.removeEventListener("mouseleave", handleDragEnd);
+  //     cardContainer.removeEventListener("touchstart", handleDragStart);
+  //     cardContainer.removeEventListener("touchmove", handleDragMove);
+  //     cardContainer.removeEventListener("touchend", handleDragEnd);
+  //   };
+  // }, []);
 
   return (
     <>
@@ -1339,7 +1337,8 @@ const [wishlistCount, setWishlistCount] = useState(
                   {bestSelling.map((product) => (
                     <div
                       key={product.id}
-                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"  style={{ flex: "0 0 auto" }}
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                      style={{ flex: "0 0 auto" }}
                     >
                       <div className="card prio_card scdscsed_sdss">
                         <div className="card-image-wrapper position-relative best_saller_btn">
@@ -1441,7 +1440,8 @@ const [wishlistCount, setWishlistCount] = useState(
                   {topRated.map((product) => (
                     <div
                       key={product.id}
-                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf" style={{ flex: "0 0 auto" }}
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                      style={{ flex: "0 0 auto" }}
                     >
                       <div className="card prio_card scdscsed_sdss">
                         {/* Image Wrapper with position-relative */}
@@ -1681,7 +1681,7 @@ const [wishlistCount, setWishlistCount] = useState(
                         </div>
                       </CSSTransition>
                     ))} */}
-                    <div className="slider_ssss_fdcdf khdcj_csj p-0 mt-0">
+                  <div className="slider_ssss_fdcdf khdcj_csj p-0 mt-0">
                     <Swiper
                       spaceBetween={0}
                       slidesPerView={2}
@@ -1693,17 +1693,18 @@ const [wishlistCount, setWishlistCount] = useState(
                         // 0: { slidesPerView: 1 }, // Mobile - 1 card
                       }}
                       loop={true}
-                    // autoplay={{
-                    //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                    //   disableOnInteraction: false,
-                    // }}
-                    // modules={[Autoplay]}
+                      // autoplay={{
+                      //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                      //   disableOnInteraction: false,
+                      // }}
+                      // modules={[Autoplay]}
                     >
                       {productsToDisplay
                         .slice(
                           currentIndex,
                           currentIndex + productsToDisplay?.length
-                        ).map((product) => (
+                        )
+                        .map((product) => (
                           <SwiperSlide key={product.id}>
                             <div
                               className="card prio_card scdscsed_sdss_jdfn fgfdddds_hvb"
@@ -1712,9 +1713,9 @@ const [wishlistCount, setWishlistCount] = useState(
                             >
                               <div className="card-image-wrapper position-relative">
                                 <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                                {filteredBestSellers.length > 0
-                                  ? currentCategory.toUpperCase()
-                                  : "BEST SELLER"}
+                                  {filteredBestSellers.length > 0
+                                    ? currentCategory.toUpperCase()
+                                    : "BEST SELLER"}
                                 </button>
                                 <div
                                   className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2 fhhdd"
@@ -1727,7 +1728,10 @@ const [wishlistCount, setWishlistCount] = useState(
                                       size={18}
                                     />
                                   ) : (
-                                    <GoHeart className="heart-icon_ss" size={18} />
+                                    <GoHeart
+                                      className="heart-icon_ss"
+                                      size={18}
+                                    />
                                   )}
                                 </div>
                                 <div
@@ -1753,7 +1757,7 @@ const [wishlistCount, setWishlistCount] = useState(
                                   ₹{product.salePrice.$numberDecimal}
                                 </span>
                                 <span className="mikdec_axsx">
-                                ₹{product.regularPrice?.$numberDecimal}
+                                  ₹{product.regularPrice?.$numberDecimal}
                                 </span>
                               </div>
                               <div className="d-flex align-items-center justify-content-between gap-2 pt-2 hjghfd">
@@ -1919,9 +1923,8 @@ const [wishlistCount, setWishlistCount] = useState(
           />
         </div>
 
-        <div className="video-curved-tewd ">
+        {/* <div className="video-curved-tewd ">
           <div className="we-carousel">
-            {/* <div className="we-arrow left">&#10094;</div> */}
             <div className="we-card-container snap-carousel">
               {/* <div className="we-card">
                 <video
@@ -2010,7 +2013,7 @@ const [wishlistCount, setWishlistCount] = useState(
                   loop
                   muted
                 />
-              </div> */}
+              </div> 
                {videoData.map((v, i) => (
               <div className="we-card" key={i}>
                 <VideoCard
@@ -2020,10 +2023,11 @@ const [wishlistCount, setWishlistCount] = useState(
               </div>
             ))}
             </div>
-            {/* <div className="we-arrow right">&#10095;</div> */}
+       
           </div>
-        </div>
+        </div> */}
 
+        <Ring1 />
         {/* <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd ">
             <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
               <div className="d-flex justify-content-center align-items-center h-100 w-100">
