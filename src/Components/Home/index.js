@@ -1255,23 +1255,23 @@ const Home = () => {
                             )}
                           </div>
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {product.image[0]?.endsWith(".mp4") ? (
-                              <video
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                autoPlay
-                                loop
-                                muted
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            ) : (
-                              <img
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                alt="Product"
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            )}
+                            {(() => {
+                              const imageToShow = product.image.find(
+                                (img) => !img.endsWith(".mp4")
+                              );
+                              return imageToShow ? (
+                                <img
+                                  src={`http://147.93.104.196:3000${imageToShow}`}
+                                  className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                  alt="Product"
+                                  onClick={() => handleProductClick(product.id)}
+                                />
+                              ) : (
+                                <div className="text-center text-muted py-4">
+                                  No image available
+                                </div>
+                              );
+                            })()}
                           </div>
                         </div>
                       </div>
@@ -1360,23 +1360,23 @@ const Home = () => {
                             )}
                           </div>
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {product.image[0]?.endsWith(".mp4") ? (
-                              <video
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
-                                className="p-1_proi img-fluid"
-                                autoPlay
-                                loop
-                                muted
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            ) : (
-                              <img
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
-                                className="p-1_proi img-fluid"
-                                alt="Product"
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            )}
+                          {(() => {
+                              const imageToShow = product.image.find(
+                                (img) => !img.endsWith(".mp4")
+                              );
+                              return imageToShow ? (
+                                <img
+                                  src={`http://147.93.104.196:3000${imageToShow}`}
+                                  className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                  alt="Product"
+                                  onClick={() => handleProductClick(product.id)}
+                                />
+                              ) : (
+                                <div className="text-center text-muted py-4">
+                                  No image available
+                                </div>
+                              );
+                            })()}
                           </div>
                         </div>
                       </div>
@@ -1467,23 +1467,23 @@ const Home = () => {
                           </div>
                           {/* Product Image */}
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {product.image[0]?.endsWith(".mp4") ? (
-                              <video
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                autoPlay
-                                loop
-                                muted
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            ) : (
-                              <img
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                alt="Product"
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            )}
+                          {(() => {
+                              const imageToShow = product.image.find(
+                                (img) => !img.endsWith(".mp4")
+                              );
+                              return imageToShow ? (
+                                <img
+                                  src={`http://147.93.104.196:3000${imageToShow}`}
+                                  className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                  alt="Product"
+                                  onClick={() => handleProductClick(product.id)}
+                                />
+                              ) : (
+                                <div className="text-center text-muted py-4">
+                                  No image available
+                                </div>
+                              );
+                            })()}
                           </div>
                         </div>
                       </div>
