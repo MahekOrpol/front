@@ -2,12 +2,13 @@
   overflow-x: clip;
 }
 
+
 .ringSection .ring_head .swiper {
   padding: 5rem 0;
   overflow: visible;
 }
 .ringSection .single {
-  height: 670px;
+  height: 720px;
 }
 .ringSection .ring_head .single {
   position: relative;
@@ -25,6 +26,34 @@
   }
 }
 
+/* @media (max-width:1280px) {
+  .ringSection .carousel1 .swiper-slide-active .single video.ring-video {
+    transform: scale(1.02) translateY(-5px) ;  
+    transition: transform 0.4s ease-in-out;
+    z-index: 10;
+  }
+
+} */
+
+@media (max-width:1700px) {
+  
+.swiper-slide:nth-child(1) {
+  transform: translateY(15px) !important;
+}
+.swiper-slide:nth-child(7) {
+  transform: translateY(15px) !important;
+}
+
+}
+
+.swiper-slide:nth-child(1) {
+  transform: translateY(20px);
+}
+.swiper-slide:nth-child(7) {
+  transform: translateY(20px);
+}
+
+
 .ringSection .carousel1 {
   position: relative;
   /* max-width: 800px; */
@@ -35,15 +64,46 @@
   padding: 40px 0;
 }
 
-.carousel1 .swiper-slide {
+.ringSection .carousel1 .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.single video.ring-video {
+.ringSection .single video.ring-video {
   width: 100%;
   height: auto;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
+
+.ringSection .swiper-wrapper {
+margin-top: 0rem;
+}
+
+/* 
+.ringSection::after {
+  position: absolute;
+  content: "";
+  position: absolute;
+  top: 299px;
+  right: -30px;
+  width: 10%;
+  height: 100%;
+  transform: rotate(10deg);
+  z-index: 1000000;
+  background: linear-gradient(to right, transparent, white);
+}
+
+.ringSection::before {
+  position: absolute;
+  content: "";
+  position: absolute;
+  top: 299px;
+  left: -35px;
+  width: 10%;
+  height: 100%;
+  transform: rotate(-10deg);
+  z-index: 10000;
+  background: linear-gradient(to right, white,transparent);
+} */
