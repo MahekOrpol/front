@@ -38,7 +38,7 @@ const Ring1 = () => {
       breakpoints: {
         220: {
           slidesPerView: 1.5, // shows part of next/prev slides
-          spaceBetween: 60,
+          spaceBetween: 50,
           centeredSlides: true,
         },
         640: {
@@ -48,7 +48,7 @@ const Ring1 = () => {
         },
         1024: {
           slidesPerView: 3,
-          spaceBetween: 50,
+          spaceBetween: 80,
           centeredSlides: true,
         },
         1280: {
@@ -58,6 +58,18 @@ const Ring1 = () => {
         },
       },
     });
+
+    const updateRotateMultiplier = () => {
+      const width = window.innerWidth;
+      if (width >= 1024) {
+        multiplier.rotate = 0.01;
+      } else {
+        multiplier.rotate = 0.02;
+      }
+    };
+  
+    updateRotateMultiplier();
+    window.addEventListener("resize", updateRotateMultiplier);
 
     function calculateWheel() {
       const slides = document.querySelectorAll(".single");
@@ -75,6 +87,7 @@ const Ring1 = () => {
         slide.style.transformOrigin = transformOrigin;
       });
     }
+    
 
     function raf() {
       requestAnimationFrame(raf);
