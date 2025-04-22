@@ -38,6 +38,10 @@ const Ring1 = () => {
         centeredSlides: true,
         loop: true,
         grabCursor: true,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: false,
+        },
         breakpoints: {
           220: {
             slidesPerView: 1.5,
