@@ -2244,6 +2244,22 @@ img.ring-image {
 }
 
 @media (max-width: 992px) {
+  .view_more_round {
+    background-color: #611d2b;
+    padding: 13px !important;
+    border: 1px solid #611d2b;
+    border-radius: 50px;
+    transform: translateX(17px);
+    opacity: 15%;
+  }
+
+  .more_link {
+    font-family: "Cabin", sans-serif;
+    text-decoration: none;
+    color: #611d2b;
+    font-weight: 500;
+    font-size: 13px;
+  }
   .fest_00ssss {
     gap: 2rem !important;
     text-align: center;
@@ -2371,6 +2387,8 @@ img.ring-image {
   border-radius: 4px;
   font-size: 0.8rem;
   z-index: 2;
+  display: flex;
+  align-items: center;
 }
 
 .snuf_dfv .heart-icon_ss {
@@ -2503,24 +2521,24 @@ img.ring-image {
   .txt_frss {
     font-size: 27px !important;
     font-weight: 500;
-}
+  }
 
-.fest_fff {
-  font-family: "Cabin", sans-serif;
-  font-weight: 400;
-  font-size: 21px !important;
-  line-height: 100%;
-  letter-spacing: 0%;
-}
+  .fest_fff {
+    font-family: "Cabin", sans-serif;
+    font-weight: 400;
+    font-size: 21px !important;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
 
-.txt_par {
-  font-size: 16px !important;
-  display: block;
-  text-align: center;
-  white-space: normal;
-  word-break: break-word;
-  line-height: 1.6;
-}
+  .txt_par {
+    font-size: 16px !important;
+    display: block;
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.6;
+  }
 
   .sdcsdc_rtgrtfdxcasxNJK .category_name {
     font-size: 32px;
@@ -2696,7 +2714,7 @@ img.ring-image {
   .hnbgygjhh {
     height: 550px !important;
     margin-top: -0.5rem !important;
-}
+  }
   .stunning_price_fvf {
     margin-top: -131px !important;
   }
@@ -2963,14 +2981,13 @@ img.ring-image {
   .best_saller_btn .sle_home_ddd {
     font-family: "Cabin", sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 12px !important;
     line-height: 100%;
     letter-spacing: 0%;
     background-color: #611d2b;
     color: #fff;
     border: none;
-    width: 93px !important;
-    height: 26px;
+    width: fit-content !important;
   }
   .diamon_jewe {
     margin-top: -0.6rem !important;
@@ -2990,14 +3007,13 @@ img.ring-image {
   .best_saller_btn .sle_home_ddd {
     font-family: "Cabin", sans-serif;
     font-weight: 400;
-    font-size: 12px !important;
+    font-size: 8px !important;
     line-height: 100%;
     letter-spacing: 0%;
     background-color: #611d2b;
     color: #fff;
     border: none;
     width: fit-content !important;
-    height: 26px;
     white-space: nowrap;
     /* padding-top: 2rem !important; */
   }
@@ -3086,7 +3102,6 @@ img.ring-image {
     width: 100% !important;
   }
 }
-
 
 @media (width: 425px) {
   .fastival-offerssss {
@@ -3539,7 +3554,7 @@ img.ring-image {
   }
 
   .ring_banner_szcdvc {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     padding: 0;
   }
 
@@ -7214,6 +7229,8 @@ img.ring-image {
   border: none;
   width: 114px;
   height: 26px;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 767px) {
@@ -7642,6 +7659,9 @@ img.ring-image {
     display: block !important;
   }
 
+  .snuf_dfv{
+    padding: 0.2rem !important;
+  }
   .cline_ytsdhcsd .swiper-wrapper {
     gap: 0rem;
     margin: auto;
@@ -8393,7 +8413,7 @@ img.ring-image {
   .dscdsc_inst {
     gap: 2px !important;
     margin-top: -92% !important;
-}
+  }
 }
 
 @media (min-width: 1441px) and (max-width: 1500px) {
@@ -9025,7 +9045,6 @@ img.ring-image {
   .szdxksdx_HGVBH {
     padding-top: 0rem !important;
     margin-top: -0.8rem !important;
-
   }
   .sdcds_cate {
     padding-top: 0rem !important;
@@ -9161,13 +9180,13 @@ img.ring-image {
 .scdscsed_sdss_jdfn {
   height: 310px;
 }
-@media(min-width:992px) and (max-width:1235px) {
+@media (min-width: 992px) and (max-width: 1235px) {
   .scdscsed_sdss_jdfn {
     height: 254px;
   }
 }
-@media(min-width:992px) and (max-width:1042px) {
-    .more_btn_dsdd {
-      font-size: 13px;
-    }
+@media (min-width: 992px) and (max-width: 1042px) {
+  .more_btn_dsdd {
+    font-size: 13px;
+  }
 }
