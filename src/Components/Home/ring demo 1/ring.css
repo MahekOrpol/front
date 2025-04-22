@@ -142,15 +142,15 @@ oneplus 7
   }
 }
 
-@media (max-width:400px) and (min-width:340px) {
+@media (max-width:400px) and (min-width:341px) {
   .ringSection .single {
-    height: 183vw;
+    height: 187vw;
   }
 }
 
 @media (max-width:415px) and (min-width:400px) {
   .ringSection .single {
-    height: 177vw;
+    height: 181vw;
   }
 }
 
@@ -159,19 +159,19 @@ oneplus 7
     height: 129vw;
   }
 }
-@media (max-width:500px) and (min-width:425px) {
+@media (max-width:499px) and (min-width:426px) {
   .ringSection .single {
     height: 123vw;
   }
 }
 @media (max-width:610px) and (min-width:500px) {
   .ringSection .single {
-    height: 29rem;
+    height: 41rem;
   }
 }
 @media (max-width:700px) and (min-width:610px) {
   .ringSection .single {
-    height: 33rem;
+    height: 31rem;
   }
 }
 @media (max-width:768px) and (min-width:700px) {
@@ -180,19 +180,30 @@ oneplus 7
   }
 }
 
-@media (max-width:893px) and (min-width:768px) {
+@media (max-width:800px) and (min-width:768px) {
+  .ringSection .single {
+    height: 34.5rem;
+  }
+}
+
+@media (max-width:894px) and (min-width:801px) {
   .ringSection .single {
     height: 35.5rem;
   }
 }
-@media (max-width:991px) and (min-width:894px) {
+@media (max-width:940px) and (min-width:894px) {
   .ringSection .single {
-    height: 39rem;
+    height: 38rem;
   }
 }
-@media (max-width:1023px) and (min-width:992px) {
+@media (max-width:991px) and (min-width:941px) {
   .ringSection .single {
-    height: 40.5rem;
+    height: 40rem;
+  }
+}
+@media (max-width:1024px) and (min-width:992px) {
+  .ringSection .single {
+    height: 43.5rem;
   }
 }
 @media (max-width:1100px) and (min-width:1024px) {
@@ -200,17 +211,22 @@ oneplus 7
     height: 36rem;
   }
 }
-@media (max-width:1279px) and (min-width:1101px) {
+@media (max-width:1207px) and (min-width:1101px) {
   .ringSection .single {
-    height: 45rem;
+    height: 40rem;
   }
 }
-@media (max-width:1346px) and (min-width:1280px) {
+@media (max-width:1280px) and (min-width:1208px) {
+  .ringSection .single {
+    height: 44rem;
+  }
+}
+@media (max-width:1344px) and (min-width:1280px) {
   .ringSection .single {
     height: 29rem;
   }
 }
-@media (max-width:1399px) and (min-width:1347px) {
+@media (max-width:1400px) and (min-width:1345px) {
   .ringSection .single {
     height: 32rem;
   }
@@ -235,8 +251,13 @@ oneplus 7
     height: 41rem;
   }
 }
-@media (min-width:1901px) {
+@media (max-width:1955px) and (min-width:1901px) {
   .ringSection .single {
     height: 41rem;
+  }
+}
+@media (min-width:1955px) {
+  .ringSection .single {
+    height: 45rem;
   }
 }

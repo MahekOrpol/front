@@ -41,37 +41,37 @@ const Ring1 = () => {
         breakpoints: {
           220: {
             slidesPerView: 1.5,
-            spaceBetween: 50,
+            spaceBetween: 60,
             centeredSlides: true,
           },
           415: {
             slidesPerView: 2.5,
-            spaceBetween: 40,
+            spaceBetween: 50,
             centeredSlides: true,
           },
           640: {
             slidesPerView: 2.5,
-            spaceBetween: 60,
+            spaceBetween: 70,
             centeredSlides: true,
           },
           740: {
             slidesPerView: 2.5,
-            spaceBetween: 80,
+            spaceBetween: 90,
             centeredSlides: true,
           },
           840: {
             slidesPerView: 2.5,
-            spaceBetween: 100,
+            spaceBetween: 110,
             centeredSlides: true,
           },
           991: {
             slidesPerView: 2.5,
-            spaceBetween: 100,
+            spaceBetween: 120,
             centeredSlides: true,
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 80,
+            spaceBetween: 110,
             centeredSlides: true,
           },
           1280: {
@@ -88,7 +88,7 @@ const Ring1 = () => {
       });
       const updateRotateMultiplier = () => {
         const width = window.innerWidth;
-        multiplier.rotate = width >= 1024 ? 0.01 : 0.02;
+        multiplier.rotate = width >= 1024 ? 0.01 : 0.03;
       };
       updateRotateMultiplier();
       window.addEventListener("resize", updateRotateMultiplier);
