@@ -481,10 +481,11 @@ Please let me know the next steps.`;
                           <video
                             className="detr_img bg-white"
                             src={`http://147.93.104.196:3000${img}`}
-                            controls
                             autoPlay
                             loop
                             muted
+                            playsInline
+                            controls={false}
                           />
                         ) : (
                           <img
@@ -529,6 +530,8 @@ Please let me know the next steps.`;
                       autoPlay
                       loop
                       muted
+                      playsInline
+                      controls={false}
                     />
                   </SwiperSlide>
 
@@ -542,7 +545,8 @@ Please let me know the next steps.`;
                             <video
                               className="detr_img slider_ring_sss"
                               src={`http://147.93.104.196:3000${img}`}
-                              controls
+                              playsInline
+                              controls={false}
                               autoPlay
                               loop
                               muted
@@ -574,6 +578,8 @@ Please let me know the next steps.`;
                     autoPlay
                     loop
                     muted
+                    playsInline
+                    controls={false}
                   />
                 ) : videos.length > 1 ? (
                   <Slider
@@ -650,6 +656,8 @@ Please let me know the next steps.`;
                           autoPlay
                           loop
                           muted
+                          playsInline
+                          controls={false}
                         />
                       </div>
                     ))}
@@ -1191,6 +1199,8 @@ Please let me know the next steps.`;
                                 autoPlay
                                 loop
                                 muted
+                                playsInline
+                                controls={false}
                                 onClick={() => handleProductClick(product.id)}
                               />
                             ) : (
