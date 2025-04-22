@@ -65,8 +65,8 @@ const Products = () => {
     error,
   } = useSelector((state) => state.cart);
   const urlSearchQuery = queryParams.get("search");
-const [wishlistCount, setWishlistCount] = useState(
-    parseInt(localStorage.getItem('wishlistCount')) || 0
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
   );
   // const [cartCount, setCartCount] = useState(() => {
   //   const savedCount = localStorage.getItem('cartCount');
@@ -353,7 +353,7 @@ const [wishlistCount, setWishlistCount] = useState(
 
   const updateWishlistCount = (count) => {
     setWishlistCount(count);
-    localStorage.setItem('wishlistCount', count.toString());
+    localStorage.setItem("wishlistCount", count.toString());
   };
 
   const toggleFavorite = async (productId) => {
@@ -821,6 +821,7 @@ const [wishlistCount, setWishlistCount] = useState(
                               autoPlay
                               loop
                               muted
+                              playsInline
                               onClick={() => handleProductClick(product.id)}
                             />
                           ) : (
