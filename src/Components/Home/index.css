@@ -1900,13 +1900,6 @@ img.ring-image {
     font-size: 18px !important;
   }
 
-  .home_img_ssssss {
-    width: 25% !important;
-  }
-
-  .home_img_ssssss {
-    width: 100% !important;
-  }
 
   .xfvdxfvdfv .swiper-wrapper {
     justify-content: space-between;
@@ -1921,7 +1914,11 @@ img.ring-image {
     font-family: "Cabin", sans-serif;
   }
 }
-
+@media(max-width:1024px) and (min-width:991px){
+  .home_img_ssssss {
+    width: 83% !important;
+  }
+}
 @media (max-width: 990px) {
   .offer_prixx {
     width: 40%;
@@ -8775,6 +8772,10 @@ img.ring-image {
   .stunning_price_fvf {
     margin-top: -40px !important;
   }
+
+  .xfvdfvdfvc {
+    width: 95%;
+  }
 }
 
 @media (width: 576px) {
@@ -8805,10 +8806,14 @@ img.ring-image {
     height: 20px;
   }
 }
-.xfvdfvdfvc {
+/* .xfvdfvdfvc {
   width: 100vw;
+} */
+@media(min-width:1023px){
+  .swiper-slide.slide-item{
+    margin: 0 !important;
+  }
 }
-
 @media (min-width: 320px) and (max-width: 375px) {
   .xfvdfvdfvc {
     width: 100% !important;
@@ -8857,45 +8862,66 @@ img.ring-image {
   }
 }
 
-@media (min-width: 701px) and (max-width: 764px) {
+@media (max-width: 771px) and (min-width: 701px)  {
+  .xfvdfvdfvc {
+    width: 98.5vw;
+  }
+}
+
+/* @media (min-width: 764px) and (max-width: 768px) {
+  .xfvdfvdfvc {
+    width: 97vw;
+  }
+} */
+
+@media (max-width: 776px) and (min-width: 771px) {
   .xfvdfvdfvc {
     width: 98vw;
   }
 }
-
-@media (min-width: 764px) and (max-width: 768px) {
+@media (max-width: 784px) and (min-width: 776px) {
   .xfvdfvdfvc {
-    width: 98vw;
+    width: 97vw;
   }
 }
-
-@media (max-width: 788px) and (min-width: 769px) {
-  .xfvdfvdfvc {
-    width: 95.5vw;
-  }
-}
-
-@media (max-width: 800px) and (min-width: 788px) {
-  .xfvdfvdfvc {
-    width: 95.1vw;
-  }
-}
-
-@media (max-width: 944px) and (min-width: 800px) {
-  .xfvdfvdfvc {
-    width: 96.2vw;
-  }
-}
-
-@media (max-width: 990px) and (min-width: 944px) {
+@media (max-width: 791px) and (min-width: 784px) {
   .xfvdfvdfvc {
     width: 96vw;
   }
 }
 
-@media (min-width: 992px) and (max-width: 997px) {
+@media (max-width: 797px) and (min-width: 791px) {
   .xfvdfvdfvc {
-    width: 97.2vw !important;
+    width: 95.1vw;
+  }
+}
+
+@media (max-width: 799px) and (min-width: 797px) {
+  .xfvdfvdfvc {
+    width: 95vw;
+  }
+}
+
+@media (max-width: 801px) and (min-width: 799px) {
+  .xfvdfvdfvc {
+    width: 97vw;
+  }
+}
+@media (max-width: 945px) and (min-width: 801px) {
+  .xfvdfvdfvc {
+    width: 97vw;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 945px) {
+  .xfvdfvdfvc {
+    width: 96.5vw;
+  }
+}
+
+@media (min-width: 991px) and (max-width: 997px) {
+  .xfvdfvdfvc {
+    width: 97.1vw !important;
   }
 }
 
@@ -8905,17 +8931,17 @@ img.ring-image {
   }
 }
 
-@media (min-width: 1006px) and (max-width: 1003px) {
+@media (min-width: 1006px) and (max-width: 1024px) {
   .xfvdfvdfvc {
-    width: 96.5vw !important;
+    width: 98.5vw !important;
   }
 }
 
-@media (width: 1024px) {
+@media (width: 1023px) {
   .xfvdfvdfvc .swiper-slide img {
     display: block;
     margin: auto;
-    width: 100%;
+    width: 100% !important;
     border: none;
     /* height: 150px !important; */
     border-radius: 100%;
