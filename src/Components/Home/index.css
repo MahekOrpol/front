@@ -4255,7 +4255,7 @@ video {
     background-color: #611d2b;
     color: #fff;
     border: none;
-    width: 93px !important;
+    width: fit-content !important;
     height: 26px;
   }
 
