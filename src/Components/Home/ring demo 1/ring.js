@@ -44,12 +44,22 @@ const Ring1 = () => {
             spaceBetween: 60,
             centeredSlides: true,
           },
-          415: {
-            slidesPerView: 2.5,
-            spaceBetween: 50,
+          375: {
+            slidesPerView: 1.5,
+            spaceBetween: 70,
             centeredSlides: true,
           },
-          640: {
+          415: {
+            slidesPerView: 1.5,
+            spaceBetween: 80,
+            centeredSlides: true,
+          },
+          450: {
+            slidesPerView: 1.5,
+            spaceBetween: 95,
+            centeredSlides: true,
+          },
+          500: {
             slidesPerView: 2.5,
             spaceBetween: 70,
             centeredSlides: true,

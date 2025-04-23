@@ -224,9 +224,9 @@ const CheckoutPage = () => {
         <img src={logo1} onClick={() => navigate("/")} alt="Logo" width={200} />
       </div>
       {/* <Header /> */}
-      <div className="gffg d-md-flex">
+      <div className="gffg">
         {/* left section */}
-        <Col md={7} className="left-container">
+        <Col className="left-container">
           <div className="container">
             <h5 className="BigFont gkyuy mt-3">Contact</h5>
             <Form>
@@ -432,44 +432,53 @@ const CheckoutPage = () => {
 
         {/* Right Section */}
         <Col
-          md={5}
-          className="bg-light p-4 right-section"
+          className="checkout-right-section"
           style={{
             backgroundImage: `url(${require("../../Images/bgimg.png")})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
-          <div className="text-white ytjt">
+          <div className="right-section-overlay">
             {orderDetails.map((item, index) => {
               const displayPrice = item.productId.hasVariations
                 ? item.salePrice // Use the size-specific sale price
                 : item.productPrice?.$numberDecimal
-                ? parseFloat(item.productPrice.$numberDecimal)
-                : "Price not available";
+                  ? parseFloat(item.productPrice.$numberDecimal)
+                  : "Price not available";
               return (
-                <div className="order-item" key={index}>
-                  <img
-                    src={`http://147.93.104.196:3000${item.productId.image[0]}`}
-                    alt={item.productId.productId}
-                    className="order-item-img"
-                  />
-                  <div className="bfh">
-                    <div className="order-item-details">
-                      <p className="mb-1 fs4">{item.productId.productName} </p>
-                      <span className="fs5 check_outpgedetail text-truncate">
-                        {item.productId.productsDescription}
-                      </span>{" "}
-                      {item.selectedSize !== "[]" && (
-                        <span className="fs5">
-                          Ring size: {item.selectedSize}
-                        </span>
-                      )}
+                <div className="checkout-order-item" key={index}>
+                  {(() => {
+                    const imageToShow = item.productId.image.find(
+                      (img) => !img.endsWith(".mp4")
+                    );
+                    return imageToShow ? (
+                      <img
+                        src={`http://147.93.104.196:3000${imageToShow}`}
+                        alt={item.productId.productId}
+                        className="checkout-order-img"
+                      />
+                    ) : (
+                      <div className="text-muted">No image available</div>
+                    );
+                  })()}
+                  <div className="checkout-order-details">
+                    <div className="fdfsssdf">
+                      <div className="dsfdss">
+                        <p className="product-name text-truncate">{item.productId.productName}</p>
+                        <p className="product-desc text-truncate">
+                          {item.productId.productsDescription}
+                        </p>{" "}
+                        {item.selectedSize !== "[]" && (
+                          <p className="product-size">
+                            Ring size: {item.selectedSize}
+                          </p>
+                        )}
+                      </div>
+                      <p className="product-price">
+                        ₹ {displayPrice}
+                      </p>
                     </div>
-                    <strong className="order-price">
-                      
-                      ₹ {displayPrice}
-                    </strong>
                   </div>
                 </div>
               );
@@ -483,32 +492,31 @@ const CheckoutPage = () => {
                 name="discountCode"
                 value={formData.discountCode}
                 onChange={handleInputChange}
-                className="me-1"
+                className="discount-input"
               />
-              <button className="PayBtn2">Apply</button>
+              <button className="apply-btn">Apply</button>
             </Form.Group>
-            {/* Price Breakdown */}
-            <div className="d-flex justify-content-between mt-5">
-              <span className="RightSec">
-                Subtotal • {orderDetails.length} Items
-              </span>
-              <strong className="RightSec">&#8377;{totalAmount}</strong>
-            </div>
-            <div className="d-flex justify-content-between mt-1">
-              <span className="RightSec">Total Discount</span>
-              <span className="RightSec">{discountTotal} %</span>
-            </div>
-            <div className="d-flex justify-content-between mt-1">
-              <span className="RightSec">Shipping</span>
-              <span className="RightSec">Enter shipping address</span>
-            </div>
-            <div className="line1 mt-2"></div>
-            {/* Total */}
-            <div className="d-flex justify-content-between mt-2">
-              <strong className="RightSec">Total</strong>
-              <strong className="RightSec">
-                &#8377;{mainTotal.toFixed(2)}
-              </strong>
+
+            <div className="checkout-summary">
+              <div className="summary-row">
+                <span>
+                  Subtotal • {orderDetails.length} Items
+                </span>
+                <strong >&#8377;{totalAmount}</strong>
+              </div>
+              <div className="summary-row">
+                <span>Total Discount</span>
+                <strong>{discountTotal} %</strong>
+              </div>
+              <div className="summary-row">
+                <span>Shipping</span>
+                <strong>Enter shipping address</strong>
+              </div>
+              <div className="summary-divider"></div>
+              <div className="summary-row total">
+                <span>Total</span>
+                <strong>&#8377;{mainTotal.toFixed(2)}</strong>
+              </div>
             </div>
           </div>
         </Col>

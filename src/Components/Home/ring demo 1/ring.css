@@ -156,17 +156,27 @@ oneplus 7
 
 @media (max-width:425px) and (min-width:415px) {
   .ringSection .single {
-    height: 129vw;
+    height: 174vw;
   }
 }
-@media (max-width:499px) and (min-width:426px) {
+@media (max-width:500px) and (min-width:426px) {
   .ringSection .single {
-    height: 123vw;
+    height: 172vw;
   }
 }
-@media (max-width:610px) and (min-width:500px) {
+@media (max-width:540px) and (min-width:500px) {
   .ringSection .single {
-    height: 41rem;
+    height: 35.5rem;
+  }
+}
+@media (max-width:576px) and (min-width:540px) {
+  .ringSection .single {
+    height: 38rem;
+  }
+}
+@media (max-width:610px) and (min-width:577px) {
+  .ringSection .single {
+    height: 28rem;
   }
 }
 @media (max-width:700px) and (min-width:610px) {

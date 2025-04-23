@@ -45,8 +45,7 @@ const OueColletion = () => {
           <div className="d-flex flex-column gap-3 dfscdfsc_tyhdc_defrvfv">
             <span className="our_collection_text">Our Collection</span>
             <p className="our_text_ddddd">
-              Lorem ipsum dolor sit amet consectetur. Eget sed consectetur magna
-              id sus consectetur. Eget sed consectetur magna id sus
+            The definitive diamond collection: Unmatched sparkle, ethical sourcing, and designs made to inspire.
             </p>
             <button
               className="see_more d-block"
