@@ -17,18 +17,18 @@ const Gift = () => {
   return (
     <div className="container row col-md-12 d-flex align-items-center ring_sec_gifff p-0">
       {/* LEFT SIDE TEXT */}
-      <div className="col-md-6 gap-3">
+      <div className="align-items-start col-md-6 d-flex flex-column gap-2">
         <h2 className="mack_pox_headfr">
-          Make your Occasions Special with our Jewellry
+          Celebrate Every Moment with Timeless Elegance
         </h2>
         <p className="mack_pox_headfrp">
-          Discover the perfect blend of elegance and exclusivity with our
-          Limited Edition Collaboration jewelry collection. Crafted with
-          precision and designed for those who appreciate timeless beauty, these
-          unique pieces are available for a short time only!
+          Discover exclusive designs in our Limited Edition Jewelry Collection –
+          where artistry meets sophistication. Handcrafted with precision for
+          those who value beauty that never fades. Available for a limited time
+          only.
         </p>
         <button className="shop_now_sijd">
-          Shop now <FaArrowRightLong />
+          Explore Collection <FaArrowRightLong />
         </button>
       </div>
 
@@ -97,8 +97,8 @@ const Gift = () => {
             alt="Gift Your Loved Ones"
           />
 
-          <h5 className="dfvcf_VFFYT ">Gift Your Loved Ones</h5>
-          <p className="">Shop Gifts That Make the Moments Magical</p>
+          <h5 className="dfvcf_VFFYT ">Grace in Every Gift</h5>
+          <p className="">Delight loved ones with timeless treasures. Make every moment unforgettable.</p>
           <button className="circle-btn">
             <FaArrowRightLong />
           </button>

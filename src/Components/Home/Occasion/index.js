@@ -32,17 +32,17 @@ const Occasion = () => {
     <div className="one-way-slider container">
       <div className="slider-content">
         <h2 className="occation-content-h2">
-          Make your Occasions Special with our Jewelry
+        Elevate Every Moment with Exquisite Jewelry
         </h2>
           <img
             src={require("../../../Images/Groupimg.png")}
             className="home_tag_img mobile_rcvdfcvfd"
           />
         <p className="occasions_text_p mb-0">
-        Discover the perfect blend of elegance and exclusivity with our Limited Edition Collaboration jewelry collection. Crafted with precision and designed for those who appreciate timeless beauty, these unique pieces are available for a short time only!
+        Indulge in the allure of our Limited Edition Collaboration, where artistry meets elegance. Each piece is meticulously crafted to celebrate timeless beauty, available only for a fleeting time.
         </p>
         <Button className="shop-button ">
-          Shop this look <FaArrowRightLong />
+        Shop the Collection <FaArrowRightLong />
         </Button>
       </div>
 

@@ -222,7 +222,7 @@ const CartPopup = ({
               key={index}
               className="cart-item d-flex flex-column align-items-center"
             >
-              <img
+              {/* <img
                 src={`http://147.93.104.196:3000${item.productId?.image?.[0]}`}
                 alt={item.productId?.productName}
                 style={{
@@ -232,20 +232,44 @@ const CartPopup = ({
                   maxHeight: "300px",
                   objectFit: "contain",
                 }}
-              />
-              <div className="cart_item_detail ">
+              /> */}
+              {(() => {
+                const imageToShow = item.productId?.image.find(
+                  (img) => !img.endsWith(".mp4")
+                );
+                return imageToShow ? (
+                  <img
+                    src={`http://147.93.104.196:3000${imageToShow}`}
+                    alt={item.productId?.productName}
+                    style={{
+                      borderRadius: "24px",
+                      width: "100%",
+                      height: "100%",
+                      maxHeight: "300px",
+                      objectFit: "contain",
+                    }}
+                  />
+                ) : (
+                  <div className="text-center text-muted py-4">
+                    No image available
+                  </div>
+                );
+              })()}
+              <div className="cart_item_detail mt-2">
                 <h5 className="fw-bold mb-1 d-flex align-items-center justify-content-between secure_chckotfre cart_headre_ssss">
                   {item.productId?.productName}
                 </h5>
                 <div className="d-flex align-items-center justify-content-between secure_chckotfre1">
-                 
                   {Array.isArray(item.productId?.productSize) &&
                     item.productId.productSize.length > 0 &&
                     item.productId.productSize[0] !== "[]" && // filter out invalid stringified array
                     item.productId.productSize[0]
                       .split(",")
                       .filter((size) => size.trim() !== "").length > 0 && (
-                      <div className="d-flex align-items-center w-100 secure_chckotfre cart_headre_ssss1 w-100" style={{whiteSpace:'nowrap'}}>
+                      <div
+                        className="d-flex align-items-center w-100 secure_chckotfre cart_headre_ssss1 w-100"
+                        style={{ whiteSpace: "nowrap" }}
+                      >
                         <p className="m-0">Ring Size :</p>
                         <select
                           className="dropdown_size p-1"
@@ -275,7 +299,6 @@ const CartPopup = ({
                     )}
 
                   <p className="fw-bold m-0 secure_chckotfre d-flex justify-content-end w-100">
-                   
                     ₹
                     {(
                       parseFloat(item.salePrice) * parseInt(item.quantity)

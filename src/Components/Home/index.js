@@ -1255,7 +1255,7 @@ const Home = () => {
                             )}
                           </div>
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {(() => {
+                            {/* {(() => {
                               const imageToShow = product.image.find(
                                 (img) => !img.endsWith(".mp4")
                               );
@@ -1271,7 +1271,26 @@ const Home = () => {
                                   No image available
                                 </div>
                               );
-                            })()}
+                            })()} */}
+                            {product.image[0]?.endsWith(".mp4") ? (
+                              <video
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                controls={false}
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            ) : (
+                              <img
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                alt="Product"
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>
@@ -1343,7 +1362,7 @@ const Home = () => {
                       <div className="card prio_card scdscsed_sdss">
                         <div className="card-image-wrapper position-relative best_saller_btn">
                           <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                          Top
+                            Top
                           </button>
                           <div
                             className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
@@ -1360,7 +1379,7 @@ const Home = () => {
                             )}
                           </div>
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          {(() => {
+                            {/* {(() => {
                               const imageToShow = product.image.find(
                                 (img) => !img.endsWith(".mp4")
                               );
@@ -1376,7 +1395,26 @@ const Home = () => {
                                   No image available
                                 </div>
                               );
-                            })()}
+                            })()} */}
+                            {product.image[0]?.endsWith(".mp4") ? (
+                              <video
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                controls={false}
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            ) : (
+                              <img
+                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                alt="Product"
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            )}
                           </div>
                         </div>
                       </div>
@@ -1467,7 +1505,7 @@ const Home = () => {
                           </div>
                           {/* Product Image */}
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          {/* {(() => {
+                            {/* {(() => {
                               const imageToShow = product.image.find(
                                 (img) => !img.endsWith(".mp4")
                               );
@@ -1484,7 +1522,7 @@ const Home = () => {
                                 </div>
                               );
                             })()} */}
-                            
+
                             {product.image[0]?.endsWith(".mp4") ? (
                               <video
                                 src={`http://147.93.104.196:3000${product.image[0]}`}
@@ -1562,7 +1600,7 @@ const Home = () => {
         </div>
 
         <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-md-4">
-          <span className="category_name">Bestselling Jewelery</span>
+          <span className="category_name">Signature Collections</span>
           <p className="category_txt">
             Elevate the Everyday in Diamond Elegance
           </p>
@@ -1754,16 +1792,42 @@ const Home = () => {
                                     />
                                   )}
                                 </div>
+
                                 <div
                                   className="card-body p-0 d-flex justify-content-center"
                                   style={{ height: "100%" }}
                                 >
-                                  <img
+                                  {product.image[0]?.endsWith(".mp4") ? (
+                                    <video
+                                      src={`http://147.93.104.196:3000${product.image[0]}`}
+                                      className="p-1_proi img-fluid border-0"
+                                      autoPlay
+                                      loop
+                                      muted
+                                      playsInline
+                                      controls={false}
+                                      onClick={() =>
+                                        handleProductClick(product.id)
+                                      }
+                                      style={{ height: "100%" }}
+                                    />
+                                  ) : (
+                                    <img
+                                      src={`http://147.93.104.196:3000${product.image[0]}`}
+                                      className="p-1_proi img-fluid border-0"
+                                      alt="Product"
+                                      onClick={() =>
+                                        handleProductClick(product.id)
+                                      }
+                                      style={{ height: "100%" }}
+                                    />
+                                  )}
+                                  {/* <img
                                     src={`http://147.93.104.196:3000${product.image[0]}`}
                                     className="p-1_proi img-fluid border-0"
                                     alt="Product"
                                     style={{ height: "100%" }}
-                                  />
+                                  /> */}
                                 </div>
                               </div>
                             </div>
@@ -1807,13 +1871,13 @@ const Home = () => {
 
         <div className="abc1 paddingdn d-flex flex-column align-items-center mt-md-4 stunning_price_fvf">
           <span className="category_name mt-0 mobile-hide">
-            Celebrate love with our Collection
+          Affordable Luxury
           </span>
           <span className="category_name mt-0 mobile-show">
             Stunning Surprise
           </span>
 
-          <p className="category_txt">Perfect Presents for Every Occasion.</p>
+          <p className="category_txt">Sophistication, smartly priced.</p>
           <img
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
@@ -1936,7 +2000,7 @@ const Home = () => {
 
         <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
           <span className="category_name ">New Arrivals</span>
-          <p className="category_txt">New Designs, Same Timeless Elegance</p>
+          <p className="category_txt">New Creations, Forever Elegance</p>
           <img
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
