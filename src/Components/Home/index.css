@@ -2096,7 +2096,7 @@ img.ring-image {
   }
 } */
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 991px) and (max-width: 1023px) {
   /* .hoe_page_main_bvannei {
     background-image: url("../../Images/Frame 210.png");
     width: 100%;
@@ -2113,6 +2113,13 @@ img.ring-image {
     -moz-transform: scale(1.1);
     -ms-transform: scale(1.1);
     -o-transform: scale(1.1);
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+
+  .home_img_ssssss:hover {
+    transform: none;
+   
   }
 }
 
@@ -6422,15 +6429,6 @@ img.ring-image {
   }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .home_img_ssssss:hover {
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
-  }
-}
 
 @media (min-width: 601px) and (max-width: 767px) {
   .home_img_ssssss:hover {
