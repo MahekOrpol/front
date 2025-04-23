@@ -924,7 +924,7 @@
   }
 }
 
-@media (min-width: 890px) and (max-width: 999px) {
+@media (min-width: 890px) and (max-width: 1000px) {
   .one-way-slider {
     margin-top: 0rem !important;
     margin-bottom: 2rem !important;
@@ -1227,7 +1227,7 @@
   }
 } */
 
-@media (min-width: 1022px) and (max-width: 1099px) {
+@media (min-width: 1021px) and (max-width: 1099px) {
   .slide-number-indicator {
     left: 72%;
   }
