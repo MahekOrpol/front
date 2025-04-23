@@ -1,31 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
-import $ from "jquery";
 import {
-  FaArrowRight,
   FaAward,
-  FaChevronRight,
   FaMedal,
   FaStar,
 } from "react-icons/fa6";
-import logobnddd from "../../Images/diamondring.png";
 import vector from "../../Images/Vector.png";
-import { PiHeartThin } from "react-icons/pi";
-import { BiRightArrowAlt, BiShoppingBag, BiSolidOffer } from "react-icons/bi";
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
+import {  BiShoppingBag, BiSolidOffer } from "react-icons/bi";
 import Header from "../../Pages/Header";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import best from "../../Images/Mask group (9).png";
-import { IoIosArrowForward } from "react-icons/io";
-import { IoIosArrowBack } from "react-icons/io";
 
 import {
-  EffectCoverflow,
-  Navigation,
   Pagination,
-  Autoplay,
 } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -65,26 +53,6 @@ import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Ring1 from "./ring demo 1/ring";
 
-const videoData = [
-  { src: ringVideo1, category: "Pendant" },
-  { src: ringVideo2, category: "Earrings" },
-  { src: ringVideo3, category: "Rings" },
-  { src: ringVideo4, category: "Bracelets" },
-  { src: ringVideo5, category: "Pendant" },
-  { src: ringVideo1, category: "Pendant" },
-  { src: ringVideo2, category: "Earrings" },
-  { src: ringVideo3, category: "Rings" },
-  { src: ringVideo4, category: "Bracelets" },
-  { src: ringVideo5, category: "Pendant" },
-];
-const images = [
-  require("../../Images/ring222.png"),
-  require("../../Images/ring222.png"),
-  require("../../Images/ring222.png"),
-  require("../../Images/ring222.png"),
-
-  require("../../Images/ring222.png"),
-];
 
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
@@ -114,6 +82,9 @@ const Home = () => {
     parseInt(localStorage.getItem("wishlistCount")) || 0
   );
   const dispatch = useDispatch();
+
+  const BASE_API = "https://dev.crystovajewels.com/api/v1";
+
   const {
     count: cartCount,
     loading,
@@ -154,19 +125,20 @@ const Home = () => {
   const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
 
   useEffect(() => {
-    const updateProductsPerPage = () => {
-      const width = window.innerWidth;
-      setProductsPerPage(width < 768 ? 1 : 2);
+    const update = () => setProductsPerPage(window.innerWidth < 768 ? 1 : 2);
+    const debounce = setTimeout(update, 100); // Debounced update
+    window.addEventListener("resize", update);
+    return () => {
+      clearTimeout(debounce);
+      window.removeEventListener("resize", update);
     };
-
-    updateProductsPerPage();
-    window.addEventListener("resize", updateProductsPerPage);
-    return () => window.removeEventListener("resize", updateProductsPerPage);
   }, []);
+  
 
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
   };
+
 
   const fetchBestSellersByCategory = async (category) => {
     try {
@@ -302,31 +274,25 @@ const Home = () => {
     document.body.classList.remove("no-scroll");
   };
 
-  const getTopRated = async () => {
-    const res = await axios.get(
-      "https://dev.crystovajewels.com/api/v1/product/getTopRated"
-    );
-    setTopRated(res.data);
-    console.log("res.data", res.data);
-  };
-  const getBestSelling = async () => {
-    const res = await axios.get(
-      "https://dev.crystovajewels.com/api/v1/product/getBestSelling"
-    );
-    setBestSelling(res.data);
-  };
-  const getOnSale = async () => {
-    const res = await axios.get(
-      "https://dev.crystovajewels.com/api/v1/product/getOnSale"
-    );
-    setOnSale(res.data);
+useEffect(() => {
+  const fetchAll = async () => {
+    try {
+      const [topRated, bestSelling, onSale] = await Promise.all([
+        axios.get(`${BASE_API}/product/getTopRated`),
+        axios.get(`${BASE_API}/product/getBestSelling`),
+        axios.get(`${BASE_API}/product/getOnSale`),
+      ]);
+      setTopRated(topRated.data);
+      setBestSelling(bestSelling.data);
+      setOnSale(onSale.data);
+    } catch (err) {
+      console.error("Error fetching products:", err);
+    }
   };
 
-  useEffect(() => {
-    getTopRated();
-    getBestSelling();
-    getOnSale();
-  }, []);
+  fetchAll();
+}, []);
+
 
   const testimonials = [
     {
@@ -348,19 +314,20 @@ const Home = () => {
     localStorage.setItem("wishlistCount", count.toString());
   };
 
-  const toggleFavorite = async (productId) => {
+  const toggleFavorite = async (productId, productData) => {
     const userId = localStorage.getItem("user_Id");
     if (!userId) {
       navigate("/register");
       return;
     }
+  
     try {
       if (wishlistItems[productId]) {
         // Remove from wishlist
-        const wishlistItemId = wishlistItems[productId]; // Store the current ID
+        const wishlistItemId = wishlistItems[productId];
         setWishlistItems((prev) => {
           const updatedWishlist = { ...prev };
-          delete updatedWishlist[productId]; // Update UI immediately
+          delete updatedWishlist[productId];
           return updatedWishlist;
         });
         updateWishlistCount(wishlistCount - 1);
@@ -370,26 +337,31 @@ const Home = () => {
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
+        const payload = {
+          userId,
+          productId,
+        };
         const response = await axios.post(
           `https://dev.crystovajewels.com/api/v1/wishlist/create`,
+          payload,
           {
-            productId,
-            userId,
+            headers: { "Content-Type": "application/json" },
           }
         );
-        updateWishlistCount(wishlistCount + 1);
-        const newWishlistItemId = response.data.data.id;
+        const wishlistItem = response.data?.data;
         setWishlistItems((prev) => ({
           ...prev,
-          [productId]: newWishlistItemId, // Store wishlist ID properly
+          [productId]: wishlistItem.id,
         }));
-        toast.success(response.data.message || "Added to wishlist!");
+        updateWishlistCount(wishlistCount + 1);
+        toast.success(response.data.message  || "Added to wishlist!");
       }
     } catch (error) {
-      console.error("Failed to update wishlist:", error);
-      toast.error("Failed to update wishlist. Please try again!");
+      console.error("Wishlist error:", error);
+      toast.error("Something went wrong. Please try again.");
     }
   };
+  
   useEffect(() => {
     const fetchWishlist = async () => {
       if (!userId) return;
@@ -422,7 +394,7 @@ const Home = () => {
     const updateSlidesPerView = () => {
       const screenWidth = window.innerWidth;
       let newSlidesPerView;
-  
+
       if (screenWidth <= 427) {
         newSlidesPerView = 1;
       } else if (screenWidth <= 599) {
@@ -434,20 +406,16 @@ const Home = () => {
       } else {
         newSlidesPerView = 3;
       }
-  
       if (newSlidesPerView !== slidesPerView) {
         setSlidesPerView(newSlidesPerView);
       }
     };
-  
+
+    updateSlidesPerView();
     window.addEventListener("resize", updateSlidesPerView);
-    updateSlidesPerView(); // Call once on mount
-  
-    return () => {
-      window.removeEventListener("resize", updateSlidesPerView);
-    };
+
+    return () => window.removeEventListener("resize", updateSlidesPerView);
   }, [slidesPerView]);
-  
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -517,8 +485,7 @@ const Home = () => {
         />
 
         <div>
-          {/* <img src={require('../../Images/Frame 207.svg').default} className="img_fluid1_banner hoe_page_main_bvannei" /> */}
-          {/* <div className="hoe_page_main_bvannei"></div> */}
+         
           <JewelrySale />
         </div>
 
@@ -534,7 +501,7 @@ const Home = () => {
             <Swiper
               spaceBetween={10}
               loop={true}
-              
+             
               breakpoints={{
                 0: { slidesPerView: 4 },
                 480: { slidesPerView: 5 },
@@ -1287,7 +1254,11 @@ const Home = () => {
                         // 0: { slidesPerView: 1 }, // Mobile - 1 card
                       }}
                       loop={true}
-                      
+                      // autoplay={{
+                      //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                      //   disableOnInteraction: false,
+                      // }}
+                      // modules={[Autoplay]}
                     >
                       {productsToDisplay
                         .slice(
@@ -1354,7 +1325,12 @@ const Home = () => {
                                       style={{ height: "100%" }}
                                     />
                                   )}
-                                  
+                                  {/* <img
+                                    src={`https://dev.crystovajewels.com${product.image[0]}`}
+                                    className="p-1_proi img-fluid border-0"
+                                    alt="Product"
+                                    style={{ height: "100%" }}
+                                  /> */}
                                 </div>
                               </div>
                             </div>
@@ -1534,8 +1510,10 @@ const Home = () => {
           />
         </div>
 
+
         <Ring1 />
-       
+        
+
         <div className="heder_sec_main d-flex flex-column align-items-center dscdsc_inst">
           <span className="category_name">Instructions</span>
           <p className="category_txt">Store it Soft, Shine it Often</p>
@@ -1605,7 +1583,7 @@ const Home = () => {
               )}
             </Swiper>
           </div>
-         
+        
         </div>
         <div className="pb-5"></div>
         <Footer />
