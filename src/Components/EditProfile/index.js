@@ -58,7 +58,7 @@ const EditProfile = () => {
           if (!userId) return;
           try {
             const response = await axios.get(
-              `https://crystovajewels.com/api/v1/wishlist/${userId}`
+              `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
             );
             const wishlistData = response.data.data || [];
             const count = wishlistData.length;
@@ -123,7 +123,7 @@ const EditProfile = () => {
             if (isExistingProfile) {
                 console.log("Sending payload:", userData); // Debug log
                 response = await axios.put(
-                    `https://crystovajewels.com/api/v1/users/${user_Id}`,
+                    `https://dev.crystovajewels.com/api/v1/users/${user_Id}`,
                     userData,
                     {
                         headers: {
@@ -135,7 +135,7 @@ const EditProfile = () => {
             }
             else {
                 response = await axios.post(
-                    `https://crystovajewels.com/api/v1/users/create`,
+                    `https://dev.crystovajewels.com/api/v1/users/create`,
                     { ...userData, id: user_Id },
                     {
                         headers: { "Content-Type": "application/json" }
@@ -153,7 +153,7 @@ const EditProfile = () => {
     };
     const getProfileData = async () => {
         try {
-            const res = await axios.get(`https://crystovajewels.com/api/v1/users/${user_Id}`);
+            const res = await axios.get(`https://dev.crystovajewels.com/api/v1/users/${user_Id}`);
             const data = res.data;
 
             setProfileData(data);
