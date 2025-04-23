@@ -80,7 +80,7 @@ const Products = () => {
 
   //     try {
   //       const response = await axios.get(
-  //         `https://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+  //         `https://crystovajewels.com/api/v1/order-details/get/${userId}`
   //       );
   //       const count = response.data.data.length || 0;
   //       setCartCount(count);
@@ -110,7 +110,7 @@ const Products = () => {
   useEffect(() => {
     const fetchAndFilter = async () => {
       try {
-        let url = `https://147.93.104.196:3000/api/v1/product/get?`;
+        let url = `https://crystovajewels.com/api/v1/product/get?`;
         if (categoryName) url += `categoryName=${categoryName}&`;
         if (gender) url += `gender=${gender}&`;
         if (price) url += `salePrice=${price}&`;
@@ -205,7 +205,7 @@ const Products = () => {
 
   // useEffect(() => {
   //   const fetchProducts = async () => {
-  //     let url = `https://147.93.104.196:3000/api/v1/product/get?`;
+  //     let url = `https://crystovajewels.com/api/v1/product/get?`;
   //     if (categoryName) url += `categoryName=${categoryName}&`;
   //     if (gender) url += `gender=${gender}`;
   //     if (price) url += `salePrice=${price}`;
@@ -284,7 +284,7 @@ const Products = () => {
   const fetchProductsWithPriceFilter = async () => {
     try {
       const response = await axios.get(
-        `https://147.93.104.196:3000/api/v1/product/get?salePrice=${price}`
+        `https://crystovajewels.com/api/v1/product/get?salePrice=${price}`
       );
       setSelectedGender(gender);
       const sortedProducts = sortProducts(response.data, selectedOption);
@@ -303,7 +303,7 @@ const Products = () => {
     setIsFilterVisible((prev) => !prev);
   };
   const handleApplyFilters = async () => {
-    let url = `https://147.93.104.196:3000/api/v1/product/get?`;
+    let url = `https://crystovajewels.com/api/v1/product/get?`;
     let products = [];
     // Build base URL with price range
     if (price) {
@@ -373,13 +373,13 @@ const Products = () => {
         });
         updateWishlistCount(wishlistCount - 1);
         const res = await axios.delete(
-          `https://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `https://crystovajewels.com/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `https://147.93.104.196:3000/api/v1/wishlist/create`,
+          `https://crystovajewels.com/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -403,7 +403,7 @@ const Products = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `https://147.93.104.196:3000/api/v1/wishlist/${userId}`
+          `https://crystovajewels.com/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
         const count = wishlistData.length;
@@ -458,7 +458,7 @@ const Products = () => {
 
       // Make the API request
       const response = await axios.post(
-        "https://147.93.104.196:3000/api/v1/order-details/create",
+        "https://crystovajewels.com/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -481,7 +481,7 @@ const Products = () => {
 
   const getCategory = async () => {
     const res = await axios.get(
-      "https://147.93.104.196:3000/api/v1/category/get"
+      "https://crystovajewels.com/api/v1/category/get"
     );
     setCategory(res.data);
   };
@@ -522,7 +522,7 @@ const Products = () => {
   const fetchAllProducts = async () => {
     try {
       const response = await axios.get(
-        "https://147.93.104.196:3000/api/v1/product/get"
+        "https://crystovajewels.com/api/v1/product/get"
       );
       const sortedProducts = sortProducts(response.data, selectedOption);
       setProductList(sortedProducts);
@@ -814,7 +814,7 @@ const Products = () => {
                             ".mp4"
                           ) ? (
                             <video
-                              src={`https://147.93.104.196:3000${
+                              src={`https://crystovajewels.com${
                                 product.image[imageIndexes[product.id]]
                               }`}
                               className="p-1_proi img-fluid"
@@ -827,7 +827,7 @@ const Products = () => {
                             />
                           ) : (
                             <img
-                              src={`https://147.93.104.196:3000${
+                              src={`https://crystovajewels.com${
                                 product.image[imageIndexes[product.id]]
                               }`}
                               onClick={() => handleProductClick(product.id)}

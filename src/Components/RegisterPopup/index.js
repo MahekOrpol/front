@@ -78,7 +78,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post(
-          "https://147.93.104.196:3000/api/v1/register/login",
+          "https://crystovajewels.com/api/v1/register/login",
           {
             email: loginEmail,
             password: loginPassword,
@@ -128,7 +128,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     if (Object.keys(errors).length === 0) {
       try {
         const response = await axios.post(
-          "https://147.93.104.196:3000/api/v1/register/register",
+          "https://crystovajewels.com/api/v1/register/register",
           {
             name,
             email,
@@ -140,7 +140,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
         if (response.status === 201) {
           const createProfileRes = await axios.post(
-            "https://147.93.104.196:3000/api/v1/users/create",
+            "https://crystovajewels.com/api/v1/users/create",
             {
               user_id: response.data.user.id,
               firstName: name,
