@@ -20,7 +20,7 @@ const OueColletion = () => {
   //   const fetchProducts = async () => {
   //     try {
   //       const response = await axios.get(
-  //         "https://crystovajewels.com/api/v1/product/get"
+  //         "https://dev.crystovajewels.com/api/v1/product/get"
   //       );
   //       console.log(response);
   //       setProducts(response.data.slice(0, 3)); // Get first 3 products

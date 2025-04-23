@@ -79,7 +79,7 @@ const CartPopup = ({
     if (userId && productId) {
       try {
         await axios.put(
-          `https://crystovajewels.com/api/v1/order-details/update/${userId}/${productId}`,
+          `https://dev.crystovajewels.com/api/v1/order-details/update/${userId}/${productId}`,
           {
             selectedqty: JSON.stringify(updatedItem.quantity),
           }
@@ -119,7 +119,7 @@ const CartPopup = ({
   const handleRemoveItem = async (orderId, index) => {
     try {
       const res = await axios.delete(
-        `https://crystovajewels.com/api/v1/order-details/delete/${orderId}`
+        `https://dev.crystovajewels.com/api/v1/order-details/delete/${orderId}`
       );
 
       if (res.status === 200) {
@@ -138,7 +138,7 @@ const CartPopup = ({
     const userId = localStorage.getItem("user_Id");
     try {
       const res = await axios.get(
-        `https://crystovajewels.com/api/v1/order-details/get/${userId}`
+        `https://dev.crystovajewels.com/api/v1/order-details/get/${userId}`
       );
       if (res.status === 200) {
         const items = res.data.data.map((item) => {
@@ -223,7 +223,7 @@ const CartPopup = ({
               className="cart-item d-flex flex-column align-items-center"
             >
               {/* <img
-                src={`https://crystovajewels.com${item.productId?.image?.[0]}`}
+                src={`https://dev.crystovajewels.com${item.productId?.image?.[0]}`}
                 alt={item.productId?.productName}
                 style={{
                   borderRadius: "24px",
@@ -239,7 +239,7 @@ const CartPopup = ({
                 );
                 return imageToShow ? (
                   <img
-                    src={`https://crystovajewels.com${imageToShow}`}
+                    src={`https://dev.crystovajewels.com${imageToShow}`}
                     alt={item.productId?.productName}
                     style={{
                       borderRadius: "24px",
