@@ -292,7 +292,7 @@
 .scroll-content {
   display: flex;
   width: fit-content;
-  animation: scroll-left 10s linear infinite;
+  animation: scroll-left 15s linear infinite;
 }
 
 .scroll-item {
@@ -4732,12 +4732,6 @@ img.ring-image {
   background-color: #611d2b;
   padding: 10px 0;
   position: relative;
-}
-
-.scroll-content {
-  display: flex;
-  width: fit-content;
-  animation: scroll-left 10s linear infinite;
 }
 
 .scroll-item {
