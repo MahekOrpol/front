@@ -9,7 +9,7 @@ export const fetchCartCount = createAsyncThunk(
       if (!userId) return 0;
 
       const response = await axios.get(
-        `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+        `https://147.93.104.196:3000/api/v1/order-details/get/${userId}`
       );
       const count = response.data.data.length || 0;
       localStorage.setItem("cartCount", count);

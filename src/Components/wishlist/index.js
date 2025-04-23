@@ -46,7 +46,7 @@ const Wishlist = () => {
 
   //     try {
   //       const response = await axios.get(
-  //         `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+  //         `https://147.93.104.196:3000/api/v1/order-details/get/${userId}`
   //       );
   //       const count = response.data.data.length || 0;
   //       setCartCount(count);
@@ -119,7 +119,7 @@ const Wishlist = () => {
 
     try {
       const response = await axios.get(
-        `http://147.93.104.196:3000/api/v1/wishlist/${userId}`
+        `https://147.93.104.196:3000/api/v1/wishlist/${userId}`
       );
       const wishlistData = response.data.data;
       setWishlist(wishlistData);
@@ -152,7 +152,7 @@ const Wishlist = () => {
 
     try {
       const res = await axios.delete(
-        `http://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItem.id}`
+        `https://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItem.id}`
       );
 
       // Remove item from the wishlist state
@@ -221,7 +221,7 @@ const Wishlist = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://147.93.104.196:3000/api/v1/order-details/create",
+        "https://147.93.104.196:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -304,7 +304,7 @@ const Wishlist = () => {
                             imageIndexes[productId?.id]
                           ]?.endsWith(".mp4") ? (
                             <video
-                              src={`http://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
+                              src={`https://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
                                 }`}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                               autoPlay
@@ -314,7 +314,7 @@ const Wishlist = () => {
                             />
                           ) : (
                             <img
-                              src={`http://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
+                              src={`https://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
                                 }`}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                               alt={productId.productName}
@@ -393,7 +393,7 @@ const Wishlist = () => {
                             imageIndexes[productId?.id]
                           ]?.endsWith(".mp4") ? (
                             <video
-                              src={`http://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
+                              src={`https://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
                                 }`}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                               autoPlay
@@ -403,7 +403,7 @@ const Wishlist = () => {
                             />
                           ) : (
                             <img
-                              src={`http://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
+                              src={`https://147.93.104.196:3000${productId.image[imageIndexes[productId.id]]
                                 }`}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                               alt={productId.productName}

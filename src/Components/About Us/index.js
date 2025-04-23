@@ -49,7 +49,7 @@ const [wishlistCount, setWishlistCount] = useState(
   //     if (!userId) return;
   //     try {
   //       const response = await axios.get(
-  //         `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+  //         `https://147.93.104.196:3000/api/v1/order-details/get/${userId}`
   //       );
   //       const count = response.data.data.length || 0;
   //       setCartCount(count);
@@ -89,7 +89,7 @@ const [wishlistCount, setWishlistCount] = useState(
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://147.93.104.196:3000/api/v1/wishlist/${userId}`
+          `https://147.93.104.196:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
         const count = wishlistData.length;
