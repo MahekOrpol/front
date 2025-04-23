@@ -64,7 +64,7 @@ const [wishlistCount, setWishlistCount] = useState(
       if (!userId) return;
       try {
         const response = await axios.get(
-          `https://crystovajewels.com/api/v1/wishlist/${userId}`
+          `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
         const count = wishlistData.length;
@@ -118,7 +118,7 @@ const [wishlistCount, setWishlistCount] = useState(
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://crystovajewels.com/api/v1/contact-us/create', formData);
+      const response = await axios.post('https://dev.crystovajewels.com/api/v1/contact-us/create', formData);
 
       if (response.status === 201) {
         toast.success("Thank you for contacting us! We'll get back to you soon.");

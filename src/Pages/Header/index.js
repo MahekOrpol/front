@@ -71,7 +71,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
 
   const getProfileData = async () => {
     try {
-      const res = await axios.get(`https://crystovajewels.com/api/v1/users/${user_Id}`);
+      const res = await axios.get(`https://dev.crystovajewels.com/api/v1/users/${user_Id}`);
       setData(res.data);
     } catch (err) {
       console.log(err);

@@ -28,7 +28,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
 
     const getProfileData = async () => {
         try {
-            const res = await axios.get(`https://crystovajewels.com/api/v1/users/${user_Id}`);
+            const res = await axios.get(`https://dev.crystovajewels.com/api/v1/users/${user_Id}`);
             setData(res.data)
 
 
