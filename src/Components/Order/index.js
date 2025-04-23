@@ -79,13 +79,13 @@ const [wishlistCount, setWishlistCount] = useState(
         });
         setWishlistCount(prev => prev - 1);
         const res = await axios.delete(
-          `https://crystovajewels.com/api/v1/wishlist/delete/${wishlistItemId}`
+          `https://dev.crystovajewels.com/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `https://crystovajewels.com/api/v1/wishlist/create`,
+          `https://dev.crystovajewels.com/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -111,7 +111,7 @@ const [wishlistCount, setWishlistCount] = useState(
       if (!userId) return;
       try {
         const response = await axios.get(
-          `https://crystovajewels.com/api/v1/wishlist/${userId}`
+          `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
 
@@ -141,7 +141,7 @@ const [wishlistCount, setWishlistCount] = useState(
       try {
         const userId = localStorage.getItem("user_Id"); // Get user ID from localStorage
         const response = await axios.get(
-          `https://crystovajewels.com/api/v1/order/get-user/${userId}`
+          `https://dev.crystovajewels.com/api/v1/order/get-user/${userId}`
         );
 
         if (response.data.status) {
@@ -259,7 +259,7 @@ const [wishlistCount, setWishlistCount] = useState(
                 order.orderDetails.map((item, i) => (
                   <div key={i} className="order_ddd">
                     <img
-                      src={`https://crystovajewels.com${item?.productId?.image[0]}`}
+                      src={`https://dev.crystovajewels.com${item?.productId?.image[0]}`}
                       alt={item.productId?.productName}
                       className="img_dd"
                     />
@@ -354,7 +354,7 @@ const [wishlistCount, setWishlistCount] = useState(
               <hr className="m-auto" />
               <div className="prev-order-item p-3">
                 <img
-                  src={`https://crystovajewels.com${order.orderDetails[0]?.productId?.image[0] || ""
+                  src={`https://dev.crystovajewels.com${order.orderDetails[0]?.productId?.image[0] || ""
                     }`}
                   alt={
                     order.orderDetails[0]?.productId?.productName || "Product"

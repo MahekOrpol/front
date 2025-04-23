@@ -86,7 +86,7 @@ const [wishlistCount, setWishlistCount] = useState(
       if (!userId) return;
       try {
         const response = await axios.get(
-          `https://crystovajewels.com/api/v1/wishlist/${userId}`
+          `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
         const count = wishlistData.length;
