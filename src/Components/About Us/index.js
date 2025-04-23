@@ -5,7 +5,7 @@ import Footer from "../../Pages/Footer";
 import { FaAngleLeft, FaAngleRight, FaArrowRight, FaStar } from "react-icons/fa6";
 import { CiStar, CiWallet } from "react-icons/ci";
 import { PiCertificateLight, PiMoneyWavy } from "react-icons/pi";
-import ringVideo from "../../Videos/abouy_sss.mp4";
+import ringVideo from "../../Videos/Abouy Sss.mp4";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";

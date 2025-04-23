@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 import "./ring.css";
-import ringVideo1 from "../../../Videos/dfcvdfx.mp4";
-import ringVideo2 from "../../../Videos/dfvdfvd.mp4";
+import ringVideo1 from "../../../Videos/Dfcvdfx (2).mp4";
+import ringVideo2 from "../../../Videos/Dfvdfvd (1).mp4";
 import ringVideo3 from "../../../Videos/sdcsdcdfc.mp4";
-import ringVideo4 from "../../../Videos/sdcxdscx.mp4";
-import ringVideo5 from "../../../Videos/dsfcdfc.mp4";
+import ringVideo4 from "../../../Videos/Sdcxdscx(1).mp4";
+import ringVideo5 from "../../../Videos/pendant.mp4";
 const multiplier = {
   translate: 0.1,
   rotate: 0.02,
