@@ -259,7 +259,7 @@ const CheckoutPage = () => {
                     <span className="error-flksssss">{errors.country}</span>
                   )}
                 </Form.Group>
-                <Col className="cnjb_hcvh">
+                <div className="col gap-1">
                   <Form.Control
                     type="text"
                     placeholder="First Name"
@@ -268,11 +268,11 @@ const CheckoutPage = () => {
                     onChange={handleInputChange}
                     className="Box BoxFont"
                   />
-                </Col>
+                </div>
                 {errors.firstName && (
                   <span className="error-flksssss">{errors.firstName}</span>
                 )}
-                <Col>
+                <div className="col ps-0">
                   <Form.Control
                     type="text"
                     placeholder="Last Name"
@@ -284,7 +284,7 @@ const CheckoutPage = () => {
                   {errors.lastName && (
                     <span className="error-flksssss">{errors.lastName}</span>
                   )}
-                </Col>
+                </div>
               </Row>
               <Form.Group className="mt-2">
                 <Form.Control
@@ -312,8 +312,8 @@ const CheckoutPage = () => {
                   <span className="error-flksssss">{errors.apartment}</span>
                 )}
               </Form.Group>
-              <Row className="mt-2">
-                <Col className="cnjb_hcvh">
+              <div className="coldd row">
+                <div className="col mt-2">
                   <Form.Control
                     type="text"
                     placeholder="City"
@@ -325,9 +325,9 @@ const CheckoutPage = () => {
                   {errors.city && (
                     <span className="error-flksssss">{errors.city}</span>
                   )}
-                </Col>
+                </div>
 
-                <Col>
+                <div className="col mt-2 colddd1">
                   <Form.Control
                     type="text"
                     placeholder="State"
@@ -339,9 +339,9 @@ const CheckoutPage = () => {
                   {errors.state && (
                     <span className="error-flksssss">{errors.state}</span>
                   )}
-                </Col>
+                </div>
 
-                <Col>
+                <div className="col mt-2">
                   <Form.Control
                     type="text"
                     placeholder="ZIP Code"
@@ -353,8 +353,8 @@ const CheckoutPage = () => {
                   {errors.zipCode && (
                     <span className="error-flksssss">{errors.zipCode}</span>
                   )}
-                </Col>
-              </Row>
+                </div>
+              </div>
               <Form.Group className="mt-2">
                 <Form.Control
                   type="tel"
