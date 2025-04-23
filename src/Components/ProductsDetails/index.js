@@ -159,7 +159,7 @@ Please let me know the next steps.`;
       // Fetch product data if not available in state
       axios
         .get(
-          `https://147.93.104.196:3000/api/v1/product/get-product-id/${productId}`
+          `https://crystovajewels.com/api/v1/product/get-product-id/${productId}`
         )
         .then((response) => {
           console.log("Fetched product:", response.data);
@@ -181,7 +181,7 @@ Please let me know the next steps.`;
     const formData = new FormData();
     formData.append("categoryName", categoryName);
     axios
-      .get(`https://147.93.104.196:3000/api/v1/product/get-related-product`, {
+      .get(`https://crystovajewels.com/api/v1/product/get-related-product`, {
         params: { categoryName },
       }) // Use params for GET
       .then((response) => {
@@ -235,7 +235,7 @@ Please let me know the next steps.`;
 
   const isVideo = (file) => file?.endsWith(".mp4");
 
-  // const getMediaURL = (path) => `https://147.93.104.196:3000${path}`;
+  // const getMediaURL = (path) => `https://crystovajewels.com${path}`;
 
   useEffect(() => {
     if (
@@ -282,13 +282,13 @@ Please let me know the next steps.`;
         });
         updateWishlistCount(wishlistCount - 1);
         const res = await axios.delete(
-          `https://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `https://crystovajewels.com/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `https://147.93.104.196:3000/api/v1/wishlist/create`,
+          `https://crystovajewels.com/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -312,7 +312,7 @@ Please let me know the next steps.`;
       if (!userId) return;
       try {
         const response = await axios.get(
-          `https://147.93.104.196:3000/api/v1/wishlist/${userId}`
+          `https://crystovajewels.com/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
         const count = wishlistData.length;
@@ -382,7 +382,7 @@ Please let me know the next steps.`;
 
       // Make the API request
       const response = await axios.post(
-        "https://147.93.104.196:3000/api/v1/order-details/create",
+        "https://crystovajewels.com/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -480,7 +480,7 @@ Please let me know the next steps.`;
                         {isVideo ? (
                           <video
                             className="detr_img bg-white"
-                            src={`https://147.93.104.196:3000${img}`}
+                            src={`https://crystovajewels.com${img}`}
                             autoPlay
                             loop
                             muted
@@ -490,7 +490,7 @@ Please let me know the next steps.`;
                         ) : (
                           <img
                             className="detr_img bg-white"
-                            src={`https://147.93.104.196:3000${img}`}
+                            src={`https://crystovajewels.com${img}`}
                             alt={`Product ${index + 1}`}
                           />
                         )}
@@ -544,7 +544,7 @@ Please let me know the next steps.`;
                           {isVideo ? (
                             <video
                               className="detr_img slider_ring_sss"
-                              src={`https://147.93.104.196:3000${img}`}
+                              src={`https://crystovajewels.com${img}`}
                               playsInline
                               controls={false}
                               autoPlay
@@ -554,7 +554,7 @@ Please let me know the next steps.`;
                           ) : (
                             <img
                               className="detr_img slider_ring_sss"
-                              src={`https://147.93.104.196:3000${img}`}
+                              src={`https://crystovajewels.com${img}`}
                               alt={`Slide ${index + 1}`}
                             />
                           )}
@@ -573,7 +573,7 @@ Please let me know the next steps.`;
               <div className="col-md-6 border vider_saxasxs">
                 {videos.length === 1 ? (
                   <video
-                    src={`https://147.93.104.196:3000${videos[0]}`}
+                    src={`https://crystovajewels.com${videos[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     autoPlay
                     loop
@@ -651,7 +651,7 @@ Please let me know the next steps.`;
                     {videos.map((media, index) => (
                       <div key={index}>
                         <video
-                          src={`https://147.93.104.196:3000${media}`}
+                          src={`https://crystovajewels.com${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           autoPlay
                           loop
@@ -737,7 +737,7 @@ Please let me know the next steps.`;
                     {images.map((media, index) => (
                       <div key={index}>
                         <img
-                          src={`https://147.93.104.196:3000${media}`}
+                          src={`https://crystovajewels.com${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           alt={productDetails?.productName || "Product image"}
                         />
@@ -746,7 +746,7 @@ Please let me know the next steps.`;
                   </Slider>
                 ) : images[0] ? (
                   <img
-                    src={`https://147.93.104.196:3000${images[0]}`}
+                    src={`https://crystovajewels.com${images[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -758,7 +758,7 @@ Please let me know the next steps.`;
               {images[1] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    src={`https://147.93.104.196:3000${images[1]}`}
+                    src={`https://crystovajewels.com${images[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -769,7 +769,7 @@ Please let me know the next steps.`;
               {images[2] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    src={`https://147.93.104.196:3000${images[2]}`}
+                    src={`https://crystovajewels.com${images[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
                   />
@@ -1194,7 +1194,7 @@ Please let me know the next steps.`;
                           >
                             {product.image[0]?.endsWith(".mp4") ? (
                               <video
-                                src={`https://147.93.104.196:3000${product.image[0]}`}
+                                src={`https://crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid"
                                 autoPlay
                                 loop
@@ -1205,7 +1205,7 @@ Please let me know the next steps.`;
                               />
                             ) : (
                               <img
-                                src={`https://147.93.104.196:3000${product.image[0]}`}
+                                src={`https://crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid border-0"
                                 alt="Product"
                                 onClick={() => handleProductClick(product.id)}

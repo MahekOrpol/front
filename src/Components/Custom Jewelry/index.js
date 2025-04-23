@@ -71,7 +71,7 @@ const CustomJewel = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `https://147.93.104.196:3000/api/v1/wishlist/${userId}`
+          `https://crystovajewels.com/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
         const count = wishlistData.length;
@@ -126,7 +126,7 @@ const CustomJewel = () => {
                 formDataToSend.append('file', formData.file);
             }
 
-            const response = await axios.post('https://147.93.104.196:3000/api/v1/custom-jewels/create', formDataToSend);
+            const response = await axios.post('https://crystovajewels.com/api/v1/custom-jewels/create', formDataToSend);
 
             if (response.status === 201) {
                 toast.success("We will get back to you soon!");

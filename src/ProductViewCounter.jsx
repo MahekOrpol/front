@@ -1,7 +1,7 @@
 // import React, { useEffect, useState } from 'react';
 // import { io } from 'socket.io-client';
 
-// // const socket = io("https://147.93.104.196:3000");
+// // const socket = io("https://crystovajewels.com");
 
 // const ProductViewCounter = ({ productId }) => {
 //   const [viewerCount, setViewerCount] = useState(0);
