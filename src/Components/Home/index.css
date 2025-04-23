@@ -1842,12 +1842,8 @@ img.ring-image {
 
 @media (max-width: 499px) {
   .home_img_ssssss:hover {
-    transform: scale(1.2);
-    /* padding-bottom: 10px !important; */
-    -webkit-transform: scale(1.2);
-    -moz-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    -o-transform: scale(1.2);
+    transform: none;
+  
   }
 }
 
@@ -2131,12 +2127,7 @@ img.ring-image {
   } */
 
   .home_img_ssssss:hover {
-    transform: scale(1.1);
-    /* padding-bottom: 10px !important; */
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
+    transform: none;
   }
 }
 
@@ -2155,12 +2146,8 @@ img.ring-image {
   }
 
   .home_img_ssssss:hover {
-    transform: scale(1.1);
-    /* padding-bottom: 10px !important; */
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
+    transform: none;
+   
   }
 }
 
@@ -6277,12 +6264,7 @@ img.ring-image {
 
 @media (max-width: 499px) {
   .home_img_ssssss:hover {
-    transform: scale(1.2);
-    /* padding-bottom: 10px !important; */
-    -webkit-transform: scale(1.2);
-    -moz-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    -o-transform: scale(1.2);
+    transform: none;
   }
 }
 
@@ -6452,12 +6434,8 @@ img.ring-image {
 
 @media (min-width: 601px) and (max-width: 767px) {
   .home_img_ssssss:hover {
-    transform: scale(1.1);
-    /* padding-bottom: 10px !important; */
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
+    transform: none;
+   
   }
 }
 
@@ -6467,12 +6445,8 @@ img.ring-image {
   }
 
   .home_img_ssssss:hover {
-    transform: scale(1.1);
-    /* padding-bottom: 10px !important; */
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    -ms-transform: scale(1.1);
-    -o-transform: scale(1.1);
+    transform: none;
+   
   }
 }
 
