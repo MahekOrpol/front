@@ -23,7 +23,7 @@ import { Carousel } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ProductViewCounter from "../../ProductViewCounter";
+// import ProductViewCounter from "../../ProductViewCounter";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -798,7 +798,8 @@ Please let me know the next steps.`;
                     </div>
                     <div>
                       <span className="rv_ssss ">
-                        <ProductViewCounter productId={productId} />
+                        24 review
+                        {/* <ProductViewCounter productId={productId} /> */}
                       </span>
                     </div>
                   </div>
