@@ -282,7 +282,7 @@ const Home = () => {
   //     if (!userId) return;
   //     try {
   //       const response = await axios.get(
-  //         `http://147.93.104.196:3000/api/v1/order-details/get/${userId}`
+  //         `https://147.93.104.196:3000/api/v1/order-details/get/${userId}`
   //       );
   //       const count = response.data.data.length || 0;
   //       setCartCount(count);
@@ -343,7 +343,7 @@ const Home = () => {
 
   const fetchBestSellersByCategory = async (category) => {
     try {
-      const url = `http://147.93.104.196:3000/api/v1/product/get?categoryName=${category}`;
+      const url = `https://147.93.104.196:3000/api/v1/product/get?categoryName=${category}`;
       const response = await axios.get(url);
       return response.data;
     } catch (error) {
@@ -398,7 +398,7 @@ const Home = () => {
 
       // Make the API request
       const response = await axios.post(
-        "http://147.93.104.196:3000/api/v1/order-details/create",
+        "https://147.93.104.196:3000/api/v1/order-details/create",
         payload,
         {
           headers: { "Content-Type": "application/json" },
@@ -425,7 +425,7 @@ const Home = () => {
 
   const getCategories = async () => {
     const res = await axios.get(
-      "http://147.93.104.196:3000/api/v1/category/get"
+      "https://147.93.104.196:3000/api/v1/category/get"
     );
     setCategoriesa(res.data);
     console.log("res.datassss :>> ", res.data);
@@ -477,20 +477,20 @@ const Home = () => {
 
   const getTopRated = async () => {
     const res = await axios.get(
-      "http://147.93.104.196:3000/api/v1/product/getTopRated"
+      "https://147.93.104.196:3000/api/v1/product/getTopRated"
     );
     setTopRated(res.data);
     console.log("res.data", res.data);
   };
   const getBestSelling = async () => {
     const res = await axios.get(
-      "http://147.93.104.196:3000/api/v1/product/getBestSelling"
+      "https://147.93.104.196:3000/api/v1/product/getBestSelling"
     );
     setBestSelling(res.data);
   };
   const getOnSale = async () => {
     const res = await axios.get(
-      "http://147.93.104.196:3000/api/v1/product/getOnSale"
+      "https://147.93.104.196:3000/api/v1/product/getOnSale"
     );
     setOnSale(res.data);
   };
@@ -538,13 +538,13 @@ const Home = () => {
         });
         updateWishlistCount(wishlistCount - 1);
         const res = await axios.delete(
-          `http://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItemId}`
+          `https://147.93.104.196:3000/api/v1/wishlist/delete/${wishlistItemId}`
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
         // Add to wishlist
         const response = await axios.post(
-          `http://147.93.104.196:3000/api/v1/wishlist/create`,
+          `https://147.93.104.196:3000/api/v1/wishlist/create`,
           {
             productId,
             userId,
@@ -568,7 +568,7 @@ const Home = () => {
       if (!userId) return;
       try {
         const response = await axios.get(
-          `http://147.93.104.196:3000/api/v1/wishlist/${userId}`
+          `https://147.93.104.196:3000/api/v1/wishlist/${userId}`
         );
         const wishlistData = response.data.data || [];
         const count = wishlistData.length;
@@ -937,7 +937,7 @@ const Home = () => {
                 >
                   <div className="d-flex flex-column align-items-center">
                     <img
-                      src={`http://147.93.104.196:3000${category.categoryImage}`}
+                      src={`https://147.93.104.196:3000${category.categoryImage}`}
                       className="home-img home_img_ssssss fvfvfc_Zdcdsc"
                       alt={category.categoryName}
                     />
@@ -1261,7 +1261,7 @@ const Home = () => {
                               );
                               return imageToShow ? (
                                 <img
-                                  src={`http://147.93.104.196:3000${imageToShow}`}
+                                  src={`https://147.93.104.196:3000${imageToShow}`}
                                   className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                   alt="Product"
                                   onClick={() => handleProductClick(product.id)}
@@ -1274,7 +1274,7 @@ const Home = () => {
                             })()} */}
                             {product.image[0]?.endsWith(".mp4") ? (
                               <video
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                src={`https://147.93.104.196:3000${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 autoPlay
                                 loop
@@ -1285,7 +1285,7 @@ const Home = () => {
                               />
                             ) : (
                               <img
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                src={`https://147.93.104.196:3000${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 alt="Product"
                                 onClick={() => handleProductClick(product.id)}
@@ -1385,7 +1385,7 @@ const Home = () => {
                               );
                               return imageToShow ? (
                                 <img
-                                  src={`http://147.93.104.196:3000${imageToShow}`}
+                                  src={`https://147.93.104.196:3000${imageToShow}`}
                                   className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                   alt="Product"
                                   onClick={() => handleProductClick(product.id)}
@@ -1398,7 +1398,7 @@ const Home = () => {
                             })()} */}
                             {product.image[0]?.endsWith(".mp4") ? (
                               <video
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                src={`https://147.93.104.196:3000${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 autoPlay
                                 loop
@@ -1409,7 +1409,7 @@ const Home = () => {
                               />
                             ) : (
                               <img
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                src={`https://147.93.104.196:3000${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 alt="Product"
                                 onClick={() => handleProductClick(product.id)}
@@ -1511,7 +1511,7 @@ const Home = () => {
                               );
                               return imageToShow ? (
                                 <img
-                                  src={`http://147.93.104.196:3000${imageToShow}`}
+                                  src={`https://147.93.104.196:3000${imageToShow}`}
                                   className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                   alt="Product"
                                   onClick={() => handleProductClick(product.id)}
@@ -1525,7 +1525,7 @@ const Home = () => {
 
                             {product.image[0]?.endsWith(".mp4") ? (
                               <video
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                src={`https://147.93.104.196:3000${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 autoPlay
                                 loop
@@ -1536,7 +1536,7 @@ const Home = () => {
                               />
                             ) : (
                               <img
-                                src={`http://147.93.104.196:3000${product.image[0]}`}
+                                src={`https://147.93.104.196:3000${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 alt="Product"
                                 onClick={() => handleProductClick(product.id)}
@@ -1720,7 +1720,7 @@ const Home = () => {
                                 >
                                   {product.image[0]?.endsWith(".mp4") ? (
                                     <video
-                                      src={`http://147.93.104.196:3000${product.image[0]}`}
+                                      src={`https://147.93.104.196:3000${product.image[0]}`}
                                       className="p-1_proi img-fluid border-0"
                                       autoPlay
                                       loop
@@ -1734,7 +1734,7 @@ const Home = () => {
                                     />
                                   ) : (
                                     <img
-                                      src={`http://147.93.104.196:3000${product.image[0]}`}
+                                      src={`https://147.93.104.196:3000${product.image[0]}`}
                                       className="p-1_proi img-fluid border-0"
                                       alt="Product"
                                       onClick={() =>
@@ -1744,7 +1744,7 @@ const Home = () => {
                                     />
                                   )}
                                   {/* <img
-                                    src={`http://147.93.104.196:3000${product.image[0]}`}
+                                    src={`https://147.93.104.196:3000${product.image[0]}`}
                                     className="p-1_proi img-fluid border-0"
                                     alt="Product"
                                     style={{ height: "100%" }}
