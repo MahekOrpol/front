@@ -246,7 +246,7 @@ const CartPopup = ({
                       width: "100%",
                       height: "100%",
                       maxHeight: "300px",
-                      objectFit: "contain",
+                      objectFit: "unset",
                     }}
                   />
                 ) : (
@@ -255,33 +255,40 @@ const CartPopup = ({
                   </div>
                 );
               })()}
-              <div className="cart_item_detail mt-2">
-                <h5 className="fw-bold mb-1 d-flex align-items-center justify-content-between secure_chckotfre cart_headre_ssss">
-                  {item.productId?.productName}
-                </h5>
-                <div className="d-flex align-items-center justify-content-between secure_chckotfre1">
-                  {Array.isArray(item.productId?.productSize) &&
-                    item.productId.productSize.length > 0 &&
-                    item.productId.productSize[0] !== "[]" && // filter out invalid stringified array
-                    item.productId.productSize[0]
-                      .split(",")
-                      .filter((size) => size.trim() !== "").length > 0 && (
-                      <div
-                        className="d-flex align-items-center w-100 secure_chckotfre cart_headre_ssss1 w-100"
-                        style={{ whiteSpace: "nowrap" }}
-                      >
+              <div className="cart_item_detail pt-3">
+                {(!Array.isArray(item.productId?.productSize) ||
+                  item.productId.productSize.length === 0 ||
+                  item.productId.productSize[0] === "[]" ||
+                  item.productId.productSize[0].split(",").filter(size => size.trim() !== "").length === 0) ? (
+                  // Show name and price side by side when NO size available
+                  <div className="d-flex align-items-center justify-content-between secure_chckotfre">
+                    <h5 className="fw-bold mb-1 cart_headre_ssss text-truncate">
+                      {item.productId?.productName}
+                    </h5>
+                    <p className="fw-bold m-0">
+                      ₹{(parseFloat(item.salePrice) * parseInt(item.quantity)).toFixed(2)}
+                    </p>
+                  </div>
+                ) : (
+                  // Original layout when size IS available
+                  <>
+                    <h5 className="fw-bold mb-1 d-flex align-items-center justify-content-between secure_chckotfre cart_headre_ssss">
+                      {item.productId?.productName}
+                    </h5>
+                    <div className="d-flex align-items-center justify-content-between secure_chckotfre1">
+                      <div className="d-flex align-items-center w-100 secure_chckotfre cart_headre_ssss1 w-100" style={{ whiteSpace: 'nowrap' }}>
                         <p className="m-0">Ring Size :</p>
                         <select
                           className="dropdown_size p-1"
                           style={{ borderRadius: "5px" }}
                           value={
-                            orderDetails[index]?.selectedSize ||
+                            orderDetails[index]?.selectedSize || 
                             item.selectedSize ||
-                            ""
-                          }
+                             ""
+                            }
                           onChange={(e) =>
-                            handleSizeChange(index, e.target.value)
-                          }
+                             handleSizeChange(index, e.target.value)
+                            }
                           required
                         >
                           <option value="" disabled>
@@ -293,18 +300,19 @@ const CartPopup = ({
                               <option key={i} value={size}>
                                 {size}
                               </option>
-                            ))}
+                          ))}
                         </select>
                       </div>
-                    )}
+                      <p className="fw-bold m-0 secure_chckotfre d-flex justify-content-end w-100 align-items-sm-center">
+                        ₹
+                        {(
+                          parseFloat(item.salePrice) * parseInt(item.quantity)
+                          ).toFixed(2)}
+                      </p>
+                    </div>
+                  </>
+                )}
 
-                  <p className="fw-bold m-0 secure_chckotfre d-flex justify-content-end w-100">
-                    ₹
-                    {(
-                      parseFloat(item.salePrice) * parseInt(item.quantity)
-                    ).toFixed(2)}
-                  </p>
-                </div>
                 <div className="d-flex align-items-center justify-content-between mt-3 size_selectttt">
                   <div className="d-inline-flex align-items-center p-2 gap-3 wr_sss_dd_sssss ">
                     <button

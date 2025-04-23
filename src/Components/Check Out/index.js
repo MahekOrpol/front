@@ -381,7 +381,7 @@ const CheckoutPage = () => {
               </Form.Group>
 
               <div className="Payment">
-                <Row>
+                <div>
                   <Col
                     md={15}
                     className="d-flex align-items-center gap-2 Box1 BoxFont border ryyt"
@@ -407,7 +407,7 @@ const CheckoutPage = () => {
                       </span>
                     )}
                   </Col>
-                </Row>
+                </div>
               </div>
 
               <div className="mt-3 d-flex align-items-center gap-2">

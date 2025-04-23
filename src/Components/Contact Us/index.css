@@ -412,18 +412,17 @@ h4 {
 } */
 @media(min-width:200px) and (max-width:339px) {
   .ssyhgyeye {
-    font-size: 19px !important;
+    font-size: 18px !important;
   }
-
   .ssyhgyey_sse {
-    font-size: 13px !important;
+    font-size: 12px !important;
   }
-
   .icon-wrapper {
     width: 59px;
     height: 59px;
+  }
 }
-}
+
 
 @media(min-width:340px) and (max-width:379px) {
   .ssyhgyeye {
