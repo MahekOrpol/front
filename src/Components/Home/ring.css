@@ -70,6 +70,13 @@
   }
 }
 @media (width: 372px) {
+  .slick-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: -16rem !important;
+  }
   .wrapper {
     margin-top: -271px;
   }
@@ -574,62 +581,6 @@
 }
 @media (max-width: 374px) {
 }
-/* @media (max-width: 373px) {
-  .slick-active + .slick-active {
-    transform: translateY(100px) !important;
-  }
-
-  .center-slider .slick-current.slick-active {
-    transform: scale(1.2) translateY(50px) !important;
-  }
-
-
-  .slick-active .slider_img_ssss {
-    transform: scale(0.8) translateY(-25px) !important;
-    -webkit-transform: scale(0.7) translateY(-100px) !important;
-    -moz-transform: scale(0.8) translateY(-25px) !important;
-    -ms-transform: scale(0.8) translateY(-25px) !important;
-    -o-transform: scale(0.8) translateY(-25px) !important;
-  }
-
-  .center-slider .slick-slide {
-    color: #fff;
-    height: 468px;
-    margin: 0 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s ease-in-out;
-    background-color: none !important;
-  }
-
-  .slick-active {
-    margin-top: -2rem !important;
-  }
-
-  .slick-active + .slick-active + .slick-active {
-    margin-top: -2rem !important;
-  }
-
-  .slick-active + .slick-active + .slick-active + .slick-active {
-    margin-top: 5rem;
-  }
-
-  .slick-active
-    + .slick-active
-    + .slick-active
-    + .slick-active
-    + .slick-active {
-    margin-top: 0rem;
-  }
-  .slick-nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: -12rem !important;
-}
-} */
 
 @media (min-width: 373px) and (max-width: 374px) {
   .slick-active .slider_img_ssss {
@@ -733,14 +684,7 @@
 .slidere-roijidfndm .slick-prev:before {
   color: #000;
   font-size: 26px;
-}
-/* 
-* Add these styles at the bottom of your existing CSS .slick-nav-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 20px;
-} */
+} 
 
 .slidere-roijidfndm .slick-prev,
 .slidere-roijidfndm .slick-next {
@@ -1092,17 +1036,7 @@
 
 .ring-info p {
   color: #666;
-}
-/* 
-
-
-.slider_img_ssss {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 10px;
-} */
-
+} 
 .slick-nav-container {
   display: flex;
   align-items: center;
@@ -1179,18 +1113,7 @@
   gap: 0.5rem !important;
   margin-top: -5rem;
 }
-}
-/* @media (max-width:991px) {
-  .slick-nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: -4rem;
-  }
-  
-  
-} */
+} 
 @media (min-width: 800px) and (max-width: 991px) {
   .slick-nav-container {
     display: flex;
@@ -1216,15 +1139,6 @@
     justify-content: center;
     gap: 1.5rem;
     margin-top: -5rem;
-  }
-}
-@media (width: 372px) {
-  .slick-nav-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: -16rem !important;
   }
 }
 

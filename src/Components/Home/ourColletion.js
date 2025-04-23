@@ -16,24 +16,6 @@ const OueColletion = () => {
     { img: require("../../Images/our3.png"), label: "Diamond Rings" ,path:'Rings'},
   ];
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "https://dev.crystovajewels.com/api/v1/product/get"
-  //       );
-  //       console.log(response);
-  //       setProducts(response.data.slice(0, 3)); // Get first 3 products
-  //     } catch (err) {
-  //       setError(err.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProducts();
-  // }, []);
-
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
   };

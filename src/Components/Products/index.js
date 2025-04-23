@@ -68,31 +68,6 @@ const Products = () => {
   const [wishlistCount, setWishlistCount] = useState(
     parseInt(localStorage.getItem("wishlistCount")) || 0
   );
-  // const [cartCount, setCartCount] = useState(() => {
-  //   const savedCount = localStorage.getItem('cartCount');
-  //   return savedCount ? parseInt(savedCount) : 0;
-  // });
-
-  // useEffect(() => {
-  //   const fetchCartCount = async () => {
-  //     const userId = localStorage.getItem("user_Id");
-  //     if (!userId) return;
-
-  //     try {
-  //       const response = await axios.get(
-  //         `https://dev.crystovajewels.com/api/v1/order-details/get/${userId}`
-  //       );
-  //       const count = response.data.data.length || 0;
-  //       setCartCount(count);
-  //       localStorage.setItem('cartCount', count);
-  //     } catch (error) {
-  //       console.error("Error fetching cart count:", error);
-  //     }
-  //   };
-
-  //   fetchCartCount();
-  // }, []);
-
   useEffect(() => {
     if (urlSearchQuery) {
       setSearchQuery(urlSearchQuery);
@@ -203,29 +178,6 @@ const Products = () => {
     document.body.classList.remove("no-scroll");
   };
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     let url = `https://dev.crystovajewels.com/api/v1/product/get?`;
-  //     if (categoryName) url += `categoryName=${categoryName}&`;
-  //     if (gender) url += `gender=${gender}`;
-  //     if (price) url += `salePrice=${price}`;
-
-  //     const response = await axios.get(url);
-  //     const sortedProducts = sortProducts(response.data, selectedOption);
-  //     setProductList(sortedProducts);
-
-  //     const initialIndexes = {};
-  //     sortedProducts.forEach((product) => {
-  //       initialIndexes[product.id] = 0;
-  //     });
-  //     setImageIndexes(initialIndexes);
-
-  //     console.log('price :>> ', price);
-  //   };
-
-  //   fetchProducts();
-  // }, [categoryName, gender, selectedOption,price]); // Add selectedOption to dependencies
-
   const handleNextImage = (productId, images) => {
     setImageIndexes((prevIndex) => ({
       ...prevIndex,
@@ -240,14 +192,6 @@ const Products = () => {
     }));
   };
 
-  const handlePriceChange = (event, index) => {
-    const newValue = Number(event.target.value);
-    setPriceRange((prev) => {
-      const updatedRange = [...prev];
-      updatedRange[index] = newValue;
-      return updatedRange;
-    });
-  };
 
   const handleClearFilters = () => {
     // Reset all checkboxes

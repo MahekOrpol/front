@@ -9,9 +9,7 @@
   z-index: 1 !important;
   display: block !important;
 }
-/* .ringSection .single {
-  height: 195vw;
-} */
+ 
 .ringSection .single {
   position: relative;
   pointer-events: none;
@@ -27,29 +25,7 @@
     pointer-events: none;
   }
 }
-
-/* @media (max-width:1280px) {
-  .ringSection .carousel1 .swiper-slide1-active .single video.ring-video {
-    transform: scale(1.02) translateY(-5px) ;
-    transition: transform 0.4s ease-in-out;
-    z-index: 10;
-  }
-} */
-/* @media (max-width: 1700px) {
-  .swiper-slide1:nth-child(1),
-  .swiper-slide1:nth-child(7) {
-    transform: translateY(15px) !important;
-  }
-} */
-/* .swiper-slide1:nth-child(1),
-.swiper-slide1:nth-child(7) {
-  transform: translateY(20px);
-}
-.swiper-slide1:nth-child(3),
-.swiper-slide1:nth-child(4),
-.swiper-slide1:nth-child(5) {
-  transform: translateY(10px);
-} */
+ 
 .ringSection .carousel1 {
   position: relative;
   /* max-width: 800px; */
@@ -85,57 +61,12 @@
   transition-property: transform;
   transition-timing-function: var(--swiper-wrapper-transition-timing-function, initial);
   box-sizing: content-box;
-}
-/*
-.ringSection::after {
-  position: absolute;
-  content: "";
-  position: absolute;
-  top: 299px;
-  right: -30px;
-  width: 5%;
-  height: 100%;
-  transform: rotate(10deg);
-  z-index: 1000000;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.652), rgba(255, 255, 255, 1));
-}
-.ringSection::before {
-  position: absolute;
-  content: "";
-  position: absolute;
-  top: 299px;
-  left: -35px;
-  width: 6%;
-  height: 100%;
-  transform: rotate(-10deg);
-  z-index: 10000;
-  background: linear-gradient(to left, rgb(255, 255, 255), #FFFFFF);
-} */
-/*
-oneplus 7
-@media screen and (max-width: 412px) and (max-height: 732px) and (device-pixel-ratio: 2.625) {
-  .ve-carousel, .ve-card-container {
-    width: 100%;
-    max-width: 100%;
-  }
-} */
-/*
-.swiper-slide1:nth-child(1),
-.swiper-slide1:nth-child(7) {
-  display: none;
-} */
+} 
 .ringSection .swiper1 {
   padding: 0; /* Equal horizontal padding */
   overflow: visible; /* Allow slides to overflow without being cut */
 }
-/* Hide partially visible edge slides */
-/* .ringSection .carousel1 .swiper-slide1:not(.swiper-slide1-active):not(.swiper-slide1-next):not(.swiper-slide1-prev) {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transition: opacity 0.3s ease;
-} */
-
+ 
 @media (max-width:340px) {
   .ringSection .single {
     height: 195vw;

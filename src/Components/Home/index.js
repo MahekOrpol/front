@@ -54,7 +54,6 @@ import ringVideo5 from "../../Videos/dsfcdfc.mp4";
 import JewelrySale from "../Contact Us/sdcsd/demo";
 import { ToastContainer, toast } from "react-toastify";
 import Instruction from "./instruction";
-import Ring from "../../Pages/Demo/ring";
 import OueColletion from "./ourColletion";
 import RingSlider from "./ring";
 import DimondJewelery from "./Dimond Jewellery/dimond";
@@ -86,133 +85,6 @@ const images = [
 
   require("../../Images/ring222.png"),
 ];
-
-const ringData = [
-  {
-    image: require("../../Images/Frame 197 (1).png"),
-    title: "Classic Ring",
-    description: "Timeless elegance in its purest form",
-  },
-  {
-    image: require("../../Images/Frame 197 (1).png"),
-    title: "Nature Ring",
-    description: "Inspired by natural beauty",
-  },
-  {
-    image: require("../../Images/Frame 197 (1).png"),
-    title: "Hidden Halo",
-    description: "Intriguing brilliance from a concealed halo",
-  },
-  {
-    image: require("../../Images/Frame 197 (1).png"),
-    title: "Solitaire",
-    description: "Simple sophistication that speaks volumes",
-  },
-  {
-    image: require("../../Images/Frame 197 (1).png"),
-    title: "Emerald Ring",
-    description: "Modern elegance with vintage appeal",
-  },
-  {
-    image: require("../../Images/Frame 197 (1).png"),
-    title: "Emerald Ring",
-    description: "Modern elegance with vintage appeal",
-  },
-];
-
-const bgImage = require("../../Images/Frame 197.png");
-const bgImage2 = require("../../Images/Frame 197.png");
-
-const diamondRings = [
-  {
-    id: 1,
-    image: require("../../Images/2 (4) (5).png"),
-    size: "small",
-  },
-  {
-    id: 2,
-    image: require("../../Images/1 (5) (2).png"),
-    size: "medium",
-  },
-  {
-    id: 3,
-    image: require("../../Images/111111.png"),
-    size: "large",
-    number: "4",
-  },
-  {
-    id: 4,
-    image: require("../../Images/1 (5) (2).png"),
-    size: "medium",
-  },
-  {
-    id: 5,
-    image: require("../../Images/2 (4) (5).png"),
-    size: "small",
-  },
-];
-// function VideoCard({ src, onClick }) {
-//   const ref = useRef(null);
-
-//   useEffect(() => {
-//     const vid = ref.current;
-//     if (!vid) return;
-
-//     // 1) force fetch so first frame is ready
-//     vid.setAttribute("preload", "metadata");
-
-//     // 2) inline‑play flags
-//     vid.setAttribute("playsinline", "");
-//     vid.setAttribute("webkit-playsinline", "true");
-//     vid.setAttribute("x5-playsinline", "true");
-
-//     // 3) muted, looping
-//     vid.muted = true;
-//     vid.loop = true;
-
-//     // 4) observer to play/pause only when visible
-//     const obs = new IntersectionObserver(
-//       ([entry]) => {
-//         if (entry.isIntersecting) {
-//           vid.play().catch(() => {});
-//         } else {
-//           vid.pause();
-//         }
-//       },
-//       { threshold: 0.5 }
-//     );
-//     obs.observe(vid);
-
-//     // ensure the very first frame paints
-//     const handleLoaded = () => {
-//       vid.pause();
-//       vid.removeEventListener("loadeddata", handleLoaded);
-//     };
-//     vid.addEventListener("loadeddata", handleLoaded);
-//     vid.load();
-
-//     return () => {
-//       obs.disconnect();
-//     };
-//   }, []);
-
-//   return (
-//     <video
-//       key={src}
-//       ref={ref}
-//       src={src}
-//       muted
-//       autoPlay
-//       loop
-//       playsInline
-//       preload="metadata"
-//       webkit-playsinline="true"
-//       x5-playsinline="true"
-//       className="bg-white video_new_arrr"
-//       onClick={onClick}
-//     />
-//   );
-// }
 
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
@@ -276,44 +148,11 @@ const Home = () => {
     dispatch(fetchCartCount());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   const fetchCartCount = async () => {
-  //     const userId = localStorage.getItem("user_Id");
-  //     if (!userId) return;
-  //     try {
-  //       const response = await axios.get(
-  //         `https://dev.crystovajewels.com/api/v1/order-details/get/${userId}`
-  //       );
-  //       const count = response.data.data.length || 0;
-  //       setCartCount(count);
-  //       localStorage.setItem("cartCount", count);
-  //     } catch (error) {
-  //       console.error("Error fetching cart count:", error);
-  //     }
-  //   };
-  //   fetchCartCount();
-  // }, []);
-
   const productsToDisplay =
     filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
 
   const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
 
-  // Auto-slide effect
-  // useEffect(() => {
-  //   if (isPaused || productsToDisplay.length <= productsPerPage) return;
-
-  //   const intervalId = setInterval(() => {
-  //     setSlideDirection('next');
-  //     setCurrentIndex(prevIndex =>
-  //       (prevIndex + 1) % (productsToDisplay.length - productsPerPage + 1)
-  //     );
-  //   }, AUTO_SLIDE_INTERVAL);
-
-  //   return () => clearInterval(intervalId);
-  // }, [productsToDisplay.length, productsPerPage, isPaused]);
-
-  // Calculate productsPerPage based on screen size
   useEffect(() => {
     const updateProductsPerPage = () => {
       const width = window.innerWidth;
@@ -327,18 +166,6 @@ const Home = () => {
 
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
-  };
-
-  const handleNext = () => {
-    if (currentIndex + productsPerPage < productsToDisplay.length) {
-      setCurrentIndex(currentIndex + 1);
-    }
-  };
-
-  const handlePrevious = () => {
-    if (currentIndex - productsPerPage >= 0) {
-      setCurrentIndex(currentIndex - 1);
-    }
   };
 
   const fetchBestSellersByCategory = async (category) => {
@@ -595,7 +422,7 @@ const Home = () => {
     const updateSlidesPerView = () => {
       const screenWidth = window.innerWidth;
       let newSlidesPerView;
-
+  
       if (screenWidth <= 427) {
         newSlidesPerView = 1;
       } else if (screenWidth <= 599) {
@@ -607,16 +434,20 @@ const Home = () => {
       } else {
         newSlidesPerView = 3;
       }
+  
       if (newSlidesPerView !== slidesPerView) {
         setSlidesPerView(newSlidesPerView);
       }
     };
-
-    updateSlidesPerView();
+  
     window.addEventListener("resize", updateSlidesPerView);
-
-    return () => window.removeEventListener("resize", updateSlidesPerView);
+    updateSlidesPerView(); // Call once on mount
+  
+    return () => {
+      window.removeEventListener("resize", updateSlidesPerView);
+    };
   }, [slidesPerView]);
+  
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -629,46 +460,6 @@ const Home = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % diamondRings.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? diamondRings.length - 1 : prevIndex - 1
-    );
-  };
-
-  const getVisibleRings = () => {
-    const total = diamondRings.length;
-    return [
-      diamondRings[(currentIndex - 1 + total) % total],
-      diamondRings[currentIndex],
-      diamondRings[(currentIndex + 1) % total],
-    ];
-  };
-  const getVisibleRings1 = () => {
-    const total = diamondRings.length;
-    return [
-      diamondRings[(currentIndex - 2 + total) % total],
-      diamondRings[(currentIndex - 1 + total) % total],
-      diamondRings[currentIndex],
-      diamondRings[(currentIndex + 1) % total],
-      diamondRings[(currentIndex + 2) % total],
-    ];
-  };
-
-  const getVisibleRing2 = () => {
-    return [diamondRings[currentIndex]]; // Return a single ring inside an array
-  };
-
-  // const toggleFavorite = (id) => {
-  //   setIsFavorite((prev) => ({
-  //     ...prev,
-  //     [id]: !prev[id], // Toggle the favorite state for the specific card
-  //   }));
-  // };
 
   useEffect(() => {
     const swiperInstance = swiperRef.current?.swiper;
@@ -694,179 +485,6 @@ const Home = () => {
       swiperInstance.off("slideChangeTransitionStart", scaleSlides);
     };
   }, []);
-
-  // useEffect(() => {
-  //   let currentCardIndex = 0;
-  //   const cards = $(".we-card");
-  //   const totalCards = cards.length;
-
-  //   function updateCarousel() {
-  //     cards.removeClass("active prev-1 next-1 prev-2 next-2 prev-3 next-3");
-  //     $(cards[currentCardIndex]).addClass("active");
-
-  //     const prevIndex_1 = (currentCardIndex - 1 + totalCards) % totalCards;
-  //     const nextIndex_1 = (currentCardIndex + 1) % totalCards;
-  //     const prevIndex_2 = (currentCardIndex - 2 + totalCards) % totalCards;
-  //     const nextIndex_2 = (currentCardIndex + 2) % totalCards;
-  //     const prevIndex_3 = (currentCardIndex - 3 + totalCards) % totalCards;
-  //     const nextIndex_3 = (currentCardIndex + 3) % totalCards;
-
-  //     $(cards[prevIndex_1]).addClass("prev-1");
-  //     $(cards[nextIndex_1]).addClass("next-1");
-  //     $(cards[prevIndex_2]).addClass("prev-2");
-  //     $(cards[nextIndex_2]).addClass("next-2");
-  //     $(cards[prevIndex_3]).addClass("prev-3");
-  //     $(cards[nextIndex_3]).addClass("next-3");
-  //   }
-
-  //   updateCarousel();
-
-  //   $(".right").click(() => {
-  //     currentCardIndex = (currentCardIndex + 1) % totalCards;
-  //     updateCarousel();
-  //   });
-
-  //   $(".left").click(() => {
-  //     currentCardIndex = (currentCardIndex - 1 + totalCards) % totalCards;
-  //     updateCarousel();
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   let currentCardIndex = 0;
-  //   const cards = $(".we-card");
-  //   const totalCards = cards.length;
-  //   let autoScrollInterval;
-  //   let isDragging = false;
-  //   let startX = 0;
-  //   let currentX = 0;
-  //   const slidesToScroll = 1;
-  //   const cardContainer = $(".we-card-container")[0];
-  //   function updateCarousel() {
-  //     cards.removeClass("active prev-1 next-1 prev-2 next-2 prev-3 next-3");
-  //     $(cards[currentCardIndex]).addClass("active");
-  //     const prevIndex_1 = (currentCardIndex - 1 + totalCards) % totalCards;
-  //     const nextIndex_1 = (currentCardIndex + 1) % totalCards;
-  //     const prevIndex_2 = (currentCardIndex - 2 + totalCards) % totalCards;
-  //     const nextIndex_2 = (currentCardIndex + 2) % totalCards;
-  //     const prevIndex_3 = (currentCardIndex - 3 + totalCards) % totalCards;
-  //     const nextIndex_3 = (currentCardIndex + 3) % totalCards;
-  //     $(cards[prevIndex_1]).addClass("prev-1");
-  //     $(cards[nextIndex_1]).addClass("next-1");
-  //     $(cards[prevIndex_2]).addClass("prev-2");
-  //     $(cards[nextIndex_2]).addClass("next-2");
-  //     $(cards[prevIndex_3]).addClass("prev-3");
-  //     $(cards[nextIndex_3]).addClass("next-3");
-  //   }
-  //   function startAutoScroll() {
-  //     autoScrollInterval = setInterval(() => {
-  //       if (!isDragging) {
-  //         currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
-  //         updateCarousel();
-  //       }
-  //     }, 3000);
-  //   }
-  //   function stopAutoScroll() {
-  //     clearInterval(autoScrollInterval);
-  //   }
-  //   function handleDragStart(e) {
-  //     isDragging = true;
-  //     stopAutoScroll();
-  //     startX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
-  //     currentX = startX;
-  //     cardContainer.style.cursor = "grabbing";
-  //   }
-  //   function handleDragMove(e) {
-  //     if (!isDragging) return;
-  //     const x = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
-  //     const deltaX = x - currentX;
-  //     currentX = x;
-  //     // Visual feedback during drag
-  //     const activeCard = cards[currentCardIndex];
-  //     const activeCardRect = activeCard.getBoundingClientRect();
-  //     const cardWidth = activeCardRect.width;
-  //     if (Math.abs(deltaX) > cardWidth * 0.1) {
-  //       if (deltaX > 0) {
-  //         // Dragging right - go to previous card
-  //         $(activeCard).css("transform", `translateX(${deltaX}px)`);
-  //       } else {
-  //         // Dragging left - go to next card
-  //         $(activeCard).css("transform", `translateX(${deltaX}px)`);
-  //       }
-  //     }
-  //   }
-  //   function handleDragEnd(e) {
-  //     if (!isDragging) return;
-  //     isDragging = false;
-  //     cardContainer.style.cursor = "grab";
-  //     const x =
-  //       e.type === "touchend"
-  //         ? e.changedTouches
-  //           ? e.changedTouches[0].clientX
-  //           : 0
-  //         : e.clientX;
-  //     const deltaX = x - startX;
-  //     const activeCard = cards[currentCardIndex];
-  //     // Reset position
-  //     $(activeCard).css("transform", "");
-  //     // Determine if swipe was significant enough to change cards
-  //     const activeCardRect = activeCard.getBoundingClientRect();
-  //     const cardWidth = activeCardRect.width;
-  //     if (Math.abs(deltaX) > cardWidth * 0.3) {
-  //       if (deltaX > 0) {
-  //         // Swiped right - previous card
-  //         currentCardIndex =
-  //           (currentCardIndex - slidesToScroll + totalCards) % totalCards;
-  //       } else {
-  //         // Swiped left - next card
-  //         currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
-  //       }
-  //       updateCarousel();
-  //     }
-  //     startAutoScroll();
-  //   }
-  //   // Initialize carousel
-  //   updateCarousel();
-  //   startAutoScroll();
-  //   // Button navigation
-  //   $(".right").click(() => {
-  //     stopAutoScroll();
-  //     currentCardIndex = (currentCardIndex + slidesToScroll) % totalCards;
-  //     updateCarousel();
-  //     startAutoScroll();
-  //   });
-  //   $(".left").click(() => {
-  //     stopAutoScroll();
-  //     currentCardIndex =
-  //       (currentCardIndex - slidesToScroll + totalCards) % totalCards;
-  //     updateCarousel();
-  //     startAutoScroll();
-  //   });
-  //   // Touch and mouse events for dragging
-  //   cardContainer.style.cursor = "grab";
-  //   cardContainer.addEventListener("mousedown", handleDragStart);
-  //   cardContainer.addEventListener("mousemove", handleDragMove);
-  //   cardContainer.addEventListener("mouseup", handleDragEnd);
-  //   cardContainer.addEventListener("mouseleave", handleDragEnd);
-  //   cardContainer.addEventListener("touchstart", handleDragStart, {
-  //     passive: true,
-  //   });
-  //   cardContainer.addEventListener("touchmove", handleDragMove, {
-  //     passive: false,
-  //   });
-  //   cardContainer.addEventListener("touchend", handleDragEnd);
-  //   // Clean up
-  //   return () => {
-  //     stopAutoScroll();
-  //     cardContainer.removeEventListener("mousedown", handleDragStart);
-  //     cardContainer.removeEventListener("mousemove", handleDragMove);
-  //     cardContainer.removeEventListener("mouseup", handleDragEnd);
-  //     cardContainer.removeEventListener("mouseleave", handleDragEnd);
-  //     cardContainer.removeEventListener("touchstart", handleDragStart);
-  //     cardContainer.removeEventListener("touchmove", handleDragMove);
-  //     cardContainer.removeEventListener("touchend", handleDragEnd);
-  //   };
-  // }, []);
 
   return (
     <>
@@ -916,10 +534,7 @@ const Home = () => {
             <Swiper
               spaceBetween={10}
               loop={true}
-              // centeredSlides={true}
-              // slidesPerView="auto"
-              // autoplay={{ delay: 2000, disableOnInteraction: false }}
-              // modules={[ Autoplay]}
+              
               breakpoints={{
                 0: { slidesPerView: 4 },
                 480: { slidesPerView: 5 },
@@ -1672,11 +1287,7 @@ const Home = () => {
                         // 0: { slidesPerView: 1 }, // Mobile - 1 card
                       }}
                       loop={true}
-                      // autoplay={{
-                      //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                      //   disableOnInteraction: false,
-                      // }}
-                      // modules={[Autoplay]}
+                      
                     >
                       {productsToDisplay
                         .slice(
@@ -1743,12 +1354,7 @@ const Home = () => {
                                       style={{ height: "100%" }}
                                     />
                                   )}
-                                  {/* <img
-                                    src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                    className="p-1_proi img-fluid border-0"
-                                    alt="Product"
-                                    style={{ height: "100%" }}
-                                  /> */}
+                                  
                                 </div>
                               </div>
                             </div>
@@ -1928,170 +1534,8 @@ const Home = () => {
           />
         </div>
 
-        {/* <div className="video-curved-tewd ">
-          <div className="we-carousel">
-            <div className="we-card-container snap-carousel">
-              {/* <div className="we-card">
-                <video
-                  src={ringVideo1}
-                  onClick={() => handleCategoryClick("Pendant")}
-                  className=" bg-white video_new_arrr"
-                  playsInline
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-              <div className="we-card">
-                <video
-                  src={ringVideo2}
-                  onClick={() => handleCategoryClick("Earrings")}
-                  className=" bg-white video_new_arrr"
-                  playsInline
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-              <div className="we-card">
-                <video
-                  src={ringVideo3}
-                  onClick={() => handleCategoryClick("Rings")}
-                  className=" bg-white video_new_arrr"
-                  playsInline
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-              <div className="we-card">
-                <video
-                  src={ringVideo4}
-                  onClick={() => handleCategoryClick("Bracelets")}
-                  className=" bg-white video_new_arrr"
-                  playsInline
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-              <div className="we-card">
-                <video
-                  src={ringVideo5}
-                  onClick={() => handleCategoryClick("Pendant")}
-                  className=" bg-white video_new_arrr"
-                  playsInline
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-              <div className="we-card">
-                <video
-                  src={ringVideo1}
-                  onClick={() => handleCategoryClick("Pendant")}
-                  className=" bg-white video_new_arrr"
-                  playsInline
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-              <div className="we-card">
-                <video
-                  src={ringVideo2}
-                  onClick={() => handleCategoryClick("Earrings")}
-                  className=" bg-white video_new_arrr"
-                  playsInline
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-              <div className="we-card">
-                <video
-                  src={ringVideo3}
-                  onClick={() => handleCategoryClick("Rings")}
-                  className=" bg-white video_new_arrr"
-                  playsInline
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div> 
-               {videoData.map((v, i) => (
-              <div className="we-card" key={i}>
-                <VideoCard
-                  src={v.src}
-                  onClick={() => handleCategoryClick(v.category)}
-                />
-              </div>
-            ))}
-            </div>
-       
-          </div>
-        </div> */}
-
         <Ring1 />
-        {/* <div className="pt-4 row position-relative w-100 justify-content-between xcdf_sdcsd ">
-            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
-              <div className="d-flex justify-content-center align-items-center h-100 w-100">
-                <video
-                  src={ringVideo1}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-            </div>
-            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
-              <div className="d-flex justify-content-center align-items-center h-100">
-                <video
-                  src={ringVideo2}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-            </div>
-            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
-              <div className="d-flex justify-content-center align-items-center h-100">
-                <video
-                  src={ringVideo3}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-            </div>
-
-            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
-              <div className="d-flex justify-content-center align-items-center h-100">
-                <video
-                  src={ringVideo4}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-            </div>
-            <div className=" position-relative box-trens-2 col-md-3 col-lg-3 col-6 col-sm-6 col-12 sdcs_ASxsax_dfrvdxf">
-              <div className="d-flex justify-content-center align-items-center h-100">
-                <video
-                  src={ringVideo5}
-                  className=" bg-white video_new_arrr"
-                  autoPlay
-                  loop
-                  muted
-                />
-              </div>
-            </div>
-          </div> */}
-
+       
         <div className="heder_sec_main d-flex flex-column align-items-center dscdsc_inst">
           <span className="category_name">Instructions</span>
           <p className="category_txt">Store it Soft, Shine it Often</p>
@@ -2161,12 +1605,7 @@ const Home = () => {
               )}
             </Swiper>
           </div>
-          {/* <button
-            className="nav-button right"
-            onClick={() => swiperRef.current?.slideNext()}
-          >
-            <FaAngleRight />
-          </button> */}
+         
         </div>
         <div className="pb-5"></div>
         <Footer />
