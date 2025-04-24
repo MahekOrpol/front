@@ -68,6 +68,9 @@ const Home = () => {
   );
   const dispatch = useDispatch();
 
+  const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const BASE_API = "https://dev.crystovajewels.com/api/v1";
 
   const {
@@ -107,7 +110,22 @@ const Home = () => {
   const productsToDisplay =
     filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
 
-  const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
+  const openCart = React.useCallback(() => {
+    const userId = localStorage.getItem("user_Id");
+    if (!userId) {
+      navigate("/register");
+      return;
+    }
+    setIsCartOpen(true);
+    document.body.classList.add("no-scroll");
+  }, [navigate]);
+
+  const closeCart = React.useCallback(() => {
+    setIsCartOpen(false);
+    setShowToast(false);
+    dispatch(fetchCartCount());
+    document.body.classList.remove("no-scroll");
+  }, [dispatch]);
 
   useEffect(() => {
     const update = () => setProductsPerPage(window.innerWidth < 768 ? 1 : 2);
@@ -119,9 +137,12 @@ const Home = () => {
     };
   }, []);
 
-  const handleCategoryClick = React.useCallback((category) => {
-    navigate(`/products?categoryName=${category}`);
-  }, [navigate]);
+  const handleCategoryClick = React.useCallback(
+    (category) => {
+      navigate(`/products?categoryName=${category}`);
+    },
+    [navigate]
+  );
   const fetchBestSellersByCategory = React.useCallback(async (category) => {
     try {
       const url = `https://dev.crystovajewels.com/api/v1/product/get?categoryName=${category}`;
@@ -132,15 +153,17 @@ const Home = () => {
       return [];
     }
   }, []);
-  
-  const handleTooltipClick = React.useCallback(async (category) => {
-    setCurrentCategory(category);
-    const products = await fetchBestSellersByCategory(category);
-    setFilteredBestSellers(products);
-    setCurrentIndex(0);
-    console.log("products :>> ", products);
-  }, [fetchBestSellersByCategory]);
-  
+
+  const handleTooltipClick = React.useCallback(
+    async (category) => {
+      setCurrentCategory(category);
+      const products = await fetchBestSellersByCategory(category);
+      setFilteredBestSellers(products);
+      setCurrentIndex(0);
+      console.log("products :>> ", products);
+    },
+    [fetchBestSellersByCategory]
+  );
 
   const handleProductClick = React.useCallback(
     (productId, productData) => {
@@ -151,54 +174,56 @@ const Home = () => {
     [navigate]
   );
   // Function to add an item to the cart
-  const addToCart = React.useCallback(async (product) => {
-    try {
-      const userId = localStorage.getItem("user_Id");
-  
-      if (!userId) {
-        navigate("/register");
-        return;
-      }
-  
-      const productSize = Array.isArray(product?.productSize)
-        ? product.productSize.join(",")
-        : product?.productSize || "";
-      const variationIds = Array.isArray(product?.variations)
-        ? product.variations.map((variation) => variation.id)
-        : [];
-  
-      const payload = {
-        userId: userId,
-        productId: product?.id,
-        productPrice: product.salePrice?.$numberDecimal,
-        quantity: product?.quantity || 1,
-        productSize: productSize,
-        discount: product?.discount?.$numberDecimal || 0,
-        variation: variationIds,
-      };
-  
-      const response = await axios.post(
-        "https://dev.crystovajewels.com/api/v1/order-details/create",
-        payload,
-        {
-          headers: { "Content-Type": "application/json" },
+  const addToCart = React.useCallback(
+    async (product) => {
+      try {
+        const userId = localStorage.getItem("user_Id");
+
+        if (!userId) {
+          navigate("/register");
+          return;
         }
-      );
-  
-      openCart();
-      if (response.status === 200) {
-        console.log("Product added to cart successfully:", response.data);
-      } else {
-        console.error("Failed to add product to cart:", response);
+
+        const productSize = Array.isArray(product?.productSize)
+          ? product.productSize.join(",")
+          : product?.productSize || "";
+        const variationIds = Array.isArray(product?.variations)
+          ? product.variations.map((variation) => variation.id)
+          : [];
+
+        const payload = {
+          userId: userId,
+          productId: product?.id,
+          productPrice: product.salePrice?.$numberDecimal,
+          quantity: product?.quantity || 1,
+          productSize: productSize,
+          discount: product?.discount?.$numberDecimal || 0,
+          variation: variationIds,
+        };
+
+        const response = await axios.post(
+          "https://dev.crystovajewels.com/api/v1/order-details/create",
+          payload,
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+
+        openCart();
+        if (response.status === 200) {
+          console.log("Product added to cart successfully:", response.data);
+        } else {
+          console.error("Failed to add product to cart:", response);
+        }
+        dispatch(fetchCartCount());
+        setToastMessage("Item added to cart successfully!");
+        setShowToast(true);
+      } catch (error) {
+        console.error("Error adding product to cart:", error);
       }
-      dispatch(fetchCartCount());
-      setToastMessage("Item added to cart successfully!");
-      setShowToast(true);
-    } catch (error) {
-      console.error("Error adding product to cart:", error);
-    }
-  }, [navigate, dispatch, openCart]);
-  
+    },
+    [navigate, dispatch, openCart]
+  );
 
   useEffect(() => {
     getCategories();
@@ -236,24 +261,6 @@ const Home = () => {
       swiperInstance.off("slideChangeTransitionStart", scaleSlides);
     };
   }, []);
-
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const openCart = React.useCallback(() => {
-    const userId = localStorage.getItem("user_Id");
-    if (!userId) {
-      navigate("/register");
-      return;
-    }
-    setIsCartOpen(true);
-    document.body.classList.add("no-scroll");
-  }, [navigate]);
-
-  const closeCart = React.useCallback(() => {
-    setIsCartOpen(false);
-    setShowToast(false);
-    dispatch(fetchCartCount());
-    document.body.classList.remove("no-scroll");
-  }, [dispatch]);
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -294,53 +301,56 @@ const Home = () => {
     localStorage.setItem("wishlistCount", count.toString());
   };
 
-  const toggleFavorite = React.useCallback(async (productId, productData) => {
-    const userId = localStorage.getItem("user_Id");
-    if (!userId) {
-      navigate("/register");
-      return;
-    }
-
-    try {
-      if (wishlistItems[productId]) {
-        // Remove from wishlist
-        const wishlistItemId = wishlistItems[productId];
-        setWishlistItems((prev) => {
-          const updatedWishlist = { ...prev };
-          delete updatedWishlist[productId];
-          return updatedWishlist;
-        });
-        updateWishlistCount(wishlistCount - 1);
-        const res = await axios.delete(
-          `https://dev.crystovajewels.com/api/v1/wishlist/delete/${wishlistItemId}`
-        );
-        toast.success(res.data.message || "Removed from wishlist!");
-      } else {
-        // Add to wishlist
-        const payload = {
-          userId,
-          productId,
-        };
-        const response = await axios.post(
-          `https://dev.crystovajewels.com/api/v1/wishlist/create`,
-          payload,
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        const wishlistItem = response.data?.data;
-        setWishlistItems((prev) => ({
-          ...prev,
-          [productId]: wishlistItem.id,
-        }));
-        updateWishlistCount(wishlistCount + 1);
-        toast.success(response.data.message || "Added to wishlist!");
+  const toggleFavorite = React.useCallback(
+    async (productId, productData) => {
+      const userId = localStorage.getItem("user_Id");
+      if (!userId) {
+        navigate("/register");
+        return;
       }
-    } catch (error) {
-      console.error("Wishlist error:", error);
-      toast.error("Something went wrong. Please try again.");
-    }
-  },[userId,wishlistItems,wishlistCount])
+
+      try {
+        if (wishlistItems[productId]) {
+          // Remove from wishlist
+          const wishlistItemId = wishlistItems[productId];
+          setWishlistItems((prev) => {
+            const updatedWishlist = { ...prev };
+            delete updatedWishlist[productId];
+            return updatedWishlist;
+          });
+          updateWishlistCount(wishlistCount - 1);
+          const res = await axios.delete(
+            `https://dev.crystovajewels.com/api/v1/wishlist/delete/${wishlistItemId}`
+          );
+          toast.success(res.data.message || "Removed from wishlist!");
+        } else {
+          // Add to wishlist
+          const payload = {
+            userId,
+            productId,
+          };
+          const response = await axios.post(
+            `https://dev.crystovajewels.com/api/v1/wishlist/create`,
+            payload,
+            {
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+          const wishlistItem = response.data?.data;
+          setWishlistItems((prev) => ({
+            ...prev,
+            [productId]: wishlistItem.id,
+          }));
+          updateWishlistCount(wishlistCount + 1);
+          toast.success(response.data.message || "Added to wishlist!");
+        }
+      } catch (error) {
+        console.error("Wishlist error:", error);
+        toast.error("Something went wrong. Please try again.");
+      }
+    },
+    [userId, wishlistItems, wishlistCount]
+  );
 
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -408,7 +418,7 @@ const Home = () => {
   const handleChange = React.useCallback((event, newValue) => {
     setValue(newValue);
   }, []);
-  
+
   useEffect(() => {
     const swiperInstance = swiperRef.current?.swiper;
     if (!swiperInstance) return;
