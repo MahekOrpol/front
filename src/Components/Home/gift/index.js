@@ -102,7 +102,7 @@ const Gift = () => {
         <div className="static-gift-card text-center MHK position-relative gap-2 gift_img_round">
           <img
             loading="lazy"
-            src={require("../../../Images/first.webp")}
+            src={require("../../../Images/first.svg").default}
             className="img-fluid gift-img gift_box_dsdd"
             alt="Gift Your Loved Ones"
           />
