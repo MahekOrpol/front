@@ -111,7 +111,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
         <p className="header_text pt-2">Shop Gold and Diamond Jewellery</p>
       </div>
 
-      <div className="heder_sec_main mt-lg-2 d-flex align-items-center sdcsd_ss_ddd">
+      <div className="heder_sec_main pt-lg-2 d-flex align-items-center sdcsd_ss_ddd">
         {/* Mobile Menu Icon */}
         <div className="menu-icon d-xl-none" onClick={toggleDrawer}>
           <LuTextSearch size={30} />
@@ -333,8 +333,8 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
       {/* Category Navigation */}
       <div className="dsn_mdcm">
         <div
-          className="d-flex align-items-center justify-content-center jhdb_dhvh pt-1 pb-1 mt-2"
-          style={{ borderTop: "1px solid #797979" }}
+          className="d-flex align-items-center justify-content-center jhdb_dhvh pb-1 pt-2"
+          style={{ borderTop: "1px solid #797979" ,background:'white'}}
         >
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"

@@ -177,7 +177,9 @@ const RegisterPopup = ({ isOpen, onClose }) => {
         theme="light"
         stacked 
       />
+            <div className="main-header">
       <Header />
+            </div>
       <div className="register-popup-overlay" onMouseDown={handleOverlayClick}>
         <div className="register-popup" onClick={(e) => e.stopPropagation()}>
           <div className="register-container">

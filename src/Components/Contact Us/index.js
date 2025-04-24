@@ -157,8 +157,11 @@ const [wishlistCount, setWishlistCount] = useState(
         showToast={showToast}
       // toastMessage={toastMessage}
       />
+            <div className="main-header">
       <Header openCart={openCart}  wishlistCount={userId ? wishlistCount : null}
           cartCount={userId ? cartCount : null} />
+          
+                      </div>
       <div>
         <img
           src={require("../../Images/Group 1597884579.png")}

@@ -265,11 +265,13 @@ const Wishlist = () => {
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
+      <div className="main-header">
         <Header
           openCart={openCart}
           wishlistCount={userId ? wishlistCount : null}
           cartCount={userId ? cartCount : null}
         />
+        </div>
         <div className="container">
           <div className="hdr_csd flex-column align-items-center produ_sss">
             <div className="row">

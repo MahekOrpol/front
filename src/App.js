@@ -19,8 +19,34 @@ import { ToastContainer } from "react-bootstrap";
 import RegisterPopup from "./Components/RegisterPopup";
 import ProtectedRoute from "./Pages/Protected Route/protectedRoute";
 import Ring1 from "./Components/Home/ring demo 1/ring";
+import { useEffect } from "react";
+import WhatsAppButton from "./Components/WhatsAppButton";
 
 function App() {
+  useEffect(() => {
+    let lastScrollTop = 0;
+  
+    const handleScroll = () => {
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const header = document.querySelector(".main-header");
+  
+      if (!header) return;
+  
+      if (currentScrollTop > lastScrollTop) {
+        // Scrolling Down
+        header.classList.add("hide-header");
+      } else {
+        // Scrolling Up
+        header.classList.remove("hide-header");
+      }
+  
+      lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  
   return (
     <BrowserRouter>
       <ToastContainer position="top-right" autoClose={3000} />
@@ -77,6 +103,7 @@ function App() {
           }
         />
       </Routes>
+      <WhatsAppButton />
     </BrowserRouter>
   );
 }

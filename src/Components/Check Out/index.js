@@ -220,9 +220,12 @@ const CheckoutPage = () => {
 
   return (
     <div>
+            <div className="main-header">
+
       <div className="d-flex p-0 justify-content-center w-100 bdsh_mIN">
         <img src={logo1} onClick={() => navigate("/")} alt="Logo" width={200} />
       </div>
+            </div>
       {/* <Header /> */}
       <div className="gffg">
         {/* left section */}

@@ -78,8 +78,8 @@ const ProductDetailss = () => {
   const [salePrice, setSalePrice] = useState();
   const [imageUrl, setImageUrl] = useState("");
   const phoneNumber = "919099975424"; // Replace with your WhatsApp number
-const [wishlistCount, setWishlistCount] = useState(
-    parseInt(localStorage.getItem('wishlistCount')) || 0
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
   );
   const videoSliderRef = useRef(null);
   const imageSliderRef = useRef(null);
@@ -94,18 +94,18 @@ const [wishlistCount, setWishlistCount] = useState(
     error,
   } = useSelector((state) => state.cart);
 
-  const message = `👋 Hi! Thank you for contacting us. I'm interested in placing an order.
+  const message = `🖼 *Image:* ${imageUrl}
+
+👋 Hi! Thank you for contacting us. I'm interested in placing an order.
 
 🛍 *Product:* ${productName}
 🆔 *SKU:* ${sku}
 💰 *Price:* ₹${salePrice}
-🖼 *Image:* ${imageUrl}
 🔗 *Product Link:* ${window.location.href}
 
 Please let me know the next steps.`;
 
   const encodedMessage = encodeURIComponent(message);
-  // const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
   const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
   const openCart = () => {
@@ -181,9 +181,12 @@ Please let me know the next steps.`;
     const formData = new FormData();
     formData.append("categoryName", categoryName);
     axios
-      .get(`https://dev.crystovajewels.com/api/v1/product/get-related-product`, {
-        params: { categoryName },
-      }) // Use params for GET
+      .get(
+        `https://dev.crystovajewels.com/api/v1/product/get-related-product`,
+        {
+          params: { categoryName },
+        }
+      ) // Use params for GET
       .then((response) => {
         setRelatedProducts(response.data || []);
       })
@@ -262,7 +265,7 @@ Please let me know the next steps.`;
 
   const updateWishlistCount = (count) => {
     setWishlistCount(count);
-    localStorage.setItem('wishlistCount', count.toString());
+    localStorage.setItem("wishlistCount", count.toString());
   };
 
   const toggleFavorite = async (productId) => {
@@ -425,11 +428,13 @@ Please let me know the next steps.`;
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-        <Header
-          openCart={openCart}
-          wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null}
-        />
+        <div className="main-header">
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
+        </div>
         <div className="container detail_arrowW_xss">
           <section>
             <div class=" pb-2 pt-3 md:px-5">
@@ -1144,7 +1149,6 @@ Please let me know the next steps.`;
           </div>
           <div className="heder_sec_main d-flex flex-column p-0">
             <div className="row">
-
               <div className="slider_ssss_fdcdf ">
                 <Swiper
                   spaceBetween={0}
