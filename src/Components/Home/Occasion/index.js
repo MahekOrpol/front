@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./index.css";
 import img1 from "../../../Images/image (32).png";
 import img2 from "../../../Images/jewe.jpg";
@@ -13,20 +13,19 @@ const Occasion = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (isAnimating) return;
     setIsAnimating(true);
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
       setIsAnimating(false);
-    }, 500); // Match with CSS animation duration
-  };
+    }, 500); 
+  }, [isAnimating]);
 
-  // Auto-slide with updated dependency to avoid restart on every index change
   useEffect(() => {
     const interval = setInterval(nextSlide, 2000);
     return () => clearInterval(interval);
-  }, []); // Only run once
+  }, [nextSlide]);  
 
   return (
     <div className="one-way-slider container">

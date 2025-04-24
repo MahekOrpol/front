@@ -37,12 +37,18 @@ const RingSlider = () => {
 
   const images = [
     "1.png",
-    "8.png",
-    "3.png",
-    "5.png",
-    "6.png",
-    "8.png",
-    "9.png",
+    "8.webp",
+    "3.webp",
+    "5.webp",
+    "6.webp",
+    "2.webp",
+    "1.png",
+    "8.webp",
+    "3.webp",
+    "5.webp",
+    "6.webp",
+    "2.webp",
+   
   ];
 
   useEffect(() => {
