@@ -295,7 +295,10 @@ h4 {
   }
 
   .habv_www {
-    font-size: 38px;
+    font-size: 29px !important;
+  }
+  .hdr_cs {
+    margin-top: 27px !important;
   }
 }
 
