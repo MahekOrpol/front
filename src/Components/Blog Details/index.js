@@ -130,8 +130,11 @@ const [wishlistCount, setWishlistCount] = useState(
         showToast={showToast}
       // toastMessage={toastMessage}
       />
+            <div className="main-header">
+
       <Header openCart={openCart}  wishlistCount={userId ? wishlistCount : null}
           cartCount={userId ? cartCount : null} />
+          </div>
       <div>
         <img
           src={require("../../Images/Group 1597884578.png")}
@@ -143,52 +146,7 @@ const [wishlistCount, setWishlistCount] = useState(
       </div>
       <div className="container pt-5 ">
         <div className="d-flex gap-5 blog_main_dddd">
-          {/* <div className="sdncsduchs h-100 position-sticky" style={{ top: '12px' }}>
-            <div className="card p-3 shadow-sm border-0 ">
-              <h4 className="fw-bold border-bottom pb-2">Popular Posts</h4>
-              {posts.map((post, index) => (
-                <div key={post.id} className="d-flex align-items-center my-3">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="rounded"
-                    width="100"
-                    height="100"
-                  />
-                  <div className="ms-3">
-                    <h6 className="mb-2 fw-bold sdiuuhjus">{post.title}</h6>
-                    <span className="sxdexes mt-5">{post.date}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="card p-3 shadow-sm border-0  mt-5">
-              <h4 className="fw-bold border-bottom pb-2">Category</h4>
-              <ul
-                className="mt-3 d-flex flex-column gap-2 align-items-start ms-0"
-                style={{ listStyle: "none", fontWeight: 400, fontSize: "24px" }}
-              >
-                <li>News</li>
-                <li>Accessories</li>
-                <li>Collection</li>
-                <li>Fashion</li>
-                <li>Jewellery</li>
-                <li>Trends</li>
-              </ul>
-            </div>
-
-            <div className="card p-3 shadow-sm border-0  mt-5">
-              <h4 className="fw-bold border-bottom pb-2">Tags</h4>
-              <div className="d-flex flex-wrap gap-3 pt-4 pb-2">
-                <div className="hjvbxy">Accessories</div>
-                <div className="hjvbxy">Jewellery Collection</div>
-                <div className="hjvbxy">Trends</div>
-                <div className="hjvbxy">Fashion</div>
-                <div className="hjvbxy">Collection</div>
-              </div>
-            </div>
-          </div> */}
+        
           <div className="sdncsduchs h-100 position-sticky blog_sins_ssss" style={{ top: '12px' }}>
             <div className="card p-3 shadow-sm border-0 ">
               <h4 className="fw-bold border-bottom pb-2">Popular Posts</h4>

@@ -478,12 +478,13 @@ useEffect(() => {
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
+      <div className="main-header">
         <Header
           openCart={openCart}
           wishlistCount={userId ? wishlistCount : null}
           cartCount={userId ? cartCount : null}
         />
-
+</div>
         <div>
          
           <JewelrySale />

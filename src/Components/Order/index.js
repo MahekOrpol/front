@@ -21,12 +21,12 @@ const OrderDetails = () => {
     delivered: "Delivered",
     cancelled: "Cancelled",
   };
-const [wishlistCount, setWishlistCount] = useState(
-    parseInt(localStorage.getItem('wishlistCount')) || 0
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
   );
   const [wishlistItems, setWishlistItems] = useState({});
- 
-  const navigate = useNavigate('');
+
+  const navigate = useNavigate("");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const userId = localStorage.getItem("user_Id");
@@ -77,7 +77,7 @@ const [wishlistCount, setWishlistCount] = useState(
           delete updatedWishlist[productId]; // Update UI immediately
           return updatedWishlist;
         });
-        setWishlistCount(prev => prev - 1);
+        setWishlistCount((prev) => prev - 1);
         const res = await axios.delete(
           `https://dev.crystovajewels.com/api/v1/wishlist/delete/${wishlistItemId}`
         );
@@ -97,7 +97,7 @@ const [wishlistCount, setWishlistCount] = useState(
           ...prev,
           [productId]: newWishlistItemId, // Store wishlist ID properly
         }));
-        setWishlistCount(prev => prev + 1);
+        setWishlistCount((prev) => prev + 1);
         toast.success(response.data.message || "Added to wishlist!");
       }
     } catch (error) {
@@ -198,10 +198,15 @@ const [wishlistCount, setWishlistCount] = useState(
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-      // toastMessage={toastMessage}
+        // toastMessage={toastMessage}
       />
-      <Header openCart={openCart}  wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null} />
+      <div className="main-header">
+        <Header
+          openCart={openCart}
+          wishlistCount={userId ? wishlistCount : null}
+          cartCount={userId ? cartCount : null}
+        />
+      </div>
       <div className="order-container">
         <h2 className="order-title">Order Details</h2>
 
@@ -240,12 +245,13 @@ const [wishlistCount, setWishlistCount] = useState(
                   {steps.map((step, index) => (
                     <span
                       key={index}
-                      className={`step-label ${steps.indexOf(
-                        statusMap[order.status?.toLowerCase()] || "Confirmed"
-                      ) >= index
-                        ? "active-step"
-                        : ""
-                        }`}
+                      className={`step-label ${
+                        steps.indexOf(
+                          statusMap[order.status?.toLowerCase()] || "Confirmed"
+                        ) >= index
+                          ? "active-step"
+                          : ""
+                      }`}
                     >
                       {step}
                     </span>
@@ -272,8 +278,7 @@ const [wishlistCount, setWishlistCount] = useState(
                         <strong>₹{item.productPrice.$numberDecimal}</strong>
                       </p>
                       <p className="item-qty">
-                        size:{" "}
-                        <strong>{order.selectedSize}</strong>
+                        size: <strong>{order.selectedSize}</strong>
                       </p>
                       <p className="item-qty">
                         <strong>Qty: {order.selectedqty}</strong> | Order ID: #{" "}
@@ -354,8 +359,9 @@ const [wishlistCount, setWishlistCount] = useState(
               <hr className="m-auto" />
               <div className="prev-order-item p-3">
                 <img
-                  src={`https://dev.crystovajewels.com${order.orderDetails[0]?.productId?.image[0] || ""
-                    }`}
+                  src={`https://dev.crystovajewels.com${
+                    order.orderDetails[0]?.productId?.image[0] || ""
+                  }`}
                   alt={
                     order.orderDetails[0]?.productId?.productName || "Product"
                   }

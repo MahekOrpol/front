@@ -181,8 +181,11 @@ const CustomJewel = () => {
                 showToast={showToast}
             // toastMessage={toastMessage}
             />
+                  <div className="main-header">
             <Header openCart={openCart}  wishlistCount={userId ? wishlistCount : null}
           cartCount={userId ? cartCount : null} />
+          
+                            </div>
             <div className="custom-jewel-container">
                 {/* Banner Section */}
                 <div className="bsn">
