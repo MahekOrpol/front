@@ -36,11 +36,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   }, []);
 
   if (showForgotPass) {
-    return (
-      <ForgotPass
-        isOpen={showForgotPass}
-      />
-    );
+    return <ForgotPass isOpen={showForgotPass} />;
   }
   if (showChangePass) {
     return (
@@ -54,10 +50,8 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     );
   }
 
-  const handleOverlayClick = (e) => {
- 
-  };
- 
+  const handleOverlayClick = (e) => {};
+
   const validateEmail = (email) => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
@@ -72,7 +66,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     let errors = {};
- 
+
     setLoginErrors(errors);
 
     if (Object.keys(errors).length === 0) {
@@ -89,7 +83,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
           toast.success("Login Successful!");
           localStorage.setItem("user_Id", response.data.user.id);
           localStorage.setItem("user_token", response.data.token.access.token);
-          
+
           setTimeout(() => onClose(), 1000);
         }
       } catch (error) {
@@ -159,7 +153,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
       }
     }
   };
- 
+
   if (!isOpen) return null;
 
   return (
@@ -175,16 +169,16 @@ const RegisterPopup = ({ isOpen, onClose }) => {
         draggable
         pauseOnHover
         theme="light"
-        stacked 
+        stacked
       />
-            <div className="main-header">
-      <Header />
-            </div>
+      <div className="main-header">
+        <Header />
+      </div>
       <div className="register-popup-overlay" onMouseDown={handleOverlayClick}>
         <div className="register-popup" onClick={(e) => e.stopPropagation()}>
           <div className="register-container">
             <div className="register-image">
-              <img src={registerImage} alt="Register" />
+              <img loading="lazy" src={registerImage} alt="Register" />
             </div>
 
             <div className="register-form">
@@ -268,7 +262,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         </div>
                         <p
                           className="hrdd"
-                          style={{cursor:"pointer"}}
+                          style={{ cursor: "pointer" }}
                           onClick={() => setShowForgotPass(true)}
                         >
                           Forgot Password
@@ -297,7 +291,12 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                       </p>
                       <p className="otre">
                         Already have an Account?{" "}
-                        <span className="tvjgds" onClick={() => setTabValue("register")}>Create Account</span>
+                        <span
+                          className="tvjgds"
+                          onClick={() => setTabValue("register")}
+                        >
+                          Create Account
+                        </span>
                       </p>
                     </form>
                   </TabPanel>
@@ -491,6 +490,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                       </p>
                       <div className="ggl_text d-flex align-items-center gap-2 justify-content-center">
                         <img
+                          loading="lazy"
                           src={googleIcon}
                           alt="Google Icon"
                           className="google-icon"
@@ -500,7 +500,12 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                       {/* <GoogleLogin /> */}
                       <p className="otre">
                         Already have an Account?{" "}
-                        <span className="tvjg" onClick={() => setTabValue("login")}>sign in</span>
+                        <span
+                          className="tvjg"
+                          onClick={() => setTabValue("login")}
+                        >
+                          sign in
+                        </span>
                       </p>
                     </form>
                   </TabPanel>

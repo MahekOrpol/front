@@ -1,20 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
-import {
-  FaAward,
-  FaMedal,
-  FaStar,
-} from "react-icons/fa6";
+import { FaAward, FaMedal, FaStar } from "react-icons/fa6";
 import vector from "../../Images/Vector.png";
-import {  BiShoppingBag, BiSolidOffer } from "react-icons/bi";
+import { BiShoppingBag, BiSolidOffer } from "react-icons/bi";
 import Header from "../../Pages/Header";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import best from "../../Images/Mask group (9).png";
 
-import {
-  Pagination,
-} from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -34,11 +28,7 @@ import { Tabs } from "@mui/material";
 import CartPopup from "../Add to Cart";
 import axios from "axios";
 import "swiper/css/navigation";
-import ringVideo1 from "../../Videos/dfcvdfx.mp4";
-import ringVideo2 from "../../Videos/dfvdfvd.mp4";
-import ringVideo3 from "../../Videos/sdcsdcdfc.mp4";
-import ringVideo4 from "../../Videos/sdcxdscx.mp4";
-import ringVideo5 from "../../Videos/dsfcdfc.mp4";
+
 import JewelrySale from "../Contact Us/sdcsd/demo";
 import { ToastContainer, toast } from "react-toastify";
 import Instruction from "./instruction";
@@ -52,7 +42,6 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Ring1 from "./ring demo 1/ring";
-
 
 const Home = () => {
   const [isFavorite, setIsFavorite] = useState({});
@@ -133,12 +122,10 @@ const Home = () => {
       window.removeEventListener("resize", update);
     };
   }, []);
-  
 
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
   };
-
 
   const fetchBestSellersByCategory = async (category) => {
     try {
@@ -274,25 +261,24 @@ const Home = () => {
     document.body.classList.remove("no-scroll");
   };
 
-useEffect(() => {
-  const fetchAll = async () => {
-    try {
-      const [topRated, bestSelling, onSale] = await Promise.all([
-        axios.get(`${BASE_API}/product/getTopRated`),
-        axios.get(`${BASE_API}/product/getBestSelling`),
-        axios.get(`${BASE_API}/product/getOnSale`),
-      ]);
-      setTopRated(topRated.data);
-      setBestSelling(bestSelling.data);
-      setOnSale(onSale.data);
-    } catch (err) {
-      console.error("Error fetching products:", err);
-    }
-  };
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        const [topRated, bestSelling, onSale] = await Promise.all([
+          axios.get(`${BASE_API}/product/getTopRated`),
+          axios.get(`${BASE_API}/product/getBestSelling`),
+          axios.get(`${BASE_API}/product/getOnSale`),
+        ]);
+        setTopRated(topRated.data);
+        setBestSelling(bestSelling.data);
+        setOnSale(onSale.data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      }
+    };
 
-  fetchAll();
-}, []);
-
+    fetchAll();
+  }, []);
 
   const testimonials = [
     {
@@ -320,7 +306,7 @@ useEffect(() => {
       navigate("/register");
       return;
     }
-  
+
     try {
       if (wishlistItems[productId]) {
         // Remove from wishlist
@@ -354,14 +340,14 @@ useEffect(() => {
           [productId]: wishlistItem.id,
         }));
         updateWishlistCount(wishlistCount + 1);
-        toast.success(response.data.message  || "Added to wishlist!");
+        toast.success(response.data.message || "Added to wishlist!");
       }
     } catch (error) {
       console.error("Wishlist error:", error);
       toast.error("Something went wrong. Please try again.");
     }
   };
-  
+
   useEffect(() => {
     const fetchWishlist = async () => {
       if (!userId) return;
@@ -478,15 +464,14 @@ useEffect(() => {
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-      <div className="main-header">
-        <Header
-          openCart={openCart}
-          wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null}
-        />
-</div>
+        <div className="main-header">
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
+        </div>
         <div>
-         
           <JewelrySale />
         </div>
 
@@ -494,6 +479,7 @@ useEffect(() => {
           <span className="category_name mt-md-4">Categories</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img
+            loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
@@ -502,7 +488,6 @@ useEffect(() => {
             <Swiper
               spaceBetween={10}
               loop={true}
-             
               breakpoints={{
                 0: { slidesPerView: 4 },
                 480: { slidesPerView: 5 },
@@ -520,6 +505,7 @@ useEffect(() => {
                 >
                   <div className="d-flex flex-column align-items-center">
                     <img
+                      loading="lazy"
                       src={`https://dev.crystovajewels.com${category.categoryImage}`}
                       className="home-img home_img_ssssss fvfvfc_Zdcdsc"
                       alt={category.categoryName}
@@ -538,63 +524,87 @@ useEffect(() => {
           <div className="scrolling-wrapper fastival-offerssss">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img
+                 loading="lazy"
+                  src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -610,6 +620,7 @@ useEffect(() => {
 
               <div className="overlay-img11">
                 <img
+                 loading="lazy"
                   src={require("../../Images/Rectangle 105457.png")}
                   className="img-fluid w-100"
                   alt="Overlay"
@@ -645,63 +656,63 @@ useEffect(() => {
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img src={vector} alt="icon" />
+                <img  loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -712,6 +723,7 @@ useEffect(() => {
           <span className="category_name mt-md-4">Diamond Jewelry</span>
           <p className="category_txt">Minimal. Modern. Mesmerizing</p>
           <img
+           loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
@@ -724,6 +736,7 @@ useEffect(() => {
             The Latest looks, Crafted to Perfection
           </p>
           <img
+           loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
@@ -857,6 +870,8 @@ useEffect(() => {
                             })()} */}
                             {product.image[0]?.endsWith(".mp4") ? (
                               <video
+                                preload="none"
+                                loading="lazy"
                                 src={`https://dev.crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 autoPlay
@@ -868,6 +883,7 @@ useEffect(() => {
                               />
                             ) : (
                               <img
+                                loading="lazy"
                                 src={`https://dev.crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 alt="Product"
@@ -981,6 +997,8 @@ useEffect(() => {
                             })()} */}
                             {product.image[0]?.endsWith(".mp4") ? (
                               <video
+                                preload="none"
+                                loading="lazy"
                                 src={`https://dev.crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 autoPlay
@@ -992,6 +1010,7 @@ useEffect(() => {
                               />
                             ) : (
                               <img
+                                loading="lazy"
                                 src={`https://dev.crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 alt="Product"
@@ -1108,6 +1127,8 @@ useEffect(() => {
 
                             {product.image[0]?.endsWith(".mp4") ? (
                               <video
+                                preload="none"
+                                loading="lazy"
                                 src={`https://dev.crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 autoPlay
@@ -1119,6 +1140,7 @@ useEffect(() => {
                               />
                             ) : (
                               <img
+                                loading="lazy"
                                 src={`https://dev.crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                 alt="Product"
@@ -1176,6 +1198,7 @@ useEffect(() => {
             Celebrate Forever with a Sparkle
           </p>
           <img
+           loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img best_sellig_sdcdc d-none"
           />
@@ -1188,6 +1211,7 @@ useEffect(() => {
             Elevate the Everyday in Diamond Elegance
           </p>
           <img
+            loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
@@ -1196,6 +1220,7 @@ useEffect(() => {
             <div className="col-lg-6 ring_banner_szcdvc position-relative">
               <div className="h-100 d-flex align-items-center justify-content-center">
                 <img
+                  loading="lazy"
                   src={best}
                   className="img-fluid w-100 h-100 object-fit-cover rounded"
                 />
@@ -1242,7 +1267,6 @@ useEffect(() => {
               </div>
               <div className="h-100 d-flex flex-column justify-content-center domind_jew_sec">
                 <div className="row g-3 h-100 sdcsdcsd_dfrtgdffcdszxc dscsdc_fdvfv_scdsc m-0 product-scroll-container">
-                 
                   <div className="slider_ssss_fdcdf khdcj_csj p-0 mt-0">
                     <Swiper
                       spaceBetween={0}
@@ -1303,6 +1327,8 @@ useEffect(() => {
                                 >
                                   {product.image[0]?.endsWith(".mp4") ? (
                                     <video
+                                      preload="none"
+                                      loading="lazy"
                                       src={`https://dev.crystovajewels.com${product.image[0]}`}
                                       className="p-1_proi img-fluid border-0"
                                       autoPlay
@@ -1317,6 +1343,7 @@ useEffect(() => {
                                     />
                                   ) : (
                                     <img
+                                      loading="lazy"
                                       src={`https://dev.crystovajewels.com${product.image[0]}`}
                                       className="p-1_proi img-fluid border-0"
                                       alt="Product"
@@ -1375,7 +1402,7 @@ useEffect(() => {
 
         <div className="abc1 paddingdn d-flex flex-column align-items-center mt-md-4 stunning_price_fvf">
           <span className="category_name mt-0 mobile-hide">
-          Affordable Luxury
+            Affordable Luxury
           </span>
           <span className="category_name mt-0 mobile-show">
             Stunning Surprise
@@ -1383,6 +1410,7 @@ useEffect(() => {
 
           <p className="category_txt">Sophistication, smartly priced.</p>
           <img
+            loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
@@ -1447,12 +1475,14 @@ useEffect(() => {
           <span className="category_name mt-2">Gifting Edition</span>
           <p className="category_txt">Elegant & Versatile Gifts</p>
           <img
+            loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
           <div className="row pt-3 w-100 scc_gift_edit container">
             <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
               <img
+                loading="lazy"
                 className="img-sssssss"
                 src={require("../../Images/Group 1597884624 (1).png")}
               />
@@ -1462,6 +1492,7 @@ useEffect(() => {
             </div>
             <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
               <img
+                loading="lazy"
                 className="img-sssssss"
                 src={require("../../Images/Group 1597884625 (1).png")}
               />
@@ -1471,6 +1502,7 @@ useEffect(() => {
             </div>
             <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
               <img
+                loading="lazy"
                 className="img-sssssss"
                 src={require("../../Images/Group 1597884626 (1).png")}
               />
@@ -1480,6 +1512,7 @@ useEffect(() => {
             </div>
             <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
               <img
+                loading="lazy"
                 className="img-sssssss"
                 src={require("../../Images/Group 1597884636.png")}
               />
@@ -1494,6 +1527,7 @@ useEffect(() => {
           <span className="category_name mt-2">Discover Styles</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img
+            loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
@@ -1506,19 +1540,19 @@ useEffect(() => {
           <span className="category_name ">New Arrivals</span>
           <p className="category_txt">New Creations, Forever Elegance</p>
           <img
+            loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
         </div>
 
-
         <Ring1 />
-        
 
         <div className="heder_sec_main d-flex flex-column align-items-center dscdsc_inst">
           <span className="category_name">Instructions</span>
           <p className="category_txt">Store it Soft, Shine it Often</p>
           <img
+            loading="lazy"
             src={require("../../Images/Groupimg.png")}
             alt="Decorative"
             className="home_tag_img"
@@ -1535,6 +1569,7 @@ useEffect(() => {
             <span className="category_name ">Client Testimonial</span>
             <p className="category_txt">What our Client’s say about us</p>
             <img
+              loading="lazy"
               src={require("../../Images/Groupimg.png")}
               alt="Decorative"
               className="home_tag_img"
@@ -1584,7 +1619,6 @@ useEffect(() => {
               )}
             </Swiper>
           </div>
-        
         </div>
         <div className="pb-5"></div>
         <Footer />

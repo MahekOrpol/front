@@ -220,12 +220,17 @@ const CheckoutPage = () => {
 
   return (
     <div>
-            <div className="main-header">
-
-      <div className="d-flex p-0 justify-content-center w-100 bdsh_mIN">
-        <img src={logo1} onClick={() => navigate("/")} alt="Logo" width={200} />
+      <div className="main-header">
+        <div className="d-flex p-0 justify-content-center w-100 bdsh_mIN">
+          <img
+            loading="lazy"
+            src={logo1}
+            onClick={() => navigate("/")}
+            alt="Logo"
+            width={200}
+          />
+        </div>
       </div>
-            </div>
       {/* <Header /> */}
       <div className="gffg">
         {/* left section */}
@@ -390,6 +395,7 @@ const CheckoutPage = () => {
                     className="d-flex align-items-center gap-2 Box1 BoxFont border ryyt"
                   >
                     <img
+                      loading="lazy"
                       src={require("../../Images/phoneicon.png")}
                       alt="phone"
                       width="20"
@@ -415,6 +421,7 @@ const CheckoutPage = () => {
 
               <div className="mt-3 d-flex align-items-center gap-2">
                 <img
+                  loading="lazy"
                   src={require("../../Images/lock.png")}
                   alt="lock"
                   width="18"
@@ -447,8 +454,8 @@ const CheckoutPage = () => {
               const displayPrice = item.productId.hasVariations
                 ? item.salePrice // Use the size-specific sale price
                 : item.productPrice?.$numberDecimal
-                  ? parseFloat(item.productPrice.$numberDecimal)
-                  : "Price not available";
+                ? parseFloat(item.productPrice.$numberDecimal)
+                : "Price not available";
               return (
                 <div className="checkout-order-item" key={index}>
                   {(() => {
@@ -457,6 +464,7 @@ const CheckoutPage = () => {
                     );
                     return imageToShow ? (
                       <img
+                        loading="lazy"
                         src={`https://dev.crystovajewels.com${imageToShow}`}
                         alt={item.productId.productId}
                         className="checkout-order-img"
@@ -468,7 +476,9 @@ const CheckoutPage = () => {
                   <div className="checkout-order-details">
                     <div className="fdfsssdf">
                       <div className="dsfdss">
-                        <p className="product-name text-truncate">{item.productId.productName}</p>
+                        <p className="product-name text-truncate">
+                          {item.productId.productName}
+                        </p>
                         <p className="product-desc text-truncate">
                           {item.productId.productsDescription}
                         </p>{" "}
@@ -478,9 +488,7 @@ const CheckoutPage = () => {
                           </p>
                         )}
                       </div>
-                      <p className="product-price">
-                        ₹ {displayPrice}
-                      </p>
+                      <p className="product-price">₹ {displayPrice}</p>
                     </div>
                   </div>
                 </div>
@@ -502,10 +510,8 @@ const CheckoutPage = () => {
 
             <div className="checkout-summary">
               <div className="summary-row">
-                <span>
-                  Subtotal • {orderDetails.length} Items
-                </span>
-                <strong >&#8377;{totalAmount}</strong>
+                <span>Subtotal • {orderDetails.length} Items</span>
+                <strong>&#8377;{totalAmount}</strong>
               </div>
               <div className="summary-row">
                 <span>Total Discount</span>

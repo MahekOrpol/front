@@ -526,6 +526,7 @@ const Products = () => {
         </div>
         <div>
           <img
+loading="lazy"
             src={require("../../Images/productt_sss.png")}
             className="img_fluid1_banner"
           />
@@ -549,6 +550,7 @@ const Products = () => {
                 onClick={() => handleClick("Women")}
               >
                 <img
+loading="lazy"
                   src={
                     selectedGender === "Women"
                       ? require("../../Images/her.png")
@@ -566,6 +568,7 @@ const Products = () => {
                 onClick={() => handleClick("Men")}
               >
                 <img
+loading="lazy"
                   src={
                     selectedGender === "Men"
                       ? require("../../Images/him-active.png")
@@ -583,6 +586,7 @@ const Products = () => {
                   onClick={toggleFilter}
                 >
                   <img
+loading="lazy"
                     src={require("../../Images/filter.png")}
                     alt="Filter Icon"
                   />{" "}
@@ -773,6 +777,7 @@ const Products = () => {
                             />
                           ) : (
                             <img
+loading="lazy"
                               src={`https://dev.crystovajewels.com${
                                 product.image[imageIndexes[product.id]]
                               }`}

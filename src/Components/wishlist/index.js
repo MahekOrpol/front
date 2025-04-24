@@ -26,7 +26,7 @@ const Wishlist = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [wishlistCount, setWishlistCount] = useState(
-    parseInt(localStorage.getItem('wishlistCount')) || 0
+    parseInt(localStorage.getItem("wishlistCount")) || 0
   );
   const dispatch = useDispatch();
   const {
@@ -124,7 +124,7 @@ const Wishlist = () => {
       const wishlistData = response.data.data;
       setWishlist(wishlistData);
       setWishlistCount(wishlistData.length);
-      localStorage.setItem('wishlistCount', wishlistData.length);
+      localStorage.setItem("wishlistCount", wishlistData.length);
       // Initialize image indexes for each product
       const initialIndexes = {};
       wishlistData.forEach((product) => {
@@ -265,12 +265,12 @@ const Wishlist = () => {
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-      <div className="main-header">
-        <Header
-          openCart={openCart}
-          wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null}
-        />
+        <div className="main-header">
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
         </div>
         <div className="container">
           <div className="hdr_csd flex-column align-items-center produ_sss">
@@ -278,7 +278,8 @@ const Wishlist = () => {
               {wishlist.map(({ productId, id }) => (
                 <div
                   key={id}
-                  className="col-lg-3 col-md-4 col-6 mb-4 col-5ths asxasx_cards dcvdfxC_dfrvdfvf" style={{ flex: "0 0 auto" }}
+                  className="col-lg-3 col-md-4 col-6 mb-4 col-5ths asxasx_cards dcvdfxC_dfrvdfvf"
+                  style={{ flex: "0 0 auto" }}
                   onMouseEnter={() => setHoveredProduct(productId.id)}
                   onMouseLeave={() => setHoveredProduct(null)}
                 >
@@ -292,7 +293,8 @@ const Wishlist = () => {
                         <div
                           className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
                           onClick={() => toggleWishlist(productId?.id)}
-                          style={{ cursor: "pointer" }}   >
+                          style={{ cursor: "pointer" }}
+                        >
                           {wishlist.some(
                             (item) => item.productId.id === productId.id
                           ) ? (
@@ -306,8 +308,9 @@ const Wishlist = () => {
                             imageIndexes[productId?.id]
                           ]?.endsWith(".mp4") ? (
                             <video
-                              src={`https://dev.crystovajewels.com${productId.image[imageIndexes[productId.id]]
-                                }`}
+                              src={`https://dev.crystovajewels.com${
+                                productId.image[imageIndexes[productId.id]]
+                              }`}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                               autoPlay
                               loop
@@ -316,8 +319,10 @@ const Wishlist = () => {
                             />
                           ) : (
                             <img
-                              src={`https://dev.crystovajewels.com${productId.image[imageIndexes[productId.id]]
-                                }`}
+                              loading="lazy"
+                              src={`https://dev.crystovajewels.com${
+                                productId.image[imageIndexes[productId.id]]
+                              }`}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                               alt={productId.productName}
                             />
@@ -327,13 +332,19 @@ const Wishlist = () => {
                               <div className="hover-overlay w-100 d-none d-sm-flex">
                                 <button
                                   className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
-                                  onClick={() => handlePrevImage(productId, productId.image)}>
+                                  onClick={() =>
+                                    handlePrevImage(productId, productId.image)
+                                  }
+                                >
                                   <FaChevronLeft />
                                 </button>
 
                                 <button
                                   className="btn btn-light right-btn"
-                                  onClick={() => handleNextImage(productId, productId.image)}>
+                                  onClick={() =>
+                                    handleNextImage(productId, productId.image)
+                                  }
+                                >
                                   <FaChevronRight />
                                 </button>
                               </div>
@@ -356,14 +367,19 @@ const Wishlist = () => {
                       </div>
                       <div
                         className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf"
-                        onClick={() => handleProductClick(productId.id)}>
-                        <button className="more_btn_dsdd ewdcscdsedcds w-50"
+                        onClick={() => handleProductClick(productId.id)}
+                      >
+                        <button
+                          className="more_btn_dsdd ewdcscdsedcds w-50"
                           // onClick={() => navigate("/product-details")}
-                          onClick={() => handleProductClick(productId.id)} >
+                          onClick={() => handleProductClick(productId.id)}
+                        >
                           More Info
                         </button>
-                        <button className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                          onClick={() => addToCart(productId)} >
+                        <button
+                          className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                          onClick={() => addToCart(productId)}
+                        >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
                       </div>
@@ -395,8 +411,9 @@ const Wishlist = () => {
                             imageIndexes[productId?.id]
                           ]?.endsWith(".mp4") ? (
                             <video
-                              src={`https://dev.crystovajewels.com${productId.image[imageIndexes[productId.id]]
-                                }`}
+                              src={`https://dev.crystovajewels.com${
+                                productId.image[imageIndexes[productId.id]]
+                              }`}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                               autoPlay
                               loop
@@ -405,8 +422,10 @@ const Wishlist = () => {
                             />
                           ) : (
                             <img
-                              src={`https://dev.crystovajewels.com${productId.image[imageIndexes[productId.id]]
-                                }`}
+                              loading="lazy"
+                              src={`https://dev.crystovajewels.com${
+                                productId.image[imageIndexes[productId.id]]
+                              }`}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                               alt={productId.productName}
                             />
@@ -416,12 +435,18 @@ const Wishlist = () => {
                               <div className="hover-overlay w-100 d-none d-sm-flex">
                                 <button
                                   className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
-                                  onClick={() => handlePrevImage(productId, productId.image)}>
+                                  onClick={() =>
+                                    handlePrevImage(productId, productId.image)
+                                  }
+                                >
                                   <FaChevronLeft />
                                 </button>
                                 <button
                                   className="btn btn-light right-btn"
-                                  onClick={() => handleNextImage(productId, productId.image)} >
+                                  onClick={() =>
+                                    handleNextImage(productId, productId.image)
+                                  }
+                                >
                                   <FaChevronRight />
                                 </button>
                               </div>
@@ -444,10 +469,12 @@ const Wishlist = () => {
                       </div>
                       <div
                         className="d-flex jjcsindn_jcb_ccs flex-column mt-2"
-                        onClick={() => handleProductClick(productId.id)}>
+                        onClick={() => handleProductClick(productId.id)}
+                      >
                         <button
                           className="d-flex align-items-center add-to-crd-dd1 justify-content-center gap-3"
-                          onClick={() => addToCart(productId)} >
+                          onClick={() => addToCart(productId)}
+                        >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
                       </div>

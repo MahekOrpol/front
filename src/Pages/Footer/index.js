@@ -22,6 +22,7 @@ const Footer = () => {
         <div className="justify-content-around d-flex w-100 fccc_asxs_footer">
           <div className=" footer_cont text-white sdc_sdds1">
             <img
+              loading="lazy"
               src={require("../../Images/crystovalogowhite (1) 2.png")}
               width={400}
             />
@@ -146,6 +147,7 @@ const Footer = () => {
         </div>
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
           <img
+            loading="lazy"
             src={require("../../Images/Group 104.svg").default}
             className=""
           />
@@ -165,6 +167,7 @@ const Footer = () => {
         <div className="justify-content-center align-items-center d-flex flex-column w-100 fccc_asxs_footer">
           <div className=" footer_cont_1 text-white sdc_sdds1">
             <img
+              loading="lazy"
               src={require("../../Images/crystovalogowhite (1) 2.png")}
               width={400}
             />
@@ -385,6 +388,7 @@ const Footer = () => {
         </div>
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
           <img
+            loading="lazy"
             src={require("../../Images/Group 104.svg").default}
             className=""
           />

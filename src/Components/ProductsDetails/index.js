@@ -7,7 +7,6 @@ import { BiShoppingBag } from "react-icons/bi";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { GoShareAndroid } from "react-icons/go";
 import { FcLike } from "react-icons/fc";
-import ringVideo from "../../Videos/ring.mp4";
 import CartPopup from "../Add to Cart";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -77,7 +76,8 @@ const ProductDetailss = () => {
   const [productName, setProductName] = useState();
   const [salePrice, setSalePrice] = useState();
   const [imageUrl, setImageUrl] = useState("");
-  const phoneNumber = "919099975424"; // Replace with your WhatsApp number
+  const phoneNumber = "917861957583";
+  // const phoneNumber = "919081139039";
   const [wishlistCount, setWishlistCount] = useState(
     parseInt(localStorage.getItem("wishlistCount")) || 0
   );
@@ -340,13 +340,13 @@ Please let me know the next steps.`;
 
   const faqs = [
     {
-      icon: <img src={require("../../Images/watch.png")} />,
+      icon: <img loading="lazy" src={require("../../Images/watch.png")} />,
       title: "Shipping",
       answer:
         "This item is made to order and takes 2-3 weeks to craft. We ship FedEx Priority Overnight, signature required and fully insured.",
     },
     {
-      icon: <img src={require("../../Images/Vector (6).png")} />,
+      icon: <img loading="lazy" src={require("../../Images/Vector (6).png")} />,
       title: "Return Policy",
       answer:
         "Received an item you don't like? Crystova is proud to offer free returns within 30 days from receiving your item. Contact our support team to issue a return.",
@@ -494,6 +494,7 @@ Please let me know the next steps.`;
                           />
                         ) : (
                           <img
+                            loading="lazy"
                             className="detr_img bg-white"
                             src={`https://dev.crystovajewels.com${img}`}
                             alt={`Product ${index + 1}`}
@@ -558,6 +559,7 @@ Please let me know the next steps.`;
                             />
                           ) : (
                             <img
+                              loading="lazy"
                               className="detr_img slider_ring_sss"
                               src={`https://dev.crystovajewels.com${img}`}
                               alt={`Slide ${index + 1}`}
@@ -742,6 +744,7 @@ Please let me know the next steps.`;
                     {images.map((media, index) => (
                       <div key={index}>
                         <img
+                          loading="lazy"
                           src={`https://dev.crystovajewels.com${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           alt={productDetails?.productName || "Product image"}
@@ -751,6 +754,7 @@ Please let me know the next steps.`;
                   </Slider>
                 ) : images[0] ? (
                   <img
+                    loading="lazy"
                     src={`https://dev.crystovajewels.com${images[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
@@ -763,6 +767,7 @@ Please let me know the next steps.`;
               {images[1] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
+                    loading="lazy"
                     src={`https://dev.crystovajewels.com${images[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
@@ -774,6 +779,7 @@ Please let me know the next steps.`;
               {images[2] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
+                    loading="lazy"
                     src={`https://dev.crystovajewels.com${images[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={productDetails?.productName || "Product image"}
@@ -973,6 +979,7 @@ Please let me know the next steps.`;
                 <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_tttdd">
                   <div className="icon-bdf">
                     <img
+                      loading="lazy"
                       src={require("../../Images/material.png")}
                       alt="AVOID WATER / MOISTURE"
                     />
@@ -981,6 +988,7 @@ Please let me know the next steps.`;
                   <div className="divider"></div>
                   <div className="icon-bdf">
                     <img
+                      loading="lazy"
                       src={require("../../Images/oeeofiw.png")}
                       alt="REMOVE BEFORE SLEEPING"
                     />
@@ -989,6 +997,7 @@ Please let me know the next steps.`;
                   <div className="divider szcxds_fix"></div>
                   <div className="icon-bdf">
                     <img
+                      loading="lazy"
                       src={require("../../Images/fragrance_6211860.png")}
                       alt="AVOID PERFUME / LOTION"
                     />
@@ -997,6 +1006,7 @@ Please let me know the next steps.`;
                   <div className="divider"></div>
                   <div className="icon-bdf">
                     <img
+                      loading="lazy"
                       src={require("../../Images/box_14309182 (1).png")}
                       alt="USE SOFT / DRY FABRIC TO CLEAN"
                     />
@@ -1008,11 +1018,13 @@ Please let me know the next steps.`;
                   <div className="card det_cddd p-3">
                     {/* <div className="d-flex gap-3 align-items-center align-content-center">
                       <img
+loading="lazy"
                         src={require("../../Images/Ellipse 1687.png")}
                         className="position-relative"
                       />
                       <div className="position-absolute dvtfrvfr">
-                        <img src={require("../../Images/Vector (4).png")} />
+                        <img
+loading="lazy" src={require("../../Images/Vector (4).png")} />
                       </div>
                       <span className="knoe_www">Know your Setting</span>
                     </div> */}
@@ -1020,7 +1032,8 @@ Please let me know the next steps.`;
                     <div className="d-flex align-items-center gap-3 pt-4 sdsc_knoww">
                       {/* <div className="card det_cd_sec dfc_vardss p-3 w-100">
                         <div className="d-flex align-items-center gap-3">
-                          <img src={require("../../Images/Vector (5).png")} />
+                          <img
+loading="lazy" src={require("../../Images/Vector (5).png")} />
                           <span className="knoe_www_rng">APPROX CTW</span>
                         </div>
                         <div className="pt-3">
@@ -1056,6 +1069,7 @@ Please let me know the next steps.`;
                                 aria-controls="collapseOne"
                               >
                                 <img
+                                  loading="lazy"
                                   src={
                                     require("../../Images/Frame (23).svg")
                                       .default
@@ -1087,7 +1101,10 @@ Please let me know the next steps.`;
                     <div className="pt-3">
                       <div className="card det_cd_sec p-3 w-100">
                         <div className="d-flex align-items-center gap-3">
-                          <img src={require("../../Images/Group (2).png")} />
+                          <img
+                            loading="lazy"
+                            src={require("../../Images/Group (2).png")}
+                          />
                           <span className="knoe_www_rng">METAL</span>
                         </div>
                         <div className="pt-3">
@@ -1145,7 +1162,7 @@ Please let me know the next steps.`;
           <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd mt-md-3 szdcd_99909">
             <span className="category_name">Related Products</span>
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
-            <img src={require("../../Images/Groupimg.png")} />
+            <img loading="lazy" src={require("../../Images/Groupimg.png")} />
           </div>
           <div className="heder_sec_main d-flex flex-column p-0">
             <div className="row">
@@ -1210,6 +1227,7 @@ Please let me know the next steps.`;
                               />
                             ) : (
                               <img
+                                loading="lazy"
                                 src={`https://dev.crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid border-0"
                                 alt="Product"

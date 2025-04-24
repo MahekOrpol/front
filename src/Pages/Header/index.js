@@ -33,7 +33,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const handleSearch = () => {
     if (searchValue.trim()) {
       navigate(`/products?search=${encodeURIComponent(searchValue.trim())}`);
-      // setSearchValue(""); 
+      // setSearchValue("");
       setIsDrawerOpen(false); // Close the drawer after search
     }
   };
@@ -62,7 +62,6 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
     };
   }, [showSignup]);
 
-  
   useEffect(() => {
     if (user_Id) {
       getProfileData();
@@ -71,7 +70,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
 
   const getProfileData = async () => {
     try {
-      const res = await axios.get(`https://dev.crystovajewels.com/api/v1/users/${user_Id}`);
+      const res = await axios.get(
+        `https://dev.crystovajewels.com/api/v1/users/${user_Id}`
+      );
       setData(res.data);
     } catch (err) {
       console.log(err);
@@ -92,18 +93,17 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
 
   useEffect(() => {
     const body = document.body;
-  
+
     if (isDrawerOpen || showSignup) {
       body.classList.add("no-scroll");
     } else {
       body.classList.remove("no-scroll");
     }
-  
+
     return () => {
       body.classList.remove("no-scroll");
     };
-  }, [isDrawerOpen,showSignup]);
-  
+  }, [isDrawerOpen, showSignup]);
 
   return (
     <>
@@ -119,15 +119,18 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
 
         {/* Search Bar */}
         <div className="justify-content-center d-flex ps-xl-5 xdcxscd_sercv">
-          <div className="d-flex align-items-center sdchy_88__sxsxs" style={{ width: "100%" }}>
+          <div
+            className="d-flex align-items-center sdchy_88__sxsxs"
+            style={{ width: "100%" }}
+          >
             <input
               type="text"
               placeholder="Search Product Here"
               className="flex-1 px-4 py-2 outline-none text-gray-700 rfvfd_UHGYU"
-              style={{ borderRadius: "10px 0px 0px 10px", height: '2.7rem' }}
+              style={{ borderRadius: "10px 0px 0px 10px", height: "2.7rem" }}
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
             <button
               className="p-3 rounded-r-full d-flex align-items-center justify-content-center search_hbdhj bg_prime"
@@ -144,14 +147,13 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           </div>
         </div>
 
-
         {/* Logo */}
         <div
           className="d-flex justify-content-center w-50 hedr_sss dsfcdsfcsdfc_dcd"
           style={{ cursor: "pointer" }}
           onClick={() => navigate("/")}
         >
-          <img src={logo} alt="Logo" />
+          <img loading="lazy" src={logo} alt="Logo" />
         </div>
 
         {/* Icons Section (Desktop Only) */}
@@ -159,7 +161,8 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           <div
             className="user_icon d-flex align-items-center flex-column new_ddd"
             style={{ cursor: "pointer" }}
-            onClick={() => setIsSignup(true)}>
+            onClick={() => setIsSignup(true)}
+          >
             <RiUserLine size={30} />
             <div className="align-items-center" style={{ lineHeight: "21px" }}>
               <span className="acco9_text w-100">Account</span>
@@ -167,10 +170,15 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             {/* Signup Popup */}
             {showSignup ? (
               <div className="signup-popup-overlay">
-                <div className="signup-popup" onClick={(e) => e.stopPropagation()} ref={popupRef}>
+                <div
+                  className="signup-popup"
+                  onClick={(e) => e.stopPropagation()}
+                  ref={popupRef}
+                >
                   <div className="popup-arrow"></div>
                   <div className="profile-section">
                     <img
+                      loading="lazy"
                       src={require("../../Images/15 Model white.png")}
                       alt="Profile"
                       className="profile-pic"
@@ -178,8 +186,13 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     <div className="profile-details">
                       {data ? (
                         <>
-                          <h5> {data.firstName} {data.lastName} </h5>
-                          <p className="contact-number"><strong>{data.phone}</strong></p>
+                          <h5>
+                            {" "}
+                            {data.firstName} {data.lastName}{" "}
+                          </h5>
+                          <p className="contact-number">
+                            <strong>{data.phone}</strong>
+                          </p>
                         </>
                       ) : (
                         <h5>Loading...</h5>
@@ -188,10 +201,12 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   </div>
                   {/* Menu List */}
                   <ul className="menu-list">
-                    {localStorage.getItem("user_Id") && localStorage.getItem("user_token") ? (
+                    {localStorage.getItem("user_Id") &&
+                    localStorage.getItem("user_token") ? (
                       <li onClick={() => navigate("/Editprofile")}>
                         <div className="menu-item gap-2">
                           <img
+                            loading="lazy"
                             src={require("../../Images/profileicon.png")}
                             alt="Profile"
                             className="menu-icons"
@@ -204,6 +219,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       <li onClick={() => navigate("/register")}>
                         <div className="menu-item gap-2">
                           <img
+                            loading="lazy"
                             src={require("../../Images/profileicon.png")}
                             alt="Profile"
                             className="menu-icons"
@@ -217,6 +233,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     <li onClick={() => navigate("/Order")}>
                       <div className="menu-item gap-2">
                         <img
+                          loading="lazy"
                           src={require("../../Images/ordericon.png")}
                           alt="Orders"
                           className="menu-icons"
@@ -228,6 +245,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     <li>
                       <div className="menu-item gap-2">
                         <img
+                          loading="lazy"
                           src={require("../../Images/termsicon.png")}
                           alt="Terms"
                           className="menu-icons"
@@ -239,6 +257,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     <li>
                       <div className="menu-item gap-2">
                         <img
+                          loading="lazy"
                           src={require("../../Images/privacyicon.png")}
                           alt="Privacy"
                           className="menu-icons"
@@ -250,6 +269,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     <li onClick={() => navigate("/contact-us")}>
                       <div className="menu-item gap-2">
                         <img
+                          loading="lazy"
                           src={require("../../Images/contacticon.png")}
                           alt="Contact"
                           className="menu-icons"
@@ -258,28 +278,31 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
-                    {localStorage.getItem("user_Id") && localStorage.getItem("user_token") && (
-                      <li onClick={handleLogout}>
-                        <div className="menu-item gap-2">
-                          <MdLogout size={22} />
-                          <span className="sass ms-2">Logout</span>
-                        </div>
-                        <FaAngleRight size={20} className="menu-arrow" />
-                      </li>
-                    )}
+                    {localStorage.getItem("user_Id") &&
+                      localStorage.getItem("user_token") && (
+                        <li onClick={handleLogout}>
+                          <div className="menu-item gap-2">
+                            <MdLogout size={22} />
+                            <span className="sass ms-2">Logout</span>
+                          </div>
+                          <FaAngleRight size={20} className="menu-arrow" />
+                        </li>
+                      )}
                   </ul>
                 </div>
               </div>
-            ) : (
-              null
-            )}
+            ) : null}
           </div>
           <div
             className="user_icon d-flex align-items-center flex-column position-relative"
             style={{ cursor: "pointer" }}
             onClick={() => navigate("/wishlist")}
           >
-            <CiHeart className="gsddd" size={30} style={{ strokeWidth: "0.5px", stroke: "black" }} />
+            <CiHeart
+              className="gsddd"
+              size={30}
+              style={{ strokeWidth: "0.5px", stroke: "black" }}
+            />
             {/* <span className="position-absolute top-0 start-100 badge rounded-pill bg-danger"
               style={{
                 fontSize: "0.6rem",
@@ -288,13 +311,14 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               }}
             > */}
             {wishlistCount > 0 && (
-              <span className="position-absolute top-0 start-100 badge rounded-pill"
+              <span
+                className="position-absolute top-0 start-100 badge rounded-pill"
                 style={{
                   fontSize: "11px",
                   padding: "5px 8px",
                   minWidth: "1.2rem",
                   backgroundColor: "#611d2b",
-                  fontFamily: "Cabin, sans-serif"
+                  fontFamily: "Cabin, sans-serif",
                 }}
               >
                 {wishlistCount}
@@ -309,15 +333,20 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="user_icon d-flex align-items-center flex-column position-relative"
             style={{ cursor: "pointer" }}
           >
-            <IoBagHandleOutline className="gsddd" size={30} onClick={openCart} />
+            <IoBagHandleOutline
+              className="gsddd"
+              size={30}
+              onClick={openCart}
+            />
             {cartCount > 0 && (
-              <span className="position-absolute top-0 start-100 badge badge1 rounded-pill"
+              <span
+                className="position-absolute top-0 start-100 badge badge1 rounded-pill"
                 style={{
                   fontSize: "11px",
                   padding: "5px 8px",
                   minWidth: "1.2rem",
                   backgroundColor: "#611d2b",
-                  fontFamily: "Cabin, sans-serif"
+                  fontFamily: "Cabin, sans-serif",
                 }}
               >
                 {cartCount}
@@ -334,37 +363,41 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
       <div className="dsn_mdcm">
         <div
           className="d-flex align-items-center justify-content-center jhdb_dhvh pb-1 pt-2"
-          style={{ borderTop: "1px solid #797979" ,background:'white'}}
+          style={{ borderTop: "1px solid #797979", background: "white" }}
         >
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Rings")}
           >
-            <img src={ring} width={25} alt="Rings" /> Rings
+            <img loading="lazy" src={ring} width={25} alt="Rings" /> Rings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Earrings")}
           >
-            <img src={earing} width={25} alt="Earrings" /> Earrings
+            <img loading="lazy" src={earing} width={25} alt="Earrings" />{" "}
+            Earrings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Pendant")}
           >
-            <img src={GiGemPendant} width={20} alt="Pendant" /> Pendant
+            <img loading="lazy" src={GiGemPendant} width={20} alt="Pendant" />{" "}
+            Pendant
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Bracelet")}
           >
-            <img src={bracelet} width={25} alt="Bracelet" /> Bracelet
+            <img loading="lazy" src={bracelet} width={25} alt="Bracelet" />{" "}
+            Bracelet
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => navigate("/Customjewel")}
           >
-            <img src={csome} width={20} alt="Custom Jewellery" /> Custom Jewellery
+            <img loading="lazy" src={csome} width={20} alt="Custom Jewellery" />{" "}
+            Custom Jewellery
           </div>
         </div>
       </div>
@@ -372,13 +405,16 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
       {/* Mobile Drawer */}
       <div className={`mobile-drawer ${isDrawerOpen ? "open" : ""}`}>
         <div className="mobile-img">
-          <img src={require("../../Images/crystovalogowhite (1) 2.png")} style={{ width: '60%' }} />
+          <img
+            loading="lazy"
+            src={require("../../Images/crystovalogowhite (1) 2.png")}
+            style={{ width: "60%" }}
+          />
           <div className="drawer-header">
             <IoClose size={30} onClick={toggleDrawer} />
           </div>
         </div>
         <div className="drawer-menu ">
-        
           <div className="position-relative mb-3 w-100">
             <Search className="position-absolute top-50 start-0 translate-middle-y ms-2 text-muted" />
             <input
@@ -387,50 +423,107 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               className="form-control pfds"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
           </div>
 
           <div className="drawer-pro ">
             <div className="eeerd">
               <span className="drawer-new">CATEGORY</span>
-              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Rings")}>
-                <img src={ring} width={20} alt="Rings" /> Rings
+              <div
+                className="drawer-item d-flex align-items-center gap-2 w-100"
+                onClick={() => handleCategoryClick("Rings")}
+              >
+                <img loading="lazy" src={ring} width={20} alt="Rings" /> Rings
               </div>
-              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Earrings")}>
-                <img src={earing} width={20} alt="Earrings" /> Earrings
+              <div
+                className="drawer-item d-flex align-items-center gap-2 w-100"
+                onClick={() => handleCategoryClick("Earrings")}
+              >
+                <img loading="lazy" src={earing} width={20} alt="Earrings" />{" "}
+                Earrings
               </div>
-              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Pendant")}>
-                <img src={GiGemPendant} width={20} alt="Pendant" /> Pendant
+              <div
+                className="drawer-item d-flex align-items-center gap-2 w-100"
+                onClick={() => handleCategoryClick("Pendant")}
+              >
+                <img
+                  loading="lazy"
+                  src={GiGemPendant}
+                  width={20}
+                  alt="Pendant"
+                />{" "}
+                Pendant
               </div>
-              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => handleCategoryClick("Bracelet")}>
-                <img src={bracelet} width={20} alt="Bracelet" /> Bracelet
+              <div
+                className="drawer-item d-flex align-items-center gap-2 w-100"
+                onClick={() => handleCategoryClick("Bracelet")}
+              >
+                <img loading="lazy" src={bracelet} width={20} alt="Bracelet" />{" "}
+                Bracelet
               </div>
-              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => navigate("/Customjewel")}>
-                <img src={csome} width={20} alt="Custom Jewellery" /> Custom Jewellery
+              <div
+                className="drawer-item d-flex align-items-center gap-2 w-100"
+                onClick={() => navigate("/Customjewel")}
+              >
+                <img
+                  loading="lazy"
+                  src={csome}
+                  width={20}
+                  alt="Custom Jewellery"
+                />{" "}
+                Custom Jewellery
               </div>
             </div>
             <div className="eeerd pt-2 pb-3">
               <span className="drawer-new">SUPPORT</span>
-              <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => navigate("/contact-us")}>
-                <img src={require("../../Images/contacticon.png")} width={18} alt="Profile" /> Contact Us
+              <div
+                className="drawer-item d-flex align-items-center gap-2 w-100"
+                onClick={() => navigate("/contact-us")}
+              >
+                <img
+                  loading="lazy"
+                  src={require("../../Images/contacticon.png")}
+                  width={18}
+                  alt="Profile"
+                />{" "}
+                Contact Us
               </div>
             </div>
-            {localStorage.getItem("user_Id") && localStorage.getItem("user_token") ? (
+            {localStorage.getItem("user_Id") &&
+            localStorage.getItem("user_token") ? (
               <>
                 <div className="pt-2">
                   <span className="drawer-new">ACCOUNT</span>
-                  <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => {
-                    setIsDrawerOpen(false);
-                    navigate('/Editprofile');
-                  }}>
-                    <img src={require("../../Images/profileicon.png")} width={18} alt="Profile" /> Your Profile
+                  <div
+                    className="drawer-item d-flex align-items-center gap-2 w-100"
+                    onClick={() => {
+                      setIsDrawerOpen(false);
+                      navigate("/Editprofile");
+                    }}
+                  >
+                    <img
+                      loading="lazy"
+                      src={require("../../Images/profileicon.png")}
+                      width={18}
+                      alt="Profile"
+                    />{" "}
+                    Your Profile
                   </div>
-                  <div className="drawer-item d-flex align-items-center gap-2 w-100" onClick={() => {
-                    setIsDrawerOpen(false);
-                    navigate('/Order');
-                  }}>
-                    <img src={require("../../Images/ordericon.png")} width={18} alt="Orders" /> My Orders
+                  <div
+                    className="drawer-item d-flex align-items-center gap-2 w-100"
+                    onClick={() => {
+                      setIsDrawerOpen(false);
+                      navigate("/Order");
+                    }}
+                  >
+                    <img
+                      loading="lazy"
+                      src={require("../../Images/ordericon.png")}
+                      width={18}
+                      alt="Orders"
+                    />{" "}
+                    My Orders
                   </div>
                 </div>
                 {/* Logout button at bottom with red background */}
@@ -453,10 +546,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   className="drawer-item pt-3 d-flex align-items-center gap-2 w-100"
                   onClick={() => {
                     setIsDrawerOpen(false);
-                    navigate('/register');
+                    navigate("/register");
                   }}
                 >
-                  <img src={usericon} width={18} />
+                  <img loading="lazy" src={usericon} width={18} />
                   <span>Sign in</span>
                 </div>
               </div>
@@ -471,15 +564,14 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3"
           onClick={() => {
             setIsDrawerOpen(false);
-            navigate('/register')
+            navigate("/register");
           }}
-        >
-         
-        </div>
-      </div >
+        ></div>
+      </div>
 
-      {isDrawerOpen && <div className="drawer-overlay" onClick={toggleDrawer}></div>
-      }
+      {isDrawerOpen && (
+        <div className="drawer-overlay" onClick={toggleDrawer}></div>
+      )}
     </>
   );
 };
