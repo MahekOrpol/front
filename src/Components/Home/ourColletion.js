@@ -38,19 +38,7 @@ const OueColletion = () => {
           </div>
           <div className="d-flex justify-content-between gap-4 w-100 defV_ybsxc">
             {productImages.map((product, index) => {
-              // let price = "0.00";
-              // if (product.salePrice) {
-              //   if (
-              //     typeof product.salePrice === "object" &&
-              //     "$numberDecimal" in product.salePrice
-              //   ) {
-              //     price = parseFloat(product.salePrice.$numberDecimal).toFixed(
-              //       2
-              //     );
-              //   } else {
-              //     price = parseFloat(product.salePrice).toFixed(2);
-              //   }
-              // }
+            
 
               return (
                 <div

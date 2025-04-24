@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Slider from "react-slick";
 import "./index.css";
 
 const Gift = () => {
-  const sliderSettings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    // autoplay: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-  };
+  const sliderSettings = useMemo(
+    () => ({
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+    }),
+    []
+  );
 
   return (
     <div className="container row col-md-12 d-flex align-items-center ring_sec_gifff p-0">
@@ -40,7 +42,7 @@ const Gift = () => {
             <div className="slider-card">
               <img
                 loading="lazy"
-                src={require("../../../Images/slider.svg").default}
+                src={require("../../../Images/slider.webp")}
                 alt="Gift Slide"
                 className="gift_img_round"
               />
@@ -48,7 +50,7 @@ const Gift = () => {
             <div className="slider-card">
               <img
                 loading="lazy"
-                src={require("../../../Images/g4.svg").default}
+                src={require("../../../Images/g4.webp")}
                 alt="Gift Slide 2"
                 className="gift_img_round"
               />
@@ -56,7 +58,7 @@ const Gift = () => {
             <div className="slider-card">
               <img
                 loading="lazy"
-                src={require("../../../Images/gift2.svg").default}
+                src={require("../../../Images/gift2.webp")}
                 alt="Gift Slide 2"
                 className="gift_img_round"
               />
@@ -64,7 +66,7 @@ const Gift = () => {
             <div className="slider-card">
               <img
                 loading="lazy"
-                src={require("../../../Images/gift3.svg").default}
+                src={require("../../../Images/gift3.webp")}
                 alt="Gift Slide 2"
                 className="gift_img_round"
               />
@@ -72,7 +74,7 @@ const Gift = () => {
             <div className="slider-card">
               <img
                 loading="lazy"
-                src={require("../../../Images/gift4.svg").default}
+                src={require("../../../Images/gift4.webp")}
                 alt="Gift Slide 2"
                 className="gift_img_round"
               />
@@ -80,7 +82,7 @@ const Gift = () => {
             <div className="slider-card">
               <img
                 loading="lazy"
-                src={require("../../../Images/gift5.svg").default}
+                src={require("../../../Images/gift5.webp")}
                 alt="Gift Slide 2"
                 className="gift_img_round"
               />
@@ -88,7 +90,7 @@ const Gift = () => {
             <div className="slider-card">
               <img
                 loading="lazy"
-                src={require("../../../Images/gift3 (1).svg").default}
+                src={require("../../../Images/gift3 (1).webp")}
                 alt="Gift Slide 2"
                 className="gift_img_round"
               />
@@ -100,13 +102,13 @@ const Gift = () => {
         <div className="static-gift-card text-center MHK position-relative gap-2 gift_img_round">
           <img
             loading="lazy"
-            src={require("../../../Images/first.svg").default}
+            src={require("../../../Images/first.webp")}
             className="img-fluid gift-img gift_box_dsdd"
             alt="Gift Your Loved Ones"
           />
 
           <h5 className="dfvcf_VFFYT ">Grace in Every Gift</h5>
-          <p className="">
+          <p>
             Delight loved ones with timeless treasures. Make every moment
             unforgettable.
           </p>

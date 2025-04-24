@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 import "./ring.css";
@@ -7,6 +7,7 @@ import ringVideo2 from "../../../Videos/Dfvdfvd (1).mp4";
 import ringVideo3 from "../../../Videos/rings.mp4";
 import ringVideo4 from "../../../Videos/Sdcxdscx(1).mp4";
 import ringVideo5 from "../../../Videos/pendant.mp4";
+
 const videoData = [
   { src: ringVideo1, category: "Pendant" },
   { src: ringVideo2, category: "Earrings" },
@@ -19,17 +20,38 @@ const videoData = [
   { src: ringVideo4, category: "Bracelets" },
   { src: ringVideo5, category: "Pendant" },
 ];
+
 const multiplier = {
   translate: 0.1,
   rotate: window.innerWidth >= 1024 ? 0.01 : 0.03,
 };
-const updateRotateMultiplier = () => {
-  multiplier.rotate = window.innerWidth >= 1024 ? 0.01 : 0.03;
-};
+
 const Ring1 = () => {
   const videoRefs = useRef([]);
+
+  const updateRotateMultiplier = useCallback(() => {
+    multiplier.rotate = window.innerWidth >= 1024 ? 0.01 : 0.03;
+  }, []);
+
+  const calculateWheel = useCallback(() => {
+    const slides = document.querySelectorAll(".single");
+    slides.forEach((slide) => {
+      const rect = slide.getBoundingClientRect();
+      const r = window.innerWidth * 0.5 - (rect.x + rect.width * 0.5);
+      let ty =
+        Math.abs(r) * multiplier.translate -
+        rect.width * multiplier.translate;
+      if (ty < 0) ty = 0;
+      slide.style.transform = `translate(0, ${ty}px) rotate(${
+        -r * multiplier.rotate
+      }deg)`;
+      slide.style.transformOrigin = r < 0 ? "left top" : "right top";
+    });
+  }, []);
+
   useEffect(() => {
     let swiperInstance;
+
     const initSwiper = () => {
       swiperInstance = new Swiper(".swiper1", {
         wrapperClass: "swiper-wrapper1",
@@ -57,25 +79,12 @@ const Ring1 = () => {
         },
       });
     };
-    const calculateWheel = () => {
-      const slides = document.querySelectorAll(".single");
-      slides.forEach((slide) => {
-        const rect = slide.getBoundingClientRect();
-        const r = window.innerWidth * 0.5 - (rect.x + rect.width * 0.5);
-        let ty =
-          Math.abs(r) * multiplier.translate -
-          rect.width * multiplier.translate;
-        if (ty < 0) ty = 0;
-        slide.style.transform = `translate(0, ${ty}px) rotate(${
-          -r * multiplier.rotate
-        }deg)`;
-        slide.style.transformOrigin = r < 0 ? "left top" : "right top";
-      });
-    };
+
     const raf = () => {
       calculateWheel();
       requestAnimationFrame(raf);
     };
+
     // Lazy load videos
     const observer = new IntersectionObserver(
       (entries) => {
@@ -91,25 +100,32 @@ const Ring1 = () => {
       },
       { threshold: 0.25 }
     );
+
     videoRefs.current.forEach((video) => {
       if (video) observer.observe(video);
     });
-    // Resize throttle
+
+    // Throttled resize handler
     let resizeTimeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => updateRotateMultiplier(), 200);
+      resizeTimeout = setTimeout(() => {
+        updateRotateMultiplier();
+      }, 200);
     };
+
     initSwiper();
     updateRotateMultiplier();
     raf();
     window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("resize", handleResize);
       observer.disconnect();
       if (swiperInstance) swiperInstance.destroy(true, true);
     };
-  }, []);
+  }, [calculateWheel, updateRotateMultiplier]);
+
   return (
     <div className="ringSection">
       <div className="carousel1">
@@ -136,4 +152,5 @@ const Ring1 = () => {
     </div>
   );
 };
+
 export default Ring1;
