@@ -265,6 +265,7 @@ const OrderDetails = () => {
                 order.orderDetails.map((item, i) => (
                   <div key={i} className="order_ddd">
                     <img
+loading="lazy"
                       src={`https://dev.crystovajewels.com${item?.productId?.image[0]}`}
                       alt={item.productId?.productName}
                       className="img_dd"
@@ -359,6 +360,7 @@ const OrderDetails = () => {
               <hr className="m-auto" />
               <div className="prev-order-item p-3">
                 <img
+loading="lazy"
                   src={`https://dev.crystovajewels.com${
                     order.orderDetails[0]?.productId?.image[0] || ""
                   }`}

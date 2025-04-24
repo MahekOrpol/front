@@ -12,7 +12,7 @@ import {
   faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import CartPopup from "../Add to Cart";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,10 +25,10 @@ const Contact = () => {
     lastName: "",
     phone: "",
     email: "",
-    message: ""
+    message: "",
   });
-const [wishlistCount, setWishlistCount] = useState(
-    parseInt(localStorage.getItem('wishlistCount')) || 0
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
   );
   const [wishlistItems, setWishlistItems] = useState({});
   const dispatch = useDispatch();
@@ -41,11 +41,9 @@ const [wishlistCount, setWishlistCount] = useState(
   useEffect(() => {
     dispatch(fetchCartCount());
   }, [dispatch]);
-  const navigate = useNavigate('');
+  const navigate = useNavigate("");
   const [showToast, setShowToast] = useState(false);
   const userId = localStorage.getItem("user_Id");
-
- 
 
   const closeCart = () => {
     setIsCartOpen(false);
@@ -56,7 +54,7 @@ const [wishlistCount, setWishlistCount] = useState(
 
   const updateWishlistCount = (count) => {
     setWishlistCount(count);
-    localStorage.setItem('wishlistCount', count.toString());
+    localStorage.setItem("wishlistCount", count.toString());
   };
 
   useEffect(() => {
@@ -100,9 +98,9 @@ const [wishlistCount, setWishlistCount] = useState(
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -118,18 +116,22 @@ const [wishlistCount, setWishlistCount] = useState(
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://dev.crystovajewels.com/api/v1/contact-us/create', formData);
+      const response = await axios.post(
+        "https://dev.crystovajewels.com/api/v1/contact-us/create",
+        formData
+      );
 
       if (response.status === 201) {
-        toast.success("Thank you for contacting us! We'll get back to you soon.");
+        toast.success(
+          "Thank you for contacting us! We'll get back to you soon."
+        );
         setFormData({
           firstName: "",
           lastName: "",
           phone: "",
           email: "",
-          message: ""
+          message: "",
         });
-
       }
     } catch (error) {
       console.error("Submission error:", error);
@@ -155,15 +157,18 @@ const [wishlistCount, setWishlistCount] = useState(
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-      // toastMessage={toastMessage}
+        // toastMessage={toastMessage}
       />
-            <div className="main-header">
-      <Header openCart={openCart}  wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null} />
-          
-                      </div>
+      <div className="main-header">
+        <Header
+          openCart={openCart}
+          wishlistCount={userId ? wishlistCount : null}
+          cartCount={userId ? cartCount : null}
+        />
+      </div>
       <div>
         <img
+          loading="lazy"
           src={require("../../Images/Group 1597884579.png")}
           className="img_fluid1_banner"
         />
@@ -315,7 +320,9 @@ const [wishlistCount, setWishlistCount] = useState(
                       required
                     />
                   </Form.Group>
-                  <Button type="submit" className="submit-btn my-3">Submit</Button>
+                  <Button type="submit" className="submit-btn my-3">
+                    Submit
+                  </Button>
                 </Form>
               </Card.Body>
             </Card>

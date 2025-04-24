@@ -2,7 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import Header from "../../Pages/Header";
 import Footer from "../../Pages/Footer";
-import { FaAngleLeft, FaAngleRight, FaArrowRight, FaStar } from "react-icons/fa6";
+import {
+  FaAngleLeft,
+  FaAngleRight,
+  FaArrowRight,
+  FaStar,
+} from "react-icons/fa6";
 import { CiStar, CiWallet } from "react-icons/ci";
 import { PiCertificateLight, PiMoneyWavy } from "react-icons/pi";
 import ringVideo from "../../Videos/Abouy Sss.mp4";
@@ -20,12 +25,21 @@ const AboutUs = () => {
   const swiperRef = useRef(null);
   const [slidesPerView, setSlidesPerView] = useState(1);
   const testimonials = [
-    { name: "Emily Carol", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
-    { name: "John Doe", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
-    { name: "Jane Smith", text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever." },
+    {
+      name: "Emily Carol",
+      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
+    },
+    {
+      name: "John Doe",
+      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
+    },
+    {
+      name: "Jane Smith",
+      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
+    },
   ];
-const [wishlistCount, setWishlistCount] = useState(
-    parseInt(localStorage.getItem('wishlistCount')) || 0
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
   );
   const [wishlistItems, setWishlistItems] = useState({});
   const dispatch = useDispatch();
@@ -38,7 +52,7 @@ const [wishlistCount, setWishlistCount] = useState(
   useEffect(() => {
     dispatch(fetchCartCount());
   }, [dispatch]);
-  const navigate = useNavigate('')
+  const navigate = useNavigate("");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const userId = localStorage.getItem("user_Id");
@@ -81,7 +95,7 @@ const [wishlistCount, setWishlistCount] = useState(
 
   const updateWishlistCount = (count) => {
     setWishlistCount(count);
-    localStorage.setItem('wishlistCount', count.toString());
+    localStorage.setItem("wishlistCount", count.toString());
   };
 
   useEffect(() => {
@@ -154,15 +168,18 @@ const [wishlistCount, setWishlistCount] = useState(
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-      // toastMessage={toastMessage}
+        // toastMessage={toastMessage}
       />
-            <div className="main-header">
-              
-      <Header openCart={openCart}  wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null} />
-          </div>
+      <div className="main-header">
+        <Header
+          openCart={openCart}
+          wishlistCount={userId ? wishlistCount : null}
+          cartCount={userId ? cartCount : null}
+        />
+      </div>
       <div>
         <img
+          loading="lazy"
           src={require("../../Images/Group 1597884580.png")}
           className="img_fluid1_banner"
         />
@@ -175,6 +192,7 @@ const [wishlistCount, setWishlistCount] = useState(
         <div className="row">
           <div className="aout">
             <img
+              loading="lazy"
               className="djs_about img-fluid sticky"
               src={require("../../Images/Group 1597884574.png")}
             />
@@ -199,7 +217,10 @@ const [wishlistCount, setWishlistCount] = useState(
             </span>
             <div className="d-flex align-items-center">
               <div className="d-flex align-items-center gap-3 flex-column">
-                <img src={require("../../Images/Group 1597884563.png")} />
+                <img
+                  loading="lazy"
+                  src={require("../../Images/Group 1597884563.png")}
+                />
                 <span className="our_ddd">Our Journey</span>
                 <span className="shsdy_555">
                   Our journey is one of passion and purpose that captures the
@@ -207,7 +228,10 @@ const [wishlistCount, setWishlistCount] = useState(
                 </span>
               </div>
               <div className="d-flex align-items-center gap-3 flex-column">
-                <img src={require("../../Images/Group 1597884564.png")} />
+                <img
+                  loading="lazy"
+                  src={require("../../Images/Group 1597884564.png")}
+                />
                 <span className="our_ddd">Explore & Connect</span>
                 <span className="shsdy_555">
                   Browse our collections to find pieces that speak to you or
@@ -220,7 +244,10 @@ const [wishlistCount, setWishlistCount] = useState(
       </div>
 
       <div className="hdr_csd">
-        <img src={require("../../Images/Group 1597884485.png")} />
+        <img
+          loading="lazy"
+          src={require("../../Images/Group 1597884485.png")}
+        />
       </div>
 
       <div className="container p-2">
@@ -237,7 +264,10 @@ const [wishlistCount, setWishlistCount] = useState(
             </div>
             <div className="d-flex flex-column gap-5">
               <div className="d-flex align-items-center gap-3">
-                <img src={require("../../Images/Group 1597884572.png")} />
+                <img
+                  loading="lazy"
+                  src={require("../../Images/Group 1597884572.png")}
+                />
                 <div className="d-flex align-items-center gap-3 flex-column">
                   <span className="visionb d-flex justify-content-start w-100">
                     Vision
@@ -250,7 +280,10 @@ const [wishlistCount, setWishlistCount] = useState(
                 </div>
               </div>
               <div className="d-flex align-items-center gap-3">
-                <img src={require("../../Images/Group 1597884573.png")} />
+                <img
+                  loading="lazy"
+                  src={require("../../Images/Group 1597884573.png")}
+                />
 
                 <div className="d-flex align-items-center gap-3 flex-column">
                   <span className="visionb d-flex justify-content-start w-100">
@@ -268,6 +301,8 @@ const [wishlistCount, setWishlistCount] = useState(
           <div className="col-md-6 position-relative d-flex justify-content-center m-auto GRoUp">
             <div className="video-container position-relative">
               <video
+                preload="none"
+                loading="lazy"
                 src={ringVideo}
                 className="bg-white w-50 vi_rng_fff"
                 autoPlay
@@ -275,6 +310,7 @@ const [wishlistCount, setWishlistCount] = useState(
                 muted
               />
               <img
+                loading="lazy"
                 src={require("../../Images/Mask group (3).png")}
                 className="sjd_555 position-absolute top-50 start-50 translate-middle"
                 alt="Jewelry Overlay"
@@ -284,6 +320,8 @@ const [wishlistCount, setWishlistCount] = useState(
           {/* <div className="w-50">
             <div>
               <video
+preload="none"
+                                loading="lazy"
                 src={ringVideo}
                 className="bg-white mas_ddd"
                 autoPlay
@@ -291,7 +329,8 @@ const [wishlistCount, setWishlistCount] = useState(
                 muted
               />
             
-              <img
+              <img 
+ loading="lazy"
                 src={require("../../Images/Mask group (3).png")}
                 className="sjd_555"
               />
@@ -307,7 +346,11 @@ const [wishlistCount, setWishlistCount] = useState(
         <div className="sdncsduchs_1 row">
           <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
             <div className="blog_fade_ds">
-              <img src={require("../../Images/image (21).png")} className="img-fluid" />
+              <img
+                loading="lazy"
+                src={require("../../Images/image (21).png")}
+                className="img-fluid"
+              />
             </div>
             <div className="d-flex flex-column gap-2 pt-4">
               <span className="mainj_ss">Jewellery Trends Inspired by Us</span>
@@ -317,9 +360,14 @@ const [wishlistCount, setWishlistCount] = useState(
                 <button className="esyh_btn">Jewellery</button>
               </div>
               <p className="psps">
-                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum aliquam risus, sit amet dictum ligula lorem non nisl Urna pretium elit mauris cursus Curabitur.
+                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum
+                aliquam risus, sit amet dictum ligula lorem non nisl Urna
+                pretium elit mauris cursus Curabitur.
               </p>
-              <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
+              <a
+                href="/blog-details"
+                className="red_ddd d-flex gap-2 align-items-center"
+              >
                 Read More <FaArrowRight />
               </a>
             </div>
@@ -327,7 +375,11 @@ const [wishlistCount, setWishlistCount] = useState(
 
           <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
             <div className="blog_fade_ds">
-              <img src={require("../../Images/image (22).png")} className="img-fluid" />
+              <img
+                loading="lazy"
+                src={require("../../Images/image (22).png")}
+                className="img-fluid"
+              />
             </div>
             <div className="d-flex flex-column gap-2 pt-4">
               <span className="mainj_ss">Jewellery Trends Inspired by Us</span>
@@ -337,9 +389,14 @@ const [wishlistCount, setWishlistCount] = useState(
                 <button className="esyh_btn">Jewellery</button>
               </div>
               <p className="psps">
-                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum aliquam risus, sit amet dictum ligula lorem non nisl Urna pretium elit mauris cursus Curabitur.
+                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum
+                aliquam risus, sit amet dictum ligula lorem non nisl Urna
+                pretium elit mauris cursus Curabitur.
               </p>
-              <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
+              <a
+                href="/blog-details"
+                className="red_ddd d-flex gap-2 align-items-center"
+              >
                 Read More <FaArrowRight />
               </a>
             </div>
@@ -347,7 +404,11 @@ const [wishlistCount, setWishlistCount] = useState(
 
           <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
             <div className="blog_fade_ds">
-              <img src={require("../../Images/image (23).png")} className="img-fluid" />
+              <img
+                loading="lazy"
+                src={require("../../Images/image (23).png")}
+                className="img-fluid"
+              />
             </div>
             <div className="d-flex flex-column gap-2 pt-4">
               <span className="mainj_ss">Jewellery Trends Inspired by Us</span>
@@ -357,9 +418,14 @@ const [wishlistCount, setWishlistCount] = useState(
                 <button className="esyh_btn">Jewellery</button>
               </div>
               <p className="psps">
-                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum aliquam risus, sit amet dictum ligula lorem non nisl Urna pretium elit mauris cursus Curabitur.
+                Suspendisse posuere, diam in bibendum lobortis, turpis ipsum
+                aliquam risus, sit amet dictum ligula lorem non nisl Urna
+                pretium elit mauris cursus Curabitur.
               </p>
-              <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
+              <a
+                href="/blog-details"
+                className="red_ddd d-flex gap-2 align-items-center"
+              >
                 Read More <FaArrowRight />
               </a>
             </div>
@@ -380,7 +446,8 @@ const [wishlistCount, setWishlistCount] = useState(
               <PiMoneyWavy size={50} className="icon-style" />
               <span className="xshhhss_ss">Money Guarantee</span>
               <span className="xshhhss">
-                Shop with confidence, our money-back guarantee ensures your satisfaction
+                Shop with confidence, our money-back guarantee ensures your
+                satisfaction
               </span>
             </div>
 
@@ -388,7 +455,8 @@ const [wishlistCount, setWishlistCount] = useState(
               <PiCertificateLight size={50} className="icon-style" />
               <span className="xshhhss_ss">Certifications</span>
               <span className="xshhhss">
-                All our jewelry pieces are certified for quality and ethical sourcing.
+                All our jewelry pieces are certified for quality and ethical
+                sourcing.
               </span>
             </div>
 
@@ -396,7 +464,8 @@ const [wishlistCount, setWishlistCount] = useState(
               <MdOutlineContactSupport size={50} className="icon-style" />
               <span className="xshhhss_ss">Online Support</span>
               <span className="xshhhss">
-                Need assistance? Our dedicated online support team is here to help you
+                Need assistance? Our dedicated online support team is here to
+                help you
               </span>
             </div>
           </div>
@@ -480,7 +549,11 @@ const [wishlistCount, setWishlistCount] = useState(
         <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd pb-5">
           <span className="category_name">Client Testimonial</span>
           <p className="category_txt">What our Client’s say about us</p>
-          <img src={require("../../Images/Groupimg.png")} alt="Decorative" />
+          <img
+            loading="lazy"
+            src={require("../../Images/Groupimg.png")}
+            alt="Decorative"
+          />
 
           <Swiper
             grabCursor={true}
@@ -497,34 +570,38 @@ const [wishlistCount, setWishlistCount] = useState(
               1000: { slidesPerView: 3 },
             }}
           >
-            {[...testimonials, ...testimonials, ...testimonials].map((item, index) => (
-              <SwiperSlide className="slide_ssssss_sss_dexsdx" key={index}>
-                <div
-                  className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+            {[...testimonials, ...testimonials, ...testimonials].map(
+              (item, index) => (
+                <SwiperSlide className="slide_ssssss_sss_dexsdx" key={index}>
+                  <div
+                    className={`card testimonial-card${
+                      index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
                     } mt-5`}
-                >
-                  <div className="card-body pt-5">
-                    <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-                    <p className="card-text sdcdscsd text-center">
-                      I wanted a custom bracelet to honor my daughter’s birth,
-                      and the designers exceeded my expectations. They listened
-                      to every detail I envisioned and brought it to life. It’s a
-                      masterpiece I’ll cherish forever.
-                    </p>
-                    <p className="text-center sdcdscsd">Client</p>
-                    <div className="d-flex justify-content-center align-items-center">
-                      <FaStar color="#DBB439" />
-                      <FaStar color="#DBB439" />
-                      <FaStar color="#DBB439" />
-                      <CiStar />
-                      <CiStar />
+                  >
+                    <div className="card-body pt-5">
+                      <h5 className="card-title text-center emi_ffcc">
+                        Emily Carol
+                      </h5>
+                      <p className="card-text sdcdscsd text-center">
+                        I wanted a custom bracelet to honor my daughter’s birth,
+                        and the designers exceeded my expectations. They
+                        listened to every detail I envisioned and brought it to
+                        life. It’s a masterpiece I’ll cherish forever.
+                      </p>
+                      <p className="text-center sdcdscsd">Client</p>
+                      <div className="d-flex justify-content-center align-items-center">
+                        <FaStar color="#DBB439" />
+                        <FaStar color="#DBB439" />
+                        <FaStar color="#DBB439" />
+                        <CiStar />
+                        <CiStar />
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              )
+            )}
           </Swiper>
-
         </div>
         {/* <button
           className="nav-button right"
@@ -532,7 +609,7 @@ const [wishlistCount, setWishlistCount] = useState(
         >
           <FaAngleRight />
         </button> */}
-      </div >
+      </div>
       <Footer />
     </>
   );

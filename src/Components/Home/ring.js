@@ -3,7 +3,7 @@ import $ from "jquery";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel";
-import './ring.css';
+import "./ring.css";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
 const RingSlider = () => {
@@ -13,15 +13,36 @@ const RingSlider = () => {
   const prevArrowRef = useRef(null);
 
   const rings = [
-    { title: "Classic Ring", description: "Timeless elegance in its purest form" },
-    { title: "Modern Ring", description: "Contemporary brilliance with a sleek design" },
-    { title: "Vintage Ring", description: "Antique charm with intricate craftsmanship" },
-    { title: "Elegant Rings", description: "Refined simplicity for everyday luxury" },
-    { title: "Premium Ring", description: "Exquisite craftsmanship for the discerning" },
+    {
+      title: "Classic Ring",
+      description: "Timeless elegance in its purest form",
+    },
+    {
+      title: "Modern Ring",
+      description: "Contemporary brilliance with a sleek design",
+    },
+    {
+      title: "Vintage Ring",
+      description: "Antique charm with intricate craftsmanship",
+    },
+    {
+      title: "Elegant Rings",
+      description: "Refined simplicity for everyday luxury",
+    },
+    {
+      title: "Premium Ring",
+      description: "Exquisite craftsmanship for the discerning",
+    },
   ];
 
   const images = [
-    "1.png", "8.png", "3.png", "5.png", "6.png", "8.png", "9.png"
+    "1.png",
+    "8.png",
+    "3.png",
+    "5.png",
+    "6.png",
+    "8.png",
+    "9.png",
   ];
 
   useEffect(() => {
@@ -40,7 +61,7 @@ const RingSlider = () => {
         centerPadding: "0px",
         infinite: true,
         speed: 600,
-        cssEase: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+        cssEase: "cubic-bezier(0.25, 0.1, 0.25, 1)",
         swipe: false,
         draggable: false,
         touchMove: false,
@@ -53,39 +74,39 @@ const RingSlider = () => {
             breakpoint: 1200,
             settings: {
               slidesToShow: 5,
-              centerMode: images.length > 5
-            }
+              centerMode: images.length > 5,
+            },
           },
           {
             breakpoint: 990,
             settings: {
               slidesToShow: 3,
-              centerMode: images.length > 3
-            }
+              centerMode: images.length > 3,
+            },
           },
           {
             breakpoint: 768,
             settings: {
               slidesToShow: 3,
-              centerMode: images.length > 3
-            }
+              centerMode: images.length > 3,
+            },
           },
           {
             breakpoint: 576,
             settings: {
               slidesToShow: 3,
-              centerMode: images.length > 1
-            }
-          }
-        ]
+              centerMode: images.length > 1,
+            },
+          },
+        ],
       });
-      $slider.on('afterChange', function (event, slick, currentSlide) {
+      $slider.on("afterChange", function (event, slick, currentSlide) {
         const visibleSlides = Math.min(
           5, // Default
-          window.innerWidth < 576 ? 3 :
-          window.innerWidth < 990 ? 3 : 5
+          window.innerWidth < 576 ? 3 : window.innerWidth < 990 ? 3 : 5
         );
-        const center = (currentSlide + Math.floor(visibleSlides / 2)) % images.length;
+        const center =
+          (currentSlide + Math.floor(visibleSlides / 2)) % images.length;
         setCenterIndex(center % rings.length);
       });
     };
@@ -98,9 +119,9 @@ const RingSlider = () => {
       resizeTimer = setTimeout(initSlider, 250);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
       if ($slider.hasClass("slick-initialized")) {
         $slider.slick("unslick");
       }
@@ -113,7 +134,10 @@ const RingSlider = () => {
         {images.map((img, index) => (
           <div key={index}>
             <img
-              className={`slider_img_ssss ${centerIndex === index % rings.length ? 'active-slide' : ''}`}
+              loading="lazy"
+              className={`slider_img_ssss ${
+                centerIndex === index % rings.length ? "active-slide" : ""
+              }`}
               src={require(`../../Images/${img}`)}
               alt={rings[index % rings.length]?.title || `Ring ${index + 1}`}
             />
@@ -122,16 +146,24 @@ const RingSlider = () => {
       </div>
 
       <div className="slick-nav-container slidere-roijidfndm">
-        <button ref={prevArrowRef} className="custom-prev ps-2 ps-md-0" aria-label="Previous Ring">
+        <button
+          ref={prevArrowRef}
+          className="custom-prev ps-2 ps-md-0"
+          aria-label="Previous Ring"
+        >
           <MdArrowBackIos />
         </button>
-        
+
         <div className="center-ring-info">
           <h3>{rings[centerIndex]?.title}</h3>
           <p>{rings[centerIndex]?.description}</p>
         </div>
 
-        <button ref={nextArrowRef} className="custom-next" aria-label="Next Ring">
+        <button
+          ref={nextArrowRef}
+          className="custom-next"
+          aria-label="Next Ring"
+        >
           <MdArrowForwardIos />
         </button>
       </div>

@@ -59,6 +59,7 @@ const OueColletion = () => {
                   onClick={() => handleCategoryClick(product.path)}
                 >
                   <img
+                  loading="lazy"
                   src={product.img}
                     className="our_colle_iumg_ssss"
                     alt={product.label}
