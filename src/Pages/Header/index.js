@@ -3,7 +3,7 @@ import "./index.css";
 import { FaAngleRight, FaSearch } from "react-icons/fa";
 import { RiUserLine } from "react-icons/ri";
 import { CiHeart } from "react-icons/ci";
-import { IoBagHandleOutline, IoClose, IoSearch } from "react-icons/io5";
+import { IoBagHandleOutline, IoClose } from "react-icons/io5";
 import { LuTextSearch } from "react-icons/lu";
 import { MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -303,13 +303,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               size={30}
               style={{ strokeWidth: "0.5px", stroke: "black" }}
             />
-            {/* <span className="position-absolute top-0 start-100 badge rounded-pill bg-danger"
-              style={{
-                fontSize: "0.6rem",
-                padding: "5px 8px",
-                minWidth: "1.2rem"
-              }}
-            > */}
+            
             {wishlistCount > 0 && (
               <span
                 className="position-absolute top-0 start-100 badge rounded-pill"

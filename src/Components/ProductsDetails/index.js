@@ -513,6 +513,8 @@ Please let me know the next steps.`;
                   loop={true}
                   speed={1000}
                   modules={[Autoplay, Pagination]}
+                  preloadImages={false}
+                  lazy={true}
                   pagination={{
                     clickable: true,
                     dynamicBullets: true, // Enables a modern pagination style
@@ -1178,6 +1180,8 @@ loading="lazy" src={require("../../Images/Vector (5).png")} />
                     // 0: { slidesPerView: 1 }, // Mobile - 1 card
                   }}
                   loop={true}
+                  preloadImages={false}
+                  lazy={true}
                   // autoplay={{
                   //   delay: 3000, // Change delay as needed (3000ms = 3s)
                   //   disableOnInteraction: false,

@@ -569,6 +569,8 @@ preload="none"
               600: { slidesPerView: 2 },
               1000: { slidesPerView: 3 },
             }}
+            preloadImages={false}
+            lazy={true}
           >
             {[...testimonials, ...testimonials, ...testimonials].map(
               (item, index) => (

@@ -192,7 +192,6 @@ const Products = () => {
     }));
   };
 
-
   const handleClearFilters = () => {
     // Reset all checkboxes
     document.querySelectorAll(".category-checkbox").forEach((checkbox) => {
@@ -517,16 +516,16 @@ const Products = () => {
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
-      <div className="main-header">
-        <Header
-          openCart={openCart}
-          wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null}
-        />
+        <div className="main-header">
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
         </div>
         <div>
           <img
-loading="lazy"
+            loading="lazy"
             src={require("../../Images/productt_sss.png")}
             className="img_fluid1_banner"
           />
@@ -550,7 +549,7 @@ loading="lazy"
                 onClick={() => handleClick("Women")}
               >
                 <img
-loading="lazy"
+                  loading="lazy"
                   src={
                     selectedGender === "Women"
                       ? require("../../Images/her.png")
@@ -568,7 +567,7 @@ loading="lazy"
                 onClick={() => handleClick("Men")}
               >
                 <img
-loading="lazy"
+                  loading="lazy"
                   src={
                     selectedGender === "Men"
                       ? require("../../Images/him-active.png")
@@ -586,7 +585,7 @@ loading="lazy"
                   onClick={toggleFilter}
                 >
                   <img
-loading="lazy"
+                    loading="lazy"
                     src={require("../../Images/filter.png")}
                     alt="Filter Icon"
                   />{" "}
@@ -777,7 +776,7 @@ loading="lazy"
                             />
                           ) : (
                             <img
-loading="lazy"
+                              loading="lazy"
                               src={`https://dev.crystovajewels.com${
                                 product.image[imageIndexes[product.id]]
                               }`}
