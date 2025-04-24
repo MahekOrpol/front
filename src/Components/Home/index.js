@@ -69,7 +69,6 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
-
   const [isCartOpen, setIsCartOpen] = useState(false);
   const BASE_API = "https://dev.crystovajewels.com/api/v1";
 
