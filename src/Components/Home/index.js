@@ -17,35 +17,31 @@ import { CiStar } from "react-icons/ci";
 import Footer from "../../Pages/Footer";
 import { GrNext } from "react-icons/gr";
 import { GoHeart, GoHeartFill } from "react-icons/go";
-import { Navigate, useNavigate } from "react-router-dom";
-// import { Tab, Tabs } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
 import TabContext from "@mui/lab/TabContext";
 import { Tabs } from "@mui/material";
 import CartPopup from "../Add to Cart";
 import axios from "axios";
 import "swiper/css/navigation";
 
-import JewelrySale from "../Contact Us/sdcsd/demo";
 import { ToastContainer, toast } from "react-toastify";
-import Instruction from "./instruction";
-import OueColletion from "./ourColletion";
-import RingSlider from "./ring";
-import DimondJewelery from "./Dimond Jewellery/dimond";
-import Occasion from "./Occasion";
-import Gift from "./gift";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import Ring1 from "./ring demo 1/ring";
+
+const JewelrySale = React.lazy(() => import("../Contact Us/sdcsd/demo"));
+const OueColletion = React.lazy(() => import("./ourColletion"));
+const Instruction = React.lazy(() => import("./instruction"));
+const Occasion = React.lazy(() => import("./Occasion"));
+const RingSlider = React.lazy(() => import("./ring"));
+const DimondJewelery = React.lazy(() => import("./Dimond Jewellery/dimond"));
+const Ring1 = React.lazy(() => import("./ring demo 1/ring"));
+const Gift = React.lazy(() => import("./gift"));
 
 const Home = () => {
-  const [isFavorite, setIsFavorite] = useState({});
-  const [liked, setLiked] = useState(false);
   const navigate = useNavigate();
   const swiperRef = useRef(null); // Store Swiper instance
   const [slidesPerView, setSlidesPerView] = useState(1);
@@ -97,12 +93,12 @@ const Home = () => {
     return () => el.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleScroll = () => {
+  const handleScroll = React.useCallback(() => {
     const el = scrollContainerRef.current;
     if (!el) return;
-    const isAtEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 10; // 10px threshold
+    const isAtEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 10;
     setShowArrow(isAtEnd);
-  };
+  }, []);
 
   useEffect(() => {
     dispatch(fetchCartCount());
@@ -123,11 +119,10 @@ const Home = () => {
     };
   }, []);
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = React.useCallback((category) => {
     navigate(`/products?categoryName=${category}`);
-  };
-
-  const fetchBestSellersByCategory = async (category) => {
+  }, [navigate]);
+  const fetchBestSellersByCategory = React.useCallback(async (category) => {
     try {
       const url = `https://dev.crystovajewels.com/api/v1/product/get?categoryName=${category}`;
       const response = await axios.get(url);
@@ -136,38 +131,42 @@ const Home = () => {
       console.error(`Error fetching ${category} products:`, error);
       return [];
     }
-  };
-  const handleTooltipClick = async (category) => {
+  }, []);
+  
+  const handleTooltipClick = React.useCallback(async (category) => {
     setCurrentCategory(category);
     const products = await fetchBestSellersByCategory(category);
     setFilteredBestSellers(products);
     setCurrentIndex(0);
     console.log("products :>> ", products);
-  };
+  }, [fetchBestSellersByCategory]);
+  
 
-  const handleProductClick = (productId, productData) => {
-    navigate(`/product-details/${productId}`, {
-      state: { product: productData },
-    });
-  };
+  const handleProductClick = React.useCallback(
+    (productId, productData) => {
+      navigate(`/product-details/${productId}`, {
+        state: { product: productData },
+      });
+    },
+    [navigate]
+  );
   // Function to add an item to the cart
-  const addToCart = async (product) => {
+  const addToCart = React.useCallback(async (product) => {
     try {
       const userId = localStorage.getItem("user_Id");
-
+  
       if (!userId) {
         navigate("/register");
         return;
       }
-
+  
       const productSize = Array.isArray(product?.productSize)
         ? product.productSize.join(",")
         : product?.productSize || "";
       const variationIds = Array.isArray(product?.variations)
-        ? product.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
+        ? product.variations.map((variation) => variation.id)
         : [];
-
-      // Define the payload for the API request
+  
       const payload = {
         userId: userId,
         productId: product?.id,
@@ -177,12 +176,7 @@ const Home = () => {
         discount: product?.discount?.$numberDecimal || 0,
         variation: variationIds,
       };
-      console.log(
-        "product",
-        JSON.stringify(JSON.stringify(product?.variations))
-      );
-
-      // Make the API request
+  
       const response = await axios.post(
         "https://dev.crystovajewels.com/api/v1/order-details/create",
         payload,
@@ -190,8 +184,8 @@ const Home = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-
-      openCart(); // Open cart after successful addition
+  
+      openCart();
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
       } else {
@@ -203,19 +197,20 @@ const Home = () => {
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
-  };
+  }, [navigate, dispatch, openCart]);
+  
 
   useEffect(() => {
     getCategories();
   }, []);
 
-  const getCategories = async () => {
+  const getCategories = React.useCallback(async () => {
     const res = await axios.get(
       "https://dev.crystovajewels.com/api/v1/category/get"
     );
     setCategoriesa(res.data);
     console.log("res.datassss :>> ", res.data);
-  };
+  }, []);
 
   useEffect(() => {
     const swiperInstance = swiperRef.current?.swiper;
@@ -243,23 +238,22 @@ const Home = () => {
   }, []);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const openCart = () => {
+  const openCart = React.useCallback(() => {
     const userId = localStorage.getItem("user_Id");
-
     if (!userId) {
       navigate("/register");
       return;
     }
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
-  };
+  }, [navigate]);
 
-  const closeCart = () => {
+  const closeCart = React.useCallback(() => {
     setIsCartOpen(false);
     setShowToast(false);
     dispatch(fetchCartCount());
     document.body.classList.remove("no-scroll");
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -300,7 +294,7 @@ const Home = () => {
     localStorage.setItem("wishlistCount", count.toString());
   };
 
-  const toggleFavorite = async (productId, productData) => {
+  const toggleFavorite = React.useCallback(async (productId, productData) => {
     const userId = localStorage.getItem("user_Id");
     if (!userId) {
       navigate("/register");
@@ -346,7 +340,7 @@ const Home = () => {
       console.error("Wishlist error:", error);
       toast.error("Something went wrong. Please try again.");
     }
-  };
+  },[userId,wishlistItems,wishlistCount])
 
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -411,10 +405,10 @@ const Home = () => {
 
   const [value, setValue] = React.useState("1");
 
-  const handleChange = (event, newValue) => {
+  const handleChange = React.useCallback((event, newValue) => {
     setValue(newValue);
-  };
-
+  }, []);
+  
   useEffect(() => {
     const swiperInstance = swiperRef.current?.swiper;
     if (!swiperInstance) return;
@@ -496,6 +490,8 @@ const Home = () => {
                 1200: { slidesPerView: 6 },
               }}
               className="mySwiper xfvdfvdfvc "
+              preloadImages={false}
+              lazy={true}
             >
               {categoriesa?.map((category) => (
                 <SwiperSlide
@@ -524,87 +520,63 @@ const Home = () => {
           <div className="scrolling-wrapper fastival-offerssss">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                 loading="lazy"
-                  src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -620,7 +592,7 @@ const Home = () => {
 
               <div className="overlay-img11">
                 <img
-                 loading="lazy"
+                  loading="lazy"
                   src={require("../../Images/Rectangle 105457.png")}
                   className="img-fluid w-100"
                   alt="Overlay"
@@ -656,63 +628,63 @@ const Home = () => {
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img  loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src={vector} alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -723,7 +695,7 @@ const Home = () => {
           <span className="category_name mt-md-4">Diamond Jewelry</span>
           <p className="category_txt">Minimal. Modern. Mesmerizing</p>
           <img
-           loading="lazy"
+            loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
@@ -736,7 +708,7 @@ const Home = () => {
             The Latest looks, Crafted to Perfection
           </p>
           <img
-           loading="lazy"
+            loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
           />
@@ -1198,7 +1170,7 @@ const Home = () => {
             Celebrate Forever with a Sparkle
           </p>
           <img
-           loading="lazy"
+            loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img best_sellig_sdcdc d-none"
           />
@@ -1279,6 +1251,8 @@ const Home = () => {
                         // 0: { slidesPerView: 1 }, // Mobile - 1 card
                       }}
                       loop={true}
+                      preloadImages={false}
+                      lazy={true}
                       // autoplay={{
                       //   delay: 3000, // Change delay as needed (3000ms = 3s)
                       //   disableOnInteraction: false,
@@ -1587,6 +1561,8 @@ const Home = () => {
               observeParents={true} // Observe parent element changes
               onSwiper={(swiper) => (swiperRef.current = swiper)}
               className="swiper_testimonial container"
+              preloadImages={false}
+              lazy={true}
             >
               {[...testimonials, ...testimonials, ...testimonials].map(
                 (item, index) => (
