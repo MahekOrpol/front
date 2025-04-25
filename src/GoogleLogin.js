@@ -1,46 +1,44 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const GoogleLogin = () => {
+const GoogleLoginButton = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    // Load the Google script
-    const script = document.createElement("script");
-    script.src = "https://accounts.google.com/gsi/client";
-    script.async = true;
-    script.defer = true;
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: '1022906991298-dp12dcl5f3uo96r4l75f10j8jk8pd7on.apps.googleusercontent.com',
+      callback: handleCallbackResponse
+    });
 
-    script.onload = () => {
-      if (window.google) {
-        window.google.accounts.id.initialize({
-          client_id: "1022906991298-dp12dcl5f3uo96r4l75f10j8jk8pd7on.apps.googleusercontent.com", // Replace with your actual client ID
-          callback: (response) => {
-            console.log("Google Credential Token", response.credential);
-            // You can decode it or send to backend here
-          },
-        });
-
-        window.google.accounts.id.renderButton(
-          document.getElementById("google-signin-btn"),
-          {
-            theme: "outline",
-            size: "large",
-            shape: "rectangular",
-            text: "signin_with",
-          }
-        );
-
-        // Optional One Tap
-        window.google.accounts.id.prompt();
-      }
-    };
-
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
+    google.accounts.id.renderButton(
+      document.getElementById('googleSignInDiv'),
+      { theme: 'outline', size: 'large' }
+    );
   }, []);
 
-  return <div id="google-signin-btn"></div>;
+  const handleCallbackResponse = async (response) => {
+    const idToken = response.credential;
+    const decoded = jwtDecode(idToken);
+    console.log('Decoded Token:', decoded);
+
+    try {
+      const res = await axios.post('https://dev.crystovajewels.com/api/auth/google-login', {
+        idToken,
+      });
+
+      console.log('Server response:', res.data);
+
+      // Redirect user after successful login
+      navigate('/'); // change this path as per your app's flow
+    } catch (err) {
+      console.error('Login failed:', err.response?.data || err.message);
+    }
+  };
+
+  return <div id="googleSignInDiv"></div>;
 };
 
-export default GoogleLogin;
+export default GoogleLoginButton;
