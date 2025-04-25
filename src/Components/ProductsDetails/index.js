@@ -27,36 +27,6 @@ import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ProductViewCounter from "../../ProductViewCounter";
 
-const products = [
-  {
-    id: 1,
-    imgSrc: require("../../Images/image 98.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 2,
-    imgSrc: require("../../Images/tre-2.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 3,
-    imgSrc: require("../../Images/image 100 (1).png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-  {
-    id: 4,
-    imgSrc: require("../../Images/latsss.png"),
-    name: "Two Stone Diamond Ring",
-    price: "₹30,000",
-    cutPrice: "35000",
-  },
-];
 const ProductDetailss = () => {
   const [liked, setLiked] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState(null);
@@ -113,7 +83,7 @@ Please let me know the next steps.`;
     const userId = localStorage.getItem("user_Id");
 
     if (!userId) {
-      navigate("/register");
+      navigate("/login");
       return;
     }
     setIsCartOpen(true);
@@ -272,7 +242,7 @@ Please let me know the next steps.`;
   const toggleFavorite = async (productId) => {
     const userId = localStorage.getItem("user_Id");
     if (!userId) {
-      navigate("/register");
+      navigate("/login");
       return;
     }
     try {
@@ -359,7 +329,7 @@ Please let me know the next steps.`;
       const userId = localStorage.getItem("user_Id");
 
       if (!userId) {
-        navigate("/register");
+        navigate("/login");
         return;
       }
       const productSize = Array.isArray(product?.productSize)
@@ -532,18 +502,7 @@ Please let me know the next steps.`;
                     },
                   }}
                 >
-                  {/* <SwiperSlide className="swiper-slide_sssss">
-                    <video
-                      src={ringVideo}
-                      className="detr_img slider_ring_sss bg-white"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      controls={false}
-                    />
-                  </SwiperSlide> */}
-
+                 
                   {productDetails?.image && productDetails.image.length > 0 ? (
                     productDetails.image.map((img, index) => {
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
@@ -1019,35 +978,10 @@ Please let me know the next steps.`;
 
                 <div className="pt-2">
                   <div className="card det_cddd p-3">
-                    {/* <div className="d-flex gap-3 align-items-center align-content-center">
-                      <img
-loading="lazy"
-                        src={require("../../Images/Ellipse 1687.png")}
-                        className="position-relative"
-                      />
-                      <div className="position-absolute dvtfrvfr">
-                        <img
-loading="lazy" src={require("../../Images/Vector (4).png")} />
-                      </div>
-                      <span className="knoe_www">Know your Setting</span>
-                    </div> */}
+                 
 
                     <div className="d-flex align-items-center gap-3 pt-4 sdsc_knoww">
-                      {/* <div className="card det_cd_sec dfc_vardss p-3 w-100">
-                        <div className="d-flex align-items-center gap-3">
-                          <img
-loading="lazy" src={require("../../Images/Vector (5).png")} />
-                          <span className="knoe_www_rng">APPROX CTW</span>
-                        </div>
-                        <div className="pt-3">
-                          <span className="sdjuij">0.2 ct</span>
-                        </div>
-                        <div className="pt-5">
-                          <span className="mes_ddd">
-                            The setting’s average total carat weight.
-                          </span>
-                        </div>
-                      </div> */}
+                    
                       <div className="offer-container w-100">
                         <h5 className="fw-bold mb-4 offe_dscdfcc">
                           Offers For You{" "}
@@ -1266,7 +1200,7 @@ loading="lazy" src={require("../../Images/Vector (5).png")} />
                           </button>
                           <button
                             className="d-flex align-items-center add-to-crd-dd w-75 p-1 justify-content-center gap-3 add_avai"
-                            onClick={() => addToCart(productDetails)}
+                            onClick={() => addToCart(product)}
                           >
                             Add to Cart <BiShoppingBag size={25} />
                           </button>

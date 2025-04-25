@@ -94,7 +94,7 @@ function App() {
         />
 
         <Route
-          path="/register"
+          path="/login"
           element={
             <RegisterPopup
               isOpen={true}

@@ -96,7 +96,7 @@ const Wishlist = () => {
     const userId = localStorage.getItem("user_Id");
 
     if (!userId) {
-      navigate("/register");
+      navigate("/login");
       return;
     }
     setIsCartOpen(true);

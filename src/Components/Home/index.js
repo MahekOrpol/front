@@ -112,7 +112,7 @@ const Home = () => {
   const openCart = React.useCallback(() => {
     const userId = localStorage.getItem("user_Id");
     if (!userId) {
-      navigate("/register");
+      navigate("/login");
       return;
     }
     setIsCartOpen(true);
@@ -179,7 +179,7 @@ const Home = () => {
         const userId = localStorage.getItem("user_Id");
 
         if (!userId) {
-          navigate("/register");
+          navigate("/login");
           return;
         }
 
@@ -304,7 +304,7 @@ const Home = () => {
     async (productId, productData) => {
       const userId = localStorage.getItem("user_Id");
       if (!userId) {
-        navigate("/register");
+        navigate("/login");
         return;
       }
 
