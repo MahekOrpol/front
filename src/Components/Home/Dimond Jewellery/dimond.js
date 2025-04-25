@@ -55,6 +55,7 @@ const DimondJewellery = () => {
                 muted
                 playsInline
                 preload="none"
+                loading="lazy"
                 className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
                 onClick={() => navigate('/products')}
               >
