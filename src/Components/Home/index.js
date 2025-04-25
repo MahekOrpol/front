@@ -6,7 +6,7 @@ import { BiShoppingBag, BiSolidOffer } from "react-icons/bi";
 import Header from "../../Pages/Header";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import best from "../../Images/Mask group (9).png";
+import best from "../../Images/Mask group (9).webp";
 
 import { Pagination } from "swiper/modules";
 import "swiper/css";
