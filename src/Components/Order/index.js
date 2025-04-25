@@ -264,12 +264,29 @@ const OrderDetails = () => {
               {order.orderDetails?.length > 0 ? (
                 order.orderDetails.map((item, i) => (
                   <div key={i} className="order_ddd">
-                    <img
-loading="lazy"
+                    {(() => {
+                      const imageToShow = item?.productId?.image.find(
+                        (img) =>
+                          typeof img === "string" && !img.endsWith(".mp4")
+                      );
+
+                      return imageToShow ? (
+                        <img
+                          loading="lazy"
+                          src={`https://dev.crystovajewels.com${imageToShow}`}
+                          alt={item.productId?.productName}
+                          className="img_dd"
+                        />
+                      ) : (
+                        <div className="text-muted">No image available</div>
+                      );
+                    })()}
+                    {/* <img
+                      loading="lazy"
                       src={`https://dev.crystovajewels.com${item?.productId?.image[0]}`}
                       alt={item.productId?.productName}
                       className="img_dd"
-                    />
+                    /> */}
                     <div className="item-details mx-1">
                       <p className="item-name m-auto">
                         {item.productId?.productName}
@@ -359,8 +376,27 @@ loading="lazy"
               </div>
               <hr className="m-auto" />
               <div className="prev-order-item p-3">
-                <img
-loading="lazy"
+                {(() => {
+                 const imageToShow = order.orderDetails[0]?.productId?.image?.find(
+                  (img) => typeof img === "string" && !img.endsWith(".mp4")
+                );
+                
+                  return imageToShow ? (
+                    <img
+                      loading="lazy"
+                      src={`https://dev.crystovajewels.com${imageToShow}`}
+                      alt={
+                        order.orderDetails[0]?.productId?.productName ||
+                        "Product"
+                      }
+                      className="img_dd"
+                    />
+                  ) : (
+                    <div className="text-muted">No image available</div>
+                  );
+                })()}
+                {/* <img
+                  loading="lazy"
                   src={`https://dev.crystovajewels.com${
                     order.orderDetails[0]?.productId?.image[0] || ""
                   }`}
@@ -368,7 +404,7 @@ loading="lazy"
                     order.orderDetails[0]?.productId?.productName || "Product"
                   }
                   className="img_dd"
-                />
+                /> */}
 
                 <div className="mx-3">
                   <div className="d-flex align-items-baseline gap-2">
