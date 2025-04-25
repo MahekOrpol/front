@@ -25,6 +25,7 @@ import "slick-carousel/slick/slick-theme.css";
 // import ProductViewCounter from "../../ProductViewCounter";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import ProductViewCounter from "../../ProductViewCounter";
 
 const products = [
   {
@@ -811,8 +812,8 @@ Please let me know the next steps.`;
                     </div>
                     <div>
                       <span className="rv_ssss ">
-                        24 review
-                        {/* <ProductViewCounter productId={productId} /> */}
+                        {/* 24 review */}
+                        <ProductViewCounter productId={productId} />
                       </span>
                     </div>
                   </div>
