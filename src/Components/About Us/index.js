@@ -304,7 +304,7 @@ const AboutUs = () => {
                 preload="none"
                 loading="lazy"
                 src={ringVideo}
-                className="bg-white w-50 vi_rng_fff"
+                className="bg-white vi_rng_fff"
                 autoPlay
                 loop
                 muted
@@ -312,7 +312,7 @@ const AboutUs = () => {
               <img
                 loading="lazy"
                 src={require("../../Images/Mask group (3).png")}
-                className="sjd_555 position-absolute top-50 start-50 translate-middle"
+                className="sjd_555 position-absolute top-50 translate-middle"
                 alt="Jewelry Overlay"
               />
             </div>
