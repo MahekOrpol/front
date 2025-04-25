@@ -11,7 +11,7 @@ const GoogleLogin = () => {
     script.onload = () => {
       if (window.google) {
         window.google.accounts.id.initialize({
-          client_id: "765559507358-c081ske9jc3vf1m9nd63h256nin76nu4.apps.googleusercontent.com", // Replace with your actual client ID
+          client_id: "1022906991298-dp12dcl5f3uo96r4l75f10j8jk8pd7on.apps.googleusercontent.com", // Replace with your actual client ID
           callback: (response) => {
             console.log("Google Credential Token", response.credential);
             // You can decode it or send to backend here

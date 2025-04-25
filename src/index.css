@@ -41,3 +41,25 @@ code {
     height: 60px !important;
   }
 }
+
+.S9gUrf-YoZ4jf * {
+  border: none !important;
+  margin: 0;
+  padding: 0;
+}
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  font-family: "Google Sans",arial,sans-serif;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+  vertical-align: top;
+}
+.nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+  height: 22px;
+  margin-right: 8px;
+  min-width: 22px;
+  width: 22px;
+}
