@@ -11,9 +11,9 @@ const OueColletion = () => {
 
   // Static image imports (keep as before)
   const productImages = [
-    { img: require("../../Images/our.png"), label: "Diamond Bracelet",path:'Bracelet' },
-    { img: require("../../Images/our2.png"), label: "Diamond Earrings" ,path:'Earrings'},
-    { img: require("../../Images/our3.png"), label: "Diamond Rings" ,path:'Rings'},
+    { img: require("../../Images/our.webp"), label: "Diamond Bracelet",path:'Bracelet' },
+    { img: require("../../Images/our2.webp"), label: "Diamond Earrings" ,path:'Earrings'},
+    { img: require("../../Images/our3.webp"), label: "Diamond Rings" ,path:'Rings'},
   ];
 
   const handleCategoryClick = (category) => {

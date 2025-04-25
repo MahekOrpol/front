@@ -594,7 +594,7 @@ const Home = () => {
           <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
             <div className="position-relative">
               <img
-                src={require("../../Images/image (3).png")}
+                src={require("../../Images/image (3).webp")}
                 className="img-fluid w-100"
                 alt="Main Image"
               />
