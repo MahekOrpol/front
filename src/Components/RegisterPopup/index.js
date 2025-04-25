@@ -289,6 +289,16 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         <span className="or-text">or</span>
                         <span className="or-line"></span>
                       </p>
+                      <div className="ggl_text d-flex align-items-center gap-2 justify-content-center">
+                        {/* <img
+                          loading="lazy"
+                          src={googleIcon}
+                          alt="Google Icon"
+                          className="google-icon"
+                        />
+                        Continue with Google */}
+                      <GoogleLogin />
+                      </div>
                       <p className="otre">
                         Already have an Account?{" "}
                         <span
@@ -488,16 +498,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         <span className="or-text">OR</span>
                         <span className="or-line"></span>
                       </p>
-                      <div className="ggl_text d-flex align-items-center gap-2 justify-content-center">
-                        {/* <img
-                          loading="lazy"
-                          src={googleIcon}
-                          alt="Google Icon"
-                          className="google-icon"
-                        />
-                        Continue with Google */}
-                      <GoogleLogin />
-                      </div>
+                     
                       <p className="otre">
                         Already have an Account?{" "}
                         <span
