@@ -26,7 +26,7 @@ const GoogleLoginButton = () => {
     console.log('Decoded Token:', decoded);
   
     try {
-      const res = await axios.post('http://localhost:3000/api/v1/register/auth/google-login', {
+      const res = await axios.post('https://dev.crystovajewels.com/api/v1/register/auth/google-login', {
         idToken,
       });
   
