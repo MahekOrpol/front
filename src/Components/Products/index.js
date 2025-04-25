@@ -164,7 +164,7 @@ const Products = () => {
     const userId = localStorage.getItem("user_Id");
 
     if (!userId) {
-      navigate("/register");
+      navigate("/login");
       return;
     }
     setIsCartOpen(true);
@@ -302,7 +302,7 @@ const Products = () => {
   const toggleFavorite = async (productId) => {
     const userId = localStorage.getItem("user_Id");
     if (!userId) {
-      navigate("/register");
+      navigate("/login");
       return;
     }
     try {
@@ -378,7 +378,7 @@ const Products = () => {
       const userId = localStorage.getItem("user_Id");
 
       if (!userId) {
-        navigate("/register");
+        navigate("/login");
         return;
       }
 

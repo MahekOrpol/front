@@ -130,7 +130,7 @@ loading="lazy" src={require("../../Images/profileicon.png")} alt="Profile" class
                   <FaAngleRight size={20} className="menu-arrow" />
                 </li>
               ) : (
-                <li onClick={() => navigate("/register")}>
+                <li onClick={() => navigate("/login")}>
                   <div className="menu-item">
                     <img
                       loading="lazy"

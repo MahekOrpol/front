@@ -216,7 +216,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                         <FaAngleRight size={20} className="menu-arrow" />
                       </li>
                     ) : (
-                      <li onClick={() => navigate("/register")}>
+                      <li onClick={() => navigate("/login")}>
                         <div className="menu-item gap-2">
                           <img
                             loading="lazy"
@@ -540,7 +540,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   className="drawer-item pt-3 d-flex align-items-center gap-2 w-100"
                   onClick={() => {
                     setIsDrawerOpen(false);
-                    navigate("/register");
+                    navigate("/login");
                   }}
                 >
                   <img loading="lazy" src={usericon} width={18} />
@@ -558,7 +558,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           className="user_icon mobile_user_icon gap-3 d-flex align-items-center ps-3"
           onClick={() => {
             setIsDrawerOpen(false);
-            navigate("/register");
+            navigate("/login");
           }}
         ></div>
       </div>

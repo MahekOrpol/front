@@ -46,7 +46,7 @@ const OrderDetails = () => {
     const userId = localStorage.getItem("user_Id");
 
     if (!userId) {
-      navigate("/register");
+      navigate("/login");
       return;
     }
     setIsCartOpen(true);
@@ -65,7 +65,7 @@ const OrderDetails = () => {
     const userId = localStorage.getItem("user_Id");
 
     if (!userId) {
-      navigate("/register");
+      navigate("/login");
       return;
     }
     try {
