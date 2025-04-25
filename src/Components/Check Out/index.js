@@ -114,108 +114,108 @@ const CheckoutPage = () => {
 
   const handlePayment = async (e) => {
     e.preventDefault(); // Prevents page reload
-    try {
-      const payload = {
-        amount: mainTotal,
-      };
+    // try {
+    //   const payload = {
+    //     amount: mainTotal,
+    //   };
 
-      if (!validateForm()) {
-        return; // Do not proceed with payment if validation fails
-      }
-      // Step 1: Create an order via API
-      const response = await axios.post(
-        // "https://dev.crystovajewels.com/api/v1/order/create",
-        "https://dev.crystovajewels.com/api/v1/payment/create-razorpay-order",
-        payload
-      );
+    //   if (!validateForm()) {
+    //     return; // Do not proceed with payment if validation fails
+    //   }
+    //   // Step 1: Create an order via API
+    //   const response = await axios.post(
+    //     // "https://dev.crystovajewels.com/api/v1/order/create",
+    //     "https://dev.crystovajewels.com/api/v1/payment/create-razorpay-order",
+    //     payload
+    //   );
 
-      if (response.status === 201) {
-        const { id, amount } = response.data.data; // Get generated order ID
-        console.log("response.data", response.data);
-        // Step 2: Initialize Razorpay
-        const options = {
-          key: "rzp_test_PsUDZlEFPp8gOw",
-          amount: amount,
-          currency: "INR",
-          name: "Crystova",
-          description: "Test Transaction",
-          image: require("../../Images/logo.png"),
-          order_id: id,
-          handler: async function (response) {
-            console.log("Payment Success:", response);
-            alert("Payment Successful! ");
-            console.log("id", id);
-            const body = {
-              razorpay_order_id: id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-            };
-            const verifyPayment = await axios.post(
-              "https://dev.crystovajewels.com/api/v1/payment/verify-razorpay-order",
-              body
-            );
-            if (verifyPayment.status === 200) {
-              const payload = {
-                userId: localStorage.getItem("user_Id"),
-                email: formData.email,
-                country: formData.country,
-                firstName: formData.firstName,
-                lastName: formData.lastName,
-                address: formData.address,
-                apartment: formData.apartment,
-                city: formData.city,
-                state: formData.state,
-                zipCode: formData.zipCode,
-                phoneNumber: formData.phoneNumber,
-                razorpayId: response.razorpay_payment_id,
-                discountTotal: discountTotal,
-                totalPrice: totalAmount - discountTotal, // Apply discount
-                couponCode: "123654",
-                status: "pending",
-                paymentStatus: "Paid",
-                selectedSize: selectedSize, // Passing as an array
-                selectedqty: quantity,
-              };
+    //   if (response.status === 201) {
+    //     const { id, amount } = response.data.data; // Get generated order ID
+    //     console.log("response.data", response.data);
+    //     // Step 2: Initialize Razorpay
+    //     const options = {
+    //       key: "rzp_test_PsUDZlEFPp8gOw",
+    //       amount: amount,
+    //       currency: "INR",
+    //       name: "Crystova",
+    //       description: "Test Transaction",
+    //       image: require("../../Images/logo.png"),
+    //       order_id: id,
+    //       handler: async function (response) {
+    //         console.log("Payment Success:", response);
+    //         alert("Payment Successful! ");
+    //         console.log("id", id);
+    //         const body = {
+    //           razorpay_order_id: id,
+    //           razorpay_payment_id: response.razorpay_payment_id,
+    //           razorpay_signature: response.razorpay_signature,
+    //         };
+    //         const verifyPayment = await axios.post(
+    //           "https://dev.crystovajewels.com/api/v1/payment/verify-razorpay-order",
+    //           body
+    //         );
+    //         if (verifyPayment.status === 200) {
+    //           const payload = {
+    //             userId: localStorage.getItem("user_Id"),
+    //             email: formData.email,
+    //             country: formData.country,
+    //             firstName: formData.firstName,
+    //             lastName: formData.lastName,
+    //             address: formData.address,
+    //             apartment: formData.apartment,
+    //             city: formData.city,
+    //             state: formData.state,
+    //             zipCode: formData.zipCode,
+    //             phoneNumber: formData.phoneNumber,
+    //             razorpayId: response.razorpay_payment_id,
+    //             discountTotal: discountTotal,
+    //             totalPrice: totalAmount - discountTotal, // Apply discount
+    //             couponCode: "123654",
+    //             status: "pending",
+    //             paymentStatus: "Paid",
+    //             selectedSize: selectedSize, // Passing as an array
+    //             selectedqty: quantity,
+    //           };
 
-              console.log("quantity :>> ", quantity);
+    //           console.log("quantity :>> ", quantity);
 
-              const res = await axios.post(
-                "https://dev.crystovajewels.com/api/v1/order/create",
-                payload
-              );
+    //           const res = await axios.post(
+    //             "https://dev.crystovajewels.com/api/v1/order/create",
+    //             payload
+    //           );
 
-              if (res.status === 201) {
-                navigate("/order"); // Navigate without reloading
-              }
-            } else {
-              alert("payment failed!");
-            }
-          },
-          prefill: {
-            name: `${formData.firstName} ${formData.lastName}`,
-            email: formData.email,
-            contact: formData.phoneNumber,
-          },
-          notes: {
-            address: formData.address,
-          },
-          theme: {
-            color: "#611D2B",
-          },
-        };
+    //           if (res.status === 201) {
+    //             navigate("/order"); // Navigate without reloading
+    //           }
+    //         } else {
+    //           alert("payment failed!");
+    //         }
+    //       },
+    //       prefill: {
+    //         name: `${formData.firstName} ${formData.lastName}`,
+    //         email: formData.email,
+    //         contact: formData.phoneNumber,
+    //       },
+    //       notes: {
+    //         address: formData.address,
+    //       },
+    //       theme: {
+    //         color: "#611D2B",
+    //       },
+    //     };
 
-        const razorpay = new window.Razorpay(options);
-        razorpay.open();
+    //     const razorpay = new window.Razorpay(options);
+    //     razorpay.open();
 
-        razorpay.on("payment.failed", function (response) {
-          console.log("Payment Failed:", response);
-          alert("Payment Failed. Please try again.");
-        });
-      }
-    } catch (error) {
-      console.error("Order Creation Error:", error);
-      alert("Something went wrong. Please try again.");
-    }
+    //     razorpay.on("payment.failed", function (response) {
+    //       console.log("Payment Failed:", response);
+    //       alert("Payment Failed. Please try again.");
+    //     });
+    //   }
+    // } catch (error) {
+    //   console.error("Order Creation Error:", error);
+    //   alert("Something went wrong. Please try again.");
+    // }
   };
 
   return (
