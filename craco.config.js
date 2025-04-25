@@ -1,10 +1,18 @@
-module.exports = {
-    webpack: {
-      configure: (webpackConfig) => {
-        // Optional: Temporarily disable minimization if CssMinimizerPlugin is causing trouble
-        webpackConfig.optimization.minimize = false;
-        return webpackConfig;
-      },
-    },
-  };
-  
+import TerserPlugin from 'terser-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+export const webpack = {
+  configure: (webpackConfig) => {
+    webpackConfig.optimization.minimize = true;
+    webpackConfig.optimization.minimizer = [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+          },
+        },
+      }),
+      new CssMinimizerPlugin(),
+    ];
+    return webpackConfig;
+  },
+};
