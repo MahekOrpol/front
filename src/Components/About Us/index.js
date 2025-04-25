@@ -215,7 +215,7 @@ const AboutUs = () => {
               imbued with meaning, designed to resonate with your deepest
               sentiments and last for generations to come.
             </span>
-            <div className="d-flex align-items-center">
+            <div className="d-flex gap-1">
               <div className="d-flex align-items-center gap-3 flex-column">
                 <img
                   loading="lazy"
