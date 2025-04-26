@@ -4,9 +4,9 @@ import "./index.css";
 import { Button } from "react-bootstrap";
 import { FaArrowRightLong } from "react-icons/fa6";
 const images = [
-  "/Images/image32.png",
+  "/Images/image (32).png",
   "/Images/jewe.jpg",
-  "/Images/jewelery1.jpg"
+  "/Images/jewelery (1).jpg"
 ];
 const groupImg = "/Images/Groupimg.png";
 
