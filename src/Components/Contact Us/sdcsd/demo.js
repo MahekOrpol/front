@@ -12,6 +12,7 @@ const JewelrySale = () => {
         <div className="left-images">
           <img
             // loading="lazy"
+            fetchpriority="high"
             src="/Images/image (29).webp"
             alt="Elegant necklace with pendant"
             className="large-img"
@@ -19,6 +20,7 @@ const JewelrySale = () => {
           <div className="small-imgs">
             <img
               // loading="lazy"
+              fetchpriority="high"
               src="/Images/Mask group (6).webp"
               alt="Diamond ring close-up"
             />
@@ -49,12 +51,14 @@ const JewelrySale = () => {
           <div className="small-imgs">
             <img
               // loading="lazy"
+              fetchpriority="high"
               src="/Images/image (30).webp"
               alt="Bracelet on display"
             />
           </div>
           <img
             // loading="lazy"
+            fetchpriority="high"
             src="/Images/Mask group (7).webp"
             alt="Gold jewelry display"
             className="large-img"
