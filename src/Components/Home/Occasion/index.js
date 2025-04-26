@@ -40,6 +40,7 @@ const Occasion = () => {
           src={groupImg}
           className="home_tag_img mobile_rcvdfcvfd"
           alt="Decorative tag"
+          loading="lazy"
         />
         <p className="occasions_text_p mb-0">
           Indulge in the allure of our Limited Edition Collaboration, where
@@ -70,7 +71,7 @@ const Occasion = () => {
                 className={`slider-image ${sizeClass} ${isAnimating ? "slide-left" : ""}`}
                 style={{ zIndex: images.length - position }}
               >
-                <img src={img} alt={`Jewelry ${index + 1}`} />
+                <img src={img} alt={`Jewelry ${index + 1}`} loading="lazy" />
               </div>
             );
           })}

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
+import React, { lazy, Suspense, useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { FaChevronRight, FaStar } from "react-icons/fa6";
 import "./index.css";
 import { BiShoppingBag } from "react-icons/bi";
@@ -80,24 +80,23 @@ Please let me know the next steps.`;
   const encodedMessage = encodeURIComponent(message);
   const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
-  const openCart = () => {
+  const openCart = useCallback(() => {
     const userId = localStorage.getItem("user_Id");
-
     if (!userId) {
       navigate("/login");
       return;
     }
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
-  };
+  }, [navigate]);
 
   const navigate = useNavigate();
 
-  const handleProductClick = (productId, productData) => {
+  const handleProductClick = useCallback((productId, productData) => {
     navigate(`/product-details/${productId}`, {
       state: { product: productData },
     });
-  };
+  }, [navigate]);
 
   useEffect(() => {
     dispatch(fetchCartCount());
@@ -167,15 +166,15 @@ Please let me know the next steps.`;
       );
   };
 
-  const closeCart = () => {
+  const closeCart = useCallback(() => {
     setIsCartOpen(false);
-    setShowToast(false); // Reset toast state when closing
+    setShowToast(false);
     document.body.classList.remove("no-scroll");
-  };
+  }, []);
 
-  const toggleFAQ = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const toggleFAQ = useCallback((index) => {
+    setOpenIndex((prev) => (prev === index ? null : index));
+  }, []);
 
   const [selectedSize, setSelectedSize] = useState("Select size");
   const [displayPrice, setDisplayPrice] = useState({
@@ -184,14 +183,12 @@ Please let me know the next steps.`;
     discount: productDetails?.discount?.$numberDecimal || 0,
   });
 
-  const handleSelect = (size) => {
+  const handleSelect = useCallback((size) => {
     setSelectedSize(size);
-
     if (productDetails?.hasVariations) {
       const selectedVariation = productDetails.variations.find(
         (variation) => variation.productSize === size
       );
-
       if (selectedVariation) {
         setDisplayPrice({
           regularPrice: selectedVariation.regularPrice,
@@ -206,7 +203,7 @@ Please let me know the next steps.`;
         discount: productDetails?.discount?.$numberDecimal,
       });
     }
-  };
+  }, [productDetails]);
 
   const isVideo = (file) => file?.endsWith(".mp4");
 
@@ -235,12 +232,12 @@ Please let me know the next steps.`;
     }
   }, [productDetails]);
 
-  const updateWishlistCount = (count) => {
+  const updateWishlistCount = useCallback((count) => {
     setWishlistCount(count);
     localStorage.setItem("wishlistCount", count.toString());
-  };
+  }, []);
 
-  const toggleFavorite = async (productId) => {
+  const toggleFavorite = useCallback(async (productId) => {
     const userId = localStorage.getItem("user_Id");
     if (!userId) {
       navigate("/login");
@@ -248,11 +245,10 @@ Please let me know the next steps.`;
     }
     try {
       if (wishlistItems[productId]) {
-        // Remove from wishlist
-        const wishlistItemId = wishlistItems[productId]; // Store the current ID
+        const wishlistItemId = wishlistItems[productId];
         setWishlistItems((prev) => {
           const updatedWishlist = { ...prev };
-          delete updatedWishlist[productId]; // Update UI immediately
+          delete updatedWishlist[productId];
           return updatedWishlist;
         });
         updateWishlistCount(wishlistCount - 1);
@@ -261,7 +257,6 @@ Please let me know the next steps.`;
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
-        // Add to wishlist
         const response = await axios.post(
           `https://dev.crystovajewels.com/api/v1/wishlist/create`,
           {
@@ -273,7 +268,7 @@ Please let me know the next steps.`;
         const newWishlistItemId = response.data.data.id;
         setWishlistItems((prev) => ({
           ...prev,
-          [productId]: newWishlistItemId, // Store wishlist ID properly
+          [productId]: newWishlistItemId,
         }));
         toast.success(response.data.message || "Added to wishlist!");
       }
@@ -281,7 +276,8 @@ Please let me know the next steps.`;
       console.error("Failed to update wishlist:", error);
       toast.error("Failed to update wishlist. Please try again!");
     }
-  };
+  }, [navigate, wishlistItems, updateWishlistCount, wishlistCount]);
+
   useEffect(() => {
     const fetchWishlist = async () => {
       if (!userId) return;
@@ -325,10 +321,9 @@ Please let me know the next steps.`;
     },
   ];
 
-  const addToCart = async (product) => {
+  const addToCart = useCallback(async (product) => {
     try {
       const userId = localStorage.getItem("user_Id");
-
       if (!userId) {
         navigate("/login");
         return;
@@ -337,10 +332,8 @@ Please let me know the next steps.`;
         ? product.productSize.join(",")
         : product?.productSize || "";
       const variationIds = Array.isArray(product?.variations)
-        ? product.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
+        ? product.variations.map((variation) => variation.id)
         : [];
-
-      // Define the payload for the API request
       const payload = {
         userId: userId,
         productId: product?.id,
@@ -350,12 +343,6 @@ Please let me know the next steps.`;
         discount: product?.discount?.$numberDecimal || 0,
         variation: variationIds,
       };
-      console.log(
-        "product",
-        JSON.stringify(JSON.stringify(product?.variations))
-      );
-
-      // Make the API request
       const response = await axios.post(
         "https://dev.crystovajewels.com/api/v1/order-details/create",
         payload,
@@ -363,8 +350,7 @@ Please let me know the next steps.`;
           headers: { "Content-Type": "application/json" },
         }
       );
-
-      openCart(); // Open cart after successful addition
+      openCart();
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
         dispatch(fetchCartCount());
@@ -376,7 +362,7 @@ Please let me know the next steps.`;
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
-  };
+  }, [dispatch, openCart, navigate]);
 
   return (
     <div>
@@ -1022,7 +1008,7 @@ Please let me know the next steps.`;
                               <div className="accordion-body d-flex justify-content-between align-items-center">
                                 <span className="coupon-code">
                                   If you do not receive your parcel within 12
-                                  days, you’ll get ₹100 off for each additional
+                                  days, you'll get ₹100 off for each additional
                                   day of delay starting from the 13th day
                                 </span>
                               </div>

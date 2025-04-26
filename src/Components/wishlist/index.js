@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState, useCallback } from "react";
 
 import {
   FaAngleDown,
@@ -76,11 +76,11 @@ const Wishlist = () => {
   }, [wishlist]);
   const navigate = useNavigate();
 
-  const handleProductClick = (productId, productData) => {
+  const handleProductClick = useCallback((productId, productData) => {
     navigate(`/product-details/${productId}`, {
       state: { product: productData },
     });
-  };
+  }, [navigate]);
 
   //   const toggleFavorite = (id) => {
   //     setIsFavorite((prev) => ({
@@ -94,23 +94,22 @@ const Wishlist = () => {
 
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const openCart = () => {
+  const openCart = useCallback(() => {
     const userId = localStorage.getItem("user_Id");
-
     if (!userId) {
       navigate("/login");
       return;
     }
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
-  };
+  }, [navigate]);
 
-  const closeCart = () => {
+  const closeCart = useCallback(() => {
     setIsCartOpen(false);
     setShowToast(false);
     dispatch(fetchCartCount());
     document.body.classList.remove("no-scroll");
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     fetchWishlist();
@@ -140,45 +139,39 @@ const Wishlist = () => {
     }
   };
 
-  const toggleWishlist = async (productId) => {
+  const toggleWishlist = useCallback(async (productId) => {
     console.log("Removing product with ID:", productId);
-
     const wishlistItem = wishlist.find(
       (item) => item.productId.id === productId
     );
-
     if (!wishlistItem || !wishlistItem.id) {
       console.error("Invalid wishlist item:", wishlistItem);
       return;
     }
-
     try {
       const res = await axios.delete(
         `https://dev.crystovajewels.com/api/v1/wishlist/delete/${wishlistItem.id}`
       );
-
-      // Remove item from the wishlist state
-
       if (res.status === 200) {
         setWishlist((prev) =>
           prev.filter((item) => item.productId.id !== productId)
         );
         setWishlistCount((prev) => prev - 1);
         console.log("res.data.message", res.data.message);
-        fetchWishlist(); // Fetch updated wishlist after deletion
+        fetchWishlist();
         toast.success(res.data.message);
       }
     } catch (error) {
       console.error("Error removing from wishlist:", error);
     }
-  };
+  }, [wishlist]);
 
-  const handleNextImage = (productId, images) => {
+  const handleNextImage = useCallback((productId, images) => {
     setImageIndexes((prevIndexes) => ({
       ...prevIndexes,
       [productId.id]: (prevIndexes[productId.id] + 1) % images.length,
     }));
-  };
+  }, []);
 
   useEffect(() => {
     const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
@@ -188,25 +181,23 @@ const Wishlist = () => {
     }
   }, []);
 
-  const handlePrevImage = (productId, images) => {
+  const handlePrevImage = useCallback((productId, images) => {
     setImageIndexes((prevIndexes) => ({
       ...prevIndexes,
       [productId.id]:
         (prevIndexes[productId.id] - 1 + images.length) % images.length,
     }));
-  };
+  }, []);
 
-  const addToCart = async (productId) => {
+  const addToCart = useCallback(async (productId) => {
     try {
       const userId = localStorage.getItem("user_Id");
       const productSize = Array.isArray(productId?.productSize)
         ? productId.productSize.join(",")
         : productId?.productSize || "";
       const variationIds = Array.isArray(productId?.variations)
-        ? productId.variations.map((variation) => variation.id) // Ensure only ObjectIds are sent
+        ? productId.variations.map((variation) => variation.id)
         : [];
-
-      // Define the payload for the API request
       const payload = {
         userId: userId,
         productId: productId?.id,
@@ -216,12 +207,6 @@ const Wishlist = () => {
         discount: productId?.discount?.$numberDecimal || 0,
         variation: variationIds,
       };
-      console.log(
-        "product",
-        JSON.stringify(JSON.stringify(productId?.variations))
-      );
-
-      // Make the API request
       const response = await axios.post(
         "https://dev.crystovajewels.com/api/v1/order-details/create",
         payload,
@@ -229,8 +214,7 @@ const Wishlist = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-
-      openCart(); // Open cart after successful addition
+      openCart();
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
       } else {
@@ -242,7 +226,7 @@ const Wishlist = () => {
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
-  };
+  }, [dispatch, openCart]);
 
   return (
     <>
