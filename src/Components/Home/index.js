@@ -4,6 +4,7 @@ import { FaAward, FaMedal, FaStar } from "react-icons/fa6";
 import vector from "../../Images/Vector.png";
 import { BiShoppingBag, BiSolidOffer } from "react-icons/bi";
 import Header from "../../Pages/Header";
+import React, { Suspense, lazy } from 'react';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import best from "../../Images/Mask group (9).webp";
@@ -594,6 +595,7 @@ const Home = () => {
           <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
             <div className="position-relative">
               <img
+                loading="lazy"
                 src={require("../../Images/image (3).webp")}
                 className="img-fluid w-100"
                 alt="Main Image"
@@ -1183,7 +1185,9 @@ const Home = () => {
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img best_sellig_sdcdc d-none"
           />
-          <Gift />
+          <Suspense fallback={<div>Loading carousel...</div>}>
+            <Gift />
+          </Suspense>
         </div>
 
         <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-md-4">
@@ -1262,11 +1266,11 @@ const Home = () => {
                       loop={true}
                       preloadImages={false}
                       lazy={true}
-                      // autoplay={{
-                      //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                      //   disableOnInteraction: false,
-                      // }}
-                      // modules={[Autoplay]}
+                    // autoplay={{
+                    //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                    //   disableOnInteraction: false,
+                    // }}
+                    // modules={[Autoplay]}
                     >
                       {productsToDisplay
                         .slice(
@@ -1516,7 +1520,9 @@ const Home = () => {
           />
         </div>
         <div>
-          <RingSlider />
+          <Suspense fallback={<div>Loading carousel...</div>}>
+            <RingSlider />
+          </Suspense>
         </div>
 
         <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
@@ -1577,9 +1583,8 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
+                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                        } mt-5`}
                     >
                       <div className="card-body pt-4">
                         <h5 className="card-title text-center emi_ffcc">
