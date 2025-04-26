@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import "./index.css";
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
+
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import CartPopup from "../Add to Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+const CartPopup = lazy(() => import("../Add to Cart"));
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const CustomJewel = () => {
   const [formData, setFormData] = useState({
@@ -184,18 +185,20 @@ const CustomJewel = () => {
         // toastMessage={toastMessage}
       />
       <div className="main-header">
-        <Header
-          openCart={openCart}
-          wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
+        </Suspense>
       </div>
       <div className="custom-jewel-container">
         {/* Banner Section */}
         <div className="bsn">
           <img
             loading="lazy"
-            src={require("../../Images/customjewel.png")}
+            src="/Images/customjewel.png"
             alt="Custom Jewelry"
           />
         </div>
@@ -205,7 +208,7 @@ const CustomJewel = () => {
           <p>Jewelry as Unique as Your Story</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img mb-4"
             alt="Decorative"
           />
@@ -214,22 +217,22 @@ const CustomJewel = () => {
               {
                 title: "Uniqueness and Exclusivity",
                 desc: "Custom jewelry ensures no one else will have the exact same piece, making it truly yours.",
-                img: require("../../Images/23 Jewelry store.png"),
+                img: "/Images/23 Jewelry store.png",
               },
               {
                 title: "Personalization",
                 desc: "Tailor every detail to your style, from the choice of gemstones to the design elements.",
-                img: require("../../Images/12 Handmade.png"),
+                img: "/Images/12 Handmade.png",
               },
               {
                 title: "Celebrate Special Moments",
                 desc: "Create a lasting memory for engagements, anniversaries, birthdays, or any milestone.",
-                img: require("../../Images/Group 1597884504.png"),
+                img: "/Images/Group 1597884504.png",
               },
               {
                 title: "Quality and Craftsmanship",
                 desc: "Every custom piece is handcrafted by skilled artisans using the finest materials.",
-                img: require("../../Images/22 Jewelry making.png"),
+                img: "/Images/22 Jewelry making.png",
               },
             ].map((feature, index) => (
               <div className="feature-box" key={index}>
@@ -254,7 +257,7 @@ const CustomJewel = () => {
           </p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img mb-4"
             alt="Decorative"
           />

@@ -2,12 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./demo.css";
 
-import logoWhite from "../../../Images/crystovalogowhite (1) 2 (2).png";
-import mainLeftImg from "../../../Images/image (29).webp";
-import smallLeftImg from "../../../Images/Mask group (6).webp";
-import smallRightImg from "../../../Images/image (30).webp";
-import mainRightImg from "../../../Images/Mask group (7).webp";
-
 const JewelrySale = () => {
   const navigate = useNavigate();
 
@@ -17,15 +11,15 @@ const JewelrySale = () => {
         {/* Left Images */}
         <div className="left-images">
           <img
-            loading="lazy"
-            src={mainLeftImg}
+            // loading="lazy"
+            src="/Images/image (29).webp"
             alt="Elegant necklace with pendant"
             className="large-img"
           />
           <div className="small-imgs">
             <img
-              loading="lazy"
-              src={smallLeftImg}
+              // loading="lazy"
+              src="/Images/Mask group (6).webp"
               alt="Diamond ring close-up"
             />
           </div>
@@ -34,7 +28,8 @@ const JewelrySale = () => {
         {/* Center Content */}
         <div className="center-content">
           <img
-            src={logoWhite}
+            fetchpriority="high"
+            src="Images/crystovalogowhite (1) 2 (2).png"
             className="logo-banner"
             alt="Crystova brand logo"
             width={350}
@@ -53,14 +48,14 @@ const JewelrySale = () => {
         <div className="right-images">
           <div className="small-imgs">
             <img
-              loading="lazy"
-              src={smallRightImg}
+              // loading="lazy"
+              src="/Images/image (30).webp"
               alt="Bracelet on display"
             />
           </div>
           <img
-            loading="lazy"
-            src={mainRightImg}
+            // loading="lazy"
+            src="/Images/Mask group (7).webp"
             alt="Gold jewelry display"
             className="large-img"
           />

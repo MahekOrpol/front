@@ -23,8 +23,9 @@ const Footer = () => {
           <div className=" footer_cont text-white sdc_sdds1">
             <img
               loading="lazy"
-              src={require("../../Images/crystovalogowhite (1) 2.png")}
+              src="/Images/crystovalogowhite (1) 2.png"
               width={400}
+                alt="footer"
             />
             <p className="sdcdscsdss_ss ms-3 mt-3 ">
               At Crystova Jewellery, we believe that every piece tells a story.
@@ -148,8 +149,9 @@ const Footer = () => {
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
           <img
             loading="lazy"
-            src={require("../../Images/Group 104.svg").default}
+            src="/Images/Group 104.svg"
             className=""
+            alt="footer"
           />
         </div>
 
@@ -168,8 +170,9 @@ const Footer = () => {
           <div className=" footer_cont_1 text-white sdc_sdds1">
             <img
               loading="lazy"
-              src={require("../../Images/crystovalogowhite (1) 2.png")}
+              src="/Images/crystovalogowhite (1) 2.png"
               width={400}
+              alt="footer"
             />
           </div>
           <p className="sdcdscsdss_ss_1 mt-3 " style={{ width: "88%" }}>
@@ -389,8 +392,9 @@ const Footer = () => {
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
           <img
             loading="lazy"
-            src={require("../../Images/Group 104.svg").default}
+            src="/Images/Group 104.svg"
             className=""
+            alt="footer"
           />
         </div>
 

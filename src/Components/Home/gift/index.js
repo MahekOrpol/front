@@ -16,6 +16,17 @@ const Gift = () => {
     []
   );
 
+  // List of slider images
+  const sliderImages = [
+    "/Images/slider.webp",
+    "/Images/g4.webp",
+    "/Images/gift2.webp",
+    "/Images/gift3.webp",
+    "/Images/gift4.webp",
+    "/Images/gift5.webp",
+    "/Images/gift3 (1).webp",
+  ];
+
   return (
     <div className="container row col-md-12 d-flex align-items-center ring_sec_gifff p-0">
       {/* LEFT SIDE TEXT */}
@@ -39,62 +50,16 @@ const Gift = () => {
         {/* Slider Card */}
         <div className="slider-card-wrapper">
           <Slider {...sliderSettings}>
-            <div className="slider-card">
-              <img
-                loading="lazy"
-                src={require("../../../Images/slider.webp")}
-                alt="Gift Slide"
-                className="gift_img_round"
-              />
-            </div>
-            <div className="slider-card">
-              <img
-                loading="lazy"
-                src={require("../../../Images/g4.webp")}
-                alt="Gift Slide 2"
-                className="gift_img_round"
-              />
-            </div>
-            <div className="slider-card">
-              <img
-                loading="lazy"
-                src={require("../../../Images/gift2.webp")}
-                alt="Gift Slide 2"
-                className="gift_img_round"
-              />
-            </div>
-            <div className="slider-card">
-              <img
-                loading="lazy"
-                src={require("../../../Images/gift3.webp")}
-                alt="Gift Slide 2"
-                className="gift_img_round"
-              />
-            </div>
-            <div className="slider-card">
-              <img
-                loading="lazy"
-                src={require("../../../Images/gift4.webp")}
-                alt="Gift Slide 2"
-                className="gift_img_round"
-              />
-            </div>
-            <div className="slider-card">
-              <img
-                loading="lazy"
-                src={require("../../../Images/gift5.webp")}
-                alt="Gift Slide 2"
-                className="gift_img_round"
-              />
-            </div>
-            <div className="slider-card">
-              <img
-                loading="lazy"
-                src={require("../../../Images/gift3 (1).webp")}
-                alt="Gift Slide 2"
-                className="gift_img_round"
-              />
-            </div>
+            {sliderImages.map((src, index) => (
+              <div key={index} className="slider-card">
+                <img
+                  loading="lazy"
+                  src={src}
+                  alt={`Gift Slide ${index + 1}`}
+                  className="gift_img_round"
+                />
+              </div>
+            ))}
           </Slider>
         </div>
 
@@ -102,12 +67,11 @@ const Gift = () => {
         <div className="static-gift-card text-center MHK position-relative gap-2 gift_img_round">
           <img
             loading="lazy"
-            src={require("../../../Images/first.svg").default}
+            src="/Images/first.svg"
             className="img-fluid gift-img gift_box_dsdd"
             alt="Gift Your Loved Ones"
           />
-
-          <h5 className="dfvcf_VFFYT ">Grace in Every Gift</h5>
+          <h5 className="dfvcf_VFFYT">Grace in Every Gift</h5>
           <p>
             Delight loved ones with timeless treasures. Make every moment
             unforgettable.

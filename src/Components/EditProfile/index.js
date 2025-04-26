@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import "./index.css"; // Ensure this CSS file is created
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import CartPopup from "../Add to Cart";
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+const CartPopup = lazy(() => import("../Add to Cart"));
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const EditProfile = () => {
   const [wishlistCount, setWishlistCount] = useState(
@@ -206,19 +207,23 @@ const EditProfile = () => {
         closeCart={closeCart}
         showToast={showToast}
         // toastMessage={toastMessage}
-      />
-      <Header
-        openCart={openCart}
-        wishlistCount={userId ? wishlistCount : null}
-        cartCount={userId ? cartCount : null}
-      />
+      />{" "}
+      <div className="main-header">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
+        </Suspense>
+      </div>
       <div className="d-flex align-items-center justify-content-center mt-5">
         <div className="bg-white d-flex flex-wrap overflow-hidden fjeef">
           {/* Left Image Section - Always visible, but smaller on smaller screens */}
           <div className="col-md-6 justify-content-center tyoty">
             <img
               loading="lazy"
-              src={require("../../Images/editimg.png")}
+              src="/Images/editimg.png"
               alt="Profile"
               className="img-fluid w-100"
             />

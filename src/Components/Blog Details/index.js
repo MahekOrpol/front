@@ -1,46 +1,47 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "./index.css";
-import Header from "../../Pages/Header";
-import { FaArrowRight } from "react-icons/fa6";
-import Footer from "../../Pages/Footer";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import CartPopup from "../Add to Cart";
+import { FaArrowRight } from "react-icons/fa6";
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+const Footer = lazy(() => import("../../Pages/Footer"));
+const Header = lazy(() => import("../../Pages/Header"));
+const CartPopup = lazy(() => import("../Add to Cart"));
 
 const posts = [
   {
     id: 1,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (14).png"),
+    image: "/Images/image (14).png",
   },
   {
     id: 2,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (15).png"),
+    image: "/Images/image (15).png",
   },
   {
     id: 3,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (16).png"),
+    image: "/Images/image (16).png",
   },
   {
     id: 4,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (17).png"),
+    image: "/Images/image (17).png",
   },
 ];
 
 const BlogDetails = () => {
-const [wishlistCount, setWishlistCount] = useState(
-    parseInt(localStorage.getItem('wishlistCount')) || 0
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
   );
   const [wishlistItems, setWishlistItems] = useState({});
   const dispatch = useDispatch();
@@ -53,7 +54,7 @@ const [wishlistCount, setWishlistCount] = useState(
   useEffect(() => {
     dispatch(fetchCartCount());
   }, [dispatch]);
-  const navigate = useNavigate('');
+  const navigate = useNavigate("");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const userId = localStorage.getItem("user_Id");
@@ -78,7 +79,7 @@ const [wishlistCount, setWishlistCount] = useState(
 
   const updateWishlistCount = (count) => {
     setWishlistCount(count);
-    localStorage.setItem('wishlistCount', count.toString());
+    localStorage.setItem("wishlistCount", count.toString());
   };
 
   useEffect(() => {
@@ -128,17 +129,22 @@ const [wishlistCount, setWishlistCount] = useState(
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-      // toastMessage={toastMessage}
+        // toastMessage={toastMessage}
       />
-            <div className="main-header">
-
-      <Header openCart={openCart}  wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null} />
-          </div>
+      <div className="main-header">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
+        </Suspense>
+      </div>
       <div>
         <img
-          src={require("../../Images/Group 1597884578.png")}
+          src="/Images/Group 1597884578.png"
           className="img_fluid1_banner"
+          alt="blog"
         />
         {/* <div className='banner_text_sss'>
           <h1 className='banner_exx'>Blog Detail</h1>
@@ -146,8 +152,10 @@ const [wishlistCount, setWishlistCount] = useState(
       </div>
       <div className="container pt-5 ">
         <div className="d-flex gap-5 blog_main_dddd">
-        
-          <div className="sdncsduchs h-100 position-sticky blog_sins_ssss" style={{ top: '12px' }}>
+          <div
+            className="sdncsduchs h-100 position-sticky blog_sins_ssss"
+            style={{ top: "12px" }}
+          >
             <div className="card p-3 shadow-sm border-0 ">
               <h4 className="fw-bold border-bottom pb-2">Popular Posts</h4>
               {posts.map((post, index) => (
@@ -196,7 +204,11 @@ const [wishlistCount, setWishlistCount] = useState(
           <div className="sdncsduch row pb-5">
             <div className="ssss_ssd11">
               <div className="blog_fade_ds1">
-                <img src={require("../../Images/image (25).png")} className="deta_blg_dd" />
+                <img
+                  src="/Images/image (25).png"
+                  className="deta_blg_dd"
+                  alt="blog"
+                />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-5 sdc_sdcji_swd">
@@ -205,35 +217,58 @@ const [wishlistCount, setWishlistCount] = useState(
                 </span>
 
                 <p className="psps">
-                  Jewellery has always been a significant part of human culture, transcending its role as mere adornment. From ancient civilizations to modern times, it has carried meanings that go beyond aesthetics, symbolizing identity, emotion, and history.
+                  Jewellery has always been a significant part of human culture,
+                  transcending its role as mere adornment. From ancient
+                  civilizations to modern times, it has carried meanings that go
+                  beyond aesthetics, symbolizing identity, emotion, and history.
                 </p>
                 <p className="psps">
-                  Jewellery has always been a significant part of human culture, transcending its role as mere adornment. From ancient civilizations to modern times, it has carried meanings that go beyond aesthetics, symbolizing identity, emotion, and history. A bold necklace or minimalist earrings can reflect an individual’s personality—confident, elegant, or understated. Custom pieces like name pendants or birthstone rings allow wearers to showcase their uniqueness. Every piece of jewellery has a story to tell.
+                  Jewellery has always been a significant part of human culture,
+                  transcending its role as mere adornment. From ancient
+                  civilizations to modern times, it has carried meanings that go
+                  beyond aesthetics, symbolizing identity, emotion, and history.
+                  A bold necklace or minimalist earrings can reflect an
+                  individual’s personality—confident, elegant, or understated.
+                  Custom pieces like name pendants or birthstone rings allow
+                  wearers to showcase their uniqueness. Every piece of jewellery
+                  has a story to tell.
                 </p>
-
               </div>
             </div>
 
             <div className="pt-4 pb-2">
-
               <div className="ssjnsec_fd p-3">
-                <span className="ens_ddd">Engagement rings, wedding bands, and anniversary gifts commemorate milestones, making the jewellery a lifelong symbol of love and commitment.</span>
+                <span className="ens_ddd">
+                  Engagement rings, wedding bands, and anniversary gifts
+                  commemorate milestones, making the jewellery a lifelong symbol
+                  of love and commitment.
+                </span>
               </div>
             </div>
 
             <div className="d-flex flex-column pt-5">
               <span>
-                <img src={require('../../Images/Group 99.png')} />
+                <img src="/Images/Group 99.png" alt="blog"/>
               </span>
-              <span className="ens_ddds pt-4">“Learn how to keep your jewelry shining bright! From cleaning techniques to storage solutions, our blog offers expert advice.  Each item is handcrafted with love and precision, using ethically sourced materials to ensure beauty that you feel good about. Learn how to keep your jewelry shining bright! From cleaning techniques to storage solutions, our blog offers expert advice.”</span>
+              <span className="ens_ddds pt-4">
+                “Learn how to keep your jewelry shining bright! From cleaning
+                techniques to storage solutions, our blog offers expert advice.
+                Each item is handcrafted with love and precision, using
+                ethically sourced materials to ensure beauty that you feel good
+                about. Learn how to keep your jewelry shining bright! From
+                cleaning techniques to storage solutions, our blog offers expert
+                advice.”
+              </span>
               <span className="pt-3 d-flex justify-content-between">
                 <span className="sedwd">- Jasmin Rosie</span>
-                <img src={require('../../Images/Group 100.png')} />
+                <img src="/Images/Group 100.png" alt="blog"/>
               </span>
             </div>
 
             <div className="d-flex flex-column pt-5">
-              <span className="sdjuue_rrf">Trends to Watch in the Jewelry World</span>
+              <span className="sdjuue_rrf">
+                Trends to Watch in the Jewelry World
+              </span>
             </div>
             <div className="pt-4">
               <ul className="d-flex flex-row dscds_det_lst_sdss">

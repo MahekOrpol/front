@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import "./index.css";
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
+
 import {
   FaAngleLeft,
   FaAngleRight,
@@ -10,16 +9,17 @@ import {
 } from "react-icons/fa6";
 import { CiStar, CiWallet } from "react-icons/ci";
 import { PiCertificateLight, PiMoneyWavy } from "react-icons/pi";
-import ringVideo from "../../Videos/Abouy Sss.mp4";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import CartPopup from "../Add to Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+const CartPopup = lazy(() => import("../Add to Cart"));
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const AboutUs = () => {
   const swiperRef = useRef(null);
@@ -171,17 +171,20 @@ const AboutUs = () => {
         // toastMessage={toastMessage}
       />
       <div className="main-header">
-        <Header
-          openCart={openCart}
-          wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
+        </Suspense>
       </div>
       <div>
         <img
           loading="lazy"
-          src={require("../../Images/Group 1597884580.png")}
+          src="/Images/Group 1597884580.png"
           className="img_fluid1_banner"
+          alt="about us"
         />
         {/* <div className="banner_text_sss">
           <h1 className="banner_exx">About Us</h1>
@@ -194,7 +197,8 @@ const AboutUs = () => {
             <img
               loading="lazy"
               className="djs_about img-fluid sticky"
-              src={require("../../Images/Group 1597884574.png")}
+              src="/Images/Group 1597884574.png"
+              alt="about us"
             />
           </div>
           <div className="w-50 d-flex flex-column gap-5 wr dlex">
@@ -219,7 +223,8 @@ const AboutUs = () => {
               <div className="d-flex align-items-center gap-3 flex-column">
                 <img
                   loading="lazy"
-                  src={require("../../Images/Group 1597884563.png")}
+                  src="/Images/Group 1597884563.png"
+                  alt="about us"
                 />
                 <span className="our_ddd">Our Journey</span>
                 <span className="shsdy_555">
@@ -230,7 +235,8 @@ const AboutUs = () => {
               <div className="d-flex align-items-center gap-3 flex-column">
                 <img
                   loading="lazy"
-                  src={require("../../Images/Group 1597884564.png")}
+                  src="/Images/Group 1597884564.png"
+                  alt="about us"
                 />
                 <span className="our_ddd">Explore & Connect</span>
                 <span className="shsdy_555">
@@ -246,7 +252,8 @@ const AboutUs = () => {
       <div className="hdr_csd">
         <img
           loading="lazy"
-          src={require("../../Images/Group 1597884485.png")}
+          src="/Images/Group 1597884485.png"
+          alt="about us"
         />
       </div>
 
@@ -266,7 +273,8 @@ const AboutUs = () => {
               <div className="d-flex align-items-center gap-3">
                 <img
                   loading="lazy"
-                  src={require("../../Images/Group 1597884572.png")}
+                  src="/Images/Group 1597884572.png"
+                  alt="about us"
                 />
                 <div className="d-flex align-items-center gap-3 flex-column">
                   <span className="visionb d-flex justify-content-start w-100">
@@ -282,7 +290,8 @@ const AboutUs = () => {
               <div className="d-flex align-items-center gap-3">
                 <img
                   loading="lazy"
-                  src={require("../../Images/Group 1597884573.png")}
+                  src="/Images/Group 1597884573.png"
+                  alt="about us"
                 />
 
                 <div className="d-flex align-items-center gap-3 flex-column">
@@ -303,7 +312,7 @@ const AboutUs = () => {
               <video
                 preload="none"
                 loading="lazy"
-                src={ringVideo}
+                src='/Videos/Abouy Sss.mp4'
                 className="bg-white vi_rng_fff"
                 autoPlay
                 loop
@@ -311,7 +320,7 @@ const AboutUs = () => {
               />
               <img
                 loading="lazy"
-                src={require("../../Images/Mask group (3).png")}
+                src="/Images/Mask group (3).png"
                 className="sjd_555 position-absolute top-50 translate-middle"
                 alt="Jewelry Overlay"
               />
@@ -322,7 +331,7 @@ const AboutUs = () => {
               <video
 preload="none"
                                 loading="lazy"
-                src={ringVideo}
+                src='/Videos/Abouy Sss.mp4'
                 className="bg-white mas_ddd"
                 autoPlay
                 loop
@@ -331,7 +340,7 @@ preload="none"
             
               <img 
  loading="lazy"
-                src={require("../../Images/Mask group (3).png")}
+                src="/Images/Mask group (3).png")}
                 className="sjd_555"
               />
             </div>
@@ -348,8 +357,9 @@ preload="none"
             <div className="blog_fade_ds">
               <img
                 loading="lazy"
-                src={require("../../Images/image (21).png")}
+                src="/Images/image (21).png"
                 className="img-fluid"
+                alt="about us"
               />
             </div>
             <div className="d-flex flex-column gap-2 pt-4">
@@ -377,8 +387,9 @@ preload="none"
             <div className="blog_fade_ds">
               <img
                 loading="lazy"
-                src={require("../../Images/image (22).png")}
+                src="/Images/image (22).png"
                 className="img-fluid"
+                alt="about us"
               />
             </div>
             <div className="d-flex flex-column gap-2 pt-4">
@@ -406,8 +417,9 @@ preload="none"
             <div className="blog_fade_ds">
               <img
                 loading="lazy"
-                src={require("../../Images/image (23).png")}
+                src="/Images/image (23).png"
                 className="img-fluid"
+                alt="about us"
               />
             </div>
             <div className="d-flex flex-column gap-2 pt-4">
@@ -551,7 +563,7 @@ preload="none"
           <p className="category_txt">What our Client’s say about us</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             alt="Decorative"
           />
 

@@ -66,6 +66,8 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^7.0.2",
     "@svgr/webpack": "^8.1.0",
-    "cssnano": "^7.0.6"
+    "css-minimizer-webpack-plugin": "^7.0.2",
+    "cssnano": "^7.0.6",
+    "webpack-bundle-analyzer": "^4.10.2"
   }
 }

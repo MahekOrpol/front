@@ -1,13 +1,11 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
+import React, { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { FaChevronRight, FaStar } from "react-icons/fa6";
 import "./index.css";
 import { BiShoppingBag } from "react-icons/bi";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { GoShareAndroid } from "react-icons/go";
 import { FcLike } from "react-icons/fc";
-import CartPopup from "../Add to Cart";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -26,6 +24,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ProductViewCounter from "../../ProductViewCounter";
+const CartPopup = lazy(() => import("../Add to Cart"));
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const ProductDetailss = () => {
   const [liked, setLiked] = useState(false);
@@ -311,13 +312,13 @@ Please let me know the next steps.`;
 
   const faqs = [
     {
-      icon: <img loading="lazy" src={require("../../Images/watch.png")} />,
+      icon: <img loading="lazy" src="/Images/watch.png"  alt="product details"/>,
       title: "Shipping",
       answer:
         "This item is made to order and takes 2-3 weeks to craft. We ship FedEx Priority Overnight, signature required and fully insured.",
     },
     {
-      icon: <img loading="lazy" src={require("../../Images/Vector (6).png")} />,
+      icon: <img loading="lazy" src="/Images/Vector (6).png"  alt="product details"/>,
       title: "Return Policy",
       answer:
         "Received an item you don't like? Crystova is proud to offer free returns within 30 days from receiving your item. Contact our support team to issue a return.",
@@ -400,11 +401,13 @@ Please let me know the next steps.`;
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header">
-          <Header
-            openCart={openCart}
-            wishlistCount={userId ? wishlistCount : null}
-            cartCount={userId ? cartCount : null}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Header
+              openCart={openCart}
+              wishlistCount={userId ? wishlistCount : null}
+              cartCount={userId ? cartCount : null}
+            />
+          </Suspense>
         </div>
         <div className="container detail_arrowW_xss">
           <section>
@@ -502,7 +505,6 @@ Please let me know the next steps.`;
                     },
                   }}
                 >
-                 
                   {productDetails?.image && productDetails.image.length > 0 ? (
                     productDetails.image.map((img, index) => {
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
@@ -942,7 +944,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       loading="lazy"
-                      src={require("../../Images/material.png")}
+                      src="/Images/material.png"
                       alt="AVOID WATER / MOISTURE"
                     />
                     <span>AVOID WATER / MOISTURE</span>
@@ -951,7 +953,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       loading="lazy"
-                      src={require("../../Images/oeeofiw.png")}
+                      src="/Images/oeeofiw.png"
                       alt="REMOVE BEFORE SLEEPING"
                     />
                     <span>REMOVE BEFORE SLEEPING</span>
@@ -960,7 +962,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       loading="lazy"
-                      src={require("../../Images/fragrance_6211860.png")}
+                      src="/Images/fragrance_6211860.png"
                       alt="AVOID PERFUME / LOTION"
                     />
                     <span>AVOID PERFUME / LOTION</span>
@@ -969,7 +971,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       loading="lazy"
-                      src={require("../../Images/box_14309182 (1).png")}
+                      src="/Images/box_14309182 (1).png"
                       alt="USE SOFT / DRY FABRIC TO CLEAN"
                     />
                     <span>USE SOFT / DRY FABRIC TO CLEAN</span>
@@ -978,10 +980,7 @@ Please let me know the next steps.`;
 
                 <div className="pt-2">
                   <div className="card det_cddd p-3">
-                 
-
                     <div className="d-flex align-items-center gap-3 pt-4 sdsc_knoww">
-                    
                       <div className="offer-container w-100">
                         <h5 className="fw-bold mb-4 offe_dscdfcc">
                           Offers For You{" "}
@@ -1007,10 +1006,7 @@ Please let me know the next steps.`;
                               >
                                 <img
                                   loading="lazy"
-                                  src={
-                                    require("../../Images/Frame (23).svg")
-                                      .default
-                                  }
+                                  src="/Images/Frame (23).svg"
                                   className="offer-icon"
                                   alt="Offer Icon"
                                 />
@@ -1040,7 +1036,8 @@ Please let me know the next steps.`;
                         <div className="d-flex align-items-center gap-3">
                           <img
                             loading="lazy"
-                            src={require("../../Images/Group (2).png")}
+                            src="/Images/Group (2).png"
+                              alt="product details"
                           />
                           <span className="knoe_www_rng">METAL</span>
                         </div>
@@ -1099,7 +1096,7 @@ Please let me know the next steps.`;
           <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd mt-md-3 szdcd_99909">
             <span className="category_name">Related Products</span>
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
-            <img loading="lazy" src={require("../../Images/Groupimg.png")} />
+            <img loading="lazy" src="/Images/Groupimg.png"  alt="product details"/>
           </div>
           <div className="heder_sec_main d-flex flex-column p-0">
             <div className="row">

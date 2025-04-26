@@ -1,6 +1,5 @@
-import React from "react";
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
+import React, { lazy, Suspense } from "react";
+
 import "./index.css";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,9 +13,13 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import CartPopup from "../Add to Cart";
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+
+const CartPopup = lazy(() => import("../Add to Cart"));
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const Contact = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -160,17 +163,20 @@ const Contact = () => {
         // toastMessage={toastMessage}
       />
       <div className="main-header">
-        <Header
-          openCart={openCart}
-          wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
+        </Suspense>
       </div>
       <div>
         <img
           loading="lazy"
-          src={require("../../Images/Group 1597884579.png")}
+          src="/Images/Group 1597884579.png"
           className="img_fluid1_banner"
+          alt="contact us"
         />
         {/* <div className='banner_text_sss'>
                     <h1 className='banner_exx'>Contact Us</h1>
