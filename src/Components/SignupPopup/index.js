@@ -76,7 +76,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
             <div className="profile-section">
               <img
                 loading="lazy"
-                src={require("../../Images/15 Model white.png")}
+                src="/Images/15 Model white.png"
                 alt="Profile"
                 className="profile-pic"
               />
@@ -102,7 +102,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
               {/* <li onClick={() => setShowRegister(true)}>
                                 {/* <div className="menu-item">
                                     <img
-loading="lazy" src={require("../../Images/profileicon.png")} alt="Profile" className="menu-icons" />
+loading="lazy" src="/Images/profileicon.png" alt="Profile" className="menu-icons" />
                                     <span className="sass">Login/Register</span>
                                 </div>
                                 <FaAngleRight size={20} className="menu-arrow" />
@@ -110,7 +110,7 @@ loading="lazy" src={require("../../Images/profileicon.png")} alt="Profile" class
                             <li onClick={() => navigate('/Editprofile')}>
                                 <div className="menu-item">
                                     <img
-loading="lazy" src={require("../../Images/profileicon.png")} alt="Profile" className="menu-icons" />
+loading="lazy" src="/Images/profileicon.png" alt="Profile" className="menu-icons" />
                                     <span className="sass">Your Profile</span>
                                 </div>
                                 <FaAngleRight size={20} className="menu-arrow" />
@@ -121,7 +121,7 @@ loading="lazy" src={require("../../Images/profileicon.png")} alt="Profile" class
                   <div className="menu-item">
                     <img
                       loading="lazy"
-                      src={require("../../Images/profileicon.png")}
+                      src="/Images/profileicon.png"
                       alt="Profile"
                       className="menu-icons"
                     />
@@ -134,7 +134,7 @@ loading="lazy" src={require("../../Images/profileicon.png")} alt="Profile" class
                   <div className="menu-item">
                     <img
                       loading="lazy"
-                      src={require("../../Images/profileicon.png")}
+                      src="/Images/profileicon.png"
                       alt="Profile"
                       className="menu-icons"
                     />
@@ -148,7 +148,7 @@ loading="lazy" src={require("../../Images/profileicon.png")} alt="Profile" class
                 <div className="menu-item">
                   <img
                     loading="lazy"
-                    src={require("../../Images/ordericon.png")}
+                    src="/Images/ordericon.png"
                     alt="Orders"
                     className="menu-icons"
                   />
@@ -160,7 +160,7 @@ loading="lazy" src={require("../../Images/profileicon.png")} alt="Profile" class
                 <div className="menu-item">
                   <img
                     loading="lazy"
-                    src={require("../../Images/termsicon.png")}
+                    src="/Images/termsicon.png"
                     alt="Terms"
                     className="menu-icons"
                   />
@@ -172,7 +172,7 @@ loading="lazy" src={require("../../Images/profileicon.png")} alt="Profile" class
                 <div className="menu-item">
                   <img
                     loading="lazy"
-                    src={require("../../Images/privacyicon.png")}
+                    src="/Images/privacyicon.png"
                     alt="Privacy"
                     className="menu-icons"
                   />
@@ -184,7 +184,7 @@ loading="lazy" src={require("../../Images/profileicon.png")} alt="Profile" class
                 <div className="menu-item">
                   <img
                     loading="lazy"
-                    src={require("../../Images/contacticon.png")}
+                    src="/Images/contacticon.png"
                     alt="Contact"
                     className="menu-icons"
                   />

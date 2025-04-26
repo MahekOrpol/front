@@ -2,8 +2,6 @@ import React, { lazy, Suspense, useEffect, useState } from "react";
 import "./index.css";
 import { Box, Tab, Tabs, TextField, Button, Fade, Slide } from "@mui/material";
 import { TabContext, TabPanel } from "@mui/lab";
-import registerImage from "../../Images/registerpage.png";
-import googleIcon from "../../Images/googleicon.png";
 import ForgotPass from "../ForgotPopup";
 import ChangePass from "../ChangePass";
 import { toast } from "react-toastify";
@@ -180,7 +178,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
         <div className="register-popup" onClick={(e) => e.stopPropagation()}>
           <div className="register-container">
             <div className="register-image">
-              <img loading="lazy" src={registerImage} alt="Register" />
+              <img loading="lazy" src='/Images/registerpage.png' alt="Register" />
             </div>
 
             <div className="register-form">

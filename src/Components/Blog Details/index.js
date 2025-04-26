@@ -17,25 +17,25 @@ const posts = [
     id: 1,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (14).png"),
+    image: "/Images/image (14).png",
   },
   {
     id: 2,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (15).png"),
+    image: "/Images/image (15).png",
   },
   {
     id: 3,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (16).png"),
+    image: "/Images/image (16).png",
   },
   {
     id: 4,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (17).png"),
+    image: "/Images/image (17).png",
   },
 ];
 
@@ -142,7 +142,7 @@ const BlogDetails = () => {
       </div>
       <div>
         <img
-          src={require("../../Images/Group 1597884578.png")}
+          src="/Images/Group 1597884578.png"
           className="img_fluid1_banner"
           alt="blog"
         />
@@ -205,7 +205,7 @@ const BlogDetails = () => {
             <div className="ssss_ssd11">
               <div className="blog_fade_ds1">
                 <img
-                  src={require("../../Images/image (25).png")}
+                  src="/Images/image (25).png"
                   className="deta_blg_dd"
                   alt="blog"
                 />
@@ -248,7 +248,7 @@ const BlogDetails = () => {
 
             <div className="d-flex flex-column pt-5">
               <span>
-                <img src={require("../../Images/Group 99.png")} alt="blog"/>
+                <img src="/Images/Group 99.png" alt="blog"/>
               </span>
               <span className="ens_ddds pt-4">
                 “Learn how to keep your jewelry shining bright! From cleaning
@@ -261,7 +261,7 @@ const BlogDetails = () => {
               </span>
               <span className="pt-3 d-flex justify-content-between">
                 <span className="sedwd">- Jasmin Rosie</span>
-                <img src={require("../../Images/Group 100.png")} alt="blog"/>
+                <img src="/Images/Group 100.png" alt="blog"/>
               </span>
             </div>
 

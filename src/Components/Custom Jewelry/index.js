@@ -198,7 +198,7 @@ const CustomJewel = () => {
         <div className="bsn">
           <img
             loading="lazy"
-            src={require("../../Images/customjewel.png")}
+            src="/Images/customjewel.png"
             alt="Custom Jewelry"
           />
         </div>
@@ -208,7 +208,7 @@ const CustomJewel = () => {
           <p>Jewelry as Unique as Your Story</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img mb-4"
             alt="Decorative"
           />
@@ -217,22 +217,22 @@ const CustomJewel = () => {
               {
                 title: "Uniqueness and Exclusivity",
                 desc: "Custom jewelry ensures no one else will have the exact same piece, making it truly yours.",
-                img: require("../../Images/23 Jewelry store.png"),
+                img: "/Images/23 Jewelry store.png",
               },
               {
                 title: "Personalization",
                 desc: "Tailor every detail to your style, from the choice of gemstones to the design elements.",
-                img: require("../../Images/12 Handmade.png"),
+                img: "/Images/12 Handmade.png",
               },
               {
                 title: "Celebrate Special Moments",
                 desc: "Create a lasting memory for engagements, anniversaries, birthdays, or any milestone.",
-                img: require("../../Images/Group 1597884504.png"),
+                img: "/Images/Group 1597884504.png",
               },
               {
                 title: "Quality and Craftsmanship",
                 desc: "Every custom piece is handcrafted by skilled artisans using the finest materials.",
-                img: require("../../Images/22 Jewelry making.png"),
+                img: "/Images/22 Jewelry making.png",
               },
             ].map((feature, index) => (
               <div className="feature-box" key={index}>
@@ -257,7 +257,7 @@ const CustomJewel = () => {
           </p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img mb-4"
             alt="Decorative"
           />

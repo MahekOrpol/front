@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./index.css";
-import img1 from "../../../Images/image (32).png";
-import img2 from "../../../Images/jewe.jpg";
-import img3 from "../../../Images/jewelery (1).jpg";
-import groupImg from "../../../Images/Groupimg.png";
+
 import { Button } from "react-bootstrap";
 import { FaArrowRightLong } from "react-icons/fa6";
+const images = [
+  "/Images/image32.png",
+  "/Images/jewe.jpg",
+  "/Images/jewelery1.jpg"
+];
+const groupImg = "/Images/Groupimg.png";
 
-const images = [img1, img2, img3];
+
 
 const Occasion = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

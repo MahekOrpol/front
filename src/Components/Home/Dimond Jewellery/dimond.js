@@ -28,7 +28,7 @@ const DimondJewellery = () => {
         <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
           <div className="h-100">
             <img
-              src={require("../../../Images/rose.webp")}
+              src="..//Images/rose.webp"
               alt="Rings"
               loading="lazy"
               className="w-100 h-100 diamond_img"
@@ -37,7 +37,7 @@ const DimondJewellery = () => {
           </div>
           <div className="h-100">
             <img
-              src={require("../../../Images/pen.webp")}
+              src="..//Images/pen.webp"
               alt="Pendant"
               loading="lazy"
               className="w-100 h-100 diamond_img"
@@ -60,7 +60,7 @@ const DimondJewellery = () => {
                 onClick={() => navigate('/products')}
               >
                 <source
-                  src={require("../../../Videos/diamond jewelry.mp4")}
+                  src="../../../Videos/diamond jewelry.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
@@ -72,7 +72,7 @@ const DimondJewellery = () => {
         <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
           <div className="h-100">
             <img
-              src={require("../../../Images/bracletesss.webp")}
+              src="..//Images/bracletesss.webp"
               alt="Bracelet"
               loading="lazy"
               className="w-100 h-100 diamond_img"
@@ -81,7 +81,7 @@ const DimondJewellery = () => {
           </div>
           <div className="h-100">
             <img
-              src={require("../../../Images/schbgdsccc.webp")}
+              src="..//Images/schbgdsccc.webp"
               alt="Earrings"
               loading="lazy"
               className="w-100 h-100 diamond_img"

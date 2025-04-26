@@ -9,7 +9,6 @@ import {
 } from "react-icons/fa6";
 import { CiStar, CiWallet } from "react-icons/ci";
 import { PiCertificateLight, PiMoneyWavy } from "react-icons/pi";
-import ringVideo from "../../Videos/Abouy Sss.mp4";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -183,7 +182,7 @@ const AboutUs = () => {
       <div>
         <img
           loading="lazy"
-          src={require("../../Images/Group 1597884580.png")}
+          src="/Images/Group 1597884580.png"
           className="img_fluid1_banner"
           alt="about us"
         />
@@ -198,7 +197,7 @@ const AboutUs = () => {
             <img
               loading="lazy"
               className="djs_about img-fluid sticky"
-              src={require("../../Images/Group 1597884574.png")}
+              src="/Images/Group 1597884574.png"
               alt="about us"
             />
           </div>
@@ -224,7 +223,7 @@ const AboutUs = () => {
               <div className="d-flex align-items-center gap-3 flex-column">
                 <img
                   loading="lazy"
-                  src={require("../../Images/Group 1597884563.png")}
+                  src="/Images/Group 1597884563.png"
                   alt="about us"
                 />
                 <span className="our_ddd">Our Journey</span>
@@ -236,7 +235,7 @@ const AboutUs = () => {
               <div className="d-flex align-items-center gap-3 flex-column">
                 <img
                   loading="lazy"
-                  src={require("../../Images/Group 1597884564.png")}
+                  src="/Images/Group 1597884564.png"
                   alt="about us"
                 />
                 <span className="our_ddd">Explore & Connect</span>
@@ -253,7 +252,7 @@ const AboutUs = () => {
       <div className="hdr_csd">
         <img
           loading="lazy"
-          src={require("../../Images/Group 1597884485.png")}
+          src="/Images/Group 1597884485.png"
           alt="about us"
         />
       </div>
@@ -274,7 +273,7 @@ const AboutUs = () => {
               <div className="d-flex align-items-center gap-3">
                 <img
                   loading="lazy"
-                  src={require("../../Images/Group 1597884572.png")}
+                  src="/Images/Group 1597884572.png"
                   alt="about us"
                 />
                 <div className="d-flex align-items-center gap-3 flex-column">
@@ -291,7 +290,7 @@ const AboutUs = () => {
               <div className="d-flex align-items-center gap-3">
                 <img
                   loading="lazy"
-                  src={require("../../Images/Group 1597884573.png")}
+                  src="/Images/Group 1597884573.png"
                   alt="about us"
                 />
 
@@ -313,7 +312,7 @@ const AboutUs = () => {
               <video
                 preload="none"
                 loading="lazy"
-                src={ringVideo}
+                src='/Videos/Abouy Sss.mp4'
                 className="bg-white vi_rng_fff"
                 autoPlay
                 loop
@@ -321,7 +320,7 @@ const AboutUs = () => {
               />
               <img
                 loading="lazy"
-                src={require("../../Images/Mask group (3).png")}
+                src="/Images/Mask group (3).png"
                 className="sjd_555 position-absolute top-50 translate-middle"
                 alt="Jewelry Overlay"
               />
@@ -332,7 +331,7 @@ const AboutUs = () => {
               <video
 preload="none"
                                 loading="lazy"
-                src={ringVideo}
+                src='/Videos/Abouy Sss.mp4'
                 className="bg-white mas_ddd"
                 autoPlay
                 loop
@@ -341,7 +340,7 @@ preload="none"
             
               <img 
  loading="lazy"
-                src={require("../../Images/Mask group (3).png")}
+                src="/Images/Mask group (3).png")}
                 className="sjd_555"
               />
             </div>
@@ -358,7 +357,7 @@ preload="none"
             <div className="blog_fade_ds">
               <img
                 loading="lazy"
-                src={require("../../Images/image (21).png")}
+                src="/Images/image (21).png"
                 className="img-fluid"
                 alt="about us"
               />
@@ -388,7 +387,7 @@ preload="none"
             <div className="blog_fade_ds">
               <img
                 loading="lazy"
-                src={require("../../Images/image (22).png")}
+                src="/Images/image (22).png"
                 className="img-fluid"
                 alt="about us"
               />
@@ -418,7 +417,7 @@ preload="none"
             <div className="blog_fade_ds">
               <img
                 loading="lazy"
-                src={require("../../Images/image (23).png")}
+                src="/Images/image (23).png"
                 className="img-fluid"
                 alt="about us"
               />
@@ -564,7 +563,7 @@ preload="none"
           <p className="category_txt">What our Client’s say about us</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             alt="Decorative"
           />
 

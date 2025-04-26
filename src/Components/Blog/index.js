@@ -17,25 +17,25 @@ const posts = [
     id: 1,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (14).png"),
+    image: "/Images/image (14).png",
   },
   {
     id: 2,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (15).png"),
+    image: "/Images/image (15).png",
   },
   {
     id: 3,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (16).png"),
+    image: "/Images/image (16).png",
   },
   {
     id: 4,
     title: "The North Earings Bronze",
     date: "Mar 09 2024",
-    image: require("../../Images/image (17).png"),
+    image: "/Images/image (17).png",
   },
 ];
 
@@ -142,7 +142,7 @@ const Blog = () => {
       </div>
       <div>
         <img
-          src={require("../../Images/Group 1597884577.png")}
+          src="/Images/Group 1597884577.png"
           className="img_fluid1_banner"
           alt="blog"
         />
@@ -206,7 +206,7 @@ const Blog = () => {
             <div className="ssss_dddd10">
               <div className="blog_fade_ds">
                 <img
-                  src={require("../../Images/image (20).png")}
+                  src="/Images/image (20).png"
                   className="blog_ss_tysn_mg"
                   width={554}
                   alt="blog"
@@ -238,7 +238,7 @@ const Blog = () => {
             <div className="ssss_dddd10">
               <div className="blog_fade_ds">
                 <img
-                  src={require("../../Images/image (20).png")}
+                  src="/Images/image (20).png"
                   className="blog_ss_tysn_mg"
                   width={554}
                   alt="blog"
@@ -270,7 +270,7 @@ const Blog = () => {
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
                 <img
-                  src={require("../../Images/image (21).png")}
+                  src="/Images/image (21).png"
                   className="blog_ss_tysn_mg"
                   width={554}
                   alt="blog"
@@ -302,7 +302,7 @@ const Blog = () => {
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
                 <img
-                  src={require("../../Images/image (22).png")}
+                  src="/Images/image (22).png"
                   className="blog_ss_tysn_mg"
                   width={554}
                   alt="blog"
@@ -334,7 +334,7 @@ const Blog = () => {
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
                 <img
-                  src={require("../../Images/image (23).png")}
+                  src="/Images/image (23).png"
                   className="blog_ss_tysn_mg"
                   width={554}
                   alt="blog"
@@ -366,7 +366,7 @@ const Blog = () => {
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
                 <img
-                  src={require("../../Images/image (24).png")}
+                  src="/Images/image (24).png"
                   className="blog_ss_tysn_mg"
                   width={554}
                   alt="blog"

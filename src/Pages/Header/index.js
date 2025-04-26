@@ -11,14 +11,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Image imports
-import logo from "../../Images/Group 1597884561.png";
-import usericon from "../../Images/Group.png";
-import GiGemPendant from "../../Images/gem-pendant-svgrepo-com.svg";
-import bracelet from "../../Images/noun-bracelet-5323037.svg";
-import earing from "../../Images/earrings.png";
-import ring from "../../Images/diamond-ring-diamond-svgrepo-com.svg";
-import csome from "../../Images/Group 1597884646.svg";
 import { Search } from "lucide-react";
 
 const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
@@ -153,7 +145,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           style={{ cursor: "pointer" }}
           onClick={() => navigate("/")}
         >
-          <img loading="lazy" src={logo} alt="Logo" />
+          <img loading="lazy" src='/Images/Group 1597884561.png' alt="Logo" />
         </div>
 
         {/* Icons Section (Desktop Only) */}
@@ -179,7 +171,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   <div className="profile-section">
                     <img
                       loading="lazy"
-                      src={require("../../Images/15 Model white.png")}
+                      src="/Images/15 Model white.png"
                       alt="Profile"
                       className="profile-pic"
                     />
@@ -207,7 +199,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                         <div className="menu-item gap-2">
                           <img
                             loading="lazy"
-                            src={require("../../Images/profileicon.png")}
+                            src="/Images/profileicon.png"
                             alt="Profile"
                             className="menu-icons"
                           />
@@ -220,7 +212,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                         <div className="menu-item gap-2">
                           <img
                             loading="lazy"
-                            src={require("../../Images/profileicon.png")}
+                            src="/Images/profileicon.png"
                             alt="Profile"
                             className="menu-icons"
                           />
@@ -234,7 +226,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       <div className="menu-item gap-2">
                         <img
                           loading="lazy"
-                          src={require("../../Images/ordericon.png")}
+                          src="/Images/ordericon.png"
                           alt="Orders"
                           className="menu-icons"
                         />
@@ -246,7 +238,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       <div className="menu-item gap-2">
                         <img
                           loading="lazy"
-                          src={require("../../Images/termsicon.png")}
+                          src="/Images/termsicon.png"
                           alt="Terms"
                           className="menu-icons"
                         />
@@ -258,7 +250,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       <div className="menu-item gap-2">
                         <img
                           loading="lazy"
-                          src={require("../../Images/privacyicon.png")}
+                          src="/Images/privacyicon.png"
                           alt="Privacy"
                           className="menu-icons"
                         />
@@ -270,7 +262,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       <div className="menu-item gap-2">
                         <img
                           loading="lazy"
-                          src={require("../../Images/contacticon.png")}
+                          src="/Images/contacticon.png"
                           alt="Contact"
                           className="menu-icons"
                         />
@@ -363,34 +355,34 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Rings")}
           >
-            <img loading="lazy" src={ring} width={25} alt="Rings" /> Rings
+            <img loading="lazy" src='/Images/diamond-ring-diamond-svgrepo-com.svg' width={25} alt="Rings" /> Rings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Earrings")}
           >
-            <img loading="lazy" src={earing} width={25} alt="Earrings" />{" "}
+            <img loading="lazy" src='/Images/earrings.png' width={25} alt="Earrings" />{" "}
             Earrings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Pendant")}
           >
-            <img loading="lazy" src={GiGemPendant} width={20} alt="Pendant" />{" "}
+            <img loading="lazy" src='/Images/gem-pendant-svgrepo-com.svg' width={20} alt="Pendant" />{" "}
             Pendant
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Bracelet")}
           >
-            <img loading="lazy" src={bracelet} width={25} alt="Bracelet" />{" "}
+            <img loading="lazy" src='/Images/noun-bracelet-5323037.svg' width={25} alt="Bracelet" />{" "}
             Bracelet
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => navigate("/Customjewel")}
           >
-            <img loading="lazy" src={csome} width={20} alt="Custom Jewellery" />{" "}
+            <img loading="lazy" src='/Images/Group 1597884646.svg' width={20} alt="Custom Jewellery" />{" "}
             Custom Jewellery
           </div>
         </div>
@@ -401,7 +393,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
         <div className="mobile-img">
           <img
             loading="lazy"
-            src={require("../../Images/crystovalogowhite (1) 2.png")}
+            src="/Images/crystovalogowhite (1) 2.png" 
             style={{ width: "60%" }}
           />
           <div className="drawer-header">
@@ -428,13 +420,13 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Rings")}
               >
-                <img loading="lazy" src={ring} width={20} alt="Rings" /> Rings
+                <img loading="lazy" src='/Images/diamond-ring-diamond-svgrepo-com.svg' width={20} alt="Rings" /> Rings
               </div>
               <div
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Earrings")}
               >
-                <img loading="lazy" src={earing} width={20} alt="Earrings" />{" "}
+                <img loading="lazy" src='/Images/earrings.png' width={20} alt="Earrings" />{" "}
                 Earrings
               </div>
               <div
@@ -443,7 +435,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               >
                 <img
                   loading="lazy"
-                  src={GiGemPendant}
+                  src='/Images/gem-pendant-svgrepo-com.svg'
                   width={20}
                   alt="Pendant"
                 />{" "}
@@ -453,7 +445,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Bracelet")}
               >
-                <img loading="lazy" src={bracelet} width={20} alt="Bracelet" />{" "}
+                <img loading="lazy" src='/Images/noun-bracelet-5323037.svg' width={20} alt="Bracelet" />{" "}
                 Bracelet
               </div>
               <div
@@ -462,7 +454,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               >
                 <img
                   loading="lazy"
-                  src={csome}
+                  src='/Images/Group 1597884646.svg'
                   width={20}
                   alt="Custom Jewellery"
                 />{" "}
@@ -477,7 +469,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               >
                 <img
                   loading="lazy"
-                  src={require("../../Images/contacticon.png")}
+                  src="/Images/contacticon.png"
                   width={18}
                   alt="Profile"
                 />{" "}
@@ -498,7 +490,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   >
                     <img
                       loading="lazy"
-                      src={require("../../Images/profileicon.png")}
+                      src="/Images/profileicon.png"
                       width={18}
                       alt="Profile"
                     />{" "}
@@ -513,7 +505,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   >
                     <img
                       loading="lazy"
-                      src={require("../../Images/ordericon.png")}
+                      src="/Images/ordericon.png"
                       width={18}
                       alt="Orders"
                     />{" "}
@@ -543,7 +535,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     navigate("/login");
                   }}
                 >
-                  <img loading="lazy" src={usericon} width={18} 
+                  <img loading="lazy" src='/Images/Group.png' width={18} 
                   alt="header"
                   />
                   <span>Sign in</span>

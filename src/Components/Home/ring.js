@@ -144,7 +144,7 @@ const RingSlider = () => {
               className={`slider_img_ssss ${
                 centerIndex === index % rings.length ? "active-slide" : ""
               }`}
-              src={require(`../../Images/${img}`)}
+              src={`/Images/${img}`}
               alt={rings[index % rings.length]?.title || `Ring ${index + 1}`}
             />
           </div>

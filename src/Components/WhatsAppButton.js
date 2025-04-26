@@ -1,6 +1,5 @@
 // components/WhatsAppButton.jsx
 import React from "react";
-import whatsAppIcon from "../Images/whatsapp_3670051.png";
 import { useLocation } from "react-router-dom";
 
 const WhatsAppButton = () => {
@@ -23,7 +22,7 @@ const WhatsAppButton = () => {
       rel="noopener noreferrer"
     >
       <img
-        src={whatsAppIcon}
+        src='/Images/whatsapp_3670051.png'
         alt="WhatsApp"
         style={{
           width: "55px",

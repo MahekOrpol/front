@@ -174,7 +174,7 @@ const Contact = () => {
       <div>
         <img
           loading="lazy"
-          src={require("../../Images/Group 1597884579.png")}
+          src="/Images/Group 1597884579.png"
           className="img_fluid1_banner"
           alt="contact us"
         />
