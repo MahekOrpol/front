@@ -1,13 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import "./index.css";
-import { FaAward, FaMedal, FaStar } from "react-icons/fa6";
-
+import { FaAward, FaMedal, FaStar, FaArrowRight } from "react-icons/fa6";
 import { BiShoppingBag, BiSolidOffer } from "react-icons/bi";
 import { Suspense, lazy } from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
-
-
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
@@ -21,13 +17,8 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import { Tabs } from "@mui/material";
-
 import axios from "axios";
-import "swiper/css/navigation";
-
 import { ToastContainer, toast } from "react-toastify";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -108,8 +99,7 @@ const Home = () => {
     dispatch(fetchCartCount());
   }, [dispatch]);
 
-  const productsToDisplay =
-    filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling;
+  const productsToDisplay = useMemo(() => filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling, [filteredBestSellers, bestSelling]);
 
   const openCart = React.useCallback(() => {
     const userId = localStorage.getItem("user_Id");
@@ -285,15 +275,15 @@ const Home = () => {
   const testimonials = [
     {
       name: "Emily Carol",
-      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
+      text: "I wanted a custom bracelet to honor my daughter's birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It's a masterpiece I'll cherish forever.",
     },
     {
       name: "John Doe",
-      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
+      text: "I wanted a custom bracelet to honor my daughter's birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It's a masterpiece I'll cherish forever.",
     },
     {
       name: "Jane Smith",
-      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
+      text: "I wanted a custom bracelet to honor my daughter's birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It's a masterpiece I'll cherish forever.",
     },
   ];
 
@@ -599,10 +589,11 @@ const Home = () => {
           <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
             <div className="position-relative">
               <img
-                loading="lazy"
                 src="/Images/image (3).webp"
                 className="img-fluid w-100"
                 alt="Main Image"
+                width="1920"
+                height="700"
               />
 
               <div className="overlay-img11">
@@ -624,7 +615,7 @@ const Home = () => {
                 <span className="txt_par">
                   Diamonds come in a variety of shapes, each offering unique
                   beauty and appeal.
-                  <br className="d-md-none d-lg-block d-none" /> Here’s a guide
+                  <br className="d-md-none d-lg-block d-none" /> Here's a guide
                   to different shapes of diamond rings
                 </span>
               </div>
@@ -796,7 +787,7 @@ const Home = () => {
                   href="/products"
                   className="d-flex align-items-center gap-2 more_link"
                 >
-                  View All <FontAwesomeIcon icon={faArrowRight} />
+                  View All <FaArrowRight />
                 </a>
               </div>
               <div className="d-flex flex-column container position-relative">
@@ -928,7 +919,7 @@ const Home = () => {
                   href="/products"
                   className="d-flex align-items-center gap-2 more_link"
                 >
-                  View All <FontAwesomeIcon icon={faArrowRight} />
+                  View All <FaArrowRight />
                 </a>
               </div>
               <div className="d-flex flex-column container position-relative">
@@ -1053,7 +1044,7 @@ const Home = () => {
                   href="/products"
                   className="d-flex align-items-center gap-2 more_link"
                 >
-                  View All <FontAwesomeIcon icon={faArrowRight} />
+                  View All <FaArrowRight />
                 </a>
               </div>
               <div className="d-flex flex-column container position-relative">
@@ -1256,7 +1247,7 @@ const Home = () => {
                   href="/products"
                   className="d-flex align-items-center gap-2 more_link"
                 >
-                  View All <FontAwesomeIcon icon={faArrowRight} />
+                  View All <FaArrowRight />
                 </a>
               </div>
               <div className="h-100 d-flex flex-column justify-content-center domind_jew_sec">
@@ -1575,7 +1566,7 @@ const Home = () => {
             style={{ width: "100vw" }}
           >
             <span className="category_name ">Client Testimonial</span>
-            <p className="category_txt">What our Client’s say about us</p>
+            <p className="category_txt">What our Client's say about us</p>
             <img
               loading="lazy"
               src="/Images/Groupimg.png"
@@ -1611,7 +1602,7 @@ const Home = () => {
                           Emily Carol
                         </h5>
                         <p className="card-text sdcdscsd text-center">
-                          I wanted a custom bracelet to honor my daughter’s
+                          I wanted a custom bracelet to honor my daughter's
                           birth, and the designers exceeded my expectations.
                         </p>
                         <p className="text-center sdcdscsd pb-0 mb-1">Client</p>

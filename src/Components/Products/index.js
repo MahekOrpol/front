@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState, useCallback } from "react";
 import "./index.css";
 import {
   FaAngleDown,
@@ -151,50 +151,48 @@ const Products = () => {
     }
   }, []);
 
-  const handleProductClick = (productId, productData) => {
+  const handleProductClick = useCallback((productId, productData) => {
     navigate(`/product-details/${productId}`, {
       state: { product: productData },
     });
-  };
+  }, [navigate]);
 
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const [imageIndexes, setImageIndexes] = useState({});
 
-  const openCart = () => {
+  const openCart = useCallback(() => {
     const userId = localStorage.getItem("user_Id");
-
     if (!userId) {
       navigate("/login");
       return;
     }
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
-  };
+  }, [navigate]);
 
-  const closeCart = () => {
+  const closeCart = useCallback(() => {
     setIsCartOpen(false);
     setShowToast(false);
     dispatch(fetchCartCount());
     document.body.classList.remove("no-scroll");
-  };
+  }, [dispatch]);
 
-  const handleNextImage = (productId, images) => {
+  const handleNextImage = useCallback((productId, images) => {
     setImageIndexes((prevIndex) => ({
       ...prevIndex,
       [productId]: (prevIndex[productId] + 1) % images.length,
     }));
-  };
+  }, []);
 
-  const handlePrevImage = (productId, images) => {
+  const handlePrevImage = useCallback((productId, images) => {
     setImageIndexes((prevIndex) => ({
       ...prevIndex,
       [productId]: (prevIndex[productId] - 1 + images.length) % images.length,
     }));
-  };
+  }, []);
 
-  const handleClearFilters = () => {
-    // Reset all checkboxes
+  const handleClearFilters = useCallback(() => {
     document.querySelectorAll(".category-checkbox").forEach((checkbox) => {
       checkbox.checked = false;
     });
@@ -207,24 +205,22 @@ const Products = () => {
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
-    // Reset price range only if not coming from home page price filter
     if (!price) {
       setPriceRange([1000, 15000]);
     }
-    // If price filter exists, fetch products with only that filter
     if (price) {
       fetchProductsWithPriceFilter();
     } else {
       fetchAllProducts();
     }
-    // Reset price range
     setPriceRange([1000, 15000]);
     setSearchQuery("");
     setIsSearchActive(false);
     setFilteredProducts([]);
     setSelectedCategories([]);
     fetchAllProducts();
-  };
+  }, [price]);
+
   const fetchProductsWithPriceFilter = async () => {
     try {
       const response = await axios.get(
@@ -239,42 +235,36 @@ const Products = () => {
     }
   };
 
-  const toggleSection = (section) => {
+  const toggleSection = useCallback((section) => {
     setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
-  };
+  }, []);
 
-  const toggleFilter = () => {
+  const toggleFilter = useCallback(() => {
     setIsFilterVisible((prev) => !prev);
-  };
-  const handleApplyFilters = async () => {
+  }, []);
+
+  const handleApplyFilters = useCallback(async () => {
     let url = `https://dev.crystovajewels.com/api/v1/product/get?`;
     let products = [];
-    // Build base URL with price range
     if (price) {
       url += `salePrice=${price}&`;
     } else {
-      // Otherwise use the price range from the filter
       url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}&`;
     }
     try {
       if (selectedCategories.length > 0) {
-        // Fetch products for each selected category
         const fetchPromises = selectedCategories.map(async (category) => {
           const categoryUrl = `${url}&categoryName=${category}`;
           const response = await axios.get(categoryUrl);
           return response.data;
         });
-        // Wait for all promises to resolve and flatten results
         const results = await Promise.all(fetchPromises);
         products = results.flat();
       } else {
-        // If no categories selected, fetch all products
         const response = await axios.get(url);
         products = response.data;
       }
-      // Sort products
       const sortedProducts = sortProducts(products, selectedOption);
-      // Apply search filter if search query exists
       if (searchQuery.trim() !== "") {
         const searchTerm = searchQuery.toLowerCase().trim();
         const filtered = sortedProducts.filter(
@@ -286,21 +276,20 @@ const Products = () => {
       } else {
         setFilteredProducts(sortedProducts);
       }
-      // Update states
       setProductList(sortedProducts);
       setIsFilterVisible(false);
       setIsSearchActive(searchQuery.trim() !== "");
     } catch (error) {
       console.error("Error fetching filtered products:", error);
     }
-  };
+  }, [price, priceRange, selectedCategories, selectedOption, searchQuery, sortProducts]);
 
-  const updateWishlistCount = (count) => {
+  const updateWishlistCount = useCallback((count) => {
     setWishlistCount(count);
     localStorage.setItem("wishlistCount", count.toString());
-  };
+  }, []);
 
-  const toggleFavorite = async (productId) => {
+  const toggleFavorite = useCallback(async (productId) => {
     const userId = localStorage.getItem("user_Id");
     if (!userId) {
       navigate("/login");
@@ -308,11 +297,10 @@ const Products = () => {
     }
     try {
       if (wishlistItems[productId]) {
-        // Remove from wishlist
-        const wishlistItemId = wishlistItems[productId]; // Store the current ID
+        const wishlistItemId = wishlistItems[productId];
         setWishlistItems((prev) => {
           const updatedWishlist = { ...prev };
-          delete updatedWishlist[productId]; // Update UI immediately
+          delete updatedWishlist[productId];
           return updatedWishlist;
         });
         updateWishlistCount(wishlistCount - 1);
@@ -321,7 +309,6 @@ const Products = () => {
         );
         toast.success(res.data.message || "Removed from wishlist!");
       } else {
-        // Add to wishlist
         const response = await axios.post(
           `https://dev.crystovajewels.com/api/v1/wishlist/create`,
           {
@@ -333,7 +320,7 @@ const Products = () => {
         const newWishlistItemId = response.data.data.id;
         setWishlistItems((prev) => ({
           ...prev,
-          [productId]: newWishlistItemId, // Store wishlist ID properly
+          [productId]: newWishlistItemId,
         }));
         toast.success(response.data.message || "Added to wishlist!");
       }
@@ -341,7 +328,8 @@ const Products = () => {
       console.error("Failed to update wishlist:", error);
       toast.error("Failed to update wishlist. Please try again!");
     }
-  };
+  }, [navigate, wishlistItems, updateWishlistCount, wishlistCount]);
+
   useEffect(() => {
     const fetchWishlist = async () => {
       if (!userId) return;
@@ -374,22 +362,19 @@ const Products = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const addToCart = async (product) => {
+  const addToCart = useCallback(async (product) => {
     try {
       const userId = localStorage.getItem("user_Id");
-
       if (!userId) {
         navigate("/login");
         return;
       }
-
       const productSize = Array.isArray(product?.productSize)
         ? product.productSize.join(",")
         : product?.productSize || "";
       const variationIds = Array.isArray(product?.variations)
         ? product.variations.map((variation) => variation.id)
         : [];
-
       const payload = {
         userId: userId,
         productId: product?.id,
@@ -399,8 +384,6 @@ const Products = () => {
         discount: product?.discount?.$numberDecimal || 0,
         variation: variationIds,
       };
-
-      // Make the API request
       const response = await axios.post(
         "https://dev.crystovajewels.com/api/v1/order-details/create",
         payload,
@@ -408,8 +391,7 @@ const Products = () => {
           headers: { "Content-Type": "application/json" },
         }
       );
-
-      openCart(); // Open cart after successful addition
+      openCart();
       if (response.status === 200) {
         console.log("Product added to cart successfully:", response.data);
       } else {
@@ -421,7 +403,7 @@ const Products = () => {
     } catch (error) {
       console.error("Error adding product to cart:", error);
     }
-  };
+  }, [dispatch, openCart, navigate]);
 
   const getCategory = async () => {
     const res = await axios.get(
@@ -434,15 +416,15 @@ const Products = () => {
     getCategory();
   }, []);
 
-  const handleCategoryChange = (category) => {
+  const handleCategoryChange = useCallback((category) => {
     setSelectedCategories(
       (prev) =>
         prev.includes(category)
-          ? prev.filter((c) => c !== category) // Remove category if already selected
-          : [...prev, category] // Add category if not selected
+          ? prev.filter((c) => c !== category)
+          : [...prev, category]
     );
-  };
-  // Add this function to handle sorting
+  }, []);
+
   const sortProducts = (products, sortOption) => {
     const sortedProducts = [...products];
     if (sortOption === "high-to-low") {
@@ -474,10 +456,11 @@ const Products = () => {
       console.error("Failed to fetch products:", err);
     }
   };
-  const handleClick = (gender) => {
+
+  const handleClick = useCallback((gender) => {
     setSelectedGender(gender);
     navigate(`/products?categoryName=Rings&gender=${gender}`);
-  };
+  }, [navigate]);
 
   useEffect(() => {
     const body = document.body;
@@ -831,7 +814,6 @@ const Products = () => {
                           <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                             <button
                               className="more_btn_dsdd w-50"
-                              // onClick={() => navigate("/product-details")}
                               onClick={() => handleProductClick(product.id)}
                             >
                               More Info
@@ -852,12 +834,6 @@ const Products = () => {
                         >
                           Add to Cart <BiShoppingBag size={25} />
                         </button>
-                        {/* <a
-                          onClick={() => handleProductClick(product.id)}
-                          className="mt-2 text-body szdc_za d-flex gap-2 align-items-left justify-content-left w-100"
-                        >
-                          Read more about the Product <FaArrowRight />
-                        </a> */}
                       </div>
                     </div>
                   </div>

@@ -18,22 +18,19 @@
     "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "^10.4.21",
     "axios": "^1.8.4",
-    "bootstrap": "^5.3.3",
     "framer-motion": "^12.5.0",
-    "jquery": "^3.7.1",
     "jwt-decode": "^4.0.0",
-    "lucide-react": "^0.482.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
-    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^7.2.0",
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.5",
     "redux-persist": "^6.0.0",
+    "sharp": "^0.34.1",
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.8.1",
     "swiper": "^11.2.6",
@@ -43,7 +40,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "analyze": "craco build && npx webpack-bundle-analyzer build/static/js/*.js"
   },
   "eslintConfig": {
     "extends": [

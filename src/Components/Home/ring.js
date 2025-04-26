@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import $ from "jquery";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,7 +12,7 @@ const RingSlider = () => {
   const nextArrowRef = useRef(null);
   const prevArrowRef = useRef(null);
 
-  const rings = [
+  const rings = useMemo(() => [
     {
       title: "Classic Ring",
       description: "Timeless elegance in its purest form",
@@ -33,9 +33,9 @@ const RingSlider = () => {
       title: "Premium Ring",
       description: "Exquisite craftsmanship for the discerning",
     },
-  ];
+  ], []);
 
-  const images = [
+  const images = useMemo(() => [
     "1.png",
     "8.webp",
     "3.webp",
@@ -48,8 +48,7 @@ const RingSlider = () => {
     "5.webp",
     "6.webp",
     "2.webp",
-   
-  ];
+  ], []);
 
   useEffect(() => {
     const $slider = $(sliderRef.current);
