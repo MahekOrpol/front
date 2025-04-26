@@ -1,5 +1,6 @@
 const TerserPlugin = require("terser-webpack-plugin");
-const purgecss = require('@fullhuman/postcss-purgecss').default; // <-- NOTICE `.default` here!
+const purgecss = require('@fullhuman/postcss-purgecss').default;
+const cssnano = require('cssnano'); // <-- ADD this
 
 module.exports = {
   style: {
@@ -7,10 +8,20 @@ module.exports = {
       plugins: [
         require('autoprefixer'),
         ...(process.env.NODE_ENV === 'production' ? [
+          cssnano({ preset: 'default' }), // <-- MINIFY CSS!
           purgecss({
-            content: ['./src/**/*.js', './src/**/*.jsx', './public/index.html'],
+            content: [
+              './src/**/*.js',
+              './src/**/*.jsx',
+              './src/**/*.ts',
+              './src/**/*.tsx',
+              './public/index.html',
+            ],
             defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
-          })
+            safelist: {
+              standard: [/^btn-/, /^navbar-/, /^active/], // <-- keep important classes like Bootstrap's!
+            },
+          }),
         ] : []),
       ],
     },
