@@ -156,12 +156,15 @@ const Contact = () => {
         theme="light"
         stacked
       />
+       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <CartPopup
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
         // toastMessage={toastMessage}
       />
+      <div className={isCartOpen ? "blurred" : ""}>
+
       <div className="main-header">
         <Suspense fallback={<div>Loading...</div>}>
           <Header
@@ -352,6 +355,7 @@ const Contact = () => {
         ></iframe>
       </div>
       <Footer />
+    </div>
     </>
   );
 };

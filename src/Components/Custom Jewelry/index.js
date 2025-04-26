@@ -178,176 +178,179 @@ const CustomJewel = () => {
         theme="light"
         stacked
       />
+      {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <CartPopup
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
         // toastMessage={toastMessage}
       />
-      <div className="main-header">
-        <Suspense fallback={<div>Loading...</div>}>
-          <Header
-            openCart={openCart}
-            wishlistCount={userId ? wishlistCount : null}
-            cartCount={userId ? cartCount : null}
-          />
-        </Suspense>
-      </div>
-      <div className="custom-jewel-container">
-        {/* Banner Section */}
-        <div className="bsn">
-          <img
-            loading="lazy"
-            src="/Images/customjewel.png"
-            alt="Custom Jewelry"
-          />
+      <div className={isCartOpen ? "blurred" : ""}>
+        <div className="main-header">
+          <Suspense fallback={<div>Loading...</div>}>
+            <Header
+              openCart={openCart}
+              wishlistCount={userId ? wishlistCount : null}
+              cartCount={userId ? cartCount : null}
+            />
+          </Suspense>
         </div>
-        {/* Features Section */}
-        <div className="features-section">
-          <h2 className="iojhf">Custom Jewelry</h2>
-          <p>Jewelry as Unique as Your Story</p>
-          <img
-            loading="lazy"
-            src="/Images/Groupimg.png"
-            className="home_tag_img mb-4"
-            alt="Decorative"
-          />
-          <div className="features-grid">
-            {[
-              {
-                title: "Uniqueness and Exclusivity",
-                desc: "Custom jewelry ensures no one else will have the exact same piece, making it truly yours.",
-                img: "/Images/23 Jewelry store.png",
-              },
-              {
-                title: "Personalization",
-                desc: "Tailor every detail to your style, from the choice of gemstones to the design elements.",
-                img: "/Images/12 Handmade.png",
-              },
-              {
-                title: "Celebrate Special Moments",
-                desc: "Create a lasting memory for engagements, anniversaries, birthdays, or any milestone.",
-                img: "/Images/Group 1597884504.png",
-              },
-              {
-                title: "Quality and Craftsmanship",
-                desc: "Every custom piece is handcrafted by skilled artisans using the finest materials.",
-                img: "/Images/22 Jewelry making.png",
-              },
-            ].map((feature, index) => (
-              <div className="feature-box" key={index}>
-                <img
-                  loading="lazy"
-                  src={feature.img}
-                  alt={feature.title}
-                  className="feature-img"
+        <div className="custom-jewel-container">
+          {/* Banner Section */}
+          <div className="bsn">
+            <img
+              loading="lazy"
+              src="/Images/customjewel.png"
+              alt="Custom Jewelry"
+            />
+          </div>
+          {/* Features Section */}
+          <div className="features-section">
+            <h2 className="iojhf">Custom Jewelry</h2>
+            <p>Jewelry as Unique as Your Story</p>
+            <img
+              loading="lazy"
+              src="/Images/Groupimg.png"
+              className="home_tag_img mb-4"
+              alt="Decorative"
+            />
+            <div className="features-grid">
+              {[
+                {
+                  title: "Uniqueness and Exclusivity",
+                  desc: "Custom jewelry ensures no one else will have the exact same piece, making it truly yours.",
+                  img: "/Images/23 Jewelry store.png",
+                },
+                {
+                  title: "Personalization",
+                  desc: "Tailor every detail to your style, from the choice of gemstones to the design elements.",
+                  img: "/Images/12 Handmade.png",
+                },
+                {
+                  title: "Celebrate Special Moments",
+                  desc: "Create a lasting memory for engagements, anniversaries, birthdays, or any milestone.",
+                  img: "/Images/Group 1597884504.png",
+                },
+                {
+                  title: "Quality and Craftsmanship",
+                  desc: "Every custom piece is handcrafted by skilled artisans using the finest materials.",
+                  img: "/Images/22 Jewelry making.png",
+                },
+              ].map((feature, index) => (
+                <div className="feature-box" key={index}>
+                  <img
+                    loading="lazy"
+                    src={feature.img}
+                    alt={feature.title}
+                    className="feature-img"
+                  />
+                  <h3>{feature.title}</h3>
+                  <p>{feature.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Custom Jewelry Form */}
+          <div className="custom-form">
+            <h2>Designed by You, Crafted by Us</h2>
+            <p>
+              Create a unique piece of jewelry that reflects your personal style
+              and story.
+            </p>
+            <img
+              loading="lazy"
+              src="/Images/Groupimg.png"
+              className="home_tag_img mb-4"
+              alt="Decorative"
+            />
+            <form onSubmit={handleSubmit}>
+              <div className="inputgrp gap-4">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name*"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
                 />
-                <h3>{feature.title}</h3>
-                <p>{feature.desc}</p>
+                <input
+                  type="text"
+                  name="mobile"
+                  placeholder="Mobile Number*"
+                  required
+                  value={formData.mobile}
+                  onChange={handleChange}
+                />
               </div>
-            ))}
+              <div className="inputgrp">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address*"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="inputgrp">
+                <select
+                  name="type"
+                  required
+                  value={formData.type}
+                  onChange={handleChange}
+                >
+                  <option value="">Choose Type</option>
+                  <option value="ring">Ring</option>
+                </select>
+              </div>
+              <div className="inputgrp gap-4">
+                <input
+                  type="number"
+                  name="budget"
+                  placeholder="Total Budget"
+                  value={formData.budget}
+                  onChange={handleChange}
+                  inputMode="numeric"
+                />
+                <input
+                  type="text"
+                  name="metalType"
+                  placeholder="Metel type"
+                  value={formData.metalType}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="inputgrp">
+                <input
+                  type="file"
+                  id="file"
+                  name="file"
+                  onChange={handleChange}
+                  accept=".pdf,.jpg,.png,.jpeg,.doc,.docx"
+                />
+              </div>
+              <p className="d-flex">
+                Choose your file here to upload. Allowed types: pdf, jpg, png,
+                jpeg, doc, docx.
+              </p>
+              <textarea
+                name="description"
+                placeholder="Please describe your idea for this Custom Project..."
+                value={formData.description}
+                onChange={handleChange}
+              ></textarea>
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Submitting..." : "SUBMIT"}
+              </button>
+            </form>
           </div>
         </div>
-        {/* Custom Jewelry Form */}
-        <div className="custom-form">
-          <h2>Designed by You, Crafted by Us</h2>
-          <p>
-            Create a unique piece of jewelry that reflects your personal style
-            and story.
-          </p>
-          <img
-            loading="lazy"
-            src="/Images/Groupimg.png"
-            className="home_tag_img mb-4"
-            alt="Decorative"
-          />
-          <form onSubmit={handleSubmit}>
-            <div className="inputgrp gap-4">
-              <input
-                type="text"
-                name="name"
-                placeholder="Name*"
-                required
-                value={formData.name}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="mobile"
-                placeholder="Mobile Number*"
-                required
-                value={formData.mobile}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="inputgrp">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address*"
-                required
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="inputgrp">
-              <select
-                name="type"
-                required
-                value={formData.type}
-                onChange={handleChange}
-              >
-                <option value="">Choose Type</option>
-                <option value="ring">Ring</option>
-              </select>
-            </div>
-            <div className="inputgrp gap-4">
-              <input
-                type="number"
-                name="budget"
-                placeholder="Total Budget"
-                value={formData.budget}
-                onChange={handleChange}
-                inputMode="numeric"
-              />
-              <input
-                type="text"
-                name="metalType"
-                placeholder="Metel type"
-                value={formData.metalType}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="inputgrp">
-              <input
-                type="file"
-                id="file"
-                name="file"
-                onChange={handleChange}
-                accept=".pdf,.jpg,.png,.jpeg,.doc,.docx"
-              />
-            </div>
-            <p className="d-flex">
-              Choose your file here to upload. Allowed types: pdf, jpg, png,
-              jpeg, doc, docx.
-            </p>
-            <textarea
-              name="description"
-              placeholder="Please describe your idea for this Custom Project..."
-              value={formData.description}
-              onChange={handleChange}
-            ></textarea>
-            <button
-              type="submit"
-              className="submit-btn"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Submitting..." : "SUBMIT"}
-            </button>
-          </form>
-        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };
