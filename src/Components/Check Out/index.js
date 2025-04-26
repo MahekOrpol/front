@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import "./index.css";
 import { Form, Row, Col } from "react-bootstrap";
 import logo from "../../Images/logo.png";
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
+
 import { useLocation } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo1 from "../../Images/Frame 193.png";
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
+
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({}); // State to store error messages

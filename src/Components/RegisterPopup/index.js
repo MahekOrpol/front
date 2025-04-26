@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import "./index.css";
 import { Box, Tab, Tabs, TextField, Button, Fade, Slide } from "@mui/material";
 import { TabContext, TabPanel } from "@mui/lab";
@@ -10,9 +10,9 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
 import GoogleLogin from "../../GoogleLogin";
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const RegisterPopup = ({ isOpen, onClose }) => {
   const [tabValue, setTabValue] = useState("login");
@@ -172,7 +172,9 @@ const RegisterPopup = ({ isOpen, onClose }) => {
         stacked
       />
       <div className="main-header">
-        <Header />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header />
+        </Suspense>
       </div>
       <div className="register-popup-overlay" onMouseDown={handleOverlayClick}>
         <div className="register-popup" onClick={(e) => e.stopPropagation()}>
@@ -297,7 +299,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                           className="google-icon"
                         />
                         Continue with Google */}
-                      <GoogleLogin />
+                        <GoogleLogin />
                       </div>
                       <p className="otre">
                         Already have an Account?{" "}
@@ -498,7 +500,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         <span className="or-text">OR</span>
                         <span className="or-line"></span>
                       </p>
-                     
+
                       <p className="otre">
                         Already have an Account?{" "}
                         <span

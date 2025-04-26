@@ -25,6 +25,7 @@ const Footer = () => {
               loading="lazy"
               src={require("../../Images/crystovalogowhite (1) 2.png")}
               width={400}
+                alt="footer"
             />
             <p className="sdcdscsdss_ss ms-3 mt-3 ">
               At Crystova Jewellery, we believe that every piece tells a story.
@@ -150,6 +151,7 @@ const Footer = () => {
             loading="lazy"
             src={require("../../Images/Group 104.svg").default}
             className=""
+            alt="footer"
           />
         </div>
 
@@ -170,6 +172,7 @@ const Footer = () => {
               loading="lazy"
               src={require("../../Images/crystovalogowhite (1) 2.png")}
               width={400}
+              alt="footer"
             />
           </div>
           <p className="sdcdscsdss_ss_1 mt-3 " style={{ width: "88%" }}>
@@ -391,6 +394,7 @@ const Footer = () => {
             loading="lazy"
             src={require("../../Images/Group 104.svg").default}
             className=""
+            alt="footer"
           />
         </div>
 

@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import "./index.css";
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
+
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import CartPopup from "../Add to Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+const CartPopup = lazy(() => import("../Add to Cart"));
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const CustomJewel = () => {
   const [formData, setFormData] = useState({
@@ -184,11 +185,13 @@ const CustomJewel = () => {
         // toastMessage={toastMessage}
       />
       <div className="main-header">
-        <Header
-          openCart={openCart}
-          wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
+        </Suspense>
       </div>
       <div className="custom-jewel-container">
         {/* Banner Section */}

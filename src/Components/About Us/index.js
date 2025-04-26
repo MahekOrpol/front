@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import "./index.css";
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
+
 import {
   FaAngleLeft,
   FaAngleRight,
@@ -17,9 +16,11 @@ import { Autoplay, Pagination } from "swiper/modules";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import CartPopup from "../Add to Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+const CartPopup = lazy(() => import("../Add to Cart"));
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const AboutUs = () => {
   const swiperRef = useRef(null);
@@ -171,17 +172,20 @@ const AboutUs = () => {
         // toastMessage={toastMessage}
       />
       <div className="main-header">
-        <Header
-          openCart={openCart}
-          wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
+        </Suspense>
       </div>
       <div>
         <img
           loading="lazy"
           src={require("../../Images/Group 1597884580.png")}
           className="img_fluid1_banner"
+          alt="about us"
         />
         {/* <div className="banner_text_sss">
           <h1 className="banner_exx">About Us</h1>
@@ -195,6 +199,7 @@ const AboutUs = () => {
               loading="lazy"
               className="djs_about img-fluid sticky"
               src={require("../../Images/Group 1597884574.png")}
+              alt="about us"
             />
           </div>
           <div className="w-50 d-flex flex-column gap-5 wr dlex">
@@ -220,6 +225,7 @@ const AboutUs = () => {
                 <img
                   loading="lazy"
                   src={require("../../Images/Group 1597884563.png")}
+                  alt="about us"
                 />
                 <span className="our_ddd">Our Journey</span>
                 <span className="shsdy_555">
@@ -231,6 +237,7 @@ const AboutUs = () => {
                 <img
                   loading="lazy"
                   src={require("../../Images/Group 1597884564.png")}
+                  alt="about us"
                 />
                 <span className="our_ddd">Explore & Connect</span>
                 <span className="shsdy_555">
@@ -247,6 +254,7 @@ const AboutUs = () => {
         <img
           loading="lazy"
           src={require("../../Images/Group 1597884485.png")}
+          alt="about us"
         />
       </div>
 
@@ -267,6 +275,7 @@ const AboutUs = () => {
                 <img
                   loading="lazy"
                   src={require("../../Images/Group 1597884572.png")}
+                  alt="about us"
                 />
                 <div className="d-flex align-items-center gap-3 flex-column">
                   <span className="visionb d-flex justify-content-start w-100">
@@ -283,6 +292,7 @@ const AboutUs = () => {
                 <img
                   loading="lazy"
                   src={require("../../Images/Group 1597884573.png")}
+                  alt="about us"
                 />
 
                 <div className="d-flex align-items-center gap-3 flex-column">
@@ -350,6 +360,7 @@ preload="none"
                 loading="lazy"
                 src={require("../../Images/image (21).png")}
                 className="img-fluid"
+                alt="about us"
               />
             </div>
             <div className="d-flex flex-column gap-2 pt-4">
@@ -379,6 +390,7 @@ preload="none"
                 loading="lazy"
                 src={require("../../Images/image (22).png")}
                 className="img-fluid"
+                alt="about us"
               />
             </div>
             <div className="d-flex flex-column gap-2 pt-4">
@@ -408,6 +420,7 @@ preload="none"
                 loading="lazy"
                 src={require("../../Images/image (23).png")}
                 className="img-fluid"
+                alt="about us"
               />
             </div>
             <div className="d-flex flex-column gap-2 pt-4">

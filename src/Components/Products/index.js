@@ -1,7 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import "./index.css";
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
 import {
   FaAngleDown,
   FaAngleUp,
@@ -17,13 +15,16 @@ import { GoHeart, GoHeartFill } from "react-icons/go";
 import { BiSearch, BiShoppingBag } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
 import { useLocation, useNavigate } from "react-router-dom";
-import CartPopup from "../Add to Cart";
 import axios from "axios";
 import Wishlist from "./../wishlist/index";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
+const CartPopup = lazy(() => import("../Add to Cart"));
 
 const Products = () => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -517,17 +518,20 @@ const Products = () => {
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header">
-          <Header
-            openCart={openCart}
-            wishlistCount={userId ? wishlistCount : null}
-            cartCount={userId ? cartCount : null}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Header
+              openCart={openCart}
+              wishlistCount={userId ? wishlistCount : null}
+              cartCount={userId ? cartCount : null}
+            />
+          </Suspense>
         </div>
         <div>
           <img
             loading="lazy"
             src={require("../../Images/productt_sss.png")}
             className="img_fluid1_banner"
+            alt="product"
           />
         </div>
         <div className="container pb-5">
@@ -555,6 +559,7 @@ const Products = () => {
                       ? require("../../Images/her.png")
                       : require("../../Images/her-active.png")
                   }
+                  alt="product"
                 />
                 <span className="ms-2">Rings for Her</span>
               </button>
@@ -573,6 +578,7 @@ const Products = () => {
                       ? require("../../Images/him-active.png")
                       : require("../../Images/him.png")
                   }
+                  alt="product"
                 />
                 <span className="ms-2">Rings for Him</span>
               </button>

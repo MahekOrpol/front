@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import axios from "axios";
 import "./index.css";
-import Footer from "../../Pages/Footer";
-import Header from "../../Pages/Header";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import CartPopup from "../Add to Cart";
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+
+const Header = lazy(() => import("../../Pages/Header"));
+const CartPopup = lazy(() => import("../Add to Cart"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const OrderDetails = () => {
   const [pendingOrders, setPendingOrders] = useState([]);
@@ -201,11 +203,13 @@ const OrderDetails = () => {
         // toastMessage={toastMessage}
       />
       <div className="main-header">
+      <Suspense fallback={<div>Loading...</div>}>
         <Header
           openCart={openCart}
           wishlistCount={userId ? wishlistCount : null}
           cartCount={userId ? cartCount : null}
         />
+        </Suspense>
       </div>
       <div className="order-container">
         <h2 className="order-title">Order Details</h2>

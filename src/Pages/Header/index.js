@@ -543,7 +543,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     navigate("/login");
                   }}
                 >
-                  <img loading="lazy" src={usericon} width={18} />
+                  <img loading="lazy" src={usericon} width={18} 
+                  alt="header"
+                  />
                   <span>Sign in</span>
                 </div>
               </div>
