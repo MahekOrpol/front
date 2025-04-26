@@ -4,7 +4,7 @@ import { FaAward, FaMedal, FaStar } from "react-icons/fa6";
 import vector from "../../Images/Vector.png";
 import { BiShoppingBag, BiSolidOffer } from "react-icons/bi";
 import Header from "../../Pages/Header";
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import best from "../../Images/Mask group (9).webp";
@@ -1535,7 +1535,9 @@ const Home = () => {
           />
         </div>
 
+        <Suspense fallback={<div>Loading carousel...</div>}>
           <Ring1 />
+        </Suspense>
 
         <div className="heder_sec_main d-flex flex-column align-items-center dscdsc_inst">
           <span className="category_name">Instructions</span>

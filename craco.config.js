@@ -1,24 +1,44 @@
-import TerserPlugin from "terser-webpack-plugin";
-export default {
+const TerserPlugin = require("terser-webpack-plugin");
+const purgecss = require('@fullhuman/postcss-purgecss').default;
+const cssnano = require('cssnano'); // <-- ADD this
+
+module.exports = {
+  style: {
+    postcss: {
+      plugins: [
+        require('autoprefixer'),
+        ...(process.env.NODE_ENV === 'production' ? [
+          cssnano({ preset: 'default' }), // <-- MINIFY CSS!
+          purgecss({
+            content: [
+              './src/**/*.js',
+              './src/**/*.jsx',
+              './src/**/*.ts',
+              './src/**/*.tsx',
+              './public/index.html',
+            ],
+            defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+            safelist: {
+              standard: [/^btn-/, /^navbar-/, /^active/], // <-- keep important classes like Bootstrap's!
+            },
+          }),
+        ] : []),
+      ],
+    },
+  },
   webpack: {
     configure: (webpackConfig, { env }) => {
-      // Enable code splitting
       webpackConfig.optimization.splitChunks = {
         chunks: "all",
         automaticNameDelimiter: "-",
       };
       if (env === "production") {
-        // Enable JavaScript minification with console.log removal
         webpackConfig.optimization.minimize = true;
         webpackConfig.optimization.minimizer = [
           new TerserPlugin({
             terserOptions: {
-              compress: {
-                drop_console: true, // Remove console.* in production
-              },
-              output: {
-                comments: false, // Remove comments
-              },
+              compress: { drop_console: true },
+              output: { comments: false },
             },
             extractComments: false,
           }),

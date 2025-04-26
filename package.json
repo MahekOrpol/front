@@ -16,6 +16,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
+    "autoprefixer": "^10.4.21",
     "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
     "framer-motion": "^12.5.0",
@@ -63,6 +64,8 @@
     ]
   },
   "devDependencies": {
-    "@svgr/webpack": "^8.1.0"
+    "@fullhuman/postcss-purgecss": "^7.0.2",
+    "@svgr/webpack": "^8.1.0",
+    "cssnano": "^7.0.6"
   }
 }
