@@ -1,6 +1,6 @@
-import TerserPlugin from "terser-webpack-plugin";
+const TerserPlugin = require("terser-webpack-plugin");
 
-export default {
+module.exports = {
   style: {
     postcss: {
       plugins: [
