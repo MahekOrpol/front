@@ -1,14 +1,17 @@
 const TerserPlugin = require("terser-webpack-plugin");
+const purgecss = require('@fullhuman/postcss-purgecss').default; // <-- NOTICE `.default` here!
 
 module.exports = {
   style: {
     postcss: {
       plugins: [
         require('autoprefixer'),
-        ...(process.env.NODE_ENV === 'production' ? [require('@fullhuman/postcss-purgecss')({
-          content: ['./src/**/*.js', './src/**/*.jsx', './public/index.html'],
-          defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
-        })] : []),
+        ...(process.env.NODE_ENV === 'production' ? [
+          purgecss({
+            content: ['./src/**/*.js', './src/**/*.jsx', './public/index.html'],
+            defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+          })
+        ] : []),
       ],
     },
   },
