@@ -1,5 +1,5 @@
 const TerserPlugin = require("terser-webpack-plugin");
-const purgecss = require('@fullhuman/postcss-purgecss'); // <- IMPORTANT
+const purgecss = require('@fullhuman/postcss-purgecss').default; // <-- NOTICE `.default` here!
 
 module.exports = {
   style: {
