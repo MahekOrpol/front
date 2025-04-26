@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import Header from "../../Pages/Header";
-import Footer from "../../Pages/Footer";
+import React, { lazy, Suspense, useEffect, useState } from "react";
+
 import {
   FaAngleDown,
   FaArrowRight,
@@ -11,11 +10,14 @@ import { GoHeart, GoHeartFill } from "react-icons/go";
 import { BiShoppingBag } from "react-icons/bi";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import CartPopup from "../Add to Cart";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+
+const CartPopup = lazy(() => import("../Add to Cart"));
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const Wishlist = () => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -266,11 +268,13 @@ const Wishlist = () => {
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header">
-          <Header
-            openCart={openCart}
-            wishlistCount={userId ? wishlistCount : null}
-            cartCount={userId ? cartCount : null}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Header
+              openCart={openCart}
+              wishlistCount={userId ? wishlistCount : null}
+              cartCount={userId ? cartCount : null}
+            />
+          </Suspense>
         </div>
         <div className="container">
           <div className="hdr_csd flex-column align-items-center produ_sss">

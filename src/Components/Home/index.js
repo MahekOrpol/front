@@ -3,8 +3,7 @@ import "./index.css";
 import { FaAward, FaMedal, FaStar } from "react-icons/fa6";
 import vector from "../../Images/Vector.png";
 import { BiShoppingBag, BiSolidOffer } from "react-icons/bi";
-import Header from "../../Pages/Header";
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import best from "../../Images/Mask group (9).webp";
@@ -15,7 +14,6 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { CiStar } from "react-icons/ci";
-import Footer from "../../Pages/Footer";
 import { GrNext } from "react-icons/gr";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +21,7 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import { Tabs } from "@mui/material";
-import CartPopup from "../Add to Cart";
+
 import axios from "axios";
 import "swiper/css/navigation";
 
@@ -33,6 +31,9 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+const CartPopup = lazy(() => import("../Add to Cart"));
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 const JewelrySale = React.lazy(() => import("../Contact Us/sdcsd/demo"));
 const OueColletion = React.lazy(() => import("./ourColletion"));
 const Instruction = React.lazy(() => import("./instruction"));
@@ -469,11 +470,13 @@ const Home = () => {
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header">
-          <Header
-            openCart={openCart}
-            wishlistCount={userId ? wishlistCount : null}
-            cartCount={userId ? cartCount : null}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Header
+              openCart={openCart}
+              wishlistCount={userId ? wishlistCount : null}
+              cartCount={userId ? cartCount : null}
+            />
+          </Suspense>
         </div>
         <div>
           <JewelrySale />
@@ -486,6 +489,7 @@ const Home = () => {
             loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
+            alt="home"
           />
 
           <div className=" p-0" style={{ width: "100vw" }}>
@@ -709,6 +713,7 @@ const Home = () => {
             loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
+            alt="home"
           />
           <DimondJewelery />
         </div>
@@ -722,6 +727,7 @@ const Home = () => {
             loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
+            alt="home"
           />
           <div className="w-auto mt-1">
             <TabContext value={value}>
@@ -1184,6 +1190,7 @@ const Home = () => {
             loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img best_sellig_sdcdc d-none"
+            alt="home"
           />
           <Suspense fallback={<div>Loading carousel...</div>}>
             <Gift />
@@ -1199,6 +1206,7 @@ const Home = () => {
             loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
+            alt="home"
           />
           <div className="row d-flex align-items-stretch mt-3 w-100">
             {/* Left Image Section */}
@@ -1208,6 +1216,7 @@ const Home = () => {
                   loading="lazy"
                   src={best}
                   className="img-fluid w-100 h-100 object-fit-cover rounded"
+                  alt="home"
                 />
                 {/* Add hover spots with tooltips */}
 
@@ -1266,11 +1275,11 @@ const Home = () => {
                       loop={true}
                       preloadImages={false}
                       lazy={true}
-                    // autoplay={{
-                    //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                    //   disableOnInteraction: false,
-                    // }}
-                    // modules={[Autoplay]}
+                      // autoplay={{
+                      //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                      //   disableOnInteraction: false,
+                      // }}
+                      // modules={[Autoplay]}
                     >
                       {productsToDisplay
                         .slice(
@@ -1400,6 +1409,7 @@ const Home = () => {
             loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
+            alt="home"
           />
 
           {/* <div className="pt-4 row position-relative w-100 container justify-content-between gap-3"> */}
@@ -1465,6 +1475,7 @@ const Home = () => {
             loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
+            alt="home"
           />
           <div className="row pt-3 w-100 scc_gift_edit container">
             <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
@@ -1472,6 +1483,7 @@ const Home = () => {
                 loading="lazy"
                 className="img-sssssss"
                 src={require("../../Images/Group 1597884624 (1).png")}
+                alt="home"
               />
               <div className="lionk_ss">
                 <a>Gifts for Her</a>
@@ -1482,6 +1494,7 @@ const Home = () => {
                 loading="lazy"
                 className="img-sssssss"
                 src={require("../../Images/Group 1597884625 (1).png")}
+                alt="home"
               />
               <div className="lionk_ss">
                 <a>Gifts for Him</a>
@@ -1492,6 +1505,7 @@ const Home = () => {
                 loading="lazy"
                 className="img-sssssss"
                 src={require("../../Images/Group 1597884626 (1).png")}
+                alt="home"
               />
               <div className="lionk_ss">
                 <a>Gifts for Self</a>
@@ -1502,6 +1516,7 @@ const Home = () => {
                 loading="lazy"
                 className="img-sssssss"
                 src={require("../../Images/Group 1597884636.png")}
+                alt="home"
               />
               <div className="lionk_ss">
                 <a>Wedding Bands</a>
@@ -1517,6 +1532,7 @@ const Home = () => {
             loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
+            alt="home"
           />
         </div>
         <div>
@@ -1532,6 +1548,7 @@ const Home = () => {
             loading="lazy"
             src={require("../../Images/Groupimg.png")}
             className="home_tag_img"
+            alt="home"
           />
         </div>
 
@@ -1585,8 +1602,9 @@ const Home = () => {
                 (item, index) => (
                   <SwiperSlide className="slide_ssssss_sss" key={index}>
                     <div
-                      className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                        } mt-5`}
+                      className={`card testimonial-card${
+                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+                      } mt-5`}
                     >
                       <div className="card-body pt-4">
                         <h5 className="card-title text-center emi_ffcc">

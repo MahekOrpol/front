@@ -1,15 +1,16 @@
-import React, { useEffect } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import "./index.css";
-import Header from "../../Pages/Header";
 import { FaArrowRight } from "react-icons/fa6";
-import Footer from "../../Pages/Footer";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import CartPopup from "../Add to Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+
+const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../../Pages/Footer"));
+const CartPopup = lazy(() => import("../Add to Cart"));
 
 const posts = [
   {
@@ -38,10 +39,9 @@ const posts = [
   },
 ];
 
-
 const Blog = () => {
-const [wishlistCount, setWishlistCount] = useState(
-    parseInt(localStorage.getItem('wishlistCount')) || 0
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
   );
   const [wishlistItems, setWishlistItems] = useState({});
   const dispatch = useDispatch();
@@ -54,28 +54,10 @@ const [wishlistCount, setWishlistCount] = useState(
   useEffect(() => {
     dispatch(fetchCartCount());
   }, [dispatch]);
-  const navigate = useNavigate('');
+  const navigate = useNavigate("");
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const userId = localStorage.getItem("user_Id");
-
-  // useEffect(() => {
-  //   const fetchCartCount = async () => {
-  //     const userId = localStorage.getItem("user_Id");
-  //     if (!userId) return;
-  //     try {
-  //       const response = await axios.get(
-  //         `https://dev.crystovajewels.com/api/v1/order-details/get/${userId}`
-  //       );
-  //       const count = response.data.data.length || 0;
-  //       setCartCount(count);
-  //       localStorage.setItem("cartCount", count);
-  //     } catch (error) {
-  //       console.error("Error fetching cart count:", error);
-  //     }
-  //   };
-  //   fetchCartCount();
-  // }, []);
 
   const openCart = () => {
     const userId = localStorage.getItem("user_Id");
@@ -97,7 +79,7 @@ const [wishlistCount, setWishlistCount] = useState(
 
   const updateWishlistCount = (count) => {
     setWishlistCount(count);
-    localStorage.setItem('wishlistCount', count.toString());
+    localStorage.setItem("wishlistCount", count.toString());
   };
 
   useEffect(() => {
@@ -127,7 +109,7 @@ const [wishlistCount, setWishlistCount] = useState(
     };
     fetchWishlist();
   }, [userId]);
-  
+
   return (
     <>
       <ToastContainer
@@ -147,17 +129,22 @@ const [wishlistCount, setWishlistCount] = useState(
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-      // toastMessage={toastMessage}
+        // toastMessage={toastMessage}
       />
-            <div className="main-header">
-
-      <Header openCart={openCart}  wishlistCount={userId ? wishlistCount : null}
-          cartCount={userId ? cartCount : null} />
-          </div>
+      <div className="main-header">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header
+            openCart={openCart}
+            wishlistCount={userId ? wishlistCount : null}
+            cartCount={userId ? cartCount : null}
+          />
+        </Suspense>
+      </div>
       <div>
         <img
           src={require("../../Images/Group 1597884577.png")}
           className="img_fluid1_banner"
+          alt="blog"
         />
         {/* <div className='banner_text_sss'>
           <h1 className='banner_exx'>Blogs</h1>
@@ -165,7 +152,10 @@ const [wishlistCount, setWishlistCount] = useState(
       </div>
       <div className="container pt-5 pb-5">
         <div className="d-flex gap-5 blog_main_dddd">
-          <div className="sdncsduchs h-100 position-sticky blog_sins_ssss" style={{ top: '12px' }}>
+          <div
+            className="sdncsduchs h-100 position-sticky blog_sins_ssss"
+            style={{ top: "12px" }}
+          >
             <div className="card p-3 shadow-sm border-0 ">
               <h4 className="fw-bold border-bottom pb-2">Popular Posts</h4>
               {posts.map((post, index) => (
@@ -215,7 +205,12 @@ const [wishlistCount, setWishlistCount] = useState(
           <div className="sdncsduch row">
             <div className="ssss_dddd10">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (20).png")} className="blog_ss_tysn_mg" width={554} />
+                <img
+                  src={require("../../Images/image (20).png")}
+                  className="blog_ss_tysn_mg"
+                  width={554}
+                  alt="blog"
+                />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -232,14 +227,22 @@ const [wishlistCount, setWishlistCount] = useState(
                   aliquam risus, sit amet dictum ligula lorem non nisl Urna
                   pretium elit mauris cursus Curabitur
                 </p>
-                <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
+                <a
+                  href="/blog-details"
+                  className="red_ddd d-flex gap-2 align-items-center"
+                >
                   Read More <FaArrowRight />
                 </a>
               </div>
             </div>
             <div className="ssss_dddd10">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (20).png")} className="blog_ss_tysn_mg" width={554} />
+                <img
+                  src={require("../../Images/image (20).png")}
+                  className="blog_ss_tysn_mg"
+                  width={554}
+                  alt="blog"
+                />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -256,14 +259,22 @@ const [wishlistCount, setWishlistCount] = useState(
                   aliquam risus, sit amet dictum ligula lorem non nisl Urna
                   pretium elit mauris cursus Curabitur
                 </p>
-                <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
+                <a
+                  href="/blog-details"
+                  className="red_ddd d-flex gap-2 align-items-center"
+                >
                   Read More <FaArrowRight />
                 </a>
               </div>
             </div>
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (21).png")} className="blog_ss_tysn_mg" width={554} />
+                <img
+                  src={require("../../Images/image (21).png")}
+                  className="blog_ss_tysn_mg"
+                  width={554}
+                  alt="blog"
+                />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -280,14 +291,22 @@ const [wishlistCount, setWishlistCount] = useState(
                   aliquam risus, sit amet dictum ligula lorem non nisl Urna
                   pretium elit mauris cursus Curabitur
                 </p>
-                <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
+                <a
+                  href="/blog-details"
+                  className="red_ddd d-flex gap-2 align-items-center"
+                >
                   Read More <FaArrowRight />
                 </a>
               </div>
             </div>
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (22).png")} className="blog_ss_tysn_mg" width={554} />
+                <img
+                  src={require("../../Images/image (22).png")}
+                  className="blog_ss_tysn_mg"
+                  width={554}
+                  alt="blog"
+                />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -304,14 +323,22 @@ const [wishlistCount, setWishlistCount] = useState(
                   aliquam risus, sit amet dictum ligula lorem non nisl Urna
                   pretium elit mauris cursus Curabitur
                 </p>
-                <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
+                <a
+                  href="/blog-details"
+                  className="red_ddd d-flex gap-2 align-items-center"
+                >
                   Read More <FaArrowRight />
                 </a>
               </div>
             </div>
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (23).png")} className="blog_ss_tysn_mg" width={554} />
+                <img
+                  src={require("../../Images/image (23).png")}
+                  className="blog_ss_tysn_mg"
+                  width={554}
+                  alt="blog"
+                />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -328,14 +355,22 @@ const [wishlistCount, setWishlistCount] = useState(
                   aliquam risus, sit amet dictum ligula lorem non nisl Urna
                   pretium elit mauris cursus Curabitur
                 </p>
-                <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
+                <a
+                  href="/blog-details"
+                  className="red_ddd d-flex gap-2 align-items-center"
+                >
                   Read More <FaArrowRight />
                 </a>
               </div>
             </div>
             <div className="ssss_dddd10 mt-5">
               <div className="blog_fade_ds">
-                <img src={require("../../Images/image (24).png")} className="blog_ss_tysn_mg" width={554} />
+                <img
+                  src={require("../../Images/image (24).png")}
+                  className="blog_ss_tysn_mg"
+                  width={554}
+                  alt="blog"
+                />
               </div>
 
               <div className="d-flex flex-column gap-2 pt-4">
@@ -352,7 +387,10 @@ const [wishlistCount, setWishlistCount] = useState(
                   aliquam risus, sit amet dictum ligula lorem non nisl Urna
                   pretium elit mauris cursus Curabitur
                 </p>
-                <a href="/blog-details" className="red_ddd d-flex gap-2 align-items-center">
+                <a
+                  href="/blog-details"
+                  className="red_ddd d-flex gap-2 align-items-center"
+                >
                   Read More <FaArrowRight />
                 </a>
               </div>
