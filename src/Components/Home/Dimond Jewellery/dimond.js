@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./dimond.css";
 import { useNavigate } from "react-router-dom";
+import LazyVideo from "../LazyVideo";
+
 const DimondJewellery = () => {
   const navigate = useNavigate();
   const videoRef = useRef(null);
@@ -49,23 +51,34 @@ const DimondJewellery = () => {
         <div className="col-md-4 d-flex flex-column dis_edjxfd">
           <div ref={videoRef}>
             {videoVisible && (
-              
-              <video
+              <LazyVideo
+                loading="lazy"
+                src="../../../Videos/diamond jewelry.mp4"
+                className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
                 autoPlay
                 loop
                 muted
                 playsInline
-                preload="none"
-                loading="lazy"
-                className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
-                onClick={() => navigate('/products')}
-              >
-                <source
-                  src="../../../Videos/diamond jewelry.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
+                controls={false}
+                onClick={() => navigate("/products")}
+              />
+
+              // <video
+              //   autoPlay
+              //   loop
+              //   muted
+              //   playsInline
+              //   preload="none"
+              //   loading="lazy"
+              //   className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
+              //   onClick={() => navigate('/products')}
+              // >
+              // <source
+              //     src="../../../Videos/diamond jewelry.mp4"
+              //     type="video/mp4"
+              //   />
+              //   Your browser does not support the video tag.
+              // </video>
             )}
           </div>
         </div>
