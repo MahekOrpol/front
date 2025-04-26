@@ -85,26 +85,6 @@ const Ring1 = () => {
       requestAnimationFrame(raf);
     };
 
-    // Lazy load videos
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const video = entry.target;
-          if (entry.isIntersecting && video.dataset.src) {
-            video.src = video.dataset.src;
-            video.load();
-            video.play().catch(() => {});
-            observer.unobserve(video);
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
-
-    videoRefs.current.forEach((video) => {
-      if (video) observer.observe(video);
-    });
-
     // Throttled resize handler
     let resizeTimeout;
     const handleResize = () => {
@@ -121,7 +101,6 @@ const Ring1 = () => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
-      observer.disconnect();
       if (swiperInstance) swiperInstance.destroy(true, true);
     };
   }, [calculateWheel, updateRotateMultiplier]);
@@ -136,11 +115,12 @@ const Ring1 = () => {
                 <div className="single">
                   <video
                     ref={(el) => (videoRefs.current[i] = el)}
-                    data-src={video.src}
+                    src={video.src} // DIRECT src here
                     muted
                     loop
                     playsInline
-                    preload="none"
+                    autoPlay // autoPlay instead of manual play
+                    preload="auto" // better than none now
                     className="ring-video"
                   />
                 </div>

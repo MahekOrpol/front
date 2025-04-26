@@ -1535,7 +1535,9 @@ const Home = () => {
           />
         </div>
 
-        <Ring1 />
+        <Suspense fallback={<div>Loading carousel...</div>}>
+          <Ring1 />
+        </Suspense>
 
         <div className="heder_sec_main d-flex flex-column align-items-center dscdsc_inst">
           <span className="category_name">Instructions</span>
