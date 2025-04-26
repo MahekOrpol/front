@@ -49,6 +49,7 @@ const DimondJewellery = () => {
         <div className="col-md-4 d-flex flex-column dis_edjxfd">
           <div ref={videoRef}>
             {videoVisible && (
+              
               <video
                 autoPlay
                 loop
