@@ -2,23 +2,18 @@ import React, { useEffect, useRef, useCallback } from "react";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 import "./ring.css";
-import ringVideo1 from "../../../Videos/Dfcvdfx (2).mp4";
-import ringVideo2 from "../../../Videos/Dfvdfvd (1).mp4";
-import ringVideo3 from "../../../Videos/rings.mp4";
-import ringVideo4 from "../../../Videos/Sdcxdscx(1).mp4";
-import ringVideo5 from "../../../Videos/pendant.mp4";
 
 const videoData = [
-  { src: ringVideo1, category: "Pendant" },
-  { src: ringVideo2, category: "Earrings" },
-  { src: ringVideo3, category: "Rings" },
-  { src: ringVideo4, category: "Bracelets" },
-  { src: ringVideo5, category: "Pendant" },
-  { src: ringVideo1, category: "Pendant" },
-  { src: ringVideo2, category: "Earrings" },
-  { src: ringVideo3, category: "Rings" },
-  { src: ringVideo4, category: "Bracelets" },
-  { src: ringVideo5, category: "Pendant" },
+  { src: '/Videos/Dfcvdfx (2).mp4', category: "Pendant" },
+  { src: '/Videos/Dfvdfvd (1).mp4', category: "Earrings" },
+  { src: '/Videos/rings.mp4', category: "Rings" },
+  { src: '/Videos/Sdcxdscx(1).mp4', category: "Bracelets" },
+  { src: '/Videos/pendant.mp4', category: "Pendant" },
+  { src: '/Videos/Dfcvdfx (2).mp4', category: "Pendant" },
+  { src: '/Videos/Dfvdfvd (1).mp4', category: "Earrings" },
+  { src: '/Videos/rings.mp4', category: "Rings" },
+  { src: '/Videos/Sdcxdscx(1).mp4', category: "Bracelets" },
+  { src: '/Videos/pendant.mp4', category: "Pendant" },
 ];
 
 const multiplier = {

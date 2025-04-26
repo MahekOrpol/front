@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./index.css";
 import { FaAward, FaMedal, FaStar } from "react-icons/fa6";
-import vector from "../../Images/Vector.png";
+
 import { BiShoppingBag, BiSolidOffer } from "react-icons/bi";
 import { Suspense, lazy } from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import best from "../../Images/Mask group (9).webp";
+
 
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -487,7 +487,7 @@ const Home = () => {
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
           />
@@ -534,63 +534,63 @@ const Home = () => {
           <div className="scrolling-wrapper fastival-offerssss">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -600,7 +600,7 @@ const Home = () => {
             <div className="position-relative">
               <img
                 loading="lazy"
-                src={require("../../Images/image (3).webp")}
+                src="/Images/image (3).webp"
                 className="img-fluid w-100"
                 alt="Main Image"
               />
@@ -608,7 +608,7 @@ const Home = () => {
               <div className="overlay-img11">
                 <img
                   loading="lazy"
-                  src={require("../../Images/Rectangle 105457.png")}
+                  src="/Images/Rectangle 105457.png"
                   className="img-fluid w-100"
                   alt="Overlay"
                 />
@@ -643,63 +643,63 @@ const Home = () => {
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src={vector} alt="icon" />
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -711,7 +711,7 @@ const Home = () => {
           <p className="category_txt">Minimal. Modern. Mesmerizing</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
           />
@@ -725,7 +725,7 @@ const Home = () => {
           </p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
           />
@@ -1188,7 +1188,7 @@ const Home = () => {
           </p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img best_sellig_sdcdc d-none"
             alt="home"
           />
@@ -1204,7 +1204,7 @@ const Home = () => {
           </p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
           />
@@ -1214,7 +1214,7 @@ const Home = () => {
               <div className="h-100 d-flex align-items-center justify-content-center">
                 <img
                   loading="lazy"
-                  src={best}
+                  src='/Images/Mask group (9).webp'
                   className="img-fluid w-100 h-100 object-fit-cover rounded"
                   alt="home"
                 />
@@ -1407,7 +1407,7 @@ const Home = () => {
           <p className="category_txt">Sophistication, smartly priced.</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
           />
@@ -1473,7 +1473,7 @@ const Home = () => {
           <p className="category_txt">Elegant & Versatile Gifts</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
           />
@@ -1482,7 +1482,7 @@ const Home = () => {
               <img
                 loading="lazy"
                 className="img-sssssss"
-                src={require("../../Images/Group 1597884624 (1).png")}
+                src="/Images/Group 1597884624 (1).png"
                 alt="home"
               />
               <div className="lionk_ss">
@@ -1493,7 +1493,7 @@ const Home = () => {
               <img
                 loading="lazy"
                 className="img-sssssss"
-                src={require("../../Images/Group 1597884625 (1).png")}
+                src="/Images/Group 1597884625 (1).png"
                 alt="home"
               />
               <div className="lionk_ss">
@@ -1504,7 +1504,7 @@ const Home = () => {
               <img
                 loading="lazy"
                 className="img-sssssss"
-                src={require("../../Images/Group 1597884626 (1).png")}
+                src="/Images/Group 1597884626 (1).png"
                 alt="home"
               />
               <div className="lionk_ss">
@@ -1515,7 +1515,7 @@ const Home = () => {
               <img
                 loading="lazy"
                 className="img-sssssss"
-                src={require("../../Images/Group 1597884636.png")}
+                src="/Images/Group 1597884636.png"
                 alt="home"
               />
               <div className="lionk_ss">
@@ -1530,7 +1530,7 @@ const Home = () => {
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
           />
@@ -1546,7 +1546,7 @@ const Home = () => {
           <p className="category_txt">New Creations, Forever Elegance</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
           />
@@ -1561,7 +1561,7 @@ const Home = () => {
           <p className="category_txt">Store it Soft, Shine it Often</p>
           <img
             loading="lazy"
-            src={require("../../Images/Groupimg.png")}
+            src="/Images/Groupimg.png"
             alt="Decorative"
             className="home_tag_img"
           />
@@ -1578,7 +1578,7 @@ const Home = () => {
             <p className="category_txt">What our Client’s say about us</p>
             <img
               loading="lazy"
-              src={require("../../Images/Groupimg.png")}
+              src="/Images/Groupimg.png"
               alt="Decorative"
               className="home_tag_img"
             />

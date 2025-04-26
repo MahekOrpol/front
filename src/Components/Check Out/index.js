@@ -1,13 +1,12 @@
 import React, { lazy, useEffect, useState } from "react";
 import "./index.css";
 import { Form, Row, Col } from "react-bootstrap";
-import logo from "../../Images/logo.png";
 
 import { useLocation } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import logo1 from "../../Images/Frame 193.png";
+
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
 
@@ -141,7 +140,7 @@ const CheckoutPage = () => {
     //       currency: "INR",
     //       name: "Crystova",
     //       description: "Test Transaction",
-    //       image: require("../../Images/logo.png"),
+    //       image: require("/Images/logo.png"),
     //       order_id: id,
     //       handler: async function (response) {
     //         console.log("Payment Success:", response);
@@ -226,7 +225,7 @@ const CheckoutPage = () => {
         <div className="d-flex p-0 justify-content-center w-100 bdsh_mIN">
           <img
             loading="lazy"
-            src={logo1}
+            src='/Images/Frame 193.png'
             onClick={() => navigate("/")}
             alt="Logo"
             width={200}
@@ -398,7 +397,7 @@ const CheckoutPage = () => {
                   >
                     <img
                       loading="lazy"
-                      src={require("../../Images/phoneicon.png")}
+                      src="/Images/phoneicon.png"
                       alt="phone"
                       width="20"
                     />
@@ -424,7 +423,7 @@ const CheckoutPage = () => {
               <div className="mt-3 d-flex align-items-center gap-2">
                 <img
                   loading="lazy"
-                  src={require("../../Images/lock.png")}
+                  src="/Images/lock.png"
                   alt="lock"
                   width="18"
                 />
@@ -446,7 +445,7 @@ const CheckoutPage = () => {
         <Col
           className="checkout-right-section"
           style={{
-            backgroundImage: `url(${require("../../Images/bgimg.png")})`,
+            backgroundImage: `url(${"/Images/bgimg.png"})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

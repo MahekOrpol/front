@@ -223,7 +223,7 @@ const EditProfile = () => {
           <div className="col-md-6 justify-content-center tyoty">
             <img
               loading="lazy"
-              src={require("../../Images/editimg.png")}
+              src="/Images/editimg.png"
               alt="Profile"
               className="img-fluid w-100"
             />

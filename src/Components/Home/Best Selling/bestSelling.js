@@ -1,5 +1,5 @@
 import React from "react";
-import best from "../../../Images/best.png";
+import best from "..//Images/best.png";
 const BestSelling = () => {
   return (
     <div className="container">

@@ -529,7 +529,7 @@ const Products = () => {
         <div>
           <img
             loading="lazy"
-            src={require("../../Images/productt_sss.png")}
+            src="/Images/productt_sss.png"
             className="img_fluid1_banner"
             alt="product"
           />
@@ -556,8 +556,8 @@ const Products = () => {
                   loading="lazy"
                   src={
                     selectedGender === "Women"
-                      ? require("../../Images/her.png")
-                      : require("../../Images/her-active.png")
+                      ? "/Images/her.png"
+                      : "/Images/her-active.png"
                   }
                   alt="product"
                 />
@@ -575,8 +575,8 @@ const Products = () => {
                   loading="lazy"
                   src={
                     selectedGender === "Men"
-                      ? require("../../Images/him-active.png")
-                      : require("../../Images/him.png")
+                      ?"/Images/him-active.png"
+                      :"/Images/him.png"
                   }
                   alt="product"
                 />
@@ -592,7 +592,7 @@ const Products = () => {
                 >
                   <img
                     loading="lazy"
-                    src={require("../../Images/filter.png")}
+                    src="/Images/filter.png"
                     alt="Filter Icon"
                   />{" "}
                   Filter

@@ -1,6 +1,6 @@
 .footer_mdjj {
   background-color: #611d2b;
-  background-image: url("../../Images/footer_dssds.svg");
+  background-image: url("../../../public/Images/footer_dssds.svg");
   background-repeat: no-repeat;
 }
 
@@ -570,7 +570,7 @@
 
 .footer_mdjj_1 {
   background-color: #611d2b;
-  /* background-image: url('../../Images/footer_dssds.svg'); */
+  /* background-image: url('/Images/footer_dssds.svg'); */
   background-repeat: no-repeat;
 }
 
