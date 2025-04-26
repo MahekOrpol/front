@@ -21,6 +21,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import LazyVideo from "./LazyVideo";
 
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
@@ -831,26 +832,8 @@ const Home = () => {
                             )}
                           </div>
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {/* {(() => {
-                              const imageToShow = product.image.find(
-                                (img) => !img.endsWith(".mp4")
-                              );
-                              return imageToShow ? (
-                                <img
-                                  src={`https://dev.crystovajewels.com${imageToShow}`}
-                                  className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                  alt="Product"
-                                  onClick={() => handleProductClick(product.id)}
-                                />
-                              ) : (
-                                <div className="text-center text-muted py-4">
-                                  No image available
-                                </div>
-                              );
-                            })()} */}
                             {product.image[0]?.endsWith(".mp4") ? (
-                              <video
-                                preload="none"
+                              <LazyVideo
                                 loading="lazy"
                                 src={`https://dev.crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
@@ -958,26 +941,8 @@ const Home = () => {
                             )}
                           </div>
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {/* {(() => {
-                              const imageToShow = product.image.find(
-                                (img) => !img.endsWith(".mp4")
-                              );
-                              return imageToShow ? (
-                                <img
-                                  src={`https://dev.crystovajewels.com${imageToShow}`}
-                                  className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                  alt="Product"
-                                  onClick={() => handleProductClick(product.id)}
-                                />
-                              ) : (
-                                <div className="text-center text-muted py-4">
-                                  No image available
-                                </div>
-                              );
-                            })()} */}
                             {product.image[0]?.endsWith(".mp4") ? (
-                              <video
-                                preload="none"
+                              <LazyVideo
                                 loading="lazy"
                                 src={`https://dev.crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
@@ -1087,27 +1052,8 @@ const Home = () => {
                           </div>
                           {/* Product Image */}
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {/* {(() => {
-                              const imageToShow = product.image.find(
-                                (img) => !img.endsWith(".mp4")
-                              );
-                              return imageToShow ? (
-                                <img
-                                  src={`https://dev.crystovajewels.com${imageToShow}`}
-                                  className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                  alt="Product"
-                                  onClick={() => handleProductClick(product.id)}
-                                />
-                              ) : (
-                                <div className="text-center text-muted py-4">
-                                  No image available
-                                </div>
-                              );
-                            })()} */}
-
                             {product.image[0]?.endsWith(".mp4") ? (
-                              <video
-                                preload="none"
+                              <LazyVideo
                                 loading="lazy"
                                 src={`https://dev.crystovajewels.com${product.image[0]}`}
                                 className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
@@ -1313,8 +1259,7 @@ const Home = () => {
                                   style={{ height: "100%" }}
                                 >
                                   {product.image[0]?.endsWith(".mp4") ? (
-                                    <video
-                                      preload="none"
+                                    <LazyVideo
                                       loading="lazy"
                                       src={`https://dev.crystovajewels.com${product.image[0]}`}
                                       className="p-1_proi img-fluid border-0"
