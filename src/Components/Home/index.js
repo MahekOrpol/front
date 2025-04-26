@@ -510,6 +510,7 @@ const Home = () => {
                       src={`https://dev.crystovajewels.com${category.categoryImage}`}
                       className="home-img home_img_ssssss fvfvfc_Zdcdsc"
                       alt={category.categoryName}
+                      onLoad={e => e.currentTarget.classList.add('lazy-img-active')}
                     />
                     <span className="category-label">
                       {category.categoryName}

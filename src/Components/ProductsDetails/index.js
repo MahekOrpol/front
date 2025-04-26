@@ -490,6 +490,7 @@ Please let me know the next steps.`;
                       slidesPerView: 3, // Optional for large screens
                     },
                   }}
+                  className="fddd"
                 >
                   {productDetails?.image && productDetails.image.length > 0 ? (
                     productDetails.image.map((img, index) => {

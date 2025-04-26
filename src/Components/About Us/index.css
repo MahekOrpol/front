@@ -421,7 +421,7 @@
     width: 100%;
     position: sticky;
     top: 23px;
-    height: fit-content !important;
+    /* height: fit-content !important; */
   }
 }
 

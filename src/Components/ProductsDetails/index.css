@@ -1944,3 +1944,14 @@
   align-self: flex-start;
   z-index: 10;
 }
+
+@media(max-width:767px) {
+  .fddd {
+    margin-top: -3rem !important;
+  }
+}
+@media(max-width:425px) {
+  .fddd {
+    margin-top: -1.6rem !important;
+  }
+}
