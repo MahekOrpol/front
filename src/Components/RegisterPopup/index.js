@@ -83,6 +83,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
           localStorage.setItem("user_token", response.data.token.access.token);
           localStorage.setItem("user_email", response.data.user.email);
           localStorage.setItem("user_phone", response.data.user.phone);
+          localStorage.setItem("user_fname", response.data.user.name);
 
           setTimeout(() => onClose(), 1000);
         }

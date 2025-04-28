@@ -80,6 +80,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
     localStorage.removeItem("user_email");
     localStorage.removeItem("user_data");
     localStorage.removeItem("user_name");
+    localStorage.removeItem("user_fname");
     setData(null);
     setTimeout(() => setIsSignup(false), 500);
     navigate("/");
@@ -180,8 +181,18 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       {localStorage.getItem("user_name") ? (
                         <div className="d-flex flex-column gap-2">
                           <h5>
-                            {" "}
-                            {"Hey"}, {localStorage.getItem("user_name")} !{" "}
+                            {"Hey"}, {localStorage.getItem("user_name")} !
+                          </h5>
+                          <p className="contact-number">
+                            <strong>
+                              {localStorage.getItem("user_phone")}
+                            </strong>
+                          </p>
+                        </div>
+                      ) : localStorage.getItem("user_fname") ? (
+                        <div className="d-flex flex-column gap-2">
+                          <h5>
+                            {"Hey"}, {localStorage.getItem("user_fname")} !
                           </h5>
                           <p className="contact-number">
                             <strong>
@@ -193,16 +204,17 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                         <h5></h5>
                       )}
 
-                      {!localStorage.getItem("user_name") && (
-                        <div className="d-flex flex-column gap-2">
-                          <h6> {"Welcome To Crystova Jewels !"} </h6>
-                          <p className="contact-number">
-                            <strong>
-                              {localStorage.getItem("user_phone")}
-                            </strong>
-                          </p>
-                        </div>
-                      )}
+                      {!localStorage.getItem("user_name") &&
+                        !localStorage.getItem("user_fname") && (
+                          <div className="d-flex flex-column gap-2">
+                            <h6> {"Welcome To Crystova Jewels !"} </h6>
+                            <p className="contact-number">
+                              <strong>
+                                {localStorage.getItem("user_phone")}
+                              </strong>
+                            </p>
+                          </div>
+                        )}
                     </div>
                   </div>
                   {/* Menu List */}
