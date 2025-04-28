@@ -490,7 +490,7 @@ const EditProfile = () => {
                   className="btn btn-dark w-100 mt-4 fs-5 mb-5 profile_font_s"
                   style={{ backgroundColor: "#611d2b", border: "none" }}
                 >
-                  {isExistingProfile ? "Upadte" : "Create"} Profile
+                  {isExistingProfile ? "Update" : "Create"} Profile
                 </button>
               </form>
             </div>
