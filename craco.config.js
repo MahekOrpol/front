@@ -2,7 +2,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const Critters = require('critters-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const isProd =  'production';
+const isProd = process.env.NODE_ENV === 'production'; // ✅ Correct way
 
 module.exports = {
   webpack: {
