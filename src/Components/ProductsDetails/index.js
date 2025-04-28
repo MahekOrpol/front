@@ -55,6 +55,7 @@ const ProductDetailss = () => {
   );
   const videoSliderRef = useRef(null);
   const imageSliderRef = useRef(null);
+  const navigate = useNavigate();
 
   const [currentVideoSlide, setCurrentVideoSlide] = useState(0);
   const [currentImageSlide, setCurrentImageSlide] = useState(0);
@@ -90,7 +91,6 @@ Please let me know the next steps.`;
     document.body.classList.add("no-scroll");
   }, [navigate]);
 
-  const navigate = useNavigate();
 
   const handleProductClick = useCallback((productId, productData) => {
     navigate(`/product-details/${productId}`, {
