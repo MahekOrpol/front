@@ -102,6 +102,7 @@ const EditProfile = () => {
   const user_Id = localStorage.getItem("user_Id");
   localStorage.setItem("isExistingProfile", "false");
   const isExistingProfile = localStorage.getItem("isExistingProfile");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -149,6 +150,7 @@ const EditProfile = () => {
         );
         localStorage.setItem("setIsExistingProfile", "true");
         localStorage.setItem("user_name",firstName + ' ' + lastName)
+        localStorage.setItem("profileData", JSON.stringify(userData));
       }
     } catch (error) {
       console.error("Error saving profile:", error);
@@ -156,14 +158,10 @@ const EditProfile = () => {
     }
   };
   const getProfileData = async () => {
-    try {
-      const res = await axios.get(
-        `https://dev.crystovajewels.com/api/v1/users/${user_Id}`
-      );
-      const data = res.data;
-
+    const savedProfile = localStorage.getItem("profileData");
+    if (savedProfile) {
+      const data = JSON.parse(savedProfile);
       setProfileData(data);
-
       // Form fields update
       setFirstName(data.firstName || "");
       setLastName(data.lastName || "");
@@ -176,11 +174,31 @@ const EditProfile = () => {
       setPostalCode(data.postalCode || "");
       setGender(data.gender || "");
       setBirthday(data.birthday || "");
-
       localStorage.setItem("isExistingProfile", "true"); // User profile exists
-    } catch (err) {
-      console.log(err);
-      localStorage.setItem("isExistingProfile", "false"); // No existing profile
+    } else {
+      try {
+        const res = await axios.get(
+          `https://dev.crystovajewels.com/api/v1/users/${user_Id}`
+        );
+        const data = res.data;
+        setProfileData(data);
+        setFirstName(data.firstName || "");
+        setLastName(data.lastName || "");
+        setEmail(data.email || "");
+        setPhone(data.phone || "");
+        setAddress(data.address || "");
+        setAddress_line2(data.address_line2 || "");
+        setCity(data.city || "");
+        setState(data.state || "");
+        setPostalCode(data.postalCode || "");
+        setGender(data.gender || "");
+        setBirthday(data.birthday || "");
+        localStorage.setItem("profileData", JSON.stringify(data));
+        localStorage.setItem("isExistingProfile", "true");
+      } catch (err) {
+        console.log(err);
+        localStorage.setItem("isExistingProfile", "false"); // No existing profile
+      }
     }
   };
 
@@ -220,7 +238,7 @@ const EditProfile = () => {
             />
           </Suspense>
         </div>
-        <div className="d-flex align-items-center justify-content-center mt-5">
+        <div className="d-flex align-items-center justify-content-center mt-5 pb-5">
           <div className="bg-white d-flex flex-wrap overflow-hidden fjeef">
             {/* Left Image Section - Always visible, but smaller on smaller screens */}
             <div className="col-md-6 justify-content-center tyoty">
@@ -228,7 +246,7 @@ const EditProfile = () => {
                 loading="lazy"
                 src="/Images/editimg.png"
                 alt="Profile"
-                className="img-fluid w-100"
+                className="w-100"
               />
             </div>
             {/* Right Form Section */}
