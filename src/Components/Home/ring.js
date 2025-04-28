@@ -1,178 +1,121 @@
-import React, { useEffect, useState, useRef, useMemo } from "react";
-import $ from "jquery";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "slick-carousel";
+import React, { useState, useRef, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import "./ring.css";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 
+const rings = [
+  { title: "Classic Ring", description: "Timeless elegance in its purest form", img: "1.png" },
+  { title: "Modern Ring", description: "Contemporary brilliance with a sleek design", img: "8.webp" },
+  { title: "Vintage Ring", description: "Antique charm with intricate craftsmanship", img: "3.webp" },
+  { title: "Elegant Rings", description: "Refined simplicity for everyday luxury", img: "5.webp" },
+  { title: "Premium Ring", description: "Exquisite craftsmanship for the discerning", img: "6.webp" },
+  { title: "Classic Ring", description: "Timeless elegance in its purest form", img: "1.png" },
+  { title: "Modern Ring", description: "Contemporary brilliance with a sleek design", img: "8.webp" },
+  { title: "Vintage Ring", description: "Antique charm with intricate craftsmanship", img: "3.webp" },
+  { title: "Elegant Rings", description: "Refined simplicity for everyday luxury", img: "5.webp" },
+  { title: "Premium Ring", description: "Exquisite craftsmanship for the discerning", img: "6.webp" },
+  // ...add more if needed
+];
+
 const RingSlider = () => {
   const [centerIndex, setCenterIndex] = useState(0);
-  const sliderRef = useRef(null);
-  const nextArrowRef = useRef(null);
-  const prevArrowRef = useRef(null);
-
-  const rings = useMemo(() => [
-    {
-      title: "Classic Ring",
-      description: "Timeless elegance in its purest form",
-    },
-    {
-      title: "Modern Ring",
-      description: "Contemporary brilliance with a sleek design",
-    },
-    {
-      title: "Vintage Ring",
-      description: "Antique charm with intricate craftsmanship",
-    },
-    {
-      title: "Elegant Rings",
-      description: "Refined simplicity for everyday luxury",
-    },
-    {
-      title: "Premium Ring",
-      description: "Exquisite craftsmanship for the discerning",
-    },
-  ], []);
-
-  const images = useMemo(() => [
-    "1.png",
-    "8.webp",
-    "3.webp",
-    "5.webp",
-    "6.webp",
-    "2.webp",
-    "1.png",
-    "8.webp",
-    "3.webp",
-    "5.webp",
-    "6.webp",
-    "2.webp",
-  ], []);
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const [navReady, setNavReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const $slider = $(sliderRef.current);
-
-    const initSlider = () => {
-      if ($slider.hasClass("slick-initialized")) {
-        $slider.slick("unslick");
-      }
-
-      $slider.slick({
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        centerMode: true,
-        dots: false,
-        centerPadding: "0px",
-        infinite: true,
-        speed: 600,
-        cssEase: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-        swipe: false,
-        draggable: false,
-        touchMove: false,
-        swipeToSlide: true,
-        arrows: true,
-        prevArrow: $(prevArrowRef.current),
-        nextArrow: $(nextArrowRef.current),
-        responsive: [
-          {
-            breakpoint: 1200,
-            settings: {
-              slidesToShow: 5,
-              centerMode: images.length > 5,
-            },
-          },
-          {
-            breakpoint: 990,
-            settings: {
-              slidesToShow: 3,
-              centerMode: images.length > 3,
-            },
-          },
-          {
-            breakpoint: 768,
-            settings: {
-              slidesToShow: 3,
-              centerMode: images.length > 3,
-            },
-          },
-          {
-            breakpoint: 576,
-            settings: {
-              slidesToShow: 3,
-              centerMode: images.length > 1,
-            },
-          },
-        ],
-      });
-      $slider.on("afterChange", function (event, slick, currentSlide) {
-        const visibleSlides = Math.min(
-          5, // Default
-          window.innerWidth < 576 ? 3 : window.innerWidth < 990 ? 3 : 5
-        );
-        const center =
-          (currentSlide + Math.floor(visibleSlides / 2)) % images.length;
-        setCenterIndex(center % rings.length);
-      });
-    };
-
-    initSlider();
-
-    let resizeTimer;
+    setNavReady(true);
     const handleResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(initSlider, 250);
+      setIsMobile(window.innerWidth <= 600);
     };
-
+    handleResize();
     window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if ($slider.hasClass("slick-initialized")) {
-        $slider.slick("unslick");
-      }
-    };
-  }, [images.length, rings.length]);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const maxSlides = 5;
+  const slidesToShow = Math.min(maxSlides, rings.length);
+
+  // Helper to get the offset from the center for each slide
+  const getOffset = (idx) => {
+    let offset = idx - centerIndex;
+    if (offset > Math.floor(rings.length / 2)) offset -= rings.length;
+    if (offset < -Math.floor(rings.length / 2)) offset += rings.length;
+    return offset;
+  };
 
   return (
-    <div className="wrapper">
-      <div className="center-slider dis_sty_ssss" ref={sliderRef}>
-        {images.map((img, index) => (
-          <div key={index}>
-            <img
-              loading="lazy"
-              className={`slider_img_ssss ${
-                centerIndex === index % rings.length ? "active-slide" : ""
-              }`}
-              src={`/Images/${img}`}
-              alt={rings[index % rings.length]?.title || `Ring ${index + 1}`}
-            />
-          </div>
-        ))}
-      </div>
-
-      <div className="slick-nav-container slidere-roijidfndm">
-        <button
-          ref={prevArrowRef}
-          className="custom-prev ps-2 ps-md-0"
-          aria-label="Previous Ring"
+    <div className="ring-slider-container1">
+      {navReady && (
+        <Swiper
+          modules={[Navigation]}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          speed={600}
+          slidesPerView={slidesToShow}
+          centeredSlides={true}
+          loop={rings.length > slidesToShow}
+          onSlideChange={(swiper) => setCenterIndex(swiper.realIndex)}
+          className="ring-swiper"
+          breakpoints={{
+            0: { slidesPerView: 3 },
+            600: { slidesPerView: 3 },
+            1200: { slidesPerView: slidesToShow },
+          }}
         >
+          {rings.map((ring, idx) => {
+            const offset = getOffset(idx);
+            let scale = 1;
+            if (offset === 0) {
+              // Center slide: largest
+              scale = 1.0;
+            } else if (Math.abs(offset) === 1) {
+              // Immediate left/right: scale down
+              scale = 0.85;
+            } else {
+              // All others: even smaller
+              scale = 0.7;
+            }
+            // Adjust translateY for arc effect
+            const translateY = isMobile ? -Math.abs(offset) * 80 : -Math.abs(offset) * 100;
+
+            return (
+              <SwiperSlide key={idx}>
+                <div
+                  className="ring-slide"
+                  style={{
+                    transform: `scale(${scale}) translateY(${translateY}px)`,
+                    opacity: 1,
+                    zIndex: 10 - Math.abs(offset),
+                  }}
+                >
+                  <img src={`/Images/${ring.img}`} alt={ring.title} className="ring-img" />
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      )}
+      <div className="ring-info-nav">
+        <button ref={prevRef} className="ring-prev nav-btn" aria-label="Previous">
           <MdArrowBackIos />
         </button>
-
-        <div className="center-ring-info">
-          <h3>{rings[centerIndex]?.title}</h3>
-          <p>{rings[centerIndex]?.description}</p>
+        <div className="ring-info-fade">
+          <h3>{rings[centerIndex].title}</h3>
+          <p>{rings[centerIndex].description}</p>
         </div>
-
-        <button
-          ref={nextArrowRef}
-          className="custom-next"
-          aria-label="Next Ring"
-        >
+        <button ref={nextRef} className="ring-next nav-btn" aria-label="Next">
           <MdArrowForwardIos />
         </button>
       </div>
     </div>
   );
 };
+
 export default RingSlider;
