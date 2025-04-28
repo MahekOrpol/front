@@ -142,12 +142,13 @@ const EditProfile = () => {
         );
       }
       if (response.status === 200 || response.status === 201) {
-        alert(
+        toast.success(
           isExistingProfile
             ? "Profile updated successfully!"
             : "Profile created successfully!"
         );
         localStorage.setItem("setIsExistingProfile", "true");
+        localStorage.setItem("user_name",firstName + ' ' + lastName)
       }
     } catch (error) {
       console.error("Error saving profile:", error);
@@ -190,7 +191,7 @@ const EditProfile = () => {
   return (
     <>
       <ToastContainer
-        position="top-right"
+        position="top-center"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -274,7 +275,8 @@ const EditProfile = () => {
                   type="email"
                   placeholder="E-mail"
                   className="form-control mt-3 iceo"
-                  value={email}
+                  value={email||localStorage.getItem('user_email')||''}
+                  disabled={!!localStorage.getItem('user_email')}
                   // onChange={(e) => setEmail(e.target.value)}
                   onChange={(e) => {
                     setEmail(e.target.value);
@@ -301,7 +303,7 @@ const EditProfile = () => {
                   type="text"
                   placeholder="Phone Number"
                   className="form-control mt-3 iceo"
-                  value={phone}
+                  value={phone || localStorage.getItem('user_phone')}
                   // onChange={(e) => setPhone(e.target.value)}
                   onChange={(e) => {
                     const input = e.target.value;

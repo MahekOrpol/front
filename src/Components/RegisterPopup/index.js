@@ -81,6 +81,8 @@ const RegisterPopup = ({ isOpen, onClose }) => {
           toast.success("Login Successful!");
           localStorage.setItem("user_Id", response.data.user.id);
           localStorage.setItem("user_token", response.data.token.access.token);
+          localStorage.setItem("user_email", response.data.user.email);
+          localStorage.setItem("user_phone", response.data.user.phone);
 
           setTimeout(() => onClose(), 1000);
         }
@@ -152,6 +154,24 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     }
   };
 
+  useEffect(() => {
+    // Reset login fields when switching to the "register" tab
+    if (tabValue === "register") {
+      setLoginEmail(""); 
+      setLoginPassword("");
+    }
+    // Reset register fields when switching to the "login" tab
+    if (tabValue === "login") {
+      setName("");
+      setEmail("");
+      setPhone("");
+      setPassword("");
+      setConfirmPassword("");
+      setRegisterErrors({});
+    }
+  }, [tabValue]); // This effect runs whenever tabValue changes
+
+  
   if (!isOpen) return null;
 
   return (
