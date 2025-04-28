@@ -483,39 +483,37 @@ const Home = () => {
             alt="home"
           />
 
-          <div className=" p-0" style={{ width: "100vw" }}>
+          <div className="categories-slider">
             <Swiper
-              spaceBetween={10}
+              spaceBetween={20}
               loop={true}
               breakpoints={{
                 0: { slidesPerView: 4 },
-                480: { slidesPerView: 5 },
+                480: { slidesPerView: 4 },
                 768: { slidesPerView: 5 },
                 1024: { slidesPerView: 6 },
                 1200: { slidesPerView: 6 },
               }}
-              className="mySwiper xfvdfvdfvc "
+              className="mySwiper"
               preloadImages={false}
               lazy={true}
             >
               {categoriesa?.map((category) => (
                 <SwiperSlide
                   key={category.id}
-                  className="slide-item"
                   onClick={() => handleCategoryClick(category.categoryName)}
                 >
-                  <div className="d-flex flex-column align-items-center">
+                  <div className="category-image-wrapper">
                     <img
                       loading="lazy"
                       src={`https://dev.crystovajewels.com${category.categoryImage}`}
-                      className="home-img home_img_ssssss fvfvfc_Zdcdsc"
                       alt={category.categoryName}
                       onLoad={e => e.currentTarget.classList.add('lazy-img-active')}
                     />
-                    <span className="category-label">
-                      {category.categoryName}
-                    </span>
                   </div>
+                  <span className="category-label">
+                    {category.categoryName}
+                  </span>
                 </SwiperSlide>
               ))}
             </Swiper>
