@@ -5632,6 +5632,10 @@ video {
     padding: 4px !important;
   }
 
+  .rtrddg , .add_avai{
+    font-size: 13px !important;
+  }
+
   .xfvdfvdfvc .swiper-wrapper {
     gap: 0rem !important;
     width: 1200px !important;
