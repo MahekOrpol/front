@@ -489,8 +489,7 @@ const Home = () => {
               loop={true}
               breakpoints={{
                 0: { slidesPerView: 4 },
-                480: { slidesPerView: 4 },
-                768: { slidesPerView: 5 },
+                640: { slidesPerView: 5 },
                 1024: { slidesPerView: 6 },
                 1200: { slidesPerView: 6 },
               }}
