@@ -949,7 +949,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       loading="lazy"
-                      src="/Images/fragrance_6211860.png"
+                      src="/Images/Frame 1597883978.png"
                       alt="AVOID PERFUME / LOTION"
                     />
                     <span>AVOID PERFUME / LOTION</span>
@@ -958,7 +958,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       loading="lazy"
-                      src="/Images/box_14309182 (1).png"
+                      src="/Images/Frame 1597883980.png"
                       alt="USE SOFT / DRY FABRIC TO CLEAN"
                     />
                     <span>USE SOFT / DRY FABRIC TO CLEAN</span>
