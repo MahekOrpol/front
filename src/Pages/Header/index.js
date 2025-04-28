@@ -374,7 +374,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             onClick={() => navigate("/Customjewel")}
           >
             <img src='/Images/Group 1597884646.svg' width={20} alt="Custom Jewellery" />{" "}
-            Custom Jewellery
+            Custom Jewelry
           </div>
         </div>
       </div>
