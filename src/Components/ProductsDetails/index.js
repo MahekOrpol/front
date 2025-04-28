@@ -1,4 +1,12 @@
-import React, { lazy, Suspense, useEffect, useMemo, useRef, useState, useCallback } from "react";
+import React, {
+  lazy,
+  Suspense,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+} from "react";
 import { FaChevronRight, FaStar } from "react-icons/fa6";
 import "./index.css";
 import { BiShoppingBag } from "react-icons/bi";
@@ -91,12 +99,14 @@ Please let me know the next steps.`;
     document.body.classList.add("no-scroll");
   }, [navigate]);
 
-
-  const handleProductClick = useCallback((productId, productData) => {
-    navigate(`/product-details/${productId}`, {
-      state: { product: productData },
-    });
-  }, [navigate]);
+  const handleProductClick = useCallback(
+    (productId, productData) => {
+      navigate(`/product-details/${productId}`, {
+        state: { product: productData },
+      });
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     dispatch(fetchCartCount());
@@ -183,27 +193,30 @@ Please let me know the next steps.`;
     discount: productDetails?.discount?.$numberDecimal || 0,
   });
 
-  const handleSelect = useCallback((size) => {
-    setSelectedSize(size);
-    if (productDetails?.hasVariations) {
-      const selectedVariation = productDetails.variations.find(
-        (variation) => variation.productSize === size
-      );
-      if (selectedVariation) {
+  const handleSelect = useCallback(
+    (size) => {
+      setSelectedSize(size);
+      if (productDetails?.hasVariations) {
+        const selectedVariation = productDetails.variations.find(
+          (variation) => variation.productSize === size
+        );
+        if (selectedVariation) {
+          setDisplayPrice({
+            regularPrice: selectedVariation.regularPrice,
+            salePrice: selectedVariation.salePrice,
+            discount: selectedVariation.discount,
+          });
+        }
+      } else {
         setDisplayPrice({
-          regularPrice: selectedVariation.regularPrice,
-          salePrice: selectedVariation.salePrice,
-          discount: selectedVariation.discount,
+          regularPrice: productDetails?.regularPrice?.$numberDecimal,
+          salePrice: productDetails?.salePrice?.$numberDecimal,
+          discount: productDetails?.discount?.$numberDecimal,
         });
       }
-    } else {
-      setDisplayPrice({
-        regularPrice: productDetails?.regularPrice?.$numberDecimal,
-        salePrice: productDetails?.salePrice?.$numberDecimal,
-        discount: productDetails?.discount?.$numberDecimal,
-      });
-    }
-  }, [productDetails]);
+    },
+    [productDetails]
+  );
 
   const isVideo = (file) => file?.endsWith(".mp4");
 
@@ -237,46 +250,49 @@ Please let me know the next steps.`;
     localStorage.setItem("wishlistCount", count.toString());
   }, []);
 
-  const toggleFavorite = useCallback(async (productId) => {
-    const userId = localStorage.getItem("user_Id");
-    if (!userId) {
-      navigate("/login");
-      return;
-    }
-    try {
-      if (wishlistItems[productId]) {
-        const wishlistItemId = wishlistItems[productId];
-        setWishlistItems((prev) => {
-          const updatedWishlist = { ...prev };
-          delete updatedWishlist[productId];
-          return updatedWishlist;
-        });
-        updateWishlistCount(wishlistCount - 1);
-        const res = await axios.delete(
-          `https://dev.crystovajewels.com/api/v1/wishlist/delete/${wishlistItemId}`
-        );
-        toast.success(res.data.message || "Removed from wishlist!");
-      } else {
-        const response = await axios.post(
-          `https://dev.crystovajewels.com/api/v1/wishlist/create`,
-          {
-            productId,
-            userId,
-          }
-        );
-        updateWishlistCount(wishlistCount + 1);
-        const newWishlistItemId = response.data.data.id;
-        setWishlistItems((prev) => ({
-          ...prev,
-          [productId]: newWishlistItemId,
-        }));
-        toast.success(response.data.message || "Added to wishlist!");
+  const toggleFavorite = useCallback(
+    async (productId) => {
+      const userId = localStorage.getItem("user_Id");
+      if (!userId) {
+        navigate("/login");
+        return;
       }
-    } catch (error) {
-      console.error("Failed to update wishlist:", error);
-      toast.error("Failed to update wishlist. Please try again!");
-    }
-  }, [navigate, wishlistItems, updateWishlistCount, wishlistCount]);
+      try {
+        if (wishlistItems[productId]) {
+          const wishlistItemId = wishlistItems[productId];
+          setWishlistItems((prev) => {
+            const updatedWishlist = { ...prev };
+            delete updatedWishlist[productId];
+            return updatedWishlist;
+          });
+          updateWishlistCount(wishlistCount - 1);
+          const res = await axios.delete(
+            `https://dev.crystovajewels.com/api/v1/wishlist/delete/${wishlistItemId}`
+          );
+          toast.success(res.data.message || "Removed from wishlist!");
+        } else {
+          const response = await axios.post(
+            `https://dev.crystovajewels.com/api/v1/wishlist/create`,
+            {
+              productId,
+              userId,
+            }
+          );
+          updateWishlistCount(wishlistCount + 1);
+          const newWishlistItemId = response.data.data.id;
+          setWishlistItems((prev) => ({
+            ...prev,
+            [productId]: newWishlistItemId,
+          }));
+          toast.success(response.data.message || "Added to wishlist!");
+        }
+      } catch (error) {
+        console.error("Failed to update wishlist:", error);
+        toast.error("Failed to update wishlist. Please try again!");
+      }
+    },
+    [navigate, wishlistItems, updateWishlistCount, wishlistCount]
+  );
 
   useEffect(() => {
     const fetchWishlist = async () => {
@@ -308,61 +324,72 @@ Please let me know the next steps.`;
 
   const faqs = [
     {
-      icon: <img loading="lazy" src="/Images/watch.png"  alt="product details"/>,
+      icon: (
+        <img loading="lazy" src="/Images/watch.png" alt="product details" />
+      ),
       title: "Shipping",
       answer:
         "This item is made to order and takes 2-3 weeks to craft. We ship FedEx Priority Overnight, signature required and fully insured.",
     },
     {
-      icon: <img loading="lazy" src="/Images/Vector (6).png"  alt="product details"/>,
+      icon: (
+        <img
+          loading="lazy"
+          src="/Images/Vector (6).png"
+          alt="product details"
+        />
+      ),
       title: "Return Policy",
       answer:
         "Received an item you don't like? Crystova is proud to offer free returns within 30 days from receiving your item. Contact our support team to issue a return.",
     },
   ];
 
-  const addToCart = useCallback(async (product) => {
-    try {
-      const userId = localStorage.getItem("user_Id");
-      if (!userId) {
-        navigate("/login");
-        return;
-      }
-      const productSize = Array.isArray(product?.productSize)
-        ? product.productSize.join(",")
-        : product?.productSize || "";
-      const variationIds = Array.isArray(product?.variations)
-        ? product.variations.map((variation) => variation.id)
-        : [];
-      const payload = {
-        userId: userId,
-        productId: product?.id,
-        productPrice: product.salePrice?.$numberDecimal,
-        quantity: product?.quantity || 1,
-        productSize: productSize,
-        discount: product?.discount?.$numberDecimal || 0,
-        variation: variationIds,
-      };
-      const response = await axios.post(
-        "https://dev.crystovajewels.com/api/v1/order-details/create",
-        payload,
-        {
-          headers: { "Content-Type": "application/json" },
+  const addToCart = useCallback(
+    async (product) => {
+      try {
+        const userId = localStorage.getItem("user_Id");
+        if (!userId) {
+          navigate("/login");
+          return;
         }
-      );
-      openCart();
-      if (response.status === 200) {
-        console.log("Product added to cart successfully:", response.data);
-        dispatch(fetchCartCount());
-      } else {
-        console.error("Failed to add product to cart:", response);
+        const productSize = Array.isArray(product?.productSize)
+          ? product.productSize.join(",")
+          : product?.productSize || "";
+        const variationIds = Array.isArray(product?.variations)
+          ? product.variations.map((variation) => variation.id)
+          : [];
+        const payload = {
+          userId: userId,
+          productId: product?.id,
+          productPrice: product.salePrice?.$numberDecimal,
+          quantity: product?.quantity || 1,
+          productSize: productSize,
+          discount: product?.discount?.$numberDecimal || 0,
+          variation: variationIds,
+        };
+        const response = await axios.post(
+          "https://dev.crystovajewels.com/api/v1/order-details/create",
+          payload,
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        openCart();
+        if (response.status === 200) {
+          console.log("Product added to cart successfully:", response.data);
+          dispatch(fetchCartCount());
+        } else {
+          console.error("Failed to add product to cart:", response);
+        }
+        setToastMessage("Item added to cart successfully!");
+        setShowToast(true);
+      } catch (error) {
+        console.error("Error adding product to cart:", error);
       }
-      setToastMessage("Item added to cart successfully!");
-      setShowToast(true);
-    } catch (error) {
-      console.error("Error adding product to cart:", error);
-    }
-  }, [dispatch, openCart, navigate]);
+    },
+    [dispatch, openCart, navigate]
+  );
 
   return (
     <div>
@@ -940,19 +967,19 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       loading="lazy"
-                      src="/Images/oeeofiw.png"
-                      alt="REMOVE BEFORE SLEEPING"
+                      src="/Images/Frame 1597883978.png"
+                      alt="AVOID PERFUME / LOTION"
                     />
-                    <span>REMOVE BEFORE SLEEPING</span>
+                    <span>AVOID PERFUME / LOTION</span>
                   </div>
                   <div className="divider szcxds_fix"></div>
                   <div className="icon-bdf">
                     <img
                       loading="lazy"
-                      src="/Images/Frame 1597883978.png"
-                      alt="AVOID PERFUME / LOTION"
+                      src="/Images/oeeofiw.png"
+                      alt="REMOVE BEFORE SLEEPING"
                     />
-                    <span>AVOID PERFUME / LOTION</span>
+                    <span>REMOVE BEFORE SLEEPING</span>
                   </div>
                   <div className="divider"></div>
                   <div className="icon-bdf">
@@ -1024,7 +1051,7 @@ Please let me know the next steps.`;
                           <img
                             loading="lazy"
                             src="/Images/Group (2).png"
-                              alt="product details"
+                            alt="product details"
                           />
                           <span className="knoe_www_rng">METAL</span>
                         </div>
@@ -1083,7 +1110,11 @@ Please let me know the next steps.`;
           <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd mt-md-3 szdcd_99909">
             <span className="category_name">Related Products</span>
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
-            <img loading="lazy" src="/Images/Groupimg.png"  alt="product details"/>
+            <img
+              loading="lazy"
+              src="/Images/Groupimg.png"
+              alt="product details"
+            />
           </div>
           <div className="heder_sec_main d-flex flex-column p-0">
             <div className="row">
@@ -1137,27 +1168,24 @@ Please let me know the next steps.`;
                             className="card-body p-0 d-flex justify-content-center"
                             style={{ height: "100%" }}
                           >
-                            {product.image[0]?.endsWith(".mp4") ? (
-                              <video
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                controls={false}
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            ) : (
-                              <img
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid border-0"
-                                alt="Product"
-                                onClick={() => handleProductClick(product.id)}
-                                style={{ height: "100%" }}
-                              />
-                            )}
+                            {(() => {
+                              const imageToShow = product.image?.find(
+                                (img) => !img.endsWith(".mp4")
+                              );
+                              return imageToShow ? (
+                                <img
+                                  src={`https://dev.crystovajewels.com${imageToShow}`}
+                                  alt={product?.productName}
+                                  className="p-1_proi img-fluid border-0"
+                                  onClick={() => handleProductClick(product.id)}
+                                  style={{ height: "100%" }}
+                                />
+                              ) : (
+                                <div className="text-center text-muted py-4">
+                                  No image available
+                                </div>
+                              );
+                            })()}
                           </div>
                         </div>
                       </div>

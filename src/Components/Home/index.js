@@ -100,7 +100,10 @@ const Home = () => {
     dispatch(fetchCartCount());
   }, [dispatch]);
 
-  const productsToDisplay = useMemo(() => filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling, [filteredBestSellers, bestSelling]);
+  const productsToDisplay = useMemo(
+    () => (filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling),
+    [filteredBestSellers, bestSelling]
+  );
 
   const openCart = React.useCallback(() => {
     const userId = localStorage.getItem("user_Id");
@@ -507,7 +510,9 @@ const Home = () => {
                       loading="lazy"
                       src={`https://dev.crystovajewels.com${category.categoryImage}`}
                       alt={category.categoryName}
-                      onLoad={e => e.currentTarget.classList.add('lazy-img-active')}
+                      onLoad={(e) =>
+                        e.currentTarget.classList.add("lazy-img-active")
+                      }
                     />
                   </div>
                   <span className="category-label">
@@ -523,63 +528,63 @@ const Home = () => {
           <div className="scrolling-wrapper fastival-offerssss">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -633,63 +638,63 @@ const Home = () => {
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -830,27 +835,23 @@ const Home = () => {
                             )}
                           </div>
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {product.image[0]?.endsWith(".mp4") ? (
-                              <LazyVideo
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                controls={false}
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            ) : (
-                              <img
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                alt="Product"
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            )}
+                            {(() => {
+                              const imageToShow = product.image?.find(
+                                (img) => !img.endsWith(".mp4")
+                              );
+                              return imageToShow ? (
+                                <img
+                                  src={`https://dev.crystovajewels.com${imageToShow}`}
+                                  alt={product?.productName}
+                                  className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                  onClick={() => handleProductClick(product.id)}
+                                />
+                              ) : (
+                                <div className="text-center text-muted py-4">
+                                  No image available
+                                </div>
+                              );
+                            })()}
                           </div>
                         </div>
                       </div>
@@ -939,27 +940,23 @@ const Home = () => {
                             )}
                           </div>
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {product.image[0]?.endsWith(".mp4") ? (
-                              <LazyVideo
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                controls={false}
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            ) : (
-                              <img
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                alt="Product"
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            )}
+                            {(() => {
+                              const imageToShow = product.image?.find(
+                                (img) => !img.endsWith(".mp4")
+                              );
+                              return imageToShow ? (
+                                <img
+                                  src={`https://dev.crystovajewels.com${imageToShow}`}
+                                  alt={product?.productName}
+                                  className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                  onClick={() => handleProductClick(product.id)}
+                                />
+                              ) : (
+                                <div className="text-center text-muted py-4">
+                                  No image available
+                                </div>
+                              );
+                            })()}
                           </div>
                         </div>
                       </div>
@@ -1050,27 +1047,23 @@ const Home = () => {
                           </div>
                           {/* Product Image */}
                           <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {product.image[0]?.endsWith(".mp4") ? (
-                              <LazyVideo
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                controls={false}
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            ) : (
-                              <img
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                alt="Product"
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            )}
+                            {(() => {
+                              const imageToShow = product.image?.find(
+                                (img) => !img.endsWith(".mp4")
+                              );
+                              return imageToShow ? (
+                                <img
+                                  src={`https://dev.crystovajewels.com${imageToShow}`}
+                                  alt={product?.productName}
+                                  className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                  onClick={() => handleProductClick(product.id)}
+                                />
+                              ) : (
+                                <div className="text-center text-muted py-4">
+                                  No image available
+                                </div>
+                              );
+                            })()}
                           </div>
                         </div>
                       </div>
@@ -1149,7 +1142,7 @@ const Home = () => {
               <div className="h-100 d-flex align-items-center justify-content-center">
                 <img
                   loading="lazy"
-                  src='/Images/Mask group (9).webp'
+                  src="/Images/Mask group (9).webp"
                   className="img-fluid w-100 h-100 object-fit-cover rounded"
                   alt="home"
                 />
@@ -1256,7 +1249,28 @@ const Home = () => {
                                   className="card-body p-0 d-flex justify-content-center"
                                   style={{ height: "100%" }}
                                 >
-                                  {product.image[0]?.endsWith(".mp4") ? (
+                                  {(() => {
+                                    const imageToShow = product.image?.find(
+                                      (img) => !img.endsWith(".mp4")
+                                    );
+                                    return imageToShow ? (
+                                      <img
+                                        src={`https://dev.crystovajewels.com${imageToShow}`}
+                                        alt="Product"
+                                        className="p-1_proi img-fluid border-0"
+                                        onClick={() =>
+                                          handleProductClick(product.id)
+                                        }
+                                        style={{ height: "100%" }}
+                                      />
+                                    ) : (
+                                      <div className="text-center text-muted py-4">
+                                        No image available
+                                      </div>
+                                    );
+                                  })()}
+
+                                  {/* {product.image[0]?.endsWith(".mp4") ? (
                                     <LazyVideo
                                       loading="lazy"
                                       src={`https://dev.crystovajewels.com${product.image[0]}`}
@@ -1282,7 +1296,7 @@ const Home = () => {
                                       }
                                       style={{ height: "100%" }}
                                     />
-                                  )}
+                                  )} */}
                                   {/* <img
                                     src={`https://dev.crystovajewels.com${product.image[0]}`}
                                     className="p-1_proi img-fluid border-0"
