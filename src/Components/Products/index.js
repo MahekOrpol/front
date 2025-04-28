@@ -83,6 +83,24 @@ const Products = () => {
     dispatch(fetchCartCount());
   }, [dispatch]);
 
+  const sortProducts = (products, sortOption) => {
+    const sortedProducts = [...products];
+    if (sortOption === "high-to-low") {
+      sortedProducts.sort(
+        (a, b) =>
+          parseFloat(b.salePrice?.$numberDecimal || 0) -
+          parseFloat(a.salePrice?.$numberDecimal || 0)
+      );
+    } else if (sortOption === "low-to-high") {
+      sortedProducts.sort(
+        (a, b) =>
+          parseFloat(a.salePrice?.$numberDecimal || 0) -
+          parseFloat(b.salePrice?.$numberDecimal || 0)
+      );
+    }
+    return sortedProducts;
+  };
+  
   useEffect(() => {
     const fetchAndFilter = async () => {
       try {
@@ -425,23 +443,7 @@ const Products = () => {
     );
   }, []);
 
-  const sortProducts = (products, sortOption) => {
-    const sortedProducts = [...products];
-    if (sortOption === "high-to-low") {
-      sortedProducts.sort(
-        (a, b) =>
-          parseFloat(b.salePrice?.$numberDecimal || 0) -
-          parseFloat(a.salePrice?.$numberDecimal || 0)
-      );
-    } else if (sortOption === "low-to-high") {
-      sortedProducts.sort(
-        (a, b) =>
-          parseFloat(a.salePrice?.$numberDecimal || 0) -
-          parseFloat(b.salePrice?.$numberDecimal || 0)
-      );
-    }
-    return sortedProducts;
-  };
+ 
 
   const displayProducts = isSearchActive ? filteredProducts : productList;
 
