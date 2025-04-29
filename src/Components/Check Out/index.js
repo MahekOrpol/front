@@ -224,7 +224,7 @@ const CheckoutPage = () => {
       <div className="main-header">
         <div className="d-flex p-0 justify-content-center w-100 bdsh_mIN">
           <img
-            loading="lazy"
+            loading="eager"
             src='/Images/Frame 193.png'
             onClick={() => navigate("/")}
             alt="Logo"
@@ -396,7 +396,7 @@ const CheckoutPage = () => {
                     className="d-flex align-items-center gap-2 Box1 BoxFont border ryyt"
                   >
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/phoneicon.png"
                       alt="phone"
                       width="20"
@@ -422,7 +422,7 @@ const CheckoutPage = () => {
 
               <div className="mt-3 d-flex align-items-center gap-2">
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src="/Images/lock.png"
                   alt="lock"
                   width="18"
@@ -465,7 +465,7 @@ const CheckoutPage = () => {
                     );
                     return imageToShow ? (
                       <img
-                        loading="lazy"
+                        loading="eager"
                         src={`https://dev.crystovajewels.com${imageToShow}`}
                         alt={item.productId.productId}
                         className="checkout-order-img"

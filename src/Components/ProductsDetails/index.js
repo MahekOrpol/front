@@ -336,7 +336,7 @@ Please let me know the next steps.`;
     {
       icon: (
         <img
-          loading="lazy"
+          loading="eager"
           src="/Images/Vector (6).png"
           alt="product details"
         />
@@ -483,7 +483,7 @@ Please let me know the next steps.`;
                           />
                         ) : (
                           <img
-                            loading="lazy"
+                            loading="eager"
                             className="detr_img bg-white"
                             src={`https://dev.crystovajewels.com${img}`}
                             alt={`Product ${index + 1}`}
@@ -539,7 +539,7 @@ Please let me know the next steps.`;
                             />
                           ) : (
                             <img
-                              loading="lazy"
+                              loading="eager"
                               className="detr_img slider_ring_sss"
                               src={`https://dev.crystovajewels.com${img}`}
                               alt={`Slide ${index + 1}`}
@@ -963,7 +963,7 @@ Please let me know the next steps.`;
                 <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_tttdd">
                   <div className="icon-bdf">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/material.png"
                       alt="AVOID WATER / MOISTURE"
                     />
@@ -972,7 +972,7 @@ Please let me know the next steps.`;
                   <div className="divider"></div>
                   <div className="icon-bdf">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/Frame 1597883978.png"
                       alt="AVOID PERFUME / LOTION"
                     />
@@ -981,7 +981,7 @@ Please let me know the next steps.`;
                   <div className="divider szcxds_fix"></div>
                   <div className="icon-bdf">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/oeeofiw.png"
                       alt="REMOVE BEFORE SLEEPING"
                     />
@@ -990,7 +990,7 @@ Please let me know the next steps.`;
                   <div className="divider"></div>
                   <div className="icon-bdf">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/Frame 1597883980.png"
                       alt="USE SOFT / DRY FABRIC TO CLEAN"
                     />
@@ -1025,7 +1025,7 @@ Please let me know the next steps.`;
                                 aria-controls="collapseOne"
                               >
                                 <img
-                                  loading="lazy"
+                                  loading="eager"
                                   src="/Images/Frame (23).svg"
                                   className="offer-icon"
                                   alt="Offer Icon"
@@ -1055,7 +1055,7 @@ Please let me know the next steps.`;
                       <div className="card det_cd_sec p-3 w-100">
                         <div className="d-flex align-items-center gap-3">
                           <img
-                            loading="lazy"
+                            loading="eager"
                             src="/Images/Group (2).png"
                             alt="product details"
                           />
@@ -1117,7 +1117,7 @@ Please let me know the next steps.`;
             <span className="category_name">Related Products</span>
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
             <img
-              loading="lazy"
+              loading="eager"
               src="/Images/Groupimg.png"
               alt="product details"
             />

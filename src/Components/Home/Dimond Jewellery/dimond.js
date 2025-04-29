@@ -32,7 +32,7 @@ const DimondJewellery = () => {
             <img
               src="..//Images/rose.webp"
               alt="Rings"
-              loading="lazy"
+              loading="eager"
               className="w-100 h-100 diamond_img"
               onClick={() => handleCategoryClick("Rings")}
             />
@@ -41,7 +41,7 @@ const DimondJewellery = () => {
             <img
               src="..//Images/pen.webp"
               alt="Pendant"
-              loading="lazy"
+              loading="eager"
               className="w-100 h-100 diamond_img"
               onClick={() => handleCategoryClick("Pendant")}
             />
@@ -52,7 +52,7 @@ const DimondJewellery = () => {
           <div ref={videoRef}>
             {videoVisible && (
               <LazyVideo
-                loading="lazy"
+                loading="eager"
                 src="../../../Videos/diamond jewelry.mp4"
                 className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
                 autoPlay
@@ -69,7 +69,7 @@ const DimondJewellery = () => {
               //   muted
               //   playsInline
               //   preload="none"
-              //   loading="lazy"
+              //   loading="eager"
               //   className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
               //   onClick={() => navigate('/products')}
               // >
@@ -88,7 +88,7 @@ const DimondJewellery = () => {
             <img
               src="..//Images/bracletesss.webp"
               alt="Bracelet"
-              loading="lazy"
+              loading="eager"
               className="w-100 h-100 diamond_img"
               onClick={() => handleCategoryClick("Bracelet")}
             />
@@ -97,7 +97,7 @@ const DimondJewellery = () => {
             <img
               src="..//Images/schbgdsccc.webp"
               alt="Earrings"
-              loading="lazy"
+              loading="eager"
               className="w-100 h-100 diamond_img"
               onClick={() => handleCategoryClick("Earrings")}
             />

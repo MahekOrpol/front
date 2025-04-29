@@ -481,7 +481,7 @@ const Home = () => {
           <span className="category_name mt-md-4">Categories</span>
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -612,7 +612,7 @@ const Home = () => {
 
               <div className="overlay-img11">
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src="/Images/Rectangle 105457.png"
                   className="img-fluid w-100"
                   alt="Overlay"
@@ -715,7 +715,7 @@ const Home = () => {
           <span className="category_name mt-md-4">Diamond Jewelry</span>
           <p className="category_txt">Minimal. Modern. Mesmerizing</p>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -729,7 +729,7 @@ const Home = () => {
             The Latest looks, Crafted to Perfection
           </p>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1125,7 +1125,7 @@ const Home = () => {
             Celebrate Forever with a Sparkle
           </p>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Groupimg.png"
             className="home_tag_img best_sellig_sdcdc d-none"
             alt="home"
@@ -1141,7 +1141,7 @@ const Home = () => {
             Elevate the Everyday in Diamond Elegance
           </p>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1151,7 +1151,7 @@ const Home = () => {
             <div className="col-lg-6 ring_banner_szcdvc position-relative">
               <div className="h-100 d-flex align-items-center justify-content-center">
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src="/Images/Mask group (9).webp"
                   className="img-fluid w-100 h-100 object-fit-cover rounded"
                   alt="home"
@@ -1282,7 +1282,7 @@ const Home = () => {
 
                                   {/* {product.image[0]?.endsWith(".mp4") ? (
                                     <LazyVideo
-                                      loading="lazy"
+                                      loading="eager"
                                       src={`https://dev.crystovajewels.com${product.image[0]}`}
                                       className="p-1_proi img-fluid border-0"
                                       autoPlay
@@ -1297,7 +1297,7 @@ const Home = () => {
                                     />
                                   ) : (
                                     <img
-                                      loading="lazy"
+                                      loading="eager"
                                       src={`https://dev.crystovajewels.com${product.image[0]}`}
                                       className="p-1_proi img-fluid border-0"
                                       alt="Product"
@@ -1364,7 +1364,7 @@ const Home = () => {
 
           <p className="category_txt">Sophistication, smartly priced.</p>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1430,7 +1430,7 @@ const Home = () => {
           <span className="category_name mt-2">Gifting Edition</span>
           <p className="category_txt">Elegant & Versatile Gifts</p>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1438,7 +1438,7 @@ const Home = () => {
           <div className="row pt-3 w-100 scc_gift_edit container">
             <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
               <img
-                loading="lazy"
+                loading="eager"
                 className="img-sssssss"
                 src="/Images/Group 1597884624 (1).png"
                 alt="home"
@@ -1449,7 +1449,7 @@ const Home = () => {
             </div>
             <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
               <img
-                loading="lazy"
+                loading="eager"
                 className="img-sssssss"
                 src="/Images/Group 1597884625 (1).png"
                 alt="home"
@@ -1460,7 +1460,7 @@ const Home = () => {
             </div>
             <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
               <img
-                loading="lazy"
+                loading="eager"
                 className="img-sssssss"
                 src="/Images/Group 1597884626 (1).png"
                 alt="home"
@@ -1471,7 +1471,7 @@ const Home = () => {
             </div>
             <div className="col-6 col-md-6 col-lg-3 mt-lg-4 mt-md-0 mt-sm-0 col-sm-6 dsjnurh_sx p-0 sdcijdic_ass_sssssswx">
               <img
-                loading="lazy"
+                loading="eager"
                 className="img-sssssss"
                 src="/Images/Group 1597884636.png"
                 alt="home"
@@ -1487,7 +1487,7 @@ const Home = () => {
           <span className="category_name mt-2">Discover Styles</span>
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1503,7 +1503,7 @@ const Home = () => {
           <span className="category_name ">New Arrivals</span>
           <p className="category_txt">New Creations, Forever Elegance</p>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1518,7 +1518,7 @@ const Home = () => {
           <span className="category_name">Instructions</span>
           <p className="category_txt">Store it Soft, Shine it Often</p>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Groupimg.png"
             alt="Decorative"
             className="home_tag_img"
@@ -1535,7 +1535,7 @@ const Home = () => {
             <span className="category_name ">Client Testimonial</span>
             <p className="category_txt">What our Client's say about us</p>
             <img
-              loading="lazy"
+              loading="eager"
               src="/Images/Groupimg.png"
               alt="Decorative"
               className="home_tag_img"

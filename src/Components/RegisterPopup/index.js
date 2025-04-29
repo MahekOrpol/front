@@ -313,7 +313,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                       </p>
                       <div className="ggl_text d-flex align-items-center gap-2 justify-content-center">
                         {/* <img
-                          loading="lazy"
+                          loading="eager"
                           src={googleIcon}
                           alt="Google Icon"
                           className="google-icon"
