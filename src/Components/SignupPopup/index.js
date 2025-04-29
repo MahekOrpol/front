@@ -52,7 +52,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <ToastContainer
+       <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -64,6 +64,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
         pauseOnHover
         theme="light"
         stacked
+        style={{ zIndex: 1000000001 }}
       />
       {!showRegister ? (
         <div className="signup-popup-overlay" onClick={handleClose}>

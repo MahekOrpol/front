@@ -177,7 +177,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <ToastContainer
+       <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -189,6 +189,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
         pauseOnHover
         theme="light"
         stacked
+        style={{ zIndex: 1000000001 }}
       />
       <div className="main-header">
         <Suspense fallback={<div>Loading...</div>}>

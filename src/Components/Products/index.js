@@ -503,7 +503,7 @@ const Products = () => {
 
   return (
     <>
-      <ToastContainer
+       <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -515,6 +515,7 @@ const Products = () => {
         pauseOnHover
         theme="light"
         stacked
+        style={{ zIndex: 1000000001 }}
       />
 
       <CartPopup

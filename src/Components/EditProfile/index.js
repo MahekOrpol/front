@@ -220,6 +220,8 @@ const EditProfile = () => {
         pauseOnHover
         theme="light"
         stacked
+        style={{ zIndex: 1000000001 }}
+
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <CartPopup
