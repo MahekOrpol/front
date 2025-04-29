@@ -465,6 +465,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           <img
             src="/Images/crystovalogowhite (1) 2.png"
             style={{ width: "60%" }}
+            onClick={navigate('/')}
           />
           <div className="drawer-header">
             <IoClose size={30} onClick={toggleDrawer} />
@@ -487,62 +488,68 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             <div className="eeerd">
               <span className="drawer-new">CATEGORY</span>
               {allowedCategories.map((categoryName) => {
-  const category = categoriesData.find(
-    (c) => c.categoryName === categoryName
-  );
-  if (!category) return null;
+                const category = categoriesData.find(
+                  (c) => c.categoryName === categoryName
+                );
+                if (!category) return null;
 
-  return (
-    <div key={category._id} className="w-100">
-      <div className="drawer-item d-flex align-items-center justify-content-between w-100">
-        {/* Left part: click navigates to category */}
-        <div
-          className="d-flex align-items-center gap-2"
-          onClick={() => handleCategoryClick(category.categoryName)}
-          style={{ cursor: "pointer", flex: 1 }}
-        >
-          <img
-            src={categoryImages[category.categoryName]}
-            width={20}
-            alt={category.categoryName}
-          />
-          {category.categoryName}
-        </div>
+                return (
+                  <div key={category._id} className="w-100">
+                    <div className="drawer-item d-flex align-items-center justify-content-between w-100">
+                      {/* Left part: click navigates to category */}
+                      <div
+                        className="d-flex align-items-center gap-2"
+                        onClick={() =>
+                          handleCategoryClick(category.categoryName)
+                        }
+                        style={{ cursor: "pointer", flex: 1 }}
+                      >
+                        <img
+                          src={categoryImages[category.categoryName]}
+                          width={20}
+                          alt={category.categoryName}
+                        />
+                        {category.categoryName}
+                      </div>
 
-        {/* Right part: click toggles subcategory */}
-        {category.subcategories.length > 0 && (
-          <FaAngleRight
-            className={`arrow-icon ${
-              expandedCategory === category.categoryName ? "rotate" : ""
-            }`}
-            onClick={(e) => {
-              e.stopPropagation(); // Prevent click bubbling to parent
-              toggleSubcategory(category.categoryName);
-            }}
-            style={{ cursor: "pointer" }}
-          />
-        )}
-      </div>
+                      {/* Right part: click toggles subcategory */}
+                      {category.subcategories.length > 0 && (
+                        <FaAngleRight
+                          className={`arrow-icon ${
+                            expandedCategory === category.categoryName
+                              ? "rotate"
+                              : ""
+                          }`}
+                          onClick={(e) => {
+                            e.stopPropagation(); // Prevent click bubbling to parent
+                            toggleSubcategory(category.categoryName);
+                          }}
+                          style={{ cursor: "pointer" }}
+                        />
+                      )}
+                    </div>
 
-      {/* Subcategories */}
-      {expandedCategory === category.categoryName &&
-        category.subcategories.map((subcat) => (
-          <div
-            key={subcat._id}
-            className="drawer-subitem ms-4 ps-1 py-1"
-            onClick={() => handleCategoryClick(subcat.subcategoryName)}
-            style={{
-              cursor: "pointer",
-              fontSize: "0.95rem",
-              color: "black",
-            }}
-          >
-            {subcat.subcategoryName}
-          </div>
-        ))}
-    </div>
-  );
-})}
+                    {/* Subcategories */}
+                    {expandedCategory === category.categoryName &&
+                      category.subcategories.map((subcat) => (
+                        <div
+                          key={subcat._id}
+                          className="drawer-subitem ms-4 ps-1 py-1"
+                          onClick={() =>
+                            handleCategoryClick(subcat.subcategoryName)
+                          }
+                          style={{
+                            cursor: "pointer",
+                            fontSize: "0.95rem",
+                            color: "black",
+                          }}
+                        >
+                          {subcat.subcategoryName}
+                        </div>
+                      ))}
+                  </div>
+                );
+              })}
 
               <div
                 className="drawer-item d-flex align-items-center gap-2 w-100"
