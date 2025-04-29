@@ -1,22 +1,15 @@
-import React, { useEffect, useRef, useState, useMemo } from "react";
+import React, { useEffect, useRef, useState, useMemo, useCallback, Suspense, lazy } from "react";
 import "./index.css";
-import { FaAward, FaMedal, FaStar, FaArrowRight } from "react-icons/fa6";
+import { FaAward, FaMedal, FaStar, FaArrowRight, FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { BiShoppingBag, BiSolidOffer } from "react-icons/bi";
-import { Suspense, lazy } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-coverflow";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import { Pagination, Autoplay } from "swiper/modules";
 import { CiStar } from "react-icons/ci";
 import { GrNext } from "react-icons/gr";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
+import { Box, Tab, Tabs } from "@mui/material";
 import TabContext from "@mui/lab/TabContext";
-import { Tabs } from "@mui/material";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { fetchCartCount } from "../../redux/cartSlice";
@@ -26,252 +19,155 @@ import LazyVideo from "./LazyVideo";
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
-const JewelrySale = React.lazy(() => import("../Contact Us/sdcsd/demo"));
-const OueColletion = React.lazy(() => import("./ourColletion"));
-const Instruction = React.lazy(() => import("./instruction"));
-const Occasion = React.lazy(() => import("./Occasion"));
-const RingSlider = React.lazy(() => import("./ring"));
-const DimondJewelery = React.lazy(() => import("./Dimond Jewellery/dimond"));
-const Ring1 = React.lazy(() => import("./ring demo 1/ring"));
-const Gift = React.lazy(() => import("./gift"));
+const JewelrySale = lazy(() => import("../Contact Us/sdcsd/demo"));
+const OueColletion = lazy(() => import("./ourColletion"));
+const Instruction = lazy(() => import("./instruction"));
+const Occasion = lazy(() => import("./Occasion"));
+const RingSlider = lazy(() => import("./ring"));
+const DimondJewelery = lazy(() => import("./Dimond Jewellery/dimond"));
+const Ring1 = lazy(() => import("./ring demo 1/ring"));
+const Gift = lazy(() => import("./gift"));
+
+const BASE_API = "https://dev.crystovajewels.com/api/v1";
+const AUTO_SLIDE_INTERVAL = 2000;
+
+const useWindowSize = () => {
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    slidesPerView: 1
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      let slidesPerView = 1;
+      
+      if (width > 1024) slidesPerView = 3;
+      else if (width > 768) slidesPerView = 2;
+      else if (width > 427) slidesPerView = 2;
+
+      setSize({ width, slidesPerView });
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return size;
+};
 
 const Home = () => {
+  const { slidesPerView } = useWindowSize();
+  const [state, setState] = useState({
+    hoveredProduct: null,
+    topRated: [],
+    bestSelling: [],
+    onSale: [],
+    wishlistItems: {},
+    toastMessage: "",
+    showToast: false,
+    categoriesa: [],
+    currentCategory: "",
+    filteredBestSellers: [],
+    currentIndex: 0,
+    isPaused: false,
+    slideDirection: "next",
+    isCartOpen: false,
+    value: "1"
+  });
+
   const navigate = useNavigate();
-  const swiperRef = useRef(null); // Store Swiper instance
-  const [slidesPerView, setSlidesPerView] = useState(1);
-  const [hoveredProduct, setHoveredProduct] = useState(null);
-  const [topRated, setTopRated] = useState([]);
-  const [bestSelling, setBestSelling] = useState([]);
-  const [onSale, setOnSale] = useState([]);
-  const userId = localStorage.getItem("user_Id");
-  const [wishlistItems, setWishlistItems] = useState({});
-  const [toastMessage, setToastMessage] = useState("");
-  const [showToast, setShowToast] = useState(false);
-  const [categoriesa, setCategoriesa] = useState();
-  const [currentCategory, setCurrentCategory] = useState("");
-  const [filteredBestSellers, setFilteredBestSellers] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [productsPerPage, setProductsPerPage] = useState(1); // Initialize with 1
-  const [isPaused, setIsPaused] = useState(false);
-  const [slideDirection, setSlideDirection] = useState("next"); // Track slide direction for animation
+  const swiperRef = useRef(null);
+  const scrollContainerRef = useRef(null);
+  const scrollRef = useRef(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
+
+  const userId = localStorage.getItem("user_Id");
   const [wishlistCount, setWishlistCount] = useState(
     parseInt(localStorage.getItem("wishlistCount")) || 0
   );
-  const dispatch = useDispatch();
 
-  const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const BASE_API = "https://dev.crystovajewels.com/api/v1";
+  const { count: cartCount } = useSelector((state) => state.cart);
 
-  const {
-    count: cartCount,
-    loading,
-    error,
-  } = useSelector((state) => state.cart);
-
-  const [showArrow, setShowArrow] = useState(false);
-  const scrollContainerRef = useRef(null);
-  const scrollRef = useRef(null);
-
-  useEffect(() => {
-    const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
-    if (cameFromCheckout) {
-      setIsCartOpen(true);
-      sessionStorage.removeItem("cameFromCheckout");
-    }
-
-    const el = scrollRef.current;
-    if (!el) return;
-    el.addEventListener("scroll", handleScroll);
-    return () => el.removeEventListener("scroll", handleScroll);
+  const updateWishlistCount = useCallback((count) => {
+    setWishlistCount(count);
+    localStorage.setItem("wishlistCount", count.toString());
   }, []);
 
-  const handleScroll = React.useCallback(() => {
-    const el = scrollContainerRef.current;
-    if (!el) return;
-    const isAtEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 10;
-    setShowArrow(isAtEnd);
-  }, []);
+  const handleProductClick = useCallback((productId, productData) => {
+    navigate(`/product-details/${productId}`, {
+      state: { product: productData },
+    });
+  }, [navigate]);
 
-  useEffect(() => {
-    dispatch(fetchCartCount());
-  }, [dispatch]);
-
-  const productsToDisplay = useMemo(() => filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling, [filteredBestSellers, bestSelling]);
-
-  const openCart = React.useCallback(() => {
-    const userId = localStorage.getItem("user_Id");
+  const addToCart = useCallback(async (product) => {
     if (!userId) {
       navigate("/login");
       return;
     }
-    setIsCartOpen(true);
-    document.body.classList.add("no-scroll");
-  }, [navigate]);
 
-  const closeCart = React.useCallback(() => {
-    setIsCartOpen(false);
-    setShowToast(false);
-    dispatch(fetchCartCount());
-    document.body.classList.remove("no-scroll");
-  }, [dispatch]);
-
-  useEffect(() => {
-    const update = () => setProductsPerPage(window.innerWidth < 768 ? 1 : 2);
-    const debounce = setTimeout(update, 100); // Debounced update
-    window.addEventListener("resize", update);
-    return () => {
-      clearTimeout(debounce);
-      window.removeEventListener("resize", update);
-    };
-  }, []);
-
-  const handleCategoryClick = React.useCallback(
-    (category) => {
-      navigate(`/products?categoryName=${category}`);
-    },
-    [navigate]
-  );
-  const fetchBestSellersByCategory = React.useCallback(async (category) => {
     try {
-      const url = `https://dev.crystovajewels.com/api/v1/product/get?categoryName=${category}`;
-      const response = await axios.get(url);
-      return response.data;
-    } catch (error) {
-      console.error(`Error fetching ${category} products:`, error);
-      return [];
-    }
-  }, []);
+      const payload = {
+        userId,
+        productId: product?.id,
+        productPrice: product.salePrice?.$numberDecimal,
+        quantity: product?.quantity || 1,
+        productSize: Array.isArray(product?.productSize) ? product.productSize.join(",") : product?.productSize || "",
+        discount: product?.discount?.$numberDecimal || 0,
+        variation: Array.isArray(product?.variations) ? product.variations.map(v => v.id) : [],
+      };
 
-  const handleTooltipClick = React.useCallback(
-    async (category) => {
-      setCurrentCategory(category);
-      const products = await fetchBestSellersByCategory(category);
-      setFilteredBestSellers(products);
-      setCurrentIndex(0);
-      console.log("products :>> ", products);
-    },
-    [fetchBestSellersByCategory]
-  );
-
-  const handleProductClick = React.useCallback(
-    (productId, productData) => {
-      navigate(`/product-details/${productId}`, {
-        state: { product: productData },
-      });
-    },
-    [navigate]
-  );
-  // Function to add an item to the cart
-  const addToCart = React.useCallback(
-    async (product) => {
-      try {
-        const userId = localStorage.getItem("user_Id");
-
-        if (!userId) {
-          navigate("/login");
-          return;
+      const response = await axios.post(
+        `${BASE_API}/order-details/create`,
+        payload,
+        {
+          headers: { "Content-Type": "application/json" },
         }
+      );
 
-        const productSize = Array.isArray(product?.productSize)
-          ? product.productSize.join(",")
-          : product?.productSize || "";
-        const variationIds = Array.isArray(product?.variations)
-          ? product.variations.map((variation) => variation.id)
-          : [];
-
-        const payload = {
-          userId: userId,
-          productId: product?.id,
-          productPrice: product.salePrice?.$numberDecimal,
-          quantity: product?.quantity || 1,
-          productSize: productSize,
-          discount: product?.discount?.$numberDecimal || 0,
-          variation: variationIds,
-        };
-
-        const response = await axios.post(
-          "https://dev.crystovajewels.com/api/v1/order-details/create",
-          payload,
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-
-        openCart();
-        if (response.status === 200) {
-          console.log("Product added to cart successfully:", response.data);
-        } else {
-          console.error("Failed to add product to cart:", response);
-        }
+      if (response.status === 200) {
+        setState(prev => ({
+          ...prev,
+          isCartOpen: true,
+          toastMessage: "Item added to cart successfully!",
+          showToast: true
+        }));
         dispatch(fetchCartCount());
-        setToastMessage("Item added to cart successfully!");
-        setShowToast(true);
-      } catch (error) {
-        console.error("Error adding product to cart:", error);
       }
-    },
-    [navigate, dispatch, openCart]
-  );
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+      toast.error("Failed to add item to cart");
+    }
+  }, [userId, navigate, dispatch]);
 
   useEffect(() => {
-    getCategories();
-  }, []);
-
-  const getCategories = React.useCallback(async () => {
-    const res = await axios.get(
-      "https://dev.crystovajewels.com/api/v1/category/get"
-    );
-    setCategoriesa(res.data);
-    console.log("res.datassss :>> ", res.data);
-  }, []);
-
-  useEffect(() => {
-    const swiperInstance = swiperRef.current?.swiper;
-    if (!swiperInstance) return;
-
-    const scaleSlides = () => {
-      swiperInstance.slides.forEach((slide) => {
-        slide.style.transform = "scale(0.8)";
-        slide.style.opacity = "1";
-      });
-
-      const activeSlide = swiperInstance.slides[swiperInstance.activeIndex];
-      if (activeSlide) {
-        activeSlide.style.transform = "scale(1)";
-        activeSlide.style.opacity = "1";
-      }
-    };
-
-    scaleSlides();
-    swiperInstance.on("slideChangeTransitionStart", scaleSlides);
-
-    return () => {
-      swiperInstance.off("slideChangeTransitionStart", scaleSlides);
-    };
-  }, []);
-
-  useEffect(() => {
-    const fetchAll = async () => {
+    const fetchData = async () => {
       try {
-        const [topRated, bestSelling, onSale] = await Promise.all([
+        const [topRated, bestSelling, onSale, categories] = await Promise.all([
           axios.get(`${BASE_API}/product/getTopRated`),
           axios.get(`${BASE_API}/product/getBestSelling`),
           axios.get(`${BASE_API}/product/getOnSale`),
+          axios.get(`${BASE_API}/category/get`)
         ]);
-        setTopRated(topRated.data);
-        setBestSelling(bestSelling.data);
-        setOnSale(onSale.data);
+
+        setState(prev => ({
+          ...prev,
+          topRated: topRated.data,
+          bestSelling: bestSelling.data,
+          onSale: onSale.data,
+          categoriesa: categories.data
+        }));
       } catch (err) {
-        console.error("Error fetching products:", err);
+        console.error("Error fetching data:", err);
       }
     };
 
-    fetchAll();
-  }, []);
+    fetchData();
+    dispatch(fetchCartCount());
+  }, [dispatch]);
 
   const testimonials = [
     {
@@ -288,12 +184,7 @@ const Home = () => {
     },
   ];
 
-  const updateWishlistCount = (count) => {
-    setWishlistCount(count);
-    localStorage.setItem("wishlistCount", count.toString());
-  };
-
-  const toggleFavorite = React.useCallback(
+  const toggleFavorite = useCallback(
     async (productId, productData) => {
       const userId = localStorage.getItem("user_Id");
       if (!userId) {
@@ -302,14 +193,14 @@ const Home = () => {
       }
 
       try {
-        if (wishlistItems[productId]) {
+        if (state.wishlistItems[productId]) {
           // Remove from wishlist
-          const wishlistItemId = wishlistItems[productId];
-          setWishlistItems((prev) => {
-            const updatedWishlist = { ...prev };
-            delete updatedWishlist[productId];
-            return updatedWishlist;
-          });
+          const wishlistItemId = state.wishlistItems[productId];
+          setState(prev => ({
+            ...prev,
+            wishlistItems: { ...prev.wishlistItems, [productId]: undefined },
+            toastMessage: "Removed from wishlist!"
+          }));
           updateWishlistCount(wishlistCount - 1);
           const res = await axios.delete(
             `https://dev.crystovajewels.com/api/v1/wishlist/delete/${wishlistItemId}`
@@ -329,9 +220,10 @@ const Home = () => {
             }
           );
           const wishlistItem = response.data?.data;
-          setWishlistItems((prev) => ({
+          setState(prev => ({
             ...prev,
-            [productId]: wishlistItem.id,
+            wishlistItems: { ...prev.wishlistItems, [productId]: wishlistItem.id },
+            toastMessage: "Added to wishlist!"
           }));
           updateWishlistCount(wishlistCount + 1);
           toast.success(response.data.message || "Added to wishlist!");
@@ -341,7 +233,7 @@ const Home = () => {
         toast.error("Something went wrong. Please try again.");
       }
     },
-    [userId, wishlistItems, wishlistCount]
+    [userId, state.wishlistItems, wishlistCount]
   );
 
   useEffect(() => {
@@ -363,7 +255,10 @@ const Home = () => {
             console.error("Invalid productId format:", item.productId);
           }
         });
-        setWishlistItems(wishlistMap);
+        setState(prev => ({
+          ...prev,
+          wishlistItems: wishlistMap
+        }));
         setWishlistCount(wishlistData.length);
       } catch (error) {
         console.error("Error fetching wishlist:", error);
@@ -372,69 +267,135 @@ const Home = () => {
     fetchWishlist();
   }, [userId]);
 
-  useEffect(() => {
-    const updateSlidesPerView = () => {
-      const screenWidth = window.innerWidth;
-      let newSlidesPerView;
+  const productsToDisplay = useMemo(() => state.filteredBestSellers.length > 0 ? state.filteredBestSellers : state.bestSelling, [state.filteredBestSellers, state.bestSelling]);
 
-      if (screenWidth <= 427) {
-        newSlidesPerView = 1;
-      } else if (screenWidth <= 599) {
-        newSlidesPerView = 2;
-      } else if (screenWidth <= 768) {
-        newSlidesPerView = 2;
-      } else if (screenWidth <= 1024) {
-        newSlidesPerView = 3;
-      } else {
-        newSlidesPerView = 3;
-      }
-      if (newSlidesPerView !== slidesPerView) {
-        setSlidesPerView(newSlidesPerView);
-      }
-    };
+  const openCart = useCallback(() => {
+    const userId = localStorage.getItem("user_Id");
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
+    setState(prev => ({
+      ...prev,
+      isCartOpen: true,
+      toastMessage: "Item added to cart successfully!",
+      showToast: true
+    }));
+    document.body.classList.add("no-scroll");
+  }, [navigate]);
 
-    updateSlidesPerView();
-    window.addEventListener("resize", updateSlidesPerView);
+  const closeCart = useCallback(() => {
+    setState(prev => ({
+      ...prev,
+      isCartOpen: false,
+      showToast: false
+    }));
+    dispatch(fetchCartCount());
+    document.body.classList.remove("no-scroll");
+  }, [dispatch]);
 
-    return () => window.removeEventListener("resize", updateSlidesPerView);
-  }, [slidesPerView]);
+  const handleCategoryClick = useCallback(
+    (category) => {
+      navigate(`/products?categoryName=${category}`);
+    },
+    [navigate]
+  );
 
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      swiperRef.current?.update();
-    });
+  const fetchBestSellersByCategory = useCallback(async (category) => {
+    try {
+      const url = `https://dev.crystovajewels.com/api/v1/product/get?categoryName=${category}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching ${category} products:`, error);
+      return [];
+    }
   }, []);
 
-  const [value, setValue] = React.useState("1");
+  const handleTooltipClick = useCallback(
+    async (category) => {
+      setState(prev => ({
+        ...prev,
+        currentCategory: category,
+        filteredBestSellers: [],
+        currentIndex: 0
+      }));
+      const products = await fetchBestSellersByCategory(category);
+      setState(prev => ({
+        ...prev,
+        filteredBestSellers: products
+      }));
+      console.log("products :>> ", products);
+    },
+    [fetchBestSellersByCategory]
+  );
 
-  const handleChange = React.useCallback((event, newValue) => {
-    setValue(newValue);
+  const handleChange = useCallback((event, newValue) => {
+    setState(prev => ({
+      ...prev,
+      value: newValue
+    }));
   }, []);
 
-  useEffect(() => {
-    const swiperInstance = swiperRef.current?.swiper;
-    if (!swiperInstance) return;
+  // Optimize scrolling wrapper content
+  const scrollItems = useMemo(() => [
+    "Shop Gold and Diamond Jewelry",
+    "Friendly Sale 30% Off",
+    "Shop Gold and Diamond Jewelry",
+    "Friendly Sale 30% Off",
+  ], []);
 
-    const scaleSlides = () => {
-      swiperInstance.slides.forEach((slide) => {
-        slide.style.transform = "scale(0.8)";
-        slide.style.opacity = "1";
-      });
+  const renderScrollItem = useCallback((text, index) => (
+    <div key={index} className="scroll-item">
+      <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+      <span className="scroll_heder">{text}</span>
+    </div>
+  ), []);
 
-      const activeSlide = swiperInstance.slides[swiperInstance.activeIndex];
-      if (activeSlide) {
-        activeSlide.style.transform = "scale(1)";
-        activeSlide.style.opacity = "1";
-      }
-    };
-
-    scaleSlides();
-    swiperInstance.on("slideChangeTransitionStart", scaleSlides);
-
-    return () => {
-      swiperInstance.off("slideChangeTransitionStart", scaleSlides);
-    };
-  }, []);
+  // Optimize product rendering with windowing
+  const renderProducts = useCallback((products, renderType) => {
+    const itemsPerPage = 8;
+    const startIndex = state.currentIndex;
+    const endIndex = Math.min(startIndex + itemsPerPage, products.length);
+    
+    return products.slice(startIndex, endIndex).map((product) => (
+      <div
+        key={product.id}
+        className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+        style={{ flex: "0 0 auto" }}
+      >
+        <div className="card prio_card scdscsed_sdss">
+          <div className="card-image-wrapper position-relative">
+            <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+              {renderType}
+            </button>
+            <div
+              className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+              onClick={() => toggleFavorite(product.id)}
+              style={{ cursor: "pointer" }}
+            >
+              {state.wishlistItems[product.id] ? (
+                <GoHeartFill className="heart-icon_ss" size={18} />
+              ) : (
+                <GoHeart className="heart-icon_ss" size={18} />
+              )}
+            </div>
+            <img
+              loading="lazy"
+              src={product.image}
+              className="card-img-top product-image"
+              alt={product.name}
+            />
+          </div>
+          {/* Product details */}
+          <div className="card-body text-center">
+            <h5 className="card-title">{product.name}</h5>
+            <p className="card-text">${product.price}</p>
+          </div>
+        </div>
+      </div>
+    ));
+  }, [state.currentIndex, state.wishlistItems, toggleFavorite]);
 
   return (
     <>
@@ -453,13 +414,13 @@ const Home = () => {
       />
 
       <CartPopup
-        isOpen={isCartOpen}
+        isOpen={state.isCartOpen}
         closeCart={closeCart}
-        showToast={showToast}
-        toastMessage={toastMessage}
+        showToast={state.showToast}
+        toastMessage={state.toastMessage}
       />
-      {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
-      <div className={isCartOpen ? "blurred" : ""}>
+      {state.isCartOpen && <div className="overlay" onClick={closeCart}></div>}
+      <div className={state.isCartOpen ? "blurred" : ""}>
         <div className="main-header">
           <Suspense fallback={<div>Loading...</div>}>
             <Header
@@ -497,7 +458,7 @@ const Home = () => {
               preloadImages={false}
               lazy={true}
             >
-              {categoriesa?.map((category) => (
+              {state.categoriesa?.map((category) => (
                 <SwiperSlide
                   key={category.id}
                   onClick={() => handleCategoryClick(category.categoryName)}
@@ -522,177 +483,59 @@ const Home = () => {
         <div className="hdr_csd sdcxsdcx_Sdcxszdcx">
           <div className="scrolling-wrapper fastival-offerssss">
             <div className="scroll-content">
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
+              {scrollItems.map((text, index) => renderScrollItem(text, index))}
             </div>
           </div>
-          {/* </div> */}
-          <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
-            <div className="position-relative">
+        </div>
+
+        <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
+          <div className="position-relative">
+            <img
+              src="/Images/image (3).webp"
+              className="img-fluid w-100"
+              alt="Main Image"
+              width="1920"
+              height="700"
+            />
+
+            <div className="overlay-img11">
               <img
-                src="/Images/image (3).webp"
+                loading="lazy"
+                src="/Images/Rectangle 105457.png"
                 className="img-fluid w-100"
-                alt="Main Image"
-                width="1920"
-                height="700"
+                alt="Overlay"
               />
-
-              <div className="overlay-img11">
-                <img
-                  loading="lazy"
-                  src="/Images/Rectangle 105457.png"
-                  className="img-fluid w-100"
-                  alt="Overlay"
-                />
-              </div>
-            </div>
-            <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
-              <span className="fest_fff">FESTIVAL SALE OFFERS</span>
-              <div className="txt_frss d-flex flex-column gap-3 sale_offer_sss">
-                <span>Upto 25% Off on All Jewelry Favorites</span>
-                <span> Limited Time!</span>
-              </div>
-              <div>
-                <span className="txt_par">
-                  Diamonds come in a variety of shapes, each offering unique
-                  beauty and appeal.
-                  <br className="d-md-none d-lg-block d-none" /> Here's a guide
-                  to different shapes of diamond rings
-                </span>
-              </div>
-              <div>
-                <button
-                  className="w-25 spg_nb_sle"
-                  style={{ whiteSpace: "nowrap" }}
-                  onClick={() => navigate("/products")}
-                >
-                  Shop Now
-                </button>
-              </div>
             </div>
           </div>
-
-          <div className="scrolling-wrapper">
-            <div className="scroll-content">
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
-                </span>
-              </div>
-              <div className="scroll-item">
-                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
-                <span className="scroll_heder">Friendly Sale 30% Off</span>
-              </div>
+          <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
+            <span className="fest_fff">FESTIVAL SALE OFFERS</span>
+            <div className="txt_frss d-flex flex-column gap-3 sale_offer_sss">
+              <span>Upto 25% Off on All Jewelry Favorites</span>
+              <span> Limited Time!</span>
             </div>
+            <div>
+              <span className="txt_par">
+                Diamonds come in a variety of shapes, each offering unique
+                beauty and appeal.
+                <br className="d-md-none d-lg-block d-none" /> Here's a guide
+                to different shapes of diamond rings
+              </span>
+            </div>
+            <div>
+              <button
+                className="w-25 spg_nb_sle"
+                style={{ whiteSpace: "nowrap" }}
+                onClick={() => navigate("/products")}
+              >
+                Shop Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="scrolling-wrapper">
+          <div className="scroll-content">
+            {scrollItems.map((text, index) => renderScrollItem(text, index))}
           </div>
         </div>
 
@@ -720,10 +563,10 @@ const Home = () => {
             alt="home"
           />
           <div className="w-auto mt-1">
-            <TabContext value={value}>
+            <TabContext value={state.value}>
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <Tabs
-                  value={value}
+                  value={state.value}
                   onChange={handleChange}
                   aria-label="basic tabs example"
                   textColor="black"
@@ -775,7 +618,7 @@ const Home = () => {
               </Box>
             </TabContext>
           </div>
-          {value === "1" && (
+          {state.value === "1" && (
             <>
               <div
                 className="d-flex align-items-center justify-content-end w-100 container pt-2"
@@ -799,97 +642,12 @@ const Home = () => {
                     scrollBehavior: "smooth",
                   }}
                 >
-                  {onSale.map((product) => (
-                    <div
-                      key={product.id}
-                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
-                      style={{
-                        flex: "0 0 auto",
-                      }}
-                    >
-                      <div className="card prio_card scdscsed_sdss ">
-                        {/* Image Wrapper with position-relative */}
-                        <div className="card-image-wrapper position-relative">
-                          {/* SALE Badge */}
-                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                            SALE
-                          </button>
-                          {/* Favorite Icon */}
-                          <div
-                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                            onClick={() => toggleFavorite(product.id)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {wishlistItems[product.id] ? (
-                              <GoHeartFill
-                                className="heart-icon_ss"
-                                size={18}
-                              />
-                            ) : (
-                              <GoHeart className="heart-icon_ss" size={18} />
-                            )}
-                          </div>
-                          <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {product.image[0]?.endsWith(".mp4") ? (
-                              <LazyVideo
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                controls={false}
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            ) : (
-                              <img
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                alt="Product"
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      {/* Product Details */}
-                      <div className="d-flex flex-column main_cdsss">
-                        <span className="mikdec_asdaa text-truncate pt-3 ">
-                          {product.productName}
-                        </span>
-                        <div className="d-flex align-items-center gap-3 pt-1">
-                          <span className="mikdec_asdxsx">
-                            ₹{product.salePrice?.$numberDecimal}
-                          </span>
-                          <span className="mikdec_axsx">
-                            ₹{product.regularPrice?.$numberDecimal}
-                          </span>
-                        </div>
-                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                          <button
-                            className="more_btn_dsdd ewdcscdsedcds w-50"
-                            // onClick={() => navigate("/product-details")}
-                            onClick={() => handleProductClick(product.id)}
-                          >
-                            More Info
-                          </button>
-                          <button
-                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                            onClick={() => addToCart(product)}
-                          >
-                            Add to Cart <BiShoppingBag size={25} />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                  {renderProducts(state.onSale, 'SALE')}
                 </div>
               </div>
             </>
           )}
-          {value === "2" && (
+          {state.value === "2" && (
             <>
               <div
                 className="d-flex align-items-center justify-content-end w-100 container pt-2"
@@ -913,90 +671,12 @@ const Home = () => {
                     scrollBehavior: "smooth",
                   }}
                 >
-                  {bestSelling.map((product) => (
-                    <div
-                      key={product.id}
-                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
-                      style={{ flex: "0 0 auto" }}
-                    >
-                      <div className="card prio_card scdscsed_sdss">
-                        <div className="card-image-wrapper position-relative best_saller_btn">
-                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                            Top
-                          </button>
-                          <div
-                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                            onClick={() => toggleFavorite(product.id)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {wishlistItems[product.id] ? (
-                              <GoHeartFill
-                                className="heart-icon_ss"
-                                size={18}
-                              />
-                            ) : (
-                              <GoHeart className="heart-icon_ss" size={18} />
-                            )}
-                          </div>
-                          <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {product.image[0]?.endsWith(".mp4") ? (
-                              <LazyVideo
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                controls={false}
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            ) : (
-                              <img
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                alt="Product"
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="d-flex flex-column main_cdsss">
-                        <span className="mikdec_asdaa pt-3 text-truncate">
-                          {product.productName}
-                        </span>
-                        <div className="d-flex align-items-center gap-3 pt-1">
-                          <span className="mikdec_asdxsx">
-                            ₹{product.salePrice?.$numberDecimal}
-                          </span>
-                          <span className="mikdec_axsx">
-                            ₹{product.regularPrice?.$numberDecimal}
-                          </span>
-                        </div>
-                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                          <button
-                            className="more_btn_dsdd w-50"
-                            onClick={() => handleProductClick(product.id)}
-                          >
-                            More Info
-                          </button>
-                          <button
-                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                            onClick={() => addToCart(product)}
-                          >
-                            Add to Cart <BiShoppingBag size={25} />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                  {renderProducts(state.bestSelling, 'TOP')}
                 </div>
               </div>
             </>
           )}
-          {value === "3" && (
+          {state.value === "3" && (
             <>
               <div
                 className="d-flex align-items-center justify-content-end w-100 container pt-2"
@@ -1020,91 +700,7 @@ const Home = () => {
                     scrollBehavior: "smooth",
                   }}
                 >
-                  {topRated.map((product) => (
-                    <div
-                      key={product.id}
-                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
-                      style={{ flex: "0 0 auto" }}
-                    >
-                      <div className="card prio_card scdscsed_sdss">
-                        {/* Image Wrapper with position-relative */}
-                        <div className="card-image-wrapper position-relative">
-                          {/* SALE Badge */}
-                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                            NEW
-                          </button>
-                          {/* Favorite Icon */}
-                          <div
-                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                            onClick={() => toggleFavorite(product.id)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {wishlistItems[product.id] ? (
-                              <GoHeartFill
-                                className="heart-icon_ss"
-                                size={18}
-                              />
-                            ) : (
-                              <GoHeart className="heart-icon_ss" size={18} />
-                            )}
-                          </div>
-                          {/* Product Image */}
-                          <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                            {product.image[0]?.endsWith(".mp4") ? (
-                              <LazyVideo
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                controls={false}
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            ) : (
-                              <img
-                                loading="lazy"
-                                src={`https://dev.crystovajewels.com${product.image[0]}`}
-                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
-                                alt="Product"
-                                onClick={() => handleProductClick(product.id)}
-                              />
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      {/* Product Details */}
-                      <div className="d-flex flex-column main_cdsss">
-                        <span className="mikdec_asdaa pt-3 text-truncate">
-                          {product.productName}
-                        </span>
-                        <div className="d-flex align-items-center gap-3 pt-1">
-                          <span className="mikdec_asdxsx">
-                            ₹{product.salePrice?.$numberDecimal}
-                          </span>
-                          <span className="mikdec_axsx">
-                            ₹{product.regularPrice?.$numberDecimal}
-                          </span>
-                        </div>
-                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                          <button
-                            className="more_btn_dsdd w-50"
-                            // onClick={() => navigate("/product-details")}
-                            onClick={() => handleProductClick(product.id)}
-                          >
-                            More Info
-                          </button>
-                          <button
-                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                            onClick={() => addToCart(product)}
-                          >
-                            Add to Cart <BiShoppingBag size={25} />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                  {renderProducts(state.topRated, 'NEW')}
                 </div>
               </div>
             </>
@@ -1179,8 +775,8 @@ const Home = () => {
             {/* Right Product Cards Section */}
             <div
               className="col-lg-6 kdjvb_jicn"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
+              onMouseEnter={() => setState(prev => ({ ...prev, isPaused: true }))}
+              onMouseLeave={() => setState(prev => ({ ...prev, isPaused: false }))}
             >
               <div
                 className="d-flex align-items-center justify-content-end w-100 container pb-3 pt-1 pe-2"
@@ -1218,20 +814,20 @@ const Home = () => {
                     >
                       {productsToDisplay
                         .slice(
-                          currentIndex,
-                          currentIndex + productsToDisplay?.length
+                          state.currentIndex,
+                          state.currentIndex + productsToDisplay?.length
                         )
                         .map((product) => (
                           <SwiperSlide key={product.id}>
                             <div
                               className="card prio_card scdscsed_sdss_jdfn fgfdddds_hvb"
-                              onMouseEnter={() => setHoveredProduct(product.id)}
-                              onMouseLeave={() => setHoveredProduct(null)}
+                              onMouseEnter={() => setState(prev => ({ ...prev, hoveredProduct: product.id }))}
+                              onMouseLeave={() => setState(prev => ({ ...prev, hoveredProduct: null }))}
                             >
                               <div className="card-image-wrapper position-relative">
                                 <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
-                                  {filteredBestSellers.length > 0
-                                    ? currentCategory.toUpperCase()
+                                  {state.filteredBestSellers.length > 0
+                                    ? state.currentCategory.toUpperCase()
                                     : "Top"}
                                 </button>
                                 <div
@@ -1239,7 +835,7 @@ const Home = () => {
                                   onClick={() => toggleFavorite(product.id)}
                                   style={{ cursor: "pointer" }}
                                 >
-                                  {wishlistItems[product.id] ? (
+                                  {state.wishlistItems[product.id] ? (
                                     <GoHeartFill
                                       className="heart-icon_ss"
                                       size={18}
@@ -1571,4 +1167,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default React.memo(Home);
