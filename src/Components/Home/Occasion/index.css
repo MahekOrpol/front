@@ -121,6 +121,12 @@
   z-index: 1;
 }
 
+.slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
+  color: transparent;
+  outline: none;
+  background: #660f2e;
+}
+
 .next-button {
   width: 70px;
   height: 39px;
