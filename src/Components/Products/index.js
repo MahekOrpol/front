@@ -706,11 +706,7 @@ const Products = () => {
                   <div className="filter-category">
                     <h5 onClick={() => toggleSection("categories")}>
                       Categories{" "}
-                      {openSections.categories ? (
-                        <FaChevronUp size={20} className="mr3" />
-                      ) : (
-                        <FaChevronDown size={20} className="mr3" />
-                      )}
+                     
                     </h5>
                     {category.map((category) => (
                       <label key={category._id}>
