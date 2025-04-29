@@ -41,26 +41,6 @@ const Wishlist = () => {
     dispatch(fetchCartCount());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   const fetchCartCount = async () => {
-  //     const userId = localStorage.getItem("user_Id");
-  //     if (!userId) return;
-
-  //     try {
-  //       const response = await axios.get(
-  //         `https://dev.crystovajewels.com/api/v1/order-details/get/${userId}`
-  //       );
-  //       const count = response.data.data.length || 0;
-  //       setCartCount(count);
-  //       localStorage.setItem('cartCount', count);
-  //     } catch (error) {
-  //       console.error("Error fetching cart count:", error);
-  //     }
-  //   };
-
-  //   fetchCartCount();
-  // }, []);
-
   useEffect(() => {
     if (wishlist.length > 0) {
       setImageIndexes((prevIndexes) => {
@@ -76,18 +56,15 @@ const Wishlist = () => {
   }, [wishlist]);
   const navigate = useNavigate();
 
-  const handleProductClick = useCallback((productId, productData) => {
-    navigate(`/product-details/${productId}`, {
-      state: { product: productData },
-    });
-  }, [navigate]);
+  const handleProductClick = useCallback(
+    (productId, productData) => {
+      navigate(`/product-details/${productId}`, {
+        state: { product: productData },
+      });
+    },
+    [navigate]
+  );
 
-  //   const toggleFavorite = (id) => {
-  //     setIsFavorite((prev) => ({
-  //       ...prev,
-  //       [id]: !prev[id], // Toggle the favorite state for the specific card
-  //     }));
-  //   };
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
@@ -134,7 +111,7 @@ const Wishlist = () => {
         return;
       }
 
-      const wishlistData = response.data.data.filter(item => item?.productId); // Filter out items without productId
+      const wishlistData = response.data.data.filter((item) => item?.productId); // Filter out items without productId
       setWishlist(wishlistData);
       setWishlistCount(wishlistData.length);
       localStorage.setItem("wishlistCount", wishlistData.length.toString());
@@ -156,39 +133,45 @@ const Wishlist = () => {
     }
   };
 
-  const toggleWishlist = useCallback(async (productId) => {
-    if (!userId || !productId) {
-      toast.error("Please login to manage wishlist");
-      return;
-    }
-
-    try {
-      const wishlistItem = wishlist.find(
-        (item) => item?.productId?.id === productId
-      );
-
-      if (!wishlistItem?.id) {
-        console.error("Invalid wishlist item");
+  const toggleWishlist = useCallback(
+    async (productId) => {
+      if (!userId || !productId) {
+        toast.error("Please login to manage wishlist");
         return;
       }
 
-      const res = await axios.delete(
-        `https://dev.crystovajewels.com/api/v1/wishlist/delete/${wishlistItem.id}`
-      );
-
-      if (res.status === 200) {
-        setWishlist((prev) =>
-          prev.filter((item) => item?.productId?.id !== productId)
+      try {
+        const wishlistItem = wishlist.find(
+          (item) => item?.productId?.id === productId
         );
-        setWishlistCount((prev) => Math.max(0, prev - 1));
-        localStorage.setItem("wishlistCount", Math.max(0, wishlistCount - 1).toString());
-        toast.success(res.data.message || "Removed from wishlist!");
+
+        if (!wishlistItem?.id) {
+          console.error("Invalid wishlist item");
+          return;
+        }
+
+        const res = await axios.delete(
+          `https://dev.crystovajewels.com/api/v1/wishlist/delete/${wishlistItem.id}`
+        );
+
+        if (res.status === 200) {
+          setWishlist((prev) =>
+            prev.filter((item) => item?.productId?.id !== productId)
+          );
+          setWishlistCount((prev) => Math.max(0, prev - 1));
+          localStorage.setItem(
+            "wishlistCount",
+            Math.max(0, wishlistCount - 1).toString()
+          );
+          toast.success(res.data.message || "Removed from wishlist!");
+        }
+      } catch (error) {
+        console.error("Error removing from wishlist:", error);
+        toast.error("Failed to remove item from wishlist");
       }
-    } catch (error) {
-      console.error("Error removing from wishlist:", error);
-      toast.error("Failed to remove item from wishlist");
-    }
-  }, [wishlist, userId, wishlistCount]);
+    },
+    [wishlist, userId, wishlistCount]
+  );
 
   const handleNextImage = useCallback((productId, images) => {
     setImageIndexes((prevIndexes) => ({
@@ -213,44 +196,47 @@ const Wishlist = () => {
     }));
   }, []);
 
-  const addToCart = useCallback(async (productId) => {
-    try {
-      const userId = localStorage.getItem("user_Id");
-      const productSize = Array.isArray(productId?.productSize)
-        ? productId.productSize.join(",")
-        : productId?.productSize || "";
-      const variationIds = Array.isArray(productId?.variations)
-        ? productId.variations.map((variation) => variation.id)
-        : [];
-      const payload = {
-        userId: userId,
-        productId: productId?.id,
-        productPrice: productId.salePrice?.$numberDecimal,
-        quantity: productId?.quantity || 1,
-        productSize: productSize,
-        discount: productId?.discount?.$numberDecimal || 0,
-        variation: variationIds,
-      };
-      const response = await axios.post(
-        "https://dev.crystovajewels.com/api/v1/order-details/create",
-        payload,
-        {
-          headers: { "Content-Type": "application/json" },
+  const addToCart = useCallback(
+    async (productId) => {
+      try {
+        const userId = localStorage.getItem("user_Id");
+        const productSize = Array.isArray(productId?.productSize)
+          ? productId.productSize.join(",")
+          : productId?.productSize || "";
+        const variationIds = Array.isArray(productId?.variations)
+          ? productId.variations.map((variation) => variation.id)
+          : [];
+        const payload = {
+          userId: userId,
+          productId: productId?.id,
+          productPrice: productId.salePrice?.$numberDecimal,
+          quantity: productId?.quantity || 1,
+          productSize: productSize,
+          discount: productId?.discount?.$numberDecimal || 0,
+          variation: variationIds,
+        };
+        const response = await axios.post(
+          "https://dev.crystovajewels.com/api/v1/order-details/create",
+          payload,
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
+        openCart();
+        if (response.status === 200) {
+          console.log("Product added to cart successfully:", response.data);
+        } else {
+          console.error("Failed to add product to cart:", response);
         }
-      );
-      openCart();
-      if (response.status === 200) {
-        console.log("Product added to cart successfully:", response.data);
-      } else {
-        console.error("Failed to add product to cart:", response);
+        dispatch(fetchCartCount());
+        setToastMessage("Item added to cart successfully!");
+        setShowToast(true);
+      } catch (error) {
+        console.error("Error adding product to cart:", error);
       }
-      dispatch(fetchCartCount());
-      setToastMessage("Item added to cart successfully!");
-      setShowToast(true);
-    } catch (error) {
-      console.error("Error adding product to cart:", error);
-    }
-  }, [dispatch, openCart]);
+    },
+    [dispatch, openCart]
+  );
 
   return (
     <>
@@ -266,6 +252,7 @@ const Wishlist = () => {
         pauseOnHover
         theme="light"
         stacked
+        style={{ zIndex: 1000000001 }}
       />
       <CartPopup
         isOpen={isCartOpen}
@@ -294,14 +281,18 @@ const Wishlist = () => {
                   }
 
                   const { productId, id } = item;
-                  
-                  if (!productId?.id || !productId?.image || !productId?.image.length) {
+
+                  if (
+                    !productId?.id ||
+                    !productId?.image ||
+                    !productId?.image.length
+                  ) {
                     return null;
                   }
 
                   const currentImageIndex = imageIndexes[productId.id] || 0;
                   const imageUrl = productId.image[currentImageIndex];
-                  
+
                   return (
                     <div
                       key={id}
@@ -324,7 +315,10 @@ const Wishlist = () => {
                               }}
                               style={{ cursor: "pointer" }}
                             >
-                              <GoHeartFill className="heart-icon_ss" size={18} />
+                              <GoHeartFill
+                                className="heart-icon_ss"
+                                size={18}
+                              />
                             </div>
                             <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                               {imageUrl?.endsWith(".mp4") ? (
@@ -344,28 +338,35 @@ const Wishlist = () => {
                                   alt={productId.productName || "Product"}
                                 />
                               )}
-                              {hoveredProduct === productId.id && productId.image.length > 1 && (
-                                <div className="hover-overlay w-100 d-none d-sm-flex">
-                                  <button
-                                    className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handlePrevImage(productId, productId.image);
-                                    }}
-                                  >
-                                    <FaChevronLeft />
-                                  </button>
-                                  <button
-                                    className="btn btn-light right-btn"
-                                    onClick={(e) => {
-                                      e.stopPropagation();
-                                      handleNextImage(productId, productId.image);
-                                    }}
-                                  >
-                                    <FaChevronRight />
-                                  </button>
-                                </div>
-                              )}
+                              {hoveredProduct === productId.id &&
+                                productId.image.length > 1 && (
+                                  <div className="hover-overlay w-100 d-none d-sm-flex">
+                                    <button
+                                      className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handlePrevImage(
+                                          productId,
+                                          productId.image
+                                        );
+                                      }}
+                                    >
+                                      <FaChevronLeft />
+                                    </button>
+                                    <button
+                                      className="btn btn-light right-btn"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleNextImage(
+                                          productId,
+                                          productId.image
+                                        );
+                                      }}
+                                    >
+                                      <FaChevronRight />
+                                    </button>
+                                  </div>
+                                )}
                             </div>
                           </div>
                         </div>

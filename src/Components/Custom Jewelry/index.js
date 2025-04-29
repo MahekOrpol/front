@@ -165,7 +165,7 @@ const CustomJewel = () => {
 
   return (
     <>
-      <ToastContainer
+       <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -177,6 +177,7 @@ const CustomJewel = () => {
         pauseOnHover
         theme="light"
         stacked
+        style={{ zIndex: 1000000001 }}
       />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <CartPopup
