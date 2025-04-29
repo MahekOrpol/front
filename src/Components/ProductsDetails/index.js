@@ -725,7 +725,8 @@ Please let me know the next steps.`;
                     {productImages.map((media, index) => (
                       <div key={index}>
                         <img
-                          loading="lazy"
+                          loading={index === 0 ? "eager" : "lazy"}
+                          fetchpriority={index === 0 ? "high" : "auto"}
                           src={`https://dev.crystovajewels.com${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           alt={customProductDetails?.productName || "Product image"}
@@ -735,7 +736,7 @@ Please let me know the next steps.`;
                   </Slider>
                 ) : productImages[0] ? (
                   <img
-                    loading="lazy"
+                    fetchpriority="high"
                     src={`https://dev.crystovajewels.com${productImages[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
@@ -748,7 +749,8 @@ Please let me know the next steps.`;
               {productImages[1] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    loading="lazy"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchpriority={index === 0 ? "high" : "auto"}
                     src={`https://dev.crystovajewels.com${productImages[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
@@ -760,7 +762,8 @@ Please let me know the next steps.`;
               {productImages[2] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    loading="lazy"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchpriority={index === 0 ? "high" : "auto"}
                     src={`https://dev.crystovajewels.com${productImages[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}

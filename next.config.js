@@ -2,10 +2,10 @@
 const nextConfig = {
   images: {
     domains: ['dev.crystovajewels.com'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    formats: ['image/webp'],
-    minimumCacheTTL: 60,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    formats: ['image/webp', 'image/avif'],
+    minimumCacheTTL: 60 * 60 * 24, // 24 hours
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
@@ -19,17 +19,20 @@ const nextConfig = {
           options: {
             mozjpeg: {
               progressive: true,
-              quality: 65,
+              quality: 75,
             },
             optipng: {
               enabled: true,
+              optimizationLevel: 5,
             },
             pngquant: {
-              quality: [0.65, 0.90],
+              quality: [0.7, 0.9],
               speed: 4,
             },
             webp: {
-              quality: 75,
+              quality: 80,
+              lossless: false,
+              nearLossless: true,
             },
           },
         },
@@ -42,7 +45,7 @@ const nextConfig = {
         ...config.optimization,
         splitChunks: {
           chunks: 'all',
-          minSize: 20000,
+          minSize: 10000,
           maxSize: 244000,
           minChunks: 1,
           maxAsyncRequests: 30,
@@ -67,9 +70,16 @@ const nextConfig = {
     return config;
   },
   // Enable production source maps for better debugging
-  productionBrowserSourceMaps: true,
+  productionBrowserSourceMaps: false, // Disable source maps in production for better performance
   // Enable compression
   compress: true,
+  poweredByHeader: false, // Remove X-Powered-By header
+  generateEtags: true, // Enable ETag generation
+  // Add HTTP/2 Server Push
+  experimental: {
+    modern: true,
+    optimizeCss: true,
+  },
   // Enable progressive web app features
   pwa: {
     dest: 'public',
