@@ -276,7 +276,7 @@ const OrderDetails = () => {
 
                       return imageToShow ? (
                         <img
-                          loading="lazy"
+                          loading="eager"
                           src={`https://dev.crystovajewels.com${imageToShow}`}
                           alt={item.productId?.productName}
                           className="img_dd"
@@ -286,7 +286,7 @@ const OrderDetails = () => {
                       );
                     })()}
                     {/* <img
-                      loading="lazy"
+                      loading="eager"
                       src={`https://dev.crystovajewels.com${item?.productId?.image[0]}`}
                       alt={item.productId?.productName}
                       className="img_dd"
@@ -387,7 +387,7 @@ const OrderDetails = () => {
                 
                   return imageToShow ? (
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src={`https://dev.crystovajewels.com${imageToShow}`}
                       alt={
                         order.orderDetails[0]?.productId?.productName ||
@@ -400,7 +400,7 @@ const OrderDetails = () => {
                   );
                 })()}
                 {/* <img
-                  loading="lazy"
+                  loading="eager"
                   src={`https://dev.crystovajewels.com${
                     order.orderDetails[0]?.productId?.image[0] || ""
                   }`}

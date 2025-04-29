@@ -200,7 +200,7 @@ const CustomJewel = () => {
           {/* Banner Section */}
           <div className="bsn">
             <img
-              loading="lazy"
+              loading="eager"
               src="/Images/customjewel.png"
               alt="Custom Jewelry"
             />
@@ -210,7 +210,7 @@ const CustomJewel = () => {
             <h2 className="iojhf">Custom Jewelry</h2>
             <p>Jewelry as Unique as Your Story</p>
             <img
-              loading="lazy"
+              loading="eager"
               src="/Images/Groupimg.png"
               className="home_tag_img mb-4"
               alt="Decorative"
@@ -240,7 +240,7 @@ const CustomJewel = () => {
               ].map((feature, index) => (
                 <div className="feature-box" key={index}>
                   <img
-                    loading="lazy"
+                    loading="eager"
                     src={feature.img}
                     alt={feature.title}
                     className="feature-img"
@@ -259,7 +259,7 @@ const CustomJewel = () => {
               and story.
             </p>
             <img
-              loading="lazy"
+              loading="eager"
               src="/Images/Groupimg.png"
               className="home_tag_img mb-4"
               alt="Decorative"

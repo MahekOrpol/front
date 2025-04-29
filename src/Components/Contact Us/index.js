@@ -177,7 +177,7 @@ const Contact = () => {
       </div>
       <div>
         <img
-          loading="lazy"
+          loading="eager"
           src="/Images/Group 1597884579.png"
           className="img_fluid1_banner"
           alt="contact us"
@@ -351,7 +351,7 @@ const Contact = () => {
           height="100%"
           style={{ border: "0" }}
           allowFullScreen=""
-          loading="lazy"
+          loading="eager"
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>

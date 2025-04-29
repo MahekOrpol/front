@@ -184,7 +184,7 @@ const AboutUs = () => {
         </div>
         <div>
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Group 1597884580.png"
             className="img_fluid1_banner"
             alt="about us"
@@ -198,7 +198,7 @@ const AboutUs = () => {
           <div className="row">
             <div className="aout">
               <img
-                loading="lazy"
+                loading="eager"
                 className="djs_about img-fluid sticky"
                 src="/Images/Group 1597884574.png"
                 alt="about us"
@@ -226,7 +226,7 @@ const AboutUs = () => {
               <div className="d-flex gap-1">
                 <div className="d-flex align-items-center gap-3 flex-column">
                   <img
-                    loading="lazy"
+                    loading="eager"
                     src="/Images/Group 1597884563.png"
                     alt="about us"
                   />
@@ -238,7 +238,7 @@ const AboutUs = () => {
                 </div>
                 <div className="d-flex align-items-center gap-3 flex-column">
                   <img
-                    loading="lazy"
+                    loading="eager"
                     src="/Images/Group 1597884564.png"
                     alt="about us"
                   />
@@ -255,7 +255,7 @@ const AboutUs = () => {
 
         <div className="hdr_csd">
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Group 1597884485.png"
             alt="about us"
           />
@@ -276,7 +276,7 @@ const AboutUs = () => {
               <div className="d-flex flex-column gap-5">
                 <div className="d-flex align-items-center gap-3">
                   <img
-                    loading="lazy"
+                    loading="eager"
                     src="/Images/Group 1597884572.png"
                     alt="about us"
                   />
@@ -293,7 +293,7 @@ const AboutUs = () => {
                 </div>
                 <div className="d-flex align-items-center gap-3">
                   <img
-                    loading="lazy"
+                    loading="eager"
                     src="/Images/Group 1597884573.png"
                     alt="about us"
                   />
@@ -315,7 +315,7 @@ const AboutUs = () => {
               <div className="video-container position-relative">
                 <video
                   preload="none"
-                  loading="lazy"
+                  loading="eager"
                   src="/Videos/Abouy Sss.mp4"
                   className="bg-white vi_rng_fff"
                   autoPlay
@@ -323,7 +323,7 @@ const AboutUs = () => {
                   muted
                 />
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src="/Images/Mask group (3).png"
                   className="sjd_555 position-absolute top-50 translate-middle"
                   alt="Jewelry Overlay"
@@ -334,7 +334,7 @@ const AboutUs = () => {
             <div>
               <video
 preload="none"
-                                loading="lazy"
+                                loading="eager"
                 src='/Videos/Abouy Sss.mp4'
                 className="bg-white mas_ddd"
                 autoPlay
@@ -362,7 +362,7 @@ preload="none"
             <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
               <div className="blog_fade_ds">
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src="/Images/image (21).png"
                   className="img-fluid"
                   alt="about us"
@@ -394,7 +394,7 @@ preload="none"
             <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
               <div className="blog_fade_ds">
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src="/Images/image (22).png"
                   className="img-fluid"
                   alt="about us"
@@ -426,7 +426,7 @@ preload="none"
             <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
               <div className="blog_fade_ds">
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src="/Images/image (23).png"
                   className="img-fluid"
                   alt="about us"

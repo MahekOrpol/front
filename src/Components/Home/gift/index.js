@@ -88,7 +88,7 @@ const Gift = () => {
             {sliderContent.map((content, index) => (
               <div key={index} className="slider-card">
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src={content.image}
                   alt={`Gift Slide ${index + 1}`}
                   className="gift_img_round"
@@ -101,7 +101,7 @@ const Gift = () => {
         {/* Static Card - Now Dynamic based on current slide */}
         <div className="static-gift-card text-center MHK position-relative gap-2 gift_img_round">
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/first.svg"
             className="img-fluid gift-img gift_box_dsdd"
             alt="Gift Your Loved Ones"

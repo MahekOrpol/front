@@ -76,7 +76,7 @@ const SignupPopup = ({ isOpen, onClose }) => {
             {/* Profile Section */}
             <div className="profile-section">
               <img
-                loading="lazy"
+                loading="eager"
                 src="/Images/15 Model white.png"
                 alt="Profile"
                 className="profile-pic"
@@ -121,7 +121,7 @@ loading="lazy" src="/Images/profileicon.png" alt="Profile" className="menu-icons
                 <li onClick={() => navigate("/Editprofile")}>
                   <div className="menu-item">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/profileicon.png"
                       alt="Profile"
                       className="menu-icons"
@@ -134,7 +134,7 @@ loading="lazy" src="/Images/profileicon.png" alt="Profile" className="menu-icons
                 <li onClick={() => navigate("/login")}>
                   <div className="menu-item">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/profileicon.png"
                       alt="Profile"
                       className="menu-icons"
@@ -148,7 +148,7 @@ loading="lazy" src="/Images/profileicon.png" alt="Profile" className="menu-icons
               <li onClick={() => navigate("/Order")}>
                 <div className="menu-item">
                   <img
-                    loading="lazy"
+                    loading="eager"
                     src="/Images/ordericon.png"
                     alt="Orders"
                     className="menu-icons"
@@ -160,7 +160,7 @@ loading="lazy" src="/Images/profileicon.png" alt="Profile" className="menu-icons
               <li>
                 <div className="menu-item">
                   <img
-                    loading="lazy"
+                    loading="eager"
                     src="/Images/termsicon.png"
                     alt="Terms"
                     className="menu-icons"
@@ -172,7 +172,7 @@ loading="lazy" src="/Images/profileicon.png" alt="Profile" className="menu-icons
               <li>
                 <div className="menu-item">
                   <img
-                    loading="lazy"
+                    loading="eager"
                     src="/Images/privacyicon.png"
                     alt="Privacy"
                     className="menu-icons"
@@ -184,7 +184,7 @@ loading="lazy" src="/Images/profileicon.png" alt="Profile" className="menu-icons
               <li onClick={() => navigate("/contact-us")}>
                 <div className="menu-item">
                   <img
-                    loading="lazy"
+                    loading="eager"
                     src="/Images/contacticon.png"
                     alt="Contact"
                     className="menu-icons"

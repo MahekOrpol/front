@@ -40,7 +40,7 @@ const Occasion = () => {
           src={groupImg}
           className="home_tag_img mobile_rcvdfcvfd"
           alt="Decorative tag"
-          loading="lazy"
+          loading="eager"
         />
         <p className="occasions_text_p mb-0">
           Indulge in the allure of our Limited Edition Collaboration, where
