@@ -42,7 +42,7 @@ const OueColletion = () => {
 
               return (
                 <div
-                  key={product._id}
+                  key={product.path}
                   className="d-flex flex-column gap-2 banner_tezxt"
                   onClick={() => handleCategoryClick(product.path)}
                 >
