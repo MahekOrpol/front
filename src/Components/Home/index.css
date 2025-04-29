@@ -6034,6 +6034,15 @@ video {
     height: 100px;
   }
   
+  .category-image-wrapper:hover {
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+   transform: none;
+   -webkit-transform: none;
+   -moz-transform: none;
+   -ms-transform: none;
+   -o-transform: none;
+}
+  
   .category-label {
     font-size: 0.9rem;
   }
