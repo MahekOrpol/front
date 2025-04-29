@@ -804,3 +804,11 @@
   cursor: pointer;
   /* border-bottom: 1px solid #ddd; */
 }
+.arrow-icon {
+  transition: transform 0.3s ease-in-out;
+  
+}
+
+.arrow-icon.rotate {
+  transform: rotate(90deg);
+}

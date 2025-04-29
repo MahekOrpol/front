@@ -29,8 +29,14 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const [searchValue, setSearchValue] = useState("");
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [categoriesData, setCategoriesData] = useState([]);
+  const [expandedCategory, setExpandedCategory] = useState(null);
 
-  
+  const toggleSubcategory = (categoryName) => {
+    setExpandedCategory((prev) =>
+      prev === categoryName ? null : categoryName
+    );
+  };
+
   useEffect(() => {
     getCategories();
   }, []);
@@ -439,35 +445,6 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             );
           })}
 
-          {/* <div
-            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
-            onClick={() => handleCategoryClick("Earrings")}
-          >
-            <img src="/Images/earrings.png" width={25} alt="Earrings" />{" "}
-            Earrings
-          </div>
-          <div
-            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
-            onClick={() => handleCategoryClick("Pendant")}
-          >
-            <img
-              src="/Images/gem-pendant-svgrepo-com.svg"
-              width={20}
-              alt="Pendant"
-            />{" "}
-            Pendant
-          </div>
-          <div
-            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
-            onClick={() => handleCategoryClick("Bracelet")}
-          >
-            <img
-              src="/Images/noun-bracelet-5323037.svg"
-              width={25}
-              alt="Bracelet"
-            />{" "}
-            Bracelet
-          </div> */}
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => navigate("/Customjewel")}
@@ -509,46 +486,64 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           <div className="drawer-pro ">
             <div className="eeerd">
               <span className="drawer-new">CATEGORY</span>
-              <div
-                className="drawer-item d-flex align-items-center gap-2 w-100"
-                onClick={() => handleCategoryClick("Rings")}
-              >
-                <img
-                  src="/Images/diamond-ring-diamond-svgrepo-com.svg"
-                  width={20}
-                  alt="Rings"
-                />{" "}
-                Rings
-              </div>
-              <div
-                className="drawer-item d-flex align-items-center gap-2 w-100"
-                onClick={() => handleCategoryClick("Earrings")}
-              >
-                <img src="/Images/earrings.png" width={20} alt="Earrings" />{" "}
-                Earrings
-              </div>
-              <div
-                className="drawer-item d-flex align-items-center gap-2 w-100"
-                onClick={() => handleCategoryClick("Pendant")}
-              >
-                <img
-                  src="/Images/gem-pendant-svgrepo-com.svg"
-                  width={20}
-                  alt="Pendant"
-                />{" "}
-                Pendant
-              </div>
-              <div
-                className="drawer-item d-flex align-items-center gap-2 w-100"
-                onClick={() => handleCategoryClick("Bracelet")}
-              >
-                <img
-                  src="/Images/noun-bracelet-5323037.svg"
-                  width={20}
-                  alt="Bracelet"
-                />{" "}
-                Bracelet
-              </div>
+              {allowedCategories.map((categoryName) => {
+  const category = categoriesData.find(
+    (c) => c.categoryName === categoryName
+  );
+  if (!category) return null;
+
+  return (
+    <div key={category._id} className="w-100">
+      <div className="drawer-item d-flex align-items-center justify-content-between w-100">
+        {/* Left part: click navigates to category */}
+        <div
+          className="d-flex align-items-center gap-2"
+          onClick={() => handleCategoryClick(category.categoryName)}
+          style={{ cursor: "pointer", flex: 1 }}
+        >
+          <img
+            src={categoryImages[category.categoryName]}
+            width={20}
+            alt={category.categoryName}
+          />
+          {category.categoryName}
+        </div>
+
+        {/* Right part: click toggles subcategory */}
+        {category.subcategories.length > 0 && (
+          <FaAngleRight
+            className={`arrow-icon ${
+              expandedCategory === category.categoryName ? "rotate" : ""
+            }`}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent click bubbling to parent
+              toggleSubcategory(category.categoryName);
+            }}
+            style={{ cursor: "pointer" }}
+          />
+        )}
+      </div>
+
+      {/* Subcategories */}
+      {expandedCategory === category.categoryName &&
+        category.subcategories.map((subcat) => (
+          <div
+            key={subcat._id}
+            className="drawer-subitem ms-4 ps-1 py-1"
+            onClick={() => handleCategoryClick(subcat.subcategoryName)}
+            style={{
+              cursor: "pointer",
+              fontSize: "0.95rem",
+              color: "black",
+            }}
+          >
+            {subcat.subcategoryName}
+          </div>
+        ))}
+    </div>
+  );
+})}
+
               <div
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => navigate("/Customjewel")}
