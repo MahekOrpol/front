@@ -12,6 +12,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
+  const allowedCategories = ["Rings", "Earrings", "Pendant", "Bracelet"];
+  const categoryImages = {
+    Rings: "/Images/diamond-ring-diamond-svgrepo-com.svg",
+    Earrings: "/Images/earrings.png",
+    Pendant: "/Images/gem-pendant-svgrepo-com.svg",
+    Bracelet: "/Images/noun-bracelet-5323037.svg",
+  };
+
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showSignup, setIsSignup] = useState(false);
@@ -19,6 +27,24 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const user_Id = localStorage.getItem("user_Id");
   const popupRef = useRef(null);
   const [searchValue, setSearchValue] = useState("");
+  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [categoriesData, setCategoriesData] = useState([]);
+
+  
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  const getCategories = React.useCallback(async () => {
+    try {
+      const res = await axios.get(
+        "https://dev.crystovajewels.com/api/v1/category/get"
+      );
+      setCategoriesData(res.data);
+    } catch (error) {
+      console.error("Failed to fetch categories", error);
+    }
+  }, []);
 
   const handleSearch = () => {
     if (searchValue.trim()) {
@@ -371,18 +397,49 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           className="d-flex align-items-center justify-content-center jhdb_dhvh pb-1 pt-2"
           style={{ borderTop: "1px solid #797979", background: "white" }}
         >
-          <div
-            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
-            onClick={() => handleCategoryClick("Rings")}
-          >
-            <img
-              src="/Images/diamond-ring-diamond-svgrepo-com.svg"
-              width={25}
-              alt="Rings"
-            />{" "}
-            Rings
-          </div>
-          <div
+          {allowedCategories.map((categoryName) => {
+            const category = categoriesData.find(
+              (c) => c.categoryName === categoryName
+            );
+            if (!category) return null;
+
+            return (
+              <div
+                key={category.id}
+                className="drawer-item d-flex align-items-center gap-2 position-relative mx-3"
+                onMouseEnter={() => setHoveredCategory(category.categoryName)}
+                onMouseLeave={() => setHoveredCategory(null)}
+                onClick={() => handleCategoryClick(category.categoryName)}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={categoryImages[category.categoryName]}
+                  width={20}
+                  alt={category.categoryName}
+                />
+                {category.categoryName}
+
+                {hoveredCategory === category.categoryName &&
+                  category.subcategories.length > 0 && (
+                    <div className="dropdown-subcategory">
+                      {category.subcategories.map((subcat) => (
+                        <div
+                          key={subcat._id}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCategoryClick(subcat.subcategoryName);
+                          }}
+                        >
+                          {subcat.subcategoryName}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+              </div>
+            );
+          })}
+
+          {/* <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Earrings")}
           >
@@ -410,7 +467,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               alt="Bracelet"
             />{" "}
             Bracelet
-          </div>
+          </div> */}
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => navigate("/Customjewel")}
