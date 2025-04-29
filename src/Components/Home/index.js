@@ -491,6 +491,10 @@ const Home = () => {
             <Swiper
               spaceBetween={20}
               loop={true}
+              preloadImages={true}
+              updateOnImagesReady={true}
+              watchSlidesProgress={true}
+              preventInteractionOnTransition={true}
               breakpoints={{
                 0: { slidesPerView: 4 },
                 640: { slidesPerView: 5 },
@@ -498,22 +502,27 @@ const Home = () => {
                 1200: { slidesPerView: 6 },
               }}
               className="mySwiper"
-              preloadImages={false}
-              lazy={true}
             >
-              {categoriesa?.map((category) => (
+              {categoriesa?.map((category, index) => (
                 <SwiperSlide
                   key={category.id}
                   onClick={() => handleCategoryClick(category.categoryName)}
                 >
                   <div className="category-image-wrapper">
                     <img
-                      loading="lazy"
+                      fetchpriority="high"
+                      decoding="async"
+                      loading='eager'
                       src={`https://dev.crystovajewels.com${category.categoryImage}`}
                       alt={category.categoryName}
-                      onLoad={(e) =>
-                        e.currentTarget.classList.add("lazy-img-active")
-                      }
+                      onLoad={(e) => {
+                        e.currentTarget.classList.add("lazy-img-active");
+                        e.currentTarget.style.opacity = "1";
+                      }}
+                      style={{
+                        opacity: 0,
+                        transition: "opacity 0.1s ease-in"
+                      }}
                     />
                   </div>
                   <span className="category-label">

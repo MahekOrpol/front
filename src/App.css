@@ -43,3 +43,69 @@ body {
   min-height: 100%;
   scrollbar-width: none;
 }
+
+.category-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.category-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translateZ(0) scale(1.0, 1.0);
+}
+
+/* Optimize image loading performance */
+img {
+  text-indent: -9999px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Add loading placeholder */
+.category-image-wrapper::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f0f0f0 0px, #f8f8f8 40px, #f0f0f0 80px);
+  background-size: 200% 100%;
+  animation: loading 0.5s infinite linear;
+  opacity: 1;
+  transition: opacity 0.1s ease-out;
+}
+
+.category-image-wrapper img.lazy-img-active + .category-image-wrapper::before {
+  opacity: 0;
+}
+
+@keyframes loading {
+  0% { background-position: -100% 0; }
+  100% { background-position: 100% 0; }
+}
+
+/* Optimize paint and composite layers */
+.categories-slider {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+.swiper-slide {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
