@@ -658,6 +658,7 @@ Please let me know the next steps.`;
                 {productImages.length > 3 ? (
                   <Slider
                     className="custom-slick-slider"
+                    ref={imageSliderRef}
                     dots
                     infinite
                     speed={500}
