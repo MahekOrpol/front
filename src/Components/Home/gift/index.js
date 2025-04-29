@@ -1,9 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import Slider from "react-slick";
 import "./index.css";
 
 const Gift = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const sliderSettings = useMemo(
     () => ({
       dots: false,
@@ -12,19 +14,52 @@ const Gift = () => {
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      pauseOnHover: true,
+      afterChange: (current) => setCurrentSlide(current)
     }),
     []
   );
 
-  // List of slider images
-  const sliderImages = [
-    "/Images/slider.webp",
-    "/Images/g4.webp",
-    "/Images/gift2.webp",
-    "/Images/gift3.webp",
-    "/Images/gift4.webp",
-    "/Images/gift5.webp",
-    "/Images/gift3 (1).webp",
+  // List of slider images and their corresponding content
+  const sliderContent = [
+    {
+      image: "/Images/slider.webp",
+      staticImage: "/Images/first.svg",
+      title: "Grace in Every Gift",
+      description: "Delight loved ones with timeless treasures. Make every moment unforgettable."
+    },
+    {
+      image: "/Images/g4.webp",
+      title: "Elegant Celebrations",
+      description: "Create magical moments with our exquisite collection of fine jewelry."
+    },
+    {
+      image: "/Images/gift2.webp",
+      title: "Perfect Presents",
+      description: "Find the ideal gift that speaks volumes and creates lasting memories."
+    },
+    {
+      image: "/Images/gift3.webp",
+      title: "Timeless Treasures",
+      description: "Each piece tells a story of elegance, craftsmanship, and eternal beauty."
+    },
+    {
+      image: "/Images/gift4.webp",
+      title: "Luxury Gifting",
+      description: "Experience the joy of giving with our premium jewelry collection."
+    },
+    {
+      image: "/Images/gift5.webp",
+      title: "Special Moments",
+      description: "Mark life's precious occasions with gifts that sparkle and shine."
+    },
+    {
+      image: "/Images/gift3 (1).webp",
+      title: "Cherished Memories",
+      description: "Create unforgettable memories with our stunning jewelry pieces."
+    }
   ];
 
   return (
@@ -50,11 +85,11 @@ const Gift = () => {
         {/* Slider Card */}
         <div className="slider-card-wrapper">
           <Slider {...sliderSettings}>
-            {sliderImages.map((src, index) => (
+            {sliderContent.map((content, index) => (
               <div key={index} className="slider-card">
                 <img
                   loading="lazy"
-                  src={src}
+                  src={content.image}
                   alt={`Gift Slide ${index + 1}`}
                   className="gift_img_round"
                 />
@@ -63,7 +98,7 @@ const Gift = () => {
           </Slider>
         </div>
 
-        {/* Static Card */}
+        {/* Static Card - Now Dynamic based on current slide */}
         <div className="static-gift-card text-center MHK position-relative gap-2 gift_img_round">
           <img
             loading="lazy"
@@ -71,10 +106,9 @@ const Gift = () => {
             className="img-fluid gift-img gift_box_dsdd"
             alt="Gift Your Loved Ones"
           />
-          <h5 className="dfvcf_VFFYT">Grace in Every Gift</h5>
+          <h5 className="dfvcf_VFFYT">{sliderContent[currentSlide].title}</h5>
           <p>
-            Delight loved ones with timeless treasures. Make every moment
-            unforgettable.
+            {sliderContent[currentSlide].description}
           </p>
           <button className="circle-btn">
             <FaArrowRightLong />
