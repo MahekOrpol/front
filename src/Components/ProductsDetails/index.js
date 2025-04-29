@@ -32,6 +32,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ProductViewCounter from "../../ProductViewCounter";
+import { useWishlist } from "./hooks/useWishlist";
+import { useProductImages } from "./hooks/useProductImages";
+import { useProductDetails } from "./hooks/useProductDetails";
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
@@ -75,6 +78,11 @@ const ProductDetailss = () => {
     error,
   } = useSelector((state) => state.cart);
 
+  // Use custom hooks
+  const { productDetails: customProductDetails, relatedProducts: customRelatedProducts, loading: productLoading } = useProductDetails(productId, productData);
+  const { isInWishlist, loading: wishlistLoading, toggleWishlist } = useWishlist(userId);
+  const { images: productImages, selectedImage, isLoading: imagesLoading, selectImage, getOptimizedImageUrl } = useProductImages(customProductDetails?.image || []);
+
   const message = `🖼 *Image:* ${imageUrl}
 
 👋 Hi! Thank you for contacting us. I'm interested in placing an order.
@@ -90,14 +98,13 @@ Please let me know the next steps.`;
   const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
   const openCart = useCallback(() => {
-    const userId = localStorage.getItem("user_Id");
     if (!userId) {
       navigate("/login");
       return;
     }
     setIsCartOpen(true);
     document.body.classList.add("no-scroll");
-  }, [navigate]);
+  }, [navigate, userId]);
 
   const handleProductClick = useCallback(
     (productId, productData) => {
@@ -124,15 +131,10 @@ Please let me know the next steps.`;
     }
   }, []);
 
-  // Filter images and videos from productDetails.image
-  const images = useMemo(
-    () => productDetails?.image?.filter((img) => !img.endsWith(".mp4")) || [],
-    [productDetails]
-  );
-
+  // Filter images and videos
   const videos = useMemo(
-    () => productDetails?.image?.filter((vid) => vid.endsWith(".mp4")) || [],
-    [productDetails]
+    () => customProductDetails?.image?.filter((vid) => vid.endsWith(".mp4")) || [],
+    [customProductDetails]
   );
 
   useEffect(() => {
@@ -188,9 +190,9 @@ Please let me know the next steps.`;
 
   const [selectedSize, setSelectedSize] = useState("Select size");
   const [displayPrice, setDisplayPrice] = useState({
-    regularPrice: productDetails?.regularPrice?.$numberDecimal || 0,
-    salePrice: productDetails?.salePrice?.$numberDecimal || 0,
-    discount: productDetails?.discount?.$numberDecimal || 0,
+    regularPrice: customProductDetails?.regularPrice?.$numberDecimal || 0,
+    salePrice: customProductDetails?.salePrice?.$numberDecimal || 0,
+    discount: customProductDetails?.discount?.$numberDecimal || 0,
   });
 
   const handleSelect = useCallback(
@@ -224,11 +226,11 @@ Please let me know the next steps.`;
 
   useEffect(() => {
     if (
-      productDetails?.hasVariations &&
-      productDetails.variations?.length > 0
+      customProductDetails?.hasVariations &&
+      customProductDetails.variations?.length > 0
     ) {
       // Set default price from the first variation
-      const firstVariation = productDetails.variations[0];
+      const firstVariation = customProductDetails.variations[0];
 
       setDisplayPrice({
         regularPrice: firstVariation.regularPrice,
@@ -238,12 +240,12 @@ Please let me know the next steps.`;
     } else {
       // Set default price if there are no variations
       setDisplayPrice({
-        regularPrice: productDetails?.regularPrice?.$numberDecimal || 0,
-        salePrice: productDetails?.salePrice?.$numberDecimal || 0,
-        discount: productDetails?.discount?.$numberDecimal || 0,
+        regularPrice: customProductDetails?.regularPrice?.$numberDecimal || 0,
+        salePrice: customProductDetails?.salePrice?.$numberDecimal || 0,
+        discount: customProductDetails?.discount?.$numberDecimal || 0,
       });
     }
-  }, [productDetails]);
+  }, [customProductDetails]);
 
   const updateWishlistCount = useCallback((count) => {
     setWishlistCount(count);
@@ -444,17 +446,17 @@ Please let me know the next steps.`;
                       class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
                       data-discover="true"
                       href={`/products?category=${
-                        productDetails?.categoryName || "rings"
+                        customProductDetails?.categoryName || "rings"
                       }`}
                     >
-                      {productDetails?.categoryName || "Rings"}
+                      {customProductDetails?.categoryName || "Rings"}
                     </a>
                   </div>
                 </div>
                 <FaChevronRight />
                 <div class="BreadcrumbItem flex max-w-1/3">
                   <span class="font-light text-1.25xs leading-tight line-clamp-1 whitespace-normal mt-0.5 bread_crumnbs">
-                    {productDetails.productName || "products"}
+                    {customProductDetails.productName || "products"}
                   </span>
                 </div>
               </div>
@@ -464,8 +466,8 @@ Please let me know the next steps.`;
           <section className="d-flex gap-lg-5 p-0 pro_sss_gubs">
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
-                {productDetails?.image && productDetails.image.length > 0 ? (
-                  productDetails.image.map((img, index) => {
+                {customProductDetails?.image && customProductDetails.image.length > 0 ? (
+                  customProductDetails.image.map((img, index) => {
                     const isVideo = img.endsWith(".mp4"); // Check if the file is a video
                     return (
                       <div className="det_min_cd2" key={index}>
@@ -519,8 +521,8 @@ Please let me know the next steps.`;
                   }}
                   className="fddd"
                 >
-                  {productDetails?.image && productDetails.image.length > 0 ? (
-                    productDetails.image.map((img, index) => {
+                  {customProductDetails?.image && customProductDetails.image.length > 0 ? (
+                    customProductDetails.image.map((img, index) => {
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
 
                       return (
@@ -653,7 +655,7 @@ Please let me know the next steps.`;
               </div>
 
               <div className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv">
-                {images.length > 3 ? (
+                {productImages.length > 3 ? (
                   <Slider
                     className="custom-slick-slider"
                     dots
@@ -719,48 +721,48 @@ Please let me know the next steps.`;
                       );
                     }}
                   >
-                    {images.map((media, index) => (
+                    {productImages.map((media, index) => (
                       <div key={index}>
                         <img
                           loading="lazy"
                           src={`https://dev.crystovajewels.com${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                          alt={productDetails?.productName || "Product image"}
+                          alt={customProductDetails?.productName || "Product image"}
                         />
                       </div>
                     ))}
                   </Slider>
-                ) : images[0] ? (
+                ) : productImages[0] ? (
                   <img
                     loading="lazy"
-                    src={`https://dev.crystovajewels.com${images[0]}`}
+                    src={`https://dev.crystovajewels.com${productImages[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                    alt={productDetails?.productName || "Product image"}
+                    alt={customProductDetails?.productName || "Product image"}
                   />
                 ) : (
                   <p className="text-center">No Image</p>
                 )}
               </div>
               {/* Box 3: Image[1] */}
-              {images[1] && (
+              {productImages[1] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
                     loading="lazy"
-                    src={`https://dev.crystovajewels.com${images[1]}`}
+                    src={`https://dev.crystovajewels.com${productImages[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                    alt={productDetails?.productName || "Product image"}
+                    alt={customProductDetails?.productName || "Product image"}
                   />
                 </div>
               )}
 
               {/* Box 4: Image[2] */}
-              {images[2] && (
+              {productImages[2] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
                     loading="lazy"
-                    src={`https://dev.crystovajewels.com${images[2]}`}
+                    src={`https://dev.crystovajewels.com${productImages[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                    alt={productDetails?.productName || "Product image"}
+                    alt={customProductDetails?.productName || "Product image"}
                   />
                 </div>
               )}
@@ -769,7 +771,7 @@ Please let me know the next steps.`;
             <div className="w-100 sdcsd_saxza dscd_54_Dscds ">
               <div>
                 <div className="d-flex justify-content-between align-items-center">
-                  <span className="secrt_1">{productDetails?.productName}</span>
+                  <span className="secrt_1">{customProductDetails?.productName}</span>
                   <div>
                     <button className="sav_btn p-2 pe-3 ps-3 dcs_dddd_8888">
                       Save {displayPrice.discount}%
@@ -793,9 +795,9 @@ Please let me know the next steps.`;
                     </div>
                   </div>
                   <div className="gap-3 d-flex align-items-center df_rrrrr">
-                    <span className="sku_dsd">SKU : {productDetails?.sku}</span>
+                    <span className="sku_dsd">SKU : {customProductDetails?.sku}</span>
                     <button className="stk_btn p-2 pe-3 ps-3">
-                      {productDetails?.stock}
+                      {customProductDetails?.stock}
                     </button>
                   </div>
                 </div>
@@ -811,7 +813,7 @@ Please let me know the next steps.`;
                 </div>
                 <div className="pt-sm-3 pt-md-3 pt-lg-5">
                   <p className="seb_p_g">
-                    {productDetails?.productsDescription}
+                    {customProductDetails?.productsDescription}
                   </p>
                 </div>
 
@@ -829,8 +831,8 @@ Please let me know the next steps.`;
                     {selectedSize || "Select size"}
                   </button>
                   <ul className="dropdown-menu product_det_menu w-50 mt-1">
-                    {(Array.isArray(productDetails?.productSize)
-                      ? productDetails.productSize[0].split(",")
+                    {(Array.isArray(customProductDetails?.productSize)
+                      ? customProductDetails.productSize[0].split(",")
                       : []
                     ).map((size) => (
                       <li key={size.trim()}>
@@ -854,13 +856,13 @@ Please let me know the next steps.`;
                     <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                        onClick={() => addToCart(productDetails)}
+                        onClick={() => addToCart(customProductDetails)}
                       >
                         Buy Now
                       </button>
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                        onClick={() => addToCart(productDetails)}
+                        onClick={() => addToCart(customProductDetails)}
                       >
                         Add to Cart{" "}
                         <BiShoppingBag size={25} className="sopgdd" />
@@ -869,10 +871,10 @@ Please let me know the next steps.`;
                     <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
                       <div
                         className="gohrt_bod p-2"
-                        onClick={() => toggleFavorite(productDetails.id)}
+                        onClick={() => toggleFavorite(customProductDetails.id)}
                         style={{ cursor: "pointer" }}
                       >
-                        {wishlistItems[productDetails.id] ? (
+                        {wishlistItems[customProductDetails.id] ? (
                           <GoHeartFill className="heart-icon_ss" size={25} />
                         ) : (
                           <GoHeart className="heart-icon_ss" size={25} />
@@ -907,14 +909,14 @@ Please let me know the next steps.`;
                     <div className="d-flex justify-content-between align-items-center w-100 but_buton_ssssxs">
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                        onClick={() => addToCart(productDetails)}
+                        onClick={() => addToCart(customProductDetails)}
                       >
                         Add to Cart{" "}
                         <BiShoppingBag size={25} className="sopgdd" />
                       </button>
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                        onClick={() => addToCart(productDetails)}
+                        onClick={() => addToCart(customProductDetails)}
                       >
                         Buy Now
                       </button>
@@ -939,10 +941,10 @@ Please let me know the next steps.`;
                     <div className="d-flex gap-4 align-items-center sdcs_axssx_aswxs ddsc_ybhfthfrt">
                       <div
                         className="gohrt_bod p-2"
-                        onClick={() => toggleFavorite(productDetails.id)}
+                        onClick={() => toggleFavorite(customProductDetails.id)}
                         style={{ cursor: "pointer" }}
                       >
-                        {wishlistItems[productDetails.id] ? (
+                        {wishlistItems[customProductDetails.id] ? (
                           <GoHeartFill className="heart-icon_ss" size={25} />
                         ) : (
                           <GoHeart className="heart-icon_ss" size={25} />
