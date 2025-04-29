@@ -28,7 +28,7 @@ const JewelrySale = () => {
         </div>
 
         {/* Center Content */}
-        <div className="center-content">
+        <div className="center-content" style={{ backgroundImage: "url('/Images/purple-ornament-indoors-decor-fabric-material1.webp')" }}>
           <img
             fetchpriority="high"
             src="Images/crystovalogowhite (1) 2 (2).png"

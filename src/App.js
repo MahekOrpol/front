@@ -103,7 +103,7 @@ function App() {
           }
         />
       </Routes>
-      <WhatsAppButton />
+      {/* <WhatsAppButton /> */}
     </BrowserRouter>
   );
 }

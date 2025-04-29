@@ -3,11 +3,11 @@ import './index.css'; // Create a CSS file for additional styling if needed
 
 const instructions = [
   { img: '/Images/material.png', text: 'AVOID WATER / MOISTURE' },
+  { img: '/Images/Frame 1597883978.png', text: 'AVOID PERFUME / LOTION' },
   { img: '/Images/oeeofiw.png', text: 'REMOVE BEFORE SLEEPING' },
-  { img: '/Images/fragrance_6211860.png', text: 'AVOID PERFUME / LOTION' },
   { img: '/Images/box_14309182 (1).png', text: 'STORE IN AN AIR TIGHTBOX' },
   { img: '/Images/Frame 1.png', text: 'REMOVE BEFORE EXERCISE'},
-  { img: '/Images/wash_7040452.png', text: 'USE SOFT / DRY FABRIC TO CLEAN' }
+  { img: '/Images/Frame 1597883980.png', text: 'USE SOFT / DRY FABRIC TO CLEAN' }
 ];
 
 const Instruction = () => {

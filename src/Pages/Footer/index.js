@@ -401,7 +401,7 @@ const Footer = () => {
         <hr className="hr_bootom" />
         <div className="pb-2 d-flex flex-column justify-content-between sdxc_988_sss">
           <p className="foot_ofcd_1 text-white COPY_RIGHT_LINE w-100">
-            Copyright © 2024 <b> Crystova Jewels</b> All rights reserved.
+            Copyright © 2025 <b> Crystova Jewels</b> All rights reserved.
           </p>
           <p className="foot_ofcd_1 text-white COPY_RIGHT_LINE w-100">
             Design & Developed by: ORPOL Infotech{" "}

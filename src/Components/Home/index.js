@@ -54,47 +54,37 @@ const useWindowSize = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  return size;
-};
+  useEffect(() => {
+    dispatch(fetchCartCount());
+  }, [dispatch]);
 
-const Home = () => {
-  const { slidesPerView } = useWindowSize();
-  const [state, setState] = useState({
-    hoveredProduct: null,
-    topRated: [],
-    bestSelling: [],
-    onSale: [],
-    wishlistItems: {},
-    toastMessage: "",
-    showToast: false,
-    categoriesa: [],
-    currentCategory: "",
-    filteredBestSellers: [],
-    currentIndex: 0,
-    isPaused: false,
-    slideDirection: "next",
-    isCartOpen: false,
-    value: "1"
-  });
+  const productsToDisplay = useMemo(() => filteredBestSellers.length > 0 ? filteredBestSellers : bestSelling, [filteredBestSellers, bestSelling]);
 
-  const navigate = useNavigate();
-  const swiperRef = useRef(null);
-  const scrollContainerRef = useRef(null);
-  const scrollRef = useRef(null);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
+  const openCart = React.useCallback(() => {
+    const userId = localStorage.getItem("user_Id");
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
+    setIsCartOpen(true);
+    document.body.classList.add("no-scroll");
+  }, [navigate]);
 
-  const userId = localStorage.getItem("user_Id");
-  const [wishlistCount, setWishlistCount] = useState(
-    parseInt(localStorage.getItem("wishlistCount")) || 0
-  );
+  const closeCart = React.useCallback(() => {
+    setIsCartOpen(false);
+    setShowToast(false);
+    dispatch(fetchCartCount());
+    document.body.classList.remove("no-scroll");
+  }, [dispatch]);
 
-  const { count: cartCount } = useSelector((state) => state.cart);
-
-  const updateWishlistCount = useCallback((count) => {
-    setWishlistCount(count);
-    localStorage.setItem("wishlistCount", count.toString());
+  useEffect(() => {
+    const update = () => setProductsPerPage(window.innerWidth < 768 ? 1 : 2);
+    const debounce = setTimeout(update, 100); // Debounced update
+    window.addEventListener("resize", update);
+    return () => {
+      clearTimeout(debounce);
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   const handleProductClick = useCallback((productId, productData) => {
@@ -468,7 +458,9 @@ const Home = () => {
                       loading="lazy"
                       src={`https://dev.crystovajewels.com${category.categoryImage}`}
                       alt={category.categoryName}
-                      onLoad={e => e.currentTarget.classList.add('lazy-img-active')}
+                      onLoad={(e) =>
+                        e.currentTarget.classList.add("lazy-img-active")
+                      }
                     />
                   </div>
                   <span className="category-label">
@@ -483,20 +475,78 @@ const Home = () => {
         <div className="hdr_csd sdcxsdcx_Sdcxszdcx">
           <div className="scrolling-wrapper fastival-offerssss">
             <div className="scroll-content">
-              {scrollItems.map((text, index) => renderScrollItem(text, index))}
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
-          <div className="position-relative">
-            <img
-              src="/Images/image (3).webp"
-              className="img-fluid w-100"
-              alt="Main Image"
-              width="1920"
-              height="700"
-            />
+          {/* </div> */}
+          <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
+            <div className="position-relative">
+              <img
+                src="/Images/image (3).webp"
+                className="img-fluid w-100"
+                alt="Main Image"
+                width="1920"
+                height="700"
+              />
 
             <div className="overlay-img11">
               <img
@@ -533,9 +583,69 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="scrolling-wrapper">
-          <div className="scroll-content">
-            {scrollItems.map((text, index) => renderScrollItem(text, index))}
+          <div className="scrolling-wrapper">
+            <div className="scroll-content">
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">
+                  Shop Gold and Diamond Jewelry
+                </span>
+              </div>
+              <div className="scroll-item">
+                <img loading="lazy" src='/Images/Vector.png' alt="icon" />
+                <span className="scroll_heder">Friendly Sale 30% Off</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -642,7 +752,92 @@ const Home = () => {
                     scrollBehavior: "smooth",
                   }}
                 >
-                  {renderProducts(state.onSale, 'SALE')}
+                  {onSale.map((product) => (
+                    <div
+                      key={product.id}
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                      style={{
+                        flex: "0 0 auto",
+                      }}
+                    >
+                      <div className="card prio_card scdscsed_sdss ">
+                        {/* Image Wrapper with position-relative */}
+                        <div className="card-image-wrapper position-relative">
+                          {/* SALE Badge */}
+                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                            SALE
+                          </button>
+                          {/* Favorite Icon */}
+                          <div
+                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                            onClick={() => toggleFavorite(product.id)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {wishlistItems[product.id] ? (
+                              <GoHeartFill
+                                className="heart-icon_ss"
+                                size={18}
+                              />
+                            ) : (
+                              <GoHeart className="heart-icon_ss" size={18} />
+                            )}
+                          </div>
+                          <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                            {product.image[0]?.endsWith(".mp4") ? (
+                              <LazyVideo
+                                loading="lazy"
+                                src={`https://dev.crystovajewels.com${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                controls={false}
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            ) : (
+                              <img
+                                loading="lazy"
+                                src={`https://dev.crystovajewels.com${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                alt="Product"
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      {/* Product Details */}
+                      <div className="d-flex flex-column main_cdsss">
+                        <span className="mikdec_asdaa text-truncate pt-3 ">
+                          {product.productName}
+                        </span>
+                        <div className="d-flex align-items-center gap-3 pt-1">
+                          <span className="mikdec_asdxsx">
+                            ₹{product.salePrice?.$numberDecimal}
+                          </span>
+                          <span className="mikdec_axsx">
+                            ₹{product.regularPrice?.$numberDecimal}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                          <button
+                            className="more_btn_dsdd ewdcscdsedcds w-50"
+                            // onClick={() => navigate("/product-details")}
+                            onClick={() => handleProductClick(product.id)}
+                          >
+                            More Info
+                          </button>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                            onClick={() => addToCart(product)}
+                          >
+                            Add to Cart <BiShoppingBag size={25} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </>
@@ -671,7 +866,85 @@ const Home = () => {
                     scrollBehavior: "smooth",
                   }}
                 >
-                  {renderProducts(state.bestSelling, 'TOP')}
+                  {bestSelling.map((product) => (
+                    <div
+                      key={product.id}
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                      style={{ flex: "0 0 auto" }}
+                    >
+                      <div className="card prio_card scdscsed_sdss">
+                        <div className="card-image-wrapper position-relative best_saller_btn">
+                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                            Top
+                          </button>
+                          <div
+                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                            onClick={() => toggleFavorite(product.id)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {wishlistItems[product.id] ? (
+                              <GoHeartFill
+                                className="heart-icon_ss"
+                                size={18}
+                              />
+                            ) : (
+                              <GoHeart className="heart-icon_ss" size={18} />
+                            )}
+                          </div>
+                          <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                            {product.image[0]?.endsWith(".mp4") ? (
+                              <LazyVideo
+                                loading="lazy"
+                                src={`https://dev.crystovajewels.com${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                controls={false}
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            ) : (
+                              <img
+                                loading="lazy"
+                                src={`https://dev.crystovajewels.com${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                alt="Product"
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="d-flex flex-column main_cdsss">
+                        <span className="mikdec_asdaa pt-3 text-truncate">
+                          {product.productName}
+                        </span>
+                        <div className="d-flex align-items-center gap-3 pt-1">
+                          <span className="mikdec_asdxsx">
+                            ₹{product.salePrice?.$numberDecimal}
+                          </span>
+                          <span className="mikdec_axsx">
+                            ₹{product.regularPrice?.$numberDecimal}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                          <button
+                            className="more_btn_dsdd w-50"
+                            onClick={() => handleProductClick(product.id)}
+                          >
+                            More Info
+                          </button>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                            onClick={() => addToCart(product)}
+                          >
+                            Add to Cart <BiShoppingBag size={25} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </>
@@ -700,7 +973,91 @@ const Home = () => {
                     scrollBehavior: "smooth",
                   }}
                 >
-                  {renderProducts(state.topRated, 'NEW')}
+                  {topRated.map((product) => (
+                    <div
+                      key={product.id}
+                      className="col-lg-6 col-xl-3 col-sm-6 mb-4 asxasx_cards dcvdfxC_dfrvdfvf"
+                      style={{ flex: "0 0 auto" }}
+                    >
+                      <div className="card prio_card scdscsed_sdss">
+                        {/* Image Wrapper with position-relative */}
+                        <div className="card-image-wrapper position-relative">
+                          {/* SALE Badge */}
+                          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
+                            NEW
+                          </button>
+                          {/* Favorite Icon */}
+                          <div
+                            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                            onClick={() => toggleFavorite(product.id)}
+                            style={{ cursor: "pointer" }}
+                          >
+                            {wishlistItems[product.id] ? (
+                              <GoHeartFill
+                                className="heart-icon_ss"
+                                size={18}
+                              />
+                            ) : (
+                              <GoHeart className="heart-icon_ss" size={18} />
+                            )}
+                          </div>
+                          {/* Product Image */}
+                          <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                            {product.image[0]?.endsWith(".mp4") ? (
+                              <LazyVideo
+                                loading="lazy"
+                                src={`https://dev.crystovajewels.com${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                controls={false}
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            ) : (
+                              <img
+                                loading="lazy"
+                                src={`https://dev.crystovajewels.com${product.image[0]}`}
+                                className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
+                                alt="Product"
+                                onClick={() => handleProductClick(product.id)}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      {/* Product Details */}
+                      <div className="d-flex flex-column main_cdsss">
+                        <span className="mikdec_asdaa pt-3 text-truncate">
+                          {product.productName}
+                        </span>
+                        <div className="d-flex align-items-center gap-3 pt-1">
+                          <span className="mikdec_asdxsx">
+                            ₹{product.salePrice?.$numberDecimal}
+                          </span>
+                          <span className="mikdec_axsx">
+                            ₹{product.regularPrice?.$numberDecimal}
+                          </span>
+                        </div>
+                        <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                          <button
+                            className="more_btn_dsdd w-50"
+                            // onClick={() => navigate("/product-details")}
+                            onClick={() => handleProductClick(product.id)}
+                          >
+                            More Info
+                          </button>
+                          <button
+                            className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                            onClick={() => addToCart(product)}
+                          >
+                            Add to Cart <BiShoppingBag size={25} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </>
@@ -745,7 +1102,7 @@ const Home = () => {
               <div className="h-100 d-flex align-items-center justify-content-center">
                 <img
                   loading="lazy"
-                  src='/Images/Mask group (9).webp'
+                  src="/Images/Mask group (9).webp"
                   className="img-fluid w-100 h-100 object-fit-cover rounded"
                   alt="home"
                 />
@@ -852,7 +1209,28 @@ const Home = () => {
                                   className="card-body p-0 d-flex justify-content-center"
                                   style={{ height: "100%" }}
                                 >
-                                  {product.image[0]?.endsWith(".mp4") ? (
+                                  {(() => {
+                                    const imageToShow = product.image?.find(
+                                      (img) => !img.endsWith(".mp4")
+                                    );
+                                    return imageToShow ? (
+                                      <img
+                                        src={`https://dev.crystovajewels.com${imageToShow}`}
+                                        alt="Product"
+                                        className="p-1_proi img-fluid border-0"
+                                        onClick={() =>
+                                          handleProductClick(product.id)
+                                        }
+                                        style={{ height: "100%" }}
+                                      />
+                                    ) : (
+                                      <div className="text-center text-muted py-4">
+                                        No image available
+                                      </div>
+                                    );
+                                  })()}
+
+                                  {/* {product.image[0]?.endsWith(".mp4") ? (
                                     <LazyVideo
                                       loading="lazy"
                                       src={`https://dev.crystovajewels.com${product.image[0]}`}
@@ -878,7 +1256,7 @@ const Home = () => {
                                       }
                                       style={{ height: "100%" }}
                                     />
-                                  )}
+                                  )} */}
                                   {/* <img
                                     src={`https://dev.crystovajewels.com${product.image[0]}`}
                                     className="p-1_proi img-fluid border-0"
