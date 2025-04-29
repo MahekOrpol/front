@@ -441,7 +441,7 @@ const Home = () => {
 
   return (
     <>
-      <ToastContainer
+       <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -453,6 +453,7 @@ const Home = () => {
         pauseOnHover
         theme="light"
         stacked
+        style={{ zIndex: 1000000001 }}
       />
 
       <CartPopup

@@ -503,7 +503,7 @@ const Products = () => {
 
   return (
     <>
-      <ToastContainer
+       <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -515,6 +515,7 @@ const Products = () => {
         pauseOnHover
         theme="light"
         stacked
+        style={{ zIndex: 1000000001 }}
       />
 
       <CartPopup
@@ -705,11 +706,7 @@ const Products = () => {
                   <div className="filter-category">
                     <h5 onClick={() => toggleSection("categories")}>
                       Categories{" "}
-                      {openSections.categories ? (
-                        <FaChevronUp size={20} className="mr3" />
-                      ) : (
-                        <FaChevronDown size={20} className="mr3" />
-                      )}
+                     
                     </h5>
                     {category.map((category) => (
                       <label key={category._id}>
