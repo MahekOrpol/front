@@ -47,9 +47,9 @@ const Occasion = () => {
           artistry meets elegance. Each piece is meticulously crafted to
           celebrate timeless beauty, available only for a fleeting time.
         </p>
-        <Button className="shop-button">
+        {/* <Button className="shop-button">
           Shop the Collection <FaArrowRightLong />
-        </Button>
+        </Button> */}
       </div>
 
       <div className="slider-container">
