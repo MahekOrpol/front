@@ -308,7 +308,7 @@ Please let me know the next steps.`;
         updateWishlistCount(count); // Initialize count properly
         const wishlistMap = {};
         wishlistData.forEach((item) => {
-          let productId = item.productId._id || item.productId.id;
+          let productId = item.productId?._id || item.productId?.id;
           if (typeof productId === "string" || typeof productId === "number") {
             wishlistMap[productId] = item.id;
           } else {
@@ -359,7 +359,7 @@ Please let me know the next steps.`;
           ? product.productSize.join(",")
           : product?.productSize || "";
         const variationIds = Array.isArray(product?.variations)
-          ? product.variations.map((variation) => variation.id)
+          ? product.variations.map((variation) => variation?.id)
           : [];
         const payload = {
           userId: userId,
