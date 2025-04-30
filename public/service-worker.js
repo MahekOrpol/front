@@ -1,4 +1,6 @@
-const CACHE_NAME = 'crystova-cache-v1';
+const CACHE_NAME = 'crystal-jewels-v1';
+
+// Cache names
 const STATIC_CACHE = 'crystova-static-v1';
 const DYNAMIC_CACHE = 'crystova-dynamic-v1';
 const API_CACHE = 'crystova-api-v1';
@@ -8,13 +10,86 @@ const IMAGE_CACHE = 'crystova-images-v1';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/static/js/main.bundle.js',
-  '/static/css/main.bundle.css',
-  '/offline.html', // Fallback page for offline
-  '/static/css/main.css',
-  '/static/js/main.js',
-  '/Images/logo.png'
+  '/static/js/main.chunk.js',
+  '/static/js/bundle.js',
+  '/static/css/main.chunk.css',
+  '/manifest.json',
+  '/favicon.ico'
 ];
+
+// Install event - cache static assets
+self.addEventListener('install', event => {
+  event.waitUntil(
+    Promise.all([
+      caches.open(STATIC_CACHE).then(cache => cache.addAll(STATIC_ASSETS)),
+      caches.open(API_CACHE),
+      caches.open(DYNAMIC_CACHE),
+      caches.open(IMAGE_CACHE)
+    ]).then(() => self.skipWaiting())
+  );
+});
+
+// Activate event - clean up old caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames
+          .filter(cacheName => 
+            cacheName.startsWith('crystova-') && 
+            ![STATIC_CACHE, DYNAMIC_CACHE, API_CACHE, IMAGE_CACHE].includes(cacheName)
+          )
+          .map(cacheName => caches.delete(cacheName))
+      );
+    }).then(() => self.clients.claim())
+  );
+});
+
+// Fetch event - network first, fallback to cache
+self.addEventListener('fetch', event => {
+  // Skip cross-origin requests
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
+  event.respondWith(
+    fetch(event.request)
+      .then(response => {
+        // Cache successful responses
+        if (response.status === 200) {
+          const responseClone = response.clone();
+          const cacheName = event.request.url.includes('/api/') 
+            ? API_CACHE 
+            : event.request.url.includes('/images/') 
+              ? IMAGE_CACHE 
+              : DYNAMIC_CACHE;
+              
+          caches.open(cacheName)
+            .then(cache => {
+              cache.put(event.request, responseClone);
+            });
+        }
+        return response;
+      })
+      .catch(() => {
+        // Fallback to cache if network fails
+        return caches.match(event.request)
+          .then(response => {
+            if (response) {
+              return response;
+            }
+            // Return offline page for navigation requests
+            if (event.request.mode === 'navigate') {
+              return caches.match('/');
+            }
+            return new Response('Network error happened', {
+              status: 408,
+              headers: { 'Content-Type': 'text/plain' },
+            });
+          });
+      })
+  );
+});
 
 // API endpoints to cache
 const API_ENDPOINTS = [
@@ -31,34 +106,6 @@ const CACHE_DURATION = {
   api: 60 * 60, // 1 hour
   images: 14 * 24 * 60 * 60 // 14 days
 };
-
-// Install event - cache static assets
-self.addEventListener('install', event => {
-  event.waitUntil(
-    Promise.all([
-      caches.open(STATIC_CACHE).then(cache => cache.addAll(STATIC_ASSETS)),
-      caches.open(API_CACHE)
-    ])
-  );
-  self.skipWaiting();
-});
-
-// Activate event - clean up old caches
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames
-          .filter(cacheName => 
-            cacheName.startsWith('crystova-') && 
-            ![STATIC_CACHE, DYNAMIC_CACHE, API_CACHE, IMAGE_CACHE].includes(cacheName)
-          )
-          .map(cacheName => caches.delete(cacheName))
-      );
-    })
-  );
-  self.clients.claim();
-});
 
 // Helper function to check if URL is an API call
 const isApiCall = url => API_ENDPOINTS.some(endpoint => url.includes(endpoint));
