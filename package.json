@@ -41,7 +41,9 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "analyze": "craco build && npx webpack-bundle-analyzer build/static/js/*.js"
+    "analyze": "craco build && npx webpack-bundle-analyzer build/static/js/*.js",
+    "purgecss": "purgecss --config ./purgecss.config.js --output src/",
+    "build:css": "npm run purgecss && npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -70,6 +72,7 @@
     "css-minimizer-webpack-plugin": "^7.0.2",
     "cssnano": "^7.0.6",
     "image-webpack-loader": "^8.1.0",
+    "purgecss": "^5.0.0",
     "webpack-bundle-analyzer": "^4.10.2"
   }
 }

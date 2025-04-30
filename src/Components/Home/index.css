@@ -2487,10 +2487,6 @@ img.ring-image {
     width: 100% !important;
   }
 
-  .hnbgygjhh {
-    height: 600px !important;
-  }
-
   .best_saller_btn .sle_home_ddd {
     font-family: "Cabin", sans-serif;
     font-weight: 400;
@@ -2510,7 +2506,6 @@ img.ring-image {
     font-size: 15px !important;
 
     .category_name {
-      font-size: 40px;
       text-align: center;
       font-weight: 400;
       line-height: normal !important;
@@ -2548,14 +2543,6 @@ img.ring-image {
     margin-top: -0.8rem;
   }
 
-  .spg_nb_sle {
-    width: 100% !important;
-  }
-  .fvdvdf_Ththgf {
-    flex-direction: column;
-    width: 100% !important;
-  }
-
   .hnbgygjhh {
     height: 600px !important;
     margin-top: -1rem !important;
@@ -2564,30 +2551,10 @@ img.ring-image {
     margin-top: -1rem !important;
   }
 
-  .more_btn_dsdd {
-    width: 100% !important;
-    font-size: 15px !important;
-
-    .category_name {
-      font-size: 40px;
-      text-align: center;
-      font-weight: 400;
-      line-height: normal !important;
-      margin-bottom: 10px;
-      font-family: "DM Serif Text", serif;
-    }
-  }
-
-  .gfbfgbvgfcbfb {
-    width: 100% !important;
-    font-size: 15px !important;
-    gap: 1rem !important;
-    padding: 0.4rem !important;
-  }
-
   .spg_nb_sle {
-    width: 100% !important;
-  }
+    width: 68% !important;
+    font-size: 24px;
+}
 }
 
 @media (width: 425px) {
@@ -3793,14 +3760,16 @@ video {
 
 @media (min-width: 500px) and (max-width: 600px) {
   .spg_nb_sle {
-    width: 100% !important;
-  }
+    width: 50% !important;
+    font-size: 24px;
+}
 }
 
 @media (min-width: 375px) and (max-width: 424px) {
   .spg_nb_sle {
-    width: 100% !important;
-  }
+    width: 68% !important;
+    font-size: 24px;
+}
 }
 
 @media (max-width: 993px) and (min-width: 768px) {
@@ -4327,11 +4296,6 @@ video {
     font-size: 32px;
     margin-top: 20px !important;
   }
-  .category_name {
-    font-size: 32px;
-    margin-top: 30px !important;
-  }
-
   .ring-slider-container .swiper-wrapper {
     max-width: 365px;
   }
@@ -5486,6 +5450,17 @@ video {
   overflow-y: hidden;
 }
 
+.category_name {
+  @media (max-width:575px) and (min-width:400px) {
+    font-size: 33px !important;
+    line-height: 40px !important;
+  }
+  @media (max-width:400px) {
+    font-size: 30px !important;
+    line-height: 40px !important;
+  }
+}
+
 @media (max-width: 575px) {
   .our_colles {
     margin-top: 14rem;
@@ -5543,11 +5518,6 @@ video {
 
   .dsjnurh_sx {
     padding: 0.25rem !important;
-  }
-
-  .category_name {
-    font-size: 33px !important;
-    line-height: 40px !important;
   }
 
   .sdscsdcsdf_swxwx {
@@ -5801,10 +5771,6 @@ video {
   .sdcds_cate {
     padding-top: 0rem !important;
     margin-top: -0.5rem !important;
-  }
-  .category_name {
-    font-size: 32px;
-    margin-top: 25px !important;
   }
   .hnbgygjhh .paddingdn {
     padding-top: 0rem !important;

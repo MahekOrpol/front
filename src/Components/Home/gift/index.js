@@ -17,7 +17,7 @@ const Gift = () => {
       autoplay: true,
       autoplaySpeed: 3000,
       pauseOnHover: true,
-      afterChange: (current) => setCurrentSlide(current)
+      afterChange: (current) => setCurrentSlide(current),
     }),
     []
   );
@@ -27,39 +27,46 @@ const Gift = () => {
     {
       image: "/Images/slider.webp",
       staticImage: "/Images/first.svg",
-      title: "Grace in Every Gift",
-      description: "Delight loved ones with timeless treasures. Make every moment unforgettable."
+      title: "Graceful Gifting",
+      description:
+        "Timeless treasures for every occasion. Make memories that last forever.",
     },
     {
       image: "/Images/g4.webp",
-      title: "Elegant Celebrations",
-      description: "Create magical moments with our exquisite collection of fine jewelry."
+      title: "Elegant Moments",
+      description:
+        "Magical memories begin here with our exquisite fine jewelry collection.",
     },
     {
       image: "/Images/gift2.webp",
-      title: "Perfect Presents",
-      description: "Find the ideal gift that speaks volumes and creates lasting memories."
+      title: "Perfect Gifting",
+      description:
+        "Discover the ideal gift that speaks love and creates lasting memories.",
     },
     {
       image: "/Images/gift3.webp",
-      title: "Timeless Treasures",
-      description: "Each piece tells a story of elegance, craftsmanship, and eternal beauty."
+      title: "Timeless Beauty",
+      description:
+        "Every piece crafted with elegance, skill, and lasting significance.",
     },
     {
       image: "/Images/gift4.webp",
-      title: "Luxury Gifting",
-      description: "Experience the joy of giving with our premium jewelry collection."
+      title: "Luxury in Style",
+      description:
+        "Celebrate every occasion with our exclusive premium jewelry gifts.",
     },
     {
       image: "/Images/gift5.webp",
-      title: "Special Moments",
-      description: "Mark life's precious occasions with gifts that sparkle and shine."
+      title: "Sparkling Beauty",
+      description:
+        "Mark life’s precious events with stunning gifts that sparkle and shine.",
     },
     {
       image: "/Images/gift3 (1).webp",
-      title: "Cherished Memories",
-      description: "Create unforgettable memories with our stunning jewelry pieces."
-    }
+      title: "Memory Makers",
+      description:
+        "Create cherished memories with our beautiful handcrafted jewelry.",
+    },
   ];
 
   return (
@@ -107,9 +114,7 @@ const Gift = () => {
             alt="Gift Your Loved Ones"
           />
           <h5 className="dfvcf_VFFYT">{sliderContent[currentSlide].title}</h5>
-          <p>
-            {sliderContent[currentSlide].description}
-          </p>
+          <p>{sliderContent[currentSlide].description}</p>
           <button className="circle-btn">
             <FaArrowRightLong />
           </button>
