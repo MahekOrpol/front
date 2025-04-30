@@ -180,7 +180,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           style={{ cursor: "pointer" }}
           onClick={() => navigate("/")}
         >
-          <img src="/Images/Group 1597884561.png" alt="Logo" />
+          <img src="/Images/Group 1597884561.webp" alt="Logo" />
         </div>
 
         {/* Icons Section (Desktop Only) */}
