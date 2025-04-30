@@ -63,14 +63,6 @@
       crossorigin
     />
 
-    <!-- Preload critical category images -->
-    <link
-      rel="preload"
-      as="image"
-      href="https://dev.crystovajewels.com/Images/Groupimg.png"
-      fetchpriority="high"
-    />
-
     <!-- DNS Prefetch -->
     <link rel="dns-prefetch" href="https://dev.crystovajewels.com" />
 
@@ -190,6 +182,9 @@
       href="https://crystovajewels.com/static/media/purple-orn…cor-fabric-material1.842b70e7dc07fe6c9a07.webp"
       type="image/webp"
     />
+
+    <link rel="preload" as="style" href="/static/css/main.chunk.css">
+    <link rel="preload" as="script" href="/static/js/main.chunk.js">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

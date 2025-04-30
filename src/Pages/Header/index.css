@@ -257,7 +257,7 @@
   }
 
   .heder_sec_main {
-    justify-content: start !important;
+    justify-content: space-between !important;
     /* gap: 20px !important; */
     padding: 10px 23px;
   }
