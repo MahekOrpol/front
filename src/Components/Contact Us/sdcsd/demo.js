@@ -5,44 +5,21 @@ import "./demo.css";
 const JewelrySale = () => {
   const navigate = useNavigate();
 
-  // Preload critical images with priority
+  // Preload critical images
   React.useEffect(() => {
     const preloadImages = [
       '/Images/image (29).webp',
-      '/Images/crystovalogowhite (1) 2 (2).png'
-    ];
-    
-    preloadImages.forEach(src => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = src;
-      link.fetchPriority = 'high';
-      document.head.appendChild(link);
-    });
-
-    // Lazy preload non-critical images
-    const lazyPreloadImages = [
       '/Images/Mask group (6).webp',
+      '/Images/purple-ornament-indoors-decor-fabric-material2.webp',
+      '/Images/crystovalogowhite (1) 2 (2).png',
       '/Images/image (30).webp',
       '/Images/Mask group (7).webp'
     ];
     
-    if ('requestIdleCallback' in window) {
-      window.requestIdleCallback(() => {
-        lazyPreloadImages.forEach(src => {
-          const img = new Image();
-          img.src = src;
-        });
-      });
-    } else {
-      setTimeout(() => {
-        lazyPreloadImages.forEach(src => {
-          const img = new Image();
-          img.src = src;
-        });
-      }, 1000);
-    }
+    preloadImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
   }, []);
 
   return (
@@ -58,11 +35,11 @@ const JewelrySale = () => {
             className="large-img"
             width="100%"
             height="auto"
-            decoding="async"
           />
           <div className="small-imgs">
             <img
-              loading="lazy"
+              loading="eager"
+              fetchpriority="high"
               src="/Images/Mask group (6).webp"
               alt="Diamond ring close-up"
               width="100%"
@@ -72,7 +49,7 @@ const JewelrySale = () => {
         </div>
 
         {/* Center Content */}
-        <div className="center-content">
+        <div className="center-content" style={{ backgroundImage: "url('/Images/purple-ornament-indoors-decor-fabric-material2.webp')" }}>
           <img
             loading="eager"
             fetchpriority="high"
@@ -81,7 +58,6 @@ const JewelrySale = () => {
             alt="Crystova brand logo"
             width={350}
             height="auto"
-            decoding="async"
           />
           <hr className="ehgdd" />
           <span className="tagline mb-2">Jewellery Just for You</span>
@@ -97,7 +73,8 @@ const JewelrySale = () => {
         <div className="right-images">
           <div className="small-imgs">
             <img
-              loading="lazy"
+              loading="eager"
+              fetchpriority="high"
               src="/Images/image (30).webp"
               alt="Bracelet on display"
               width="100%"
@@ -105,7 +82,8 @@ const JewelrySale = () => {
             />
           </div>
           <img
-            loading="lazy"
+            loading="eager"
+            fetchpriority="high"
             src="/Images/Mask group (7).webp"
             alt="Gold jewelry display"
             className="large-img"
