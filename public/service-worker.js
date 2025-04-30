@@ -8,12 +8,11 @@ const IMAGE_CACHE = 'crystova-images-v1';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/static/js/main.bundle.js',
-  '/static/css/main.bundle.css',
-  '/offline.html', // Fallback page for offline
-  '/static/css/main.css',
-  '/static/js/main.js',
-  '/Images/logo.png'
+  '/static/css/main.chunk.css',
+  '/static/js/main.chunk.js',
+  '/main-logo.png',
+  '/manifest.json',
+  '/offline.html'
 ];
 
 // API endpoints to cache
@@ -36,7 +35,7 @@ const CACHE_DURATION = {
 self.addEventListener('install', event => {
   event.waitUntil(
     Promise.all([
-      caches.open(STATIC_CACHE).then(cache => cache.addAll(STATIC_ASSETS)),
+      caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS)),
       caches.open(API_CACHE)
     ])
   );
@@ -95,122 +94,86 @@ const safeCacheResponse = async (cache, request, response) => {
 
 // Fetch event handler
 self.addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
+  // Skip cross-origin requests
+  if (!event.request.url.startsWith(self.location.origin)) return;
 
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') {
+  // Network-first strategy for API calls
+  if (event.request.url.includes('/api/')) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME)
+            .then((cache) => cache.put(event.request, responseClone));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
     return;
   }
 
-  // Handle API requests
-  if (url.origin === 'https://dev.crystovajewels.com') {
-    event.respondWith(handleApiRequest(event.request));
+  // Cache-first strategy for static assets
+  if (
+    event.request.destination === 'style' ||
+    event.request.destination === 'script' ||
+    event.request.destination === 'image'
+  ) {
+    event.respondWith(
+      caches.match(event.request)
+        .then((response) => response || fetch(event.request))
+        .then((response) => {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME)
+            .then((cache) => cache.put(event.request, responseClone));
+          return response;
+        })
+    );
     return;
   }
 
-  // Handle image requests
-  if (isImage(url.href)) {
-    event.respondWith(handleImageRequest(event.request));
-    return;
-  }
-
-  // Handle static assets
-  if (STATIC_ASSETS.includes(url.pathname)) {
-    event.respondWith(handleStaticRequest(event.request));
-    return;
-  }
-
-  // Network-first strategy for all other requests
-  event.respondWith(handleDynamicRequest(event.request));
+  // Network-first strategy for everything else
+  event.respondWith(
+    fetch(event.request)
+      .catch(() => {
+        return caches.match(event.request)
+          .then((response) => {
+            if (response) return response;
+            
+            if (event.request.mode === 'navigate') {
+              return caches.match('/offline.html');
+            }
+            
+            return new Response('Network error happened', {
+              status: 408,
+              headers: { 'Content-Type': 'text/plain' },
+            });
+          });
+      })
+  );
 });
 
-// Handle API requests
-async function handleApiRequest(request) {
-  try {
-    const cache = await caches.open(API_CACHE);
-    const cachedResponse = await cache.match(request);
-
-    // Return valid cached response
-    if (cachedResponse && !isCacheExpired(cachedResponse, 'api')) {
-      return cachedResponse;
-    }
-
-    // Fetch fresh data
-    const response = await fetch(request);
-    if (response.ok) {
-      await safeCacheResponse(cache, request, response.clone());
-    }
-    return response;
-  } catch (error) {
-    console.error('API request failed:', error);
-    const cachedResponse = await caches.match(request);
-    return cachedResponse || new Response(JSON.stringify({ error: 'Network error' }), {
-      status: 503,
-      headers: { 'Content-Type': 'application/json' }
-    });
+// Background Sync
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'syncData') {
+    event.waitUntil(
+      // Implement your sync logic here
+      Promise.resolve()
+    );
   }
-}
+});
 
-// Handle image requests
-async function handleImageRequest(request) {
-  try {
-    const cache = await caches.open(IMAGE_CACHE);
-    const cachedResponse = await cache.match(request);
+// Push Notifications
+self.addEventListener('push', (event) => {
+  const options = {
+    body: event.data.text(),
+    icon: '/main-logo.png',
+    badge: '/main-logo.png'
+  };
 
-    // Return valid cached response
-    if (cachedResponse && !isCacheExpired(cachedResponse, 'images')) {
-      return cachedResponse;
-    }
-
-    // Fetch fresh image
-    const response = await fetch(request);
-    if (response.ok) {
-      await safeCacheResponse(cache, request, response.clone());
-    }
-    return response;
-  } catch (error) {
-    console.error('Image request failed:', error);
-    return caches.match('/Images/placeholder.png') || new Response();
-  }
-}
-
-// Handle static requests
-async function handleStaticRequest(request) {
-  try {
-    const cache = await caches.open(STATIC_CACHE);
-    const cachedResponse = await cache.match(request);
-
-    // Return valid cached response
-    if (cachedResponse && !isCacheExpired(cachedResponse, 'static')) {
-      return cachedResponse;
-    }
-
-    // Fetch fresh static asset
-    const response = await fetch(request);
-    if (response.ok) {
-      await safeCacheResponse(cache, request, response.clone());
-    }
-    return response;
-  } catch (error) {
-    console.error('Static request failed:', error);
-    return caches.match('/offline.html') || new Response();
-  }
-}
-
-// Handle dynamic requests
-async function handleDynamicRequest(request) {
-  try {
-    const response = await fetch(request);
-    if (response.ok) {
-      const cache = await caches.open(DYNAMIC_CACHE);
-      await safeCacheResponse(cache, request, response.clone());
-    }
-    return response;
-  } catch (error) {
-    console.error('Dynamic request failed:', error);
-    return caches.match(request) || caches.match('/offline.html') || new Response();
-  }
-}
+  event.waitUntil(
+    self.registration.showNotification('Crystova Jewels', options)
+  );
+});
 
 // Periodic cache cleanup
 setInterval(async () => {
