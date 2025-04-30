@@ -482,6 +482,7 @@ const Home = () => {
           <p className="category_txt">Radiance Fits for Everyone</p>
           <img
             loading="eager"
+            fetchpriority="high"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -538,63 +539,111 @@ const Home = () => {
           <div className="scrolling-wrapper fastival-offerssss">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -648,63 +697,111 @@ const Home = () => {
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+                <img
+                  loading="lazy"
+                  src="/Images/Vector.png"
+                  alt="icon"
+                />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -716,6 +813,7 @@ const Home = () => {
           <p className="category_txt">Minimal. Modern. Mesmerizing</p>
           <img
             loading="eager"
+            fetchpriority="high"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -730,6 +828,7 @@ const Home = () => {
           </p>
           <img
             loading="eager"
+            fetchpriority="high"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1126,6 +1225,7 @@ const Home = () => {
           </p>
           <img
             loading="eager"
+            fetchpriority="high"
             src="/Images/Groupimg.png"
             className="home_tag_img best_sellig_sdcdc d-none"
             alt="home"
@@ -1142,6 +1242,7 @@ const Home = () => {
           </p>
           <img
             loading="eager"
+            fetchpriority="high"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1365,6 +1466,7 @@ const Home = () => {
           <p className="category_txt">Sophistication, smartly priced.</p>
           <img
             loading="eager"
+            fetchpriority="high"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1431,6 +1533,7 @@ const Home = () => {
           <p className="category_txt">Elegant & Versatile Gifts</p>
           <img
             loading="eager"
+            fetchpriority="high"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1488,6 +1591,7 @@ const Home = () => {
           <p className="category_txt">New Designs, Same Timeless Elegance</p>
           <img
             loading="eager"
+            fetchpriority="high"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1504,6 +1608,7 @@ const Home = () => {
           <p className="category_txt">New Creations, Forever Elegance</p>
           <img
             loading="eager"
+            fetchpriority="high"
             src="/Images/Groupimg.png"
             className="home_tag_img"
             alt="home"
@@ -1519,6 +1624,7 @@ const Home = () => {
           <p className="category_txt">Store it Soft, Shine it Often</p>
           <img
             loading="eager"
+            fetchpriority="high"
             src="/Images/Groupimg.png"
             alt="Decorative"
             className="home_tag_img"
@@ -1536,6 +1642,7 @@ const Home = () => {
             <p className="category_txt">What our Client's say about us</p>
             <img
               loading="eager"
+              fetchpriority="high"
               src="/Images/Groupimg.png"
               alt="Decorative"
               className="home_tag_img"

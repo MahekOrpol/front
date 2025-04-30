@@ -79,9 +79,23 @@ const ProductDetailss = () => {
   } = useSelector((state) => state.cart);
 
   // Use custom hooks
-  const { productDetails: customProductDetails, relatedProducts: customRelatedProducts, loading: productLoading } = useProductDetails(productId, productData);
-  const { isInWishlist, loading: wishlistLoading, toggleWishlist } = useWishlist(userId);
-  const { images: productImages, selectedImage, isLoading: imagesLoading, selectImage, getOptimizedImageUrl } = useProductImages(customProductDetails?.image || []);
+  const {
+    productDetails: customProductDetails,
+    relatedProducts: customRelatedProducts,
+    loading: productLoading,
+  } = useProductDetails(productId, productData);
+  const {
+    isInWishlist,
+    loading: wishlistLoading,
+    toggleWishlist,
+  } = useWishlist(userId);
+  const {
+    images: productImages,
+    selectedImage,
+    isLoading: imagesLoading,
+    selectImage,
+    getOptimizedImageUrl,
+  } = useProductImages(customProductDetails?.image || []);
 
   const message = `🖼 *Image:* ${imageUrl}
 
@@ -133,7 +147,8 @@ Please let me know the next steps.`;
 
   // Filter images and videos
   const videos = useMemo(
-    () => customProductDetails?.image?.filter((vid) => vid.endsWith(".mp4")) || [],
+    () =>
+      customProductDetails?.image?.filter((vid) => vid.endsWith(".mp4")) || [],
     [customProductDetails]
   );
 
@@ -466,7 +481,8 @@ Please let me know the next steps.`;
           <section className="d-flex gap-lg-5 p-0 pro_sss_gubs">
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
-                {customProductDetails?.image && customProductDetails.image.length > 0 ? (
+                {customProductDetails?.image &&
+                customProductDetails.image.length > 0 ? (
                   customProductDetails.image.map((img, index) => {
                     const isVideo = img.endsWith(".mp4"); // Check if the file is a video
                     return (
@@ -521,7 +537,8 @@ Please let me know the next steps.`;
                   }}
                   className="fddd"
                 >
-                  {customProductDetails?.image && customProductDetails.image.length > 0 ? (
+                  {customProductDetails?.image &&
+                  customProductDetails.image.length > 0 ? (
                     customProductDetails.image.map((img, index) => {
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
 
@@ -725,8 +742,8 @@ Please let me know the next steps.`;
                     {productImages.map((media, index) => (
                       <div key={index}>
                         <img
-                          loading={index === 0 ? "eager" : "lazy"}
-                          fetchpriority={index === 0 ? "high" : "auto"}
+                          loading="eager"
+                          fetchpriority="high"
                           src={`https://dev.crystovajewels.com${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           alt={customProductDetails?.productName || "Product image"}
@@ -736,6 +753,7 @@ Please let me know the next steps.`;
                   </Slider>
                 ) : productImages[0] ? (
                   <img
+                    loading="eager"
                     fetchpriority="high"
                     src={`https://dev.crystovajewels.com${productImages[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
@@ -749,8 +767,7 @@ Please let me know the next steps.`;
               {productImages[1] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchpriority={index === 0 ? "high" : "auto"}
+                    loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
@@ -762,8 +779,7 @@ Please let me know the next steps.`;
               {productImages[2] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchpriority={index === 0 ? "high" : "auto"}
+                    loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
@@ -775,7 +791,9 @@ Please let me know the next steps.`;
             <div className="w-100 sdcsd_saxza dscd_54_Dscds ">
               <div>
                 <div className="d-flex justify-content-between align-items-center">
-                  <span className="secrt_1">{customProductDetails?.productName}</span>
+                  <span className="secrt_1">
+                    {customProductDetails?.productName}
+                  </span>
                   <div>
                     <button className="sav_btn p-2 pe-3 ps-3 dcs_dddd_8888">
                       Save {displayPrice.discount}%
@@ -799,7 +817,9 @@ Please let me know the next steps.`;
                     </div>
                   </div>
                   <div className="gap-3 d-flex align-items-center df_rrrrr">
-                    <span className="sku_dsd">SKU : {customProductDetails?.sku}</span>
+                    <span className="sku_dsd">
+                      SKU : {customProductDetails?.sku}
+                    </span>
                     <button className="stk_btn p-2 pe-3 ps-3">
                       {customProductDetails?.stock}
                     </button>
