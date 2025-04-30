@@ -1311,7 +1311,7 @@
 }
 @media (max-width: 375px) {
   .occation-content-h2 {
-    margin-top: 26px;
+    margin-top: -1rem;
   }
   .dscdsc_inst {
     gap: 2px !important;

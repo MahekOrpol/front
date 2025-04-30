@@ -454,7 +454,7 @@
 }
 
 .hedr_sss img {
-  max-width: 180px;
+  max-width: 180px !important;
   height: auto;
 }
 

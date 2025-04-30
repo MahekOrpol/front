@@ -5,186 +5,48 @@
     <link rel="icon" type="image/png" href="/main-logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-
     <title>Crystova Jewels</title>
+
+    <!-- Critical Meta Tags -->
     <meta name="title" content="Crystova Jewels - Sparkle with Elegance" />
-    <meta
-      name="description"
-      content="Explore Crystova Jewels for timeless elegance. Discover rings, necklaces, earrings, and more—crafted for your special moments."
-    />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://crystovajewels.com" />
-    <meta
-      property="og:title"
-      content="Crystova Jewels - Sparkle with Elegance"
-    />
-    <meta
-      property="og:description"
-      content="Explore Crystova Jewels for timeless elegance. Discover rings, necklaces, earrings, and more—crafted for your special moments."
-    />
-    <meta
-      property="og:image"
-      content="https://crystovajewels.com/main-logo.png"
-    />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://crystovajewels.com" />
-    <meta
-      property="twitter:title"
-      content="Crystova Jewels - Sparkle with Elegance"
-    />
-    <meta
-      property="twitter:description"
-      content="Explore Crystova Jewels for timeless elegance. Discover rings, necklaces, earrings, and more—crafted for your special moments."
-    />
-    <meta
-      property="twitter:image"
-      content="https://crystovajewels.com/main-logo.png"
-    />
-
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/main-logo.png" />
-
-    <!-- Preconnects and Resource Hints -->
+    <meta name="description" content="Explore Crystova Jewels for timeless elegance. Discover rings, necklaces, earrings, and more—crafted for your special moments." />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/static/css/main.chunk.css" as="style" />
+    <link rel="preload" href="/static/js/main.chunk.js" as="script" />
+    <link rel="preload" href="/main-logo.png" as="image" type="image/png" fetchpriority="high" />
+    
+    <!-- Preconnect to Critical Domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://dev.crystovajewels.com" crossorigin />
-    <link rel="preconnect" href="https://accounts.google.com" crossorigin />
     
-    <!-- Preload Critical Fonts -->
-    <link
-      rel="preload"
-      as="font"
-      href="https://fonts.gstatic.com/s/dmseriftext/v12/rnCu-xZa_krGOWt5_6ge7ZetF.woff2"
-      type="font/woff2"
-      crossorigin
-    />
-
-    <!-- DNS Prefetch -->
-    <link rel="dns-prefetch" href="https://dev.crystovajewels.com" />
-
-    <!-- Resource hints for critical resources -->
-    <link rel="preload" href="/fonts/your-main-font.woff2" as="font" type="font/woff2" crossorigin />
-    
-    <!-- Preload critical CSS -->
-    <link rel="preload" href="/static/css/main.chunk.css" as="style" />
-
     <!-- Inline Critical CSS -->
     <style>
-      /* Critical CSS */
-      :root {
-        --primary-color: #000000;
-        --secondary-color: #ffffff;
-      }
-      
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: "DM Serif Text", serif;
-        -webkit-font-smoothing: antialiased;
-        text-rendering: optimizeLegibility;
-      }
-
-      .main-header {
-        transition: transform 0.3s ease-in-out;
-      }
-
-      .main-header.hide-header {
-        transform: translateY(-100%);
-      }
-
-      .main-product-image {
-        width: 100%;
-        height: auto;
-        display: block;
-        max-height: 600px;
-        object-fit: contain;
-      }
-
-      /* Add loading animation for images */
-      .image-loading {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-        background-size: 200% 100%;
-        animation: loading 1.5s infinite;
-      }
-
-      @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
-      }
-
-      html, body, #root {
-        background-color: #ffffff; /* or your desired background color */
-        margin: 0;
-        padding: 0;
-      }
-      
-      /* Add this to prevent FOUC (Flash of Unstyled Content) */
-      #root:empty {
-        display: none;
-      }
+      :root{--primary:#611d2b;--secondary:#fff}
+      body{margin:0;padding:0;font-family:"DM Serif Text",serif;-webkit-font-smoothing:antialiased}
+      .header_main{background-color:var(--primary);color:var(--secondary);height:40px}
+      .main-header{transition:transform .3s}
+      .main-product-image{width:100%;height:auto;max-height:600px;object-fit:contain}
+      #root:empty{display:none}
+      @keyframes loading{0%{background-position:200% 0}100%{background-position:-200% 0}}
     </style>
 
     <!-- Async CSS Loading -->
-    <link 
-      rel="stylesheet" 
-      href="/static/css/main.css" 
-      media="print" 
-      onload="this.media='all'"
-    />
-    
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      media="print"
-      onload="this.media='all'"
-    />
-
-    <!-- Bootstrap JS Bundle (deferred) -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-      defer
-    ></script>
-
-    <!-- Preload the LCP image with a high fetchpriority -->
-    <link
-      rel="preload"
-      fetchpriority="high"
-      as="image"
-      href="https://crystovajewels.com/static/media/hero-image.webp"
-      type="image/webp"
-    />
+    <link rel="stylesheet" href="/static/css/main.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="/static/css/main.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+    </noscript>
 
     <!-- Deferred Scripts -->
     <script defer src="https://accounts.google.com/gsi/client"></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-
-    <meta
-      name="google-signin-client_id"
-      content="765559507358-c081ske9jc3vf1m9nd63h256nin76nu4.apps.googleusercontent.com"
-    />
-
-    <!-- Preload the LCP image with a high fetchpriority so it starts loading with the stylesheet. -->
-    <link
-      rel="preload"
-      fetchpriority="high"
-      as="image"
-      href="https://crystovajewels.com/static/media/purple-orn…cor-fabric-material1.842b70e7dc07fe6c9a07.webp"
-      type="image/webp"
-    />
-
-    <link rel="preload" as="style" href="/static/css/main.chunk.css">
-    <link rel="preload" as="script" href="/static/js/main.chunk.js">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" href="/main-logo.png" />
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
