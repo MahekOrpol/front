@@ -419,6 +419,8 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 style={{ cursor: "pointer" }}
               >
                 <img
+                  loading="eager"
+                  fetchpriority="high"
                   src={categoryImages[category.categoryName]}
                   width={20}
                   alt={category.categoryName}
@@ -465,7 +467,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           <img
             src="/Images/crystovalogowhite (1) 2.png"
             style={{ width: "60%" }}
-            onClick={()=>navigate('/')}
+            onClick={() => navigate("/")}
           />
           <div className="drawer-header">
             <IoClose size={30} onClick={toggleDrawer} />
