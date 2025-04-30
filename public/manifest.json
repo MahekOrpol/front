@@ -1,52 +1,26 @@
 {
-  "short_name": "Crystova",
-  "name": "Crystova Jewels",
-  "description": "Explore timeless elegance with Crystova Jewels. Discover rings, necklaces, earrings, and more.",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64",
+      "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "main-logo.png",
+      "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any maskable"
+      "sizes": "192x192"
     },
     {
-      "src": "main-logo.png",
+      "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any maskable"
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#611d2b",
-  "background_color": "#ffffff",
-  "orientation": "portrait",
-  "categories": ["shopping", "lifestyle"],
-  "prefer_related_applications": false,
-  "shortcuts": [
-    {
-      "name": "View Products",
-      "url": "/products",
-      "description": "Browse our jewelry collection"
-    },
-    {
-      "name": "Shopping Cart",
-      "url": "/add_to_cart",
-      "description": "View your shopping cart"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/Images/screenshot1.png",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "platform": "wide",
-      "label": "Homepage of Crystova Jewels"
-    }
-  ]
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }
+
