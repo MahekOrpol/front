@@ -123,6 +123,17 @@
         0% { background-position: 200% 0; }
         100% { background-position: -200% 0; }
       }
+
+      html, body, #root {
+        background-color: #ffffff; /* or your desired background color */
+        margin: 0;
+        padding: 0;
+      }
+      
+      /* Add this to prevent FOUC (Flash of Unstyled Content) */
+      #root:empty {
+        display: none;
+      }
     </style>
 
     <!-- Async CSS Loading -->

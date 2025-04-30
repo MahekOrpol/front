@@ -31,13 +31,12 @@ const OptimizedImage = ({
   return (
     <div className={`image-container ${isLoading ? 'loading' : ''}`}>
       <img
+        width="800"
+        height="600"
+        loading="lazy"
         src={currentSrc}
         alt={alt}
         className={`${className} ${isLoading ? 'blur-sm' : ''}`}
-        width={width}
-        height={height}
-        loading={priority ? "eager" : "lazy"}
-        decoding={priority ? "sync" : "async"}
         style={{
           transition: 'filter 0.3s ease-in-out',
         }}
