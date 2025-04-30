@@ -538,7 +538,7 @@ const Products = () => {
         <div>
           <img
             loading="eager"
-            src="/Images/productt_sss.png"
+            src="/Images/productt_sss.webp"
             className="img_fluid1_banner"
             alt="product"
           />
