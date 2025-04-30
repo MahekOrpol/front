@@ -6080,6 +6080,13 @@ video {
     backface-visibility: hidden;
   }
 }
+@media (max-width: 480px) {
+  .swiper-wrapper {
+    gap: 0rem;
+    margin: auto;
+    margin-top: 0.5rem !important;
+}
+}
 
 /* Performance Optimizations */
 .categories-slider .swiper-slide {
