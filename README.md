@@ -70,3 +70,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 readme updated from shiv.
+
+1. framer motion
+2. sharp
+3. testing libs
+4.
+
+- preloaded google fonts on index.html
+  earlier it was an dummy link , taking 1.3 sec time to fetch .
+    <!-- Preload Critical Fonts -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+        />
+

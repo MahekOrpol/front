@@ -21,7 +21,6 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import LazyVideo from "./LazyVideo";
 
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
@@ -441,27 +440,6 @@ const Home = () => {
 
   return (
     <>
-       <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        stacked
-        style={{ zIndex: 1000000001 }}
-      />
-
-      <CartPopup
-        isOpen={isCartOpen}
-        closeCart={closeCart}
-        showToast={showToast}
-        toastMessage={toastMessage}
-      />
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header">
@@ -513,7 +491,7 @@ const Home = () => {
                     <img
                       fetchpriority="high"
                       decoding="async"
-                      loading='eager'
+                      loading="eager"
                       src={`https://dev.crystovajewels.com${category.categoryImage}`}
                       alt={category.categoryName}
                       onLoad={(e) => {
@@ -522,7 +500,7 @@ const Home = () => {
                       }}
                       style={{
                         opacity: 0,
-                        transition: "opacity 0.1s ease-in"
+                        transition: "opacity 0.1s ease-in",
                       }}
                     />
                   </div>
@@ -539,111 +517,63 @@ const Home = () => {
           <div className="scrolling-wrapper fastival-offerssss">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -697,111 +627,63 @@ const Home = () => {
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewelry
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -1698,6 +1580,26 @@ const Home = () => {
         <div className="pb-5"></div>
         <Footer />
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        stacked
+        style={{ zIndex: 1000000001 }}
+      />
+      <CartPopup
+        isOpen={isCartOpen}
+        closeCart={closeCart}
+        showToast={showToast}
+        toastMessage={toastMessage}
+      />
     </>
   );
 };

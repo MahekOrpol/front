@@ -32,11 +32,11 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
-  
+
   useEffect(() => {
     // Reset login fields when switching to the "register" tab
     if (tabValue === "register") {
-      setLoginEmail(""); 
+      setLoginEmail("");
       setLoginPassword("");
     }
     // Reset register fields when switching to the "login" tab
@@ -50,7 +50,6 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     }
   }, [tabValue]); // This effect runs whenever tabValue changes
 
-  
   if (showForgotPass) {
     return <ForgotPass isOpen={showForgotPass} />;
   }
@@ -173,12 +172,11 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     }
   };
 
- 
   if (!isOpen) return null;
 
   return (
     <>
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -201,7 +199,11 @@ const RegisterPopup = ({ isOpen, onClose }) => {
         <div className="register-popup" onClick={(e) => e.stopPropagation()}>
           <div className="register-container">
             <div className="register-image">
-              <img loading="lazy" src='/Images/registerpage.png' alt="Register" />
+              <img
+                loading="lazy"
+                src="/Images/registerpage.png"
+                alt="Register"
+              />
             </div>
 
             <div className="register-form">
