@@ -33,6 +33,12 @@ const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
 const CartPopup = lazy(() => import("../Add to Cart"));
 
+const productWithBanners = [
+  "/Images/Product-offer-banner/banner1.svg",
+  "/Images/Product-offer-banner/banner2.svg",
+  "/Images/Product-offer-banner/banner3.svg",
+]; 
+
 const Products = () => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState(null);
@@ -792,32 +798,6 @@ const Products = () => {
                             );
                           })()}
 
-                          {/* {product.image[imageIndexes[product.id]]?.endsWith(
-                            ".mp4"
-                          ) ? (
-                            <video
-                              src={`https://dev.crystovajewels.com${
-                                product.image[imageIndexes[product.id]]
-                              }`}
-                              className="p-1_proi img-fluid"
-                              autoPlay
-                              loop
-                              muted
-                              playsInline
-                              controls={false}
-                              onClick={() => handleProductClick(product.id)}
-                            />
-                          ) : (
-                            <img
-                              loading="eager"
-                              src={`https://dev.crystovajewels.com${
-                                product.image[imageIndexes[product.id]]
-                              }`}
-                              onClick={() => handleProductClick(product.id)}
-                              className="p-1_proi img-fluid"
-                              alt="Product"
-                            />
-                          )} */}
                           {hoveredProduct === product.id && (
                             <div className="hover-overlay w-100 d-none d-sm-flex">
                               <button

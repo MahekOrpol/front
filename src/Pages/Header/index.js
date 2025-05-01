@@ -415,7 +415,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 position-relative mx-3"
                 onMouseEnter={() => setHoveredCategory(category.categoryName)}
                 onMouseLeave={() => setHoveredCategory(null)}
-                onClick={() => handleCategoryClick(category.categoryName)}
+                onClick={() =>
+                  handleCategoryClick(category.categoryName)
+                }
                 style={{ cursor: "pointer" }}
               >
                 <img
@@ -430,6 +432,13 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 {hoveredCategory === category.categoryName &&
                   category.subcategories.length > 0 && (
                     <div className="dropdown-subcategory">
+                      <div
+                        onClick={() =>
+                          handleCategoryClick(category.categoryName)
+                        }
+                      >
+                        Rings
+                      </div>
                       {category.subcategories.map((subcat) => (
                         <div
                           key={subcat._id}
