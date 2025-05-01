@@ -24,7 +24,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SiWhatsapp } from "react-icons/si";
 import { IoLogoWhatsapp } from "react-icons/io";
-import { Carousel } from "react-bootstrap";
+import { Carousel, Dropdown } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -35,6 +35,7 @@ import ProductViewCounter from "../../ProductViewCounter";
 import { useWishlist } from "./hooks/useWishlist";
 import { useProductImages } from "./hooks/useProductImages";
 import { useProductDetails } from "./hooks/useProductDetails";
+import RingSizeInfoBox from "./RingSizeInfoBox";
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
@@ -746,7 +747,9 @@ Please let me know the next steps.`;
                           fetchpriority="high"
                           src={`https://dev.crystovajewels.com${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                          alt={customProductDetails?.productName || "Product image"}
+                          alt={
+                            customProductDetails?.productName || "Product image"
+                          }
                         />
                       </div>
                     ))}
@@ -846,31 +849,32 @@ Please let me know the next steps.`;
                 </div>
 
                 <div className="dropdown">
-                  <button
-                    className="btn btn-secondary dropdown-toggle size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    {selectedSize || "Select size"}
-                  </button>
-                  <ul className="dropdown-menu product_det_menu w-50 mt-1">
-                    {(Array.isArray(customProductDetails?.productSize)
-                      ? customProductDetails.productSize[0].split(",")
-                      : []
-                    ).map((size) => (
-                      <li key={size.trim()}>
-                        <button
-                          className="dropdown-item"
-                          onClick={() => handleSelect(size.trim())}
-                        >
-                          {size.trim()}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      className="size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
+                      variant="secondary"
+                    >
+                      {selectedSize || "Select size"}
+                    </Dropdown.Toggle>
 
+                    <Dropdown.Menu className="product_det_menu w-50 mt-1">
+                      {Array.isArray(customProductDetails?.productSize)
+                        ? customProductDetails.productSize.map((sizeGroup) =>
+                            sizeGroup.split(",").map((size) => (
+                              <Dropdown.Item
+                                key={size.trim()}
+                                onClick={() => handleSelect(size.trim())}
+                              >
+                                {size.trim()}
+                              </Dropdown.Item>
+                            ))
+                          )
+                        : []}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+                {/* ring side video */}
+                <RingSizeInfoBox />
                 <div className="">
                   <hr className="hr_pb_dtl" />
                 </div>
