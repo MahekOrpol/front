@@ -5,23 +5,6 @@ import "./demo.css";
 const JewelrySale = () => {
   const navigate = useNavigate();
 
-  // Preload critical images
-  React.useEffect(() => {
-    const preloadImages = [
-      '/Images/image (29).webp',
-      '/Images/Mask group (6).webp',
-      '/Images/purple-ornament-indoors-decor-fabric-material2.webp',
-      '/Images/crystovalogowhite (1) 2 (2).png',
-      '/Images/image (30).webp',
-      '/Images/Mask group (7).webp'
-    ];
-    
-    preloadImages.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
-
   return (
     <section className="jewelry-sale">
       <div className="jewelry-sale-grid">
@@ -49,7 +32,13 @@ const JewelrySale = () => {
         </div>
 
         {/* Center Content */}
-        <div className="center-content" style={{ backgroundImage: "url('/Images/purple-ornament-indoors-decor-fabric-material2.webp')" }}>
+        <div
+          className="center-content"
+          style={{
+            backgroundImage:
+              "url('/Images/purple-ornament-indoors-decor-fabric-material2.webp')",
+          }}
+        >
           <img
             loading="eager"
             fetchpriority="high"

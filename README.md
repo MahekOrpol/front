@@ -74,7 +74,7 @@ readme updated from shiv.
 1. framer motion
 2. sharp
 3. testing libs
-4.
+4. redux-persist
 
 - preloaded google fonts on index.html
   earlier it was an dummy link , taking 1.3 sec time to fetch .
@@ -85,4 +85,3 @@ readme updated from shiv.
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
         />
-

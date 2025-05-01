@@ -24,7 +24,6 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.5",
-    "redux-persist": "^6.0.0",
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.8.1",
     "swiper": "^11.2.6",
@@ -67,6 +66,7 @@
     "cssnano": "^7.0.6",
     "image-webpack-loader": "^8.1.0",
     "purgecss": "^5.0.0",
+    "terser-webpack-plugin": "^5.3.14",
     "webpack-bundle-analyzer": "^4.10.2"
   }
 }

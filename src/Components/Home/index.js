@@ -21,6 +21,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import JewelrySale2 from "../Contact Us/sdcsd/demo2";
 
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
@@ -452,7 +453,8 @@ const Home = () => {
           </Suspense>
         </div>
         <div>
-          <JewelrySale />
+          {/* <JewelrySale /> */}
+          <JewelrySale2 />
         </div>
 
         <div className="d-flex flex-column align-items-center hdr_csd p-0 sdcds_cate">
@@ -465,7 +467,6 @@ const Home = () => {
             className="home_tag_img"
             alt="home"
           />
-
           <div className="categories-slider">
             <Swiper
               spaceBetween={20}
@@ -582,22 +583,16 @@ const Home = () => {
           <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
             <div className="position-relative">
               <img
-                src="/Images/image (3).webp"
-                className="img-fluid w-100"
+                src="/Images/hero-img3.webp"
                 alt="Main Image"
-                width="1920"
-                height="700"
+                className="img-fluid"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
               />
-
-              <div className="overlay-img11">
-                <img
-                  loading="eager"
-                  src="/Images/Rectangle 105457.png"
-                  className="img-fluid w-100"
-                  alt="Overlay"
-                />
-              </div>
+              <div className="overlay-rectangle"></div>
             </div>
+
             <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
               <span className="fest_fff">FESTIVAL SALE OFFERS</span>
               <div className="txt_frss d-flex flex-column gap-3 sale_offer_sss">

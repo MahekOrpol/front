@@ -28,7 +28,6 @@ import { Carousel } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import ProductViewCounter from "../../ProductViewCounter";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ProductViewCounter from "../../ProductViewCounter";
@@ -746,7 +745,9 @@ Please let me know the next steps.`;
                           fetchpriority="high"
                           src={`https://dev.crystovajewels.com${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                          alt={customProductDetails?.productName || "Product image"}
+                          alt={
+                            customProductDetails?.productName || "Product image"
+                          }
                         />
                       </div>
                     ))}

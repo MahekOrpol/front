@@ -48,7 +48,25 @@
   justify-content: center;
   display: flex;
 }
-
+.img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
+}
+.overlay-rectangle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  transform: translate(-50%, -50%);
+  height: 85%;
+  border: 2px solid white; /* White border */
+  border-radius: 8px;
+  pointer-events: none; /* Prevent interaction */
+  z-index: 1;
+}
 .get-strt_btn {
   width: 185px;
   height: 45px;
@@ -235,18 +253,6 @@
 
 .position-relative {
   display: inline-block;
-  /* Ensures the container only takes up necessary space */
-}
-
-.overlay-img11 {
-  position: absolute;
-  top: 50%;
-  /* Adjust position */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  /* Center it over the main image */
-  width: 90%;
-  /* Make it responsive relative to the parent */
 }
 
 .fest_fff {
@@ -2554,7 +2560,7 @@ img.ring-image {
   .spg_nb_sle {
     width: 68% !important;
     font-size: 24px;
-}
+  }
 }
 
 @media (width: 425px) {
@@ -3762,14 +3768,14 @@ video {
   .spg_nb_sle {
     width: 50% !important;
     font-size: 24px;
-}
+  }
 }
 
 @media (min-width: 375px) and (max-width: 424px) {
   .spg_nb_sle {
     width: 68% !important;
     font-size: 24px;
-}
+  }
 }
 
 @media (max-width: 993px) and (min-width: 768px) {
@@ -4744,10 +4750,6 @@ video {
   height: 100%;
 }
 
-.img-fluid {
-  border-radius: 8px;
-}
-
 @media (min-width: 992px) {
   .ring-collection-csssss {
     width: 50% !important;
@@ -5451,11 +5453,11 @@ video {
 }
 
 .category_name {
-  @media (max-width:575px) and (min-width:400px) {
+  @media (max-width: 575px) and (min-width: 400px) {
     font-size: 33px !important;
     line-height: 40px !important;
   }
-  @media (max-width:400px) {
+  @media (max-width: 400px) {
     font-size: 30px !important;
     line-height: 40px !important;
   }
@@ -5999,16 +6001,16 @@ video {
     width: 100px;
     height: 100px;
   }
-  
+
   .category-image-wrapper:hover {
-   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-   transform: none;
-   -webkit-transform: none;
-   -moz-transform: none;
-   -ms-transform: none;
-   -o-transform: none;
-}
-  
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+  }
+
   .category-label {
     font-size: 0.9rem;
   }
@@ -6019,7 +6021,7 @@ video {
     width: 70px;
     height: 70px;
   }
-  
+
   .category-label {
     font-size: 0.8rem;
   }
@@ -6051,7 +6053,7 @@ video {
     gap: 0rem;
     margin: auto;
     margin-top: 0.5rem !important;
-}
+  }
 }
 
 /* Performance Optimizations */
@@ -6130,8 +6132,8 @@ video {
 
 @media (max-width: 425px) {
   .txt_frss {
-      font-size: 23px !important;
-      font-weight: 500;
+    font-size: 23px !important;
+    font-weight: 500;
   }
   .fest_fff {
     font-family: "Cabin", sans-serif;
@@ -6139,9 +6141,9 @@ video {
     font-size: 20px !important;
     line-height: 100%;
     letter-spacing: 0%;
-}
-.sale_offer_sss {
-  display: inline-block !important;
-  line-height: 31px;
-}
+  }
+  .sale_offer_sss {
+    display: inline-block !important;
+    line-height: 31px;
+  }
 }

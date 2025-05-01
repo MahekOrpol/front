@@ -42,7 +42,6 @@
   color: #fff;
   text-align: center;
   padding: 40px 20px;
-
   flex: 1;
   min-width: 280px;
   height: 100%;
@@ -65,7 +64,6 @@
   font-size: 45px;
   line-height: 100%;
   letter-spacing: 2%;
-
 }
 
 .sale-text {
@@ -87,8 +85,8 @@
 }
 
 .shop-now {
-  background-color: #FFFBED;
-  color: #611D2B;
+  background-color: #fffbed;
+  color: #611d2b;
   padding: 12px 24px;
   border: none;
   cursor: pointer;
@@ -116,7 +114,7 @@
   opacity: 1;
 }
 
-@media(min-width:1323px) and (max-width:1500px) {
+@media (min-width: 1323px) and (max-width: 1500px) {
   .tagline {
     font-size: 28px;
   }
@@ -134,7 +132,7 @@
   }
 }
 
-@media(min-width:1200px) and (max-width:1322px) {
+@media (min-width: 1200px) and (max-width: 1322px) {
   .tagline {
     font-size: 28px;
   }
@@ -160,7 +158,7 @@
   }
 }
 
-@media(min-width:999px) and (max-width:1199px) {
+@media (min-width: 999px) and (max-width: 1199px) {
   .tagline {
     font-size: 27px;
   }
@@ -169,7 +167,7 @@
     width: 73%;
   }
 
-    .logo-banner {
+  .logo-banner {
     width: 270px !important;
   }
 
@@ -194,7 +192,7 @@
   }
 }
 
-@media(min-width:800px) and (max-width:998px) {
+@media (min-width: 800px) and (max-width: 998px) {
   .tagline {
     font-size: 23px;
   }
@@ -229,7 +227,7 @@
   }
 }
 
-@media(min-width:700px) and (max-width:799px) {
+@media (min-width: 700px) and (max-width: 799px) {
   .tagline {
     font-size: 20px;
   }
@@ -262,7 +260,7 @@
   }
 }
 
-@media(min-width:593px) and (max-width:699px) {
+@media (min-width: 593px) and (max-width: 699px) {
   .tagline {
     font-size: 18px;
   }
@@ -295,7 +293,7 @@
   }
 }
 
-@media(min-width:400px) and (max-width:592px) {
+@media (min-width: 400px) and (max-width: 592px) {
   .tagline {
     font-size: 12px;
   }
@@ -329,7 +327,7 @@
   }
 }
 
-@media (max-width:399px) {
+@media (max-width: 399px) {
   .tagline {
     font-size: 8px;
   }
@@ -371,7 +369,6 @@
 
   .left-images,
   .right-images {
-
     flex-direction: column;
     justify-content: center;
   }
@@ -405,21 +402,20 @@
     width: 100%;
     height: 100% !important;
   }
-  .left-images{
+  .left-images {
     height: 100% !important;
   }
-  
+
   .right-images {
     height: 100% !important;
-}
+  }
 
-.small-imgs {
-  height: 100% !important;
-}
-  .left-images img.large-img{
-  height: 100% !important;
-  
-}
+  .small-imgs {
+    height: 100% !important;
+  }
+  .left-images img.large-img {
+    height: 100% !important;
+  }
   .sale-text {
     font-size: 35px;
   }
