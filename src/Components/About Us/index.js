@@ -217,7 +217,7 @@ const AboutUs = () => {
                 Since our inception, we have been devoted to crafting
                 exceptional pieces that celebrate life’s most meaningful
                 moments. From engagements to anniversaries, birthdays to
-                everyday expressions of love, our jewelry is designed to be a
+                everyday expressions of love, our Jewellery is designed to be a
                 part of your story—each piece a reflection of your unique
                 journey. Each piece we create is imbued with meaning, designed
                 to resonate with your deepest sentiments and last for
@@ -285,7 +285,7 @@ const AboutUs = () => {
                       Vision
                     </span>
                     <span className="wqsjjhu_wwsw">
-                      To be a globally recognized jewelry brand that inspires
+                      To be a globally recognized Jewellery brand that inspires
                       confidence, celebrates individuality, and transforms
                       life’s moments into timeless treasures.
                     </span>
@@ -479,7 +479,7 @@ preload="none"
                 <PiCertificateLight size={50} className="icon-style" />
                 <span className="xshhhss_ss">Certifications</span>
                 <span className="xshhhss">
-                  All our jewelry pieces are certified for quality and ethical
+                  All our Jewellery pieces are certified for quality and ethical
                   sourcing.
                 </span>
               </div>

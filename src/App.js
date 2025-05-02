@@ -64,7 +64,7 @@ function App() {
           <Route path="/blog-details" element={<BlogDetails />} />
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/Customjewel" element={<CustomJewel />} />
+          <Route path="/customjewel" element={<CustomJewel />} />
           <Route path="/demo" element={<JewelrySale />} />
           <Route
             path="/order"

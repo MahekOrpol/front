@@ -545,7 +545,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -563,7 +563,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -581,7 +581,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -599,7 +599,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -617,7 +617,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -635,7 +635,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -671,7 +671,7 @@ const Home = () => {
             <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
               <span className="fest_fff">FESTIVAL SALE OFFERS</span>
               <div className="txt_frss d-flex flex-column gap-3 sale_offer_sss">
-                <span>Upto 25% Off on All Jewelry Favorites</span>
+                <span>Upto 25% Off on All Jewellery Favorites</span>
                 <span> Limited Time!</span>
               </div>
               <div>
@@ -703,7 +703,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -721,7 +721,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -739,7 +739,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -757,7 +757,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -775,7 +775,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -793,7 +793,7 @@ const Home = () => {
                   alt="icon"
                 />
                 <span className="scroll_heder">
-                  Shop Gold and Diamond Jewelry
+                  Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
@@ -809,7 +809,7 @@ const Home = () => {
         </div>
 
         <div className="d-flex flex-column align-items-center diamon_jewe">
-          <span className="category_name mt-md-4">Diamond Jewelry</span>
+          <span className="category_name mt-md-4">Diamond Jewellery</span>
           <p className="category_txt">Minimal. Modern. Mesmerizing</p>
           <img
             loading="eager"
@@ -1218,7 +1218,7 @@ const Home = () => {
         </div>
         <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-md-1 ewcdsecesdfc">
           <span className="category_name best_sellig_sdcdc d-none">
-            Jewelry for Occasions
+            Jewellery for Occasions
           </span>
           <p className="category_txt best_sellig_sdcdc d-none">
             Celebrate Forever with a Sparkle

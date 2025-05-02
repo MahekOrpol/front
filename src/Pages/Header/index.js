@@ -458,7 +458,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
 
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
-            onClick={() => navigate("/Customjewel")}
+            onClick={() => navigate("/customjewel")}
           >
             <img
               src="/Images/Group 1597884646.svg"
@@ -564,7 +564,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
 
               <div
                 className="drawer-item d-flex align-items-center gap-2 w-100"
-                onClick={() => navigate("/Customjewel")}
+                onClick={() => navigate("/customjewel")}
               >
                 <img
                   src="/Images/Group 1597884646.svg"

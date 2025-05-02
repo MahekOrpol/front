@@ -35,7 +35,7 @@ const Gift = () => {
       image: "/Images/g4.webp",
       title: "Elegant Moments",
       description:
-        "Magical memories begin here with our exquisite fine jewelry collection.",
+        "Magical memories begin here with our exquisite fine Jewellery collection.",
     },
     {
       image: "/Images/gift2.webp",
@@ -53,7 +53,7 @@ const Gift = () => {
       image: "/Images/gift4.webp",
       title: "Luxury in Style",
       description:
-        "Celebrate every occasion with our exclusive premium jewelry gifts.",
+        "Celebrate every occasion with our exclusive premium Jewellery gifts.",
     },
     {
       image: "/Images/gift5.webp",
@@ -65,7 +65,7 @@ const Gift = () => {
       image: "/Images/gift3 (1).webp",
       title: "Memory Makers",
       description:
-        "Create cherished memories with our beautiful handcrafted jewelry.",
+        "Create cherished memories with our beautiful handcrafted Jewellery.",
     },
   ];
 
@@ -77,7 +77,7 @@ const Gift = () => {
           Celebrate Every Moment with Timeless Elegance
         </h2>
         <p className="mack_pox_headfrp">
-          Discover exclusive designs in our Limited Edition Jewelry Collection –
+          Discover exclusive designs in our Limited Edition Jewellery Collection –
           where artistry meets sophistication. Handcrafted with precision for
           those who value beauty that never fades. Available for a limited time
           only.

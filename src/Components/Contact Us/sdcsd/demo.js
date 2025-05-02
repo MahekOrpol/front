@@ -23,8 +23,8 @@ const JewelrySale = () => {
   }, []);
 
   return (
-    <section className="jewelry-sale">
-      <div className="jewelry-sale-grid">
+    <section className="Jewellery-sale">
+      <div className="Jewellery-sale-grid">
         {/* Left Images */}
         <div className="left-images">
           <img
@@ -85,7 +85,7 @@ const JewelrySale = () => {
             loading="eager"
             fetchpriority="high"
             src="/Images/Mask group (7).webp"
-            alt="Gold jewelry display"
+            alt="Gold Jewellery display"
             className="large-img"
             width="100%"
             height="auto"

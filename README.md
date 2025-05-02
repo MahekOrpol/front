@@ -1,6 +1,6 @@
 # Crystal Jewels E-commerce Frontend
 
-A modern, performant React-based e-commerce frontend for a jewelry store.
+A modern, performant React-based e-commerce frontend for a Jewellery store.
 
 ## Features
 

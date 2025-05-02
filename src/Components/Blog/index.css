@@ -430,6 +430,17 @@ border: none;
     width: 100%;
 }
 }
+
+/* .blog_fade_ds img {
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+  
+  .blog_fade_ds img:hover {
+    transform: scale(1.05); 
+    filter: brightness(0.9);
+    cursor: pointer;
+  } */
+  
 @media (max-width:643px) {
     .blog_sins_ssss {
         display: flex;

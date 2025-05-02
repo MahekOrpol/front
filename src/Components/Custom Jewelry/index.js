@@ -8,6 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+import { FaArrowRight } from "react-icons/fa6";
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
@@ -163,9 +164,33 @@ const CustomJewel = () => {
     }
   };
 
+  const blogData = [
+    {
+      title: "Jewellery Trends Inspired by Us",
+      description:
+        "Suspendisse posuere, diam in bibendum lobortis, turpis ipsum aliquam risus, sit amet dictum ligula lorem non nisl.",
+      tags: ["Design", "Research", "Jewellery"],
+      image: "/Images/image (20).png",
+    },
+    {
+      title: "The Future of Handcrafted Jewelry",
+      description:
+        "Discover how artisans are blending tradition with innovation to create timeless designs with modern flair.",
+      tags: ["Handcrafted", "Innovation", "Style"],
+      image: "/Images/image (20).png",
+    },
+    {
+      title: "Jewellery Trends Inspired by Us",
+      description:
+        "Explore the growing demand for personalized pieces that reflect individuality and emotional connection.",
+      tags: ["Custom", "Trends", "Luxury"],
+      image: "/Images/image (20).png",
+    },
+  ];
+
   return (
     <>
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -196,23 +221,23 @@ const CustomJewel = () => {
             />
           </Suspense>
         </div>
-        <div className="custom-jewel-container">
+        <div className="custom-jewel-container ">
           {/* Banner Section */}
           <div className="bsn">
             <img
               loading="eager"
               src="/Images/customjewel.png"
-              alt="Custom Jewelry"
+              alt="Custom Jewellery"
             />
           </div>
           {/* Features Section */}
-          <div className="features-section">
-            <h2 className="iojhf">Custom Jewelry</h2>
-            <p>Jewelry as Unique as Your Story</p>
+          <div className="features-section pe-0 ps-0 container">
+            <h2 className="iojhf">Custom Jewellery</h2>
+            <p className="pb-0 mb-0">Jewellery as Unique as Your Story</p>
             <img
               loading="eager"
               src="/Images/Groupimg.png"
-              className="home_tag_img mb-4"
+              className="home_tag_img"
               alt="Decorative"
             />
             <div className="features-grid">
@@ -251,12 +276,46 @@ const CustomJewel = () => {
               ))}
             </div>
           </div>
-          {/* Custom Jewelry Form */}
-          <div className="custom-form">
+
+          <div className="container p-0 pt-4">
+            <div className="row g-4  custrome_jelery">
+              {blogData.map((item, index) => (
+                <div className="col-lg-4 col-md-6 col-12" key={index}>
+                  <div className="blog_fade_ds">
+                    <img
+                      src={item.image}
+                      className="blog_ss_tysn_mg w-100"
+                      alt="blog"
+                    />
+                  </div>
+                  <div className="d-flex flex-column gap-2 pt-4">
+                    <span className="mainj_ss">{item.title}</span>
+                    <div className="d-flex align-items-center gap-2 flex-wrap">
+                      {item.tags.map((tag, i) => (
+                        <button className="esyh_btn" key={i}>
+                          {tag}
+                        </button>
+                      ))}
+                    </div>
+                    <p className="psps">{item.description}</p>
+                    {/* <a
+            href="/blog-details"
+            className="red_ddd d-flex gap-2 align-items-center"
+          >
+            Read More <FaArrowRight />
+          </a> */}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Custom Jewellery Form */}
+          <div className="custom-form ">
             <h2>Designed by You, Crafted by Us</h2>
             <p>
-              Create a unique piece of jewelry that reflects your personal style
-              and story.
+              Create a unique piece of Jewellery that reflects your personal
+              style and story.
             </p>
             <img
               loading="eager"
