@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css';
 import { FaRegPlayCircle } from "react-icons/fa";
 
 const RingSizeInfoBox = () => {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const body = document.body;
+
+    if (open) {
+      body.classList.add("no-scroll");
+    } else {
+      body.classList.remove("no-scroll");
+    }
+
+    return () => {
+      body.classList.remove("no-scroll");
+    };
+  }, [open]);
 
   return (
     <>

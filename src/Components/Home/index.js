@@ -63,6 +63,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const AUTO_SLIDE_INTERVAL = 2000; // 3 seconds
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const BASE_API = "https://dev.crystovajewels.com/api/v1";
 
@@ -441,7 +442,7 @@ const Home = () => {
 
   return (
     <>
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -513,7 +514,7 @@ const Home = () => {
                     <img
                       fetchpriority="high"
                       decoding="async"
-                      loading='eager'
+                      loading="eager"
                       src={`https://dev.crystovajewels.com${category.categoryImage}`}
                       alt={category.categoryName}
                       onLoad={(e) => {
@@ -522,7 +523,7 @@ const Home = () => {
                       }}
                       style={{
                         opacity: 0,
-                        transition: "opacity 0.1s ease-in"
+                        transition: "opacity 0.1s ease-in",
                       }}
                     />
                   </div>
@@ -539,111 +540,63 @@ const Home = () => {
           <div className="scrolling-wrapper fastival-offerssss">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -697,111 +650,63 @@ const Home = () => {
           <div className="scrolling-wrapper">
             <div className="scroll-content">
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">
                   Shop Gold and Diamond Jewellery
                 </span>
               </div>
               <div className="scroll-item">
-                <img
-                  loading="lazy"
-                  src="/Images/Vector.png"
-                  alt="icon"
-                />
+                <img loading="lazy" src="/Images/Vector.png" alt="icon" />
                 <span className="scroll_heder">Friendly Sale 30% Off</span>
               </div>
             </div>
@@ -1546,7 +1451,13 @@ const Home = () => {
                 src="/Images/Group 1597884624 (1).png"
                 alt="home"
               />
-              <div className="lionk_ss">
+              <div
+                className="lionk_ss"
+                onClick={() =>
+                  navigate("/products?categoryName=Rings&gender=Women")
+                }
+                style={{ cursor: "pointer" }}
+              >
                 <a>Gifts for Her</a>
               </div>
             </div>
@@ -1557,7 +1468,13 @@ const Home = () => {
                 src="/Images/Group 1597884625 (1).png"
                 alt="home"
               />
-              <div className="lionk_ss">
+              <div
+                className="lionk_ss"
+                onClick={() =>
+                  navigate("/products?categoryName=Rings&gender=Men")
+                }
+                style={{ cursor: "pointer" }}
+              >
                 <a>Gifts for Him</a>
               </div>
             </div>
@@ -1568,7 +1485,10 @@ const Home = () => {
                 src="/Images/Group 1597884626 (1).png"
                 alt="home"
               />
-              <div className="lionk_ss">
+              <div className="lionk_ss"  onClick={() =>
+                  navigate("/products")
+                }
+                style={{ cursor: "pointer" }}>
                 <a>Gifts for Self</a>
               </div>
             </div>
@@ -1579,7 +1499,10 @@ const Home = () => {
                 src="/Images/Group 1597884636.png"
                 alt="home"
               />
-              <div className="lionk_ss">
+              <div className="lionk_ss"  onClick={() =>
+                  navigate("/products?categoryName=Band")
+                }
+                style={{ cursor: "pointer" }}>
                 <a>Wedding Bands</a>
               </div>
             </div>
