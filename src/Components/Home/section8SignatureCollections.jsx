@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { BiShoppingBag } from "react-icons/bi";
 import { FaArrowRight } from "react-icons/fa6";
 import { GoHeart, GoHeartFill } from "react-icons/go";
@@ -46,6 +46,20 @@ export default function Section8SignatureCollections({
       state: { product: productData },
     });
   };
+
+  useEffect(() => {
+    const fetchBestSelling = async () => {
+      try {
+        const bestSelling = await axios.get(
+          "https://dev.crystovajewels.com/api/v1/product/getBestSelling"
+        );
+        setBestSelling(bestSelling.data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      }
+    };
+    fetchBestSelling();
+  }, []);
 
   return (
     <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-md-4">

@@ -38,6 +38,7 @@
 }
 
 .center-content {
+  position: relative;
   text-align: center;
   color: #fff;
   text-align: center;
@@ -113,7 +114,18 @@
   width: 60%;
   opacity: 1;
 }
-
+.center-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100% !important; /* fully cover the box */
+  object-fit: cover;
+  z-index: 0;
+}
+.center-content {
+  position: relative;
+  z-index: 1;
+}
 @media (min-width: 1323px) and (max-width: 1500px) {
   .tagline {
     font-size: 28px;

@@ -26,13 +26,12 @@ const JewelrySale2 = () => {
               src="/Images/crystovalogowhite (1) 2 (2).png"
               alt="Crystova logo"
               className="logo"
-              // loading="eager"
             />
-            <hr />
+            <hr className="ehgdd" />
             <span className="tagline">Jewellery Just for You</span>
             <h2 className="sale-text">SALE</h2>
             <span className="discount">Up to 30% Off</span>
-            <hr />
+            <hr className="ehgdd" />
             <button className="shop-now" onClick={() => navigate("/products")}>
               Shop Now
             </button>

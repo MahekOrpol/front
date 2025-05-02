@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../Pages/Header";
-import JewelrySale2 from "../Contact Us/sdcsd/demo2";
+import JewelrySale from "../Contact Us/sdcsd/demo";
 import Section2Categories from "./section2Categories";
 import Section3Offers from "./section3Offers";
 
@@ -231,7 +231,7 @@ const Home = () => {
             cartCount={userId ? cartCount : null}
           />
         </div>
-        <JewelrySale2 />
+        <JewelrySale />
         <Section2Categories />
         <Section3Offers />
         <Suspense fallback={<div>Loading...</div>}>
