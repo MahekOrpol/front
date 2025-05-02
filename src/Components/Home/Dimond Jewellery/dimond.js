@@ -30,7 +30,7 @@ const DimondJewellery = () => {
         <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
           <div className="h-100">
             <img
-              src="..//Images/rose.webp"
+              src="../Images/rose.webp"
               alt="Rings"
               loading="eager"
               className="w-100 h-100 diamond_img"
@@ -39,7 +39,7 @@ const DimondJewellery = () => {
           </div>
           <div className="h-100">
             <img
-              src="..//Images/pen.webp"
+              src="../Images/pen.webp"
               alt="Pendant"
               loading="eager"
               className="w-100 h-100 diamond_img"
@@ -53,7 +53,7 @@ const DimondJewellery = () => {
             {videoVisible && (
               <LazyVideo
                 loading={videoVisible ? "eager" : "lazy"}
-                src="../../../Videos/diamond jewelry.mp4"
+                src="../Videos/diamond jewelry.mp4"
                 className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
                 autoPlay
                 loop
@@ -86,7 +86,7 @@ const DimondJewellery = () => {
         <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
           <div className="h-100">
             <img
-              src="..//Images/bracletesss.webp"
+              src="../Images/bracletesss.webp"
               alt="Bracelet"
               loading="eager"
               className="w-100 h-100 diamond_img"
@@ -95,7 +95,7 @@ const DimondJewellery = () => {
           </div>
           <div className="h-100">
             <img
-              src="..//Images/schbgdsccc.webp"
+              src="../Images/schbgdsccc.webp"
               alt="Earrings"
               loading="eager"
               className="w-100 h-100 diamond_img"
