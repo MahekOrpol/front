@@ -182,8 +182,15 @@ const CustomJewel = () => {
     {
       title: "Jewellery Trends Inspired by Us",
       description:
-        "Explore the growing demand for personalized pieces that reflect individuality and emotional connection.",
+      "Explore the growing demand for personalized pieces that reflect individuality and emotional connection.",
       tags: ["Custom", "Trends", "Luxury"],
+      image: "/Images/image (20).png",
+    },
+    {
+      title: "The Future of Handcrafted Jewelry",
+      description:
+        "Discover how artisans are blending tradition with innovation to create timeless designs with modern flair.",
+      tags: ["Handcrafted", "Innovation", "Style"],
       image: "/Images/image (20).png",
     },
   ];
@@ -277,10 +284,10 @@ const CustomJewel = () => {
             </div>
           </div>
 
-          <div className="container p-0 pt-4">
+          <div className="container p-0 pt-4 vustome-jewel-blog">
             <div className="row g-4  custrome_jelery">
               {blogData.map((item, index) => (
-                <div className="col-lg-4 col-md-6 col-12" key={index}>
+                <div className="col-lg-3 col-md-6 col-12" key={index}>
                   <div className="blog_fade_ds">
                     <img
                       src={item.image}
