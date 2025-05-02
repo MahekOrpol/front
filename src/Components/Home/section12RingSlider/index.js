@@ -93,8 +93,8 @@ const Section12RingSlider = () => {
         <span className="category_name mt-2">Discover Styles</span>
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img
-          loading="eager"
-          fetchpriority="high"
+          loading="lazy"
+          // fetchPriority="high"
           src="/Images/Groupimg.png"
           className="home_tag_img"
           alt="home"

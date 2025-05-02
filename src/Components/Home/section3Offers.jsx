@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const offerItems = [
@@ -14,7 +15,7 @@ const offerItems = [
   { text: "Shop Gold and Diamond Jewelry" },
   { text: "Friendly Sale 30% Off" },
 ];
-export default function Section3Offers() {
+const Section3Offers = () => {
   const navigate = useNavigate();
 
   return (
@@ -37,8 +38,7 @@ export default function Section3Offers() {
             alt="Main Image"
             className="img-fluid"
             loading="eager"
-            fetchpriority="high"
-            decoding="async"
+            fetchPriority="high"
           />
           <div className="overlay-rectangle"></div>
         </div>
@@ -81,4 +81,5 @@ export default function Section3Offers() {
       </div>
     </div>
   );
-}
+};
+export default React.memo(Section3Offers);

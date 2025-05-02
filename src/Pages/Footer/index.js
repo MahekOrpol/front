@@ -6,7 +6,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import { FaChevronDown } from "react-icons/fa";
-import Button from "@mui/material/Button";
 import {
   FaFacebookF,
   FaInstagram,
@@ -25,7 +24,7 @@ const Footer = () => {
               loading="eager"
               src="/Images/crystovalogowhite (1) 2.png"
               width={400}
-                alt="footer"
+              alt="footer"
             />
             <p className="sdcdscsdss_ss ms-3 mt-3 ">
               At Crystova Jewellery, we believe that every piece tells a story.
@@ -413,4 +412,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default React.memo(Footer);

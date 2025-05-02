@@ -6,8 +6,8 @@ export default function Section11GiftingEdition() {
       <span className="category_name mt-2">Gifting Edition</span>
       <p className="category_txt">Elegant & Versatile Gifts</p>
       <img
-        loading="eager"
-        fetchpriority="high"
+        loading="lazy"
+        // fetchPriority="high"
         src="/Images/Groupimg.png"
         className="home_tag_img"
         alt="home"

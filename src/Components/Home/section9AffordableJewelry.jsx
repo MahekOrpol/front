@@ -17,8 +17,8 @@ export default function Section9AffordableJewelry() {
 
       <p className="category_txt">Sophistication, smartly priced.</p>
       <img
-        loading="eager"
-        fetchpriority="high"
+        loading="lazy"
+        // fetchPriority="high"
         src="/Images/Groupimg.png"
         className="home_tag_img"
         alt="home"

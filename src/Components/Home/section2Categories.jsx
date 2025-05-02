@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-export default function Section2Categories() {
+const Section2Categories = () => {
   const [categories, setCategories] = useState();
   const navigate = useNavigate();
   useEffect(() => {
@@ -28,8 +28,7 @@ export default function Section2Categories() {
       <span className="category_name mt-md-4">Categories</span>
       <p className="category_txt">Radiance Fits for Everyone</p>
       <img
-        loading="eager"
-        fetchpriority="high"
+        loading="lazy"
         src="/Images/Groupimg.png"
         className="home_tag_img"
         alt="home"
@@ -57,9 +56,8 @@ export default function Section2Categories() {
             >
               <div className="category-image-wrapper">
                 <img
-                  fetchpriority="high"
                   decoding="async"
-                  loading="eager"
+                  loading="lazy"
                   src={`https://dev.crystovajewels.com${category.categoryImage}`}
                   alt={category.categoryName}
                   onLoad={(e) => {
@@ -79,4 +77,5 @@ export default function Section2Categories() {
       </div>
     </div>
   );
-}
+};
+export default React.memo(Section2Categories);

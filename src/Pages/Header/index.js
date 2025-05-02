@@ -11,15 +11,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const allowedCategories = ["Rings", "Earrings", "Pendant", "Bracelet"];
+const categoryImages = {
+  Rings: "/Images/diamond-ring-diamond-svgrepo-com.svg",
+  Earrings: "/Images/earrings.png",
+  Pendant: "/Images/gem-pendant-svgrepo-com.svg",
+  Bracelet: "/Images/noun-bracelet-5323037.svg",
+};
 const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
-  const allowedCategories = ["Rings", "Earrings", "Pendant", "Bracelet"];
-  const categoryImages = {
-    Rings: "/Images/diamond-ring-diamond-svgrepo-com.svg",
-    Earrings: "/Images/earrings.png",
-    Pendant: "/Images/gem-pendant-svgrepo-com.svg",
-    Bracelet: "/Images/noun-bracelet-5323037.svg",
-  };
-
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showSignup, setIsSignup] = useState(false);
@@ -420,7 +419,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               >
                 <img
                   loading="eager"
-                  fetchpriority="high"
+                  fetchPriority="high"
                   src={categoryImages[category.categoryName]}
                   width={20}
                   alt={category.categoryName}

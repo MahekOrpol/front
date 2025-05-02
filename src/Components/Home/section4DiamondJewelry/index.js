@@ -28,8 +28,8 @@ const Section4DiamondJewelry = () => {
       <span className="category_name mt-md-4">Diamond Jewelry</span>
       <p className="category_txt">Minimal. Modern. Mesmerizing</p>
       <img
-        loading="eager"
-        fetchpriority="high"
+        loading="lazy"
+        // fetchPriority="high"
         src="/Images/Groupimg.png"
         className="home_tag_img"
         alt="home"

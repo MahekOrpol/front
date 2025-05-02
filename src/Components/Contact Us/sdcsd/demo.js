@@ -12,7 +12,7 @@ const JewelrySale = () => {
         <div className="left-images">
           <img
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             src="/Images/image (29).webp"
             alt="Elegant necklace with pendant"
             className="large-img"
@@ -22,7 +22,7 @@ const JewelrySale = () => {
           <div className="small-imgs">
             <img
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
               src="/Images/Mask group (6).webp"
               alt="Diamond ring close-up"
               width="100%"
@@ -41,7 +41,7 @@ const JewelrySale = () => {
         >
           <img
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             src="/Images/crystovalogowhite (1) 2 (2).png"
             className="logo-banner"
             alt="Crystova brand logo"
@@ -63,7 +63,7 @@ const JewelrySale = () => {
           <div className="small-imgs">
             <img
               loading="eager"
-              fetchpriority="high"
+              fetchPriority="high"
               src="/Images/image (30).webp"
               alt="Bracelet on display"
               width="100%"
@@ -72,7 +72,7 @@ const JewelrySale = () => {
           </div>
           <img
             loading="eager"
-            fetchpriority="high"
+            fetchPriority="high"
             src="/Images/Mask group (7).webp"
             alt="Gold jewelry display"
             className="large-img"

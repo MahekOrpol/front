@@ -78,8 +78,8 @@ const Section7Occasions = () => {
         Celebrate Forever with a Sparkle
       </p>
       <img
-        loading="eager"
-        fetchpriority="high"
+        loading="lazy"
+        // fetchPriority="high"
         src="/Images/Groupimg.png"
         className="home_tag_img best_sellig_sdcdc d-none"
         alt="home"

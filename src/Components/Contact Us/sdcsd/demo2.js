@@ -12,7 +12,6 @@ const JewelrySale2 = () => {
           src="/Images/image (29).webp"
           alt="Necklace"
           className="grid-img large"
-          loading="eager"
         />
         <div className="center-box">
           <img
@@ -20,13 +19,14 @@ const JewelrySale2 = () => {
             alt="Decor Fabric"
             className="center-bg-img"
             loading="eager"
+            fetchPriority="high"
           />
           <div className="center-content">
             <img
               src="/Images/crystovalogowhite (1) 2 (2).png"
               alt="Crystova logo"
               className="logo"
-              loading="eager"
+              // loading="eager"
             />
             <hr />
             <span className="tagline">Jewellery Just for You</span>
@@ -61,4 +61,4 @@ const JewelrySale2 = () => {
   );
 };
 
-export default JewelrySale2;
+export default React.memo(JewelrySale2);

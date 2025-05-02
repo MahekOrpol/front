@@ -8,26 +8,33 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Header from "../../Pages/Header";
 import JewelrySale2 from "../Contact Us/sdcsd/demo2";
 import Section2Categories from "./section2Categories";
 import Section3Offers from "./section3Offers";
-import Section5TrendingCollections from "./section5TrendingCollections";
-import Section6OurCollections from "./section6OurCollection";
-import Section4DiamondJewelry from "./section4DiamondJewelry";
-import Section7Occasions from "./section7Occasions";
-import Section8SignatureCollections from "./section8SignatureCollections";
-import Section9AffordableJewelry from "./section9AffordableJewelry";
-import Section11GiftingEdition from "./section11GiftingEdition";
 
 const CartPopup = lazy(() => import("../Add to Cart"));
-const Header = lazy(() => import("../../Pages/Header"));
-const Footer = lazy(() => import("../../Pages/Footer"));
-const Section14Instruction = React.lazy(() => import("./section14Instruction"));
+const Section4DiamondJewelry = lazy(() => import("./section4DiamondJewelry"));
+const Section5TrendingCollections = lazy(() =>
+  import("./section5TrendingCollections")
+);
+const Section6OurCollections = lazy(() => import("./section6OurCollection"));
+const Section7Occasions = lazy(() => import("./section7Occasions"));
+const Section8SignatureCollections = lazy(() =>
+  import("./section8SignatureCollections")
+);
+const Section9AffordableJewelry = lazy(() =>
+  import("./section9AffordableJewelry")
+);
 const Section10ExquisiteJewelry = React.lazy(() =>
   import("./section10ExquisiteJewelry")
 );
+const Section11GiftingEdition = lazy(() => import("./section11GiftingEdition"));
 const Section12RingSlider = React.lazy(() => import("./section12RingSlider"));
 const Section13NewArrivals = React.lazy(() => import("./section13NewArrivals"));
+const Section14Instruction = React.lazy(() => import("./section14Instruction"));
+const Section15Testimonials = lazy(() => import("./section15Testimonials"));
+const Footer = lazy(() => import("../../Pages/Footer"));
 
 const Home = () => {
   const navigate = useNavigate();
@@ -36,12 +43,7 @@ const Home = () => {
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [showArrow, setShowArrow] = useState(false);
   const [productsPerPage, setProductsPerPage] = useState(1); // Initialize with 1
-  const [slideDirection, setSlideDirection] = useState("next"); // Track slide direction for animation
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
   const [wishlistCount, setWishlistCount] = useState(
     parseInt(localStorage.getItem("wishlistCount")) || 0
   );
@@ -82,12 +84,6 @@ const Home = () => {
       window.removeEventListener("resize", update);
     };
   }, []);
-
-  const handleProductClick = (productId, productData) => {
-    navigate(`/product-details/${productId}`, {
-      state: { product: productData },
-    });
-  };
 
   // Function to add an item to the cart
   const addToCart = React.useCallback(
@@ -228,37 +224,40 @@ const Home = () => {
   return (
     <>
       <div className={isCartOpen ? "blurred" : ""}>
-        {/* <div className="main-header">
+        <div className="main-header">
           <Header
             openCart={openCart}
             wishlistCount={userId ? wishlistCount : null}
             cartCount={userId ? cartCount : null}
           />
-        </div> */}
+        </div>
         <JewelrySale2 />
         <Section2Categories />
         <Section3Offers />
-        <Section4DiamondJewelry />
-        <Section5TrendingCollections
-          toggleFavorite={toggleFavorite}
-          wishlistItems={wishlistItems}
-          addToCart={addToCart}
-        />
-        <Section6OurCollections />
-        <Section7Occasions />
-        <Section8SignatureCollections
-          toggleFavorite={toggleFavorite}
-          wishlistItems={wishlistItems}
-          addToCart={addToCart}
-        />
-        <Section9AffordableJewelry />
-        <Section10ExquisiteJewelry />
-        <Section11GiftingEdition />
-        <Section12RingSlider />
-        {/* <Section13NewArrivals /> */}
-        <Section14Instruction />
-        <div className="pb-5"></div>
-        <Footer />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Section4DiamondJewelry />
+          <Section5TrendingCollections
+            toggleFavorite={toggleFavorite}
+            wishlistItems={wishlistItems}
+            addToCart={addToCart}
+          />
+          <Section6OurCollections />
+          <Section7Occasions />
+          <Section8SignatureCollections
+            toggleFavorite={toggleFavorite}
+            wishlistItems={wishlistItems}
+            addToCart={addToCart}
+          />
+          <Section9AffordableJewelry />
+          <Section10ExquisiteJewelry />
+          <Section11GiftingEdition />
+          <Section12RingSlider />
+          <Section13NewArrivals />
+          <Section14Instruction />
+          <Section15Testimonials />
+          <div className="pb-5"></div>
+          <Footer />
+        </Suspense>
       </div>
       {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
       <ToastContainer

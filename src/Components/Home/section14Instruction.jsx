@@ -18,8 +18,8 @@ const Section13Instruction = () => {
       <span className="category_name">Instructions</span>
       <p className="category_txt">Store it Soft, Shine it Often</p>
       <img
-        loading="eager"
-        fetchpriority="high"
+        loading="lazy"
+        // fetchPriority="high"
         src="/Images/Groupimg.png"
         alt="Decorative"
         className="home_tag_img"

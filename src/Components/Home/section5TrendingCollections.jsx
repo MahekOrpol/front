@@ -77,8 +77,8 @@ export default function Section5TrendingCollections({
       <span className="category_name ">Trending Collection</span>
       <p className="category_txt">The Latest looks, Crafted to Perfection</p>
       <img
-        loading="eager"
-        fetchpriority="high"
+        loading="lazy"
+        // fetchPriority="high"
         src="/Images/Groupimg.png"
         className="home_tag_img"
         alt="home"

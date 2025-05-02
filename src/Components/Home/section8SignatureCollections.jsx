@@ -52,8 +52,8 @@ export default function Section8SignatureCollections({
       <span className="category_name">Signature Collections</span>
       <p className="category_txt">Elevate the Everyday in Diamond Elegance</p>
       <img
-        loading="eager"
-        fetchpriority="high"
+        loading="lazy"
+        // fetchPriority="high"
         src="/Images/Groupimg.png"
         className="home_tag_img"
         alt="home"

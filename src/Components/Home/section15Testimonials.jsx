@@ -1,9 +1,10 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { FaStar } from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/pagination";
+import { CiStar } from "react-icons/ci";
 
 const testimonials = [
   {
@@ -89,8 +90,8 @@ export default function Section15Testimonials() {
         <span className="category_name ">Client Testimonial</span>
         <p className="category_txt">What our Client's say about us</p>
         <img
-          loading="eager"
-          fetchpriority="high"
+          loading="lazy"
+          //   fetchPriority="high"
           src="/Images/Groupimg.png"
           alt="Decorative"
           className="home_tag_img"

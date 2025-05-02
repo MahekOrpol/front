@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 import "./index.css";
-import "swiper/css";
 
 const videoData = [
   { src: "/Videos/Dfcvdfx (2).mp4", category: "Pendant" },
@@ -16,7 +15,6 @@ const videoData = [
   { src: "/Videos/Sdcxdscx(1).mp4", category: "Bracelets" },
   { src: "/Videos/pendant.mp4", category: "Pendant" },
 ];
-
 const multiplier = {
   translate: 0.1,
   rotate: window.innerWidth >= 1024 ? 0.01 : 0.03,
@@ -25,11 +23,11 @@ const multiplier = {
 const Section13NewArrivals = () => {
   const videoRefs = useRef([]);
 
-  const updateRotateMultiplier = () => {
+  const updateRotateMultiplier = useCallback(() => {
     multiplier.rotate = window.innerWidth >= 1024 ? 0.01 : 0.03;
-  };
+  }, []);
 
-  const calculateWheel = () => {
+  const calculateWheel = useCallback(() => {
     const slides = document.querySelectorAll(".single");
     slides.forEach((slide) => {
       const rect = slide.getBoundingClientRect();
@@ -42,7 +40,7 @@ const Section13NewArrivals = () => {
       }deg)`;
       slide.style.transformOrigin = r < 0 ? "left top" : "right top";
     });
-  };
+  }, []);
 
   useEffect(() => {
     let swiperInstance;
@@ -101,16 +99,18 @@ const Section13NewArrivals = () => {
   }, [calculateWheel, updateRotateMultiplier]);
 
   return (
-    <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
-      <span className="category_name ">New Arrivals</span>
-      <p className="category_txt">New Creations, Forever Elegance</p>
-      <img
-        loading="eager"
-        fetchpriority="high"
-        src="/Images/Groupimg.png"
-        className="home_tag_img"
-        alt="home"
-      />
+    <>
+      <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
+        <span className="category_name ">New Arrivals</span>
+        <p className="category_txt">New Creations, Forever Elegance</p>
+        <img
+          loading="eager"
+          fetchpriority="high"
+          src="/Images/Groupimg.png"
+          className="home_tag_img"
+          alt="home"
+        />
+      </div>
       <div className="ringSection">
         <div className="carousel1">
           <div className="swiper1">
@@ -135,8 +135,8 @@ const Section13NewArrivals = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Section13NewArrivals;
+export default React.memo(Section13NewArrivals);

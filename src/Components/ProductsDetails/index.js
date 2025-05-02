@@ -741,8 +741,8 @@ Please let me know the next steps.`;
                     {productImages.map((media, index) => (
                       <div key={index}>
                         <img
-                          loading="eager"
-                          fetchpriority="high"
+                          loading="lazy"
+                          // fetchPriority="high"
                           src={`https://dev.crystovajewels.com${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                           alt={
@@ -754,8 +754,8 @@ Please let me know the next steps.`;
                   </Slider>
                 ) : productImages[0] ? (
                   <img
-                    loading="eager"
-                    fetchpriority="high"
+                    loading="lazy"
+                    // fetchPriority="high"
                     src={`https://dev.crystovajewels.com${productImages[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
