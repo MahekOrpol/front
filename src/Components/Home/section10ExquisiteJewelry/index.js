@@ -6,13 +6,11 @@ import { FaArrowRightLong } from "react-icons/fa6";
 const images = [
   "/Images/image (32).png",
   "/Images/jewe.jpg",
-  "/Images/jewelery (1).jpg"
+  "/Images/jewelery (1).jpg",
 ];
 const groupImg = "/Images/Groupimg.png";
 
-
-
-const Occasion = () => {
+const section10ExquisiteJewelry = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -22,13 +20,13 @@ const Occasion = () => {
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
       setIsAnimating(false);
-    }, 500); 
+    }, 500);
   }, [isAnimating]);
 
   useEffect(() => {
     const interval = setInterval(nextSlide, 2000);
     return () => clearInterval(interval);
-  }, [nextSlide]);  
+  }, [nextSlide]);
 
   return (
     <div className="one-way-slider container">
@@ -60,15 +58,21 @@ const Occasion = () => {
 
         <div className="slider-track">
           {images.map((img, index) => {
-            const position = (index - currentIndex + images.length) % images.length;
+            const position =
+              (index - currentIndex + images.length) % images.length;
             const sizeClass =
-              position === 0 ? "image-large" :
-              position === 1 ? "image-medium" : "image-small";
+              position === 0
+                ? "image-large"
+                : position === 1
+                ? "image-medium"
+                : "image-small";
 
             return (
               <div
                 key={index}
-                className={`slider-image ${sizeClass} ${isAnimating ? "slide-left" : ""}`}
+                className={`slider-image ${sizeClass} ${
+                  isAnimating ? "slide-left" : ""
+                }`}
                 style={{ zIndex: images.length - position }}
               >
                 <img src={img} alt={`Jewelry ${index + 1}`} loading="lazy" />
@@ -81,4 +85,4 @@ const Occasion = () => {
   );
 };
 
-export default Occasion;
+export default section10ExquisiteJewelry;

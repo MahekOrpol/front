@@ -503,7 +503,7 @@ const Products = () => {
 
   return (
     <>
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -517,7 +517,6 @@ const Products = () => {
         stacked
         style={{ zIndex: 1000000001 }}
       />
-
       <CartPopup
         isOpen={isCartOpen}
         closeCart={closeCart}
@@ -639,7 +638,6 @@ const Products = () => {
                       )}
                     </span>
                   </button>
-
                   {isDropdownOpen && (
                     <ul
                       className="dropdown-menu show Nkejd"
@@ -706,7 +704,6 @@ const Products = () => {
                   <div className="filter-category">
                     <h5 onClick={() => toggleSection("categories")}>
                       Categories{" "}
-                     
                     </h5>
                     {category.map((category) => (
                       <label key={category._id}>
@@ -743,144 +740,15 @@ const Products = () => {
             <div className="row pt-5">
               {displayProducts.length > 0 ? (
                 displayProducts.map((product) => (
-                  <div
+                  <PreviewCard
                     key={product.id}
-                    className={`${
-                      isSearchActive
-                        ? "masonry-item col-lg-3 col-md-4 col-6"
-                        : "col-lg-3 col-md-4 col-6"
-                    } mb-4 asxasx_card`}
-                    onMouseEnter={() => setHoveredProduct(product.id)}
-                    onMouseLeave={() => setHoveredProduct(null)}
-                  >
-                    <div className="card prio_card scdscsed_sdss_pro">
-                      <div className="card-image-wrapper position-relative">
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 trtrd">
-                          SALE
-                        </button>
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {wishlistItems[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          {(() => {
-                            const imagesOnly = product.image?.filter(
-                              (img) => !img.endsWith(".mp4")
-                            );
-                            const imageToShow =
-                              imagesOnly?.[imageIndexes[product.id] ?? 0]; // fallback to 0 if no index
-
-                            return imageToShow ? (
-                              <img
-                                src={`https://dev.crystovajewels.com${imageToShow}`}
-                                alt="Product"
-                                className="p-1_proi img-fluid border-0"
-                                onClick={() => handleProductClick(product.id)}
-                                style={{ height: "100%" }}
-                              />
-                            ) : (
-                              <div className="text-center text-muted py-4">
-                                No image available
-                              </div>
-                            );
-                          })()}
-
-                          {/* {product.image[imageIndexes[product.id]]?.endsWith(
-                            ".mp4"
-                          ) ? (
-                            <video
-                              src={`https://dev.crystovajewels.com${
-                                product.image[imageIndexes[product.id]]
-                              }`}
-                              className="p-1_proi img-fluid"
-                              autoPlay
-                              loop
-                              muted
-                              playsInline
-                              controls={false}
-                              onClick={() => handleProductClick(product.id)}
-                            />
-                          ) : (
-                            <img
-                              loading="eager"
-                              src={`https://dev.crystovajewels.com${
-                                product.image[imageIndexes[product.id]]
-                              }`}
-                              onClick={() => handleProductClick(product.id)}
-                              className="p-1_proi img-fluid"
-                              alt="Product"
-                            />
-                          )} */}
-                          {hoveredProduct === product.id && (
-                            <div className="hover-overlay w-100 d-none d-sm-flex">
-                              <button
-                                className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
-                                onClick={() =>
-                                  handlePrevImage(product.id, product.image)
-                                }
-                              >
-                                <FaChevronLeft />
-                              </button>
-                              <button
-                                className="btn btn-light right-btn"
-                                onClick={() =>
-                                  handleNextImage(product.id, product.image)
-                                }
-                              >
-                                <FaChevronRight />
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_try pt-3 text-truncate ">
-                        {product.productName}
-                      </span>
-                      <div className="d-flex align-items-center gap-3 pt-1">
-                        <span className="mikdec_asdxsx htryf">
-                          ₹{product.salePrice?.$numberDecimal}
-                        </span>
-                        <span className="mikdec_axsx htryf">
-                          ₹{product.regularPrice?.$numberDecimal}
-                        </span>
-                      </div>
-                      <div className="jjcsindn_jcb">
-                        {hoveredProduct === product.id && (
-                          <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                            <button
-                              className="more_btn_dsdd w-50"
-                              onClick={() => handleProductClick(product.id)}
-                            >
-                              More Info
-                            </button>
-                            <button
-                              className="d-flex align-items-center add-to-crd-dd1 gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                              onClick={() => addToCart(product)}
-                            >
-                              Add to Cart <BiShoppingBag size={25} />
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                      <div className="d-flex jjcsindn_jcb_ccs flex-column mt-2">
-                        <button
-                          className="d-flex align-items-center add-to-crd-dd1 p-1 justify-content-center gap-3"
-                          onClick={() => addToCart(product)}
-                        >
-                          Add to Cart <BiShoppingBag size={25} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                    product={product}
+                    isSearchActive={isSearchActive}
+                    wishlistItems={wishlistItems}
+                    imageIndexes={imageIndexes}
+                    hoveredProduct={hoveredProduct}
+                    setHoveredProduct={setHoveredProduct}
+                  />
                 ))
               ) : isSearchActive ? (
                 <div className="text-center w-100 py-5">
@@ -913,3 +781,121 @@ const Products = () => {
 };
 
 export default Products;
+
+export function PreviewCard({
+  product,
+  isSearchActive,
+  wishlistItems,
+  imageIndexes,
+  hoveredProduct,
+  setHoveredProduct,
+}) {
+  return (
+    <div
+      className={`${
+        isSearchActive
+          ? "masonry-item col-lg-3 col-md-4 col-6"
+          : "col-lg-3 col-md-4 col-6"
+      } mb-4 asxasx_card`}
+      onMouseEnter={() => setHoveredProduct(product.id)}
+      onMouseLeave={() => setHoveredProduct(null)}
+    >
+      <div className="card prio_card scdscsed_sdss_pro">
+        <div className="card-image-wrapper position-relative">
+          <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 trtrd">
+            SALE
+          </button>
+          <div
+            className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+            onClick={() => toggleFavorite(product.id)}
+            style={{ cursor: "pointer" }}
+          >
+            {wishlistItems[product.id] ? (
+              <GoHeartFill className="heart-icon_ss" size={18} />
+            ) : (
+              <GoHeart className="heart-icon_ss" size={18} />
+            )}
+          </div>
+          <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+            {(() => {
+              const imagesOnly = product.image?.filter(
+                (img) => !img.endsWith(".mp4")
+              );
+              const imageToShow = imagesOnly?.[imageIndexes[product.id] ?? 0]; // fallback to 0 if no index
+
+              return imageToShow ? (
+                <img
+                  src={`https://dev.crystovajewels.com${imageToShow}`}
+                  alt="Product"
+                  className="p-1_proi img-fluid border-0"
+                  onClick={() => handleProductClick(product.id)}
+                  style={{ height: "100%" }}
+                />
+              ) : (
+                <div className="text-center text-muted py-4">
+                  No image available
+                </div>
+              );
+            })()}
+
+            {hoveredProduct === product.id && (
+              <div className="hover-overlay w-100 d-none d-sm-flex">
+                <button
+                  className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
+                  onClick={() => handlePrevImage(product.id, product.image)}
+                >
+                  <FaChevronLeft />
+                </button>
+                <button
+                  className="btn btn-light right-btn"
+                  onClick={() => handleNextImage(product.id, product.image)}
+                >
+                  <FaChevronRight />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="d-flex flex-column main_cdsss">
+        <span className="mikdec_try pt-3 text-truncate ">
+          {product.productName}
+        </span>
+        <div className="d-flex align-items-center gap-3 pt-1">
+          <span className="mikdec_asdxsx htryf">
+            ₹{product.salePrice?.$numberDecimal}
+          </span>
+          <span className="mikdec_axsx htryf">
+            ₹{product.regularPrice?.$numberDecimal}
+          </span>
+        </div>
+        <div className="jjcsindn_jcb">
+          {hoveredProduct === product.id && (
+            <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+              <button
+                className="more_btn_dsdd w-50"
+                onClick={() => handleProductClick(product.id)}
+              >
+                More Info
+              </button>
+              <button
+                className="d-flex align-items-center add-to-crd-dd1 gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                onClick={() => addToCart(product)}
+              >
+                Add to Cart <BiShoppingBag size={25} />
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="d-flex jjcsindn_jcb_ccs flex-column mt-2">
+          <button
+            className="d-flex align-items-center add-to-crd-dd1 p-1 justify-content-center gap-3"
+            onClick={() => addToCart(product)}
+          >
+            Add to Cart <BiShoppingBag size={25} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

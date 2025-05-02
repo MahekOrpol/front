@@ -1,19 +1,20 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
 import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
-import "./ring.css";
+import "./index.css";
+import "swiper/css";
 
 const videoData = [
-  { src: '/Videos/Dfcvdfx (2).mp4', category: "Pendant" },
-  { src: '/Videos/Dfvdfvd (1).mp4', category: "Earrings" },
-  { src: '/Videos/rings.mp4', category: "Rings" },
-  { src: '/Videos/Sdcxdscx(1).mp4', category: "Bracelets" },
-  { src: '/Videos/pendant.mp4', category: "Pendant" },
-  { src: '/Videos/Dfcvdfx (2).mp4', category: "Pendant" },
-  { src: '/Videos/Dfvdfvd (1).mp4', category: "Earrings" },
-  { src: '/Videos/rings.mp4', category: "Rings" },
-  { src: '/Videos/Sdcxdscx(1).mp4', category: "Bracelets" },
-  { src: '/Videos/pendant.mp4', category: "Pendant" },
+  { src: "/Videos/Dfcvdfx (2).mp4", category: "Pendant" },
+  { src: "/Videos/Dfvdfvd (1).mp4", category: "Earrings" },
+  { src: "/Videos/rings.mp4", category: "Rings" },
+  { src: "/Videos/Sdcxdscx(1).mp4", category: "Bracelets" },
+  { src: "/Videos/pendant.mp4", category: "Pendant" },
+  { src: "/Videos/Dfcvdfx (2).mp4", category: "Pendant" },
+  { src: "/Videos/Dfvdfvd (1).mp4", category: "Earrings" },
+  { src: "/Videos/rings.mp4", category: "Rings" },
+  { src: "/Videos/Sdcxdscx(1).mp4", category: "Bracelets" },
+  { src: "/Videos/pendant.mp4", category: "Pendant" },
 ];
 
 const multiplier = {
@@ -21,28 +22,27 @@ const multiplier = {
   rotate: window.innerWidth >= 1024 ? 0.01 : 0.03,
 };
 
-const Ring1 = () => {
+const Section13NewArrivals = () => {
   const videoRefs = useRef([]);
 
-  const updateRotateMultiplier = useCallback(() => {
+  const updateRotateMultiplier = () => {
     multiplier.rotate = window.innerWidth >= 1024 ? 0.01 : 0.03;
-  }, []);
+  };
 
-  const calculateWheel = useCallback(() => {
+  const calculateWheel = () => {
     const slides = document.querySelectorAll(".single");
     slides.forEach((slide) => {
       const rect = slide.getBoundingClientRect();
       const r = window.innerWidth * 0.5 - (rect.x + rect.width * 0.5);
       let ty =
-        Math.abs(r) * multiplier.translate -
-        rect.width * multiplier.translate;
+        Math.abs(r) * multiplier.translate - rect.width * multiplier.translate;
       if (ty < 0) ty = 0;
       slide.style.transform = `translate(0, ${ty}px) rotate(${
         -r * multiplier.rotate
       }deg)`;
       slide.style.transformOrigin = r < 0 ? "left top" : "right top";
     });
-  }, []);
+  };
 
   useEffect(() => {
     let swiperInstance;
@@ -101,26 +101,37 @@ const Ring1 = () => {
   }, [calculateWheel, updateRotateMultiplier]);
 
   return (
-    <div className="ringSection">
-      <div className="carousel1">
-        <div className="swiper1">
-          <div className="swiper-wrapper1">
-            {videoData.map((video, i) => (
-              <div className="swiper-slide1" key={i}>
-                <div className="single">
-                  <video
-                    ref={(el) => (videoRefs.current[i] = el)}
-                    src={video.src} // DIRECT src here
-                    muted
-                    loop
-                    playsInline
-                    autoPlay // autoPlay instead of manual play
-                    preload="auto" // better than none now
-                    className="ring-video"
-                  />
+    <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
+      <span className="category_name ">New Arrivals</span>
+      <p className="category_txt">New Creations, Forever Elegance</p>
+      <img
+        loading="eager"
+        fetchpriority="high"
+        src="/Images/Groupimg.png"
+        className="home_tag_img"
+        alt="home"
+      />
+      <div className="ringSection">
+        <div className="carousel1">
+          <div className="swiper1">
+            <div className="swiper-wrapper1">
+              {videoData.map((video, i) => (
+                <div className="swiper-slide1" key={i}>
+                  <div className="single">
+                    <video
+                      ref={(el) => (videoRefs.current[i] = el)}
+                      src={video.src} // DIRECT src here
+                      muted
+                      loop
+                      playsInline
+                      autoPlay // autoPlay instead of manual play
+                      preload="auto" // better than none now
+                      className="ring-video"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -128,4 +139,4 @@ const Ring1 = () => {
   );
 };
 
-export default Ring1;
+export default Section13NewArrivals;
