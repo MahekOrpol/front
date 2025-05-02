@@ -255,11 +255,11 @@ const BlogDetails = () => {
                 <img src="/Images/Group 99.png" alt="blog"/>
               </span>
               <span className="ens_ddds pt-4">
-                “Learn how to keep your jewelry shining bright! From cleaning
+                “Learn how to keep your Jewellery shining bright! From cleaning
                 techniques to storage solutions, our blog offers expert advice.
                 Each item is handcrafted with love and precision, using
                 ethically sourced materials to ensure beauty that you feel good
-                about. Learn how to keep your jewelry shining bright! From
+                about. Learn how to keep your Jewellery shining bright! From
                 cleaning techniques to storage solutions, our blog offers expert
                 advice.”
               </span>
@@ -271,7 +271,7 @@ const BlogDetails = () => {
 
             <div className="d-flex flex-column pt-5">
               <span className="sdjuue_rrf">
-                Trends to Watch in the Jewelry World
+                Trends to Watch in the Jewellery World
               </span>
             </div>
             <div className="pt-4">
@@ -280,14 +280,14 @@ const BlogDetails = () => {
                   <li>Jewellery Care 101: Keeping Your Pieces Sparkling</li>
                   <li>How to Choose the Perfect Engagement Ring</li>
                   <li>Birthstone Guide: Meaning and Significance</li>
-                  <li>Sustainable Jewelry: Making Eco-Friendly Choices</li>
-                  <li>Celebrities and Their Iconic Jewelry Moment</li>
+                  <li>Sustainable Jewellery: Making Eco-Friendly Choices</li>
+                  <li>Celebrities and Their Iconic Jewellery Moment</li>
                 </div>
                 <div className="row sdchhdu">
-                  <li>The Role of Jewelry in Different Cultures</li>
-                  <li>The Intersection of Technology and Jewelry Design</li>
-                  <li>Jewelry as an Investment: What to Know Before You Buy</li>
-                  <li>Trends to Watch in the Jewelry World</li>
+                  <li>The Role of Jewellery in Different Cultures</li>
+                  <li>The Intersection of Technology and Jewellery Design</li>
+                  <li>Jewellery as an Investment: What to Know Before You Buy</li>
+                  <li>Trends to Watch in the Jewellery World</li>
                   <li>Birthstone Guide: Meaning and Significance</li>
                 </div>
               </ul>

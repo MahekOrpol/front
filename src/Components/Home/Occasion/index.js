@@ -34,7 +34,7 @@ const Occasion = () => {
     <div className="one-way-slider container">
       <div className="slider-content">
         <h2 className="occation-content-h2">
-          Elevate Every Moment with Exquisite Jewelry
+          Elevate Every Moment with Exquisite Jewellery
         </h2>
         <img
           src={groupImg}
