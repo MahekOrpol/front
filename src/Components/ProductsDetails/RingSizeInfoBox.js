@@ -34,6 +34,7 @@ const RingSizeInfoBox = () => {
       {/* Video Modal */}
       {open && (
        <div className="video-modal" onClick={() => setOpen(false)}>
+        <div className="px-2">
        <div className="video-content" onClick={(e) => e.stopPropagation()}>     
           <span className="close-btn" onClick={() => setOpen(false)}>&times;</span>
             <video autoPlay className="video-player">
@@ -41,6 +42,7 @@ const RingSizeInfoBox = () => {
               Your browser does not support the video tag.
             </video>
           </div>
+        </div>
         </div>
       )}
     </>

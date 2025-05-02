@@ -133,6 +133,14 @@
   }
 }
 
+.mobile-slider {
+  @media (max-width:480px) {
+    display: block;
+    padding-top: 50px;
+    
+  }
+}
+
 .scdscsed_sdss {
   height: 355px;
 }
@@ -2047,6 +2055,7 @@
   width: 100%;
   height: 100%;
   border-radius: 8px;
+  object-fit: unset;
 }
 
 .close-btn {
