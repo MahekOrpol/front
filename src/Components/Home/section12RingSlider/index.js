@@ -111,6 +111,8 @@ const Section12RingSlider = () => {
             speed={600}
             slidesPerView={slidesToShow}
             centeredSlides={true}
+            mousewheel={false}
+            
             loop={rings.length > slidesToShow}
             onSlideChange={(swiper) => setCenterIndex(swiper.realIndex)}
             className="ring-swiper"
@@ -119,6 +121,7 @@ const Section12RingSlider = () => {
               600: { slidesPerView: 3 },
               1200: { slidesPerView: slidesToShow },
             }}
+            style={{pointerEvents:'none'}}
           >
             {rings.map((ring, idx) => {
               const offset = getOffset(idx);
