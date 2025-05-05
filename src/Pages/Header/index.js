@@ -11,14 +11,15 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const allowedCategories = ["Rings", "Earrings", "Pendant", "Bracelet"];
-const categoryImages = {
-  Rings: "/Images/diamond-ring-diamond-svgrepo-com.svg",
-  Earrings: "/Images/earrings.png",
-  Pendant: "/Images/gem-pendant-svgrepo-com.svg",
-  Bracelet: "/Images/noun-bracelet-5323037.svg",
-};
 const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
+  const allowedCategories = ["Rings", "Earrings", "Pendant", "Bracelet"];
+  const categoryImages = {
+    Rings: "/Images/diamond-ring-diamond-svgrepo-com.svg",
+    Earrings: "/Images/earrings.png",
+    Pendant: "/Images/gem-pendant-svgrepo-com.svg",
+    Bracelet: "/Images/noun-bracelet-5323037.svg",
+  };
+
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showSignup, setIsSignup] = useState(false);
@@ -30,6 +31,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const [categoriesData, setCategoriesData] = useState([]);
   const [expandedCategory, setExpandedCategory] = useState(null);
 
+  
   const toggleSubcategory = (categoryName) => {
     setExpandedCategory((prev) =>
       prev === categoryName ? null : categoryName
@@ -67,6 +69,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
     navigate(`/products?categoryName=${category}`);
     setIsDrawerOpen(false);
   };
+  
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (popupRef.current && !popupRef.current.contains(e.target)) {

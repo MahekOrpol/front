@@ -37,7 +37,6 @@ export default function Section5TrendingCollections({
   useEffect(() => {
     const cameFromCheckout = sessionStorage.getItem("cameFromCheckout");
     if (cameFromCheckout) {
-      setIsCartOpen(true);
       sessionStorage.removeItem("cameFromCheckout");
     }
 
