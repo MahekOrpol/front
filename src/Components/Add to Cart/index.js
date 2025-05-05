@@ -130,7 +130,7 @@ const CartPopup = ({
       }
     } catch (err) {
       console.error("Error fetching order details:", err);
-      toast.error("Failed to fetch cart items");
+      // toast.error("Failed to fetch cart items");
     }
   };
 
