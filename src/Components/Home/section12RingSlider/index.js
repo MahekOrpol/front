@@ -121,6 +121,7 @@ const Section12RingSlider = () => {
               600: { slidesPerView: 3 },
               1200: { slidesPerView: slidesToShow },
             }}
+            style={{pointerEvents:'none'}}
           >
             {rings.map((ring, idx) => {
               const offset = getOffset(idx);
