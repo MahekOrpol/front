@@ -240,13 +240,13 @@ const CartPopup = ({
                           className="dropdown_size p-1"
                           style={{ borderRadius: "5px" }}
                           value={
-                            orderDetails[index]?.selectedSize || 
+                            orderDetails[index]?.selectedSize ||
                             item.selectedSize ||
-                             ""
-                            }
+                            ""
+                          }
                           onChange={(e) =>
-                             handleSizeChange(index, e.target.value)
-                            }
+                            handleSizeChange(index, e.target.value)
+                          }
                           required
                         >
                           <option value="" disabled>
@@ -258,14 +258,14 @@ const CartPopup = ({
                               <option key={i} value={size}>
                                 {size}
                               </option>
-                          ))}
+                            ))}
                         </select>
                       </div>
                       <p className="fw-bold m-0 secure_chckotfre d-flex justify-content-end w-100 align-items-sm-center">
                         ₹
                         {(
                           parseFloat(item.salePrice) * parseInt(item.quantity)
-                          ).toFixed(2)}
+                        ).toFixed(2)}
                       </p>
                     </div>
                   </>
@@ -340,6 +340,7 @@ const CartPopup = ({
                     selectedSize: item.productId?.hasVariations
                       ? item.selectedSize
                       : item.selectedSize,
+                    selectedqty: item.quantity,
                   })),
                 },
               });
