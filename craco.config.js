@@ -1,10 +1,10 @@
-const CompressionPlugin = require('compression-webpack-plugin');
-const Critters = require('critters-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const TerserPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
+const Critters = require("critters-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-const isProd = process.env.NODE_ENV === 'production'; // ✅ Correct way
+const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   webpack: {
@@ -13,8 +13,8 @@ module.exports = {
         // Enable gzip compression with better settings
         webpackConfig.plugins.push(
           new CompressionPlugin({
-            filename: '[path][base].gz',
-            algorithm: 'gzip',
+            filename: "[path][base].gz",
+            algorithm: "gzip",
             test: /\.(js|css|html|svg)$/,
             threshold: 8192, // Only compress files > 8kb
             minRatio: 0.8,
@@ -25,11 +25,11 @@ module.exports = {
         // Improved Critical CSS inlining
         webpackConfig.plugins.push(
           new Critters({
-            preload: 'swap',
+            preload: "swap",
             preloadFonts: true,
             pruneSource: true,
             reduce: true,
-            keyframes: 'critical',
+            keyframes: "critical",
           })
         );
 
@@ -43,7 +43,7 @@ module.exports = {
                 compress: {
                   drop_console: true,
                   drop_debugger: true,
-                  pure_funcs: ['console.log'],
+                  pure_funcs: ["console.log"],
                 },
                 mangle: true,
                 output: {
@@ -55,7 +55,7 @@ module.exports = {
             new CssMinimizerPlugin(),
           ],
           splitChunks: {
-            chunks: 'all',
+            chunks: "all",
             maxInitialRequests: Infinity,
             minSize: 20 * 1024,
             maxSize: 244 * 1024,
@@ -66,7 +66,9 @@ module.exports = {
                   const packageName = module.context?.match(
                     /[\\/]node_modules[\\/](.*?)([\\/]|$)/
                   )?.[1];
-                  return packageName ? `npm.${packageName.replace('@', '')}` : null;
+                  return packageName
+                    ? `npm.${packageName.replace("@", "")}`
+                    : null;
                 },
                 priority: 20,
               },
@@ -76,46 +78,46 @@ module.exports = {
                 reuseExistingChunk: true,
               },
               styles: {
-                name: 'styles',
+                name: "styles",
                 test: /\.css$/,
-                chunks: 'all',
+                chunks: "all",
                 enforce: true,
                 priority: 30,
               },
             },
           },
-          runtimeChunk: 'single',
+          runtimeChunk: "single",
         };
 
         // Optional: Bundle Analyzer in analyze mode
         if (process.env.ANALYZE) {
           webpackConfig.plugins.push(
             new BundleAnalyzerPlugin({
-              analyzerMode: 'static',
-              reportFilename: 'bundle-report.html',
+              analyzerMode: "static",
+              reportFilename: "bundle-report.html",
             })
           );
         }
       }
 
       return webpackConfig;
-    }
+    },
   },
   eslint: {
     enable: false, // Disable if you want faster builds
   },
   babel: {
     plugins: [
-      isProd && 'transform-remove-console',
-      '@babel/plugin-transform-runtime',
-      ['@babel/plugin-proposal-class-properties', { loose: true }],
+      isProd && "transform-remove-console",
+      "@babel/plugin-transform-runtime",
+      ["@babel/plugin-proposal-class-properties", { loose: true }],
     ].filter(Boolean),
     presets: [
       [
-        '@babel/preset-env',
+        "@babel/preset-env",
         {
           modules: false,
-          useBuiltIns: 'usage',
+          useBuiltIns: "usage",
           corejs: 3,
         },
       ],
@@ -124,11 +126,10 @@ module.exports = {
   style: {
     postcss: {
       plugins: [
-        require('tailwindcss'),
-        require('autoprefixer'),
-        require('cssnano')({
+        require("autoprefixer"),
+        require("cssnano")({
           preset: [
-            'default',
+            "default",
             {
               discardComments: {
                 removeAll: true,

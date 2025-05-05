@@ -18,7 +18,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-bootstrap";
 import RegisterPopup from "./Components/RegisterPopup";
 import ProtectedRoute from "./Pages/Protected Route/protectedRoute";
-import Ring1 from "./Components/Home/ring demo 1/ring";
 import { Suspense, useEffect } from "react";
 import WhatsAppButton from "./Components/WhatsAppButton";
 import LoadingSpinner from "./Components/LoadingSpinner";
@@ -26,13 +25,14 @@ import LoadingSpinner from "./Components/LoadingSpinner";
 function App() {
   useEffect(() => {
     let lastScrollTop = 0;
-  
+
     const handleScroll = () => {
-      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const currentScrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
       const header = document.querySelector(".main-header");
-  
+
       if (!header) return;
-  
+
       if (currentScrollTop > lastScrollTop) {
         // Scrolling Down
         header.classList.add("hide-header");
@@ -40,14 +40,14 @@ function App() {
         // Scrolling Up
         header.classList.remove("hide-header");
       }
-  
+
       lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
     };
-  
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
+
   return (
     <BrowserRouter>
       <ToastContainer position="top-right" autoClose={3000} />
