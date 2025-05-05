@@ -15,6 +15,7 @@ export const fetchCartCount = createAsyncThunk(
       localStorage.setItem("cartCount", count);
       return count;
     } catch (error) {
+      console.error('Error fetching cart count:', error);
       return rejectWithValue(error.response?.data || 'Something went wrong');
     }
   }
@@ -23,11 +24,28 @@ export const fetchCartCount = createAsyncThunk(
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    count: 0,
+    count: parseInt(localStorage.getItem('cartCount')) || 0,
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    updateCartCount: (state, action) => {
+      state.count = action.payload;
+      localStorage.setItem("cartCount", action.payload);
+    },
+    incrementCartCount: (state) => {
+      state.count += 1;
+      localStorage.setItem("cartCount", state.count);
+    },
+    decrementCartCount: (state) => {
+      state.count = Math.max(0, state.count - 1);
+      localStorage.setItem("cartCount", state.count);
+    },
+    resetCartCount: (state) => {
+      state.count = 0;
+      localStorage.setItem("cartCount", "0");
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCartCount.pending, (state) => {
@@ -41,8 +59,11 @@ const cartSlice = createSlice({
       .addCase(fetchCartCount.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        // Keep the existing count if there's an error
+        state.count = parseInt(localStorage.getItem('cartCount')) || 0;
       });
   },
 });
 
+export const { updateCartCount, incrementCartCount, decrementCartCount, resetCartCount } = cartSlice.actions;
 export default cartSlice.reducer;
