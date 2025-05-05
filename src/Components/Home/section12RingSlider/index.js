@@ -111,6 +111,8 @@ const Section12RingSlider = () => {
             speed={600}
             slidesPerView={slidesToShow}
             centeredSlides={true}
+            mousewheel={false}
+            
             loop={rings.length > slidesToShow}
             onSlideChange={(swiper) => setCenterIndex(swiper.realIndex)}
             className="ring-swiper"
