@@ -6,28 +6,18 @@ import "./index.css";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { updateCartCount, decrementCartCount } from "../../redux/cartSlice";
 
 const CartPopup = ({
   isOpen,
   closeCart,
   showToast,
   toastMessage,
-  setCartCount,
 }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [orderDetails, setOrderDetails] = useState([]);
-
-  // const calculateTotal = () => {
-  //   return orderDetails
-  //     .reduce(
-  //       (total, item) =>
-  //         total +
-  //         parseFloat(item.productId.salePrice?.$numberDecimal || 0) *
-  //         item.quantity,
-  //       0
-  //     )
-  //     .toFixed(2);
-  // };
 
   const calculateTotal = () => {
     return orderDetails
@@ -38,6 +28,7 @@ const CartPopup = ({
       )
       .toFixed(2);
   };
+
   const calculateDiscountTotal = () => {
     return orderDetails
       .reduce(
@@ -48,15 +39,6 @@ const CartPopup = ({
       )
       .toFixed(2);
   };
-
-  // const handleQuantityChange = (index, change) => {
-  //   const updatedItems = orderDetails.map((item, i) =>
-  //     i === index
-  //       ? { ...item, quantity: Math.max(1, item.quantity + change) }
-  //       : item
-  //   );
-  //   setOrderDetails(updatedItems);
-  // };
 
   const handleQuantityChange = async (index, change) => {
     const updatedItems = orderDetails.map((item, i) =>
@@ -91,31 +73,6 @@ const CartPopup = ({
     }
   };
 
-  useEffect(() => {
-    if (showToast && toastMessage) {
-      toast.success(toastMessage, {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-    }
-  }, [showToast, toastMessage]);
-
-  useEffect(() => {
-    if (isOpen) {
-      getOrderDetails();
-    }
-  }, [isOpen]);
-
-  // const handleRemoveItem = (index) => {
-  //   const updatedItems = orderDetails.filter((_, i) => i !== index);
-  //   setOrderDetails(updatedItems);
-  //   // closeCart();
-  // };
-
   const handleRemoveItem = async (orderId, index) => {
     try {
       const res = await axios.delete(
@@ -125,12 +82,12 @@ const CartPopup = ({
       if (res.status === 200) {
         const updatedItems = orderDetails.filter((_, i) => i !== index);
         setOrderDetails(updatedItems);
-        setCartCount(updatedItems.length);
-        localStorage.setItem("cartCount", updatedItems.length);
+        dispatch(updateCartCount(updatedItems.length));
         toast.success("Removed from Cart!");
       }
     } catch (err) {
       console.error("Error deleting order item:", err);
+      toast.error("Failed to remove item from cart");
     }
   };
 
@@ -156,11 +113,8 @@ const CartPopup = ({
             selectedSize = item.variation[0]?.productSize || "";
             salePrice = parseFloat(item.variation[0]?.salePrice || 0);
           } else if (!hasVariations) {
-            // selectedSize = Array.isArray(item.productId?.productSize)
-            //   ? item.productId?.productSize[0] || ""
-            //   : "";
             selectedSize = Array.isArray(item.productId?.productSize)
-              ? item.productId?.productSize[0].split(",")[0] || "" // Pick first size from comma-separated list
+              ? item.productId?.productSize[0].split(",")[0] || ""
               : "";
           }
 
@@ -172,13 +126,11 @@ const CartPopup = ({
           };
         });
         setOrderDetails(items);
-        if (setCartCount) {
-          setCartCount(items.length);
-          localStorage.setItem("cartCount", items.length);
-        }
+        dispatch(updateCartCount(items.length));
       }
     } catch (err) {
       console.error("Error fetching order details:", err);
+      toast.error("Failed to fetch cart items");
     }
   };
 
@@ -206,6 +158,25 @@ const CartPopup = ({
     setOrderDetails(updatedItems);
   };
 
+  useEffect(() => {
+    if (showToast && toastMessage) {
+      toast.success(toastMessage, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
+  }, [showToast, toastMessage]);
+
+  useEffect(() => {
+    if (isOpen) {
+      getOrderDetails();
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
@@ -222,17 +193,6 @@ const CartPopup = ({
               key={index}
               className="cart-item d-flex flex-column align-items-center"
             >
-              {/* <img
-                src={`https://dev.crystovajewels.com${item.productId?.image?.[0]}`}
-                alt={item.productId?.productName}
-                style={{
-                  borderRadius: "24px",
-                  width: "100%",
-                  height: "100%",
-                  maxHeight: "300px",
-                  objectFit: "contain",
-                }}
-              /> */}
               {(() => {
                 const imageToShow = item.productId?.image.find(
                   (img) => !img.endsWith(".mp4")
@@ -260,7 +220,6 @@ const CartPopup = ({
                   item.productId.productSize.length === 0 ||
                   item.productId.productSize[0] === "[]" ||
                   item.productId.productSize[0].split(",").filter(size => size.trim() !== "").length === 0) ? (
-                  // Show name and price side by side when NO size available
                   <div className="d-flex align-items-center justify-content-between secure_chckotfre">
                     <h5 className="fw-bold mb-1 cart_headre_ssss text-truncate">
                       {item.productId?.productName}
@@ -270,7 +229,6 @@ const CartPopup = ({
                     </p>
                   </div>
                 ) : (
-                  // Original layout when size IS available
                   <>
                     <h5 className="fw-bold mb-1 d-flex align-items-center justify-content-between secure_chckotfre cart_headre_ssss">
                       {item.productId?.productName}
@@ -282,13 +240,13 @@ const CartPopup = ({
                           className="dropdown_size p-1"
                           style={{ borderRadius: "5px" }}
                           value={
-                            orderDetails[index]?.selectedSize || 
+                            orderDetails[index]?.selectedSize ||
                             item.selectedSize ||
-                             ""
-                            }
+                            ""
+                          }
                           onChange={(e) =>
-                             handleSizeChange(index, e.target.value)
-                            }
+                            handleSizeChange(index, e.target.value)
+                          }
                           required
                         >
                           <option value="" disabled>
@@ -300,14 +258,14 @@ const CartPopup = ({
                               <option key={i} value={size}>
                                 {size}
                               </option>
-                          ))}
+                            ))}
                         </select>
                       </div>
                       <p className="fw-bold m-0 secure_chckotfre d-flex justify-content-end w-100 align-items-sm-center">
                         ₹
                         {(
                           parseFloat(item.salePrice) * parseInt(item.quantity)
-                          ).toFixed(2)}
+                        ).toFixed(2)}
                       </p>
                     </div>
                   </>
@@ -376,14 +334,13 @@ const CartPopup = ({
               navigate("/checkout", {
                 state: {
                   total: calculateTotal(),
-                  // orderDetails: orderDetails,
                   discountTotal: calculateDiscountTotal(),
                   orderDetails: orderDetails.map((item) => ({
                     ...item,
-                    // selectedSize: item.selectedSize,
                     selectedSize: item.productId?.hasVariations
                       ? item.selectedSize
                       : item.selectedSize,
+                    selectedqty: item.quantity,
                   })),
                 },
               });
