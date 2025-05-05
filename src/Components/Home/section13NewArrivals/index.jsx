@@ -3,7 +3,6 @@ import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
-
 const videoData = [
   { src: "/Videos/Dfcvdfx (2).mp4", category: "Pendant" },
   { src: "/Videos/Dfvdfvd (1).mp4", category: "Earrings" },
@@ -16,27 +15,22 @@ const videoData = [
   { src: "/Videos/Sdcxdscx(1).mp4", category: "Bracelets" },
   { src: "/Videos/pendant.mp4", category: "Pendant" },
 ];
-
 const multiplier = {
   translate: 0.1,
   rotate: window.innerWidth >= 1024 ? 0.01 : 0.03,
 };
-
 const Section13NewArrivals = () => {
   const videoRefs = useRef([]);
   const navigate = useNavigate();
-
-  const handleCategoryClick = React.useCallback(
+  const handleCategoryClick = useCallback(
     (category) => {
       navigate(`/products?categoryName=${category}`);
     },
     [navigate]
   );
-
   const updateRotateMultiplier = useCallback(() => {
     multiplier.rotate = window.innerWidth >= 1024 ? 0.01 : 0.03;
   }, []);
-
   const calculateWheel = useCallback(() => {
     const slides = document.querySelectorAll(".single");
     slides.forEach((slide) => {
@@ -51,10 +45,8 @@ const Section13NewArrivals = () => {
       slide.style.transformOrigin = r < 0 ? "left top" : "right top";
     });
   }, []);
-
   useEffect(() => {
     let swiperInstance;
-
     const initSwiper = () => {
       swiperInstance = new Swiper(".swiper1", {
         wrapperClass: "swiper-wrapper1",
@@ -63,12 +55,10 @@ const Section13NewArrivals = () => {
         centeredSlides: true,
         loop: true,
         grabCursor: true,
-        
         autoplay: {
           delay: 3500,
           disableOnInteraction: false,
         },
-      
         breakpoints: {
           220: { slidesPerView: 1.5, spaceBetween: 60 },
           375: { slidesPerView: 1.5, spaceBetween: 70 },
@@ -84,13 +74,10 @@ const Section13NewArrivals = () => {
         },
       });
     };
-
     const raf = () => {
       calculateWheel();
       requestAnimationFrame(raf);
     };
-
-    // Throttled resize handler
     let resizeTimeout;
     const handleResize = () => {
       clearTimeout(resizeTimeout);
@@ -98,18 +85,15 @@ const Section13NewArrivals = () => {
         updateRotateMultiplier();
       }, 200);
     };
-
     initSwiper();
     updateRotateMultiplier();
     raf();
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
       if (swiperInstance) swiperInstance.destroy(true, true);
     };
   }, [calculateWheel, updateRotateMultiplier]);
-
   return (
     <>
       <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
@@ -128,25 +112,23 @@ const Section13NewArrivals = () => {
           <div className="swiper1">
             <div className="swiper-wrapper1">
               {videoData.map((video, i) => (
-                <div className="swiper-slide1" key={i}>
-                  <div
-                    className="single"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      console.log("Clicked category:", video.category);
-                      handleCategoryClick(video.category);
-                    }}
-                    style={{ cursor: "pointer" }}
-                  >
+                <div
+                  className="swiper-slide1"
+                  key={i}
+                  onClick={() => handleCategoryClick(video.category)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className="single">
                     <video
                       ref={(el) => (videoRefs.current[i] = el)}
-                      src={video.src} // DIRECT src here
+                      src={video.src}
                       muted
                       loop
                       playsInline
-                      autoPlay // autoPlay instead of manual play
-                      preload="auto" // better than none now
+                      autoPlay
+                      preload="auto"
                       className="ring-video"
+                      onClick={(e) => e.stopPropagation()} // Prevent video click from triggering navigation
                     />
                   </div>
                 </div>
@@ -158,5 +140,4 @@ const Section13NewArrivals = () => {
     </>
   );
 };
-
 export default React.memo(Section13NewArrivals);
