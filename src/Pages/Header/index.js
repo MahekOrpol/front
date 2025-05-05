@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartCount } from "../../redux/cartSlice";
 
 const allowedCategories = ["Rings", "Earrings", "Pendant", "Bracelet"];
 const categoryImages = {
@@ -18,8 +20,10 @@ const categoryImages = {
   Pendant: "/Images/gem-pendant-svgrepo-com.svg",
   Bracelet: "/Images/noun-bracelet-5323037.svg",
 };
-const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
+const Header = ({ openCart, wishlistCount = 0 }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { count: cartCount } = useSelector((state) => state.cart);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showSignup, setIsSignup] = useState(false);
   const [data, setData] = useState(null);
@@ -39,6 +43,12 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   useEffect(() => {
     getCategories();
   }, []);
+
+  useEffect(() => {
+    if (user_Id) {
+      dispatch(fetchCartCount());
+    }
+  }, [dispatch, user_Id]);
 
   const getCategories = React.useCallback(async () => {
     try {
