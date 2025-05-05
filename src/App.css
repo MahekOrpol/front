@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap");
+
 .App {
   text-align: center;
   min-height: 100vh;
@@ -7,8 +9,6 @@
   height: 40vmin;
   pointer-events: none;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap');
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

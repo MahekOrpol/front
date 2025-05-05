@@ -12,13 +12,8 @@
     "@mui/lab": "^6.0.0-beta.30",
     "@mui/material": "^6.4.7",
     "@reduxjs/toolkit": "^2.7.0",
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "^10.4.21",
     "axios": "^1.8.4",
-    "framer-motion": "^12.5.0",
     "jwt-decode": "^4.0.0",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
@@ -29,15 +24,13 @@
     "react-scripts": "5.0.1",
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.5",
-    "redux-persist": "^6.0.0",
-    "sharp": "^0.34.1",
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.8.1",
     "swiper": "^11.2.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "craco start --port 4000",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
@@ -73,6 +66,7 @@
     "cssnano": "^7.0.6",
     "image-webpack-loader": "^8.1.0",
     "purgecss": "^5.0.0",
+    "terser-webpack-plugin": "^5.3.14",
     "webpack-bundle-analyzer": "^4.10.2"
   }
 }

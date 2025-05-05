@@ -2,20 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="/main-logo.png" type="image/png" />
-    <link rel="icon" href="/favicon1.ico" sizes="any">
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-
     <title>Crystova Jewels</title>
     <meta name="title" content="Crystova Jewels - Sparkle with Elegance" />
     <meta
       name="description"
       content="Explore Crystova Jewels for timeless elegance. Discover rings, necklaces, earrings, and more—crafted for your special moments."
     />
+
+    <!-- LCP image preload (top priority) -->
+    <link
+      rel="preload"
+      fetchPriority="high"
+      as="image"
+      href="/Images/hero-img3.webp"
+      type="image/webp"
+    />
+    <link
+      rel="preload"
+      fetchPriority="high"
+      as="image"
+      href="/Images/purple-ornament-indoors-decor-fabric-material2.webp"
+      type="image/webp"
+    />
+
+    <!-- Favicon & Manifest -->
+    <link rel="icon" type="image/png" href="/main-logo.png" />
+    <link rel="apple-touch-icon" href="/main-logo.png" />
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -49,39 +64,38 @@
       content="https://crystovajewels.com/main-logo.png"
     />
 
-   
-    <!-- Preconnects and Resource Hints -->
+    <!-- Preconnects -->
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://dev.crystovajewels.com" crossorigin />
     <link rel="preconnect" href="https://accounts.google.com" crossorigin />
-    
-    <!-- Preload Critical Fonts -->
-    <link
-      rel="preload"
-      as="font"
-      href="https://fonts.gstatic.com/s/dmseriftext/v12/rnCu-xZa_krGOWt5_6ge7ZetF.woff2"
-      type="font/woff2"
-      crossorigin
-    />
-
-    <!-- DNS Prefetch -->
     <link rel="dns-prefetch" href="https://dev.crystovajewels.com" />
 
-    <!-- Resource hints for critical resources -->
-    <link rel="preload" href="/fonts/your-main-font.woff2" as="font" type="font/woff2" crossorigin />
-    
-    <!-- Preload critical CSS -->
-    <link rel="preload" href="/static/css/main.chunk.css" as="style" />
+    <!-- Preload Fonts -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap"
+      />
+    </noscript>
 
-    <!-- Inline Critical CSS -->
+    <!-- Preload critical styles and scripts -->
+    <link rel="preload" as="style" href="/static/css/main.chunk.css" />
+    <link rel="preload" as="script" href="/static/js/main.chunk.js" />
+
+    <!-- Inline critical CSS -->
     <style>
-      /* Critical CSS */
       :root {
         --primary-color: #000000;
         --secondary-color: #ffffff;
       }
-      
+
       body {
         margin: 0;
         padding: 0;
@@ -106,38 +120,46 @@
         object-fit: contain;
       }
 
-      /* Add loading animation for images */
       .image-loading {
-        background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+        background: linear-gradient(
+          90deg,
+          #f0f0f0 25%,
+          #e0e0e0 50%,
+          #f0f0f0 75%
+        );
         background-size: 200% 100%;
         animation: loading 1.5s infinite;
       }
 
       @keyframes loading {
-        0% { background-position: 200% 0; }
-        100% { background-position: -200% 0; }
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
       }
 
-      html, body, #root {
-        background-color: #ffffff; /* or your desired background color */
+      html,
+      body,
+      #root {
+        background-color: #ffffff;
         margin: 0;
         padding: 0;
       }
-      
-      /* Add this to prevent FOUC (Flash of Unstyled Content) */
+
       #root:empty {
         display: none;
       }
     </style>
 
-    <!-- Async CSS Loading -->
-    <link 
-      rel="stylesheet" 
-      href="/static/css/main.css" 
-      media="print" 
+    <!-- Load stylesheets async -->
+    <link
+      rel="stylesheet"
+      href="/static/css/main.css"
+      media="print"
       onload="this.media='all'"
     />
-    
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -145,49 +167,22 @@
       onload="this.media='all'"
     />
 
-    <!-- Bootstrap JS Bundle (deferred) -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-      defer
-    ></script>
-
-    <!-- Preload the LCP image with a high fetchpriority -->
-    <link
-      rel="preload"
-      fetchpriority="high"
-      as="image"
-      href="https://crystovajewels.com/static/media/hero-image.webp"
-      type="image/webp"
-    />
-
-    <!-- Deferred Scripts -->
+    <!-- Async/defer scripts -->
     <script defer src="https://accounts.google.com/gsi/client"></script>
     <script
-      defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
+      defer
     ></script>
 
+    <!-- Google Sign-In Client ID -->
     <meta
       name="google-signin-client_id"
       content="765559507358-c081ske9jc3vf1m9nd63h256nin76nu4.apps.googleusercontent.com"
     />
-
-    <!-- Preload the LCP image with a high fetchpriority so it starts loading with the stylesheet. -->
-    <link
-      rel="preload"
-      fetchpriority="high"
-      as="image"
-      href="https://crystovajewels.com/static/media/purple-orn…cor-fabric-material1.842b70e7dc07fe6c9a07.webp"
-      type="image/webp"
-    />
-
-    <link rel="preload" as="style" href="/static/css/main.chunk.css">
-    <link rel="preload" as="script" href="/static/js/main.chunk.js">
   </head>
+
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
