@@ -94,9 +94,10 @@
   padding: 6px 0;
   font-size: 16px;
   font-weight: 500;
+  color: black;
   font-family: "Cabin", sans-serif;
   cursor: pointer;
-  /* border-bottom: 1px solid #ddd; */
+  position: relative;
 }
 
 .drawer-item:hover {
@@ -257,7 +258,7 @@
   }
 
   .heder_sec_main {
-    justify-content: start !important;
+    justify-content: space-between !important;
     /* gap: 20px !important; */
     padding: 10px 23px;
   }
@@ -454,7 +455,7 @@
 }
 
 .hedr_sss img {
-  max-width: 180px;
+  max-width: 180px !important;
   height: auto;
 }
 
@@ -608,7 +609,7 @@
 }
 .profile-details h6 {
   margin: 0;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: bold;
   color: #611d2b;
   text-transform: capitalize;
@@ -771,4 +772,36 @@
   overflow: hidden !important;
   position: fixed;
   width: 100%;
+}
+
+
+.dropdown-subcategory {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 150px;
+  transition: transform 0.3s ease;
+  padding-top: 10px;
+}
+
+.dropdown-subcategory div {
+  padding: 8px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dropdown-subcategory div:hover {
+  background-color: #f2f2f2;
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease-in-out;
+  
+}
+
+.arrow-icon.rotate {
+  transform: rotate(90deg);
 }

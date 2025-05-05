@@ -245,7 +245,7 @@ const EditProfile = () => {
             {/* Left Image Section - Always visible, but smaller on smaller screens */}
             <div className="col-md-6 justify-content-center tyoty">
               <img
-                loading="lazy"
+                loading="eager"
                 src="/Images/editimg.png"
                 alt="Profile"
                 className="w-100"

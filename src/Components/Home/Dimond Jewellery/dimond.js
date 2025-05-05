@@ -30,18 +30,18 @@ const DimondJewellery = () => {
         <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
           <div className="h-100">
             <img
-              src="..//Images/rose.webp"
+              src="../Images/rose.webp"
               alt="Rings"
-              loading="lazy"
+              loading="eager"
               className="w-100 h-100 diamond_img"
               onClick={() => handleCategoryClick("Rings")}
             />
           </div>
           <div className="h-100">
             <img
-              src="..//Images/pen.webp"
+              src="../Images/pen.webp"
               alt="Pendant"
-              loading="lazy"
+              loading="eager"
               className="w-100 h-100 diamond_img"
               onClick={() => handleCategoryClick("Pendant")}
             />
@@ -52,8 +52,8 @@ const DimondJewellery = () => {
           <div ref={videoRef}>
             {videoVisible && (
               <LazyVideo
-                loading="lazy"
-                src="../../../Videos/diamond jewelry.mp4"
+                loading={videoVisible ? "eager" : "lazy"}
+                src="../Videos/diamond jewelry.mp4"
                 className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
                 autoPlay
                 loop
@@ -69,7 +69,7 @@ const DimondJewellery = () => {
               //   muted
               //   playsInline
               //   preload="none"
-              //   loading="lazy"
+              //   loading="eager"
               //   className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
               //   onClick={() => navigate('/products')}
               // >
@@ -86,18 +86,18 @@ const DimondJewellery = () => {
         <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
           <div className="h-100">
             <img
-              src="..//Images/bracletesss.webp"
+              src="../Images/bracletesss.webp"
               alt="Bracelet"
-              loading="lazy"
+              loading="eager"
               className="w-100 h-100 diamond_img"
               onClick={() => handleCategoryClick("Bracelet")}
             />
           </div>
           <div className="h-100">
             <img
-              src="..//Images/schbgdsccc.webp"
+              src="../Images/schbgdsccc.webp"
               alt="Earrings"
-              loading="lazy"
+              loading="eager"
               className="w-100 h-100 diamond_img"
               onClick={() => handleCategoryClick("Earrings")}
             />

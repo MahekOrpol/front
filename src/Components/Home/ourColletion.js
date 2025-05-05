@@ -11,9 +11,9 @@ const OueColletion = () => {
 
   // Static image imports (keep as before)
   const productImages = [
-    { img: "/Images/our.webp", label: "Diamond Bracelet",path:'Bracelet' },
-    { img: "/Images/our2.webp", label: "Diamond Earrings" ,path:'Earrings'},
-    { img: "/Images/our3.webp", label: "Diamond Rings" ,path:'Rings'},
+    { img: "/Images/bracelate.jpg", label: "Diamond Bracelet",path:'Bracelet' },
+    { img: "/Images/earrings.jpg", label: "Diamond Earrings" ,path:'Earrings'},
+    { img: "/Images/Diamond-ring.jpg", label: "Diamond Rings" ,path:'Rings'},
   ];
 
   const handleCategoryClick = (category) => {
@@ -47,7 +47,7 @@ const OueColletion = () => {
                   onClick={() => handleCategoryClick(product.path)}
                 >
                   <img
-                  loading="lazy"
+                  loading="eager"
                   src={product.img}
                     className="our_colle_iumg_ssss"
                     alt={product.label}

@@ -149,13 +149,13 @@
 
 .mikdec_try {
   font-weight: 600;
-  font-size: 22px;
+  font-size: 18px;
   letter-spacing: 0%;
 }
 
 .mikdec_asdxsx {
   font-weight: 600;
-  font-size: 22px;
+  font-size: 17px;
   letter-spacing: 0%;
 }
 
@@ -171,7 +171,7 @@
 .asxasx_card {
   transition: all 0.3s ease-in-out;
   overflow: hidden;
-  padding-top: 12px;
+  /* padding-top: 12px; */
 }
 
 .asxasx_card:hover {
@@ -812,7 +812,7 @@
   }
 
   .scdscsed_sdss_pro {
-    height: 345px !important;
+    height: 272px !important;
   }
 
   .mikdec_try {
@@ -843,7 +843,7 @@
   }
 
   .scdscsed_sdss_pro {
-    height: 335px !important;
+    height: 247px !important;
   }
 
   .mikdec_try {
@@ -1406,7 +1406,7 @@
 }
 
 .scdscsed_sdss_pro {
-  height: 433px;
+  height: 311px;
 }
 
 @media(max-width:576px) {
@@ -1496,13 +1496,13 @@
 
 @media(max-width:470px) {
   .scdscsed_sdss_pro {
-    height: 250px;
+    height: 190px;
   }
 }
 
 @media(max-width:375px) {
   .scdscsed_sdss_pro {
-    height: 195px;
+    height: 170px;
   }
 }
 
@@ -1557,12 +1557,27 @@
   justify-content: center;
 }
 
+.round-8-a{
+  
+  border-radius: 8px;
+}
+
 @media (min-width:1750px) {
+  .asxasx_card_banner{
+    width: 40%;
+    /* padding-top: 12px; */
+  }
+  .web-view{
+    display: block !important;
+  }
+  .lap-view , .tab-view , .mob-view{
+    display: none !important;
+  }
   .asxasx_card{
     width: 20%;
   }
   .scdscsed_sdss_pro {
-    height: 315px;
+    height: 319px;
 }
 .asxasx_card:hover {
   transform: translateY(-20px);

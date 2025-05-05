@@ -19,8 +19,9 @@ import { ToastContainer } from "react-bootstrap";
 import RegisterPopup from "./Components/RegisterPopup";
 import ProtectedRoute from "./Pages/Protected Route/protectedRoute";
 import Ring1 from "./Components/Home/ring demo 1/ring";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import WhatsAppButton from "./Components/WhatsAppButton";
+import LoadingSpinner from "./Components/LoadingSpinner";
 
 function App() {
   useEffect(() => {
@@ -50,59 +51,48 @@ function App() {
   return (
     <BrowserRouter>
       <ToastContainer position="top-right" autoClose={3000} />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/Editprofile" element={<EditProfile />} />
-        <Route
-          path="/product-details/:productId"
-          element={<ProductDetails />}
-        />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog-details" element={<BlogDetails />} />
-        <Route path="/contact-us" element={<Contact />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/Customjewel" element={<CustomJewel />} />
-        <Route path="/demo" element={<JewelrySale />} />
-        {/* <Route path="/rings1" element={<Ring1 />} /> */}
-
-        {/* <Route path="/Order" element={<OrderDetails />} />
-        <Route path="/add_to_cart" element={<CartPopup />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/register"
-          element={
-            <RegisterPopup isOpen={true} onClose={() => window.history.back()} />
-          } /> */}
-
-        <Route
-          path="/order"
-          element={<ProtectedRoute element={<OrderDetails />} />}
-        />
-        <Route
-          path="/add_to_cart"
-          element={<ProtectedRoute element={<CartPopup />} />}
-        />
-        <Route
-          path="/wishlist"
-          element={<ProtectedRoute element={<Wishlist />} />}
-        />
-        <Route
-          path="/checkout"
-          element={<ProtectedRoute element={<CheckoutPage />} />}
-        />
-
-        <Route
-          path="/login"
-          element={
-            <RegisterPopup
-              isOpen={true}
-              onClose={() => window.history.back()}
-            />
-          }
-        />
-      </Routes>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/Editprofile" element={<EditProfile />} />
+          <Route
+            path="/product-details/:productId"
+            element={<ProductDetails />}
+          />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog-details" element={<BlogDetails />} />
+          <Route path="/contact-us" element={<Contact />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/customjewel" element={<CustomJewel />} />
+          <Route path="/demo" element={<JewelrySale />} />
+          <Route
+            path="/order"
+            element={<ProtectedRoute element={<OrderDetails />} />}
+          />
+          <Route
+            path="/add_to_cart"
+            element={<ProtectedRoute element={<CartPopup />} />}
+          />
+          <Route
+            path="/wishlist"
+            element={<ProtectedRoute element={<Wishlist />} />}
+          />
+          <Route
+            path="/checkout"
+            element={<ProtectedRoute element={<CheckoutPage />} />}
+          />
+          <Route
+            path="/login"
+            element={
+              <RegisterPopup
+                isOpen={true}
+                onClose={() => window.history.back()}
+              />
+            }
+          />
+        </Routes>
+      </Suspense>
       {/* <WhatsAppButton /> */}
     </BrowserRouter>
   );

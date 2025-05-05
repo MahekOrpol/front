@@ -1,0 +1,60 @@
+/* DimondJewellery.css */
+.dimond .row > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.diamond_section .dimond .demoiin-video_sec,
+.diamond_img {
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.demoiin-video_sec{
+  
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .dimond .row > [class*="col-"] {
+    height: auto !important;
+  }
+
+ .dimond .demoiin-video_sec,
+ .diamond_img {
+    height: 100% !important;
+  }
+  .dimond-section{
+    flex-direction: column !important;
+    display: flex !important;
+
+  }
+}
+
+@media (max-width: 500px) {
+  .dimond .row > [class*="col-"] {
+    height: auto !important;
+  }
+
+  .dimond .demoiin-video_sec,
+  .diamond_img {
+     height: 100% !important;
+   }
+  .dimond-section{
+    flex-direction: column !important;
+    display: flex !important;
+  }
+ 
+}
+
+.sdcsz_rokdscs{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.dimond-section,
+.dis_edjxfd{
+  width: 33.333%;
+}

@@ -8,6 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+import { FaArrowRight } from "react-icons/fa6";
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
@@ -163,9 +164,40 @@ const CustomJewel = () => {
     }
   };
 
+  const blogData = [
+    {
+      title: "Jewellery Trends Inspired by Us",
+      description:
+        "Suspendisse posuere, diam in bibendum lobortis, turpis ipsum aliquam risus, sit amet dictum ligula lorem non nisl.",
+      tags: ["Design", "Research", "Jewellery"],
+      image: "/Images/image (20).png",
+    },
+    {
+      title: "The Future of Handcrafted Jewelry",
+      description:
+        "Discover how artisans are blending tradition with innovation to create timeless designs with modern flair.",
+      tags: ["Handcraft", "Innovation", "Style"],
+      image: "/Images/image (20).png",
+    },
+    {
+      title: "Jewellery Trends Inspired by Us",
+      description:
+        "Explore the growing demand for personalized pieces that reflect individuality and emotional connection.",
+      tags: ["Custom", "Trends", "Luxury"],
+      image: "/Images/image (20).png",
+    },
+    {
+      title: "The Future of Handcrafted Jewelry",
+      description:
+        "Discover how artisans are blending tradition with innovation to create timeless designs with modern flair.",
+      tags: ["Handcraft", "Innovation", "Style"],
+      image: "/Images/image (20).png",
+    },
+  ];
+
   return (
     <>
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -200,66 +232,100 @@ const CustomJewel = () => {
           {/* Banner Section */}
           <div className="bsn">
             <img
-              loading="lazy"
+              loading="eager"
               src="/Images/customjewel.png"
-              alt="Custom Jewelry"
+              alt="Custom Jewellery"
             />
           </div>
           {/* Features Section */}
-          <div className="features-section">
-            <h2 className="iojhf">Custom Jewelry</h2>
-            <p>Jewelry as Unique as Your Story</p>
-            <img
-              loading="lazy"
-              src="/Images/Groupimg.png"
-              className="home_tag_img mb-4"
-              alt="Decorative"
-            />
-            <div className="features-grid">
-              {[
-                {
-                  title: "Uniqueness and Exclusivity",
-                  desc: "Custom jewelry ensures no one else will have the exact same piece, making it truly yours.",
-                  img: "/Images/23 Jewelry store.png",
-                },
-                {
-                  title: "Personalization",
-                  desc: "Tailor every detail to your style, from the choice of gemstones to the design elements.",
-                  img: "/Images/12 Handmade.png",
-                },
-                {
-                  title: "Celebrate Special Moments",
-                  desc: "Create a lasting memory for engagements, anniversaries, birthdays, or any milestone.",
-                  img: "/Images/Group 1597884504.png",
-                },
-                {
-                  title: "Quality and Craftsmanship",
-                  desc: "Every custom piece is handcrafted by skilled artisans using the finest materials.",
-                  img: "/Images/22 Jewelry making.png",
-                },
-              ].map((feature, index) => (
-                <div className="feature-box" key={index}>
-                  <img
-                    loading="lazy"
-                    src={feature.img}
-                    alt={feature.title}
-                    className="feature-img"
-                  />
-                  <h3>{feature.title}</h3>
-                  <p>{feature.desc}</p>
-                </div>
-              ))}
+          <div className="container">
+            <div className="features-section pe-0 ps-0">
+              <h2 className="iojhf">Custom Jewellery</h2>
+              <p className="pb-0 mb-0">Jewellery as Unique as Your Story</p>
+              <img
+                loading="eager"
+                src="/Images/Groupimg.png"
+                className="home_tag_img"
+                alt="Decorative"
+              />
+              <div className="features-grid">
+                {[
+                  {
+                    title: "Uniqueness and Exclusivity",
+                    desc: "Custom jewelry ensures no one else will have the exact same piece, making it truly yours.",
+                    img: "/Images/23 Jewelry store.png",
+                  },
+                  {
+                    title: "Jewellery Personalization",
+                    desc: "Tailor every detail to your style, from the choice of gemstones to the design elements.",
+                    img: "/Images/12 Handmade.png",
+                  },
+                  {
+                    title: "Celebrate Special Moments",
+                    desc: "Create a lasting memory for engagements, anniversaries, birthdays, or any milestone.",
+                    img: "/Images/Group 1597884504.png",
+                  },
+                  {
+                    title: "Quality and Craftsmanship",
+                    desc: "Every custom piece is handcrafted by skilled artisans using the finest materials.",
+                    img: "/Images/22 Jewelry making.png",
+                  },
+                ].map((feature, index) => (
+                  <div className="feature-box" key={index}>
+                    <img
+                      loading="eager"
+                      src={feature.img}
+                      alt={feature.title}
+                      className="feature-img"
+                    />
+                    <h3>{feature.title}</h3>
+                    <p>{feature.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-0 pt-4 vustome-jewel-blog">
+              <div className="row g-4  custrome_jelery">
+                {blogData.map((item, index) => (
+                  <div
+                    className="col-lg-3 col-md-6 col-12 col-sm-6"
+                    key={index}
+                  >
+                    <div className="blog_fade_ds">
+                      <img
+                        src={item.image}
+                        className="blog_ss_tysn_mg w-100"
+                        alt="blog"
+                      />
+                    </div>
+                    <div className="d-flex flex-column gap-2 pt-4">
+                      <span className="mainj_ss">{item.title}</span>
+                      <div className="d-flex align-items-center gap-2 flex-wrap dfdssd">
+                        {item.tags.map((tag, i) => (
+                          <button className="esyh_btn hfdds p-3" key={i}>
+                            {tag}
+                          </button>
+                        ))}
+                      </div>
+                      <p className="psps">{item.description}</p>
+                  
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          {/* Custom Jewelry Form */}
-          <div className="custom-form">
+
+          {/* Custom Jewellery Form */}
+          <div className="custom-form ">
             <h2>Designed by You, Crafted by Us</h2>
             <p>
-              Create a unique piece of jewelry that reflects your personal style
-              and story.
+              Create a unique piece of Jewellery that reflects your personal
+              style and story.
             </p>
             <img
-              loading="lazy"
+              loading="eager"
               src="/Images/Groupimg.png"
               className="home_tag_img mb-4"
               alt="Decorative"

@@ -140,6 +140,12 @@
     top: 10px;
     right: 0px;
   }
+  .mobi-fdfcdfc{
+    display: block !important;
+  }
+  .mobi-fdfcdfc1s{
+    display: none !important;
+  }
 }
 
 .slide-number-indicator {
@@ -754,7 +760,7 @@
 }
 @media (max-width: 375px) {
   .one-way-slider {
-    margin-top: -1.2rem !important;
+    margin-top: 1.2rem !important;
     margin-bottom: 1rem !important;
   }
 
@@ -1275,6 +1281,10 @@
   }
 }
 @media (width: 375px) {
+  .one-way-slider {
+    margin-top: 1.2rem !important;
+    margin-bottom: 0.2rem !important;
+  }
   .stunning_price_fvf {
     margin-top: -5% !important;
   }
@@ -1284,10 +1294,7 @@
   .MHK1 {
     margin-top: -4rem !important;
   }
-  .one-way-slider {
-    margin-top: 0rem !important;
-    padding-top: 0.2rem !important;
-  }
+
   .szdxksdx_HGVBH {
     margin-top: 0rem !important;
     padding-top: 0rem !important;
@@ -1311,7 +1318,7 @@
 }
 @media (max-width: 375px) {
   .occation-content-h2 {
-    margin-top: 26px;
+    margin-top: -1rem;
   }
   .dscdsc_inst {
     gap: 2px !important;

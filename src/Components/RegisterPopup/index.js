@@ -32,7 +32,25 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
+  
+  useEffect(() => {
+    // Reset login fields when switching to the "register" tab
+    if (tabValue === "register") {
+      setLoginEmail(""); 
+      setLoginPassword("");
+    }
+    // Reset register fields when switching to the "login" tab
+    if (tabValue === "login") {
+      setName("");
+      setEmail("");
+      setPhone("");
+      setPassword("");
+      setConfirmPassword("");
+      setRegisterErrors({});
+    }
+  }, [tabValue]); // This effect runs whenever tabValue changes
 
+  
   if (showForgotPass) {
     return <ForgotPass isOpen={showForgotPass} />;
   }
@@ -155,24 +173,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     }
   };
 
-  useEffect(() => {
-    // Reset login fields when switching to the "register" tab
-    if (tabValue === "register") {
-      setLoginEmail(""); 
-      setLoginPassword("");
-    }
-    // Reset register fields when switching to the "login" tab
-    if (tabValue === "login") {
-      setName("");
-      setEmail("");
-      setPhone("");
-      setPassword("");
-      setConfirmPassword("");
-      setRegisterErrors({});
-    }
-  }, [tabValue]); // This effect runs whenever tabValue changes
-
-  
+ 
   if (!isOpen) return null;
 
   return (
@@ -313,7 +314,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                       </p>
                       <div className="ggl_text d-flex align-items-center gap-2 justify-content-center">
                         {/* <img
-                          loading="lazy"
+                          loading="eager"
                           src={googleIcon}
                           alt="Google Icon"
                           className="google-icon"

@@ -24,7 +24,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { SiWhatsapp } from "react-icons/si";
 import { IoLogoWhatsapp } from "react-icons/io";
-import { Carousel } from "react-bootstrap";
+import { Carousel, Dropdown } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -35,6 +35,7 @@ import ProductViewCounter from "../../ProductViewCounter";
 import { useWishlist } from "./hooks/useWishlist";
 import { useProductImages } from "./hooks/useProductImages";
 import { useProductDetails } from "./hooks/useProductDetails";
+import RingSizeInfoBox from "./RingSizeInfoBox";
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
@@ -79,9 +80,23 @@ const ProductDetailss = () => {
   } = useSelector((state) => state.cart);
 
   // Use custom hooks
-  const { productDetails: customProductDetails, relatedProducts: customRelatedProducts, loading: productLoading } = useProductDetails(productId, productData);
-  const { isInWishlist, loading: wishlistLoading, toggleWishlist } = useWishlist(userId);
-  const { images: productImages, selectedImage, isLoading: imagesLoading, selectImage, getOptimizedImageUrl } = useProductImages(customProductDetails?.image || []);
+  const {
+    productDetails: customProductDetails,
+    relatedProducts: customRelatedProducts,
+    loading: productLoading,
+  } = useProductDetails(productId, productData);
+  const {
+    isInWishlist,
+    loading: wishlistLoading,
+    toggleWishlist,
+  } = useWishlist(userId);
+  const {
+    images: productImages,
+    selectedImage,
+    isLoading: imagesLoading,
+    selectImage,
+    getOptimizedImageUrl,
+  } = useProductImages(customProductDetails?.image || []);
 
   const message = `🖼 *Image:* ${imageUrl}
 
@@ -133,7 +148,8 @@ Please let me know the next steps.`;
 
   // Filter images and videos
   const videos = useMemo(
-    () => customProductDetails?.image?.filter((vid) => vid.endsWith(".mp4")) || [],
+    () =>
+      customProductDetails?.image?.filter((vid) => vid.endsWith(".mp4")) || [],
     [customProductDetails]
   );
 
@@ -308,7 +324,7 @@ Please let me know the next steps.`;
         updateWishlistCount(count); // Initialize count properly
         const wishlistMap = {};
         wishlistData.forEach((item) => {
-          let productId = item.productId._id || item.productId.id;
+          let productId = item.productId?._id || item.productId?.id;
           if (typeof productId === "string" || typeof productId === "number") {
             wishlistMap[productId] = item.id;
           } else {
@@ -336,7 +352,7 @@ Please let me know the next steps.`;
     {
       icon: (
         <img
-          loading="lazy"
+          loading="eager"
           src="/Images/Vector (6).png"
           alt="product details"
         />
@@ -359,7 +375,7 @@ Please let me know the next steps.`;
           ? product.productSize.join(",")
           : product?.productSize || "";
         const variationIds = Array.isArray(product?.variations)
-          ? product.variations.map((variation) => variation.id)
+          ? product.variations.map((variation) => variation?.id)
           : [];
         const payload = {
           userId: userId,
@@ -393,6 +409,7 @@ Please let me know the next steps.`;
     [dispatch, openCart, navigate]
   );
 
+  
   return (
     <div>
       <ToastContainer
@@ -466,7 +483,8 @@ Please let me know the next steps.`;
           <section className="d-flex gap-lg-5 p-0 pro_sss_gubs">
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
-                {customProductDetails?.image && customProductDetails.image.length > 0 ? (
+                {customProductDetails?.image &&
+                customProductDetails.image.length > 0 ? (
                   customProductDetails.image.map((img, index) => {
                     const isVideo = img.endsWith(".mp4"); // Check if the file is a video
                     return (
@@ -483,7 +501,7 @@ Please let me know the next steps.`;
                           />
                         ) : (
                           <img
-                            loading="lazy"
+                            loading="eager"
                             className="detr_img bg-white"
                             src={`https://dev.crystovajewels.com${img}`}
                             alt={`Product ${index + 1}`}
@@ -521,7 +539,8 @@ Please let me know the next steps.`;
                   }}
                   className="fddd"
                 >
-                  {customProductDetails?.image && customProductDetails.image.length > 0 ? (
+                  {customProductDetails?.image &&
+                  customProductDetails.image.length > 0 ? (
                     customProductDetails.image.map((img, index) => {
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
 
@@ -539,7 +558,7 @@ Please let me know the next steps.`;
                             />
                           ) : (
                             <img
-                              loading="lazy"
+                              loading="eager"
                               className="detr_img slider_ring_sss"
                               src={`https://dev.crystovajewels.com${img}`}
                               alt={`Slide ${index + 1}`}
@@ -725,17 +744,20 @@ Please let me know the next steps.`;
                     {productImages.map((media, index) => (
                       <div key={index}>
                         <img
-                          loading={index === 0 ? "eager" : "lazy"}
-                          fetchpriority={index === 0 ? "high" : "auto"}
+                          loading="eager"
+                          fetchpriority="high"
                           src={`https://dev.crystovajewels.com${media}`}
                           className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                          alt={customProductDetails?.productName || "Product image"}
+                          alt={
+                            customProductDetails?.productName || "Product image"
+                          }
                         />
                       </div>
                     ))}
                   </Slider>
                 ) : productImages[0] ? (
                   <img
+                    loading="eager"
                     fetchpriority="high"
                     src={`https://dev.crystovajewels.com${productImages[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
@@ -749,8 +771,7 @@ Please let me know the next steps.`;
               {productImages[1] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchpriority={index === 0 ? "high" : "auto"}
+                    loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
@@ -762,8 +783,7 @@ Please let me know the next steps.`;
               {productImages[2] && (
                 <div className="col-md-6 border vider_saxasxs">
                   <img
-                    loading={index === 0 ? "eager" : "lazy"}
-                    fetchpriority={index === 0 ? "high" : "auto"}
+                    loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
@@ -775,7 +795,9 @@ Please let me know the next steps.`;
             <div className="w-100 sdcsd_saxza dscd_54_Dscds ">
               <div>
                 <div className="d-flex justify-content-between align-items-center">
-                  <span className="secrt_1">{customProductDetails?.productName}</span>
+                  <span className="secrt_1">
+                    {customProductDetails?.productName}
+                  </span>
                   <div>
                     <button className="sav_btn p-2 pe-3 ps-3 dcs_dddd_8888">
                       Save {displayPrice.discount}%
@@ -799,7 +821,9 @@ Please let me know the next steps.`;
                     </div>
                   </div>
                   <div className="gap-3 d-flex align-items-center df_rrrrr">
-                    <span className="sku_dsd">SKU : {customProductDetails?.sku}</span>
+                    <span className="sku_dsd">
+                      SKU : {customProductDetails?.sku}
+                    </span>
                     <button className="stk_btn p-2 pe-3 ps-3">
                       {customProductDetails?.stock}
                     </button>
@@ -826,31 +850,32 @@ Please let me know the next steps.`;
                 </div>
 
                 <div className="dropdown">
-                  <button
-                    className="btn btn-secondary dropdown-toggle size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    {selectedSize || "Select size"}
-                  </button>
-                  <ul className="dropdown-menu product_det_menu w-50 mt-1">
-                    {(Array.isArray(customProductDetails?.productSize)
-                      ? customProductDetails.productSize[0].split(",")
-                      : []
-                    ).map((size) => (
-                      <li key={size.trim()}>
-                        <button
-                          className="dropdown-item"
-                          onClick={() => handleSelect(size.trim())}
-                        >
-                          {size.trim()}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      className="size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
+                      variant="secondary"
+                    >
+                      {selectedSize || "Select size"}
+                    </Dropdown.Toggle>
 
+                    <Dropdown.Menu className="product_det_menu w-50 mt-1">
+                      {Array.isArray(customProductDetails?.productSize)
+                        ? customProductDetails.productSize.map((sizeGroup) =>
+                            sizeGroup.split(",").map((size) => (
+                              <Dropdown.Item
+                                key={size.trim()}
+                                onClick={() => handleSelect(size.trim())}
+                              >
+                                {size.trim()}
+                              </Dropdown.Item>
+                            ))
+                          )
+                        : []}
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+                {/* ring side video */}
+                <RingSizeInfoBox />
                 <div className="">
                   <hr className="hr_pb_dtl" />
                 </div>
@@ -963,7 +988,7 @@ Please let me know the next steps.`;
                 <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_tttdd">
                   <div className="icon-bdf">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/material.png"
                       alt="AVOID WATER / MOISTURE"
                     />
@@ -972,7 +997,7 @@ Please let me know the next steps.`;
                   <div className="divider"></div>
                   <div className="icon-bdf">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/Frame 1597883978.png"
                       alt="AVOID PERFUME / LOTION"
                     />
@@ -981,7 +1006,7 @@ Please let me know the next steps.`;
                   <div className="divider szcxds_fix"></div>
                   <div className="icon-bdf">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/oeeofiw.png"
                       alt="REMOVE BEFORE SLEEPING"
                     />
@@ -990,7 +1015,7 @@ Please let me know the next steps.`;
                   <div className="divider"></div>
                   <div className="icon-bdf">
                     <img
-                      loading="lazy"
+                      loading="eager"
                       src="/Images/Frame 1597883980.png"
                       alt="USE SOFT / DRY FABRIC TO CLEAN"
                     />
@@ -1025,7 +1050,7 @@ Please let me know the next steps.`;
                                 aria-controls="collapseOne"
                               >
                                 <img
-                                  loading="lazy"
+                                  loading="eager"
                                   src="/Images/Frame (23).svg"
                                   className="offer-icon"
                                   alt="Offer Icon"
@@ -1055,7 +1080,7 @@ Please let me know the next steps.`;
                       <div className="card det_cd_sec p-3 w-100">
                         <div className="d-flex align-items-center gap-3">
                           <img
-                            loading="lazy"
+                            loading="eager"
                             src="/Images/Group (2).png"
                             alt="product details"
                           />
@@ -1117,7 +1142,7 @@ Please let me know the next steps.`;
             <span className="category_name">Related Products</span>
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
             <img
-              loading="lazy"
+              loading="eager"
               src="/Images/Groupimg.png"
               alt="product details"
             />

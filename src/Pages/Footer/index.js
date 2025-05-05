@@ -22,7 +22,7 @@ const Footer = () => {
         <div className="justify-content-around d-flex w-100 fccc_asxs_footer">
           <div className=" footer_cont text-white sdc_sdds1">
             <img
-              loading="lazy"
+              loading="eager"
               src="/Images/crystovalogowhite (1) 2.png"
               width={400}
                 alt="footer"
@@ -76,12 +76,12 @@ const Footer = () => {
                 <a className="footr_lnk">Shipping</a>
               </li>
               <li className="bcdhb_jcb">
-                <a className="footr_lnk">Order Status</a>
+                <a className="footr_lnk" href="/Order">Order Status</a>
               </li>
 
-              <li className="bcdhb_jcb">
+              {/* <li className="bcdhb_jcb">
                 <a className="footr_lnk">Exchange</a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className=" footer_cont1 text-white mt-md-3 mt-sm-3 mt-lg-0 sdc_sdds1 sdcdsc_fvgtfgv">
@@ -148,7 +148,7 @@ const Footer = () => {
         </div>
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Group 104.svg"
             className=""
             alt="footer"
@@ -169,7 +169,7 @@ const Footer = () => {
         <div className="justify-content-center align-items-center d-flex flex-column w-100 fccc_asxs_footer">
           <div className=" footer_cont_1 text-white sdc_sdds1">
             <img
-              loading="lazy"
+              loading="eager"
               src="/Images/crystovalogowhite (1) 2.png"
               width={400}
               alt="footer"
@@ -245,9 +245,9 @@ const Footer = () => {
                 <li>
                   <a className="footr_lnk">Order Status</a>
                 </li>
-                <li>
+                {/* <li>
                   <a className="footr_lnk">Exchange</a>
-                </li>
+                </li> */}
               </ul>
             </AccordionDetails>
           </Accordion>
@@ -391,7 +391,7 @@ const Footer = () => {
         </div>
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
           <img
-            loading="lazy"
+            loading="eager"
             src="/Images/Group 104.svg"
             className=""
             alt="footer"

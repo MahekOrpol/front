@@ -332,7 +332,7 @@ const Wishlist = () => {
                                 />
                               ) : (
                                 <img
-                                  loading="lazy"
+                                  loading="eager"
                                   src={`https://dev.crystovajewels.com${imageUrl}`}
                                   className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
                                   alt={productId.productName || "Product"}

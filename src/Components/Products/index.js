@@ -65,6 +65,12 @@ const Products = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [selectedGender, setSelectedGender] = useState("Women");
+
+  const productWithBanners = [
+    "/Images/Product-offer-banner/banner1.svg",
+    "/Images/Product-offer-banner/banner2.svg",
+    "/Images/Product-offer-banner/banner3.svg",
+  ];
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
   const dispatch = useDispatch();
   const {
@@ -76,6 +82,83 @@ const Products = () => {
   const [wishlistCount, setWishlistCount] = useState(
     parseInt(localStorage.getItem("wishlistCount")) || 0
   );
+
+  // web view
+  const getBannerPosition = (index) => {
+    const pattern = [8, 10,11,10,11]; // Show banner before 10th, then before 22nd, 32nd, etc.
+    let sum = 1;
+    let patternIndex = 0;
+    let bannerIndex = 0;
+
+    while (sum < index + 1) {
+      sum += pattern[patternIndex % pattern.length];
+      if (sum === index + 1) {
+        return bannerIndex % productWithBanners.length;
+      }
+      patternIndex++;
+      bannerIndex++;
+    }
+
+    return null;
+  };
+
+  // Laptop view
+  const getLaptopBannerPosition = (index) => {
+    const pattern = [8]; // Show banner before 10th, then before 22nd, 32nd, etc.
+    let sum = 1;
+    let patternIndex = 0;
+    let bannerIndex = 0;
+
+    while (sum < index + 1) {
+      sum += pattern[patternIndex % pattern.length];
+      if (sum === index + 1) {
+        return bannerIndex % productWithBanners.length;
+      }
+      patternIndex++;
+      bannerIndex++;
+    }
+
+    return null;
+  };
+  
+  // tab view
+  const getTabBannerPosition = (index) => {
+    const pattern = [6, 8 , 6,8]; // Show banner before 10th, then before 22nd, 32nd, etc.
+    let sum = 1;
+    let patternIndex = 0;
+    let bannerIndex = 0;
+
+    while (sum < index + 1) {
+      sum += pattern[patternIndex % pattern.length];
+      if (sum === index + 1) {
+        return bannerIndex % productWithBanners.length;
+      }
+      patternIndex++;
+      bannerIndex++;
+    }
+
+    return null;
+  };
+
+  // Mobile view
+  const getMobileBannerPosition = (index) => {
+    const pattern = [6]; // Show banner before 10th, then before 22nd, 32nd, etc.
+    let sum = 1;
+    let patternIndex = 1;
+    let bannerIndex = 1;
+
+    while (sum < index + 1) {
+      sum += pattern[patternIndex % pattern.length];
+      if (sum === index + 1) {
+        return bannerIndex % productWithBanners.length;
+      }
+      patternIndex++;
+      bannerIndex++;
+    }
+
+    return null;
+  };
+
   useEffect(() => {
     if (urlSearchQuery) {
       setSearchQuery(urlSearchQuery);
@@ -503,7 +586,7 @@ const Products = () => {
 
   return (
     <>
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -537,8 +620,8 @@ const Products = () => {
         </div>
         <div>
           <img
-            loading="lazy"
-            src="/Images/productt_sss.png"
+            loading="eager"
+            src="/Images/productt_sss.webp"
             className="img_fluid1_banner"
             alt="product"
           />
@@ -562,7 +645,7 @@ const Products = () => {
                 onClick={() => handleClick("Women")}
               >
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src={
                     selectedGender === "Women"
                       ? "/Images/her.png"
@@ -581,7 +664,7 @@ const Products = () => {
                 onClick={() => handleClick("Men")}
               >
                 <img
-                  loading="lazy"
+                  loading="eager"
                   src={
                     selectedGender === "Men"
                       ? "/Images/him-active.png"
@@ -600,7 +683,7 @@ const Products = () => {
                   onClick={toggleFilter}
                 >
                   <img
-                    loading="lazy"
+                    loading="eager"
                     src="/Images/filter.png"
                     alt="Filter Icon"
                   />{" "}
@@ -706,7 +789,6 @@ const Products = () => {
                   <div className="filter-category">
                     <h5 onClick={() => toggleSection("categories")}>
                       Categories{" "}
-                     
                     </h5>
                     {category.map((category) => (
                       <label key={category._id}>
@@ -742,146 +824,170 @@ const Products = () => {
             )}
             <div className="row pt-5">
               {displayProducts.length > 0 ? (
-                displayProducts.map((product) => (
-                  <div
-                    key={product.id}
-                    className={`${
-                      isSearchActive
-                        ? "masonry-item col-lg-3 col-md-4 col-6"
-                        : "col-lg-3 col-md-4 col-6"
-                    } mb-4 asxasx_card`}
-                    onMouseEnter={() => setHoveredProduct(product.id)}
-                    onMouseLeave={() => setHoveredProduct(null)}
-                  >
-                    <div className="card prio_card scdscsed_sdss_pro">
-                      <div className="card-image-wrapper position-relative">
-                        <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 trtrd">
-                          SALE
-                        </button>
-                        <div
-                          className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
-                          onClick={() => toggleFavorite(product.id)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {wishlistItems[product.id] ? (
-                            <GoHeartFill className="heart-icon_ss" size={18} />
-                          ) : (
-                            <GoHeart className="heart-icon_ss" size={18} />
-                          )}
-                        </div>
-                        <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                          {(() => {
-                            const imagesOnly = product.image?.filter(
-                              (img) => !img.endsWith(".mp4")
-                            );
-                            const imageToShow =
-                              imagesOnly?.[imageIndexes[product.id] ?? 0]; // fallback to 0 if no index
+                displayProducts.map((product, index) => {
+                  const bannerIndex = getBannerPosition(index);
+                  const bannerLapIndex = getLaptopBannerPosition(index);
+                  const bannerTabIndex = getTabBannerPosition(index);
+                  const bannerMobIndex = getMobileBannerPosition(index);
 
-                            return imageToShow ? (
-                              <img
-                                src={`https://dev.crystovajewels.com${imageToShow}`}
-                                alt="Product"
-                                className="p-1_proi img-fluid border-0"
-                                onClick={() => handleProductClick(product.id)}
-                                style={{ height: "100%" }}
-                              />
-                            ) : (
-                              <div className="text-center text-muted py-4">
-                                No image available
-                              </div>
-                            );
-                          })()}
-
-                          {/* {product.image[imageIndexes[product.id]]?.endsWith(
-                            ".mp4"
-                          ) ? (
-                            <video
-                              src={`https://dev.crystovajewels.com${
-                                product.image[imageIndexes[product.id]]
-                              }`}
-                              className="p-1_proi img-fluid"
-                              autoPlay
-                              loop
-                              muted
-                              playsInline
-                              controls={false}
-                              onClick={() => handleProductClick(product.id)}
-                            />
-                          ) : (
-                            <img
-                              loading="lazy"
-                              src={`https://dev.crystovajewels.com${
-                                product.image[imageIndexes[product.id]]
-                              }`}
-                              onClick={() => handleProductClick(product.id)}
-                              className="p-1_proi img-fluid"
-                              alt="Product"
-                            />
-                          )} */}
-                          {hoveredProduct === product.id && (
-                            <div className="hover-overlay w-100 d-none d-sm-flex">
-                              <button
-                                className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
-                                onClick={() =>
-                                  handlePrevImage(product.id, product.image)
-                                }
-                              >
-                                <FaChevronLeft />
-                              </button>
-                              <button
-                                className="btn btn-light right-btn"
-                                onClick={() =>
-                                  handleNextImage(product.id, product.image)
-                                }
-                              >
-                                <FaChevronRight />
-                              </button>
-                            </div>
-                          )}
+                  return (
+                    <React.Fragment key={product.id}>
+                      {bannerIndex !== null && (
+                        <div className="col-lg-6 col-12 mb-4 asxasx_card_banner round-8-a web-view d-none">
+                          <img
+                            src={productWithBanners[bannerIndex]}
+                            alt={`Banner ${bannerIndex + 1}`}
+                            className=" round-8-a w-100"
+                          />
                         </div>
-                      </div>
-                    </div>
-                    <div className="d-flex flex-column main_cdsss">
-                      <span className="mikdec_try pt-3 text-truncate ">
-                        {product.productName}
-                      </span>
-                      <div className="d-flex align-items-center gap-3 pt-1">
-                        <span className="mikdec_asdxsx htryf">
-                          ₹{product.salePrice?.$numberDecimal}
-                        </span>
-                        <span className="mikdec_axsx htryf">
-                          ₹{product.regularPrice?.$numberDecimal}
-                        </span>
-                      </div>
-                      <div className="jjcsindn_jcb">
-                        {hoveredProduct === product.id && (
-                          <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                            <button
-                              className="more_btn_dsdd w-50"
-                              onClick={() => handleProductClick(product.id)}
-                            >
-                              More Info
+                      )}
+                      {bannerLapIndex !== null && (
+                        <div className="col-lg-6 col-12 mb-4 asxasx_card_banner round-8-a lap-view d-none d-lg-block">
+                          <img
+                            src={productWithBanners[bannerLapIndex]}
+                            alt={`Banner ${bannerLapIndex + 1}`}
+                            className=" round-8-a w-100"
+                          />
+                        </div>
+                      )}
+                      {bannerTabIndex !== null && (
+                        <div className="col-md-8 col-12 mb-4 asxasx_card_banner round-8-a tab-view d-none d-md-block d-lg-none">
+                          <img
+                            src={productWithBanners[bannerTabIndex]}
+                            alt={`Banner ${bannerTabIndex + 1}`}
+                            className=" round-8-a w-100"
+                          />
+                        </div>
+                      )}
+                      {bannerMobIndex !== null && (
+                        <div className="col-12 mb-4 asxasx_card_banner round-8-a mob-view d-block d-md-none">
+                          <img
+                            src={productWithBanners[bannerMobIndex]}
+                            alt={`Banner ${bannerMobIndex + 1}`}
+                            className=" round-8-a w-100"
+                          />
+                        </div>
+                      )}
+                      <div
+                        // key={product.id}
+                        className={`${
+                          isSearchActive
+                            ? "masonry-item col-lg-3 col-md-4 col-6"
+                            : "col-lg-3 col-md-4 col-6"
+                        } mb-4 asxasx_card`}
+                        onMouseEnter={() => setHoveredProduct(product.id)}
+                        onMouseLeave={() => setHoveredProduct(null)}
+                      >
+                        <div className="card prio_card scdscsed_sdss_pro">
+                          <div className="card-image-wrapper position-relative">
+                            <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 trtrd">
+                              SALE
                             </button>
+                            <div
+                              className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
+                              onClick={() => toggleFavorite(product.id)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              {wishlistItems[product.id] ? (
+                                <GoHeartFill
+                                  className="heart-icon_ss"
+                                  size={18}
+                                />
+                              ) : (
+                                <GoHeart className="heart-icon_ss" size={18} />
+                              )}
+                            </div>
+                            <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
+                              {(() => {
+                                const imagesOnly = product.image?.filter(
+                                  (img) => !img.endsWith(".mp4")
+                                );
+                                const imageToShow =
+                                  imagesOnly?.[imageIndexes[product.id] ?? 0]; // fallback to 0 if no index
+
+                                return imageToShow ? (
+                                  <img
+                                    src={`https://dev.crystovajewels.com${imageToShow}`}
+                                    alt="Product"
+                                    className="p-1_proi img-fluid border-0"
+                                    onClick={() =>
+                                      handleProductClick(product.id)
+                                    }
+                                    style={{ height: "100%" }}
+                                  />
+                                ) : (
+                                  <div className="text-center text-muted py-4">
+                                    No image available
+                                  </div>
+                                );
+                              })()}
+
+                              {hoveredProduct === product.id && (
+                                <div className="hover-overlay w-100 d-none d-sm-flex">
+                                  <button
+                                    className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
+                                    onClick={() =>
+                                      handlePrevImage(product.id, product.image)
+                                    }
+                                  >
+                                    <FaChevronLeft />
+                                  </button>
+                                  <button
+                                    className="btn btn-light right-btn"
+                                    onClick={() =>
+                                      handleNextImage(product.id, product.image)
+                                    }
+                                  >
+                                    <FaChevronRight />
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="d-flex flex-column main_cdsss">
+                          <span className="mikdec_try pt-1 text-truncate ">
+                            {product.productName}
+                          </span>
+                          <div className="d-flex align-items-center gap-3">
+                            <span className="mikdec_asdxsx htryf">
+                              ₹{product.salePrice?.$numberDecimal}
+                            </span>
+                            <span className="mikdec_axsx htryf">
+                              ₹{product.regularPrice?.$numberDecimal}
+                            </span>
+                          </div>
+                          <div className="jjcsindn_jcb">
+                            {hoveredProduct === product.id && (
+                              <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
+                                <button
+                                  className="more_btn_dsdd w-50"
+                                  onClick={() => handleProductClick(product.id)}
+                                >
+                                  More Info
+                                </button>
+                                <button
+                                  className="d-flex align-items-center add-to-crd-dd1 gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                                  onClick={() => addToCart(product)}
+                                >
+                                  Add to Cart <BiShoppingBag size={25} />
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                          <div className="d-flex jjcsindn_jcb_ccs flex-column mt-2">
                             <button
-                              className="d-flex align-items-center add-to-crd-dd1 gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                              className="d-flex align-items-center add-to-crd-dd1 p-1 justify-content-center gap-3"
                               onClick={() => addToCart(product)}
                             >
                               Add to Cart <BiShoppingBag size={25} />
                             </button>
                           </div>
-                        )}
+                        </div>
                       </div>
-                      <div className="d-flex jjcsindn_jcb_ccs flex-column mt-2">
-                        <button
-                          className="d-flex align-items-center add-to-crd-dd1 p-1 justify-content-center gap-3"
-                          onClick={() => addToCart(product)}
-                        >
-                          Add to Cart <BiShoppingBag size={25} />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                ))
+                    </React.Fragment>
+                  );
+                })
               ) : isSearchActive ? (
                 <div className="text-center w-100 py-5">
                   <h4 className="no_plfrdrfd">

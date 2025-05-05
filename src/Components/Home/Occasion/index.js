@@ -33,14 +33,17 @@ const Occasion = () => {
   return (
     <div className="one-way-slider container">
       <div className="slider-content">
-        <h2 className="occation-content-h2">
-          Elevate Every Moment with Exquisite Jewelry
+        <h2 className="occation-content-h2 mobi-fdfcdfc1s">
+          Elevate Every Moment with Exquisite Jewellery
+        </h2>
+        <h2 className="occation-content-h2 d-none mobi-fdfcdfc">
+        Elevate Moments
         </h2>
         <img
           src={groupImg}
           className="home_tag_img mobile_rcvdfcvfd"
           alt="Decorative tag"
-          loading="lazy"
+          loading="eager"
         />
         <p className="occasions_text_p mb-0">
           Indulge in the allure of our Limited Edition Collaboration, where
