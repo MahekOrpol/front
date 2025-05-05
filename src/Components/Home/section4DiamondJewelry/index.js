@@ -40,20 +40,22 @@ const Section4DiamondJewelry = () => {
           <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
             <div className="h-100">
               <img
-                src="..//Images/rose.webp"
+                src="/Images/rose.webp"
                 alt="Rings"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
                 onClick={() => handleCategoryClick("Rings")}
+                style={{cursor:'pointer'}}
               />
             </div>
             <div className="h-100">
               <img
-                src="..//Images/pen.webp"
+                src="/Images/pen.webp"
                 alt="Pendant"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
                 onClick={() => handleCategoryClick("Pendant")}
+                style={{cursor:'pointer'}}
               />
             </div>
           </div>
@@ -71,6 +73,7 @@ const Section4DiamondJewelry = () => {
                   playsInline
                   controls={false}
                   onClick={() => navigate("/products")}
+                  style={{cursor:'pointer'}}
                 />
 
                 // <video
@@ -96,20 +99,22 @@ const Section4DiamondJewelry = () => {
           <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
             <div className="h-100">
               <img
-                src="..//Images/bracletesss.webp"
+                src="/Images/bracletesss.webp"
                 alt="Bracelet"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
                 onClick={() => handleCategoryClick("Bracelet")}
+                style={{cursor:'pointer'}}
               />
             </div>
             <div className="h-100">
               <img
-                src="..//Images/schbgdsccc.webp"
+                src="/Images/schbgdsccc.webp"
                 alt="Earrings"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
                 onClick={() => handleCategoryClick("Earrings")}
+                style={{cursor:'pointer'}}
               />
             </div>
           </div>
