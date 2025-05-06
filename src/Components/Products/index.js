@@ -951,8 +951,9 @@ const Products = () => {
                               ₹{product.regularPrice?.$numberDecimal}
                             </span>
                           </div>
+                        </div>
                           <div className="jjcsindn_jcb">
-                            <div className="d-flex align-items-center justify-content-between gap-2 py-2 fvdvdf_Ththgf">
+                            <div className="d-flex align-items-center justify-content-between gap-2 mb-2 fvdvdf_Ththgf">
                               <button
                                 className="more_btn_dsdd"
                                 onClick={() => handleProductClick(product.id)}
@@ -963,11 +964,10 @@ const Products = () => {
                                 className="add-to-crd-dd1"
                                 onClick={() => addToCart(product)}
                               >
-                                Add to Cart <BiShoppingBag size={25} />
+                                Add to Cart <BiShoppingBag size={25} className="bag_clods"/>
                               </button>
                             </div>
                           </div>
-                        </div>
                       </div>
                     </React.Fragment>
                   );
