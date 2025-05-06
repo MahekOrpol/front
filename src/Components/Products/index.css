@@ -1338,15 +1338,12 @@
     border-radius: 4px;
     border: none;
     height: 40px;
+    display: flex;
     font-weight: 600;
     align-items: center;
     font-family: "Cabin", sans-serif;
   }
-  .fvdvdf_Ththgf{
-    .more_btn_dsdd{
-      width: 56% !important;
-    }
-  }
+
   .add-to-crd-dd1 {
     width: 100%;
     background-color: #611d2b;
@@ -1354,6 +1351,7 @@
     border-radius: 4px;
     border: none;
     height: 40px;
+    display: flex;
     font-size: 13px;
     font-weight: 600;
     gap: 0 !important;
@@ -1419,10 +1417,6 @@
 .price-labels {
   font-family: "Cabin", sans-serif;
 }
-
-
-
-
 
 .btfdd {
   color: white;
@@ -1522,7 +1516,7 @@
 .add-to-crd-dd1{
   width:100% !important;
 }
-@media (max-width:991px) {
+@media (max-width:991px){
   .jjcsindn_jcb{
     opacity: 1 !important;
     display: block !important;
@@ -1530,8 +1524,21 @@
   .asxasx_card{
     overflow: hidden;
   }
-
-  .more_btn_dsdd{
-    width: 60% !important;
+  .asxasx_card {
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    border-radius: 8px;
+    padding-bottom: 0.11rem;
   }
 }
+@media (max-width:991px) and (min-width:473px) {
+  .more_btn_dsdd{
+    width: 50% !important;
+    font-size: 12px !important;
+  }
+  .bag_clods{
+    width: 20px;
+  }
+  }

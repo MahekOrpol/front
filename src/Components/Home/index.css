@@ -2429,11 +2429,14 @@ img.ring-image {
   }
 }
 
-@media (max-width: 426px) and (min-width: 375px) {
+@media (max-width: 472px) and (min-width: 375px) {
   .fvdvdf_Ththgf {
     flex-direction: column;
     width: 100% !important;
   }
+  .more_btn_dsdd {
+    width: 100% !important;
+}
 
   .hnbgygjhh {
     height: 550px !important;
