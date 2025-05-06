@@ -1,28 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import { FaStar } from "react-icons/fa6";
 import "swiper/css";
 import "swiper/css/pagination";
 import { CiStar } from "react-icons/ci";
 
-const testimonials = [
-  {
-    name: "Emily Carol",
-    text: "I wanted a custom bracelet to honor my daughter's birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It's a masterpiece I'll cherish forever.",
-  },
-  {
-    name: "John Doe",
-    text: "I wanted a custom bracelet to honor my daughter's birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It's a masterpiece I'll cherish forever.",
-  },
-  {
-    name: "Jane Smith",
-    text: "I wanted a custom bracelet to honor my daughter's birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It's a masterpiece I'll cherish forever.",
-  },
-];
 export default function Section15Testimonials() {
   const [slidesPerView, setSlidesPerView] = useState(1);
-  const swiperRef = useRef(null); // Store Swiper instance
+  const [reviews, setReviews] = useState([]);
+  const swiperRef = useRef(null);
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch('https://dev.crystovajewels.com/api/v1/review/get/all');
+        const data = await response.json();
+        setReviews(data);
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   useEffect(() => {
     const updateSlidesPerView = () => {
@@ -36,7 +37,7 @@ export default function Section15Testimonials() {
       } else if (screenWidth <= 768) {
         newSlidesPerView = 2;
       } else if (screenWidth <= 1024) {
-        newSlidesPerView = 3;
+        newSlidesPerView = 2;
       } else {
         newSlidesPerView = 3;
       }
@@ -75,11 +76,18 @@ export default function Section15Testimonials() {
       swiperInstance.off("slideChangeTransitionStart", scaleSlides);
     };
   }, []);
-  // useEffect(() => {
-  //   window.addEventListener("resize", () => {
-  //     swiperRef.current?.update();
-  //   });
-  // }, []);
+
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < rating) {
+        stars.push(<FaStar key={i} color="#DBB439" />);
+      } else {
+        stars.push(<CiStar key={i} />);
+      }
+    }
+    return stars;
+  };
 
   return (
     <div className="testimonial-container d-flex align-items-center client_test cline_ytsdhcsd">
@@ -102,8 +110,8 @@ export default function Section15Testimonials() {
           loop={true}
           slidesPerView={slidesPerView}
           slidesPerGroup={1}
-          loopedSlides={testimonials.length}
-          modules={[Pagination]}
+          loopedSlides={reviews.length}
+          modules={[Pagination, Autoplay]}
           // autoplay={{ delay: 3000, disableOnInteraction: false }}
           observer={true} // Observe changes
           observeParents={true} // Observe parent element changes
@@ -112,37 +120,46 @@ export default function Section15Testimonials() {
           preloadImages={false}
           lazy={true}
         >
-          {[...testimonials, ...testimonials, ...testimonials].map(
-            (item, index) => (
-              <SwiperSlide className="slide_ssssss_sss" key={index}>
-                <div
-                  className={`card testimonial-card${
-                    index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
+          {reviews.map((review, index) => (
+            <SwiperSlide className="slide_ssssss_sss" key={review.id}>
+              <div
+                className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
                   } mt-5`}
-                >
-                  <div className="card-body pt-4">
-                    <h5 className="card-title text-center emi_ffcc">
-                      Emily Carol
-                    </h5>
-                    <p className="card-text sdcdscsd text-center">
-                      I wanted a custom bracelet to honor my daughter's birth,
-                      and the designers exceeded my expectations.
-                    </p>
-                    <p className="text-center sdcdscsd pb-0 mb-1">Client</p>
-                    <div className="d-flex justify-content-center align-items-center">
-                      <FaStar color="#DBB439" />
-                      <FaStar color="#DBB439" />
-                      <FaStar color="#DBB439" />
-                      <CiStar />
-                      <CiStar />
-                    </div>
+              >
+                <img
+                  src={`https://dev.crystovajewels.com${review?.image[0]}`}
+                  alt="Avatar" className="testimonial-card-avatar" />
+
+                <div className="card-body pt-4">
+                  <h5 className="card-title text-center emi_ffcc">
+                    {review.userId?.name || 'Anonymous'}
+                  </h5>
+                  <p className="card-text sdcdscsd text-center testimonial-message">
+                    {review.msg}
+                  </p>
+                  <p className="text-center sdcdscsd pb-0 mb-1">Client</p>
+                  <div className="d-flex justify-content-center align-items-center">
+                    {renderStars(parseInt(review.rating))}
                   </div>
                 </div>
-              </SwiperSlide>
-            )
-          )}
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
+
+      <style jsx>{`
+        .testimonial-message {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 1.5;
+          max-height: 3em;
+          margin-bottom: 1rem;
+        }
+      `}</style>
     </div>
   );
 }

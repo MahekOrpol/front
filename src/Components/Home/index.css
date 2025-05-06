@@ -1240,7 +1240,7 @@ button.swiper-pagination-bullet {
 }
 
 /* Add the circular image using ::after */
-.testimonial-card::after {
+/* .testimonial-card::after {
   content: "";
   position: absolute;
   top: -60px;
@@ -1282,7 +1282,7 @@ button.swiper-pagination-bullet {
     center/cover;
   border: 3px solid #fff;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .emi_ffcc {
   font-family: "Cabin", sans-serif;
