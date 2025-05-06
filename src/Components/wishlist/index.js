@@ -301,8 +301,8 @@ const Wishlist = () => {
                       onMouseEnter={() => setHoveredProduct(productId.id)}
                       onMouseLeave={() => setHoveredProduct(null)}
                     >
-                      <div className="jjcsindn_jcb">
-                        <div className="card prio_card scdscsed_sdss">
+                      <div className="jjcsindn_jcb1">
+                        <div className="card prio_card  scdscsed_sdss_pro">
                           <div className="card-image-wrapper position-relative">
                             <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0">
                               SALE
@@ -384,7 +384,7 @@ const Wishlist = () => {
                           </div>
                           <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
                             <button
-                              className="more_btn_dsdd ewdcscdsedcds w-50"
+                              className="more_btn_dsdd  w-50"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleProductClick(productId.id);
@@ -393,7 +393,7 @@ const Wishlist = () => {
                               More Info
                             </button>
                             <button
-                              className="d-flex align-items-center add-to-crd-dd gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
+                              className="d-flex align-items-center add-to-crd-dd add-to-crd-dd1 w-75 p-1 justify-content-center gap-3"
                               onClick={(e) => {
                                 e.stopPropagation();
                                 addToCart(productId);
