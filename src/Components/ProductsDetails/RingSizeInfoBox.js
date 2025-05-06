@@ -38,7 +38,7 @@ const RingSizeInfoBox = () => {
        <div className="video-content" onClick={(e) => e.stopPropagation()}>     
           <span className="close-btn" onClick={() => setOpen(false)}>&times;</span>
             <video autoPlay className="video-player">
-              <source src="/videos/ring-size.mp4" type="video/mp4" />
+              <source src="/Videos/ring-size.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>

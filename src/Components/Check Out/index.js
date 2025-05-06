@@ -85,11 +85,12 @@ const CheckoutPage = () => {
   const totalAmount = location.state?.total || "0.00";
   const orderDetails = location.state?.orderDetails || [];
   const discountTotal = location?.state?.discountTotal || 0;
+  const selectedqty = location?.state?.selectedqty || 0;
   // const selectedSize = orderDetails.selectedSize;
   const mainTotal = totalAmount - discountTotal;
   // const quantity = location.state?.orderDetails.quantity;
   const selectedSize = orderDetails.map((item) => item.selectedSize).join(", ");
-  const quantity = orderDetails.map((item) => item.quantity).join(", ");
+  const quantity = orderDetails.map((item) => item.selectedqty).join(", ");
 
   console.log("location :>> ", selectedSize);
 
@@ -484,10 +485,13 @@ const CheckoutPage = () => {
                           {item.productId.productsDescription}
                         </p>{" "}
                         {item.selectedSize !== "[]" && (
-                          <p className="product-size">
+                          <p className="product-size mb-0">
                             Ring size: {item.selectedSize}
                           </p>
                         )}
+                         <p className="product-size">
+                            Quantity: {item.selectedqty}
+                          </p>
                       </div>
                       <p className="product-price">₹ {displayPrice}</p>
                     </div>
