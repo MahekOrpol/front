@@ -35,7 +35,6 @@ const CartPopup = lazy(() => import("../Add to Cart"));
 
 const Products = () => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const [hoveredProduct, setHoveredProduct] = useState(null);
   const [isFilterVisible, setIsFilterVisible] = useState(false);
   const [openSections, setOpenSections] = useState({
     categories: true,
@@ -869,14 +868,11 @@ const Products = () => {
                         </div>
                       )}
                       <div
-                        // key={product.id}
                         className={`${
                           isSearchActive
                             ? "masonry-item col-lg-3 col-md-4 col-6"
                             : "col-lg-3 col-md-4 col-6"
-                        } mb-4 asxasx_card`}
-                        onMouseEnter={() => setHoveredProduct(product.id)}
-                        onMouseLeave={() => setHoveredProduct(null)}
+                        } mb-4 pt-2 asxasx_card`}
                       >
                         <div className="card prio_card scdscsed_sdss_pro">
                           <div className="card-image-wrapper position-relative">
@@ -903,7 +899,7 @@ const Products = () => {
                                   (img) => !img.endsWith(".mp4")
                                 );
                                 const imageToShow =
-                                  imagesOnly?.[imageIndexes[product.id] ?? 0]; // fallback to 0 if no index
+                                  imagesOnly?.[imageIndexes[product.id] ?? 0];
 
                                 return imageToShow ? (
                                   <img
@@ -922,31 +918,29 @@ const Products = () => {
                                 );
                               })()}
 
-                              {hoveredProduct === product.id && (
-                                <div className="hover-overlay w-100 d-none d-sm-flex">
-                                  <button
-                                    className="d-flex align-items-center left-btn p-2 mt-2 justify-content-center gap-3"
-                                    onClick={() =>
-                                      handlePrevImage(product.id, product.image)
-                                    }
-                                  >
-                                    <FaChevronLeft />
-                                  </button>
-                                  <button
-                                    className="btn btn-light right-btn"
-                                    onClick={() =>
-                                      handleNextImage(product.id, product.image)
-                                    }
-                                  >
-                                    <FaChevronRight />
-                                  </button>
-                                </div>
-                              )}
+                              <div className="hover-overlay">
+                                <button
+                                  className="left-btn"
+                                  onClick={() =>
+                                    handlePrevImage(product.id, product.image)
+                                  }
+                                >
+                                  <FaChevronLeft />
+                                </button>
+                                <button
+                                  className="right-btn"
+                                  onClick={() =>
+                                    handleNextImage(product.id, product.image)
+                                  }
+                                >
+                                  <FaChevronRight />
+                                </button>
+                              </div>
                             </div>
                           </div>
                         </div>
                         <div className="d-flex flex-column main_cdsss">
-                          <span className="mikdec_try pt-1 text-truncate ">
+                          <span className="mikdec_try pt-1 text-truncate">
                             {product.productName}
                           </span>
                           <div className="d-flex align-items-center gap-3">
@@ -958,30 +952,20 @@ const Products = () => {
                             </span>
                           </div>
                           <div className="jjcsindn_jcb">
-                            {hoveredProduct === product.id && (
-                              <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">
-                                <button
-                                  className="more_btn_dsdd w-50"
-                                  onClick={() => handleProductClick(product.id)}
-                                >
-                                  More Info
-                                </button>
-                                <button
-                                  className="d-flex align-items-center add-to-crd-dd1 gfbfgbvgfcbfb w-75 p-1 justify-content-center gap-3"
-                                  onClick={() => addToCart(product)}
-                                >
-                                  Add to Cart <BiShoppingBag size={25} />
-                                </button>
-                              </div>
-                            )}
-                          </div>
-                          <div className="d-flex jjcsindn_jcb_ccs flex-column mt-2">
-                            <button
-                              className="d-flex align-items-center add-to-crd-dd1 p-1 justify-content-center gap-3"
-                              onClick={() => addToCart(product)}
-                            >
-                              Add to Cart <BiShoppingBag size={25} />
-                            </button>
+                            <div className="d-flex align-items-center justify-content-between gap-2 py-2 fvdvdf_Ththgf">
+                              <button
+                                className="more_btn_dsdd"
+                                onClick={() => handleProductClick(product.id)}
+                              >
+                                More Info
+                              </button>
+                              <button
+                                className="add-to-crd-dd1"
+                                onClick={() => addToCart(product)}
+                              >
+                                Add to Cart <BiShoppingBag size={25} />
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
