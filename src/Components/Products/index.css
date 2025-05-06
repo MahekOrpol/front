@@ -1342,6 +1342,25 @@
     align-items: center;
     font-family: "Cabin", sans-serif;
   }
+  .fvdvdf_Ththgf{
+    .more_btn_dsdd{
+      width: 56% !important;
+    }
+  }
+  .add-to-crd-dd1 {
+    width: 100%;
+    background-color: #611d2b;
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    height: 40px;
+    font-size: 13px;
+    font-weight: 600;
+    gap: 0 !important;
+    align-items: center;
+    font-family: "Cabin", sans-serif;
+    justify-content: space-evenly !important;
+}
 }
 
 @media (max-width: 575.98px) {
