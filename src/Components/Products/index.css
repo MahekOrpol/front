@@ -1522,3 +1522,16 @@
 .add-to-crd-dd1{
   width:100% !important;
 }
+@media (max-width:991px) {
+  .jjcsindn_jcb{
+    opacity: 1 !important;
+    display: block !important;
+  }
+  .asxasx_card{
+    overflow: hidden;
+  }
+
+  .more_btn_dsdd{
+    width: 60% !important;
+  }
+}
