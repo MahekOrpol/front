@@ -171,22 +171,29 @@
 .asxasx_card {
   transition: all 0.3s ease-in-out;
   overflow: hidden;
-  /* padding-top: 12px; */
+  position: relative;
+  background: #fff;
+  border-radius: 8px;
 }
 
 .asxasx_card:hover {
-  transform: translateY(-20px);
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  /* height: 640px; */
-  border: 1px solid #611d2b;
-  padding-top: 16px;
-  padding-left: 16px;
-  padding-right: 16px;
+  transform: translateY(-5px);
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  z-index: 1000;
 }
 
-.product-img {
-  transition: all 0.3s ease-in-out;
+.card-image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image-wrapper img {
+  transition: transform 0.5s ease;
+}
+
+.asxasx_card:hover .card-image-wrapper img {
+  transform: scale(1.05);
 }
 
 .hover-overlay {
@@ -195,12 +202,12 @@
   left: 0;
   right: 0;
   bottom: 0;
+  /* background: rgba(255, 255, 255, 0.9); */
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease;
 }
 
 .asxasx_card:hover .hover-overlay {
@@ -212,12 +219,34 @@
   top: 80%;
 }
 
-.left-btn {
-  left: 35%;
+.left-btn, .right-btn {
+  background: #fff;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.right-btn {
-  right: 35%;
+.left-btn:hover, .right-btn:hover {
+  background: #611d2b;
+  color: #fff;
+}
+
+.jjcsindn_jcb {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.asxasx_card:hover .jjcsindn_jcb {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .add-to-cart {
@@ -234,15 +263,17 @@
 }
 
 .add-to-crd-dd1 {
-  width: 100%;
-  background-color: #611d2b;
+  background: #611d2b;
   color: #fff;
-  border-radius: 4px;
   border: none;
-  height: 40px;
-  font-weight: 600;
-  align-items: center;
-  font-family: "Cabin", sans-serif;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.add-to-crd-dd1:hover {
+  background: #4a1620;
 }
 
 .container {
@@ -544,18 +575,6 @@
 }
 
 @media (min-width: 1615px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    /* height: 548px !important; */
-    height: 640px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 38%;
   }
@@ -566,17 +585,6 @@
 }
 
 @media (min-width: 1550px) and (max-width: 1614px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 635px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 38%;
   }
@@ -587,17 +595,6 @@
 }
 
 @media (min-width: 1475px) and (max-width: 1549px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 635px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 38%;
   }
@@ -608,17 +605,6 @@
 }
 
 @media (min-width: 1318px) and (max-width: 1474px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 630px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 38%;
   }
@@ -629,19 +615,7 @@
 }
 
 @media (min-width: 1114px) and (max-width: 1319px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 515px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .scdscsed_sdss_pro {
-
     height: 340px !important;
   }
 
@@ -667,17 +641,6 @@
 }
 
 @media (min-width: 1025px) and (max-width: 1113px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 500px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .mikdec_try {
     font-weight: 600;
     font-size: 18px;
@@ -691,7 +654,6 @@
   }
 
   .scdscsed_sdss_pro {
-
     height: 300px !important;
   }
 
@@ -705,17 +667,6 @@
 }
 
 @media (min-width: 1025px) and (max-width: 1319px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 520px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 35%;
   }
@@ -736,17 +687,6 @@
 }
 
 @media (min-width: 992px) and (max-width: 1024px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 526px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 32% !important;
   }
@@ -761,17 +701,6 @@
 }
 
 @media (min-width: 901px) and (max-width: 991px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 560px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 33%;
   }
@@ -792,17 +721,6 @@
 }
 
 @media (min-width: 830px) and (max-width: 900px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 560px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 33%;
   }
@@ -823,17 +741,6 @@
 }
 
 @media (min-width: 768px) and (max-width: 829px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 540px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 33%;
   }
@@ -854,17 +761,6 @@
 }
 
 @media (min-width: 687px) and (max-width: 767px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 600px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 38%;
   }
@@ -888,27 +784,14 @@
     font-family: "Cabin", sans-serif;
     font-weight: 400;
     text-align: center;
-    /* padding-left: 2rem; */
-    /* padding-right: 2rem; */
     font-size: 16px !important;
     line-height: 100%;
     letter-spacing: 0%;
     justify-content: center;
-}
+  }
 }
 
 @media (min-width: 653px) and (max-width: 686px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 600px !important;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 35%;
   }
@@ -942,17 +825,6 @@
 }
 
 @media (min-width: 577px) and (max-width: 652px) {
-  .asxasx_card:hover {
-    transform: translateY(-20px);
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-    border-radius: 8px;
-    height: 580px;
-    border: 1px solid #611d2b;
-    padding-top: 16px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
   .right-btn {
     right: 35%;
   }
@@ -1439,13 +1311,6 @@
     height: 23px !important;
   }
 
-  .asxasx_card:hover {
-    transform: none;
-    box-shadow: none;
-    border-radius: none;
-    border: none;
-  }
-
   .right-btn {
     right: 0;
   }
@@ -1565,7 +1430,6 @@
 @media (min-width:1750px) {
   .asxasx_card_banner{
     width: 40%;
-    /* padding-top: 12px; */
   }
   .web-view{
     display: block !important;
@@ -1578,24 +1442,13 @@
   }
   .scdscsed_sdss_pro {
     height: 319px;
-}
-.asxasx_card:hover {
-  transform: translateY(-20px);
-  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  /* height: 548px !important; */
-  height: 483px !important;
-  border: 1px solid #611d2b;
-  padding-top: 16px;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-.left-btn {
-  left: 35%;
-}
-.right-btn {
-  right: 35%;
-}
+  }
+  .left-btn {
+    left: 35%;
+  }
+  .right-btn {
+    right: 35%;
+  }
 }
 
 .asxasx_card .p-1_proi {
@@ -1643,4 +1496,10 @@
   .col-5ths {
     width: 25%;
   }
+}
+.more_btn_dsdd{
+  width:100% !important;
+}
+.add-to-crd-dd1{
+  width:100% !important;
 }
