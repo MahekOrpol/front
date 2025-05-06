@@ -87,3 +87,12 @@ img {
   transform: translate3d(0, 0, 0);
   will-change: transform;
 }
+
+#nprogress .bar {
+  background:rgb(255, 238, 0)!important;
+  height: 3px !important;
+}
+#nprogress .spinner-icon {
+  border-top-color: transparent !important;
+  border-left-color: transparent !important;
+}
