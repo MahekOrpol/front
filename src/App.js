@@ -21,6 +21,9 @@ import ProtectedRoute from "./Pages/Protected Route/protectedRoute";
 import { Suspense, useEffect } from "react";
 import WhatsAppButton from "./Components/WhatsAppButton";
 import LoadingSpinner from "./Components/LoadingSpinner";
+import ProgressBar from './Components/ProgressBar';
+import 'nprogress/nprogress.css';
+
 
 function App() {
   useEffect(() => {
@@ -50,6 +53,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ProgressBar />
       <ToastContainer position="top-right" autoClose={3000} />
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
