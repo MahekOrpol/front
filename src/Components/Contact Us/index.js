@@ -1,7 +1,11 @@
 import React, { lazy, Suspense } from "react";
 
 import "./index.css";
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
@@ -292,7 +296,7 @@ const Contact = () => {
                       </Form.Group>
                     </Col>
                   </Row>
-
+                  <Row className="con_row_sss">
                   <Form.Group className="my-4">
                     <Form.Control
                       type="email"
@@ -304,7 +308,8 @@ const Contact = () => {
                       required
                     />
                   </Form.Group>
-
+</Row>
+<Row className="con_row_sss">
                   <Form.Group className="my-4">
                     <Form.Control
                       type="tel"
@@ -315,11 +320,12 @@ const Contact = () => {
                       onChange={handleChange}
                     />
                   </Form.Group>
-
+</Row>
+<Row className="con_row_sss">
                   <Form.Group className="my-4">
                     <Form.Control
                       as="textarea"
-                      rows={4}
+                      rows={1}
                       name="message"
                       placeholder="Your message here..."
                       className="con_filddd"
@@ -328,6 +334,7 @@ const Contact = () => {
                       required
                     />
                   </Form.Group>
+                  </Row>
                   <Button type="submit" className="submit-btn my-3">
                     Submit
                   </Button>

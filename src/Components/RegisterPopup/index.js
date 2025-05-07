@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import "./index.css";
-import { Box, Tab, Tabs, TextField, Button, Fade, Slide } from "@mui/material";
+import { Box, Tab, Tabs, TextField, Slide } from "@mui/material";
 import { TabContext, TabPanel } from "@mui/lab";
 import ForgotPass from "../ForgotPopup";
 import ChangePass from "../ChangePass";
