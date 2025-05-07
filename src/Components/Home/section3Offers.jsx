@@ -46,7 +46,7 @@ const Section3Offers = () => {
         <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
           <span className="fest_fff">FESTIVAL SALE OFFERS</span>
           <div className="txt_frss d-flex flex-column gap-3 sale_offer_sss">
-            <span>Upto 25% Off on All Jewelry Favorites</span>
+            <span>Upto 25% Off on All Jewellery Favorites</span>
             <span> Limited Time!</span>
           </div>
           <div>
