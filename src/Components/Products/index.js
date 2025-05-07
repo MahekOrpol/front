@@ -84,7 +84,7 @@ const Products = () => {
 
   // web view
   const getBannerPosition = (index) => {
-    const pattern = [8, 10,11,10,11]; // Show banner before 10th, then before 22nd, 32nd, etc.
+    const pattern = [8, 10, 11, 10, 11]; // Show banner before 10th, then before 22nd, 32nd, etc.
     let sum = 1;
     let patternIndex = 0;
     let bannerIndex = 0;
@@ -119,10 +119,10 @@ const Products = () => {
 
     return null;
   };
-  
+
   // tab view
   const getTabBannerPosition = (index) => {
-    const pattern = [6, 8 , 6,8]; // Show banner before 10th, then before 22nd, 32nd, etc.
+    const pattern = [6, 8, 6, 8]; // Show banner before 10th, then before 22nd, 32nd, etc.
     let sum = 1;
     let patternIndex = 0;
     let bannerIndex = 0;
@@ -270,26 +270,27 @@ const Products = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const [imageIndexes, setImageIndexes] = useState({});
-  
+  const overlayRef = useRef(null);
   // Scroll control helpers
-  const preventScroll = (e) => e.preventDefault();
+  useEffect(() => {
+    const overlay = overlayRef.current;
+    if (!overlay) return;
 
-  const preventKeyScroll = (e) => {
-    const keys = [32, 37, 38, 39, 40];
-    if (keys.includes(e.keyCode)) e.preventDefault();
-  };
+    const preventScroll = (e) => e.preventDefault();
 
-  const disableScroll = () => {
-    window.addEventListener("wheel", preventScroll, { passive: false });
-    window.addEventListener("touchmove", preventScroll, { passive: false });
-    window.addEventListener("keydown", preventKeyScroll, { passive: false });
-  };
+    if (isCartOpen) {
+      overlay.addEventListener("wheel", preventScroll, { passive: false });
+      overlay.addEventListener("touchmove", preventScroll, { passive: false });
+    } else {
+      overlay.removeEventListener("wheel", preventScroll);
+      overlay.removeEventListener("touchmove", preventScroll);
+    }
 
-  const enableScroll = () => {
-    window.removeEventListener("wheel", preventScroll);
-    window.removeEventListener("touchmove", preventScroll);
-    window.removeEventListener("keydown", preventKeyScroll);
-  };
+    return () => {
+      overlay.removeEventListener("wheel", preventScroll);
+      overlay.removeEventListener("touchmove", preventScroll);
+    };
+  }, [isCartOpen]);
 
   const openCart = useCallback(() => {
     const userId = localStorage.getItem("user_Id");
@@ -298,14 +299,12 @@ const Products = () => {
       return;
     }
     setIsCartOpen(true);
-    disableScroll(); // ✅ Disable scroll
   }, [navigate]);
 
   const closeCart = useCallback(() => {
     setIsCartOpen(false);
     setShowToast(false);
     dispatch(fetchCartCount());
-    enableScroll(); // ✅ Re-enable scroll
   }, [dispatch]);
 
   const handleNextImage = useCallback((productId, images) => {
@@ -626,7 +625,7 @@ const Products = () => {
         showToast={showToast}
         toastMessage={toastMessage}
       />
-      {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
+      {isCartOpen && <div ref={overlayRef} className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header">
           <Suspense fallback={<div>Loading...</div>}>
@@ -888,11 +887,10 @@ const Products = () => {
                         </div>
                       )}
                       <div
-                        className={`${
-                          isSearchActive
+                        className={`${isSearchActive
                             ? "masonry-item col-lg-3 col-md-4 col-6"
                             : "col-lg-3 col-md-4 col-6"
-                        } mb-4 pt-2 asxasx_card`}
+                          } mb-4 pt-2 asxasx_card`}
                       >
                         <div className="card prio_card scdscsed_sdss_pro">
                           <div className="card-image-wrapper position-relative">
@@ -972,22 +970,22 @@ const Products = () => {
                             </span>
                           </div>
                         </div>
-                          <div className="jjcsindn_jcb">
-                            <div className="d-flex align-items-center justify-content-between gap-2 mb-2 fvdvdf_Ththgf">
-                              <button
-                                className="more_btn_dsdd"
-                                onClick={() => handleProductClick(product.id)}
-                              >
-                                More Info
-                              </button>
-                              <button
-                                className="add-to-crd-dd1"
-                                onClick={() => addToCart(product)}
-                              >
-                                Add to Cart <BiShoppingBag size={25} className="bag_clods"/>
-                              </button>
-                            </div>
+                        <div className="jjcsindn_jcb">
+                          <div className="d-flex align-items-center justify-content-between gap-2 mb-2 fvdvdf_Ththgf">
+                            <button
+                              className="more_btn_dsdd"
+                              onClick={() => handleProductClick(product.id)}
+                            >
+                              More Info
+                            </button>
+                            <button
+                              className="add-to-crd-dd1"
+                              onClick={() => addToCart(product)}
+                            >
+                              Add to Cart <BiShoppingBag size={25} className="bag_clods" />
+                            </button>
                           </div>
+                        </div>
                       </div>
                     </React.Fragment>
                   );

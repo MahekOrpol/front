@@ -54,26 +54,29 @@ const Home = () => {
     error,
   } = useSelector((state) => state.cart);
 
+  const overlayRef = useRef(null);
   // Scroll control helpers
-  const preventScroll = (e) => e.preventDefault();
-
-  const preventKeyScroll = (e) => {
-    const keys = [32, 37, 38, 39, 40];
-    if (keys.includes(e.keyCode)) e.preventDefault();
-  };
-
-  const disableScroll = () => {
-    window.addEventListener("wheel", preventScroll, { passive: false });
-    window.addEventListener("touchmove", preventScroll, { passive: false });
-    window.addEventListener("keydown", preventKeyScroll, { passive: false });
-  };
-
-  const enableScroll = () => {
-    window.removeEventListener("wheel", preventScroll);
-    window.removeEventListener("touchmove", preventScroll);
-    window.removeEventListener("keydown", preventKeyScroll);
-  };
-
+  useEffect(() => {
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+  
+    const preventScroll = (e) => e.preventDefault();
+  
+    if (isCartOpen) {
+      overlay.addEventListener("wheel", preventScroll, { passive: false });
+      overlay.addEventListener("touchmove", preventScroll, { passive: false });
+    } else {
+      overlay.removeEventListener("wheel", preventScroll);
+      overlay.removeEventListener("touchmove", preventScroll);
+    }
+  
+    return () => {
+      overlay.removeEventListener("wheel", preventScroll);
+      overlay.removeEventListener("touchmove", preventScroll);
+    };
+  }, [isCartOpen]);
+  
+  
   useEffect(() => {
     dispatch(fetchCartCount());
   }, [dispatch]);
@@ -85,14 +88,12 @@ const Home = () => {
       return;
     }
     setIsCartOpen(true);
-    disableScroll(); // ✅ Disable scroll
   }, [navigate]);
   
   const closeCart = React.useCallback(() => {
     setIsCartOpen(false);
     setShowToast(false);
     dispatch(fetchCartCount());
-    enableScroll(); // ✅ Re-enable scroll
   }, [dispatch]);
   
 
@@ -280,7 +281,7 @@ const Home = () => {
           <Footer />
         </Suspense>
       </div>
-      {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
+      {isCartOpen && <div ref={overlayRef} className="overlay" onClick={closeCart}></div>}
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -295,12 +296,14 @@ const Home = () => {
         stacked
         style={{ zIndex: 1000000001 }}
       />
-      <CartPopup
+      <div>
+        <CartPopup
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
         toastMessage={toastMessage}
       />
+      </div>
     </>
   );
 };
