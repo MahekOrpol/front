@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./index.css";
 
-import { Button } from "react-bootstrap";
-import { FaArrowRightLong } from "react-icons/fa6";
 const images = [
   "/Images/image (32).png",
   "/Images/jewe.jpg",
@@ -48,9 +46,7 @@ const section10ExquisiteJewelry = () => {
           artistry meets elegance. Each piece is meticulously crafted to
           celebrate timeless beauty, available only for a fleeting time.
         </p>
-        {/* <Button className="shop-button">
-          Shop the Collection <FaArrowRightLong />
-        </Button> */}
+      
       </div>
 
       <div className="slider-container">
