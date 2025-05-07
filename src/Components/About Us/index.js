@@ -17,6 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
+import Section15Testimonials from "../Home/section15Testimonials";
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
@@ -24,20 +25,7 @@ const Footer = lazy(() => import("../../Pages/Footer"));
 const AboutUs = () => {
   const swiperRef = useRef(null);
   const [slidesPerView, setSlidesPerView] = useState(1);
-  const testimonials = [
-    {
-      name: "Emily Carol",
-      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
-    },
-    {
-      name: "John Doe",
-      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
-    },
-    {
-      name: "Jane Smith",
-      text: "I wanted a custom bracelet to honor my daughter’s birth, and the designers exceeded my expectations. They listened to every detail I envisioned and brought it to life. It’s a masterpiece I’ll cherish forever.",
-    },
-  ];
+
   const [wishlistCount, setWishlistCount] = useState(
     parseInt(localStorage.getItem("wishlistCount")) || 0
   );
@@ -151,7 +139,7 @@ const AboutUs = () => {
 
   return (
     <>
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -495,143 +483,8 @@ preload="none"
             </div>
           </div>
         </div>
-        {/* <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd">
-        <p className="foss_sd">CLIENT TESTIMONIAL</p>
-        <span className="category_name_ss">What Our Clients Say</span>
-        <div className="pt-5 d-flex position-relative w-100 justify-content-center gap-3">
-          <div className="card w-25 testimonial-card mt-5">
-            <div className="card-body pt-5">
-              <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-              <p className="card-text sdcdscsd text-center">
-                I wanted a custom bracelet to honor my daughter’s birth, and the
-                designers exceeded my expectations. They listened to every
-                detail I envisioned and brought it to life. It’s a masterpiece
-                I’ll cherish forever.
-              </p>
-              <p className="text-center sdcdscsd">Client</p>
-
-              <div className="d-flex justify-content-center align-items-center">
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <CiStar />
-                <CiStar />
-              </div>
-            </div>
-          </div>
-          <div className="card w-25 testimonial-card1 mt-5">
-            <div className="card-body pt-5">
-              <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-              <p className="card-text sdcdscsd text-center">
-                I wanted a custom bracelet to honor my daughter’s birth, and the
-                designers exceeded my expectations. They listened to every
-                detail I envisioned and brought it to life. It’s a masterpiece
-                I’ll cherish forever.
-              </p>
-              <p className="text-center sdcdscsd">Client</p>
-
-              <div className="d-flex justify-content-center align-items-center">
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <CiStar />
-                <CiStar />
-              </div>
-            </div>
-          </div>
-          <div className="card w-25 testimonial-card2 mt-5">
-            <div className="card-body pt-5">
-              <h5 className="card-title text-center emi_ffcc">Emily Carol</h5>
-              <p className="card-text sdcdscsd text-center">
-                I wanted a custom bracelet to honor my daughter’s birth, and the
-                designers exceeded my expectations. They listened to every
-                detail I envisioned and brought it to life. It’s a masterpiece
-                I’ll cherish forever.
-              </p>
-              <p className="text-center sdcdscsd">Client</p>
-
-              <div className="d-flex justify-content-center align-items-center">
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <FaStar color="#DBB439" />
-                <CiStar />
-                <CiStar />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
-        <div className="testimonial-container d-flex align-items-center">
-          {/* <button
-          className="nav-button left"
-          onClick={() => swiperRef.current?.slidePrev()}
-        >
-          <FaAngleLeft />
-        </button> */}
-
-          <div className="heder_sec_main d-flex flex-column align-items-center hdr_csd pb-5">
-            <span className="category_name">Client Testimonial</span>
-            <p className="category_txt">What our Client’s say about us</p>
-            <img loading="lazy" src="/Images/Groupimg.png" alt="Decorative" />
-
-            <Swiper
-              grabCursor={true}
-              loop={true} // Infinite Loop
-              slidesPerView={slidesPerView}
-              slidesPerGroup={1}
-              modules={[Pagination, Autoplay]}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              onSwiper={(swiper) => (swiperRef.current = swiper)}
-              className="swiper_testimonial container"
-              breakpoints={{
-                320: { slidesPerView: 1 },
-                600: { slidesPerView: 2 },
-                1000: { slidesPerView: 3 },
-              }}
-              preloadImages={false}
-              lazy={true}
-            >
-              {[...testimonials, ...testimonials, ...testimonials].map(
-                (item, index) => (
-                  <SwiperSlide className="slide_ssssss_sss_dexsdx" key={index}>
-                    <div
-                      className={`card testimonial-card${
-                        index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                      } mt-5`}
-                    >
-                      <div className="card-body pt-5">
-                        <h5 className="card-title text-center emi_ffcc">
-                          Emily Carol
-                        </h5>
-                        <p className="card-text sdcdscsd text-center">
-                          I wanted a custom bracelet to honor my daughter’s
-                          birth, and the designers exceeded my expectations.
-                          They listened to every detail I envisioned and brought
-                          it to life. It’s a masterpiece I’ll cherish forever.
-                        </p>
-                        <p className="text-center sdcdscsd">Client</p>
-                        <div className="d-flex justify-content-center align-items-center">
-                          <FaStar color="#DBB439" />
-                          <FaStar color="#DBB439" />
-                          <FaStar color="#DBB439" />
-                          <CiStar />
-                          <CiStar />
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                )
-              )}
-            </Swiper>
-          </div>
-          {/* <button
-          className="nav-button right"
-          onClick={() => swiperRef.current?.slideNext()}
-        >
-          <FaAngleRight />
-        </button> */}
-        </div>
+          <Section15Testimonials />
+          
         <Footer />
       </div>
     </>
