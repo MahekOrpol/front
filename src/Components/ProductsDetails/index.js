@@ -7,7 +7,7 @@ import React, {
   useState,
   useCallback,
 } from "react";
-import { FaChevronRight, FaStar } from "react-icons/fa6";
+import { FaChevronRight, FaStar, FaStarHalfStroke } from "react-icons/fa6";
 import "./index.css";
 import { BiShoppingBag } from "react-icons/bi";
 import { GoHeart, GoHeartFill } from "react-icons/go";
@@ -36,6 +36,7 @@ import { useWishlist } from "./hooks/useWishlist";
 import { useProductImages } from "./hooks/useProductImages";
 import { useProductDetails } from "./hooks/useProductDetails";
 import RingSizeInfoBox from "./RingSizeInfoBox";
+import { CiStar } from "react-icons/ci";
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
@@ -68,7 +69,7 @@ const ProductDetailss = () => {
   const videoSliderRef = useRef(null);
   const imageSliderRef = useRef(null);
   const navigate = useNavigate();
-
+  const [review, setReview] = useState(null);
   const [currentVideoSlide, setCurrentVideoSlide] = useState(0);
   const [currentImageSlide, setCurrentImageSlide] = useState(0);
 
@@ -359,6 +360,41 @@ Please let me know the next steps.`;
     };
     fetchWishlist();
   }, [userId]);
+
+  useEffect(() => {
+    const fetchTopReview = async () => {
+      try {
+        const response = await fetch(
+          `https://dev.crystovajewels.com/api/v1/review/get/product/${productId}`
+        );
+        const data = await response.json();
+
+        // Check if it's a valid review object (has rating)
+        if (data && typeof data === "object" && data.rating) {
+          setReview(data);
+        } else {
+          setReview(null); // Set to null if no review found
+        }
+      } catch (error) {
+        console.error("Failed to fetch top review", error);
+        setReview(null); // On error, show default stars
+      }
+    };
+
+    fetchTopReview();
+  }, [productId]);
+
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < rating) {
+        stars.push(<FaStar key={i} color="#DBB439" />);
+      } else {
+        stars.push(<CiStar key={i} />);
+      }
+    }
+    return stars;
+  };
 
   const faqs = [
     {
@@ -825,13 +861,20 @@ Please let me know the next steps.`;
                 </div>
                 <div className="pt-3 d-flex gap-5 align-items-center sdcdc">
                   <div className="d-flex justify-content-left align-items-center gap-3 df_rrrrr">
-                    <div className="d-flex align-items-center gap-1">
-                      <FaStar color="#DBB439" />
-                      <FaStar color="#DBB439" />
-                      <FaStar color="#DBB439" />
-                      <FaStar color="#DBB439" />
-                      <FaStar color="#DBB439" />
-                    </div>
+                    {review ? (
+                      <div className="d-flex align-items-center gap-1">
+                        {renderStars(parseInt(review.rating))}
+                      </div>
+                    ) : (
+                      <div className="d-flex align-items-center gap-1">
+                        <FaStar color="#DBB439" />
+                        <FaStar color="#DBB439" />
+                        <FaStar color="#DBB439" />
+                        <FaStar color="#DBB439" />
+                        <FaStarHalfStroke color="#DBB439" />
+                      </div>
+                    )}
+
                     <div>
                       <span className="rv_ssss ">
                         {/* 24 review */}

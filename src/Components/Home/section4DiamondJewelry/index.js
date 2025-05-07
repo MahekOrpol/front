@@ -25,7 +25,7 @@ const Section4DiamondJewelry = () => {
   }, []);
   return (
     <div className="d-flex flex-column align-items-center diamon_jewe">
-      <span className="category_name mt-md-4">Diamond Jewelry</span>
+      <span className="category_name mt-md-4">Diamond Jewellery</span>
       <p className="category_txt">Minimal. Modern. Mesmerizing</p>
       <img
         loading="lazy"

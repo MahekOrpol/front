@@ -102,67 +102,7 @@ const CustomJewel = () => {
       [name]: files ? files[0] : value,
     });
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    try {
-      const data = {
-        name: formData.name,
-        mobile: formData.mobile,
-        email: formData.email,
-        type: formData.type,
-        budget: Number(formData.budget), // Convert to number
-        metal: formData.metalType, // Change field name to "metal"
-        message: formData.description, // Change field name to "message"
-      };
-
-      // If you need to send a file
-      const formDataToSend = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
-        formDataToSend.append(key, value);
-      });
-
-      if (formData.file) {
-        formDataToSend.append("file", formData.file);
-      }
-
-      const response = await axios.post(
-        "https://dev.crystovajewels.com/api/v1/custom-jewels/create",
-        formDataToSend
-      );
-
-      if (response.status === 201) {
-        toast.success("We will get back to you soon!");
-        setSubmitMessage("Form submitted successfully!");
-        setFormData({
-          name: "",
-          mobile: "",
-          email: "",
-          type: "",
-          budget: "",
-          metalType: "",
-          file: null,
-          description: "",
-        });
-      }
-    } catch (error) {
-      if (error.response) {
-        // Handle specific field errors
-        if (error.response.data.message.includes("must be a number")) {
-          setSubmitMessage("Please enter a valid number for budget");
-        } else {
-          setSubmitMessage(error.response.data.message);
-        }
-      } else {
-        setSubmitMessage("Error submitting form. Please try again.");
-      }
-      console.error("Error:", error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
+  
   const blogData = [
     {
       title: "Jewellery Trends Inspired by Us",
@@ -172,7 +112,7 @@ const CustomJewel = () => {
       image: "/Images/image (20).png",
     },
     {
-      title: "The Future of Handcrafted Jewelry",
+      title: "The Future of Handcrafted Jewellery",
       description:
         "Discover how artisans are blending tradition with innovation to create timeless designs with modern flair.",
       tags: ["Handcraft", "Innovation", "Style"],
@@ -186,7 +126,7 @@ const CustomJewel = () => {
       image: "/Images/image (20).png",
     },
     {
-      title: "The Future of Handcrafted Jewelry",
+      title: "The Future of Handcrafted Jewellery",
       description:
         "Discover how artisans are blending tradition with innovation to create timeless designs with modern flair.",
       tags: ["Handcraft", "Innovation", "Style"],
@@ -251,7 +191,7 @@ const CustomJewel = () => {
                 {[
                   {
                     title: "Uniqueness and Exclusivity",
-                    desc: "Custom jewelry ensures no one else will have the exact same piece, making it truly yours.",
+                    desc: "Custom Jewellery ensures no one else will have the exact same piece, making it truly yours.",
                     img: "/Images/23 Jewelry store.png",
                   },
                   {
