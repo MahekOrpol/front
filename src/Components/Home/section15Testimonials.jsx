@@ -157,7 +157,6 @@ export default function Section15Testimonials() {
                     <p className="card-text sdcdscsd text-center testimonial-message">
                       {review.msg}
                     </p>
-                    <p className="text-center sdcdscsd pb-0 mb-1">Client</p>
                     <div className="d-flex justify-content-center align-items-center">
                       {renderStars(parseInt(review.rating))}
                     </div>
