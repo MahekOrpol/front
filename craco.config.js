@@ -56,8 +56,8 @@ module.exports = {
           ],
           splitChunks: {
             chunks: "all",
-            maxInitialRequests: Infinity,
-            minSize: 20 * 1024,
+            minSize: 10 * 1024, // 10 KB for more granular splitting
+            maxInitialRequests: 10, // Limit initial requests for better splitting
             maxSize: 244 * 1024,
             cacheGroups: {
               vendor: {
@@ -108,10 +108,9 @@ module.exports = {
   },
   babel: {
     plugins: [
-      isProd && "transform-remove-console",
       "@babel/plugin-transform-runtime",
       ["@babel/plugin-proposal-class-properties", { loose: true }],
-    ].filter(Boolean),
+    ],
     presets: [
       [
         "@babel/preset-env",

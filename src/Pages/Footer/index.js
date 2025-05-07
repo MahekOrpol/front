@@ -6,7 +6,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import { FaChevronDown } from "react-icons/fa";
-import Button from "@mui/material/Button";
 import {
   FaFacebookF,
   FaInstagram,
