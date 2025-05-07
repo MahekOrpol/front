@@ -276,7 +276,7 @@ const Home = () => {
           <Section13NewArrivals />
           <Section14Instruction />
           <Section15Testimonials />
-          <div className="pb-5"></div>
+          <div className="pb-5 "></div>
           <Footer />
         </Suspense>
       </div>
