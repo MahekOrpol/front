@@ -14,11 +14,13 @@ export default function Section15Testimonials() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch('https://dev.crystovajewels.com/api/v1/review/get/all');
+        const response = await fetch(
+          "https://dev.crystovajewels.com/api/v1/review/get/all"
+        );
         const data = await response.json();
         setReviews(data);
       } catch (error) {
-        console.error('Error fetching reviews:', error);
+        console.error("Error fetching reviews:", error);
       }
     };
 
@@ -33,9 +35,9 @@ export default function Section15Testimonials() {
       if (screenWidth <= 427) {
         newSlidesPerView = 1;
       } else if (screenWidth <= 599) {
-        newSlidesPerView = 2;
+        newSlidesPerView = 1;
       } else if (screenWidth <= 768) {
-        newSlidesPerView = 2;
+        newSlidesPerView = 1;
       } else if (screenWidth <= 1024) {
         newSlidesPerView = 2;
       } else {
@@ -104,48 +106,67 @@ export default function Section15Testimonials() {
           alt="Decorative"
           className="home_tag_img"
         />
+        {Array.isArray(reviews) && reviews.length > 0 && (
+          <Swiper
+            grabCursor={true}
+            loop={true}
+            slidesPerView={slidesPerView}
+            slidesPerGroup={1}
+            loopedSlides={reviews.length}
+            modules={[Pagination, Autoplay]}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            observer={true} // Observe changes
+            observeParents={true} // Observe parent element changes
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            className="swiper_testimonial container"
+            preloadImages={false}
+            lazy={true}
+          >
+            {reviews.map((review, index) => (
+              <SwiperSlide className="slide_ssssss_sss" key={review.id}>
+                <div
+                        className="card testimonial-card mt-5 mt-sm-2"
+                >
+                  {(() => {
+                    const rawImage = review?.image?.[0];
+                    const imageUrl = rawImage?.startsWith("http")
+                      ? rawImage
+                      : `https://dev.crystovajewels.com${rawImage || ""}`;
+                    return (
+                      <img
+                        src={imageUrl}
+                        alt="Client avatar"
+                        className="testimonial-card-avatar"
+                        style={{
+                          width: "150px",
+                          height: "150px",
+                          borderRadius: "50%",
+                          objectFit: "cover",
+                          transform: "translateY(-60px)",
+                          border:'1px solid white',
+                          padding:'5px'
+                        }}
+                      />
+                    );
+                  })()}
 
-        <Swiper
-          grabCursor={true}
-          loop={true}
-          slidesPerView={slidesPerView}
-          slidesPerGroup={1}
-          loopedSlides={reviews.length}
-          modules={[Pagination, Autoplay]}
-          // autoplay={{ delay: 3000, disableOnInteraction: false }}
-          observer={true} // Observe changes
-          observeParents={true} // Observe parent element changes
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          className="swiper_testimonial container"
-          preloadImages={false}
-          lazy={true}
-        >
-          {reviews.map((review, index) => (
-            <SwiperSlide className="slide_ssssss_sss" key={review.id}>
-              <div
-                className={`card testimonial-card${index % 3 === 0 ? "" : index % 3 === 1 ? "1" : "2"
-                  } mt-5`}
-              >
-                <img
-                  src={`https://dev.crystovajewels.com${review?.image[0]}`}
-                  alt="Avatar" className="testimonial-card-avatar" />
-
-                <div className="card-body pt-4">
-                  <h5 className="card-title text-center emi_ffcc">
-                    {review.userId?.name || 'Anonymous'}
-                  </h5>
-                  <p className="card-text sdcdscsd text-center testimonial-message">
-                    {review.msg}
-                  </p>
-                  <p className="text-center sdcdscsd pb-0 mb-1">Client</p>
-                  <div className="d-flex justify-content-center align-items-center">
-                    {renderStars(parseInt(review.rating))}
+                  <div className="card-body pt-0">
+                    <h5 className="card-title text-center emi_ffcc">
+                      {review.userId?.name || "Anonymous"}
+                    </h5>
+                    <p className="card-text sdcdscsd text-center testimonial-message">
+                      {review.msg}
+                    </p>
+                    <p className="text-center sdcdscsd pb-0 mb-1">Client</p>
+                    <div className="d-flex justify-content-center align-items-center">
+                      {renderStars(parseInt(review.rating))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
 
       <style jsx>{`
