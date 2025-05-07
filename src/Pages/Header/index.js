@@ -124,6 +124,7 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
     localStorage.removeItem("user_fname");
     setData(null);
     setTimeout(() => setIsSignup(false), 500);
+    window.location.reload();
     navigate("/");
   };
 

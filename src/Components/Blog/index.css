@@ -113,7 +113,7 @@ border: none;
     content: "Jan 20, 2025"; /* Change dynamically in React if needed */
     position: absolute;
     bottom: -12px;
-    left: 50px;
+    left: 10px;
     background-color: #611d2b;
     color: #fff;
     padding: 5px 25px;

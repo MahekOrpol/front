@@ -45,6 +45,26 @@ const CustomJewel = () => {
   const [showToast, setShowToast] = useState(false);
   const userId = localStorage.getItem("user_Id");
 
+  // Scroll control helpers
+  const preventScroll = (e) => e.preventDefault();
+
+  const preventKeyScroll = (e) => {
+    const keys = [32, 37, 38, 39, 40];
+    if (keys.includes(e.keyCode)) e.preventDefault();
+  };
+
+  const disableScroll = () => {
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("keydown", preventKeyScroll, { passive: false });
+  };
+
+  const enableScroll = () => {
+    window.removeEventListener("wheel", preventScroll);
+    window.removeEventListener("touchmove", preventScroll);
+    window.removeEventListener("keydown", preventKeyScroll);
+  };
+
   const openCart = () => {
     const userId = localStorage.getItem("user_Id");
 
@@ -53,14 +73,13 @@ const CustomJewel = () => {
       return;
     }
     setIsCartOpen(true);
-    document.body.classList.add("no-scroll");
+    disableScroll(); // ✅ Disable scroll
   };
-
   const closeCart = () => {
     setIsCartOpen(false);
     setShowToast(false);
     dispatch(fetchCartCount());
-    document.body.classList.remove("no-scroll");
+    enableScroll(); // ✅ Re-enable scroll
   };
 
   const updateWishlistCount = (count) => {
@@ -216,7 +235,7 @@ const CustomJewel = () => {
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-        // toastMessage={toastMessage}
+      // toastMessage={toastMessage}
       />
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header">
@@ -300,16 +319,9 @@ const CustomJewel = () => {
                       />
                     </div>
                     <div className="d-flex flex-column gap-2 pt-4">
-                      <span className="mainj_ss">{item.title}</span>
-                      <div className="d-flex align-items-center gap-2 flex-wrap dfdssd">
-                        {item.tags.map((tag, i) => (
-                          <button className="esyh_btn hfdds p-3" key={i}>
-                            {tag}
-                          </button>
-                        ))}
-                      </div>
+                      <span className="mainj_ss text-start">{item.title}</span>
                       <p className="psps">{item.description}</p>
-                  
+
                     </div>
                   </div>
                 ))}

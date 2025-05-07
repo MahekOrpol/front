@@ -112,13 +112,35 @@ Please let me know the next steps.`;
   const encodedMessage = encodeURIComponent(message);
   const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
+  
+  // Scroll control helpers
+  const preventScroll = (e) => e.preventDefault();
+
+  const preventKeyScroll = (e) => {
+    const keys = [32, 37, 38, 39, 40];
+    if (keys.includes(e.keyCode)) e.preventDefault();
+  };
+
+  const disableScroll = () => {
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+    window.addEventListener("keydown", preventKeyScroll, { passive: false });
+  };
+
+  const enableScroll = () => {
+    window.removeEventListener("wheel", preventScroll);
+    window.removeEventListener("touchmove", preventScroll);
+    window.removeEventListener("keydown", preventKeyScroll);
+  };
+
+
   const openCart = useCallback(() => {
     if (!userId) {
       navigate("/login");
       return;
     }
     setIsCartOpen(true);
-    document.body.classList.add("no-scroll");
+    disableScroll(); // ✅ Disable scroll
   }, [navigate, userId]);
 
   const handleProductClick = useCallback(
@@ -197,7 +219,7 @@ Please let me know the next steps.`;
   const closeCart = useCallback(() => {
     setIsCartOpen(false);
     setShowToast(false);
-    document.body.classList.remove("no-scroll");
+    enableScroll(); // ✅ Re-enable scroll
   }, []);
 
   const toggleFAQ = useCallback((index) => {
