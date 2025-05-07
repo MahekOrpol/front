@@ -473,7 +473,7 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
               width={20}
               alt="Custom Jewellery"
             />{" "}
-            Custom Jewelry
+            Custom Jewellery
           </div>
         </div>
       </div>

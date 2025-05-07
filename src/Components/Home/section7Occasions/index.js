@@ -107,7 +107,7 @@ const Section7Occasions = () => {
   return (
     <div className="paddingdn d-flex flex-column align-items-center hdr_csd mt-md-1 ewcdsecesdfc">
       <span className="category_name best_sellig_sdcdc d-none">
-        Jewelry for Occasions
+        Jewellery for Occasions
       </span>
       <p className="category_txt best_sellig_sdcdc d-none">
         Celebrate Forever with a Sparkle
@@ -126,7 +126,7 @@ const Section7Occasions = () => {
             Celebrate Every Moment with Timeless Elegance
           </h2>
           <p className="mack_pox_headfrp">
-            Discover exclusive designs in our Limited Edition Jewelry Collection
+            Discover exclusive designs in our Limited Edition Jewellery Collection
             – where artistry meets sophistication. Handcrafted with precision
             for those who value beauty that never fades. Available for a limited
             time only.

@@ -192,7 +192,7 @@ const CustomJewel = () => {
       image: "/Images/image (20).png",
     },
     {
-      title: "The Future of Handcrafted Jewelry",
+      title: "The Future of Handcrafted Jewellery",
       description:
         "Discover how artisans are blending tradition with innovation to create timeless designs with modern flair.",
       tags: ["Handcraft", "Innovation", "Style"],
@@ -206,7 +206,7 @@ const CustomJewel = () => {
       image: "/Images/image (20).png",
     },
     {
-      title: "The Future of Handcrafted Jewelry",
+      title: "The Future of Handcrafted Jewellery",
       description:
         "Discover how artisans are blending tradition with innovation to create timeless designs with modern flair.",
       tags: ["Handcraft", "Innovation", "Style"],
@@ -271,7 +271,7 @@ const CustomJewel = () => {
                 {[
                   {
                     title: "Uniqueness and Exclusivity",
-                    desc: "Custom jewelry ensures no one else will have the exact same piece, making it truly yours.",
+                    desc: "Custom Jewellery ensures no one else will have the exact same piece, making it truly yours.",
                     img: "/Images/23 Jewelry store.png",
                   },
                   {
