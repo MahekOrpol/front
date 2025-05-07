@@ -5,11 +5,9 @@ import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import {
-  faEnvelope,
-  faLocationDot,
-  faPhone,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
+import { faLocationDot } from "@fortawesome/free-solid-svg-icons/faLocationDot";
+import { faPhone } from "@fortawesome/free-solid-svg-icons/faPhone";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
@@ -231,19 +229,19 @@ const Contact = () => {
           <div className="shyr_con">
             <div className="con_main">
               <h3 className="habv_www">Have Queries?</h3>
-              <h3 className="habv_www">We’re Here to Help!</h3>
+              <h3 className="habv_www">We're Here to Help!</h3>
               <div className="pt-4">
                 <span className="dhs_ddd">
                   Have questions, feedback, or need assistance? Connect with us,
-                  and we’ll ensure you get the support you need.
+                  and we'll ensure you get the support you need.
                 </span>
               </div>
               <div className="pt-4">
                 <span className="dhs_ddd">
                   Your trust and satisfaction are our treasures. Reach out to us
                   anytime, and let us help you shine!" Whether you have a
-                  question, need assistance, or want to share feedback, we’d
-                  love to hear from you. Let’s make your jewellery shopping
+                  question, need assistance, or want to share feedback, we'd
+                  love to hear from you. Let's make your jewellery shopping
                   experience exceptional.
                 </span>
               </div>

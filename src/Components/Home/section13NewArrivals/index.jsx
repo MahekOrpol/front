@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useCallback } from "react";
-import Swiper from "swiper/bundle";
-import "swiper/css/bundle";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 const videoData = [
@@ -46,34 +50,6 @@ const Section13NewArrivals = () => {
     });
   }, []);
   useEffect(() => {
-    let swiperInstance;
-    const initSwiper = () => {
-      swiperInstance = new Swiper(".swiper1", {
-        wrapperClass: "swiper-wrapper1",
-        slideClass: "swiper-slide1",
-        slidesPerView: 5,
-        centeredSlides: true,
-        loop: true,
-        grabCursor: true,
-        autoplay: {
-          delay: 3500,
-          disableOnInteraction: false,
-        },
-        breakpoints: {
-          220: { slidesPerView: 1.5, spaceBetween: 60 },
-          375: { slidesPerView: 1.5, spaceBetween: 70 },
-          415: { slidesPerView: 1.5, spaceBetween: 80 },
-          450: { slidesPerView: 1.5, spaceBetween: 95 },
-          500: { slidesPerView: 2.5, spaceBetween: 70 },
-          740: { slidesPerView: 2.5, spaceBetween: 90 },
-          840: { slidesPerView: 2.5, spaceBetween: 110 },
-          991: { slidesPerView: 2.5, spaceBetween: 120 },
-          1024: { slidesPerView: 3, spaceBetween: 110 },
-          1280: { slidesPerView: 5, spaceBetween: 50 },
-          1900: { slidesPerView: 5, spaceBetween: 80 },
-        },
-      });
-    };
     const raf = () => {
       calculateWheel();
       requestAnimationFrame(raf);
@@ -85,13 +61,11 @@ const Section13NewArrivals = () => {
         updateRotateMultiplier();
       }, 200);
     };
-    initSwiper();
     updateRotateMultiplier();
     raf();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
-      if (swiperInstance) swiperInstance.destroy(true, true);
     };
   }, [calculateWheel, updateRotateMultiplier]);
   return (
@@ -109,32 +83,52 @@ const Section13NewArrivals = () => {
       </div>
       <div className="ringSection">
         <div className="carousel1">
-          <div className="swiper1">
-            <div className="swiper-wrapper1">
-              {videoData.map((video, i) => (
+          <Swiper
+            modules={[Autoplay]}
+            slidesPerView={5}
+            centeredSlides={true}
+            loop={true}
+            grabCursor={true}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+            breakpoints={{
+              220: { slidesPerView: 1.5, spaceBetween: 60 },
+              375: { slidesPerView: 1.5, spaceBetween: 70 },
+              415: { slidesPerView: 1.5, spaceBetween: 80 },
+              450: { slidesPerView: 1.5, spaceBetween: 95 },
+              500: { slidesPerView: 2.5, spaceBetween: 70 },
+              740: { slidesPerView: 2.5, spaceBetween: 90 },
+              840: { slidesPerView: 2.5, spaceBetween: 110 },
+              991: { slidesPerView: 2.5, spaceBetween: 120 },
+              1024: { slidesPerView: 3, spaceBetween: 110 },
+              1280: { slidesPerView: 5, spaceBetween: 50 },
+              1900: { slidesPerView: 5, spaceBetween: 80 },
+            }}
+          >
+            {videoData.map((video, i) => (
+              <SwiperSlide key={i}>
                 <div
-                  className="swiper-slide1"
-                  key={i}
+                  className="single"
                   onClick={() => handleCategoryClick(video.category)}
                   style={{ cursor: "pointer" }}
                 >
-                  <div className="single">
-                    <video
-                      ref={(el) => (videoRefs.current[i] = el)}
-                      src={video.src}
-                      muted
-                      loop
-                      playsInline
-                      autoPlay
-                      preload="auto"
-                      className="ring-video"
-                      onClick={(e) => e.stopPropagation()} // Prevent video click from triggering navigation
-                    />
-                  </div>
+                  <video
+                    ref={(el) => (videoRefs.current[i] = el)}
+                    src={video.src}
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                    preload="auto"
+                    className="ring-video"
+                    onClick={(e) => e.stopPropagation()}
+                  />
                 </div>
-              ))}
-            </div>
-          </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
     </>
