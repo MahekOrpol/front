@@ -78,7 +78,7 @@ const Wishlist = () => {
       return;
     }
     setIsCartOpen(true);
-    document.body.classList.add("no-scroll");
+    // document.body.classList.add("no-scroll");
   }, [navigate]);
 
   const closeCart = useCallback(() => {
