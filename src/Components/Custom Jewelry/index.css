@@ -92,7 +92,7 @@
   .submit-btn {
     background: #8d4a43;
     color: white;
-    padding: 6px 24px 6px 46px;
+    padding: 6px 24px 6px 24px;
     border: none;
     border-radius: 5px;
     font-size: 1.1rem;
@@ -101,6 +101,7 @@
     max-width: 160px;
     display: flex;
     margin-top: 1rem;
+    justify-content:center ;
   }
   @media (max-width: 991px) {
     .features-grid {
