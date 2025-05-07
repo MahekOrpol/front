@@ -86,9 +86,11 @@
     </noscript>
 
     <!-- Preload critical styles and scripts -->
-    <link rel="preload" as="style" href="/static/css/main.chunk.css" />
-    <link rel="preload" as="script" href="/static/js/main.chunk.js" />
-
+    <!-- <link rel="preload" as="style" href="/static/css/main.chunk.css" />
+    <link rel="preload" as="script" href="/static/js/main.chunk.js" /> -->
+    <link rel="stylesheet" href="/static/css/main.chunk.css" />
+    <script src="/static/js/main.chunk.js" defer></script>
+    
     <!-- Inline critical CSS -->
     <style>
       :root {
@@ -177,7 +179,7 @@
       crossorigin="anonymous"
       defer
     ></script>
-
+    <script src="non-critical.js" defer></script>
     <!-- Google Sign-In Client ID -->
     <meta
       name="google-signin-client_id"

@@ -11,7 +11,6 @@ import {
   FaAngleDown,
   FaAngleUp,
   FaArrowDownShortWide,
-  FaArrowRight,
   FaArrowUpWideShort,
   FaChevronDown,
   FaChevronLeft,
@@ -23,7 +22,6 @@ import { BiSearch, BiShoppingBag } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Wishlist from "./../wishlist/index";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
