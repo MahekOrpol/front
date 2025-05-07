@@ -19,11 +19,9 @@ import { ToastContainer } from "react-bootstrap";
 import RegisterPopup from "./Components/RegisterPopup";
 import ProtectedRoute from "./Pages/Protected Route/protectedRoute";
 import { Suspense, useEffect } from "react";
-import WhatsAppButton from "./Components/WhatsAppButton";
 import LoadingSpinner from "./Components/LoadingSpinner";
 import ProgressBar from './Components/ProgressBar';
 import 'nprogress/nprogress.css';
-
 
 function App() {
   useEffect(() => {
@@ -97,7 +95,6 @@ function App() {
           />
         </Routes>
       </Suspense>
-      {/* <WhatsAppButton /> */}
     </BrowserRouter>
   );
 }

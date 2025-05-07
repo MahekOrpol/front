@@ -7,10 +7,7 @@ const ProgressBar = () => {
 
   useEffect(() => {
     NProgress.start();
-    const timer = setTimeout(() => {
-      NProgress.done();
-    }, 300); // delay to show the bar briefly
-
+    const timer = setTimeout(NProgress.done, 300);
     return () => clearTimeout(timer);
   }, [location]);
 
