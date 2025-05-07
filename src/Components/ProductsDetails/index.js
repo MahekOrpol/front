@@ -113,25 +113,27 @@ Please let me know the next steps.`;
   const encodedMessage = encodeURIComponent(message);
   const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
-  // Scroll control helpers
-  const preventScroll = (e) => e.preventDefault();
-
-  const preventKeyScroll = (e) => {
-    const keys = [32, 37, 38, 39, 40];
-    if (keys.includes(e.keyCode)) e.preventDefault();
-  };
-
-  const disableScroll = () => {
-    window.addEventListener("wheel", preventScroll, { passive: false });
-    window.addEventListener("touchmove", preventScroll, { passive: false });
-    window.addEventListener("keydown", preventKeyScroll, { passive: false });
-  };
-
-  const enableScroll = () => {
-    window.removeEventListener("wheel", preventScroll);
-    window.removeEventListener("touchmove", preventScroll);
-    window.removeEventListener("keydown", preventKeyScroll);
-  };
+   const overlayRef = useRef(null);
+    // Scroll control helpers
+    useEffect(() => {
+      const overlay = overlayRef.current;
+      if (!overlay) return;
+  
+      const preventScroll = (e) => e.preventDefault();
+  
+      if (isCartOpen) {
+        overlay.addEventListener("wheel", preventScroll, { passive: false });
+        overlay.addEventListener("touchmove", preventScroll, { passive: false });
+      } else {
+        overlay.removeEventListener("wheel", preventScroll);
+        overlay.removeEventListener("touchmove", preventScroll);
+      }
+  
+      return () => {
+        overlay.removeEventListener("wheel", preventScroll);
+        overlay.removeEventListener("touchmove", preventScroll);
+      };
+    }, [isCartOpen]);
 
   const openCart = useCallback(() => {
     if (!userId) {
@@ -139,7 +141,6 @@ Please let me know the next steps.`;
       return;
     }
     setIsCartOpen(true);
-    disableScroll(); // ✅ Disable scroll
   }, [navigate, userId]);
 
   const handleProductClick = useCallback(
@@ -218,7 +219,6 @@ Please let me know the next steps.`;
   const closeCart = useCallback(() => {
     setIsCartOpen(false);
     setShowToast(false);
-    enableScroll(); // ✅ Re-enable scroll
   }, []);
 
   const toggleFAQ = useCallback((index) => {
@@ -485,7 +485,7 @@ Please let me know the next steps.`;
         showToast={showToast}
         toastMessage={toastMessage}
       />
-      {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
+      {isCartOpen && <div ref={overlayRef} className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header">
           <Suspense fallback={<div>Loading...</div>}>
