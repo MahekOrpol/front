@@ -128,7 +128,7 @@ const CustomJewel = () => {
       }
 
       const response = await axios.post(
-        "https://dev.crystovajewels.com/api/v1/custom-jewels/create",
+       "https://dev.crystovajewels.com/api/v1/whatsapp/custom/create",
         formDataToSend
       );
 
