@@ -10,8 +10,6 @@ import {
 import { CiStar, CiWallet } from "react-icons/ci";
 import { PiCertificateLight, PiMoneyWavy } from "react-icons/pi";
 import { MdOutlineContactSupport } from "react-icons/md";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";

@@ -12,23 +12,20 @@ import "./index.css";
 import { BiShoppingBag } from "react-icons/bi";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { GoShareAndroid } from "react-icons/go";
-import { FcLike } from "react-icons/fc";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { SiWhatsapp } from "react-icons/si";
 import { IoLogoWhatsapp } from "react-icons/io";
-import { Carousel, Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import ProductViewCounter from "../../ProductViewCounter";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ProductViewCounter from "../../ProductViewCounter";
@@ -42,9 +39,6 @@ const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
 
 const ProductDetailss = () => {
-  const [liked, setLiked] = useState(false);
-  const [hoveredProduct, setHoveredProduct] = useState(null);
-  const [isFavorite, setIsFavorite] = useState({});
   const { productId } = useParams();
   const location = useLocation();
   const productData = location.state?.product;
@@ -53,7 +47,6 @@ const ProductDetailss = () => {
   const userId = localStorage.getItem("user_Id");
   const [wishlistItems, setWishlistItems] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
@@ -75,9 +68,7 @@ const ProductDetailss = () => {
 
   const dispatch = useDispatch();
   const {
-    count: cartCount,
-    loading,
-    error,
+    count: cartCount
   } = useSelector((state) => state.cart);
 
   // Use custom hooks
@@ -86,17 +77,9 @@ const ProductDetailss = () => {
     relatedProducts: customRelatedProducts,
     loading: productLoading,
   } = useProductDetails(productId, productData);
-  const {
-    isInWishlist,
-    loading: wishlistLoading,
-    toggleWishlist,
-  } = useWishlist(userId);
+  useWishlist(userId);
   const {
     images: productImages,
-    selectedImage,
-    isLoading: imagesLoading,
-    selectImage,
-    getOptimizedImageUrl,
   } = useProductImages(customProductDetails?.image || []);
 
   const message = `🖼 *Image:* ${imageUrl}
@@ -1235,8 +1218,6 @@ Please let me know the next steps.`;
                     <SwiperSlide key={product.id}>
                       <div
                         className="card prio_card scdscsed_sdss fgfdddds"
-                        onMouseEnter={() => setHoveredProduct(product.id)}
-                        onMouseLeave={() => setHoveredProduct(null)}
                       >
                         <div className="card-image-wrapper position-relative">
                           <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 dssdd">

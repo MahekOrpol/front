@@ -8,6 +8,7 @@ const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
   webpack: {
+    mode: 'production',
     configure: (webpackConfig) => {
       if (isProd) {
         // Enable gzip compression with better settings
