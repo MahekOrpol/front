@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback } from "react";
-import Swiper from "swiper/bundle";
-import "swiper/css/bundle";
+import { Swiper } from 'swiper';
+import 'swiper/css'; 
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 const videoData = [
