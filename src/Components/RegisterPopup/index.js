@@ -1,6 +1,10 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import "./index.css";
-import { Box, Tab, Tabs, TextField, Slide } from "@mui/material";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import TextField from "@mui/material/TextField";
+import Slide from "@mui/material/Slide";
 import { TabContext, TabPanel } from "@mui/lab";
 import ForgotPass from "../ForgotPopup";
 import ChangePass from "../ChangePass";
@@ -32,11 +36,11 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   useEffect(() => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
-  
+
   useEffect(() => {
     // Reset login fields when switching to the "register" tab
     if (tabValue === "register") {
-      setLoginEmail(""); 
+      setLoginEmail("");
       setLoginPassword("");
     }
     // Reset register fields when switching to the "login" tab
@@ -50,7 +54,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     }
   }, [tabValue]); // This effect runs whenever tabValue changes
 
-  
+
   if (showForgotPass) {
     return <ForgotPass isOpen={showForgotPass} />;
   }
@@ -58,15 +62,15 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     return (
       <ChangePass
         isOpen={showChangePass}
-        // onClose={() => {
-        //   setShowChangePass(false);
-        //   onClose();
-        // }}
+      // onClose={() => {
+      //   setShowChangePass(false);
+      //   onClose();
+      // }}
       />
     );
   }
 
-  const handleOverlayClick = (e) => {};
+  const handleOverlayClick = (e) => { };
 
   const validateEmail = (email) => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -173,12 +177,12 @@ const RegisterPopup = ({ isOpen, onClose }) => {
     }
   };
 
- 
+
   if (!isOpen) return null;
 
   return (
     <>
-       <ToastContainer
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}

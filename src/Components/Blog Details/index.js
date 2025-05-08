@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
-import { FaArrowRight } from "react-icons/fa6";
-
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCartCount } from "../../redux/cartSlice";
 const Footer = lazy(() => import("../../Pages/Footer"));
