@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { fetchCartCount } from "../../redux/cartSlice";
+import { useDispatch } from "react-redux";
+
 const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -18,6 +21,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const user_Id = localStorage.getItem("user_Id");
   const popupRef = useRef(null);
   const [searchValue, setSearchValue] = useState("");
+  const dispatch = useDispatch();
 
   const handleSearch = () => {
     if (searchValue.trim()) {
@@ -26,6 +30,12 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
       setIsDrawerOpen(false); // Close the drawer after search
     }
   };
+
+  useEffect(() => {
+    if (user_Id) {
+      dispatch(fetchCartCount());
+    }
+  }, [dispatch, user_Id]);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
@@ -68,15 +78,20 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
       localStorage.setItem("isExistingProfile", "false");
     }
   };
-
   const handleLogout = () => {
     toast.success("Logout Successful!");
     localStorage.removeItem("user_Id");
     localStorage.setItem("isExistingProfile", "false");
     localStorage.removeItem("user_token");
     localStorage.removeItem("cartCount");
+    localStorage.removeItem("user_phone");
+    localStorage.removeItem("user_email");
+    localStorage.removeItem("user_data");
+    localStorage.removeItem("user_name");
+    localStorage.removeItem("user_fname");
     setData(null);
     setTimeout(() => setIsSignup(false), 500);
+    window.location.reload();
     navigate("/");
   };
 
@@ -173,26 +188,51 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 >
                   <div className="popup-arrow"></div>
                   <div className="profile-section">
-                    <img
-                      loading="lazy"
-                      src='/Images/15 Model white.png'
+                    {/* <img
+loading="eager"
+
+                      src="/Images/15 Model white.png"
                       alt="Profile"
                       className="profile-pic"
-                    />
+                    /> */}
                     <div className="profile-details">
-                      {data ? (
-                        <>
+                      {localStorage.getItem("user_name") ? (
+                        <div className="d-flex flex-column gap-2">
                           <h5>
-                            {" "}
-                            {data.firstName} {data.lastName}{" "}
+                            {"Hey"}, {localStorage.getItem("user_name")} !
                           </h5>
                           <p className="contact-number">
-                            <strong>{data.phone}</strong>
+                            <strong>
+                              {localStorage.getItem("user_phone")}
+                            </strong>
                           </p>
-                        </>
+                        </div>
+                      ) : localStorage.getItem("user_fname") ? (
+                        <div className="d-flex flex-column gap-2">
+                          <h5>
+                            {"Hey"}, {localStorage.getItem("user_fname")} !
+                          </h5>
+                          <p className="contact-number">
+                            <strong>
+                              {localStorage.getItem("user_phone")}
+                            </strong>
+                          </p>
+                        </div>
                       ) : (
-                        <h5>Loading...</h5>
+                        <h5></h5>
                       )}
+
+                      {!localStorage.getItem("user_name") &&
+                        !localStorage.getItem("user_fname") && (
+                          <div className="d-flex flex-column gap-2">
+                            <h6> {"Welcome To Crystova Jewels !"} </h6>
+                            <p className="contact-number">
+                              <strong>
+                                {localStorage.getItem("user_phone")}
+                              </strong>
+                            </p>
+                          </div>
+                        )}
                     </div>
                   </div>
                   {/* Menu List */}
@@ -202,8 +242,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       <li onClick={() => navigate("/Editprofile")}>
                         <div className="menu-item gap-2">
                           <img
-                            loading="lazy"
-                            src='/Images/profileicon.png'
+                            loading="eager"
+                            width={18}
+                            height={18}
+                            src="/Images/profileicon.png"
                             alt="Profile"
                             className="menu-icons"
                           />
@@ -215,8 +257,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       <li onClick={() => navigate("/login")}>
                         <div className="menu-item gap-2">
                           <img
-                            loading="lazy"
-                            src='/Images/profileicon.png'
+                            loading="eager"
+                            width={18}
+                            height={18}
+                            src="/Images/profileicon.png"
                             alt="Profile"
                             className="menu-icons"
                           />
@@ -229,8 +273,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     <li onClick={() => navigate("/Order")}>
                       <div className="menu-item gap-2">
                         <img
-                          loading="lazy"
-                          src='/Images/ordericon.png'
+                          loading="eager"
+                          width={18}
+                          height={18}
+                          src="/Images/ordericon.png"
                           alt="Orders"
                           className="menu-icons"
                         />
@@ -241,8 +287,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     <li>
                       <div className="menu-item gap-2">
                         <img
-                          loading="lazy"
-                          src='/Images/termsicon.png'
+                          loading="eager"
+                          width={18}
+                          height={18}
+                          src="/Images/termsicon.png"
                           alt="Terms"
                           className="menu-icons"
                         />
@@ -253,8 +301,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     <li>
                       <div className="menu-item gap-2">
                         <img
-                          loading="lazy"
-                          src='/Images/privacyicon.png'
+                          loading="eager"
+                          width={18}
+                          height={18}
+                          src="/Images/privacyicon.png"
                           alt="Privacy"
                           className="menu-icons"
                         />
@@ -265,8 +315,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     <li onClick={() => navigate("/contact-us")}>
                       <div className="menu-item gap-2">
                         <img
-                          loading="lazy"
-                          src='/Images/contacticon.png'
+                          loading="eager"
+                          width={18}
+                          height={18}
+                          src="/Images/contacticon.png"
                           alt="Contact"
                           className="menu-icons"
                         />
