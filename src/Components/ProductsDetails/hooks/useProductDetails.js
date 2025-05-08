@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 export const useProductDetails = (productId, initialProductData) => {
@@ -8,7 +7,6 @@ export const useProductDetails = (productId, initialProductData) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
 
   const fetchProductDetails = useCallback(async () => {
     if (!productId) return;
