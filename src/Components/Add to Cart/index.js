@@ -7,7 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
-import { updateCartCount, decrementCartCount } from "../../redux/cartSlice";
+import { updateCartCount } from "../../redux/cartSlice";
 
 const CartPopup = ({
   isOpen,

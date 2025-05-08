@@ -2,12 +2,9 @@ import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import "./index.css";
 
 import {
-  FaAngleLeft,
-  FaAngleRight,
   FaArrowRight,
-  FaStar,
 } from "react-icons/fa6";
-import { CiStar, CiWallet } from "react-icons/ci";
+import { CiWallet } from "react-icons/ci";
 import { PiCertificateLight, PiMoneyWavy } from "react-icons/pi";
 import { MdOutlineContactSupport } from "react-icons/md";
 import axios from "axios";
@@ -21,7 +18,6 @@ const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
 
 const AboutUs = () => {
-  const swiperRef = useRef(null);
   const [slidesPerView, setSlidesPerView] = useState(1);
 
   const [wishlistCount, setWishlistCount] = useState(
@@ -30,9 +26,7 @@ const AboutUs = () => {
   const [wishlistItems, setWishlistItems] = useState({});
   const dispatch = useDispatch();
   const {
-    count: cartCount,
-    loading,
-    error,
+    count: cartCount
   } = useSelector((state) => state.cart);
 
   useEffect(() => {
@@ -156,7 +150,7 @@ const AboutUs = () => {
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-        // toastMessage={toastMessage}
+      // toastMessage={toastMessage}
       />
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header">
@@ -481,8 +475,8 @@ preload="none"
             </div>
           </div>
         </div>
-          <Section15Testimonials />
-          
+        <Section15Testimonials />
+
         <Footer />
       </div>
     </>
