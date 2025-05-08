@@ -212,11 +212,11 @@ loading="eager"
                           <h5>
                             {"Hey"}, {localStorage.getItem("user_fname")} !
                           </h5>
-                          <p className="contact-number">
+                          {/* <p className="contact-number">
                             <strong>
                               {localStorage.getItem("user_phone")}
                             </strong>
-                          </p>
+                          </p> */}
                         </div>
                       ) : (
                         <h5></h5>
@@ -226,11 +226,11 @@ loading="eager"
                         !localStorage.getItem("user_fname") && (
                           <div className="d-flex flex-column gap-2">
                             <h6> {"Welcome To Crystova Jewels !"} </h6>
-                            <p className="contact-number">
+                            {/* <p className="contact-number">
                               <strong>
                                 {localStorage.getItem("user_phone")}
                               </strong>
-                            </p>
+                            </p> */}
                           </div>
                         )}
                     </div>
@@ -351,7 +351,7 @@ loading="eager"
               size={30}
               style={{ strokeWidth: "0.5px", stroke: "black" }}
             />
-            
+
             {wishlistCount > 0 && (
               <span
                 className="position-absolute top-0 start-100 badge rounded-pill"
@@ -411,34 +411,55 @@ loading="eager"
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Rings")}
           >
-            <img loading="lazy" src="/Images/diamond-ring-diamond-svgrepo-com.svg" width={25} alt="Rings" /> Rings
+            <img
+              loading="lazy"
+              src="/Images/diamond-ring-diamond-svgrepo-com.svg"
+              width={25}
+              alt="Rings"
+            />{" "}
+            Rings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Earrings")}
           >
-            <img loading="lazy" src='/Images/earrings.png' width={25} alt="Earrings" />{" "}
+            <img
+              loading="lazy"
+              src="/Images/earrings.png"
+              width={25}
+              alt="Earrings"
+            />{" "}
             Earrings
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Pendant")}
           >
-            <img loading="lazy" src='/Images/gem-pendant-svgrepo-com.svg' width={20} alt="Pendant" />{" "}
+            <img
+              loading="lazy"
+              src="/Images/gem-pendant-svgrepo-com.svg"
+              width={20}
+              alt="Pendant"
+            />{" "}
             Pendant
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Bracelet")}
           >
-            <img loading="lazy" src='/Images/noun-bracelet-5323037.svg' width={25} alt="Bracelet" />{" "}
+            <img
+              loading="lazy"
+              src="/Images/noun-bracelet-5323037.svg"
+              width={25}
+              alt="Bracelet"
+            />{" "}
             Bracelet
           </div>
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => navigate("/Customjewel")}
           >
-              <img
+            <img
               loading="eager"
               src="/Images/Group 1597884646.svg"
               width={20}
@@ -452,7 +473,7 @@ loading="eager"
       {/* Mobile Drawer */}
       <div className={`mobile-drawer ${isDrawerOpen ? "open" : ""}`}>
         <div className="mobile-img">
-        <img
+          <img
             loading="eager"
             src="/Images/crystovalogowhite (1) 2.png"
             style={{ width: "60%" }}
@@ -463,8 +484,34 @@ loading="eager"
           </div>
         </div>
         <div className="drawer-menu ">
+          {localStorage.getItem("user_name") ? (
+            <div className="d-flex flex-column gap-2">
+              <h6 className="mb-0 mobile_drawer_text">
+                {"Hey"}, {localStorage.getItem("user_name")} !
+              </h6>
+              <p className="contact-number">
+                <strong>{localStorage.getItem("user_phone")}</strong>
+              </p>
+            </div>
+          ) : localStorage.getItem("user_fname") ? (
+            <div className="d-flex flex-column gap-2">
+             <h6 className="mb-0 mobile_drawer_text">
+                {"Hey"}, {localStorage.getItem("user_fname")} !
+              </h6>
+            </div>
+          ) : (
+            <h5></h5>
+          )}
+
+          {!localStorage.getItem("user_name") &&
+            !localStorage.getItem("user_fname") && (
+              <div className="d-flex flex-column gap-2">
+                <h6 className="mb-0 mobile_drawer_text"> {"Welcome To Crystova Jewels !"} </h6>
+              </div>
+            )}
+          <hr />
           <div className="position-relative mb-3 w-100">
-          <LuTextSearch className="position-absolute top-50 start-0 translate-middle-y ms-2 text-muted" />
+            <LuTextSearch className="position-absolute top-50 start-0 translate-middle-y ms-2 text-muted" />
             <input
               type="text"
               placeholder="Search..."
@@ -482,13 +529,24 @@ loading="eager"
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Rings")}
               >
-                <img loading="lazy" src="/Images/diamond-ring-diamond-svgrepo-com.svg" width={20} alt="Rings" /> Rings
+                <img
+                  loading="lazy"
+                  src="/Images/diamond-ring-diamond-svgrepo-com.svg"
+                  width={20}
+                  alt="Rings"
+                />{" "}
+                Rings
               </div>
               <div
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Earrings")}
               >
-                <img loading="lazy" src='/Images/earrings.png' width={20} alt="Earrings" />{" "}
+                <img
+                  loading="lazy"
+                  src="/Images/earrings.png"
+                  width={20}
+                  alt="Earrings"
+                />{" "}
                 Earrings
               </div>
               <div
@@ -497,7 +555,7 @@ loading="eager"
               >
                 <img
                   loading="lazy"
-                  src='/Images/gem-pendant-svgrepo-com.svg'
+                  src="/Images/gem-pendant-svgrepo-com.svg"
                   width={20}
                   alt="Pendant"
                 />{" "}
@@ -507,7 +565,12 @@ loading="eager"
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Bracelet")}
               >
-                <img loading="lazy" src='/Images/noun-bracelet-5323037.svg' width={20} alt="Bracelet" />{" "}
+                <img
+                  loading="lazy"
+                  src="/Images/noun-bracelet-5323037.svg"
+                  width={20}
+                  alt="Bracelet"
+                />{" "}
                 Bracelet
               </div>
               <div
@@ -531,7 +594,7 @@ loading="eager"
               >
                 <img
                   loading="lazy"
-                  src='/Images/contacticon.png'
+                  src="/Images/contacticon.png"
                   width={18}
                   alt="Profile"
                 />{" "}
@@ -552,7 +615,7 @@ loading="eager"
                   >
                     <img
                       loading="lazy"
-                      src='/Images/profileicon.png'
+                      src="/Images/profileicon.png"
                       width={18}
                       alt="Profile"
                     />{" "}
@@ -567,7 +630,7 @@ loading="eager"
                   >
                     <img
                       loading="lazy"
-                      src='/Images/ordericon.png'
+                      src="/Images/ordericon.png"
                       width={18}
                       alt="Orders"
                     />{" "}
@@ -597,7 +660,7 @@ loading="eager"
                     navigate("/login");
                   }}
                 >
-                    <img
+                  <img
                     loading="eager"
                     src="/Images/Group.png"
                     width={18}

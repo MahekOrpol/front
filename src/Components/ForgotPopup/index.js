@@ -5,6 +5,8 @@ import ChangePass from "../ChangePass";
 import axios from "axios";
 
 const ForgotPass = ({ isOpen, onClose }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isVerifySubmitting, setIsVerifySubmitting] = useState(false);
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const [email, setEmail] = useState(""); // Not false
@@ -35,15 +37,16 @@ const ForgotPass = ({ isOpen, onClose }) => {
   };
 
   const handleSendOtp = async () => {
+    setIsSubmitting(true);
     try {
       const formData = new FormData();
       formData.append("email", email);
-  
+
       const res = await axios.post(
         "https://dev.crystovajewels.com/api/v1/auth/send-otp",
         formData
       );
-  
+
       if (res.data?.message) {
         setIsOtpSent(true);
       } else {
@@ -51,22 +54,24 @@ const ForgotPass = ({ isOpen, onClose }) => {
       }
     } catch (error) {
       alert("Error sending OTP. Please check your email.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
-  
 
   // Handle show change password screen
   const handleVerifyOtp = async () => {
+    setIsVerifySubmitting(true);
     try {
       const formData = new FormData();
       formData.append("email", email);
       formData.append("generateOTP", otp.join("")); // Join the 6 digits into a single string
-  
+
       const res = await axios.post(
         "https://dev.crystovajewels.com/api/v1/auth/verify-otp",
         formData
       );
-  
+
       if (res.data?.success) {
         setIsOtpVerified(true);
       } else {
@@ -74,9 +79,11 @@ const ForgotPass = ({ isOpen, onClose }) => {
       }
     } catch (error) {
       alert("Error verifying OTP. Please try again.");
+    }finally{
+        setIsVerifySubmitting(false);
     }
   };
-  
+
   return (
     <div className="forgot-popup-overlay">
       <div className="forgot-popup" onClick={(e) => e.stopPropagation()}>
@@ -84,7 +91,6 @@ const ForgotPass = ({ isOpen, onClose }) => {
           <div className="forgot-form">
             {isOtpVerified ? (
               <ChangePass onClose={onClose} email={email} />
-
             ) : !isOtpSent ? (
               <div className="email-section">
                 <p className="titled">Verify Email</p>
@@ -99,7 +105,8 @@ const ForgotPass = ({ isOpen, onClose }) => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <button className="forgot-btn" onClick={() => handleSendOtp()}>
-                  SEND OTP
+             
+                  {isSubmitting ? "sending otp..." : "SEND OTP"}
                 </button>
               </div>
             ) : (
@@ -124,7 +131,8 @@ const ForgotPass = ({ isOpen, onClose }) => {
                   ))}
                 </div>
                 <button className="forgot-btn" onClick={handleVerifyOtp}>
-                  VERIFY OTP
+                  {isVerifySubmitting ? "verifying..." : "VERIFY OTP"}
+
                 </button>
               </div>
             )}
