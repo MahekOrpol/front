@@ -805,3 +805,8 @@
 .arrow-icon.rotate {
   transform: rotate(90deg);
 }
+
+.mobile_drawer_text{
+  color: #000000;
+  font-weight: 500;
+}
