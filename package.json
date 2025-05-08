@@ -31,11 +31,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "build:stats": "craco build --stats",
+    "analyze": "npm run build:stats && npx webpack-bundle-analyzer build/bundle-stats.json",
     "start": "craco start --port 4000",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "analyze": "craco build && npx webpack-bundle-analyzer build/static/js/*.js",
     "purgecss": "purgecss --config ./purgecss.config.js --output src/",
     "build:css": "npm run purgecss && npm run build"
   },
@@ -58,14 +59,11 @@
     ]
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^7.0.2",
-    "@svgr/webpack": "^8.1.0",
-    "babel-plugin-transform-remove-console": "^6.9.4",
     "compression-webpack-plugin": "^11.1.0",
     "critters-webpack-plugin": "^3.0.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
-    "cssnano": "^7.0.6",
-    "image-webpack-loader": "^8.1.0",
+    "cssnano": "^7.0.7",
+    "eslint-config-react-app": "^7.0.1",
     "purgecss": "^5.0.0",
     "terser-webpack-plugin": "^5.3.14",
     "webpack-bundle-analyzer": "^4.10.2"

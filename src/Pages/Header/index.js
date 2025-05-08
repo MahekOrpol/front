@@ -190,7 +190,14 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
           style={{ cursor: "pointer" }}
           onClick={() => navigate("/")}
         >
-          <img src="/Images/Group 1597884561.webp" alt="Logo" />
+          <img
+            loading="eager"
+            fetchPriority="high"
+            src="/Images/Group 1597884561.webp"
+            alt="Logo"
+            width={280}
+            height={280}
+          />
         </div>
 
         {/* Icons Section (Desktop Only) */}
@@ -215,6 +222,8 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                   <div className="popup-arrow"></div>
                   <div className="profile-section">
                     {/* <img
+loading="eager"
+
                       src="/Images/15 Model white.png"
                       alt="Profile"
                       className="profile-pic"
@@ -266,6 +275,9 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                       <li onClick={() => navigate("/Editprofile")}>
                         <div className="menu-item gap-2">
                           <img
+                            loading="eager"
+                            width={18}
+                            height={18}
                             src="/Images/profileicon.png"
                             alt="Profile"
                             className="menu-icons"
@@ -278,6 +290,9 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                       <li onClick={() => navigate("/login")}>
                         <div className="menu-item gap-2">
                           <img
+                            loading="eager"
+                            width={18}
+                            height={18}
                             src="/Images/profileicon.png"
                             alt="Profile"
                             className="menu-icons"
@@ -291,6 +306,9 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                     <li onClick={() => navigate("/Order")}>
                       <div className="menu-item gap-2">
                         <img
+                          loading="eager"
+                          width={18}
+                          height={18}
                           src="/Images/ordericon.png"
                           alt="Orders"
                           className="menu-icons"
@@ -302,6 +320,9 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                     <li>
                       <div className="menu-item gap-2">
                         <img
+                          loading="eager"
+                          width={18}
+                          height={18}
                           src="/Images/termsicon.png"
                           alt="Terms"
                           className="menu-icons"
@@ -313,6 +334,9 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                     <li>
                       <div className="menu-item gap-2">
                         <img
+                          loading="eager"
+                          width={18}
+                          height={18}
                           src="/Images/privacyicon.png"
                           alt="Privacy"
                           className="menu-icons"
@@ -324,6 +348,9 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                     <li onClick={() => navigate("/contact-us")}>
                       <div className="menu-item gap-2">
                         <img
+                          loading="eager"
+                          width={18}
+                          height={18}
                           src="/Images/contacticon.png"
                           alt="Contact"
                           className="menu-icons"
@@ -469,6 +496,7 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
             onClick={() => navigate("/customjewel")}
           >
             <img
+              loading="eager"
               src="/Images/Group 1597884646.svg"
               width={20}
               alt="Custom Jewellery"
@@ -482,6 +510,7 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
       <div className={`mobile-drawer ${isDrawerOpen ? "open" : ""}`}>
         <div className="mobile-img">
           <img
+            loading="eager"
             src="/Images/crystovalogowhite (1) 2.png"
             style={{ width: "60%" }}
             onClick={() => navigate("/")}
@@ -524,6 +553,7 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                         style={{ cursor: "pointer", flex: 1 }}
                       >
                         <img
+                          loading="eager"
                           src={categoryImages[category.categoryName]}
                           width={20}
                           alt={category.categoryName}
@@ -575,6 +605,7 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                 onClick={() => navigate("/customjewel")}
               >
                 <img
+                  loading="eager"
                   src="/Images/Group 1597884646.svg"
                   width={20}
                   alt="Custom Jewellery"
@@ -588,7 +619,12 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => navigate("/contact-us")}
               >
-                <img src="/Images/contacticon.png" width={18} alt="Profile" />{" "}
+                <img
+                  loading="eager"
+                  src="/Images/contacticon.png"
+                  width={18}
+                  alt="Profile"
+                />{" "}
                 Contact Us
               </div>
             </div>
@@ -605,6 +641,7 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                     }}
                   >
                     <img
+                      loading="eager"
                       src="/Images/profileicon.png"
                       width={18}
                       alt="Profile"
@@ -618,7 +655,12 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                       navigate("/Order");
                     }}
                   >
-                    <img src="/Images/ordericon.png" width={18} alt="Orders" />{" "}
+                    <img
+                      loading="eager"
+                      src="/Images/ordericon.png"
+                      width={18}
+                      alt="Orders"
+                    />{" "}
                     My Orders
                   </div>
                 </div>
@@ -645,7 +687,12 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                     navigate("/login");
                   }}
                 >
-                  <img src="/Images/Group.png" width={18} alt="header" />
+                  <img
+                    loading="eager"
+                    src="/Images/Group.png"
+                    width={18}
+                    alt="header"
+                  />
                   <span>Sign in</span>
                 </div>
               </div>

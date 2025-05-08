@@ -1,7 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, Suspense, lazy } from "react";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
-import LazyVideo from "../LazyVideo";
+import Swiper from "swiper";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
+// import LazyVideo from "../LazyVideo";
+const LazyVideo = lazy(() => import("../LazyVideo"));
 
 const Section4DiamondJewelry = () => {
   const navigate = useNavigate();
@@ -63,35 +68,20 @@ const Section4DiamondJewelry = () => {
           <div className="col-md-4 d-flex flex-column dis_edjxfd">
             <div ref={videoRef}>
               {videoVisible && (
-                <LazyVideo
-                  loading={videoVisible ? "eager" : "lazy"}
-                  src="../../../Videos/diamond jewelry.mp4"
-                  className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls={false}
-                  onClick={() => navigate("/products")}
-                  style={{cursor:'pointer'}}
-                />
-
-                // <video
-                //   autoPlay
-                //   loop
-                //   muted
-                //   playsInline
-                //   preload="none"
-                //   loading="eager"
-                //   className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
-                //   onClick={() => navigate('/products')}
-                // >
-                // <source
-                //     src="../../../Videos/diamond jewelry.mp4"
-                //     type="video/mp4"
-                //   />
-                //   Your browser does not support the video tag.
-                // </video>
+                <Suspense fallback={<div>Loading video...</div>}>
+                  <LazyVideo
+                    loading={videoVisible ? "eager" : "lazy"}
+                    src="../../../Videos/diamond jewelry.mp4"
+                    className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    controls={false}
+                    onClick={() => navigate("/products")}
+                    style={{cursor:'pointer'}}
+                  />
+                </Suspense>
               )}
             </div>
           </div>

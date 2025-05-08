@@ -123,7 +123,7 @@ export default function Section15Testimonials() {
             lazy={true}
           >
             {reviews.map((review, index) => (
-              <SwiperSlide className="slide_ssssss_sss" key={review.id}>
+              <SwiperSlide className="slide_ssssss_sss mt-1 mt-sm-0" key={review.id}>
                 <div
                         className="card testimonial-card mt-5 mt-sm-2"
                 >

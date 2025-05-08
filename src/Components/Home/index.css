@@ -4814,6 +4814,14 @@ video {
   .home_ring_3 {
     display: block !important;
   }
+  .cline_ytsdhcsd .swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 340px !important;
+    position: relative;
+    transition-property: transform;
+    display: block;
+  }
 
   .snuf_dfv {
     padding: 0.2rem !important;
@@ -5491,12 +5499,14 @@ video {
   }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 575.98px) {
   .our_colles {
     margin-top: 14rem;
     padding: 1rem !important;
   }
-
+  .client_footer_monial{
+    padding-bottom: 2rem !important;
+  }
   .our_coll_head {
     font-size: 12px;
   }
@@ -6210,7 +6220,7 @@ video {
 .cline_ytsdhcsd .swiper-slide {
   flex-shrink: 0;
   width: 100%;
-  height: 250x;
+  height: 300px;
   position: relative;
   transition-property: transform;
   display: block;
