@@ -10,56 +10,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCartCount } from "../../redux/cartSlice";
-
-const allowedCategories = ["Rings", "Earrings", "Pendant", "Bracelet"];
-const categoryImages = {
-  Rings: "/Images/diamond-ring-diamond-svgrepo-com.svg",
-  Earrings: "/Images/earrings.png",
-  Pendant: "/Images/gem-pendant-svgrepo-com.svg",
-  Bracelet: "/Images/noun-bracelet-5323037.svg",
-};
-const Header = ({ openCart, wishlistCount = 0 }) => {
+const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { count: cartCount } = useSelector((state) => state.cart);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showSignup, setIsSignup] = useState(false);
   const [data, setData] = useState(null);
   const user_Id = localStorage.getItem("user_Id");
   const popupRef = useRef(null);
   const [searchValue, setSearchValue] = useState("");
-  const [hoveredCategory, setHoveredCategory] = useState(null);
-  const [categoriesData, setCategoriesData] = useState([]);
-  const [expandedCategory, setExpandedCategory] = useState(null);
-
-  const toggleSubcategory = (categoryName) => {
-    setExpandedCategory((prev) =>
-      prev === categoryName ? null : categoryName
-    );
-  };
-
-  useEffect(() => {
-    getCategories();
-  }, []);
-
-  useEffect(() => {
-    if (user_Id) {
-      dispatch(fetchCartCount());
-    }
-  }, [dispatch, user_Id]);
-
-  const getCategories = React.useCallback(async () => {
-    try {
-      const res = await axios.get(
-        "https://dev.crystovajewels.com/api/v1/category/get"
-      );
-      setCategoriesData(res.data);
-    } catch (error) {
-      console.error("Failed to fetch categories", error);
-    }
-  }, []);
 
   const handleSearch = () => {
     if (searchValue.trim()) {
@@ -117,14 +75,8 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
     localStorage.setItem("isExistingProfile", "false");
     localStorage.removeItem("user_token");
     localStorage.removeItem("cartCount");
-    localStorage.removeItem("user_phone");
-    localStorage.removeItem("user_email");
-    localStorage.removeItem("user_data");
-    localStorage.removeItem("user_name");
-    localStorage.removeItem("user_fname");
     setData(null);
     setTimeout(() => setIsSignup(false), 500);
-    window.location.reload();
     navigate("/");
   };
 
@@ -221,51 +173,26 @@ const Header = ({ openCart, wishlistCount = 0 }) => {
                 >
                   <div className="popup-arrow"></div>
                   <div className="profile-section">
-                    {/* <img
-loading="eager"
-
-                      src="/Images/15 Model white.png"
+                    <img
+                      loading="lazy"
+                      src='/Images/15 Model white.png'
                       alt="Profile"
                       className="profile-pic"
-                    /> */}
+                    />
                     <div className="profile-details">
-                      {localStorage.getItem("user_name") ? (
-                        <div className="d-flex flex-column gap-2">
+                      {data ? (
+                        <>
                           <h5>
-                            {"Hey"}, {localStorage.getItem("user_name")} !
+                            {" "}
+                            {data.firstName} {data.lastName}{" "}
                           </h5>
                           <p className="contact-number">
-                            <strong>
-                              {localStorage.getItem("user_phone")}
-                            </strong>
+                            <strong>{data.phone}</strong>
                           </p>
-                        </div>
-                      ) : localStorage.getItem("user_fname") ? (
-                        <div className="d-flex flex-column gap-2">
-                          <h5>
-                            {"Hey"}, {localStorage.getItem("user_fname")} !
-                          </h5>
-                          <p className="contact-number">
-                            <strong>
-                              {localStorage.getItem("user_phone")}
-                            </strong>
-                          </p>
-                        </div>
+                        </>
                       ) : (
-                        <h5></h5>
+                        <h5>Loading...</h5>
                       )}
-
-                      {!localStorage.getItem("user_name") &&
-                        !localStorage.getItem("user_fname") && (
-                          <div className="d-flex flex-column gap-2">
-                            <h6> {"Welcome To Crystova Jewels !"} </h6>
-                            <p className="contact-number">
-                              <strong>
-                                {localStorage.getItem("user_phone")}
-                              </strong>
-                            </p>
-                          </div>
-                        )}
                     </div>
                   </div>
                   {/* Menu List */}
@@ -275,10 +202,8 @@ loading="eager"
                       <li onClick={() => navigate("/Editprofile")}>
                         <div className="menu-item gap-2">
                           <img
-                            loading="eager"
-                            width={18}
-                            height={18}
-                            src="/Images/profileicon.png"
+                            loading="lazy"
+                            src='/Images/profileicon.png'
                             alt="Profile"
                             className="menu-icons"
                           />
@@ -290,10 +215,8 @@ loading="eager"
                       <li onClick={() => navigate("/login")}>
                         <div className="menu-item gap-2">
                           <img
-                            loading="eager"
-                            width={18}
-                            height={18}
-                            src="/Images/profileicon.png"
+                            loading="lazy"
+                            src='/Images/profileicon.png'
                             alt="Profile"
                             className="menu-icons"
                           />
@@ -306,10 +229,8 @@ loading="eager"
                     <li onClick={() => navigate("/Order")}>
                       <div className="menu-item gap-2">
                         <img
-                          loading="eager"
-                          width={18}
-                          height={18}
-                          src="/Images/ordericon.png"
+                          loading="lazy"
+                          src='/Images/ordericon.png'
                           alt="Orders"
                           className="menu-icons"
                         />
@@ -320,10 +241,8 @@ loading="eager"
                     <li>
                       <div className="menu-item gap-2">
                         <img
-                          loading="eager"
-                          width={18}
-                          height={18}
-                          src="/Images/termsicon.png"
+                          loading="lazy"
+                          src='/Images/termsicon.png'
                           alt="Terms"
                           className="menu-icons"
                         />
@@ -334,10 +253,8 @@ loading="eager"
                     <li>
                       <div className="menu-item gap-2">
                         <img
-                          loading="eager"
-                          width={18}
-                          height={18}
-                          src="/Images/privacyicon.png"
+                          loading="lazy"
+                          src='/Images/privacyicon.png'
                           alt="Privacy"
                           className="menu-icons"
                         />
@@ -348,10 +265,8 @@ loading="eager"
                     <li onClick={() => navigate("/contact-us")}>
                       <div className="menu-item gap-2">
                         <img
-                          loading="eager"
-                          width={18}
-                          height={18}
-                          src="/Images/contacticon.png"
+                          loading="lazy"
+                          src='/Images/contacticon.png'
                           alt="Contact"
                           className="menu-icons"
                         />
@@ -384,7 +299,7 @@ loading="eager"
               size={30}
               style={{ strokeWidth: "0.5px", stroke: "black" }}
             />
-
+            
             {wishlistCount > 0 && (
               <span
                 className="position-absolute top-0 start-100 badge rounded-pill"
@@ -440,62 +355,38 @@ loading="eager"
           className="d-flex align-items-center justify-content-center jhdb_dhvh pb-1 pt-2"
           style={{ borderTop: "1px solid #797979", background: "white" }}
         >
-          {allowedCategories.map((categoryName) => {
-            const category = categoriesData.find(
-              (c) => c.categoryName === categoryName
-            );
-            if (!category) return null;
-
-            return (
-              <div
-                key={category.id}
-                className="drawer-item d-flex align-items-center gap-2 position-relative mx-3"
-                onMouseEnter={() => setHoveredCategory(category.categoryName)}
-                onMouseLeave={() => setHoveredCategory(null)}
-                onClick={() => handleCategoryClick(category.categoryName)}
-                style={{ cursor: "pointer" }}
-              >
-                <img
-                  loading="eager"
-                  fetchPriority="high"
-                  src={categoryImages[category.categoryName]}
-                  width={20}
-                  alt={category.categoryName}
-                />
-                {category.categoryName}
-
-                {hoveredCategory === category.categoryName &&
-                  category.subcategories.length > 0 && (
-                    <div className="dropdown-subcategory">
-                      <div
-                        onClick={() =>
-                          handleCategoryClick(category.categoryName)
-                        }
-                      >
-                        Rings
-                      </div>
-                      {category.subcategories.map((subcat) => (
-                        <div
-                          key={subcat._id}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleCategoryClick(subcat.subcategoryName);
-                          }}
-                        >
-                          {subcat.subcategoryName}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-              </div>
-            );
-          })}
-
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
-            onClick={() => navigate("/customjewel")}
+            onClick={() => handleCategoryClick("Rings")}
           >
-            <img
+            <img loading="lazy" src="/Images/diamond-ring-diamond-svgrepo-com.svg" width={25} alt="Rings" /> Rings
+          </div>
+          <div
+            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+            onClick={() => handleCategoryClick("Earrings")}
+          >
+            <img loading="lazy" src='/Images/earrings.png' width={25} alt="Earrings" />{" "}
+            Earrings
+          </div>
+          <div
+            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+            onClick={() => handleCategoryClick("Pendant")}
+          >
+            <img loading="lazy" src='/Images/gem-pendant-svgrepo-com.svg' width={20} alt="Pendant" />{" "}
+            Pendant
+          </div>
+          <div
+            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+            onClick={() => handleCategoryClick("Bracelet")}
+          >
+            <img loading="lazy" src='/Images/noun-bracelet-5323037.svg' width={25} alt="Bracelet" />{" "}
+            Bracelet
+          </div>
+          <div
+            className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
+            onClick={() => navigate("/Customjewel")}
+          >
+              <img
               loading="eager"
               src="/Images/Group 1597884646.svg"
               width={20}
@@ -509,7 +400,7 @@ loading="eager"
       {/* Mobile Drawer */}
       <div className={`mobile-drawer ${isDrawerOpen ? "open" : ""}`}>
         <div className="mobile-img">
-          <img
+        <img
             loading="eager"
             src="/Images/crystovalogowhite (1) 2.png"
             style={{ width: "60%" }}
@@ -521,7 +412,7 @@ loading="eager"
         </div>
         <div className="drawer-menu ">
           <div className="position-relative mb-3 w-100">
-            <LuTextSearch className="position-absolute top-50 start-0 translate-middle-y ms-2 text-muted" />
+          <LuTextSearch className="position-absolute top-50 start-0 translate-middle-y ms-2 text-muted" />
             <input
               type="text"
               placeholder="Search..."
@@ -535,77 +426,44 @@ loading="eager"
           <div className="drawer-pro ">
             <div className="eeerd">
               <span className="drawer-new">CATEGORY</span>
-              {allowedCategories.map((categoryName) => {
-                const category = categoriesData.find(
-                  (c) => c.categoryName === categoryName
-                );
-                if (!category) return null;
-
-                return (
-                  <div key={category._id} className="w-100">
-                    <div className="drawer-item d-flex align-items-center justify-content-between w-100">
-                      {/* Left part: click navigates to category */}
-                      <div
-                        className="d-flex align-items-center gap-2"
-                        onClick={() =>
-                          handleCategoryClick(category.categoryName)
-                        }
-                        style={{ cursor: "pointer", flex: 1 }}
-                      >
-                        <img
-                          loading="eager"
-                          src={categoryImages[category.categoryName]}
-                          width={20}
-                          alt={category.categoryName}
-                        />
-                        {category.categoryName}
-                      </div>
-
-                      {/* Right part: click toggles subcategory */}
-                      {category.subcategories.length > 0 && (
-                        <FaAngleRight
-                          className={`arrow-icon ${
-                            expandedCategory === category.categoryName
-                              ? "rotate"
-                              : ""
-                          }`}
-                          onClick={(e) => {
-                            e.stopPropagation(); // Prevent click bubbling to parent
-                            toggleSubcategory(category.categoryName);
-                          }}
-                          style={{ cursor: "pointer" }}
-                        />
-                      )}
-                    </div>
-
-                    {/* Subcategories */}
-                    {expandedCategory === category.categoryName &&
-                      category.subcategories.map((subcat) => (
-                        <div
-                          key={subcat._id}
-                          className="drawer-subitem ms-4 ps-1 py-1"
-                          onClick={() =>
-                            handleCategoryClick(subcat.subcategoryName)
-                          }
-                          style={{
-                            cursor: "pointer",
-                            fontSize: "0.95rem",
-                            color: "black",
-                          }}
-                        >
-                          {subcat.subcategoryName}
-                        </div>
-                      ))}
-                  </div>
-                );
-              })}
-
               <div
                 className="drawer-item d-flex align-items-center gap-2 w-100"
-                onClick={() => navigate("/customjewel")}
+                onClick={() => handleCategoryClick("Rings")}
+              >
+                <img loading="lazy" src="/Images/diamond-ring-diamond-svgrepo-com.svg" width={20} alt="Rings" /> Rings
+              </div>
+              <div
+                className="drawer-item d-flex align-items-center gap-2 w-100"
+                onClick={() => handleCategoryClick("Earrings")}
+              >
+                <img loading="lazy" src='/Images/earrings.png' width={20} alt="Earrings" />{" "}
+                Earrings
+              </div>
+              <div
+                className="drawer-item d-flex align-items-center gap-2 w-100"
+                onClick={() => handleCategoryClick("Pendant")}
               >
                 <img
-                  loading="eager"
+                  loading="lazy"
+                  src='/Images/gem-pendant-svgrepo-com.svg'
+                  width={20}
+                  alt="Pendant"
+                />{" "}
+                Pendant
+              </div>
+              <div
+                className="drawer-item d-flex align-items-center gap-2 w-100"
+                onClick={() => handleCategoryClick("Bracelet")}
+              >
+                <img loading="lazy" src='/Images/noun-bracelet-5323037.svg' width={20} alt="Bracelet" />{" "}
+                Bracelet
+              </div>
+              <div
+                className="drawer-item d-flex align-items-center gap-2 w-100"
+                onClick={() => navigate("/Customjewel")}
+              >
+                <img
+                  loading="lazy"
                   src="/Images/Group 1597884646.svg"
                   width={20}
                   alt="Custom Jewellery"
@@ -620,8 +478,8 @@ loading="eager"
                 onClick={() => navigate("/contact-us")}
               >
                 <img
-                  loading="eager"
-                  src="/Images/contacticon.png"
+                  loading="lazy"
+                  src='/Images/contacticon.png'
                   width={18}
                   alt="Profile"
                 />{" "}
@@ -641,8 +499,8 @@ loading="eager"
                     }}
                   >
                     <img
-                      loading="eager"
-                      src="/Images/profileicon.png"
+                      loading="lazy"
+                      src='/Images/profileicon.png'
                       width={18}
                       alt="Profile"
                     />{" "}
@@ -656,8 +514,8 @@ loading="eager"
                     }}
                   >
                     <img
-                      loading="eager"
-                      src="/Images/ordericon.png"
+                      loading="lazy"
+                      src='/Images/ordericon.png'
                       width={18}
                       alt="Orders"
                     />{" "}
@@ -687,7 +545,7 @@ loading="eager"
                     navigate("/login");
                   }}
                 >
-                  <img
+                    <img
                     loading="eager"
                     src="/Images/Group.png"
                     width={18}
