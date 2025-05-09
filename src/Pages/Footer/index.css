@@ -45,26 +45,6 @@
   padding: 10px;
 }
 
-/* 
-.hr_tg_dd{
-        position: relative;
-        overflow: visible;
-        text-align: center;
-        margin: 1rem 0;
-        color: inherit;
-        background-color: #ffff;
-        border: 0;
-        opacity: 1.25;
-}
-
-.hr_tg_dd::after{
-    content: "";
-    position: absolute;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 150px;
-} */
-
 .hr_tg_dd {
   position: relative;
   width: 100%;
@@ -450,24 +430,12 @@
 .sub_ss {
   font-family: "Cabin", sans-serif;
   font-weight: 700;
-  font-size: 20px;
   text-align: justify;
   color: #611d2b;
   border: 1px solid white;
   border-radius: 100px;
   display: flex;
   justify-content: center;
-}
-
-.email {
-  font-family: "Cabin", sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  text-align: justify;
-  color: #611d2b;
-  border: 1px solid white;
-  border-radius: 100px;
-  padding-left: 32px;
 }
 
 .footer_cont {
@@ -561,10 +529,6 @@
     font-size: 13px;
   }
 
-  .email {
-    padding-left: 18px;
-    height: 46px;
-  }
 }
 
 .footer_mdjj_1 {
@@ -707,7 +671,7 @@
     background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    display: none;
+  display: none;
 }
 
 .MuiAccordionSummary-root {
@@ -760,12 +724,12 @@
   min-height: 47px !important;
 }
 .css-rizt0-MuiTypography-root {
-    margin: 0;
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
-    font-weight: 400;
-    font-size: 1.1rem !important;
-    line-height: 1.5;
-    letter-spacing: 0.00938em;
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 1.1rem !important;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
 }
 
 .css-1808mag-MuiPaper-root-MuiAccordion-root::before {
@@ -777,8 +741,10 @@
   content: "";
   opacity: 1;
   background-color: transparent !important;
-  -webkit-transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  -webkit-transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.css-1808mag-MuiPaper-root-MuiAccordion-root {
@@ -791,7 +757,8 @@
   box-shadow: none !important;
   border-bottom: 1px solid white;
 }
-.support_acc .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.css-1808mag-MuiPaper-root-MuiAccordion-root {
+.support_acc
+  .MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiAccordion-root.MuiAccordion-rounded.MuiAccordion-gutters.css-1808mag-MuiPaper-root-MuiAccordion-root {
   --Paper-shadow: none !important;
   box-shadow: none !important;
   border-bottom: none !important;
@@ -799,8 +766,6 @@
 .css-1808mag-MuiPaper-root-MuiAccordion-root.Mui-expanded {
   margin: 0 !important;
 }
-
-
 
 .MuiAccordion-root {
   border-bottom: 1px solid #fff; /* or your preferred color */
@@ -826,33 +791,22 @@
   margin: 0px 0px !important;
 }
 
-@media (max-width:767px) {
-  .sub_ss {
+@media (max-width: 767px) {
+  .doof_dd .sub_ss {
     line-height: 44px;
-    font-size: 13px;
-    width: 50%;
+    font-size: 18px;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
   }
-  .email {
-    padding-left: 18px;
-    height: 46px;
-    width: 100%;
+  
 }
-.sub_emailsss{
-  flex-direction: row !important;
-}
-}
-@media (max-width:427px) {
+@media (max-width: 427px) {
   .sub_ss {
     line-height: 44px;
     font-size: 13px;
     width: 100%;
   }
-  .email {
-    padding-left: 18px;
-    height: 46px;
-    width: 100%;
-}
-.sub_emailsss{
-  flex-direction: column !important;
-}
 }

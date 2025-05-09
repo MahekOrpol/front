@@ -21,6 +21,8 @@ import { Suspense, useEffect } from "react";
 import LoadingSpinner from "./Components/LoadingSpinner";
 import ProgressBar from './Components/ProgressBar';
 import 'nprogress/nprogress.css';
+import TermsAndConditions from "./Pages/Policies/terms&conditions";
+import PrivacyPolicy from "./Pages/Policies/ privacy-policy";
 
 function App() {
   useEffect(() => {
@@ -66,6 +68,8 @@ function App() {
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/customjewel" element={<CustomJewel />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route
             path="/order"
             element={<ProtectedRoute element={<OrderDetails />} />}
