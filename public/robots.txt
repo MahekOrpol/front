@@ -3,4 +3,5 @@ Disallow: /admin/
 Disallow: /checkout/
 Disallow: /add_to_cart/
 
+
 Sitemap: https://crystovajewels.com/sitemap.xml
