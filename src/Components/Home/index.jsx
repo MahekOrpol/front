@@ -76,7 +76,16 @@ const Home = () => {
     };
   }, [isCartOpen]);
   
-  
+  useEffect(() => {
+    const loadScript = (src) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      document.head.appendChild(script);
+    };
+    loadScript('https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js');
+  }, []); 
+
   useEffect(() => {
     dispatch(fetchCartCount());
   }, [dispatch]);
