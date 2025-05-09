@@ -70,3 +70,35 @@
   .accordion-item:not(:first-of-type) {
     border-top: 1px solid #ddd !important;
 }
+
+.privacy-policy {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.privacy-policy-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-top: 30px;
+  color: #444;
+}
+
+.subsection-title {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  color: #555;
+}
+
+.privacy-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
