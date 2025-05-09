@@ -130,13 +130,31 @@
     ></script>
 
     <!-- Load Swiper via CDN (deferred) -->
-    <script
+    <!-- <script
       defer
       src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js" integrity="sha256-xxx" crossorigin="anonymous"
-    ></script>
+    ></script> -->
+    <script type="module">
+      import {
+        Swiper,
+        Navigation,
+      } from "https://cdn.jsdelivr.net/npm/swiper@10/+esm";
+      // Initialize Swiper with Navigation only if needed
+      document.addEventListener("DOMContentLoaded", () => {
+        new Swiper(".swiper", {
+          modules: [Navigation],
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+        });
+      });
+    </script>
     <link
       rel="preload"
-      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" integrity="sha256-xxx" crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+      integrity="sha256-xxx"
+      crossorigin="anonymous"
       media="print"
       onload="this.media='all'"
     />
