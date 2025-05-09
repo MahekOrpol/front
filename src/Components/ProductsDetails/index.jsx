@@ -1192,7 +1192,7 @@ Please let me know the next steps.`;
               alt="product details"
             />
           </div>
-          <div className="heder_sec_main d-flex flex-column p-0">
+          <div className="heder_sec_main d-flex flex-column p-0 product_detaildd">
             <div className="row">
               <div className="slider_ssss_fdcdf ">
                 <Swiper

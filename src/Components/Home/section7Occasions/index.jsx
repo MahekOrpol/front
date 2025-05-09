@@ -34,18 +34,18 @@ const Section7Occasions = () => {
           className={`custom-dot ${i === currentSlide ? "active" : ""}`}
         />
       ),
-      appendDots: (dots) => {
-        const visibleCount = 3;
-        let start = 0;
+      // appendDots: (dots) => {
+      //   const visibleCount = 3;
+      //   let start = 0;
 
-        if (currentSlide >= visibleCount - 1) {
-          start = currentSlide - 1;
-        }
+      //   if (currentSlide >= visibleCount - 1) {
+      //     start = currentSlide - 1;
+      //   }
 
-        const end = Math.min(start + visibleCount, dots.length);
+      //   const end = Math.min(start + visibleCount, dots.length);
 
-        return <ul className="custom-dots">{dots.slice(start, end)}</ul>;
-      },
+      //   return <ul className="custom-dots">{dots.slice(start, end)}</ul>;
+      // },
     }),
     [currentSlide]
   );
