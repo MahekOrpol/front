@@ -360,6 +360,7 @@ const Contact = () => {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
+      <div className="pb-sm-5 client_footer_monial"></div>
       <Footer />
     </div>
     </>

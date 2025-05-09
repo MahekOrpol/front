@@ -153,7 +153,7 @@ const Blog = () => {
           <h1 className='banner_exx'>Blogs</h1>
         </div> */}
       </div>
-      <div className="container pt-5 pb-5">
+      <div className="container pt-5 ">
         <div className="d-flex gap-5 blog_main_dddd">
           <div
             className="sdncsduchs h-100 position-sticky blog_sins_ssss"
@@ -401,6 +401,7 @@ const Blog = () => {
           </div>
         </div>
       </div>
+      <div className="pb-sm-5 client_footer_monial"></div>
       <Footer />
       </div>
     </>

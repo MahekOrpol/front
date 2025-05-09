@@ -293,6 +293,7 @@ const BlogDetails = () => {
           </div>
         </div>
       </div>
+      <div className="pb-sm-5 client_footer_monial"></div>
       <Footer />
       </div>
     </>
