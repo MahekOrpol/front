@@ -68,10 +68,10 @@ const Section4DiamondJewelry = () => {
           <div className="col-md-4 d-flex flex-column dis_edjxfd">
             <div ref={videoRef}>
               {videoVisible && (
-                <Suspense fallback={<div>Loading video...</div>}>
+                <Suspense>
                   <LazyVideo
                     loading={videoVisible ? "eager" : "lazy"}
-                    src="../../../Videos/diamond jewelry.mp4"
+                    src="/Videos/diamond jewelry.webm"
                     className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
                     autoPlay
                     loop

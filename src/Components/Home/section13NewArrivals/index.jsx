@@ -8,16 +8,16 @@ import "swiper/css/pagination";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
 const videoData = [
-  { src: "/Videos/Dfcvdfx (2).mp4", category: "Pendant" },
-  { src: "/Videos/Dfvdfvd (1).mp4", category: "Earrings" },
-  { src: "/Videos/rings.mp4", category: "Rings" },
-  { src: "/Videos/Sdcxdscx(1).mp4", category: "Bracelets" },
-  { src: "/Videos/pendant.mp4", category: "Pendant" },
-  { src: "/Videos/Dfcvdfx (2).mp4", category: "Pendant" },
-  { src: "/Videos/Dfvdfvd (1).mp4", category: "Earrings" },
-  { src: "/Videos/rings.mp4", category: "Rings" },
-  { src: "/Videos/Sdcxdscx(1).mp4", category: "Bracelets" },
-  { src: "/Videos/pendant.mp4", category: "Pendant" },
+  { src: "/Videos/Dfcvdfx (2).webm", category: "Pendant" },
+  { src: "/Videos/Dfvdfvd (1).webm", category: "Earrings" },
+  { src: "/Videos/rings.webm", category: "Rings" },
+  { src: "/Videos/Sdcxdscx(1).webm", category: "Bracelets" },
+  { src: "/Videos/pendant.webm", category: "Pendant" },
+  { src: "/Videos/Dfcvdfx (2).webm", category: "Pendant" },
+  { src: "/Videos/Dfvdfvd (1).webm", category: "Earrings" },
+  { src: "/Videos/rings.webm", category: "Rings" },
+  { src: "/Videos/Sdcxdscx(1).webm", category: "Bracelets" },
+  { src: "/Videos/pendant.webm", category: "Pendant" },
 ];
 const multiplier = {
   translate: 0.1,
