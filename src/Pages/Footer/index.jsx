@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import Accordion from "@mui/material/Accordion";
-import AccordionActions from "@mui/material/AccordionActions";
+import { IoLogoWhatsapp } from "react-icons/io";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
@@ -98,22 +98,23 @@ const Footer = () => {
             </ul>
           </div>
           <div className=" footer_cont pe-3 text-white mt-md-3 mt-sm-3 mt-lg-0 sdc_sdds1 sdcdsc_fvgtfgv">
-            <h2 className="use_sdc">Subscribe our Newsletter</h2>
+            <h2 className="use_sdc">Connect With Us</h2>
             <ul
               style={{ listStyle: "none", paddingLeft: "0rem" }}
               className="doof_dd pt-2"
             >
               <p className="footer_emi ">
-                Join our newsletter for exclusive updates, special offers, and
-                the latest news delivered straight to your inbox!
+                Stay connected and stay inspired - reach out to us for updates, support, or collaborations. We're here to listen and help you thrive.
               </p>
               <div className="d-flex flex-column w-100 gap-2">
-                <input
+                {/* <input
                   name="email"
                   className="email"
                   placeholder="Enter your Email"
-                />
-                <button className="sub_ss">Subscribe Now</button>
+                /> */}
+                <button className="sub_ss">                    <span className="whatsapp-icon">
+                                      <IoLogoWhatsapp size={30} />
+                                    </span>Get in Touch</button>
               </div>
             </ul>
           </div>
