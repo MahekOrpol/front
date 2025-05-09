@@ -26,17 +26,12 @@ const multiplier = {
 const Section13NewArrivals = () => {
   const videoRefs = useRef([]);
   const navigate = useNavigate();
-  
-  const handleCategoryClick = useCallback(
-    (category) => {
-      navigate(`/products?categoryName=${category}`);
-    },
-    [navigate]
-  );
+  const handleCategoryClick = useCallback((category) => {
+    navigate(`/products?categoryName=${category}`);
+  }, [navigate]);
   const updateRotateMultiplier = useCallback(() => {
     multiplier.rotate = window.innerWidth >= 1024 ? 0.01 : 0.03;
   }, []);
-
   const calculateWheel = useCallback(() => {
     const slides = document.querySelectorAll(".single");
     slides.forEach((slide) => {
@@ -51,7 +46,6 @@ const Section13NewArrivals = () => {
       slide.style.transformOrigin = r < 0 ? "left top" : "right top";
     });
   }, []);
-
   useEffect(() => {
     const raf = () => {
       calculateWheel();
@@ -71,11 +65,10 @@ const Section13NewArrivals = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [calculateWheel, updateRotateMultiplier]);
-  
   return (
     <>
       <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
-        <span className="category_name ">New Arrivals</span>
+        <span className="category_name">New Arrivals</span>
         <p className="category_txt">New Creations, Forever Elegance</p>
         <img
           loading="eager"
@@ -93,6 +86,8 @@ const Section13NewArrivals = () => {
             centeredSlides={true}
             loop={true}
             grabCursor={true}
+            preventClicks={true}
+            preventClicksPropagation={true}
             autoplay={{
               delay: 3500,
               disableOnInteraction: false,
@@ -116,7 +111,7 @@ const Section13NewArrivals = () => {
                 <div
                   className="single"
                   onClick={() => handleCategoryClick(video.category)}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", pointerEvents: "auto", zIndex: 1 }}
                 >
                   <video
                     ref={(el) => (videoRefs.current[i] = el)}
@@ -127,7 +122,7 @@ const Section13NewArrivals = () => {
                     autoPlay
                     preload="auto"
                     className="ring-video"
-                    onClick={(e) => e.stopPropagation()}
+                    style={{ pointerEvents: "none" }}
                   />
                 </div>
               </SwiperSlide>
