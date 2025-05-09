@@ -15,6 +15,16 @@ import {
 import { RiTwitterXFill } from "react-icons/ri";
 
 const Footer = () => {
+  const phoneNumber = "919099975424";
+  const message = `Hello! 👋 I hope you're doing well.
+ I'm interested in your jewellery collection and would like to know more about your designs and customization options. Please share the details.`;
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
+  const handleWhatsappClick = () => {
+    window.open(whatsappLink, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <>
       <div className="footer_mdjj hdr_csdssdrcsdc pt-5 d-none d-md-block">
@@ -24,7 +34,7 @@ const Footer = () => {
               loading="eager"
               src="/Images/crystovalogowhite (1) 2.png"
               width={400}
-                alt="footer"
+              alt="footer"
             />
             <p className="sdcdscsdss_ss ms-3 mt-3 ">
               At Crystova Jewellery, we believe that every piece tells a story.
@@ -75,7 +85,9 @@ const Footer = () => {
                 <a className="footr_lnk">Shipping</a>
               </li>
               <li className="bcdhb_jcb">
-                <a className="footr_lnk" href="/Order">Order Status</a>
+                <a className="footr_lnk" href="/Order">
+                  Order Status
+                </a>
               </li>
 
               {/* <li className="bcdhb_jcb">
@@ -90,10 +102,10 @@ const Footer = () => {
               className="doof_dd pt-2"
             >
               <li className="bcdhb_jcb">
-                <a className="footr_lnk">Privacy Policy</a>
+                <a className="footr_lnk" href="/privacy-policy">Privacy Policy</a>
               </li>
               <li className="bcdhb_jcb">
-                <a className="footr_lnk">Terms & Conditions</a>
+                <a className="footr_lnk" href="/terms-and-conditions">Terms & Conditions</a>
               </li>
             </ul>
           </div>
@@ -104,7 +116,9 @@ const Footer = () => {
               className="doof_dd pt-2"
             >
               <p className="footer_emi ">
-                Stay connected and stay inspired - reach out to us for updates, support, or collaborations. We're here to listen and help you thrive.
+                Stay connected and stay inspired - reach out to us for updates,
+                support, or collaborations. We're here to listen and help you
+                thrive.
               </p>
               <div className="d-flex flex-column w-100 gap-2">
                 {/* <input
@@ -112,9 +126,17 @@ const Footer = () => {
                   className="email"
                   placeholder="Enter your Email"
                 /> */}
-                <button className="sub_ss">                    <span className="whatsapp-icon">
-                                      <IoLogoWhatsapp size={30} />
-                                    </span>Get in Touch</button>
+                <button
+                  className="sub_ss d-flex align-items-center gap-3"
+                  onClick={handleWhatsappClick}
+                >
+                  <span className="whatsapp-icon">
+                    <IoLogoWhatsapp size={30} />
+                  </span>
+                  <span className="d-flex align-items-center">
+                    Get in Touch
+                  </span>
+                </button>
               </div>
             </ul>
           </div>
@@ -267,98 +289,37 @@ const Footer = () => {
                 style={{ listStyle: "none", paddingLeft: "0rem" }}
               >
                 <li>
-                  <a className="footr_lnk">Privacy Policy</a>
+                  <a className="footr_lnk" href="/privacy-policy">Privacy Policy</a>
                 </li>
                 <li>
-                  <a className="footr_lnk">Terms & Conditions</a>
+                  <a className="footr_lnk" href="/terms-and-conditions">Terms & Conditions</a>
                 </li>
               </ul>
             </AccordionDetails>
           </Accordion>
 
-          {/* <div className=" footer_cont1 ps-5 text-white sm-ms-0 lg-ms-5 mt-md-3 mt-sm-3 mt-lg-0 sdc_sdds">
-            <h2 className="use_sdc">Useful Links</h2>
-            <ul
-              style={{ listStyle: "none", paddingLeft: "0rem" }}
-              className="doof_dd pt-2"
-            >
-              <li className="bcdhb_jcb">
-                <a href="/" className="footr_lnk">
-                  Home
-                </a>
-              </li>
-              <li className="bcdhb_jcb">
-                <a href="/about-us" className="footr_lnk">
-                  About
-                </a>
-              </li>
-              <li className="bcdhb_jcb">
-                <a href="/products" className="footr_lnk">
-                  Shop
-                </a>
-              </li>
-              <li className="bcdhb_jcb">
-                <a href="/blog" className="footr_lnk">
-                  Blog
-                </a>
-              </li>
-              <li className="bcdhb_jcb">
-                <a href="/contact-us" className="footr_lnk">
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className=" footer_cont1 text-white mt-md-3 mt-sm-3 mt-lg-0 sdc_sdds">
-            <h2 className="use_sdc">Customer Service</h2>
-            <ul
-              style={{ listStyle: "none", paddingLeft: "0rem" }}
-              className="doof_dd pt-2"
-            >
-              <li className="bcdhb_jcb">
-                <a className="footr_lnk">Shipping</a>
-              </li>
-              <li className="bcdhb_jcb">
-                <a className="footr_lnk">Order Status</a>
-              </li>
-
-              <li className="bcdhb_jcb">
-                <a className="footr_lnk">Exchange</a>
-              </li>
-            </ul>
-          </div>
-          <div className=" footer_cont1 text-white mt-md-3 mt-sm-3 mt-lg-0 sdc_sdds1 sdcdsc_fvgtfgv">
-            <h2 className="use_sdc">Support</h2>
-            <ul
-              style={{ listStyle: "none", paddingLeft: "0rem" }}
-              className="doof_dd pt-2"
-            >
-              <li className="bcdhb_jcb">
-                <a className="footr_lnk">Privacy Policy</a>
-              </li>
-              <li className="bcdhb_jcb">
-                <a className="footr_lnk">Terms & Conditions</a>
-              </li>
-            </ul>
-          </div> */}
-          <div className="d-flex flex-column align-items-center mbdjc_jsc text-white mt-3">
-            <h2 className="use_sdc_1">Subscribe our Newsletter</h2>
+          <div className="d-flex flex-column align-items-center mbdjc_jsc text-white mt-3 justify-content-center">
+            <h2 className="use_sdc_1 d-flex justify-content-center">
+              Connect With Us
+            </h2>
             <ul
               style={{ listStyle: "none", paddingLeft: "0rem" }}
               className="doof_dd pt-2"
             >
               <p className="footer_emi_1">
-                Join our newsletter for exclusive updates, special offers, and
-                the latest news delivered straight to your inbox!
+                Stay connected and stay inspired - reach out to us for updates,
+                support, or collaborations. We're here to listen and help you
+                thrive.
               </p>
-              <div className="d-flex flex-column w-100 gap-2 sub_emailsss">
-                <input
-                  name="email"
-                  className="email"
-                  placeholder="Enter your Email"
-                />
-                <button className="sub_ss">Subscribe Now</button>
-              </div>
+              <button
+                className="sub_ss d-flex align-items-center gap-3"
+                onClick={handleWhatsappClick}
+              >
+                <span className="whatsapp-icon">
+                  <IoLogoWhatsapp size={30} />
+                </span>
+                <span className="d-flex align-items-center">Get in Touch</span>
+              </button>
             </ul>
           </div>
         </div>

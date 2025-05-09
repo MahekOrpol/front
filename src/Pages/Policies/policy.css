@@ -1,0 +1,72 @@
+.termsAndCondition{
+    color: #611d2b;
+    font-weight: 700;
+}
+
+.accordion {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .icon-toggle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #611d2b;
+  }
+  
+  .icon-toggle {
+    transition: transform 0.3s ease;
+  }
+  .accordion-button:not(.collapsed) .icon-toggle {
+    transform: rotate(180deg);
+  }
+  
+  .accordion-item {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .accordion-header {
+    margin: 0;
+  }
+/*   
+  .accordion-button {
+    width: 100%;
+    padding: 15px 20px;
+    text-align: left;
+    background-color: #f8f9fa;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+  }
+  
+  
+  .accordion-button:hover {
+    background-color: #e9ecef;
+  } */
+  
+  .accordion-button:focus {
+    box-shadow: none;
+    outline: none;
+  }
+  
+  .accordion-collapse {
+    transition: height 0.3s ease;
+  }
+  
+  .accordion-body {
+    padding: 20px;
+    background-color: white;
+    border-top: 1px solid #ddd;
+  }
+
+  .accordion-button::after {
+    display: none !important;
+  }
+  
+  .accordion-item:not(:first-of-type) {
+    border-top: 1px solid #ddd !important;
+}
