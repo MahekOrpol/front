@@ -1,10 +1,6 @@
 import React, { useEffect, useRef, useState, Suspense, lazy } from "react";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
-import Swiper from "swiper";
-import { Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/autoplay";
 // import LazyVideo from "../LazyVideo";
 const LazyVideo = lazy(() => import("../LazyVideo"));
 

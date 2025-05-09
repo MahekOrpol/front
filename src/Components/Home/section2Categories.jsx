@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import './index.css';
+
 const Section2Categories = () => {
   const [categories, setCategories] = useState();
   const navigate = useNavigate();
