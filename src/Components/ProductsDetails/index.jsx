@@ -54,7 +54,7 @@ const ProductDetailss = () => {
   const [productName, setProductName] = useState();
   const [salePrice, setSalePrice] = useState();
   const [imageUrl, setImageUrl] = useState("");
-  const phoneNumber = "917861957583";
+  const phoneNumber = "919099975424";
   // const phoneNumber = "919081139039";
   const [wishlistCount, setWishlistCount] = useState(
     parseInt(localStorage.getItem("wishlistCount")) || 0

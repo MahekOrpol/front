@@ -143,7 +143,7 @@ export default function Section15Testimonials() {
                           borderRadius: "50%",
                           objectFit: "cover",
                           transform: "translateY(-60px)",
-                          border:'1px solid white',
+                          background:'white',
                           padding:'5px'
                         }}
                       />
