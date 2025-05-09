@@ -2070,3 +2070,7 @@
   padding: 4px 10px;
   border-radius: 50%;
 }
+
+.product_detaildd .swiper-wrapper{
+  margin-top: .5rem;
+}

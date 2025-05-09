@@ -26,6 +26,7 @@ const multiplier = {
 const Section13NewArrivals = () => {
   const videoRefs = useRef([]);
   const navigate = useNavigate();
+  
   const handleCategoryClick = useCallback(
     (category) => {
       navigate(`/products?categoryName=${category}`);
@@ -35,6 +36,7 @@ const Section13NewArrivals = () => {
   const updateRotateMultiplier = useCallback(() => {
     multiplier.rotate = window.innerWidth >= 1024 ? 0.01 : 0.03;
   }, []);
+
   const calculateWheel = useCallback(() => {
     const slides = document.querySelectorAll(".single");
     slides.forEach((slide) => {
@@ -49,6 +51,7 @@ const Section13NewArrivals = () => {
       slide.style.transformOrigin = r < 0 ? "left top" : "right top";
     });
   }, []);
+
   useEffect(() => {
     const raf = () => {
       calculateWheel();
@@ -68,6 +71,7 @@ const Section13NewArrivals = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [calculateWheel, updateRotateMultiplier]);
+  
   return (
     <>
       <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
