@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../Pages/Header";
-import JewelrySale from "../Contact Us/sdcsd/demo";
+import JewelrySale from "../Contact Us/Hero Section/heroSection";
 import Section2Categories from "./section2Categories";
 import Section3Offers from "./section3Offers";
 

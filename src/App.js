@@ -12,7 +12,6 @@ import CheckoutPage from "./Components/Check Out";
 import EditProfile from "./Components/EditProfile";
 import OrderDetails from "./Components/Order";
 import CustomJewel from "./Components/Custom Jewelry";
-import JewelrySale from "./Components/Contact Us/sdcsd/demo";
 import Wishlist from "./Components/wishlist";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-bootstrap";
@@ -67,7 +66,6 @@ function App() {
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/customjewel" element={<CustomJewel />} />
-          <Route path="/demo" element={<JewelrySale />} />
           <Route
             path="/order"
             element={<ProtectedRoute element={<OrderDetails />} />}
