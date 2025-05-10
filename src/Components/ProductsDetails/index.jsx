@@ -134,9 +134,7 @@ Please let me know the next steps.`;
       }
     } catch (err) {
       console.error("Error sharing:", err);
-      // Fallback if everything fails
-      navigator.clipboard.writeText(window.location.href);
-      toast.success("Link copied to clipboard!");
+
     }
   }, [customProductDetails]);
 
