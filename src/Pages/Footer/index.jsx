@@ -15,7 +15,7 @@ import {
 import { RiTwitterXFill } from "react-icons/ri";
 
 const Footer = () => {
-  const phoneNumber = "919099975424";
+  const phoneNumber = "919081139039";
   const message = `Hello! 👋 I hope you're doing well.
  I'm interested in your jewellery collection and would like to know more about your designs and customization options. Please share the details.`;
   const encodedMessage = encodeURIComponent(message);
