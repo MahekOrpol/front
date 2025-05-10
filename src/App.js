@@ -22,7 +22,7 @@ import LoadingSpinner from "./Components/LoadingSpinner";
 import ProgressBar from './Components/ProgressBar';
 import 'nprogress/nprogress.css';
 import TermsAndConditions from "./Pages/Policies/terms&conditions";
-import PrivacyPolicy from "./Pages/Policies/ privacy-policy";
+import PrivacyPolicy from "./Pages/Policies/privacy-policy";
 import NotFound from "./NotFound";
 
 function App() {

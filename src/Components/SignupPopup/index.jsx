@@ -157,7 +157,7 @@ loading="lazy" src="/Images/profileicon.png" alt="Profile" className="menu-icons
                 </div>
                 <FaAngleRight size={20} className="menu-arrow" />
               </li>
-              <li>
+              <li onClick={()=>navigate('/terms-and-conditions')}>
                 <div className="menu-item">
                   <img
                     loading="eager"
@@ -169,7 +169,7 @@ loading="lazy" src="/Images/profileicon.png" alt="Profile" className="menu-icons
                 </div>
                 <FaAngleRight size={20} className="menu-arrow" />
               </li>
-              <li>
+              <li onClick={()=>navigate('/privacy-policy')}>
                 <div className="menu-item">
                   <img
                     loading="eager"

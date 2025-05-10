@@ -8,12 +8,12 @@ const JewelrySale = () => {
   // Preload critical images
   React.useEffect(() => {
     const preloadImages = [
-      '/Images/image (29).avif',
-      '/Images/Mask group (6).avif',
+      '/Images/image (29).webp',
+      '/Images/Mask group (6).webp',
       '/Images/purple-ornament-indoors-decor-fabric-material2.webp',
-      '/Images/crystovalogowhite (1) 2 (2).avif',
-      '/Images/image (30).avif',
-      '/Images/Mask group (7).avif'
+      '/Images/crystovalogowhite (1) 2 (2).png',
+      '/Images/image (30).webp',
+      '/Images/Mask group (7).webp'
     ];
     
     preloadImages.forEach(src => {
@@ -30,7 +30,7 @@ const JewelrySale = () => {
           <img
             loading="eager"
             fetchpriority="high"
-            src="/Images/image (29).avif"
+            src="/Images/image (29).webp"
             alt="Elegant necklace with pendant"
             className="large-img"
              width={280}
@@ -42,7 +42,7 @@ const JewelrySale = () => {
             <img
               loading="eager"
               fetchpriority="high"
-              src="/Images/Mask group (6).avif"
+              src="/Images/Mask group (6).webp"
               alt="Diamond ring close-up"
               width={280}
             height={280}
@@ -57,7 +57,7 @@ const JewelrySale = () => {
           <img
             loading="eager"
             fetchpriority="high"
-            src="/Images/crystovalogowhite (1) 2 (2).avif"
+            src="/Images/crystovalogowhite (1) 2 (2).png"
             className="logo-banner"
             alt="Crystova brand logo"
             width={350}
@@ -79,7 +79,7 @@ const JewelrySale = () => {
             <img
               loading="eager"
               fetchpriority="high"
-              src="/Images/image (30).avif"
+              src="/Images/image (30).webp"
               alt="Bracelet on display"
               width={280}
             height={280}
@@ -90,7 +90,7 @@ const JewelrySale = () => {
           <img
             loading="eager"
             fetchpriority="high"
-            src="/Images/Mask group (7).avif"
+            src="/Images/Mask group (7).webp"
             alt="Gold Jewellery display"
             className="large-img"
              width={280}

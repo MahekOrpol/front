@@ -160,7 +160,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           <img
             loading="eager"
             fetchPriority="high"
-            src="/Images/Group 1597884561.avif"
+            src="/Images/Group 1597884561.webp"
             alt="Logo"
             width={280}
             height={280}
@@ -286,7 +286,7 @@ loading="eager"
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
-                    <li>
+                    <li onClick={()=>navigate('/terms-and-conditions')}>
                       <div className="menu-item gap-2">
                         <img
                           loading="eager"
@@ -300,7 +300,7 @@ loading="eager"
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
-                    <li>
+                    <li onClick={()=>navigate('/privacy-policy')}>
                       <div className="menu-item gap-2">
                         <img
                           loading="eager"
