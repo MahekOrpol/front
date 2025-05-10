@@ -797,11 +797,17 @@ const Products = () => {
                       placeholder="Search Products"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          handleApplyFilters();
+                        }
+                      }}
                     />
-                    <span className="search-button">
+                    <span className="search-button" onClick={handleApplyFilters}>
                       <BiSearch size={25} />
                     </span>
                   </div>
+
                   <div className="filter-category">
                     <h5 onClick={() => toggleSection("categories")}>
                       Categories{" "}
@@ -886,8 +892,8 @@ const Products = () => {
                       )}
                       <div
                         className={`${isSearchActive
-                            ? "masonry-item col-lg-3 col-md-4 col-6"
-                            : "col-lg-3 col-md-4 col-6"
+                          ? "masonry-item col-lg-3 col-md-4 col-6"
+                          : "col-lg-3 col-md-4 col-6"
                           } mb-4 pt-2 asxasx_card`}
                       >
                         <div className="card prio_card scdscsed_sdss_pro">
