@@ -506,7 +506,7 @@ loading="eager"
           {!localStorage.getItem("user_name") &&
             !localStorage.getItem("user_fname") && (
               <div className="d-flex flex-column gap-2">
-                <h6 className="mb-0 mobile_drawer_text"> {"Welcome To Crystova Jewels !"} </h6>
+                <h6 className="mb-0 mobile_drawer_text"> {"Welcome To Crystova Jewels!"} </h6>
               </div>
             )}
           <hr />
