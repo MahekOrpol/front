@@ -67,9 +67,7 @@ const ProductDetailss = () => {
   const [currentImageSlide, setCurrentImageSlide] = useState(0);
 
   const dispatch = useDispatch();
-  const {
-    count: cartCount
-  } = useSelector((state) => state.cart);
+  const { count: cartCount } = useSelector((state) => state.cart);
 
   // Use custom hooks
   const {
@@ -78,9 +76,9 @@ const ProductDetailss = () => {
     loading: productLoading,
   } = useProductDetails(productId, productData);
   useWishlist(userId);
-  const {
-    images: productImages,
-  } = useProductImages(customProductDetails?.image || []);
+  const { images: productImages } = useProductImages(
+    customProductDetails?.image || []
+  );
 
   const message = `🖼 *Image:* ${imageUrl}
 
@@ -96,27 +94,113 @@ Please let me know the next steps.`;
   const encodedMessage = encodeURIComponent(message);
   const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
-   const overlayRef = useRef(null);
-    // Scroll control helpers
-    useEffect(() => {
-      const overlay = overlayRef.current;
-      if (!overlay) return;
-  
-      const preventScroll = (e) => e.preventDefault();
-  
-      if (isCartOpen) {
-        overlay.addEventListener("wheel", preventScroll, { passive: false });
-        overlay.addEventListener("touchmove", preventScroll, { passive: false });
-      } else {
-        overlay.removeEventListener("wheel", preventScroll);
-        overlay.removeEventListener("touchmove", preventScroll);
-      }
-  
-      return () => {
-        overlay.removeEventListener("wheel", preventScroll);
-        overlay.removeEventListener("touchmove", preventScroll);
+  const overlayRef = useRef(null);
+  // Scroll control helpers
+  useEffect(() => {
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+
+    const preventScroll = (e) => e.preventDefault();
+
+    if (isCartOpen) {
+      overlay.addEventListener("wheel", preventScroll, { passive: false });
+      overlay.addEventListener("touchmove", preventScroll, { passive: false });
+    } else {
+      overlay.removeEventListener("wheel", preventScroll);
+      overlay.removeEventListener("touchmove", preventScroll);
+    }
+
+    return () => {
+      overlay.removeEventListener("wheel", preventScroll);
+      overlay.removeEventListener("touchmove", preventScroll);
+    };
+  }, [isCartOpen]);
+
+  const handleShare = useCallback(async () => {
+    try {
+      const shareData = {
+        title: customProductDetails?.productName || 'Crystova Jewels',
+        text: customProductDetails?.productsDescription || 'Check out this beautiful jewelry from Crystova!',
+        url: window.location.href,
       };
-    }, [isCartOpen]);
+  
+      if (navigator.share) {
+        // Web Share API (works on mobile and some desktop browsers)
+        await navigator.share(shareData);
+      } else {
+        // Fallback for desktop browsers - show a modal with sharing options
+        toast.info(
+          <div className="share-options-container">
+            <h5>Share this product</h5>
+            <div className="d-flex flex-wrap gap-2 mt-3">
+              {/* WhatsApp */}
+              <a 
+                href={`https://api.whatsapp.com/send?text=${encodeURIComponent(
+                  `${shareData.title}\n${shareData.url}`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-success btn-sm d-flex align-items-center gap-1"
+              >
+                <IoLogoWhatsapp size={18} /> WhatsApp
+              </a>
+              
+              {/* Facebook */}
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareData.url)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-sm d-flex align-items-center gap-1"
+              >
+                <i className="bi bi-facebook"></i> Facebook
+              </a>
+              
+              {/* Twitter */}
+              <a
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareData.title)}&url=${encodeURIComponent(shareData.url)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-info btn-sm d-flex align-items-center gap-1 text-white"
+              >
+                <i className="bi bi-twitter-x"></i> Twitter
+              </a>
+              
+              {/* Email */}
+              <a
+                href={`mailto:?subject=${encodeURIComponent(shareData.title)}&body=${encodeURIComponent(
+                  `${shareData.text}\n\n${shareData.url}`
+                )}`}
+                className="btn btn-secondary btn-sm d-flex align-items-center gap-1"
+              >
+                <i className="bi bi-envelope"></i> Email
+              </a>
+              
+              {/* Copy Link */}
+              <button 
+                onClick={() => {
+                  navigator.clipboard.writeText(shareData.url);
+                  toast.success('Link copied to clipboard!');
+                }}
+                className="btn btn-light btn-sm d-flex align-items-center gap-1 border"
+              >
+                <i className="bi bi-link-45deg"></i> Copy Link
+              </button>
+            </div>
+          </div>,
+          {
+            autoClose: false,
+            closeButton: true,
+            closeOnClick: false,
+          }
+        );
+      }
+    } catch (err) {
+      console.error('Error sharing:', err);
+      // Fallback if everything fails
+      navigator.clipboard.writeText(window.location.href);
+      toast.success('Link copied to clipboard!');
+    }
+  }, [customProductDetails]);
 
   const openCart = useCallback(() => {
     if (!userId) {
@@ -468,7 +552,9 @@ Please let me know the next steps.`;
         showToast={showToast}
         toastMessage={toastMessage}
       />
-      {isCartOpen && <div ref={overlayRef} className="overlay" onClick={closeCart}></div>}
+      {isCartOpen && (
+        <div ref={overlayRef} className="overlay" onClick={closeCart}></div>
+      )}
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header">
           <Suspense fallback={<div>Loading...</div>}>
@@ -955,7 +1041,7 @@ Please let me know the next steps.`;
                         )}
                       </div>
 
-                      <div className="gohrt_bod p-2">
+                      <div className="gohrt_bod p-2"  onClick={handleShare}  style={{ cursor: 'pointer' }}>
                         <GoShareAndroid size={25} className="hert_fff" />
                       </div>
                     </div>
@@ -1024,7 +1110,7 @@ Please let me know the next steps.`;
                           <GoHeart className="heart-icon_ss" size={25} />
                         )}
                       </div>
-                      <div className="gohrt_bod p-2">
+                      <div className="gohrt_bod p-2"  onClick={handleShare}  style={{ cursor: 'pointer' }}>
                         <GoShareAndroid size={25} className="hert_fff" />
                       </div>
                     </div>
@@ -1216,9 +1302,7 @@ Please let me know the next steps.`;
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
-                      <div
-                        className="card prio_card scdscsed_sdss fgfdddds"
-                      >
+                      <div className="card prio_card scdscsed_sdss fgfdddds">
                         <div className="card-image-wrapper position-relative">
                           <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 dssdd">
                             NEW
