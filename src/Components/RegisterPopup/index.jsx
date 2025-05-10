@@ -118,7 +118,10 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
         }
       } catch (error) {
-        toast.error(error.response?.data?.message || "Login failed");
+        toast.error(error.response?.data?.message || "Login failed",{
+          toastId: "loginError"
+        });
+        
       } finally {
         setIsSubmitting(false);
       }
