@@ -20,6 +20,8 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   const [tabValue, setTabValue] = useState("login");
   const [showForgotPass, setShowForgotPass] = useState(false);
   const [showChangePass, setShowChangePass] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -85,6 +87,10 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
+
+    if (isSubmitting) return; // Prevent double-submit
+    setIsSubmitting(true);
+
     let errors = {};
 
     setLoginErrors(errors);
@@ -106,13 +112,20 @@ const RegisterPopup = ({ isOpen, onClose }) => {
           localStorage.setItem("user_email", response.data.user.email);
           localStorage.setItem("user_phone", response.data.user.phone);
           localStorage.setItem("user_fname", response.data.user.name);
+          setTimeout(() => {
+            onClose?.(); // safe check
+          }, 1000);
 
-          setTimeout(() => onClose(), 1000);
         }
       } catch (error) {
         toast.error(error.response?.data?.message || "Login failed");
+      } finally {
+        setIsSubmitting(false);
       }
+    } else {
+      setIsSubmitting(false);
     }
+
   };
 
   const handleRegisterSubmit = async (e) => {
