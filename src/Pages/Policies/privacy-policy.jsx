@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
-const Footer = lazy(() => import("../../Pages/Footer"));
-const Header = lazy(() => import("../../Pages/Header"));
+const Footer = lazy(() => import("../Footer"));
+const Header = lazy(() => import("../Header"));
 
 const PrivacyPolicy = () => {
   return (
