@@ -33,8 +33,10 @@ const JewelrySale = () => {
             src="/Images/image (29).avif"
             alt="Elegant necklace with pendant"
             className="large-img"
-            width="100%"
-            height="auto"
+             width={280}
+            height={280}
+            priority={true}
+            quality={90}
           />
           <div className="small-imgs">
             <img
@@ -42,8 +44,10 @@ const JewelrySale = () => {
               fetchpriority="high"
               src="/Images/Mask group (6).avif"
               alt="Diamond ring close-up"
-              width="100%"
-              height="auto"
+              width={280}
+            height={280}
+            priority={true}
+            quality={90}
             />
           </div>
         </div>
@@ -77,8 +81,10 @@ const JewelrySale = () => {
               fetchpriority="high"
               src="/Images/image (30).avif"
               alt="Bracelet on display"
-              width="100%"
-              height="auto"
+              width={280}
+            height={280}
+            priority={true}
+            quality={90}
             />
           </div>
           <img
@@ -87,8 +93,10 @@ const JewelrySale = () => {
             src="/Images/Mask group (7).avif"
             alt="Gold Jewellery display"
             className="large-img"
-            width="100%"
-            height="auto"
+             width={280}
+            height={280}
+            priority={true}
+            quality={90}
           />
         </div>
       </div>
