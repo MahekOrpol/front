@@ -164,6 +164,8 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             alt="Logo"
             width={280}
             height={280}
+            priority={true}
+            quality={90}
           />
         </div>
 
