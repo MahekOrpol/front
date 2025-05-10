@@ -134,7 +134,6 @@ Please let me know the next steps.`;
       }
     } catch (err) {
       console.error("Error sharing:", err);
-
     }
   }, [customProductDetails]);
 
@@ -635,9 +634,9 @@ Please let me know the next steps.`;
             </div>
 
             <div className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3 sticky-gallery">
-              {/* Box 1: Video(s) */}
+              {/* Box 1: First video (if exists) */}
               <div className="col-md-6 border vider_saxasxs">
-                {videos.length === 1 ? (
+                {videos.length > 0 ? (
                   <video
                     src={`https://dev.crystovajewels.com${videos[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
@@ -647,186 +646,21 @@ Please let me know the next steps.`;
                     playsInline
                     controls={false}
                   />
-                ) : videos.length > 1 ? (
-                  <Slider
-                    className="custom-slick-slider"
-                    ref={videoSliderRef}
-                    dots
-                    infinite
-                    speed={500}
-                    slidesToShow={1}
-                    slidesToScroll={1}
-                    beforeChange={(oldIndex, newIndex) =>
-                      setCurrentVideoSlide(newIndex)
-                    }
-                    appendDots={(dots) => {
-                      const totalDots = dots.length;
-                      const maxVisible = 3;
-                      let startDot = 0;
-
-                      if (currentVideoSlide >= maxVisible - 1) {
-                        startDot = Math.min(
-                          currentVideoSlide - 1,
-                          totalDots - maxVisible
-                        );
-                      }
-
-                      const visibleDots = dots.slice(
-                        startDot,
-                        startDot + maxVisible
-                      );
-
-                      return (
-                        <div
-                          className="dots-container"
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            gap: "10px",
-                            marginTop: "10px",
-                          }}
-                        >
-                          {visibleDots.map((dot, index) => {
-                            const dotIndex = startDot + index;
-                            const isActive = dotIndex === currentVideoSlide;
-
-                            return (
-                              <div
-                                key={dotIndex}
-                                className={`dot ${isActive ? "active" : ""}`}
-                                onClick={() => {
-                                  videoSliderRef.current.slickGoTo(dotIndex);
-                                  setCurrentVideoSlide(dotIndex);
-                                }}
-                                style={{
-                                  width: isActive ? "12px" : "8px",
-                                  height: isActive ? "12px" : "8px",
-                                  borderRadius: "50%",
-                                  background: isActive ? "#811331" : "#ccc",
-                                  transition: "all 0.3s ease",
-                                  cursor: "pointer",
-                                }}
-                              />
-                            );
-                          })}
-                        </div>
-                      );
-                    }}
-                  >
-                    {videos.map((media, index) => (
-                      <div key={index}>
-                        <video
-                          src={`https://dev.crystovajewels.com${media}`}
-                          className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          controls={false}
-                        />
-                      </div>
-                    ))}
-                  </Slider>
                 ) : (
                   <p className="text-center">No Video</p>
                 )}
               </div>
-
-              <div className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv">
-                {productImages.length > 3 ? (
-                  <Slider
-                    className="custom-slick-slider"
-                    ref={imageSliderRef}
-                    dots
-                    infinite
-                    speed={500}
-                    slidesToShow={1}
-                    slidesToScroll={1}
-                    beforeChange={(oldIndex, newIndex) =>
-                      setCurrentImageSlide(newIndex)
-                    }
-                    appendDots={(dots) => {
-                      const totalDots = dots.length;
-                      const maxVisible = 3;
-                      let startDot = 0;
-
-                      if (currentImageSlide >= maxVisible - 1) {
-                        startDot = Math.min(
-                          currentImageSlide - 1,
-                          totalDots - maxVisible
-                        );
-                      }
-
-                      const visibleDots = dots.slice(
-                        startDot,
-                        startDot + maxVisible
-                      );
-
-                      return (
-                        <div
-                          className="dots-container"
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            gap: "10px",
-                            marginTop: "10px",
-                          }}
-                        >
-                          {visibleDots.map((dot, index) => {
-                            const dotIndex = startDot + index;
-                            const isActive = dotIndex === currentImageSlide;
-
-                            return (
-                              <div
-                                key={dotIndex}
-                                className={`dot ${isActive ? "active" : ""}`}
-                                onClick={() => {
-                                  imageSliderRef.current.slickGoTo(dotIndex);
-                                  setCurrentImageSlide(dotIndex);
-                                }}
-                                style={{
-                                  width: isActive ? "12px" : "8px",
-                                  height: isActive ? "12px" : "8px",
-                                  borderRadius: "50%",
-                                  background: isActive ? "#811331" : "#ccc",
-                                  transition: "all 0.3s ease",
-                                  cursor: "pointer",
-                                }}
-                              />
-                            );
-                          })}
-                        </div>
-                      );
-                    }}
-                  >
-                    {productImages.map((media, index) => (
-                      <div key={index}>
-                        <img
-                          loading="lazy"
-                          // fetchPriority="high"
-                          src={`https://dev.crystovajewels.com${media}`}
-                          className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
-                          alt={
-                            customProductDetails?.productName || "Product image"
-                          }
-                        />
-                      </div>
-                    ))}
-                  </Slider>
-                ) : productImages[0] ? (
+              {/* Box 2: Image[0] */}
+              {productImages[0] && (
+                <div className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv">
                   <img
                     loading="lazy"
-                    // fetchPriority="high"
                     src={`https://dev.crystovajewels.com${productImages[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
                   />
-                ) : (
-                  <p className="text-center">No Image</p>
-                )}
-              </div>
+                </div>
+              )}
               {/* Box 3: Image[1] */}
               {productImages[1] && (
                 <div className="col-md-6 border vider_saxasxs">
@@ -838,7 +672,6 @@ Please let me know the next steps.`;
                   />
                 </div>
               )}
-
               {/* Box 4: Image[2] */}
               {productImages[2] && (
                 <div className="col-md-6 border vider_saxasxs">
