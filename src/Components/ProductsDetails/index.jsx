@@ -119,23 +119,24 @@ Please let me know the next steps.`;
   const handleShare = useCallback(async () => {
     try {
       const shareData = {
-        title: customProductDetails?.productName || 'Crystova Jewels',
-        text: customProductDetails?.productsDescription || 'Check out this beautiful jewelry from Crystova!',
+        title: customProductDetails?.productName || "Crystova Jewels",
+        text:
+          customProductDetails?.productsDescription ||
+          "Check out this beautiful jewelry from Crystova!",
         url: window.location.href,
       };
-  
+
       if (navigator.share) {
         // Web Share API (works on mobile and some desktop browsers)
         await navigator.share(shareData);
       } else {
         // Fallback for desktop browsers - show a modal with sharing options
-      
       }
     } catch (err) {
-      console.error('Error sharing:', err);
+      console.error("Error sharing:", err);
       // Fallback if everything fails
       navigator.clipboard.writeText(window.location.href);
-      toast.success('Link copied to clipboard!');
+      toast.success("Link copied to clipboard!");
     }
   }, [customProductDetails]);
 
@@ -917,36 +918,42 @@ Please let me know the next steps.`;
                   <hr className="hr_pb_dtl" />
                 </div>
 
-                <div className="dropdown">
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      className="size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
-                      variant="secondary"
-                    >
-                      {selectedSize || "Select size"}
-                    </Dropdown.Toggle>
+                {/* Only show size dropdown if productSize is not ["[]"] */}
+                {customProductDetails?.productSize?.toString() !== "[]" && (
+                  <>
+                    <div className="dropdown">
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          className="size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
+                          variant="secondary"
+                        >
+                          {selectedSize || "Select size"}
+                        </Dropdown.Toggle>
 
-                    <Dropdown.Menu className="product_det_menu w-50 mt-1">
-                      {Array.isArray(customProductDetails?.productSize)
-                        ? customProductDetails.productSize.map((sizeGroup) =>
-                            sizeGroup.split(",").map((size) => (
-                              <Dropdown.Item
-                                key={size.trim()}
-                                onClick={() => handleSelect(size.trim())}
-                              >
-                                {size.trim()}
-                              </Dropdown.Item>
-                            ))
-                          )
-                        : []}
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </div>
-                {/* ring side video */}
-                <RingSizeInfoBox />
-                <div className="">
-                  <hr className="hr_pb_dtl" />
-                </div>
+                        <Dropdown.Menu className="product_det_menu w-50 mt-1">
+                          {Array.isArray(customProductDetails?.productSize)
+                            ? customProductDetails.productSize.map(
+                                (sizeGroup) =>
+                                  sizeGroup.split(",").map((size) => (
+                                    <Dropdown.Item
+                                      key={size.trim()}
+                                      onClick={() => handleSelect(size.trim())}
+                                    >
+                                      {size.trim()}
+                                    </Dropdown.Item>
+                                  ))
+                              )
+                            : []}
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+                    {/* ring side video */}
+                    <RingSizeInfoBox />
+                    <div className="">
+                      <hr className="hr_pb_dtl" />
+                    </div>
+                  </>
+                )}
 
                 <div className="dcb_jbcsc">
                   <div className="d-flex justify-content-between align-items-center gap-3">
@@ -978,7 +985,11 @@ Please let me know the next steps.`;
                         )}
                       </div>
 
-                      <div className="gohrt_bod p-2"  onClick={handleShare}  style={{ cursor: 'pointer' }}>
+                      <div
+                        className="gohrt_bod p-2"
+                        onClick={handleShare}
+                        style={{ cursor: "pointer" }}
+                      >
                         <GoShareAndroid size={25} className="hert_fff" />
                       </div>
                     </div>
@@ -1047,7 +1058,11 @@ Please let me know the next steps.`;
                           <GoHeart className="heart-icon_ss" size={25} />
                         )}
                       </div>
-                      <div className="gohrt_bod p-2"  onClick={handleShare}  style={{ cursor: 'pointer' }}>
+                      <div
+                        className="gohrt_bod p-2"
+                        onClick={handleShare}
+                        style={{ cursor: "pointer" }}
+                      >
                         <GoShareAndroid size={25} className="hert_fff" />
                       </div>
                     </div>

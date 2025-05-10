@@ -17,12 +17,12 @@ const STATIC_ASSETS = [
 ];
 
 // API endpoints to cache
-// const API_ENDPOINTS = [
-//   'https://dev.crystovajewels.com/api/v1/product/getTopRated',
-//   'https://dev.crystovajewels.com/api/v1/product/getBestSelling',
-//   'https://dev.crystovajewels.com/api/v1/product/getOnSale',
-//   'https://dev.crystovajewels.com/api/v1/category/get'
-// ];
+const API_ENDPOINTS = [
+  'https://dev.crystovajewels.com/api/v1/product/getTopRated',
+  'https://dev.crystovajewels.com/api/v1/product/getBestSelling',
+  'https://dev.crystovajewels.com/api/v1/product/getOnSale',
+  'https://dev.crystovajewels.com/api/v1/category/get'
+];
 
 // Cache duration in seconds
 const CACHE_DURATION = {
@@ -61,7 +61,7 @@ self.addEventListener('activate', event => {
 });
 
 // Helper function to check if URL is an API call
-// const isApiCall = url => API_ENDPOINTS.some(endpoint => url.includes(endpoint));
+const isApiCall = url => API_ENDPOINTS.some(endpoint => url.includes(endpoint));
 
 // Helper function to check if URL is an image
 const isImage = url => /\.(jpg|jpeg|png|gif|webp|svg)$/.test(url);
