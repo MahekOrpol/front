@@ -54,7 +54,7 @@ const ProductDetailss = () => {
   const [productName, setProductName] = useState();
   const [salePrice, setSalePrice] = useState();
   const [imageUrl, setImageUrl] = useState("");
-  const phoneNumber = "919099975424";
+  const phoneNumber = "919081139039";
   // const phoneNumber = "919081139039";
   const [wishlistCount, setWishlistCount] = useState(
     parseInt(localStorage.getItem("wishlistCount")) || 0
@@ -999,7 +999,7 @@ Please let me know the next steps.`;
                     rel="noopener noreferrer"
                     className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
                     // onClick={() => {
-                    //   window.open("https://wa.me/919099975424", "_blank");
+                    //   window.open("https://wa.me/919081139039", "_blank");
                     // }}
                     // onClick={() => addToCart(productDetails)}
                   >
@@ -1035,7 +1035,7 @@ Please let me know the next steps.`;
                       rel="noopener noreferrer"
                       className="d-flex align-items-center w-100 whats_abtn_1 txt_shu justify-content-center gap-1"
                       // onClick={() => {
-                      //   window.open("https://wa.me/919099975424", "_blank");
+                      //   window.open("https://wa.me/919081139039", "_blank");
                       // }}
                       // onClick={() => addToCart(productDetails)}
                     >
