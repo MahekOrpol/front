@@ -197,7 +197,6 @@ const Contact = () => {
               <div className="text-left d-flex flex-column acrtd_sss">
                 <h4 className="ssyhgyeye">Phone Number</h4>
                 <span className="ssyhgyey_sse">+91 72650 77755</span>
-                <span className="ssyhgyey_sse">+91 72650 77755</span>
               </div>
             </div>
             <p className="sssss11"></p>
@@ -208,8 +207,7 @@ const Contact = () => {
               </div>
               <div className="text-left d-flex flex-column acrtd_sss">
                 <h4 className="ssyhgyeye">Email Address</h4>
-                <span className="ssyhgyey_sse">info@crystovajewels.com</span>
-                <span className="ssyhgyey_sse">info@crystovajewels.com</span>
+                <span className="ssyhgyey_sse">crystovajewels@gmail.com</span>
               </div>
             </div>
             <p className="sssss11"></p>
