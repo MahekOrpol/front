@@ -160,7 +160,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           <img
             loading="eager"
             fetchPriority="high"
-            src="/Images/Group 1597884561.webp"
+            src="/Images/Group 1597884561.avif"
             alt="Logo"
             width={280}
             height={280}
