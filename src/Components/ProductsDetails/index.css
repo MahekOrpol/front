@@ -585,7 +585,7 @@
   .mobile-slider .slider_ring_sss {
 
     max-height: 307px;
-    object-fit: contain;
+    object-fit: cover;
     /* Ensures proper scaling */
   }
 }
@@ -602,7 +602,7 @@
   .mobile-slider .slider_ring_sss {
 
     max-height: 500px;
-    object-fit: contain;
+    object-fit: cover;
   }
 }
 
