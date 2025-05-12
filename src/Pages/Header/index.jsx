@@ -190,7 +190,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 >
                   <div className="popup-arrow"></div>
                   <div className="profile-section">
-               
+
                     <div className="profile-details">
                       {localStorage.getItem("user_name") ? (
                         <div className="d-flex flex-column gap-2">
@@ -208,7 +208,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                           <h5>
                             {"Hey"}, {localStorage.getItem("user_fname")} !
                           </h5>
-                        
+
                         </div>
                       ) : (
                         <h5></h5>
@@ -218,7 +218,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                         !localStorage.getItem("user_fname") && (
                           <div className="d-flex flex-column gap-2">
                             <h6> {"Welcome To Crystova Jewels !"} </h6>
-                          
+
                           </div>
                         )}
                     </div>
@@ -226,8 +226,11 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   {/* Menu List */}
                   <ul className="menu-list">
                     {localStorage.getItem("user_Id") &&
-                    localStorage.getItem("user_token") ? (
-                      <li onClick={() => navigate("/Editprofile")}>
+                      localStorage.getItem("user_token") ? (
+                      <li onClick={() => {
+                        navigate("/Editprofile");
+                        setIsSignup(false);
+                      }}>
                         <div className="menu-item gap-2">
                           <img
                             loading="eager"
@@ -242,7 +245,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                         <FaAngleRight size={20} className="menu-arrow" />
                       </li>
                     ) : (
-                      <li onClick={() => navigate("/login")}>
+                      <li onClick={() => {
+                        navigate("/login");
+                        setIsSignup(false);
+                      }}>
                         <div className="menu-item gap-2">
                           <img
                             loading="eager"
@@ -258,7 +264,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       </li>
                     )}
 
-                    <li onClick={() => navigate("/Order")}>
+                    <li onClick={() => {
+                      navigate("/Order");
+                      setIsSignup(false);
+                    }}>
                       <div className="menu-item gap-2">
                         <img
                           loading="eager"
@@ -272,7 +281,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
-                    <li onClick={()=>navigate('/terms-and-conditions')}>
+                    <li onClick={() => {
+                      navigate('/terms-and-conditions');
+                      setIsSignup(false);
+                    }}>
                       <div className="menu-item gap-2">
                         <img
                           loading="eager"
@@ -286,7 +298,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
-                    <li onClick={()=>navigate('/privacy-policy')}>
+                    <li onClick={() => {
+                      navigate('/privacy-policy');
+                      setIsSignup(false);
+                    }}>
                       <div className="menu-item gap-2">
                         <img
                           loading="eager"
@@ -300,7 +315,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
-                    <li onClick={() => navigate("/contact-us")}>
+                    <li onClick={() => {
+                      navigate("/contact-us");
+                      setIsSignup(false);
+                    }}>
                       <div className="menu-item gap-2">
                         <img
                           loading="eager"
@@ -483,7 +501,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             </div>
           ) : localStorage.getItem("user_fname") ? (
             <div className="d-flex flex-column gap-2">
-             <h6 className="mb-0 mobile_drawer_text">
+              <h6 className="mb-0 mobile_drawer_text">
                 {"Hey"}, {localStorage.getItem("user_fname")} !
               </h6>
             </div>
@@ -590,7 +608,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               </div>
             </div>
             {localStorage.getItem("user_Id") &&
-            localStorage.getItem("user_token") ? (
+              localStorage.getItem("user_token") ? (
               <>
                 <div className="pt-2">
                   <span className="drawer-new">ACCOUNT</span>

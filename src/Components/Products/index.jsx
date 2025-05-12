@@ -192,37 +192,24 @@ const Products = () => {
     const fetchAndFilter = async () => {
       try {
         let url = `https://dev.crystovajewels.com/api/v1/product/get?`;
-        if (categoryName) url += `categoryName=${categoryName}&`;
+
+        // Only add gender filter if it exists
         if (gender) url += `gender=${gender}&`;
-        if (price) url += `salePrice=${price}&`;
+
+        // Rest of your existing filters
         if (selectedCategories.length > 0) {
           url += `categoryName=${selectedCategories.join(",")}&`;
         }
+        if (price) url += `salePrice=${price}&`;
+
         // Remove trailing '&' if present
         url = url.replace(/&$/, "");
+
         const response = await axios.get(url);
         const sortedProducts = sortProducts(response.data, selectedOption);
         setProductList(sortedProducts);
-        // Index for carousel
-        const initialIndexes = {};
-        sortedProducts.forEach((product) => {
-          initialIndexes[product.id] = 0;
-        });
-        setImageIndexes(initialIndexes);
-        // Search logic here
-        if (urlSearchQuery?.trim()) {
-          const searchTerm = urlSearchQuery.toLowerCase();
-          const filtered = sortedProducts.filter(
-            (p) =>
-              p.productName.toLowerCase().includes(searchTerm) ||
-              p.categoryName?.toLowerCase().includes(searchTerm)
-          );
-          setFilteredProducts(filtered);
-          setIsSearchActive(true);
-        } else {
-          setFilteredProducts(sortedProducts);
-          setIsSearchActive(false);
-        }
+
+        // Rest of your existing code...
       } catch (err) {
         console.error("Failed to fetch products:", err);
       }
@@ -581,9 +568,13 @@ const Products = () => {
   const handleClick = useCallback(
     (gender) => {
       setSelectedGender(gender);
-      navigate(`/products?categoryName=Rings&gender=${gender}`);
+      // Keep categoryName if it exists, otherwise don't include it
+      const params = new URLSearchParams();
+      if (categoryName) params.append('categoryName', categoryName);
+      params.append('gender', gender);
+      navigate(`/products?${params.toString()}`);
     },
-    [navigate]
+    [navigate, categoryName]  // Add categoryName as dependency
   );
 
   useEffect(() => {
@@ -669,7 +660,7 @@ const Products = () => {
                   }
                   alt="product"
                 />
-                <span className="ms-2">Rings for Her</span>
+                <span className="ms-2">For Her</span>
               </button>
               <button
                 className={
@@ -688,7 +679,7 @@ const Products = () => {
                   }
                   alt="product"
                 />
-                <span className="ms-2">Rings for Him</span>
+                <span className="ms-2">For Him</span>
               </button>
             </div>
             <hr className="prod_hr mt-5 w-100" />
