@@ -502,7 +502,7 @@ Please let me know the next steps.`;
         </div>
         <div className="container detail_arrowW_xss">
           <section>
-            <div class=" pb-2 pt-3 md:px-5">
+            <div class="md:px-5 pb-2 ps-1 ps-lg-2 pt-3">
               <div class="Breadcrumbs max-w-8xl d-flex align-items-center mx-auto flex items-center flex-nowrap whitespace-nowrap overflow-hidden gap-2">
                 <div class="BreadcrumbItem flex ">
                   <div class="flex items-center flex-nowrap gap-1.5">
