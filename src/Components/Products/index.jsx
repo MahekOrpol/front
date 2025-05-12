@@ -193,23 +193,42 @@ const Products = () => {
       try {
         let url = `https://dev.crystovajewels.com/api/v1/product/get?`;
 
-        // Only add gender filter if it exists
+        // Add all filters from URL
         if (gender) url += `gender=${gender}&`;
-
-        // Rest of your existing filters
-        if (selectedCategories.length > 0) {
-          url += `categoryName=${selectedCategories.join(",")}&`;
-        }
+        if (categoryName) url += `categoryName=${categoryName}&`;
         if (price) url += `salePrice=${price}&`;
+        if (urlSearchQuery) url += `search=${encodeURIComponent(urlSearchQuery)}&`;
 
         // Remove trailing '&' if present
         url = url.replace(/&$/, "");
 
         const response = await axios.get(url);
         const sortedProducts = sortProducts(response.data, selectedOption);
+
+        // Update state from URL parameters
+        if (categoryName) {
+          setSelectedCategories(categoryName.split(','));
+        }
+        if (gender) {
+          setSelectedGender(gender);
+        }
+
         setProductList(sortedProducts);
 
-        // Rest of your existing code...
+        // Search logic
+        if (urlSearchQuery?.trim()) {
+          const searchTerm = urlSearchQuery.toLowerCase();
+          const filtered = sortedProducts.filter(
+            (p) =>
+              p.productName.toLowerCase().includes(searchTerm) ||
+              p.categoryName?.toLowerCase().includes(searchTerm)
+          );
+          setFilteredProducts(filtered);
+          setIsSearchActive(true);
+        } else {
+          setFilteredProducts(sortedProducts);
+          setIsSearchActive(false);
+        }
       } catch (err) {
         console.error("Failed to fetch products:", err);
       }
@@ -220,8 +239,7 @@ const Products = () => {
     gender,
     selectedOption,
     urlSearchQuery,
-    price,
-    selectedCategories,
+    price
   ]);
 
   useEffect(() => {
@@ -350,7 +368,7 @@ const Products = () => {
   }, []);
 
   const handleApplyFilters = useCallback(async () => {
-    // Create URLSearchParams object
+    // Create URLSearchParams object for client-side URL
     const params = new URLSearchParams();
 
     // Add selected categories to URL if any (comma-separated)
@@ -358,10 +376,7 @@ const Products = () => {
       params.append('categoryName', selectedCategories.join(','));
     }
 
-    // Add other filters
-    if (selectedGender) {
-      params.append('gender', selectedGender);
-    }
+    
     if (searchQuery.trim() !== '') {
       params.append('search', searchQuery.trim());
     }
@@ -370,27 +385,25 @@ const Products = () => {
     navigate(`/products?${params.toString()}`);
 
     try {
-      let url = `https://dev.crystovajewels.com/api/v1/product/get?`;
+      // Create URLSearchParams object for API request
+      const apiParams = new URLSearchParams();
 
       // Add gender filter
       if (selectedGender) {
-        url += `gender=${selectedGender}&`;
+        apiParams.append('gender', selectedGender);
       }
 
       // Add search query if exists
       if (searchQuery.trim() !== "") {
-        url += `search=${encodeURIComponent(searchQuery.trim())}&`;
+        apiParams.append('search', searchQuery.trim());
       }
 
       // Handle multiple categories
       if (selectedCategories.length > 0) {
-        // Modified to send all selected categories in one request
-        url += `categoryName=${selectedCategories.join(',')}&`;
+        apiParams.append('categoryName', selectedCategories.join(','));
       }
 
-      // Remove trailing '&' if present
-      url = url.replace(/&$/, "");
-
+      const url = `https://dev.crystovajewels.com/api/v1/product/get?${apiParams.toString()}`;
       const response = await axios.get(url);
       const sortedProducts = sortProducts(response.data, selectedOption);
 
@@ -400,6 +413,7 @@ const Products = () => {
       setIsSearchActive(searchQuery.trim() !== "");
     } catch (error) {
       console.error("Error fetching filtered products:", error);
+      // Consider adding error state handling here
     }
   }, [
     selectedCategories,
@@ -548,11 +562,22 @@ const Products = () => {
   }, []);
 
   const handleCategoryChange = useCallback((category) => {
-    setSelectedCategories((prev) =>
-      prev.includes(category)
-        ? prev.filter((c) => c !== category)
-        : [...prev, category]
-    );
+    setSelectedCategories(prev => {
+      // Toggle the category in the selection
+      const newSelection = prev.includes(category)
+        ? prev.filter(c => c !== category) // Remove if already selected
+        : [...prev, category]; // Add if not selected
+
+      // Update checkboxes visually
+      const checkboxes = document.querySelectorAll('.category-checkbox');
+      checkboxes.forEach(checkbox => {
+        if (checkbox.value === category) {
+          checkbox.checked = !prev.includes(category);
+        }
+      });
+
+      return newSelection;
+    });
   }, []);
 
   const displayProducts = isSearchActive ? filteredProducts : productList;
@@ -640,7 +665,7 @@ const Products = () => {
         <div className="container pb-5">
           <div className="hdr_csdg align-items-center produ_sss">
             <span className="produ_shsu">
-              Choose Perfect Ring Style for You
+              Choose Perfect {categoryName} Style for You
             </span>
             <p className="pro_p">
               Find the design that speaks to your heart. Explore a variety of
@@ -805,22 +830,18 @@ const Products = () => {
 
                   <div className="filter-category">
                     <h5 onClick={() => toggleSection("categories")}>
-                      Categories{" "}
+                      Categories
                     </h5>
-                    {category.map((category) => (
-                      <label key={category._id}>
+                    {category.map((cat) => (
+                      <label key={cat._id} className={selectedCategories.includes(cat.categoryName) ? 'category-selected' : ''}>
                         <input
                           type="checkbox"
                           className="category-checkbox"
-                          value={category.categoryName}
-                          checked={selectedCategories.includes(
-                            category.categoryName
-                          )}
-                          onChange={() =>
-                            handleCategoryChange(category.categoryName)
-                          }
-                        />{" "}
-                        {category.categoryName}
+                          value={cat.categoryName}
+                          checked={selectedCategories.includes(cat.categoryName)}
+                          onChange={() => handleCategoryChange(cat.categoryName)}
+                        />
+                        {cat.categoryName}
                       </label>
                     ))}
                   </div>
