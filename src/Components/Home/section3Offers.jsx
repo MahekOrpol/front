@@ -37,10 +37,21 @@ const Section3Offers = () => {
             src="/Images/hero-img3.webp"
             alt="Main Image"
             className="img-fluid"
+            style={{borderRadius: "0px 0px 0px 0px"}}
             loading="eager"
             fetchPriority="high"
           />
-          <div className="overlay-rectangle"></div>
+          {/* <div className="overlay-rectangle">
+            <img  src="/Images/Rectangle 105457.png"/>
+          </div> */}
+          <div className="overlay-img11">
+                <img
+                  loading="lazy"
+                  src="/Images/Rectangle 105457.png"
+                  className="img-fluid w-100"
+                  alt="Overlay"
+                />
+              </div>
         </div>
 
         <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
