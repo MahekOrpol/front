@@ -435,8 +435,8 @@ const CheckoutPage = () => {
               </button>
               <p className="mt-3 link">
                 Your info will be saved to a Shop , By Continuing, you agree to
-                Shops <span className="spanF">Terms of Service</span> and
-                acknowledge the <span className="spanF">Privacy Policy.</span>
+                Shops <span className="spanF" style={{cursor:"pointer"}} onClick={()=>navigate("/terms-and-conditions")}>Terms of Service</span> and
+                acknowledge the <span className="spanF" style={{cursor:"pointer"}} onClick={()=>navigate("/privacy-policy")}>Privacy Policy.</span>
               </p>
             </Form>
           </div>
