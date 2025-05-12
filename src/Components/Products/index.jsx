@@ -665,7 +665,7 @@ const Products = () => {
         <div className="container pb-5">
           <div className="hdr_csdg align-items-center produ_sss">
             <span className="produ_shsu">
-              Choose Perfect {categoryName} Style for You
+              Choose Perfect Style for You
             </span>
             <p className="pro_p">
               Find the design that speaks to your heart. Explore a variety of
