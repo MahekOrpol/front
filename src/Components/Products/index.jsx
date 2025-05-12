@@ -307,33 +307,25 @@ const Products = () => {
   }, []);
 
   const handleClearFilters = useCallback(() => {
+    // Reset all checkboxes
     document.querySelectorAll(".category-checkbox").forEach((checkbox) => {
       checkbox.checked = false;
     });
-    document
-      .querySelectorAll('.filter-category input[type="checkbox"]')
-      .forEach((checkbox) => {
-        checkbox.checked = false;
-      });
-    const checkboxes = document.querySelectorAll(".category-checkbox");
-    checkboxes.forEach((checkbox) => {
-      checkbox.checked = false;
-    });
-    if (!price) {
-      setPriceRange([1000, 15000]);
-    }
-    if (price) {
-      fetchProductsWithPriceFilter();
-    } else {
-      fetchAllProducts();
-    }
+
+    // Reset state
     setPriceRange([1000, 15000]);
     setSearchQuery("");
     setIsSearchActive(false);
     setFilteredProducts([]);
     setSelectedCategories([]);
+    setSelectedGender("Women"); // Reset gender to default
+
+    // Reset URL to default state
+    navigate("/products");
+
+    // Fetch all products
     fetchAllProducts();
-  }, [price]);
+  }, [price, navigate]);
 
   const fetchProductsWithPriceFilter = async () => {
     try {
@@ -358,51 +350,63 @@ const Products = () => {
   }, []);
 
   const handleApplyFilters = useCallback(async () => {
-    let url = `https://dev.crystovajewels.com/api/v1/product/get?`;
-    let products = [];
-    if (price) {
-      url += `salePrice=${price}&`;
-    } else {
-      url += `minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}&`;
+    // Create URLSearchParams object
+    const params = new URLSearchParams();
+
+    // Add selected categories to URL if any (comma-separated)
+    if (selectedCategories.length > 0) {
+      params.append('categoryName', selectedCategories.join(','));
     }
+
+    // Add other filters
+    if (selectedGender) {
+      params.append('gender', selectedGender);
+    }
+    if (searchQuery.trim() !== '') {
+      params.append('search', searchQuery.trim());
+    }
+
+    // Update the URL
+    navigate(`/products?${params.toString()}`);
+
     try {
-      if (selectedCategories.length > 0) {
-        const fetchPromises = selectedCategories.map(async (category) => {
-          const categoryUrl = `${url}&categoryName=${category}`;
-          const response = await axios.get(categoryUrl);
-          return response.data;
-        });
-        const results = await Promise.all(fetchPromises);
-        products = results.flat();
-      } else {
-        const response = await axios.get(url);
-        products = response.data;
+      let url = `https://dev.crystovajewels.com/api/v1/product/get?`;
+
+      // Add gender filter
+      if (selectedGender) {
+        url += `gender=${selectedGender}&`;
       }
-      const sortedProducts = sortProducts(products, selectedOption);
+
+      // Add search query if exists
       if (searchQuery.trim() !== "") {
-        const searchTerm = searchQuery.toLowerCase().trim();
-        const filtered = sortedProducts.filter(
-          (product) =>
-            product.productName.toLowerCase().includes(searchTerm) ||
-            product.categoryName?.toLowerCase().includes(searchTerm)
-        );
-        setFilteredProducts(filtered);
-      } else {
-        setFilteredProducts(sortedProducts);
+        url += `search=${encodeURIComponent(searchQuery.trim())}&`;
       }
+
+      // Handle multiple categories
+      if (selectedCategories.length > 0) {
+        // Modified to send all selected categories in one request
+        url += `categoryName=${selectedCategories.join(',')}&`;
+      }
+
+      // Remove trailing '&' if present
+      url = url.replace(/&$/, "");
+
+      const response = await axios.get(url);
+      const sortedProducts = sortProducts(response.data, selectedOption);
+
       setProductList(sortedProducts);
+      setFilteredProducts(sortedProducts);
       setIsFilterVisible(false);
       setIsSearchActive(searchQuery.trim() !== "");
     } catch (error) {
       console.error("Error fetching filtered products:", error);
     }
   }, [
-    price,
-    priceRange,
     selectedCategories,
-    selectedOption,
+    selectedGender,
     searchQuery,
-    sortProducts,
+    selectedOption,
+    navigate
   ]);
 
   const updateWishlistCount = useCallback((count) => {
