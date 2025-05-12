@@ -1155,6 +1155,9 @@
   font-family: "Cabin", sans-serif;
   cursor: pointer;
   padding: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .filter-category input[type="range"] {
