@@ -2,6 +2,8 @@ User-agent: *
 Disallow: /admin/
 Disallow: /checkout/
 Disallow: /Order/
+Disallow: /wishlist/
+Disallow: /add_to_cart/
 
 
 Sitemap: https://crystovajewels.com/sitemap.xml

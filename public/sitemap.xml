@@ -13,6 +13,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://crystovajewels.com/product-details/:productId</loc>
+    <lastmod>2025-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://crystovajewels.com/Editprofile</loc>
+    <lastmod>2025-05-09</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://crystovajewels.com/about-us</loc>
     <lastmod>2025-05-09</lastmod>
     <priority>0.5</priority>
@@ -29,6 +39,21 @@
   </url>
   <url>
     <loc>https://crystovajewels.com/contact-us</loc>
+    <lastmod>2025-05-09</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://crystovajewels.com/terms-and-conditions</loc>
+    <lastmod>2025-05-09</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://crystovajewels.com/privacy-policy</loc>
+    <lastmod>2025-05-09</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://crystovajewels.com/customjewel</loc>
     <lastmod>2025-05-09</lastmod>
     <priority>0.5</priority>
   </url>
