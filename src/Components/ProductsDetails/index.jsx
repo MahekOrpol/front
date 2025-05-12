@@ -1003,7 +1003,7 @@ Please let me know the next steps.`;
                         <div className="pt-3">
                           <span className="sdjuij">925 Silver</span>
                         </div>
-                        <div className="pt-5">
+                        <div className="pt-0">
                           <span className="mes_ddd">
                             It comes with the authenticity and gaurantee
                             certificate of 925 Silver with lifetime exchange
