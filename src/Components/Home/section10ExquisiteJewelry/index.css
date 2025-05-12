@@ -554,7 +554,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 0rem !important;
+    margin-top: -2.7rem !important;
     margin-bottom: 1.5rem !important;
   }
 
@@ -652,7 +652,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 0.2rem !important;
+    margin-top: -2.5rem !important;
     margin-bottom: 6rem !important;
   }
 
@@ -731,7 +731,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 1rem !important;
+    margin-top: -2.5rem !important;
     margin-bottom: 6rem !important;
   }
 
@@ -759,7 +759,7 @@
 }
 @media (max-width: 375px) {
   .one-way-slider {
-    margin-top: 1.2rem !important;
+    margin-top: -1.7rem !important;
     margin-bottom: 1rem !important;
   }
 

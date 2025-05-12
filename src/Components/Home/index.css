@@ -509,7 +509,6 @@
   }
 }
 @media (width: 768px) {
- 
   .under_cimn {
     font-family: "DM Serif Text", serif;
     font-weight: 400;
@@ -1233,7 +1232,6 @@ button.swiper-pagination-bullet {
   text-align: center;
   /* padding-top: 65px; */
 }
-
 
 .emi_ffcc {
   font-family: "Cabin", sans-serif;
@@ -2387,7 +2385,7 @@ img.ring-image {
   }
   .more_btn_dsdd {
     width: 100% !important;
-}
+  }
 
   .hnbgygjhh {
     height: 550px !important;
@@ -2430,7 +2428,6 @@ img.ring-image {
     border: none;
     width: fit-content !important;
   }
- 
 }
 
 @media (max-width: 374px) and (min-width: 349px) {
@@ -5189,8 +5186,8 @@ video {
     color: black;
     font-family: "Cabin", sans-serif;
   }
-  .slide_ssssss_sss .testimonial-card{
-    margin-top: .5rem !important;
+  .slide_ssssss_sss .testimonial-card {
+    margin-top: 0.5rem !important;
   }
 }
 
@@ -5504,7 +5501,7 @@ video {
     margin-top: 14rem;
     padding: 1rem !important;
   }
-  .client_footer_monial{
+  .client_footer_monial {
     padding-bottom: 2rem !important;
   }
   .our_coll_head {
@@ -5812,17 +5809,17 @@ video {
   .hnbgygjhh {
     height: 550px !important;
     margin-top: -1.4rem !important;
-}
+  }
   .asdxdsx_bases_sell {
     margin-top: -1.2rem !important;
-}
+  }
   .szdxksdx_HGVBH {
     padding-top: 0rem !important;
     margin-top: -1.3rem !important;
   }
   .sdcds_cate .category_name {
     margin-top: 3% !important;
-}
+  }
   .hnbgygjhh .paddingdn {
     padding-top: 0rem !important;
   }
@@ -6199,7 +6196,7 @@ video {
   .sdcsdc_rtgrtfdxcasxNJK .category_name {
     font-size: 32px;
     margin-top: 0px !important;
-}
+  }
   .txt_frss {
     font-size: 23px !important;
     font-weight: 500;
@@ -6226,8 +6223,8 @@ video {
   display: block;
 }
 
-.cline_ytsdhcsd .card-body{
-    transform: translateY(-34px);
+.cline_ytsdhcsd .card-body {
+  transform: translateY(-34px);
 }
 .cline_ytsdhcsd .testimonial-card {
   position: relative;
