@@ -37,6 +37,7 @@
 .ordddd .slick-list,
 .ordddd .slick-track {
   height: 100% !important;
+  border-radius: 10px;
 }
 
 .ordddd .slick-slide>div,
@@ -1022,6 +1023,18 @@
     gap: 0rem !important;
   }
 }
+@media (min-width:991px) {
+  .slider-card-wrapper .slick-dots {
+    position: absolute;
+    bottom: 10px;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+  }
+}
 
 @media (min-width: 992px) and (max-width: 1224px) {
   .mack_pox_headfr {
@@ -1345,7 +1358,7 @@
 
 .slider-card-wrapper .slick-dots {
   position: absolute;
-  bottom: 10px;
+  /* bottom: 10px; */
   display: block;
   width: 100%;
   padding: 0;

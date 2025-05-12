@@ -32,7 +32,7 @@ const section10ExquisiteJewelry = () => {
       <h2 className="occation-content-h2 mobi-fdfcdfc1s">
           Elevate Every Moment with Exquisite Jewellery
         </h2>
-        <h2 className="occation-content-h2 d-none mobi-fdfcdfc">
+        <h2 className="occation-content-h2 d-none mobi-fdfcdfc category_name">
         Elevate Moments
         </h2>
         <img

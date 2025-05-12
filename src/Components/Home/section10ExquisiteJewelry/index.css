@@ -705,7 +705,6 @@
   .occation-content-h2 {
     font-family: "DM Serif Text", serif;
     font-weight: 400;
-    font-size: 30px !important;
     line-height: 100%;
     letter-spacing: 0%;
   }
@@ -792,7 +791,6 @@
   .occation-content-h2 {
     font-family: "DM Serif Text", serif;
     font-weight: 400;
-    font-size: 30px !important;
     line-height: 100%;
     letter-spacing: 0%;
   }
@@ -873,10 +871,6 @@
     text-align: start;
   }
 
-  .occation-content-h2 {
-    font-size: 2rem !important;
-  }
-
   .image-large {
     width: clamp(245px, 31vw, 400px) !important;
     height: clamp(320px, 48vw, 512px) !important;
@@ -945,10 +939,6 @@
   .slide-number-indicator {
     left: 76% !important;
   }
-}
-
-.occation-content-h2 {
-  font-size: clamp(1.8rem, 4vw, 3rem);
 }
 
 .occasions_text_p {
@@ -1152,10 +1142,6 @@
     max-width: 90%;
     text-align: start !important;
     align-items: start;
-  }
-
-  .occation-content-h2 {
-    font-size: clamp(1.8rem, 6vw, 3rem);
   }
 
   .occasions_text_p {
