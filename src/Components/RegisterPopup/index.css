@@ -162,11 +162,7 @@ cursor: pointer;
   color: #611D2B;
   cursor: pointer;
 }
-.taout_d {
-  font-size: 20px !important;
-  color: black !important;
-  font-weight: bold;
-}
+
 .remember-me-container {
   display: flex;
   align-items: center;
@@ -373,8 +369,12 @@ cursor: pointer;
     margin-right: 10px;
   }
   .taout_d {
-    font-size: 22px !important;
+    font-size: 18px !important;
   }
+  .register-form
+  button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.MuiTab-fullWidth.Mui-selected.taout_d.css-hmk518-MuiButtonBase-root-MuiTab-root {
+    font-size: 18px !important;
+}
   .otre {
     font-size: 9px;
     color: black;
@@ -409,9 +409,18 @@ cursor: pointer;
     font-size: 12px !important;
   }
 }
-.register-form
+
+@media (min-width:489px) {
+  
+  .register-form
   button.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.MuiTab-fullWidth.Mui-selected.taout_d.css-hmk518-MuiButtonBase-root-MuiTab-root {
-  font-size: 28px !important;
+    font-size: 24px !important ;
+  }
+  .taout_d {
+    font-size: 20px !important ;
+    color: black !important;
+    font-weight: bold;
+  }
 }
 .ggl_text {
   font-family: "Cabin", sans-serif;

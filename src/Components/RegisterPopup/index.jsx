@@ -255,7 +255,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                     <Tab
                       label="Register"
                       value="register"
-                      className="taout_d"
+                      className="taout_d reg_d"
                       lg={{ textTransform: "capitalize" }}
                     />
                   </Tabs>

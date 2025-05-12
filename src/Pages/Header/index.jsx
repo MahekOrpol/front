@@ -190,13 +190,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 >
                   <div className="popup-arrow"></div>
                   <div className="profile-section">
-                    {/* <img
-loading="eager"
-
-                      src="/Images/15 Model white.png"
-                      alt="Profile"
-                      className="profile-pic"
-                    /> */}
+               
                     <div className="profile-details">
                       {localStorage.getItem("user_name") ? (
                         <div className="d-flex flex-column gap-2">
@@ -214,11 +208,7 @@ loading="eager"
                           <h5>
                             {"Hey"}, {localStorage.getItem("user_fname")} !
                           </h5>
-                          {/* <p className="contact-number">
-                            <strong>
-                              {localStorage.getItem("user_phone")}
-                            </strong>
-                          </p> */}
+                        
                         </div>
                       ) : (
                         <h5></h5>
@@ -228,11 +218,7 @@ loading="eager"
                         !localStorage.getItem("user_fname") && (
                           <div className="d-flex flex-column gap-2">
                             <h6> {"Welcome To Crystova Jewels !"} </h6>
-                            {/* <p className="contact-number">
-                              <strong>
-                                {localStorage.getItem("user_phone")}
-                              </strong>
-                            </p> */}
+                          
                           </div>
                         )}
                     </div>
