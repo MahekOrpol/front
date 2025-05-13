@@ -1,25 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./heroSection.css";
 
 const JewelrySale = () => {
   const navigate = useNavigate();
 
-  // Preload critical images
-  React.useEffect(() => {
-    const preloadImages = [
-      '/Images/image (29).webp',
-      '/Images/Mask group (6).webp',
-      '/Images/purple-ornament-indoors-decor-fabric-material2.webp',
-      '/Images/crystovalogowhite (1) 2 (2).png',
-      '/Images/image (30).webp',
-      '/Images/Mask group (7).webp'
-    ];
-    
-    preloadImages.forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
+  // Preload only critical LCP image
+  useEffect(() => {
+    const lcpImg = new Image();
+    lcpImg.src = '/Images/image (29).webp';
   }, []);
 
   return (
@@ -33,35 +22,33 @@ const JewelrySale = () => {
             src="/Images/image (29).webp"
             alt="Elegant necklace with pendant"
             className="large-img"
-             width={280}
+            width={280}
             height={280}
-            priority={true}
-            quality={90}
           />
           <div className="small-imgs">
             <img
-              loading="eager"
-              fetchpriority="high"
+              loading="lazy"
               src="/Images/Mask group (6).webp"
               alt="Diamond ring close-up"
               width={280}
-            height={280}
-            priority={true}
-            quality={90}
+              height={280}
             />
           </div>
         </div>
 
         {/* Center Content */}
-        <div className="center-content" style={{ backgroundImage: "url('/Images/purple-ornament-indoors-decor-fabric-material2.webp')" }}>
+        <div
+          className="center-content"
+          style={{ backgroundImage: "url('/Images/purple-ornament-indoors-decor-fabric-material2.webp')" }}
+        >
           <img
-            loading="eager"
+            loading="lazy"
             fetchpriority="high"
             src="/Images/crystovalogowhite (1) 2 (2).png"
             className="logo-banner"
             alt="Crystova brand logo"
             width={350}
-            height="auto"
+            height={120}
           />
           <hr className="ehgdd" />
           <span className="tagline mb-2">Jewellery Just for You</span>
@@ -77,26 +64,20 @@ const JewelrySale = () => {
         <div className="right-images">
           <div className="small-imgs">
             <img
-              loading="eager"
-              fetchpriority="high"
+              loading="lazy"
               src="/Images/image (30).webp"
               alt="Bracelet on display"
               width={280}
-            height={280}
-            priority={true}
-            quality={90}
+              height={280}
             />
           </div>
           <img
-            loading="eager"
-            fetchpriority="high"
+            loading="lazy"
             src="/Images/Mask group (7).webp"
             alt="Gold Jewellery display"
             className="large-img"
-             width={280}
+            width={280}
             height={280}
-            priority={true}
-            quality={90}
           />
         </div>
       </div>
