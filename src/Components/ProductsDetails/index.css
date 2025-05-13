@@ -2065,12 +2065,17 @@
   color: #000;
   cursor: pointer;
   z-index: 1001; /* Make sure it’s above the video */
-  background: #fff; /* Optional for better visibility */
   padding: 4px 10px;
   border-radius: 50%;
+  background: transparent;
 }
 
 .product_detaildd .swiper-wrapper{
   margin-top: .5rem;
 }
 
+.swiper-horizontal>.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
+  transition: transform .2s,left .2s;
+  width: 6px;
+  height: 6px;
+}
