@@ -406,7 +406,6 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           </div>
         </div>
       </div>
-
       {/* Category Navigation */}
       <div className="dsn_mdcm">
         <div
