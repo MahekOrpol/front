@@ -497,7 +497,7 @@ const Products = () => {
         updateWishlistCount(count); // Initialize count properly
         const wishlistMap = {};
         wishlistData.forEach((item) => {
-          let productId = item.productId._id || item.productId.id;
+          let productId = item.productId?._id || item.productId?.id;
           if (typeof productId === "string" || typeof productId === "number") {
             wishlistMap[productId] = item.id;
           } else {
