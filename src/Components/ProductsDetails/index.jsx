@@ -12,6 +12,7 @@ import "./index.css";
 import { BiShoppingBag } from "react-icons/bi";
 import { GoHeart, GoHeartFill } from "react-icons/go";
 import { GoShareAndroid } from "react-icons/go";
+import ImageZoom from "react-image-zooom";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -670,68 +671,53 @@ Please let me know the next steps.`;
               {/* Box 2: Image[0] */}
               {productImages[0] && (
                 <div
-                  className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv zoom-container"
+                  className=" gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv"
                   onMouseMove={handleMouseMove}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <img
+                   <ImageZoom
                     loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[0]}`}
-                    className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                    className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
                   />
-                  {showZoom && (
-                    <div
-                      className="zoom-lens"
-                      style={zoomStyle}
-                    />
-                  )}
+           
                 </div>
               )}
 
               {/* Box 3: Image[1] */}
               {productImages[1] && (
                 <div
-                  className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv zoom-container"
+                  className="gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv "
                   onMouseMove={handleMouseMove}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <img
+                  <ImageZoom
                     loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[1]}`}
-                    className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                    className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
                   />
-                  {showZoom && (
-                    <div
-                      className="zoom-lens"
-                      style={zoomStyle}
-                    />
-                  )}
+                
                 </div>
               )}
               {/* Box 4: Image[2] */}
               {productImages[2] && (
                 <div
-                  className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv zoom-container"
+                  className="gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv "
                   onMouseMove={handleMouseMove}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <img
+                  <ImageZoom
                     loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[2]}`}
-                    className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
+                    className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
                   />
-                  {showZoom && (
-                    <div
-                      className="zoom-lens"
-                      style={zoomStyle}
-                    />
-                  )}
+                 
                 </div>
               )}
             </div>
