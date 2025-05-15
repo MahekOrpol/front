@@ -18,6 +18,7 @@ const API_ENDPOINTS = [
   'https://dev.crystovajewels.com/api/v1/product/getTopRated',
   'https://dev.crystovajewels.com/api/v1/product/getBestSelling',
   'https://dev.crystovajewels.com/api/v1/product/getOnSale',
+  'https://dev.crystovajewels.com/api/v1/product',
   'https://dev.crystovajewels.com/api/v1/category/get'
 ];
 // Cache duration in seconds
