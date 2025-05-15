@@ -309,20 +309,33 @@ const Products = () => {
     setShowToast(false);
     dispatch(fetchCartCount());
   }, [dispatch]);
+  // Initialize image indexes for all products
+  useEffect(() => {
+    if (productList.length > 0) {
+      const initialIndexes = {};
+      productList.forEach(product => {
+        initialIndexes[product.id] = 0;
+      });
+      setImageIndexes(initialIndexes);
+    }
+  }, [productList]);
+  const handleNextImage = (id, images) => {
+    const validImages = images.filter(img => !img.endsWith(".mp4"));
+    setImageIndexes(prev => {
+      const currentIndex = prev[id] ?? 0;
+      const nextIndex = (currentIndex + 1) % validImages.length;
+      return { ...prev, [id]: nextIndex };
+    });
+  };
 
-  const handleNextImage = useCallback((productId, images) => {
-    setImageIndexes((prevIndex) => ({
-      ...prevIndex,
-      [productId]: (prevIndex[productId] + 1) % images.length,
-    }));
-  }, []);
-
-  const handlePrevImage = useCallback((productId, images) => {
-    setImageIndexes((prevIndex) => ({
-      ...prevIndex,
-      [productId]: (prevIndex[productId] - 1 + images.length) % images.length,
-    }));
-  }, []);
+  const handlePrevImage = (id, images) => {
+    const validImages = images.filter(img => !img.endsWith(".mp4"));
+    setImageIndexes(prev => {
+      const currentIndex = prev[id] ?? 0;
+      const prevIndex = (currentIndex - 1 + validImages.length) % validImages.length;
+      return { ...prev, [id]: prevIndex };
+    });
+  };
 
   const handleClearFilters = useCallback(() => {
     // Reset all checkboxes
@@ -376,7 +389,7 @@ const Products = () => {
       params.append('categoryName', selectedCategories.join(','));
     }
 
-    
+
     if (searchQuery.trim() !== '') {
       params.append('search', searchQuery.trim());
     }
@@ -923,60 +936,54 @@ const Products = () => {
                               style={{ cursor: "pointer" }}
                             >
                               {wishlistItems[product.id] ? (
-                                <GoHeartFill
-                                  className="heart-icon_ss"
-                                  size={18}
-                                />
+                                <GoHeartFill className="heart-icon_ss" size={18} />
                               ) : (
                                 <GoHeart className="heart-icon_ss" size={18} />
                               )}
                             </div>
                             <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
-                              {(() => {
-                                const imagesOnly = product.image?.filter(
-                                  (img) => !img.endsWith(".mp4")
-                                );
-                                const imageToShow =
-                                  imagesOnly?.[imageIndexes[product.id] ?? 0];
+                              <div className="product-image-carousel">
+                                {(() => {
+                                  const images = product.image.filter(img => !img.endsWith(".mp4"));
+                                  const index = Math.min(imageIndexes[product.id] ?? 0, images.length - 1);
+                                  return (
+                                    <img
+                                      src={`https://dev.crystovajewels.com${images[index]}`}
+                                      alt={`Product ${index + 1}`}
+                                      className="product-main-image"
+                                      onClick={() => handleProductClick(product.id)}
+                                      onError={(e) => {
+                                        e.target.onerror = null;
+                                        e.target.src = `https://dev.crystovajewels.com${images[0]}`; // Local fallback or placeholder
+                                      }}
+                                    />
 
-                                return imageToShow ? (
-                                  <img
-                                    src={`https://dev.crystovajewels.com${imageToShow}`}
-                                    alt="Product"
-                                    className="p-1_proi img-fluid border-0"
-                                    onClick={() =>
-                                      handleProductClick(product.id)
-                                    }
-                                    style={{ height: "100%" }}
-                                  />
-                                ) : (
-                                  <div className="text-center text-muted py-4">
-                                    No image available
-                                  </div>
-                                );
-                              })()}
+                                  );
+                                })()}
 
-                              <div className="hover-overlay">
-                                <button
-                                  className="left-btn"
-                                  onClick={() =>
-                                    handlePrevImage(product.id, product.image)
-                                  }
-                                >
-                                  <FaChevronLeft />
-                                </button>
-                                <button
-                                  className="right-btn"
-                                  onClick={() =>
-                                    handleNextImage(product.id, product.image)
-                                  }
-                                >
-                                  <FaChevronRight />
-                                </button>
                               </div>
+
+                              {/* Navigation arrows */}
+                              {product.image?.filter(img => !img.endsWith(".mp4"))?.length > 1 && (
+                                <div className="hover-overlay">
+                                  <button
+                                    className="left-btn"
+                                    onClick={() => handlePrevImage(product.id, product.image)}
+                                  >
+                                    <FaChevronLeft />
+                                  </button>
+                                  <button
+                                    className="right-btn"
+                                    onClick={() => handleNextImage(product.id, product.image)}
+                                  >
+                                    <FaChevronRight />
+                                  </button>
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
+
                         <div className="d-flex flex-column main_cdsss">
                           <span className="mikdec_try pt-1 text-truncate">
                             {product.productName}
