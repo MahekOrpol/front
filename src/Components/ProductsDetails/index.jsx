@@ -69,6 +69,24 @@ const ProductDetailss = () => {
   const dispatch = useDispatch();
   const { count: cartCount } = useSelector((state) => state.cart);
 
+  const [zoomStyle, setZoomStyle] = useState({});
+  const [showZoom, setShowZoom] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - left) / width) * 100;
+    const y = ((e.clientY - top) / height) * 100;
+
+    setZoomStyle({
+      backgroundImage: `url(${e.currentTarget.querySelector('img').src})`,
+      backgroundPosition: `${x}% ${y}%`,
+      transform: 'scale(1.5)'
+    });
+  };
+
+  const handleMouseEnter = () => setShowZoom(true);
+  const handleMouseLeave = () => setShowZoom(false);
+
   // Use custom hooks
   const {
     productDetails: customProductDetails,
@@ -521,9 +539,8 @@ Please let me know the next steps.`;
                     <a
                       class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
                       data-discover="true"
-                      href={`/products?category=${
-                        customProductDetails?.categoryName || "rings"
-                      }`}
+                      href={`/products?category=${customProductDetails?.categoryName || "rings"
+                        }`}
                     >
                       {customProductDetails?.categoryName || "Rings"}
                     </a>
@@ -543,7 +560,7 @@ Please let me know the next steps.`;
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
                 {customProductDetails?.image &&
-                customProductDetails.image.length > 0 ? (
+                  customProductDetails.image.length > 0 ? (
                   customProductDetails.image.map((img, index) => {
                     const isVideo = img.endsWith(".mp4"); // Check if the file is a video
                     return (
@@ -599,7 +616,7 @@ Please let me know the next steps.`;
                   className="fddd"
                 >
                   {customProductDetails?.image &&
-                  customProductDetails.image.length > 0 ? (
+                    customProductDetails.image.length > 0 ? (
                     customProductDetails.image.map((img, index) => {
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
 
@@ -652,35 +669,69 @@ Please let me know the next steps.`;
               </div>
               {/* Box 2: Image[0] */}
               {productImages[0] && (
-                <div className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv">
+                <div
+                  className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv zoom-container"
+                  onMouseMove={handleMouseMove}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <img
                     loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
                   />
+                  {showZoom && (
+                    <div
+                      className="zoom-lens"
+                      style={zoomStyle}
+                    />
+                  )}
                 </div>
               )}
+
               {/* Box 3: Image[1] */}
               {productImages[1] && (
-                <div className="col-md-6 border vider_saxasxs">
+                <div
+                  className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv zoom-container"
+                  onMouseMove={handleMouseMove}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <img
                     loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
                   />
+                  {showZoom && (
+                    <div
+                      className="zoom-lens"
+                      style={zoomStyle}
+                    />
+                  )}
                 </div>
               )}
               {/* Box 4: Image[2] */}
               {productImages[2] && (
-                <div className="col-md-6 border vider_saxasxs">
+                <div
+                  className="col-md-6 border vider_saxasxs escjh_drftvbfbvfcv zoom-container"
+                  onMouseMove={handleMouseMove}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <img
                     loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec"
                     alt={customProductDetails?.productName || "Product image"}
                   />
+                  {showZoom && (
+                    <div
+                      className="zoom-lens"
+                      style={zoomStyle}
+                    />
+                  )}
                 </div>
               )}
             </div>
@@ -764,16 +815,16 @@ Please let me know the next steps.`;
                         <Dropdown.Menu className="product_det_menu w-50 mt-1">
                           {Array.isArray(customProductDetails?.productSize)
                             ? customProductDetails.productSize.map(
-                                (sizeGroup) =>
-                                  sizeGroup.split(",").map((size) => (
-                                    <Dropdown.Item
-                                      key={size.trim()}
-                                      onClick={() => handleSelect(size.trim())}
-                                    >
-                                      {size.trim()}
-                                    </Dropdown.Item>
-                                  ))
-                              )
+                              (sizeGroup) =>
+                                sizeGroup.split(",").map((size) => (
+                                  <Dropdown.Item
+                                    key={size.trim()}
+                                    onClick={() => handleSelect(size.trim())}
+                                  >
+                                    {size.trim()}
+                                  </Dropdown.Item>
+                                ))
+                            )
                             : []}
                         </Dropdown.Menu>
                       </Dropdown>
@@ -831,10 +882,10 @@ Please let me know the next steps.`;
                     target="_blank"
                     rel="noopener noreferrer"
                     className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
-                    // onClick={() => {
-                    //   window.open("https://wa.me/919081139039", "_blank");
-                    // }}
-                    // onClick={() => addToCart(productDetails)}
+                  // onClick={() => {
+                  //   window.open("https://wa.me/919081139039", "_blank");
+                  // }}
+                  // onClick={() => addToCart(productDetails)}
                   >
                     Order On Whatsapp{" "}
                     <span className="whatsapp-icon">
@@ -867,10 +918,10 @@ Please let me know the next steps.`;
                       target="_blank"
                       rel="noopener noreferrer"
                       className="d-flex align-items-center w-100 whats_abtn_1 txt_shu justify-content-center gap-1"
-                      // onClick={() => {
-                      //   window.open("https://wa.me/919081139039", "_blank");
-                      // }}
-                      // onClick={() => addToCart(productDetails)}
+                    // onClick={() => {
+                    //   window.open("https://wa.me/919081139039", "_blank");
+                    // }}
+                    // onClick={() => addToCart(productDetails)}
                     >
                       Order On Whatsapp{" "}
                       <span className="whatsapp-icon">
@@ -1023,9 +1074,8 @@ Please let me know the next steps.`;
                       <div className="accordion-item" key={index}>
                         <h2 className="accordion-header">
                           <button
-                            className={`accordion-button ${
-                              openIndex === index ? "" : "collapsed"
-                            }`}
+                            className={`accordion-button ${openIndex === index ? "" : "collapsed"
+                              }`}
                             type="button"
                             onClick={() => toggleFAQ(index)}
                           >
@@ -1035,9 +1085,8 @@ Please let me know the next steps.`;
                           </button>
                         </h2>
                         <div
-                          className={`accordion-collapse collapse ${
-                            openIndex === index ? "show" : ""
-                          }`}
+                          className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
+                            }`}
                           data-bs-parent="#faqAccordion"
                         >
                           <div className="accordion-body srfferc">
@@ -1077,11 +1126,11 @@ Please let me know the next steps.`;
                   loop={true}
                   preloadImages={false}
                   lazy={true}
-                  // autoplay={{
-                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                  //   disableOnInteraction: false,
-                  // }}
-                  // modules={[Autoplay]}
+                // autoplay={{
+                //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                //   disableOnInteraction: false,
+                // }}
+                // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
