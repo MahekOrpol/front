@@ -750,7 +750,9 @@ Please let me know the next steps.`;
                 </div>
 
                 {/* Only show size dropdown if productSize is not ["[]"] */}
-                {customProductDetails?.productSize?.toString() !== "[]" && (
+                {customProductDetails?.productSize?.toString() !== "[]" &&
+                customProductDetails?.productSize?.toString() !== "Size is not Available" &&
+                (
                   <>
                     <div className="dropdown">
                       <Dropdown>
