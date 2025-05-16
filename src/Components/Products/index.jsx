@@ -985,7 +985,7 @@ const Products = () => {
                         </div>
 
                         <div className="d-flex flex-column main_cdsss">
-                          <span className="mikdec_try pt-1 text-truncate">
+                          <span className="mikdec_try pt-1 text-truncate"  onClick={() => handleProductClick(product.id)}> 
                             {product.productName}
                           </span>
                           <div className="d-flex align-items-center gap-3">
