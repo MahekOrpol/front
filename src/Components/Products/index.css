@@ -197,6 +197,7 @@
   align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .DFC_NHJ {
@@ -1519,6 +1520,11 @@
 .product-main-image {
   height: 100% !important;
   object-fit: cover;
+
+}
+
+.hover-overlay button {
+  pointer-events: auto;
 }
 
 .asxasx_card:hover {
@@ -1528,7 +1534,7 @@
     box-shadow: none;
   }
 }
-@media (max-width: 577px) {
+@media (max-width: 1024px) {
   .left-btn,
   .right-btn {
     display: none !important;
@@ -1586,3 +1592,5 @@
     transform: scale(1.05);
   }
 }
+
+
