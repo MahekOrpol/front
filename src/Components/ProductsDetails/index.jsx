@@ -469,7 +469,7 @@ Please let me know the next steps.`;
   );
 
   return (
-    <div>
+    <div className="product-detailszzz">
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -577,7 +577,7 @@ Please let me know the next steps.`;
               </div>
               <div className="mobile-slider">
                 <Swiper
-                  spaceBetween={0}
+                  spaceBetween={10}
                   loop={true}
                   speed={1000}
                   modules={[Autoplay, Pagination]}
