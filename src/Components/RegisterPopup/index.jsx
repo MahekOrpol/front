@@ -81,7 +81,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
   const validatePassword = (password) => {
     return (
-      password.length >= 6 && /\d/.test(password) && /[a-zA-Z]/.test(password)
+      password.length >= 8 && /\d/.test(password) && /[a-zA-Z]/.test(password)
     );
   };
 
@@ -145,7 +145,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
 
     if (!validatePassword(password)) {
       errors.password =
-        "Password must be at least 6 characters long and include numbers & letters";
+        "Password must be at least 8 characters long and include numbers & letters";
     }
 
     if (confirmPassword !== password) {
@@ -485,7 +485,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                               setRegisterErrors((prev) => ({
                                 ...prev,
                                 password:
-                                  "Password must be at least 6 characters long and include numbers & letters",
+                                  "Password must be at least 8 characters long and include numbers & letters",
                               }));
                             }
                           }}
