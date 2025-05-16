@@ -266,6 +266,7 @@ const Products = () => {
       navigate(`/product-details/${productId}`, {
         state: { product: productData },
       });
+      console.log('productId :>> ', productId);
     },
     [navigate]
   );
@@ -951,7 +952,7 @@ const Products = () => {
                                       src={`https://dev.crystovajewels.com${images[index]}`}
                                       alt={`Product ${index + 1}`}
                                       className="product-main-image"
-                                      onClick={() => handleProductClick(product.id)}
+                                      onClick={() => {handleProductClick(product.id)}}
                                       onError={(e) => {
                                         e.target.onerror = null;
                                         e.target.src = `https://dev.crystovajewels.com${images[0]}`; // Local fallback or placeholder
