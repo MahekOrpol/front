@@ -70,24 +70,6 @@ const ProductDetailss = () => {
   const dispatch = useDispatch();
   const { count: cartCount } = useSelector((state) => state.cart);
 
-  const [zoomStyle, setZoomStyle] = useState({});
-  const [showZoom, setShowZoom] = useState(false);
-
-  const handleMouseMove = (e) => {
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - left) / width) * 100;
-    const y = ((e.clientY - top) / height) * 100;
-
-    setZoomStyle({
-      backgroundImage: `url(${e.currentTarget.querySelector('img').src})`,
-      backgroundPosition: `${x}% ${y}%`,
-      transform: 'scale(1.5)'
-    });
-  };
-
-  const handleMouseEnter = () => setShowZoom(true);
-  const handleMouseLeave = () => setShowZoom(false);
-
   // Use custom hooks
   const {
     productDetails: customProductDetails,
@@ -672,9 +654,7 @@ Please let me know the next steps.`;
               {productImages[0] && (
                 <div
                   className=" gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv"
-                  onMouseMove={handleMouseMove}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                 
                 >
                    <ImageZoom
                     loading="lazy"
@@ -690,9 +670,7 @@ Please let me know the next steps.`;
               {productImages[1] && (
                 <div
                   className="gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv "
-                  onMouseMove={handleMouseMove}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                 
                 >
                   <ImageZoom
                     loading="lazy"
@@ -707,9 +685,7 @@ Please let me know the next steps.`;
               {productImages[2] && (
                 <div
                   className="gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv "
-                  onMouseMove={handleMouseMove}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                 
                 >
                   <ImageZoom
                     loading="lazy"
