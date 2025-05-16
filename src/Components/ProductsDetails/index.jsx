@@ -559,12 +559,15 @@ Please let me know the next steps.`;
                             controls={false}
                           />
                         ) : (
-                          <img
-                            loading="eager"
-                            className="detr_img bg-white"
-                            src={`https://dev.crystovajewels.com${img}`}
-                            alt={`Product ${index + 1}`}
-                          />
+                      
+                          <ImageZoom
+                          loading="eager"
+                          className="detr_img gallery-img bg-white"
+                          src={`https://dev.crystovajewels.com${img}`}
+                          alt={`Slide ${index + 1}`}
+                          style={{
+                            boxShadow:'0 0 0 0'}}
+                        />
                         )}
                       </div>
                     );
@@ -621,6 +624,8 @@ Please let me know the next steps.`;
                               className="detr_img slider_ring_sss gallery-img bg-white"
                               src={`https://dev.crystovajewels.com${img}`}
                               alt={`Slide ${index + 1}`}
+                              style={{
+                                boxShadow:'0 0 0 0'}}
                             />
                           )}
                         </SwiperSlide>
@@ -661,6 +666,8 @@ Please let me know the next steps.`;
                     src={`https://dev.crystovajewels.com${productImages[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
+                     style={{
+                                boxShadow:'0 0 0 0'}}
                   />
            
                 </div>
@@ -677,6 +684,8 @@ Please let me know the next steps.`;
                     src={`https://dev.crystovajewels.com${productImages[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
+                     style={{
+                                boxShadow:'0 0 0 0'}}
                   />
                 
                 </div>
@@ -692,6 +701,8 @@ Please let me know the next steps.`;
                     src={`https://dev.crystovajewels.com${productImages[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
+                     style={{
+                                boxShadow:'0 0 0 0'}}
                   />
                  
                 </div>
