@@ -604,7 +604,7 @@ Please let me know the next steps.`;
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
 
                       return (
-                        <SwiperSlide className="swiper-slide_sssss" key={index}>
+                        <SwiperSlide className="swiper-slide_sssss gallery" key={index}>
                           {isVideo ? (
                             <video
                               className="detr_img slider_ring_sss"
@@ -616,9 +616,9 @@ Please let me know the next steps.`;
                               muted
                             />
                           ) : (
-                            <img
+                            <ImageZoom
                               loading="eager"
-                              className="detr_img slider_ring_sss"
+                              className="detr_img slider_ring_sss gallery-img bg-white"
                               src={`https://dev.crystovajewels.com${img}`}
                               alt={`Slide ${index + 1}`}
                             />
