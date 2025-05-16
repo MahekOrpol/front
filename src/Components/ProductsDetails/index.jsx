@@ -502,7 +502,7 @@ Please let me know the next steps.`;
           </Suspense>
         </div>
         <div className="container detail_arrowW_xss">
-          <section>
+          {/* <section>
             <div class="md:px-5 pb-2 ps-1 ps-lg-2 pt-3">
               <div class="Breadcrumbs max-w-8xl d-flex align-items-center mx-auto flex items-center flex-nowrap whitespace-nowrap overflow-hidden gap-2">
                 <div class="BreadcrumbItem flex ">
@@ -537,7 +537,7 @@ Please let me know the next steps.`;
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
           {/* {product details} */}
           <section className="d-flex gap-lg-5 p-0 pro_sss_gubs">
             <div className="w-100 sdcsd_saxza d-md-none">
@@ -559,15 +559,14 @@ Please let me know the next steps.`;
                             controls={false}
                           />
                         ) : (
-                      
-                          <ImageZoom
-                          loading="eager"
-                          className="detr_img gallery-img bg-white"
-                          src={`https://dev.crystovajewels.com${img}`}
-                          alt={`Slide ${index + 1}`}
-                          style={{
-                            boxShadow:'0 0 0 0'}}
-                        />
+                          <img
+                            loading="eager"
+                            className="detr_img bg-white"
+                            src={`https://dev.crystovajewels.com${img}`}
+                            alt={`Product ${index + 1}`}
+                            style={{
+                              boxShadow:'0 0 0 0'}}
+                          />
                         )}
                       </div>
                     );
@@ -607,7 +606,7 @@ Please let me know the next steps.`;
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
 
                       return (
-                        <SwiperSlide className="swiper-slide_sssss gallery" key={index}>
+                        <SwiperSlide className="swiper-slide_sssss" key={index}>
                           {isVideo ? (
                             <video
                               className="detr_img slider_ring_sss"
@@ -619,9 +618,9 @@ Please let me know the next steps.`;
                               muted
                             />
                           ) : (
-                            <ImageZoom
+                            <img
                               loading="eager"
-                              className="detr_img slider_ring_sss gallery-img bg-white"
+                              className="detr_img slider_ring_sss"
                               src={`https://dev.crystovajewels.com${img}`}
                               alt={`Slide ${index + 1}`}
                               style={{
@@ -684,8 +683,6 @@ Please let me know the next steps.`;
                     src={`https://dev.crystovajewels.com${productImages[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
-                     style={{
-                                boxShadow:'0 0 0 0'}}
                   />
                 
                 </div>
@@ -701,8 +698,6 @@ Please let me know the next steps.`;
                     src={`https://dev.crystovajewels.com${productImages[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
-                     style={{
-                                boxShadow:'0 0 0 0'}}
                   />
                  
                 </div>
@@ -711,11 +706,11 @@ Please let me know the next steps.`;
 
             <div className="w-100 sdcsd_saxza dscd_54_Dscds ">
               <div>
-                <div className="d-flex justify-content-between align-items-center">
+                <div className="d-flex justify-content-between align-items-center hedre_nameeeeee">
                   <span className="secrt_1">
                     {customProductDetails?.productName}
                   </span>
-                  <div>
+                  <div className='save_buttopmn'>
                     <button className="sav_btn p-2 pe-3 ps-3 dcs_dddd_8888">
                       Save {displayPrice.discount}%
                     </button>

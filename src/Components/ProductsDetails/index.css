@@ -68,6 +68,25 @@
   .fgfdddds_hvb {
     height: 242px !important;
   }
+  .secrt_1 {
+    font-family: "Cabin", sans-serif;
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    width: 100%;
+    font-size: 22px !important;
+}
+.hedre_nameeeeee {
+  flex-direction: column;
+  /* width: 100%; */
+  gap: 10px;
+}
+.save_buttopmn {
+  width: 100%;
+  justify-content: start;
+  display: flex;
+}
 }
 
 @media (min-width: 577px) and (max-width: 767px) {
@@ -162,13 +181,6 @@
   /* .diamon_sss {
     width: 45%;
   } */
-  .secrt_1 {
-    font-family: "Cabin", sans-serif;
-    font-weight: 600;
-    font-size: 17px !important;
-    line-height: 100%;
-    letter-spacing: 0%;
-  }
 
   .df_rrrrr {
     align-items: start;
@@ -416,19 +428,21 @@
     width: 100% !important;
   } */
 }
-
+.secrt_1 {
+  @media (max-width: 801px) and (min-width:576px) {
+  font-family: "Cabin", sans-serif;
+  font-weight: 600;
+  font-size: 20px !important;
+  line-height: 100%;
+  letter-spacing: 0%;
+  }
+}
 @media (max-width: 801px) {
   /* .sdcsd_saxza {
     width: 50% !important;
   } */
 
-  .secrt_1 {
-    font-family: "Cabin", sans-serif;
-    font-weight: 600;
-    font-size: 17px !important;
-    line-height: 100%;
-    letter-spacing: 0%;
-  }
+ 
 
   .sdcss_card {
     height: 355px;
@@ -585,13 +599,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 307px;
+    height: 355px;
     width: 307px;
     /* Adjust as needed */
   }
 
   .mobile-slider .slider_ring_sss {
-    max-height: 307px;
+    max-height: 355px;
     object-fit: cover;
     /* Ensures proper scaling */
   }
