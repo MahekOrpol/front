@@ -2137,3 +2137,30 @@ img#imageZoom {
     object-fit: cover;
   }
 }
+
+.asxasx_card:hover {
+  @media (max-width:577px) {
+    
+    transform: none;
+    position: none;
+    box-shadow: none;
+    
+   
+  }
+  }
+  @media (max-width:577px) {
+  .left-btn, .right-btn {
+    display: none !important;
+    background: #fff;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+}
