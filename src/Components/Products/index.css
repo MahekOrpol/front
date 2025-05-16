@@ -1547,3 +1547,8 @@
     width: 20px;
   }
   }
+
+  .product-main-image{
+    height: 100% !important;
+    object-fit: cover;
+  }

@@ -611,7 +611,7 @@
   }
 }
 
-@media (max-width: 768px) and (min-width: 426px) {
+@media (max-width: 700px) and (min-width: 426px) {
   .mobile-slider .swiper-slide_sssss {
     display: flex;
     align-items: center;
@@ -623,6 +623,20 @@
   .mobile-slider .slider_ring_sss {
     max-height: 500px;
     object-fit: cover;
+  }
+}
+@media (max-width: 768px) and (min-width: 700px) {
+  .mobile-slider .swiper-slide_sssss {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 500px;
+  }
+
+  .mobile-slider .slider_ring_sss {
+    max-height: 500px;
+    object-fit: contain;
   }
 }
 
