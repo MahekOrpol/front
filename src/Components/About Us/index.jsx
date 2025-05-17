@@ -242,7 +242,7 @@ const AboutUs = () => {
         <div className="hdr_csd">
           <img
             onContextMenu={disableRightClick}
-            draggable="false"
+            // draggable="false"
             loading="eager"
             src="/Images/Group 1597884485.png"
             alt="about us"
@@ -338,7 +338,7 @@ preload="none"
             
              <img   
   onContextMenu={disableRightClick}
-   draggable="false" 
+   // draggable="false" 
  loading="lazy"
                 src="/Images/Mask group (3).png")}
                 className="sjd_555"

@@ -57,7 +57,7 @@ const Section6OurCollections = () => {
                   >
                     <img
                       onContextMenu={disableRightClick}
-                      draggable="false"
+                      // draggable="false"
                       loading="eager"
                       src={product.img}
                       className="our_colle_iumg_ssss"

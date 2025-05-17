@@ -20,7 +20,7 @@ const JewelrySale = () => {
         <div className="left-images">
           <img
             onContextMenu={disableRightClick}
-            draggable="false"
+            // draggable="false"
             loading="eager"
             fetchpriority="high"
             src="/Images/image (29).webp"
@@ -32,7 +32,7 @@ const JewelrySale = () => {
           <div className="small-imgs">
             <img
               onContextMenu={disableRightClick}
-              draggable="false"
+              // draggable="false"
               loading="lazy"
               src="/Images/Mask group (6).webp"
               alt="Diamond ring close-up"
@@ -52,7 +52,7 @@ const JewelrySale = () => {
         >
           <img
             onContextMenu={disableRightClick}
-            draggable="false"
+            // draggable="false"
             loading="lazy"
             fetchpriority="high"
             src="/Images/crystovalogowhite (1) 2 (2).png"
@@ -76,7 +76,7 @@ const JewelrySale = () => {
           <div className="small-imgs">
             <img
               onContextMenu={disableRightClick}
-              draggable="false"
+              // draggable="false"
               loading="lazy"
               src="/Images/image (30).webp"
               alt="Bracelet on display"
@@ -86,7 +86,7 @@ const JewelrySale = () => {
           </div>
           <img
             onContextMenu={disableRightClick}
-            draggable="false"
+            // draggable="false"
             loading="lazy"
             src="/Images/Mask group (7).webp"
             alt="Gold Jewellery display"
