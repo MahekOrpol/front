@@ -68,7 +68,7 @@ body {
 /* Optimize image loading */
 img {
   text-indent: -9999px;
-  image-rendering: optimizeSpeed;
+  image-rendering: pixelated;
 }
 
 /* Simplified loading placeholder */
