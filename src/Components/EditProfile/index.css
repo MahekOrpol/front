@@ -81,6 +81,9 @@
     .tyoty {
         display: flex !important;
     }
+    .detail_arrowW_xss{
+        padding-top: 15px;
+    }
 }
 
 @media (max-width: 768px) {

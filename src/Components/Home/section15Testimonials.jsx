@@ -103,6 +103,7 @@ export default function Section15Testimonials() {
           loading="lazy"
           //   fetchPriority="high"
           src="/Images/Groupimg.png"
+draggable="false"
           alt="Decorative"
           className="home_tag_img"
         />

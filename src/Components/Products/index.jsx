@@ -197,7 +197,8 @@ const Products = () => {
         if (gender) url += `gender=${gender}&`;
         if (categoryName) url += `categoryName=${categoryName}&`;
         if (price) url += `salePrice=${price}&`;
-        if (urlSearchQuery) url += `search=${encodeURIComponent(urlSearchQuery)}&`;
+        if (urlSearchQuery)
+          url += `search=${encodeURIComponent(urlSearchQuery)}&`;
 
         // Remove trailing '&' if present
         url = url.replace(/&$/, "");
@@ -207,7 +208,7 @@ const Products = () => {
 
         // Update state from URL parameters
         if (categoryName) {
-          setSelectedCategories(categoryName.split(','));
+          setSelectedCategories(categoryName.split(","));
         }
         if (gender) {
           setSelectedGender(gender);
@@ -234,13 +235,7 @@ const Products = () => {
       }
     };
     fetchAndFilter();
-  }, [
-    categoryName,
-    gender,
-    selectedOption,
-    urlSearchQuery,
-    price
-  ]);
+  }, [categoryName, gender, selectedOption, urlSearchQuery, price]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -266,7 +261,7 @@ const Products = () => {
       navigate(`/product-details/${productId}`, {
         state: { product: productData },
       });
-      console.log('productId :>> ', productId);
+      console.log("productId :>> ", productId);
     },
     [navigate]
   );
@@ -314,15 +309,15 @@ const Products = () => {
   useEffect(() => {
     if (productList.length > 0) {
       const initialIndexes = {};
-      productList.forEach(product => {
+      productList.forEach((product) => {
         initialIndexes[product.id] = 0;
       });
       setImageIndexes(initialIndexes);
     }
   }, [productList]);
   const handleNextImage = (id, images) => {
-    const validImages = images.filter(img => !img.endsWith(".mp4"));
-    setImageIndexes(prev => {
+    const validImages = images.filter((img) => !img.endsWith(".mp4"));
+    setImageIndexes((prev) => {
       const currentIndex = prev[id] ?? 0;
       const nextIndex = (currentIndex + 1) % validImages.length;
       return { ...prev, [id]: nextIndex };
@@ -330,10 +325,11 @@ const Products = () => {
   };
 
   const handlePrevImage = (id, images) => {
-    const validImages = images.filter(img => !img.endsWith(".mp4"));
-    setImageIndexes(prev => {
+    const validImages = images.filter((img) => !img.endsWith(".mp4"));
+    setImageIndexes((prev) => {
       const currentIndex = prev[id] ?? 0;
-      const prevIndex = (currentIndex - 1 + validImages.length) % validImages.length;
+      const prevIndex =
+        (currentIndex - 1 + validImages.length) % validImages.length;
       return { ...prev, [id]: prevIndex };
     });
   };
@@ -387,12 +383,11 @@ const Products = () => {
 
     // Add selected categories to URL if any (comma-separated)
     if (selectedCategories.length > 0) {
-      params.append('categoryName', selectedCategories.join(','));
+      params.append("categoryName", selectedCategories.join(","));
     }
 
-
-    if (searchQuery.trim() !== '') {
-      params.append('search', searchQuery.trim());
+    if (searchQuery.trim() !== "") {
+      params.append("search", searchQuery.trim());
     }
 
     // Update the URL
@@ -404,17 +399,17 @@ const Products = () => {
 
       // Add gender filter
       if (selectedGender) {
-        apiParams.append('gender', selectedGender);
+        apiParams.append("gender", selectedGender);
       }
 
       // Add search query if exists
       if (searchQuery.trim() !== "") {
-        apiParams.append('search', searchQuery.trim());
+        apiParams.append("search", searchQuery.trim());
       }
 
       // Handle multiple categories
       if (selectedCategories.length > 0) {
-        apiParams.append('categoryName', selectedCategories.join(','));
+        apiParams.append("categoryName", selectedCategories.join(","));
       }
 
       const url = `https://dev.crystovajewels.com/api/v1/product/get?${apiParams.toString()}`;
@@ -434,7 +429,7 @@ const Products = () => {
     selectedGender,
     searchQuery,
     selectedOption,
-    navigate
+    navigate,
   ]);
 
   const updateWishlistCount = useCallback((count) => {
@@ -576,15 +571,15 @@ const Products = () => {
   }, []);
 
   const handleCategoryChange = useCallback((category) => {
-    setSelectedCategories(prev => {
+    setSelectedCategories((prev) => {
       // Toggle the category in the selection
       const newSelection = prev.includes(category)
-        ? prev.filter(c => c !== category) // Remove if already selected
+        ? prev.filter((c) => c !== category) // Remove if already selected
         : [...prev, category]; // Add if not selected
 
       // Update checkboxes visually
-      const checkboxes = document.querySelectorAll('.category-checkbox');
-      checkboxes.forEach(checkbox => {
+      const checkboxes = document.querySelectorAll(".category-checkbox");
+      checkboxes.forEach((checkbox) => {
         if (checkbox.value === category) {
           checkbox.checked = !prev.includes(category);
         }
@@ -613,11 +608,11 @@ const Products = () => {
       setSelectedGender(gender);
       // Keep categoryName if it exists, otherwise don't include it
       const params = new URLSearchParams();
-      if (categoryName) params.append('categoryName', categoryName);
-      params.append('gender', gender);
+      if (categoryName) params.append("categoryName", categoryName);
+      params.append("gender", gender);
       navigate(`/products?${params.toString()}`);
     },
-    [navigate, categoryName]  // Add categoryName as dependency
+    [navigate, categoryName] // Add categoryName as dependency
   );
 
   useEffect(() => {
@@ -657,7 +652,9 @@ const Products = () => {
         showToast={showToast}
         toastMessage={toastMessage}
       />
-      {isCartOpen && <div ref={overlayRef} className="overlay" onClick={closeCart}></div>}
+      {isCartOpen && (
+        <div ref={overlayRef} className="overlay" onClick={closeCart}></div>
+      )}
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header1">
           <Suspense fallback={<div>Loading...</div>}>
@@ -678,53 +675,53 @@ const Products = () => {
         </div>
         <div className="container pb-5">
           <div className="hdr_csdg align-items-center produ_sss">
-            <span className="produ_shsu">
-              Choose Perfect Style for You
-            </span>
+            <span className="produ_shsu">Choose Perfect Style for You</span>
             <p className="pro_p">
               Find the design that speaks to your heart. Explore a variety of
               stunning ring styles to match your unique taste and occasion
             </p>
-            <div className="pt-3 Sfg">
-              <button
-                className={
-                  selectedGender === "Women"
-                    ? "ring_for_her active"
-                    : "ring_for_him"
-                }
-                onClick={() => handleClick("Women")}
-              >
-                <img
-                  loading="eager"
-                  src={
+            {categoryName !== "Earrings" && (
+              <div className="pt-3 Sfg">
+                <button
+                  className={
                     selectedGender === "Women"
-                      ? "/Images/her.png"
-                      : "/Images/her-active.png"
+                      ? "ring_for_her active"
+                      : "ring_for_him"
                   }
-                  alt="product"
-                />
-                <span className="ms-2">For Her</span>
-              </button>
-              <button
-                className={
-                  selectedGender === "Men"
-                    ? "ring_for_her active"
-                    : "ring_for_him"
-                }
-                onClick={() => handleClick("Men")}
-              >
-                <img
-                  loading="eager"
-                  src={
+                  onClick={() => handleClick("Women")}
+                >
+                  <img
+                    loading="eager"
+                    src={
+                      selectedGender === "Women"
+                        ? "/Images/her.png"
+                        : "/Images/her-active.png"
+                    }
+                    alt="product"
+                  />
+                  <span className="ms-2">For Her</span>
+                </button>
+                <button
+                  className={
                     selectedGender === "Men"
-                      ? "/Images/him-active.png"
-                      : "/Images/him.png"
+                      ? "ring_for_her active"
+                      : "ring_for_him"
                   }
-                  alt="product"
-                />
-                <span className="ms-2">For Him</span>
-              </button>
-            </div>
+                  onClick={() => handleClick("Men")}
+                >
+                  <img
+                    loading="eager"
+                    src={
+                      selectedGender === "Men"
+                        ? "/Images/him-active.png"
+                        : "/Images/him.png"
+                    }
+                    alt="product"
+                  />
+                  <span className="ms-2">For Him</span>
+                </button>
+              </div>
+            )}
             <hr className="prod_hr mt-5 w-100" />
             <div className="d-flex justify-content-between w-100 mt-3 zsdc_555">
               <div className="d-flex gap-3 filter_pro">
@@ -837,7 +834,10 @@ const Products = () => {
                         }
                       }}
                     />
-                    <span className="search-button" onClick={handleApplyFilters}>
+                    <span
+                      className="search-button"
+                      onClick={handleApplyFilters}
+                    >
                       <BiSearch size={25} />
                     </span>
                   </div>
@@ -847,13 +847,24 @@ const Products = () => {
                       Categories
                     </h5>
                     {category.map((cat) => (
-                      <label key={cat._id} className={selectedCategories.includes(cat.categoryName) ? 'category-selected' : ''}>
+                      <label
+                        key={cat._id}
+                        className={
+                          selectedCategories.includes(cat.categoryName)
+                            ? "category-selected"
+                            : ""
+                        }
+                      >
                         <input
                           type="checkbox"
                           className="category-checkbox"
                           value={cat.categoryName}
-                          checked={selectedCategories.includes(cat.categoryName)}
-                          onChange={() => handleCategoryChange(cat.categoryName)}
+                          checked={selectedCategories.includes(
+                            cat.categoryName
+                          )}
+                          onChange={() =>
+                            handleCategoryChange(cat.categoryName)
+                          }
                         />
                         {cat.categoryName}
                       </label>
@@ -921,10 +932,11 @@ const Products = () => {
                         </div>
                       )}
                       <div
-                        className={`${isSearchActive
-                          ? "masonry-item col-lg-3 col-md-4 col-6"
-                          : "col-lg-3 col-md-4 col-6"
-                          } mb-4 pt-2 asxasx_card`}
+                        className={`${
+                          isSearchActive
+                            ? "masonry-item col-lg-3 col-md-4 col-6"
+                            : "col-lg-3 col-md-4 col-6"
+                        } mb-4 pt-2 asxasx_card`}
                       >
                         <div className="card prio_card scdscsed_sdss_pro">
                           <div className="card-image-wrapper position-relative">
@@ -937,7 +949,10 @@ const Products = () => {
                               style={{ cursor: "pointer" }}
                             >
                               {wishlistItems[product.id] ? (
-                                <GoHeartFill className="heart-icon_ss" size={18} />
+                                <GoHeartFill
+                                  className="heart-icon_ss"
+                                  size={18}
+                                />
                               ) : (
                                 <GoHeart className="heart-icon_ss" size={18} />
                               )}
@@ -945,37 +960,48 @@ const Products = () => {
                             <div className="card-body p-0 d-flex justify-content-center top_fff_trosnd">
                               <div className="product-image-carousel">
                                 {(() => {
-                                  const images = product.image.filter(img => !img.endsWith(".mp4"));
-                                  const index = Math.min(imageIndexes[product.id] ?? 0, images.length - 1);
+                                  const images = product.image.filter(
+                                    (img) => !img.endsWith(".mp4")
+                                  );
+                                  const index = Math.min(
+                                    imageIndexes[product.id] ?? 0,
+                                    images.length - 1
+                                  );
                                   return (
                                     <img
                                       src={`https://dev.crystovajewels.com${images[index]}`}
                                       alt={`Product ${index + 1}`}
                                       className="product-main-image"
-                                      onClick={() => {handleProductClick(product.id)}}
+                                      onClick={() => {
+                                        handleProductClick(product.id);
+                                      }}
                                       onError={(e) => {
                                         e.target.onerror = null;
                                         e.target.src = `https://dev.crystovajewels.com${images[0]}`; // Local fallback or placeholder
                                       }}
                                     />
-
                                   );
                                 })()}
-
                               </div>
 
                               {/* Navigation arrows */}
-                              {product.image?.filter(img => !img.endsWith(".mp4"))?.length > 1 && (
+                              {product.image?.filter(
+                                (img) => !img.endsWith(".mp4")
+                              )?.length > 1 && (
                                 <div className="hover-overlay">
                                   <button
                                     className="left-btn"
-                                    onClick={() => handlePrevImage(product.id, product.image)}
+                                    onClick={() =>
+                                      handlePrevImage(product.id, product.image)
+                                    }
                                   >
                                     <FaChevronLeft />
                                   </button>
                                   <button
                                     className="right-btn"
-                                    onClick={() => handleNextImage(product.id, product.image)}
+                                    onClick={() =>
+                                      handleNextImage(product.id, product.image)
+                                    }
                                   >
                                     <FaChevronRight />
                                   </button>
@@ -986,7 +1012,10 @@ const Products = () => {
                         </div>
 
                         <div className="d-flex flex-column main_cdsss">
-                          <span className="mikdec_try pt-1 text-truncate"  onClick={() => handleProductClick(product.id)}> 
+                          <span
+                            className="mikdec_try pt-1 text-truncate"
+                            onClick={() => handleProductClick(product.id)}
+                          >
                             {product.productName}
                           </span>
                           <div className="d-flex align-items-center gap-3">
@@ -1010,7 +1039,8 @@ const Products = () => {
                               className="add-to-crd-dd1"
                               onClick={() => addToCart(product)}
                             >
-                              Add to Cart <BiShoppingBag size={25} className="bag_clods" />
+                              Add to Cart{" "}
+                              <BiShoppingBag size={25} className="bag_clods" />
                             </button>
                           </div>
                         </div>

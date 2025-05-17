@@ -243,6 +243,7 @@ const CustomJewel = () => {
               <img
                 loading="eager"
                 src="/Images/Groupimg.png"
+draggable="false"
                 className="home_tag_img"
                 alt="Decorative"
               />
@@ -318,6 +319,7 @@ const CustomJewel = () => {
             <img
               loading="eager"
               src="/Images/Groupimg.png"
+draggable="false"
               className="home_tag_img mb-4"
               alt="Decorative"
             />

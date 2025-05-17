@@ -771,7 +771,7 @@ Please let me know the next steps.`;
                 )}
 
                 <div className="dcb_jbcsc">
-                  <div className="d-flex justify-content-between align-items-center gap-3">
+                  <div className="d-flex justify-content-between align-items-center gap-3 detai-butttt">
                     <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
@@ -828,7 +828,7 @@ Please let me know the next steps.`;
                 </div>
 
                 <div className="dcb_jbcsc_kn">
-                  <div className="d-flex justify-content-between align-items-center gap-3">
+                  <div className="d-flex justify-content-between align-items-center gap-3 detai-butttt">
                     <div className="d-flex justify-content-between align-items-center w-100 but_buton_ssssxs">
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
@@ -889,6 +889,7 @@ Please let me know the next steps.`;
                       loading="eager"
                       src="/Images/material.png"
                       alt="AVOID WATER / MOISTURE"
+                      draggable="false"
                     />
                     <span>AVOID WATER / MOISTURE</span>
                   </div>
@@ -898,6 +899,7 @@ Please let me know the next steps.`;
                       loading="eager"
                       src="/Images/Frame 1597883978.png"
                       alt="AVOID PERFUME / LOTION"
+                      draggable="false"
                     />
                     <span>AVOID PERFUME / LOTION</span>
                   </div>
@@ -907,6 +909,7 @@ Please let me know the next steps.`;
                       loading="eager"
                       src="/Images/oeeofiw.png"
                       alt="REMOVE BEFORE SLEEPING"
+                      draggable="false"
                     />
                     <span>REMOVE BEFORE SLEEPING</span>
                   </div>
@@ -916,6 +919,7 @@ Please let me know the next steps.`;
                       loading="eager"
                       src="/Images/Frame 1597883980.png"
                       alt="USE SOFT / DRY FABRIC TO CLEAN"
+                      draggable="false"
                     />
                     <span>USE SOFT / DRY FABRIC TO CLEAN</span>
                   </div>
@@ -1040,6 +1044,7 @@ Please let me know the next steps.`;
             <img
               loading="eager"
               src="/Images/Groupimg.png"
+draggable="false"
               alt="product details"
             />
           </div>

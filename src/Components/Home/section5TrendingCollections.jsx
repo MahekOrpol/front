@@ -79,6 +79,7 @@ export default function Section5TrendingCollections({
         loading="lazy"
         // fetchPriority="high"
         src="/Images/Groupimg.png"
+draggable="false"
         className="home_tag_img"
         alt="home"
       />

@@ -21,6 +21,7 @@ const Section13Instruction = () => {
         loading="lazy"
         // fetchPriority="high"
         src="/Images/Groupimg.png"
+draggable="false"
         alt="Decorative"
         className="home_tag_img"
       />
@@ -31,7 +32,7 @@ const Section13Instruction = () => {
               key={index}
               className="col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column align-items-center gap-2 instruction-item p-0"
             >
-              <img src={item.img} alt={item.text} width={100} />
+              <img src={item.img} alt={item.text} width={100}  draggable="false"/>
               <div className="instruction_tagline text-center">{item.text}</div>
             </div>
           ))}

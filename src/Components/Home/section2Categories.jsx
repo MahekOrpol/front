@@ -31,6 +31,7 @@ const Section2Categories = () => {
       <img
         loading="lazy"
         src="/Images/Groupimg.png"
+draggable="false"
         className="home_tag_img"
         alt="home"
       />
