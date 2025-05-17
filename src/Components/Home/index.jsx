@@ -255,7 +255,7 @@ const Home = () => {
   return (
     <>
       <div className={isCartOpen ? "blurred" : ""}>
-        <div className="main-header">
+        <div className="main-header1">
           <Header
             openCart={openCart}
             wishlistCount={userId ? wishlistCount : null}

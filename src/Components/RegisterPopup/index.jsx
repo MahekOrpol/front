@@ -212,7 +212,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
         stacked
         style={{ zIndex: 1000000001 }}
       />
-      <div className="main-header">
+      <div className="main-header1">
         <Suspense fallback={<div>Loading...</div>}>
           <Header />
         </Suspense>

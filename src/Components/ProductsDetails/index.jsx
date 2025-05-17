@@ -492,7 +492,7 @@ Please let me know the next steps.`;
         <div ref={overlayRef} className="overlay" onClick={closeCart}></div>
       )}
       <div className={isCartOpen ? "blurred" : ""}>
-        <div className="main-header">
+        <div className="main-header1">
           <Suspense fallback={<div>Loading...</div>}>
             <Header
               openCart={openCart}
@@ -502,43 +502,6 @@ Please let me know the next steps.`;
           </Suspense>
         </div>
         <div className="container detail_arrowW_xss">
-          {/* <section>
-            <div class="md:px-5 pb-2 ps-1 ps-lg-2 pt-3">
-              <div class="Breadcrumbs max-w-8xl d-flex align-items-center mx-auto flex items-center flex-nowrap whitespace-nowrap overflow-hidden gap-2">
-                <div class="BreadcrumbItem flex ">
-                  <div class="flex items-center flex-nowrap gap-1.5">
-                    <a
-                      class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
-                      data-discover="true"
-                      href="/"
-                    >
-                      Homepage
-                    </a>
-                  </div>
-                </div>
-                <FaChevronRight />
-                <div class="BreadcrumbItem flex">
-                  <div class="flex items-center flex-nowrap gap-1.5">
-                    <a
-                      class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
-                      data-discover="true"
-                      href={`/products?category=${customProductDetails?.categoryName || "rings"
-                        }`}
-                    >
-                      {customProductDetails?.categoryName || "Rings"}
-                    </a>
-                  </div>
-                </div>
-                <FaChevronRight />
-                <div class="BreadcrumbItem flex max-w-1/3">
-                  <span class="font-light text-1.25xs leading-tight line-clamp-1 whitespace-normal mt-0.5 bread_crumnbs">
-                    {customProductDetails.productName || "products"}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </section> */}
-          {/* {product details} */}
           <section className="d-flex gap-lg-5 p-0 pro_sss_gubs">
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
@@ -1001,7 +964,7 @@ Please let me know the next steps.`;
                             >
                               <div className="accordion-body d-flex justify-content-between align-items-center">
                                 <span className="coupon-code">
-                                  If you do not receive your parcel within 12
+                                  If you do not receive your parcel within 12 Working
                                   days, you'll get ₹100 off for each additional
                                   day of delay starting from the 13th day
                                 </span>

@@ -222,7 +222,7 @@ const CheckoutPage = () => {
 
   return (
     <div>
-      <div className="main-header">
+      <div className="main-header1">
         <div className="d-flex p-0 justify-content-center w-100 bdsh_mIN">
           <img
             loading="eager"

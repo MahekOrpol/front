@@ -134,7 +134,7 @@ const Blog = () => {
         // toastMessage={toastMessage}
       />
       <div className={isCartOpen ? "blurred" : ""}>
-      <div className="main-header">
+      <div className="main-header1">
         <Suspense fallback={<div>Loading...</div>}>
           <Header
             openCart={openCart}
