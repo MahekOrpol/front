@@ -17,6 +17,7 @@ const offerItems = [
 ];
 const Section3Offers = () => {
   const navigate = useNavigate();
+  const disableRightClick = (e) => e.preventDefault();
 
   return (
     <div className="hdr_csd sdcxsdcx_Sdcxszdcx">
@@ -24,7 +25,13 @@ const Section3Offers = () => {
         <div className="scroll-content">
           {offerItems.map((item, index) => (
             <div className="scroll-item" key={index}>
-              <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+              <img
+                onContextMenu={disableRightClick}
+                draggable="false"
+                loading="lazy"
+                src="/Images/Vector.png"
+                alt="icon"
+              />
               <span className="scroll_heder">{item.text}</span>
             </div>
           ))}
@@ -34,24 +41,30 @@ const Section3Offers = () => {
       <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
         <div className="position-relative">
           <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             src="/Images/hero-img3.webp"
             alt="Main Image"
             className="img-fluid"
-            style={{borderRadius: "0px 0px 0px 0px"}}
+            style={{ borderRadius: "0px 0px 0px 0px" }}
             loading="eager"
             fetchPriority="high"
           />
           {/* <div className="overlay-rectangle">
-            <img  src="/Images/Rectangle 105457.png"/>
+           <img   
+  onContextMenu={disableRightClick}
+   draggable="false"  src="/Images/Rectangle 105457.png"/>
           </div> */}
           <div className="overlay-img11">
-                <img
-                  loading="lazy"
-                  src="/Images/Rectangle 105457.png"
-                  className="img-fluid w-100"
-                  alt="Overlay"
-                />
-              </div>
+            <img
+              onContextMenu={disableRightClick}
+              draggable="false"
+              loading="lazy"
+              src="/Images/Rectangle 105457.png"
+              className="img-fluid w-100"
+              alt="Overlay"
+            />
+          </div>
         </div>
 
         <div className="d-flex flex-column justify-content-center gap-5 ps-md-5 ms-md-5 pt-sm-5 ps-sm-4 pb-sm-5 pt-5 ps-4 pb-5 fest_00ssss">
@@ -84,7 +97,13 @@ const Section3Offers = () => {
         <div className="scroll-content">
           {offerItems.map((item, index) => (
             <div className="scroll-item" key={index}>
-              <img loading="lazy" src="/Images/Vector.png" alt="icon" />
+              <img
+                onContextMenu={disableRightClick}
+                draggable="false"
+                loading="lazy"
+                src="/Images/Vector.png"
+                alt="icon"
+              />
               <span className="scroll_heder">{item.text}</span>
             </div>
           ))}

@@ -3,6 +3,7 @@ import { GrNext } from "react-icons/gr";
 import { useNavigate } from "react-router-dom";
 
 export default function Section9AffordableJewelry() {
+  const disableRightClick = (e) => e.preventDefault();
   const navigate = useNavigate();
   const priceTiers = [
     { amount: 999, className: "offer_prixx" },
@@ -17,10 +18,11 @@ export default function Section9AffordableJewelry() {
 
       <p className="category_txt">Sophistication, smartly priced.</p>
       <img
+        onContextMenu={disableRightClick}
+        draggable="false"
         loading="lazy"
         // fetchPriority="high"
         src="/Images/Groupimg.png"
-draggable="false"
         className="home_tag_img"
         alt="home"
       />

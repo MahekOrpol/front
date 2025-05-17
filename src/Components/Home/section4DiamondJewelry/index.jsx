@@ -11,6 +11,7 @@ const Section4DiamondJewelry = () => {
   const handleCategoryClick = (category) => {
     navigate(`/products?categoryName=${category}`);
   };
+  const disableRightClick = (e) => e.preventDefault();
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -29,10 +30,11 @@ const Section4DiamondJewelry = () => {
       <span className="category_name mt-md-4">Diamond Jewellery</span>
       <p className="category_txt">Minimal. Modern. Mesmerizing</p>
       <img
+        onContextMenu={disableRightClick}
+        draggable="false"
         loading="lazy"
         // fetchPriority="high"
         src="/Images/Groupimg.png"
-draggable="false"
         className="home_tag_img"
         alt="home"
       />
@@ -42,22 +44,26 @@ draggable="false"
           <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
             <div className="h-100">
               <img
+                onContextMenu={disableRightClick}
+                draggable="false"
                 src="/Images/rose.webp"
                 alt="Rings"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
                 onClick={() => handleCategoryClick("Rings")}
-                style={{cursor:'pointer'}}
+                style={{ cursor: "pointer" }}
               />
             </div>
             <div className="h-100">
               <img
+                onContextMenu={disableRightClick}
+                draggable="false"
                 src="/Images/pen.webp"
                 alt="Pendant"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
                 onClick={() => handleCategoryClick("Pendant")}
-                style={{cursor:'pointer'}}
+                style={{ cursor: "pointer" }}
               />
             </div>
           </div>
@@ -76,7 +82,7 @@ draggable="false"
                     playsInline
                     controls={false}
                     onClick={() => navigate("/products")}
-                    style={{cursor:'pointer'}}
+                    style={{ cursor: "pointer" }}
                   />
                 </Suspense>
               )}
@@ -86,22 +92,26 @@ draggable="false"
           <div className="col-md-4 d-flex flex-column gap-2 dimond-section">
             <div className="h-100">
               <img
+                onContextMenu={disableRightClick}
+                draggable="false"
                 src="/Images/bracletesss.webp"
                 alt="Bracelet"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
                 onClick={() => handleCategoryClick("Bracelet")}
-                style={{cursor:'pointer'}}
+                style={{ cursor: "pointer" }}
               />
             </div>
             <div className="h-100">
               <img
+                onContextMenu={disableRightClick}
+                draggable="false"
                 src="/Images/schbgdsccc.webp"
                 alt="Earrings"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
                 onClick={() => handleCategoryClick("Earrings")}
-                style={{cursor:'pointer'}}
+                style={{ cursor: "pointer" }}
               />
             </div>
           </div>

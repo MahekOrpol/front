@@ -21,6 +21,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
   const [showForgotPass, setShowForgotPass] = useState(false);
   const [showChangePass, setShowChangePass] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const disableRightClick = (e) => e.preventDefault();
 
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
@@ -221,7 +222,9 @@ const RegisterPopup = ({ isOpen, onClose }) => {
         <div className="register-popup" onClick={(e) => e.stopPropagation()}>
           <div className="register-container">
             <div className="register-image">
-              <img loading="lazy" src='/Images/registerpage.png' alt="Register" />
+             <img   
+  onContextMenu={disableRightClick}
+   draggable="false" loading="lazy" src='/Images/registerpage.png' alt="Register" />
             </div>
 
             <div className="register-form">
@@ -333,7 +336,9 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         <span className="or-line"></span>
                       </p>
                       <div className="ggl_text d-flex align-items-center gap-2 justify-content-center">
-                        {/* <img
+                        {/*<img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                           loading="eager"
                           src={googleIcon}
                           alt="Google Icon"

@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import './index.css';
+import "./index.css";
 
 const Section2Categories = () => {
+  const disableRightClick = (e) => e.preventDefault();
   const [categories, setCategories] = useState();
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,9 +30,10 @@ const Section2Categories = () => {
       <span className="category_name mt-md-4">Categories</span>
       <p className="category_txt">Radiance Fits for Everyone</p>
       <img
+        onContextMenu={disableRightClick}
+        draggable="false"
         loading="lazy"
         src="/Images/Groupimg.png"
-draggable="false"
         className="home_tag_img"
         alt="home"
       />
@@ -58,6 +60,8 @@ draggable="false"
             >
               <div className="category-image-wrapper">
                 <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   decoding="async"
                   loading="lazy"
                   src={`https://dev.crystovajewels.com${category.categoryImage}`}

@@ -14,6 +14,7 @@ const Footer = lazy(() => import("../../Pages/Footer"));
 const OrderDetails = () => {
   const [pendingOrders, setPendingOrders] = useState([]);
   const [deliveredOrders, setDeliveredOrders] = useState([]);
+  const disableRightClick = (e) => e.preventDefault();
   const steps = ["Confirmed", "Packed", "Shipped", "Delivered"];
   const statusMap = {
     pending: "Pending",
@@ -275,7 +276,9 @@ const OrderDetails = () => {
                       );
 
                       return imageToShow ? (
-                        <img
+                       <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                           loading="eager"
                           src={`https://dev.crystovajewels.com${imageToShow}`}
                           alt={item.productId?.productName}
@@ -285,7 +288,9 @@ const OrderDetails = () => {
                         <div className="text-muted">No image available</div>
                       );
                     })()}
-                    {/* <img
+                    {/*<img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                       loading="eager"
                       src={`https://dev.crystovajewels.com${item?.productId?.image[0]}`}
                       alt={item.productId?.productName}
@@ -386,7 +391,9 @@ const OrderDetails = () => {
                 );
                 
                   return imageToShow ? (
-                    <img
+                   <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                       loading="eager"
                       src={`https://dev.crystovajewels.com${imageToShow}`}
                       alt={
@@ -399,7 +406,9 @@ const OrderDetails = () => {
                     <div className="text-muted">No image available</div>
                   );
                 })()}
-                {/* <img
+                {/*<img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                   loading="eager"
                   src={`https://dev.crystovajewels.com${
                     order.orderDetails[0]?.productId?.image[0] || ""

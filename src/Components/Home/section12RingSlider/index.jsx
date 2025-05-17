@@ -65,6 +65,7 @@ const Section12RingSlider = () => {
   const nextRef = useRef(null);
   const [navReady, setNavReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const disableRightClick = (e) => e.preventDefault();
 
   useEffect(() => {
     setNavReady(true);
@@ -93,10 +94,11 @@ const Section12RingSlider = () => {
         <span className="category_name mt-2">Discover Styles</span>
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img
+          onContextMenu={disableRightClick}
+          draggable="false"
           loading="lazy"
           // fetchPriority="high"
           src="/Images/Groupimg.png"
-draggable="false"
           className="home_tag_img"
           alt="home"
         />
@@ -113,7 +115,6 @@ draggable="false"
             slidesPerView={slidesToShow}
             centeredSlides={true}
             mousewheel={false}
-            
             loop={rings.length > slidesToShow}
             onSlideChange={(swiper) => setCenterIndex(swiper.realIndex)}
             className="ring-swiper"
@@ -122,7 +123,7 @@ draggable="false"
               600: { slidesPerView: 3 },
               1200: { slidesPerView: slidesToShow },
             }}
-            style={{pointerEvents:'none'}}
+            style={{ pointerEvents: "none" }}
           >
             {rings.map((ring, idx) => {
               const offset = getOffset(idx);
@@ -153,6 +154,8 @@ draggable="false"
                     }}
                   >
                     <img
+                      onContextMenu={disableRightClick}
+                      draggable="false"
                       src={`/Images/${ring.img}`}
                       alt={ring.title}
                       className="ring-img"

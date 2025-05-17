@@ -53,6 +53,7 @@ const Products = () => {
   const userId = localStorage.getItem("user_Id");
   const [toastMessage, setToastMessage] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const disableRightClick = (e) => e.preventDefault();
   const [searchQuery, setSearchQuery] = useState("");
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -667,6 +668,8 @@ const Products = () => {
         </div>
         <div>
           <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             loading="eager"
             src="/Images/productt_sss.webp"
             className="img_fluid1_banner"
@@ -691,6 +694,8 @@ const Products = () => {
                   onClick={() => handleClick("Women")}
                 >
                   <img
+                    onContextMenu={disableRightClick}
+                    draggable="false"
                     loading="eager"
                     src={
                       selectedGender === "Women"
@@ -710,6 +715,8 @@ const Products = () => {
                   onClick={() => handleClick("Men")}
                 >
                   <img
+                    onContextMenu={disableRightClick}
+                    draggable="false"
                     loading="eager"
                     src={
                       selectedGender === "Men"
@@ -730,6 +737,8 @@ const Products = () => {
                   onClick={toggleFilter}
                 >
                   <img
+                    onContextMenu={disableRightClick}
+                    draggable="false"
                     loading="eager"
                     src="/Images/filter.png"
                     alt="Filter Icon"
@@ -898,6 +907,8 @@ const Products = () => {
                       {bannerIndex !== null && (
                         <div className="col-lg-6 col-12 mb-4 asxasx_card_banner round-8-a web-view d-none">
                           <img
+                            onContextMenu={disableRightClick}
+                            draggable="false"
                             src={productWithBanners[bannerIndex]}
                             alt={`Banner ${bannerIndex + 1}`}
                             className=" round-8-a w-100"
@@ -907,6 +918,8 @@ const Products = () => {
                       {bannerLapIndex !== null && (
                         <div className="col-lg-6 col-12 mb-4 asxasx_card_banner round-8-a lap-view d-none d-lg-block">
                           <img
+                            onContextMenu={disableRightClick}
+                            draggable="false"
                             src={productWithBanners[bannerLapIndex]}
                             alt={`Banner ${bannerLapIndex + 1}`}
                             className=" round-8-a w-100"
@@ -916,6 +929,8 @@ const Products = () => {
                       {bannerTabIndex !== null && (
                         <div className="col-md-8 col-12 mb-4 asxasx_card_banner round-8-a tab-view d-none d-md-block d-lg-none">
                           <img
+                            onContextMenu={disableRightClick}
+                            draggable="false"
                             src={productWithBanners[bannerTabIndex]}
                             alt={`Banner ${bannerTabIndex + 1}`}
                             className=" round-8-a w-100"
@@ -925,6 +940,8 @@ const Products = () => {
                       {bannerMobIndex !== null && (
                         <div className="col-12 mb-4 asxasx_card_banner round-8-a mob-view d-block d-md-none">
                           <img
+                            onContextMenu={disableRightClick}
+                            draggable="false"
                             src={productWithBanners[bannerMobIndex]}
                             alt={`Banner ${bannerMobIndex + 1}`}
                             className=" round-8-a w-100"
@@ -969,6 +986,8 @@ const Products = () => {
                                   );
                                   return (
                                     <img
+                                      onContextMenu={disableRightClick}
+                                      draggable="false"
                                       src={`https://dev.crystovajewels.com${images[index]}`}
                                       alt={`Product ${index + 1}`}
                                       className="product-main-image"

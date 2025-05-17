@@ -11,6 +11,7 @@ const groupImg = "/Images/Groupimg.png";
 const section10ExquisiteJewelry = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const disableRightClick = (e) => e.preventDefault();
 
   const nextSlide = useCallback(() => {
     if (isAnimating) return;
@@ -29,13 +30,15 @@ const section10ExquisiteJewelry = () => {
   return (
     <div className="one-way-slider container">
       <div className="slider-content">
-      <h2 className="occation-content-h2 mobi-fdfcdfc1s">
+        <h2 className="occation-content-h2 mobi-fdfcdfc1s">
           Elevate Every Moment with Exquisite Jewellery
         </h2>
         <h2 className="occation-content-h2 d-none mobi-fdfcdfc category_name">
-        Elevate Moments
+          Elevate Moments
         </h2>
         <img
+          onContextMenu={disableRightClick}
+          draggable="false"
           src={groupImg}
           className="home_tag_img mobile_rcvdfcvfd"
           alt="Decorative tag"
@@ -46,7 +49,6 @@ const section10ExquisiteJewelry = () => {
           artistry meets elegance. Each piece is meticulously crafted to
           celebrate timeless beauty, available only for a fleeting time.
         </p>
-      
       </div>
 
       <div className="slider-container">
@@ -74,7 +76,13 @@ const section10ExquisiteJewelry = () => {
                 }`}
                 style={{ zIndex: images.length - position }}
               >
-                <img src={img} alt={`Jewelry ${index + 1}`} loading="lazy" />
+                <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
+                  src={img}
+                  alt={`Jewelry ${index + 1}`}
+                  loading="lazy"
+                />
               </div>
             );
           })}

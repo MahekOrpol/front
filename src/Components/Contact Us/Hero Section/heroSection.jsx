@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import "./heroSection.css";
 
 const JewelrySale = () => {
+  const disableRightClick = (e) => e.preventDefault();
+
   const navigate = useNavigate();
 
   // Preload only critical LCP image
   useEffect(() => {
     const lcpImg = new Image();
-    lcpImg.src = '/Images/image (29).webp';
+    lcpImg.src = "/Images/image (29).webp";
   }, []);
 
   return (
@@ -17,6 +19,8 @@ const JewelrySale = () => {
         {/* Left Images */}
         <div className="left-images">
           <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             loading="eager"
             fetchpriority="high"
             src="/Images/image (29).webp"
@@ -27,6 +31,8 @@ const JewelrySale = () => {
           />
           <div className="small-imgs">
             <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="lazy"
               src="/Images/Mask group (6).webp"
               alt="Diamond ring close-up"
@@ -39,9 +45,14 @@ const JewelrySale = () => {
         {/* Center Content */}
         <div
           className="center-content"
-          style={{ backgroundImage: "url('/Images/purple-ornament-indoors-decor-fabric-material2.webp')" }}
+          style={{
+            backgroundImage:
+              "url('/Images/purple-ornament-indoors-decor-fabric-material2.webp')",
+          }}
         >
           <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             loading="lazy"
             fetchpriority="high"
             src="/Images/crystovalogowhite (1) 2 (2).png"
@@ -64,6 +75,8 @@ const JewelrySale = () => {
         <div className="right-images">
           <div className="small-imgs">
             <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="lazy"
               src="/Images/image (30).webp"
               alt="Bracelet on display"
@@ -72,6 +85,8 @@ const JewelrySale = () => {
             />
           </div>
           <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             loading="lazy"
             src="/Images/Mask group (7).webp"
             alt="Gold Jewellery display"

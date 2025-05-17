@@ -24,11 +24,15 @@ const multiplier = {
   rotate: window.innerWidth >= 1024 ? 0.01 : 0.03,
 };
 const Section13NewArrivals = () => {
+  const disableRightClick = (e) => e.preventDefault();
   const videoRefs = useRef([]);
   const navigate = useNavigate();
-  const handleCategoryClick = useCallback((category) => {
-    navigate(`/products?categoryName=${category}`);
-  }, [navigate]);
+  const handleCategoryClick = useCallback(
+    (category) => {
+      navigate(`/products?categoryName=${category}`);
+    },
+    [navigate]
+  );
   const updateRotateMultiplier = useCallback(() => {
     multiplier.rotate = window.innerWidth >= 1024 ? 0.01 : 0.03;
   }, []);
@@ -71,10 +75,11 @@ const Section13NewArrivals = () => {
         <span className="category_name">New Arrivals</span>
         <p className="category_txt">New Creations, Forever Elegance</p>
         <img
+          onContextMenu={disableRightClick}
+          draggable="false"
           loading="eager"
           fetchpriority="high"
           src="/Images/Groupimg.png"
-draggable="false"
           className="home_tag_img"
           alt="home"
         />
@@ -112,7 +117,11 @@ draggable="false"
                 <div
                   className="single"
                   onClick={() => handleCategoryClick(video.category)}
-                  style={{ cursor: "pointer", pointerEvents: "auto", zIndex: 1 }}
+                  style={{
+                    cursor: "pointer",
+                    pointerEvents: "auto",
+                    zIndex: 1,
+                  }}
                 >
                   <video
                     ref={(el) => (videoRefs.current[i] = el)}

@@ -1,9 +1,7 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 import "./index.css";
 
-import {
-  FaArrowRight,
-} from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
 import { CiWallet } from "react-icons/ci";
 import { PiCertificateLight, PiMoneyWavy } from "react-icons/pi";
 import { MdOutlineContactSupport } from "react-icons/md";
@@ -18,6 +16,8 @@ const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
 
 const AboutUs = () => {
+  const disableRightClick = (e) => e.preventDefault();
+
   const [slidesPerView, setSlidesPerView] = useState(1);
 
   const [wishlistCount, setWishlistCount] = useState(
@@ -25,9 +25,7 @@ const AboutUs = () => {
   );
   const [wishlistItems, setWishlistItems] = useState({});
   const dispatch = useDispatch();
-  const {
-    count: cartCount
-  } = useSelector((state) => state.cart);
+  const { count: cartCount } = useSelector((state) => state.cart);
 
   useEffect(() => {
     dispatch(fetchCartCount());
@@ -150,7 +148,7 @@ const AboutUs = () => {
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-      // toastMessage={toastMessage}
+        // toastMessage={toastMessage}
       />
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header1">
@@ -164,6 +162,8 @@ const AboutUs = () => {
         </div>
         <div>
           <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             loading="eager"
             src="/Images/Group 1597884580.png"
             className="img_fluid1_banner"
@@ -178,6 +178,8 @@ const AboutUs = () => {
           <div className="row">
             <div className="aout">
               <img
+                onContextMenu={disableRightClick}
+                draggable="false"
                 loading="eager"
                 className="djs_about img-fluid sticky"
                 src="/Images/Group 1597884574.png"
@@ -206,6 +208,8 @@ const AboutUs = () => {
               <div className="d-flex gap-1">
                 <div className="d-flex align-items-center gap-3 flex-column">
                   <img
+                    onContextMenu={disableRightClick}
+                    draggable="false"
                     loading="eager"
                     src="/Images/Group 1597884563.png"
                     alt="about us"
@@ -218,6 +222,8 @@ const AboutUs = () => {
                 </div>
                 <div className="d-flex align-items-center gap-3 flex-column">
                   <img
+                    onContextMenu={disableRightClick}
+                    draggable="false"
                     loading="eager"
                     src="/Images/Group 1597884564.png"
                     alt="about us"
@@ -235,6 +241,8 @@ const AboutUs = () => {
 
         <div className="hdr_csd">
           <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             loading="eager"
             src="/Images/Group 1597884485.png"
             alt="about us"
@@ -256,6 +264,8 @@ const AboutUs = () => {
               <div className="d-flex flex-column gap-5">
                 <div className="d-flex align-items-center gap-3">
                   <img
+                    onContextMenu={disableRightClick}
+                    draggable="false"
                     loading="eager"
                     src="/Images/Group 1597884572.png"
                     alt="about us"
@@ -273,6 +283,8 @@ const AboutUs = () => {
                 </div>
                 <div className="d-flex align-items-center gap-3">
                   <img
+                    onContextMenu={disableRightClick}
+                    draggable="false"
                     loading="eager"
                     src="/Images/Group 1597884573.png"
                     alt="about us"
@@ -303,6 +315,8 @@ const AboutUs = () => {
                   muted
                 />
                 <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="eager"
                   src="/Images/Mask group (3).png"
                   className="sjd_555 position-absolute top-50 translate-middle"
@@ -322,7 +336,9 @@ preload="none"
                 muted
               />
             
-              <img 
+             <img   
+  onContextMenu={disableRightClick}
+   draggable="false" 
  loading="lazy"
                 src="/Images/Mask group (3).png")}
                 className="sjd_555"
@@ -342,6 +358,8 @@ preload="none"
             <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
               <div className="blog_fade_ds">
                 <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="eager"
                   src="/Images/image (21).png"
                   className="img-fluid"
@@ -374,6 +392,8 @@ preload="none"
             <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
               <div className="blog_fade_ds">
                 <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="eager"
                   src="/Images/image (22).png"
                   className="img-fluid"
@@ -406,6 +426,8 @@ preload="none"
             <div className="col-sm-4 col-12 ssss_dddd1_aby mt-5">
               <div className="blog_fade_ds">
                 <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="eager"
                   src="/Images/image (23).png"
                   className="img-fluid"

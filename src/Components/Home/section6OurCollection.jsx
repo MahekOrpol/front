@@ -8,12 +8,21 @@ const Section6OurCollections = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const disableRightClick = (e) => e.preventDefault();
 
   // Static image imports (keep as before)
   const productImages = [
-    { img: "/Images/bracelate.jpg", label: "Diamond Bracelet",path:'Bracelet' },
-    { img: "/Images/earrings.jpg", label: "Diamond Earrings" ,path:'Earrings'},
-    { img: "/Images/Diamond-ring.jpg", label: "Diamond Rings" ,path:'Rings'},
+    {
+      img: "/Images/bracelate.jpg",
+      label: "Diamond Bracelet",
+      path: "Bracelet",
+    },
+    {
+      img: "/Images/earrings.jpg",
+      label: "Diamond Earrings",
+      path: "Earrings",
+    },
+    { img: "/Images/Diamond-ring.jpg", label: "Diamond Rings", path: "Rings" },
   ];
 
   const handleCategoryClick = (category) => {
@@ -47,6 +56,8 @@ const Section6OurCollections = () => {
                     onClick={() => handleCategoryClick(product.path)}
                   >
                     <img
+                      onContextMenu={disableRightClick}
+                      draggable="false"
                       loading="eager"
                       src={product.img}
                       className="our_colle_iumg_ssss"

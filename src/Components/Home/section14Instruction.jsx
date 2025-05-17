@@ -13,15 +13,17 @@ const instructions = [
 ];
 
 const Section13Instruction = () => {
+  const disableRightClick = (e) => e.preventDefault();
   return (
     <div className="heder_sec_main d-flex flex-column align-items-center dscdsc_inst">
       <span className="category_name">Instructions</span>
       <p className="category_txt">Store it Soft, Shine it Often</p>
       <img
+        onContextMenu={disableRightClick}
+        draggable="false"
         loading="lazy"
         // fetchPriority="high"
         src="/Images/Groupimg.png"
-draggable="false"
         alt="Decorative"
         className="home_tag_img"
       />
@@ -32,7 +34,13 @@ draggable="false"
               key={index}
               className="col-6 col-sm-4 col-md-3 col-lg-2 d-flex flex-column align-items-center gap-2 instruction-item p-0"
             >
-              <img src={item.img} alt={item.text} width={100}  draggable="false"/>
+              <img
+                onContextMenu={disableRightClick}
+                draggable="false"
+                src={item.img}
+                alt={item.text}
+                width={100}
+              />
               <div className="instruction_tagline text-center">{item.text}</div>
             </div>
           ))}

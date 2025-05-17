@@ -14,6 +14,7 @@ import { fetchCartCount } from "../../redux/cartSlice";
 import { useDispatch } from "react-redux";
 
 const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
+  const disableRightClick = (e) => e.preventDefault();
   const navigate = useNavigate();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showSignup, setIsSignup] = useState(false);
@@ -157,7 +158,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           style={{ cursor: "pointer" }}
           onClick={() => navigate("/")}
         >
-          <img
+         <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
             loading="eager"
             fetchPriority="high"
             src="/Images/Group 1597884561.webp"
@@ -232,7 +235,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                         setIsSignup(false);
                       }}>
                         <div className="menu-item gap-2">
-                          <img
+                         <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                             loading="eager"
                             width={18}
                             height={18}
@@ -250,7 +255,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                         setIsSignup(false);
                       }}>
                         <div className="menu-item gap-2">
-                          <img
+                         <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                             loading="eager"
                             width={18}
                             height={18}
@@ -269,7 +276,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       setIsSignup(false);
                     }}>
                       <div className="menu-item gap-2">
-                        <img
+                       <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                           loading="eager"
                           width={18}
                           height={18}
@@ -286,7 +295,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       setIsSignup(false);
                     }}>
                       <div className="menu-item gap-2">
-                        <img
+                       <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                           loading="eager"
                           width={18}
                           height={18}
@@ -303,7 +314,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       setIsSignup(false);
                     }}>
                       <div className="menu-item gap-2">
-                        <img
+                       <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                           loading="eager"
                           width={18}
                           height={18}
@@ -320,7 +333,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       setIsSignup(false);
                     }}>
                       <div className="menu-item gap-2">
-                        <img
+                       <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                           loading="eager"
                           width={18}
                           height={18}
@@ -416,7 +431,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Rings")}
           >
-            <img
+           <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
               loading="lazy"
               src="/Images/diamond-ring-diamond-svgrepo-com.svg"
               width={25}
@@ -428,7 +445,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Earrings")}
           >
-            <img
+           <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
               loading="lazy"
               src="/Images/earrings.png"
               width={25}
@@ -440,7 +459,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Pendant")}
           >
-            <img
+           <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
               loading="lazy"
               src="/Images/gem-pendant-svgrepo-com.svg"
               width={20}
@@ -452,7 +473,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Bracelet")}
           >
-            <img
+           <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
               loading="lazy"
               src="/Images/noun-bracelet-5323037.svg"
               width={25}
@@ -464,7 +487,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => navigate("/Customjewel")}
           >
-            <img
+           <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
               loading="eager"
               src="/Images/Group 1597884646.svg"
               width={20}
@@ -478,7 +503,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
       {/* Mobile Drawer */}
       <div className={`mobile-drawer ${isDrawerOpen ? "open" : ""}`}>
         <div className="mobile-img">
-          <img
+         <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
             loading="eager"
             src="/Images/crystovalogowhite (1) 2.png"
             style={{ width: "60%" }}
@@ -534,7 +561,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Rings")}
               >
-                <img
+               <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                   loading="lazy"
                   src="/Images/diamond-ring-diamond-svgrepo-com.svg"
                   width={20}
@@ -546,7 +575,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Earrings")}
               >
-                <img
+               <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                   loading="lazy"
                   src="/Images/earrings.png"
                   width={20}
@@ -558,7 +589,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Pendant")}
               >
-                <img
+               <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                   loading="lazy"
                   src="/Images/gem-pendant-svgrepo-com.svg"
                   width={20}
@@ -570,7 +603,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Bracelet")}
               >
-                <img
+               <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                   loading="lazy"
                   src="/Images/noun-bracelet-5323037.svg"
                   width={20}
@@ -582,7 +617,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => navigate("/Customjewel")}
               >
-                <img
+               <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                   loading="lazy"
                   src="/Images/Group 1597884646.svg"
                   width={20}
@@ -597,7 +634,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => navigate("/contact-us")}
               >
-                <img
+               <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                   loading="lazy"
                   src="/Images/contacticon.png"
                   width={18}
@@ -618,7 +657,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       navigate("/Editprofile");
                     }}
                   >
-                    <img
+                   <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                       loading="lazy"
                       src="/Images/profileicon.png"
                       width={18}
@@ -633,7 +674,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       navigate("/Order");
                     }}
                   >
-                    <img
+                   <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                       loading="lazy"
                       src="/Images/ordericon.png"
                       width={18}
@@ -665,7 +708,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     navigate("/login");
                   }}
                 >
-                  <img
+                 <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                     loading="eager"
                     src="/Images/Group.png"
                     width={18}

@@ -10,6 +10,7 @@ export default function Section15Testimonials() {
   const [slidesPerView, setSlidesPerView] = useState(1);
   const [reviews, setReviews] = useState([]);
   const swiperRef = useRef(null);
+  const disableRightClick = (e) => e.preventDefault();
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -100,10 +101,11 @@ export default function Section15Testimonials() {
         <span className="category_name ">Client Testimonial</span>
         <p className="category_txt">What our Client's say about us</p>
         <img
+          onContextMenu={disableRightClick}
+          draggable="false"
           loading="lazy"
           //   fetchPriority="high"
           src="/Images/Groupimg.png"
-draggable="false"
           alt="Decorative"
           className="home_tag_img"
         />
@@ -124,10 +126,11 @@ draggable="false"
             lazy={true}
           >
             {reviews.map((review, index) => (
-              <SwiperSlide className="slide_ssssss_sss mt-1 mt-sm-0" key={review.id}>
-                <div
-                        className="card testimonial-card mt-5 mt-sm-2"
-                >
+              <SwiperSlide
+                className="slide_ssssss_sss mt-1 mt-sm-0"
+                key={review.id}
+              >
+                <div className="card testimonial-card mt-5 mt-sm-2">
                   {(() => {
                     const rawImage = review?.image?.[0];
                     const imageUrl = rawImage?.startsWith("http")
@@ -135,6 +138,8 @@ draggable="false"
                       : `https://dev.crystovajewels.com${rawImage || ""}`;
                     return (
                       <img
+                        onContextMenu={disableRightClick}
+                        draggable="false"
                         src={imageUrl}
                         alt="Client avatar"
                         className="testimonial-card-avatar"
@@ -144,8 +149,8 @@ draggable="false"
                           borderRadius: "50%",
                           objectFit: "cover",
                           transform: "translateY(-60px)",
-                          background:'white',
-                          padding:'5px'
+                          background: "white",
+                          padding: "5px",
                         }}
                       />
                     );

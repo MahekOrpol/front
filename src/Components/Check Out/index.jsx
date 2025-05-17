@@ -13,6 +13,7 @@ const Footer = lazy(() => import("../../Pages/Footer"));
 const CheckoutPage = () => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({}); // State to store error messages
+  const disableRightClick = (e) => e.preventDefault();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -225,8 +226,10 @@ const CheckoutPage = () => {
       <div className="main-header1">
         <div className="d-flex p-0 justify-content-center w-100 bdsh_mIN">
           <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             loading="eager"
-            src='/Images/Frame 193.png'
+            src="/Images/Frame 193.png"
             onClick={() => navigate("/")}
             alt="Logo"
             width={200}
@@ -397,6 +400,8 @@ const CheckoutPage = () => {
                     className="d-flex align-items-center gap-2 Box1 BoxFont border ryyt"
                   >
                     <img
+                      onContextMenu={disableRightClick}
+                      draggable="false"
                       loading="eager"
                       src="/Images/phoneicon.png"
                       alt="phone"
@@ -423,6 +428,8 @@ const CheckoutPage = () => {
 
               <div className="mt-3 d-flex align-items-center gap-2">
                 <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="eager"
                   src="/Images/lock.png"
                   alt="lock"
@@ -435,8 +442,22 @@ const CheckoutPage = () => {
               </button>
               <p className="mt-3 link">
                 Your info will be saved to a Shop , By Continuing, you agree to
-                Shops <span className="spanF" style={{cursor:"pointer"}} onClick={()=>navigate("/terms-and-conditions")}>Terms of Service</span> and
-                acknowledge the <span className="spanF" style={{cursor:"pointer"}} onClick={()=>navigate("/privacy-policy")}>Privacy Policy.</span>
+                Shops{" "}
+                <span
+                  className="spanF"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/terms-and-conditions")}
+                >
+                  Terms of Service
+                </span>{" "}
+                and acknowledge the{" "}
+                <span
+                  className="spanF"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => navigate("/privacy-policy")}
+                >
+                  Privacy Policy.
+                </span>
               </p>
             </Form>
           </div>
@@ -466,6 +487,8 @@ const CheckoutPage = () => {
                     );
                     return imageToShow ? (
                       <img
+                        onContextMenu={disableRightClick}
+                        draggable="false"
                         loading="eager"
                         src={`https://dev.crystovajewels.com${imageToShow}`}
                         alt={item.productId.productId}
@@ -489,9 +512,9 @@ const CheckoutPage = () => {
                             Ring size: {item.selectedSize}
                           </p>
                         )}
-                         <p className="product-size">
-                            Quantity: {item.selectedqty}
-                          </p>
+                        <p className="product-size">
+                          Quantity: {item.selectedqty}
+                        </p>
                       </div>
                       <p className="product-price">₹ {displayPrice}</p>
                     </div>

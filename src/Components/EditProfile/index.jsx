@@ -81,6 +81,7 @@ const EditProfile = () => {
     fetchWishlist();
   }, [userId]);
 
+  const disableRightClick = (e) => e.preventDefault();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -244,7 +245,9 @@ const EditProfile = () => {
           <div className="bg-white d-flex flex-wrap overflow-hidden fjeef">
             {/* Left Image Section - Always visible, but smaller on smaller screens */}
             <div className="col-md-6 justify-content-center tyoty">
-              <img
+             <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                 loading="eager"
                 src="/Images/editimg.png"
                 alt="Profile"

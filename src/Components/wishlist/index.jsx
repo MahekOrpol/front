@@ -18,6 +18,7 @@ import { fetchCartCount } from "../../redux/cartSlice";
 const CartPopup = lazy(() => import("../Add to Cart"));
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
+const disableRightClick = (e) => e.preventDefault();
 
 const Wishlist = () => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -332,6 +333,8 @@ const Wishlist = () => {
                                 />
                               ) : (
                                 <img
+                                  onContextMenu={disableRightClick}
+                                  draggable="false"
                                   loading="eager"
                                   src={`https://dev.crystovajewels.com${imageUrl}`}
                                   className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
