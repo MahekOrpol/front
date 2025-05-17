@@ -905,7 +905,7 @@ const Products = () => {
                   return (
                     <React.Fragment key={product.id}>
                       {bannerIndex !== null && (
-                        <div className="col-lg-6 col-12 mb-4 asxasx_card_banner round-8-a web-view d-none">
+                        <div className="col-lg-6 col-12 mb-4 asxasx_card_banner round-8-a web-view d-none pt-2">
                           <img
                             onContextMenu={disableRightClick}
                             draggable="false"
@@ -916,7 +916,7 @@ const Products = () => {
                         </div>
                       )}
                       {bannerLapIndex !== null && (
-                        <div className="col-lg-6 col-12 mb-4 asxasx_card_banner round-8-a lap-view d-none d-lg-block">
+                        <div className="col-lg-6 col-12 mb-4 asxasx_card_banner round-8-a lap-view d-none d-lg-block pt-2">
                           <img
                             onContextMenu={disableRightClick}
                             draggable="false"
@@ -927,7 +927,7 @@ const Products = () => {
                         </div>
                       )}
                       {bannerTabIndex !== null && (
-                        <div className="col-md-8 col-12 mb-4 asxasx_card_banner round-8-a tab-view d-none d-md-block d-lg-none">
+                        <div className="col-md-8 col-12 mb-4 asxasx_card_banner round-8-a tab-view d-none d-md-block d-lg-none pt-2">
                           <img
                             onContextMenu={disableRightClick}
                             draggable="false"
