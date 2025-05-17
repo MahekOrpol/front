@@ -95,7 +95,7 @@ const Section12RingSlider = () => {
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img
           onContextMenu={disableRightClick}
-          draggable="false"
+          // draggable="false"
           loading="lazy"
           // fetchPriority="high"
           src="/Images/Groupimg.png"
@@ -155,7 +155,7 @@ const Section12RingSlider = () => {
                   >
                     <img
                       onContextMenu={disableRightClick}
-                      draggable="false"
+                      // draggable="false"
                       src={`/Images/${ring.img}`}
                       alt={ring.title}
                       className="ring-img"
