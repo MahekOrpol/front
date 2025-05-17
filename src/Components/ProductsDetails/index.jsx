@@ -40,6 +40,7 @@ const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
 
 const ProductDetailss = () => {
+  const disableRightClick = (e) => e.preventDefault();
   const { productId } = useParams();
   const location = useLocation();
   const productData = location.state?.product;
@@ -402,7 +403,13 @@ Please let me know the next steps.`;
   const faqs = [
     {
       icon: (
-        <img loading="lazy" src="/Images/watch.png" alt="product details" />
+        <img
+          onContextMenu={disableRightClick}
+          draggable="false"
+          loading="lazy"
+          src="/Images/watch.png"
+          alt="product details"
+        />
       ),
       title: "Shipping",
       answer:
@@ -411,6 +418,8 @@ Please let me know the next steps.`;
     {
       icon: (
         <img
+          onContextMenu={disableRightClick}
+          draggable="false"
           loading="eager"
           src="/Images/Vector (6).png"
           alt="product details"
@@ -492,7 +501,7 @@ Please let me know the next steps.`;
         <div ref={overlayRef} className="overlay" onClick={closeCart}></div>
       )}
       <div className={isCartOpen ? "blurred" : ""}>
-        <div className="main-header">
+        <div className="main-header1">
           <Suspense fallback={<div>Loading...</div>}>
             <Header
               openCart={openCart}
@@ -502,48 +511,11 @@ Please let me know the next steps.`;
           </Suspense>
         </div>
         <div className="container detail_arrowW_xss">
-          {/* <section>
-            <div class="md:px-5 pb-2 ps-1 ps-lg-2 pt-3">
-              <div class="Breadcrumbs max-w-8xl d-flex align-items-center mx-auto flex items-center flex-nowrap whitespace-nowrap overflow-hidden gap-2">
-                <div class="BreadcrumbItem flex ">
-                  <div class="flex items-center flex-nowrap gap-1.5">
-                    <a
-                      class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
-                      data-discover="true"
-                      href="/"
-                    >
-                      Homepage
-                    </a>
-                  </div>
-                </div>
-                <FaChevronRight />
-                <div class="BreadcrumbItem flex">
-                  <div class="flex items-center flex-nowrap gap-1.5">
-                    <a
-                      class="font-semibold text-1.25xs leading-tight underline capitalize bread_crumnbss"
-                      data-discover="true"
-                      href={`/products?category=${customProductDetails?.categoryName || "rings"
-                        }`}
-                    >
-                      {customProductDetails?.categoryName || "Rings"}
-                    </a>
-                  </div>
-                </div>
-                <FaChevronRight />
-                <div class="BreadcrumbItem flex max-w-1/3">
-                  <span class="font-light text-1.25xs leading-tight line-clamp-1 whitespace-normal mt-0.5 bread_crumnbs">
-                    {customProductDetails.productName || "products"}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </section> */}
-          {/* {product details} */}
           <section className="d-flex gap-lg-5 p-0 pro_sss_gubs">
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
                 {customProductDetails?.image &&
-                  customProductDetails.image.length > 0 ? (
+                customProductDetails.image.length > 0 ? (
                   customProductDetails.image.map((img, index) => {
                     const isVideo = img.endsWith(".mp4"); // Check if the file is a video
                     return (
@@ -560,12 +532,15 @@ Please let me know the next steps.`;
                           />
                         ) : (
                           <img
+                            onContextMenu={disableRightClick}
+                            draggable="false"
                             loading="eager"
                             className="detr_img bg-white"
                             src={`https://dev.crystovajewels.com${img}`}
                             alt={`Product ${index + 1}`}
                             style={{
-                              boxShadow:'0 0 0 0'}}
+                              boxShadow: "0 0 0 0",
+                            }}
                           />
                         )}
                       </div>
@@ -601,7 +576,7 @@ Please let me know the next steps.`;
                   className="fddd"
                 >
                   {customProductDetails?.image &&
-                    customProductDetails.image.length > 0 ? (
+                  customProductDetails.image.length > 0 ? (
                     customProductDetails.image.map((img, index) => {
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
 
@@ -619,12 +594,15 @@ Please let me know the next steps.`;
                             />
                           ) : (
                             <img
+                              onContextMenu={disableRightClick}
+                              draggable="false"
                               loading="eager"
                               className="detr_img slider_ring_sss"
                               src={`https://dev.crystovajewels.com${img}`}
                               alt={`Slide ${index + 1}`}
                               style={{
-                                boxShadow:'0 0 0 0'}}
+                                boxShadow: "0 0 0 0",
+                              }}
                             />
                           )}
                         </SwiperSlide>
@@ -656,50 +634,39 @@ Please let me know the next steps.`;
               </div>
               {/* Box 2: Image[0] */}
               {productImages[0] && (
-                <div
-                  className=" gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv"
-                 
-                >
-                   <ImageZoom
+                <div className=" gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv">
+                  <ImageZoom
                     loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[0]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
-                     style={{
-                                boxShadow:'0 0 0 0'}}
+                    style={{
+                      boxShadow: "0 0 0 0",
+                    }}
                   />
-           
                 </div>
               )}
 
               {/* Box 3: Image[1] */}
               {productImages[1] && (
-                <div
-                  className="gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv "
-                 
-                >
+                <div className="gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv ">
                   <ImageZoom
                     loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[1]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
                   />
-                
                 </div>
               )}
               {/* Box 4: Image[2] */}
               {productImages[2] && (
-                <div
-                  className="gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv "
-                 
-                >
+                <div className="gallery col-md-6 border vider_saxasxs escjh_drftvbfbvfcv ">
                   <ImageZoom
                     loading="lazy"
                     src={`https://dev.crystovajewels.com${productImages[2]}`}
                     className="main-product-image w-100 object-fit-contain vider_saxasxs_sec gallery-img bg-white"
                     alt={customProductDetails?.productName || "Product image"}
                   />
-                 
                 </div>
               )}
             </div>
@@ -710,7 +677,7 @@ Please let me know the next steps.`;
                   <span className="secrt_1">
                     {customProductDetails?.productName}
                   </span>
-                  <div className='save_buttopmn'>
+                  <div className="save_buttopmn">
                     <button className="sav_btn p-2 pe-3 ps-3 dcs_dddd_8888">
                       Save {displayPrice.discount}%
                     </button>
@@ -770,45 +737,47 @@ Please let me know the next steps.`;
 
                 {/* Only show size dropdown if productSize is not ["[]"] */}
                 {customProductDetails?.productSize?.toString() !== "[]" &&
-                customProductDetails?.productSize?.toString() !== "Size is not Available" &&
-                (
-                  <>
-                    <div className="dropdown">
-                      <Dropdown>
-                        <Dropdown.Toggle
-                          className="size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
-                          variant="secondary"
-                        >
-                          {selectedSize || "Select size"}
-                        </Dropdown.Toggle>
+                  customProductDetails?.productSize?.toString() !==
+                    "Size is not Available" && (
+                    <>
+                      <div className="dropdown">
+                        <Dropdown>
+                          <Dropdown.Toggle
+                            className="size_drp_dpwn d-flex align-items-center w-50 justify-content-between p-2 ps-4 pe-4"
+                            variant="secondary"
+                          >
+                            {selectedSize || "Select size"}
+                          </Dropdown.Toggle>
 
-                        <Dropdown.Menu className="product_det_menu w-50 mt-1">
-                          {Array.isArray(customProductDetails?.productSize)
-                            ? customProductDetails.productSize.map(
-                              (sizeGroup) =>
-                                sizeGroup.split(",").map((size) => (
-                                  <Dropdown.Item
-                                    key={size.trim()}
-                                    onClick={() => handleSelect(size.trim())}
-                                  >
-                                    {size.trim()}
-                                  </Dropdown.Item>
-                                ))
-                            )
-                            : []}
-                        </Dropdown.Menu>
-                      </Dropdown>
-                    </div>
-                    {/* ring side video */}
-                    <RingSizeInfoBox />
-                    <div className="">
-                      <hr className="hr_pb_dtl" />
-                    </div>
-                  </>
-                )}
+                          <Dropdown.Menu className="product_det_menu w-50 mt-1">
+                            {Array.isArray(customProductDetails?.productSize)
+                              ? customProductDetails.productSize.map(
+                                  (sizeGroup) =>
+                                    sizeGroup.split(",").map((size) => (
+                                      <Dropdown.Item
+                                        key={size.trim()}
+                                        onClick={() =>
+                                          handleSelect(size.trim())
+                                        }
+                                      >
+                                        {size.trim()}
+                                      </Dropdown.Item>
+                                    ))
+                                )
+                              : []}
+                          </Dropdown.Menu>
+                        </Dropdown>
+                      </div>
+                      {/* ring side video */}
+                      <RingSizeInfoBox />
+                      <div className="">
+                        <hr className="hr_pb_dtl" />
+                      </div>
+                    </>
+                  )}
 
                 <div className="dcb_jbcsc">
-                  <div className="d-flex justify-content-between align-items-center gap-3">
+                  <div className="d-flex justify-content-between align-items-center gap-3 detai-butttt">
                     <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
@@ -852,10 +821,10 @@ Please let me know the next steps.`;
                     target="_blank"
                     rel="noopener noreferrer"
                     className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
-                  // onClick={() => {
-                  //   window.open("https://wa.me/919081139039", "_blank");
-                  // }}
-                  // onClick={() => addToCart(productDetails)}
+                    // onClick={() => {
+                    //   window.open("https://wa.me/919081139039", "_blank");
+                    // }}
+                    // onClick={() => addToCart(productDetails)}
                   >
                     Order On Whatsapp{" "}
                     <span className="whatsapp-icon">
@@ -865,7 +834,7 @@ Please let me know the next steps.`;
                 </div>
 
                 <div className="dcb_jbcsc_kn">
-                  <div className="d-flex justify-content-between align-items-center gap-3">
+                  <div className="d-flex justify-content-between align-items-center gap-3 detai-butttt">
                     <div className="d-flex justify-content-between align-items-center w-100 but_buton_ssssxs">
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
@@ -888,10 +857,10 @@ Please let me know the next steps.`;
                       target="_blank"
                       rel="noopener noreferrer"
                       className="d-flex align-items-center w-100 whats_abtn_1 txt_shu justify-content-center gap-1"
-                    // onClick={() => {
-                    //   window.open("https://wa.me/919081139039", "_blank");
-                    // }}
-                    // onClick={() => addToCart(productDetails)}
+                      // onClick={() => {
+                      //   window.open("https://wa.me/919081139039", "_blank");
+                      // }}
+                      // onClick={() => addToCart(productDetails)}
                     >
                       Order On Whatsapp{" "}
                       <span className="whatsapp-icon">
@@ -923,6 +892,8 @@ Please let me know the next steps.`;
                 <div className="d-flex justify-content-between align-items-center gap-4 pt-4 fdcvd_life_tttdd">
                   <div className="icon-bdf">
                     <img
+                      onContextMenu={disableRightClick}
+                      draggable="false"
                       loading="eager"
                       src="/Images/material.png"
                       alt="AVOID WATER / MOISTURE"
@@ -932,6 +903,8 @@ Please let me know the next steps.`;
                   <div className="divider"></div>
                   <div className="icon-bdf">
                     <img
+                      onContextMenu={disableRightClick}
+                      draggable="false"
                       loading="eager"
                       src="/Images/Frame 1597883978.png"
                       alt="AVOID PERFUME / LOTION"
@@ -941,6 +914,8 @@ Please let me know the next steps.`;
                   <div className="divider szcxds_fix"></div>
                   <div className="icon-bdf">
                     <img
+                      onContextMenu={disableRightClick}
+                      draggable="false"
                       loading="eager"
                       src="/Images/oeeofiw.png"
                       alt="REMOVE BEFORE SLEEPING"
@@ -950,6 +925,8 @@ Please let me know the next steps.`;
                   <div className="divider"></div>
                   <div className="icon-bdf">
                     <img
+                      onContextMenu={disableRightClick}
+                      draggable="false"
                       loading="eager"
                       src="/Images/Frame 1597883980.png"
                       alt="USE SOFT / DRY FABRIC TO CLEAN"
@@ -985,6 +962,8 @@ Please let me know the next steps.`;
                                 aria-controls="collapseOne"
                               >
                                 <img
+                                  onContextMenu={disableRightClick}
+                                  draggable="false"
                                   loading="eager"
                                   src="/Images/Frame (23).svg"
                                   className="offer-icon"
@@ -1002,8 +981,9 @@ Please let me know the next steps.`;
                               <div className="accordion-body d-flex justify-content-between align-items-center">
                                 <span className="coupon-code">
                                   If you do not receive your parcel within 12
-                                  days, you'll get ₹100 off for each additional
-                                  day of delay starting from the 13th day
+                                  Working days, you'll get ₹100 off for each
+                                  additional day of delay starting from the 13th
+                                  day
                                 </span>
                               </div>
                             </div>
@@ -1015,6 +995,8 @@ Please let me know the next steps.`;
                       <div className="card det_cd_sec p-3 w-100">
                         <div className="d-flex align-items-center gap-3">
                           <img
+                            onContextMenu={disableRightClick}
+                            draggable="false"
                             loading="eager"
                             src="/Images/Group (2).png"
                             alt="product details"
@@ -1044,8 +1026,9 @@ Please let me know the next steps.`;
                       <div className="accordion-item" key={index}>
                         <h2 className="accordion-header">
                           <button
-                            className={`accordion-button ${openIndex === index ? "" : "collapsed"
-                              }`}
+                            className={`accordion-button ${
+                              openIndex === index ? "" : "collapsed"
+                            }`}
                             type="button"
                             onClick={() => toggleFAQ(index)}
                           >
@@ -1055,8 +1038,9 @@ Please let me know the next steps.`;
                           </button>
                         </h2>
                         <div
-                          className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
-                            }`}
+                          className={`accordion-collapse collapse ${
+                            openIndex === index ? "show" : ""
+                          }`}
                           data-bs-parent="#faqAccordion"
                         >
                           <div className="accordion-body srfferc">
@@ -1075,6 +1059,8 @@ Please let me know the next steps.`;
             <span className="category_name">Related Products</span>
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
             <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="eager"
               src="/Images/Groupimg.png"
               alt="product details"
@@ -1096,11 +1082,11 @@ Please let me know the next steps.`;
                   loop={true}
                   preloadImages={false}
                   lazy={true}
-                // autoplay={{
-                //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                //   disableOnInteraction: false,
-                // }}
-                // modules={[Autoplay]}
+                  // autoplay={{
+                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                  //   disableOnInteraction: false,
+                  // }}
+                  // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
@@ -1134,6 +1120,8 @@ Please let me know the next steps.`;
                               );
                               return imageToShow ? (
                                 <img
+                                  onContextMenu={disableRightClick}
+                                  draggable="false"
                                   src={`https://dev.crystovajewels.com${imageToShow}`}
                                   alt={product?.productName}
                                   className="p-1_proi img-fluid border-0"

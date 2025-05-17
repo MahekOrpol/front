@@ -24,6 +24,8 @@ const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
 
 const Contact = () => {
+  const disableRightClick = (e) => e.preventDefault();
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -167,7 +169,7 @@ const Contact = () => {
         // toastMessage={toastMessage}
       />
       <div className={isCartOpen ? "blurred" : ""}>
-        <div className="main-header">
+        <div className="main-header1">
           <Suspense fallback={<div>Loading...</div>}>
             <Header
               openCart={openCart}
@@ -178,6 +180,8 @@ const Contact = () => {
         </div>
         <div>
           <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             loading="eager"
             src="/Images/Group 1597884579.png"
             className="img_fluid1_banner"

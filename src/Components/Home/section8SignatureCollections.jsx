@@ -17,6 +17,7 @@ export default function Section8SignatureCollections({
   const [bestSelling, setBestSelling] = useState([]);
   const [isPaused, setIsPaused] = useState(false);
   const [hoveredProduct, setHoveredProduct] = useState(null);
+  const disableRightClick = (e) => e.preventDefault();
 
   const navigate = useNavigate();
 
@@ -66,6 +67,8 @@ export default function Section8SignatureCollections({
       <span className="category_name">Signature Collections</span>
       <p className="category_txt">Elevate the Everyday in Diamond Elegance</p>
       <img
+        onContextMenu={disableRightClick}
+        draggable="false"
         loading="lazy"
         // fetchPriority="high"
         src="/Images/Groupimg.png"
@@ -77,6 +80,8 @@ export default function Section8SignatureCollections({
         <div className="col-lg-6 ring_banner_szcdvc position-relative">
           <div className="h-100 d-flex align-items-center justify-content-center">
             <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="eager"
               src="/Images/Mask group (9).webp"
               className="img-fluid w-100 h-100 object-fit-cover rounded"
@@ -188,6 +193,8 @@ export default function Section8SignatureCollections({
                                 );
                                 return imageToShow ? (
                                   <img
+                                    onContextMenu={disableRightClick}
+                                    draggable="false"
                                     src={`https://dev.crystovajewels.com${imageToShow}`}
                                     alt="Product"
                                     className="p-1_proi img-fluid border-0"
@@ -219,7 +226,9 @@ export default function Section8SignatureCollections({
                               style={{ height: "100%" }}
                             />
                           ) : (
-                            <img
+                           <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                               loading="eager"
                               src={`https://dev.crystovajewels.com${product.image[0]}`}
                               className="p-1_proi img-fluid border-0"
@@ -230,7 +239,9 @@ export default function Section8SignatureCollections({
                               style={{ height: "100%" }}
                             />
                           )} */}
-                              {/* <img
+                              {/*<img   
+  onContextMenu={disableRightClick}
+   draggable="false"
                             src={`https://dev.crystovajewels.com${product.image[0]}`}
                             className="p-1_proi img-fluid border-0"
                             alt="Product"

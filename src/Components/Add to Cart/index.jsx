@@ -9,15 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { updateCartCount } from "../../redux/cartSlice";
 
-const CartPopup = ({
-  isOpen,
-  closeCart,
-  showToast,
-  toastMessage,
-}) => {
+const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [orderDetails, setOrderDetails] = useState([]);
+  const disableRightClick = (e) => e.preventDefault();
 
   const calculateTotal = () => {
     return orderDetails
@@ -199,6 +195,8 @@ const CartPopup = ({
                 );
                 return imageToShow ? (
                   <img
+                    onContextMenu={disableRightClick}
+                    draggable="false"
                     src={`https://dev.crystovajewels.com${imageToShow}`}
                     alt={item.productId?.productName}
                     style={{
@@ -216,16 +214,21 @@ const CartPopup = ({
                 );
               })()}
               <div className="cart_item_detail pt-3">
-                {(!Array.isArray(item.productId?.productSize) ||
-                  item.productId.productSize.length === 0 ||
-                  item.productId.productSize[0] === "[]" ||
-                  item.productId.productSize[0].split(",").filter(size => size.trim() !== "").length === 0) ? (
+                {!Array.isArray(item.productId?.productSize) ||
+                item.productId.productSize.length === 0 ||
+                item.productId.productSize[0] === "[]" ||
+                item.productId.productSize[0]
+                  .split(",")
+                  .filter((size) => size.trim() !== "").length === 0 ? (
                   <div className="d-flex align-items-center justify-content-between secure_chckotfre">
                     <h5 className="fw-bold mb-1 cart_headre_ssss text-truncate">
                       {item.productId?.productName}
                     </h5>
                     <p className="fw-bold m-0">
-                      ₹{(parseFloat(item.salePrice) * parseInt(item.quantity)).toFixed(2)}
+                      ₹
+                      {(
+                        parseFloat(item.salePrice) * parseInt(item.quantity)
+                      ).toFixed(2)}
                     </p>
                   </div>
                 ) : (
@@ -234,7 +237,10 @@ const CartPopup = ({
                       {item.productId?.productName}
                     </h5>
                     <div className="d-flex align-items-center justify-content-between secure_chckotfre1">
-                      <div className="d-flex align-items-center w-100 secure_chckotfre cart_headre_ssss1 w-100" style={{ whiteSpace: 'nowrap' }}>
+                      <div
+                        className="d-flex align-items-center w-100 secure_chckotfre cart_headre_ssss1 w-100"
+                        style={{ whiteSpace: "nowrap" }}
+                      >
                         <p className="m-0">Ring Size :</p>
                         <select
                           className="dropdown_size p-1"

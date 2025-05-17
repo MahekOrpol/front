@@ -23,6 +23,7 @@ const CustomJewel = () => {
     file: null,
     description: "",
   });
+  const disableRightClick = (e) => e.preventDefault();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
   const [wishlistCount, setWishlistCount] = useState(
@@ -43,8 +44,6 @@ const CustomJewel = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const userId = localStorage.getItem("user_Id");
-
- 
 
   const openCart = () => {
     const userId = localStorage.getItem("user_Id");
@@ -127,7 +126,7 @@ const CustomJewel = () => {
       }
 
       const response = await axios.post(
-       "https://dev.crystovajewels.com/api/v1/whatsapp/custom/create",
+        "https://dev.crystovajewels.com/api/v1/whatsapp/custom/create",
         formDataToSend
       );
 
@@ -214,10 +213,10 @@ const CustomJewel = () => {
         isOpen={isCartOpen}
         closeCart={closeCart}
         showToast={showToast}
-      // toastMessage={toastMessage}
+        // toastMessage={toastMessage}
       />
       <div className={isCartOpen ? "blurred" : ""}>
-        <div className="main-header">
+        <div className="main-header1">
           <Suspense fallback={<div>Loading...</div>}>
             <Header
               openCart={openCart}
@@ -230,6 +229,8 @@ const CustomJewel = () => {
           {/* Banner Section */}
           <div className="bsn">
             <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="eager"
               src="/Images/customjewel.png"
               alt="Custom Jewellery"
@@ -241,6 +242,8 @@ const CustomJewel = () => {
               <h2 className="iojhf">Custom Jewellery</h2>
               <p className="pb-0 mb-0">Jewellery as Unique as Your Story</p>
               <img
+                onContextMenu={disableRightClick}
+                draggable="false"
                 loading="eager"
                 src="/Images/Groupimg.png"
                 className="home_tag_img"
@@ -271,6 +274,8 @@ const CustomJewel = () => {
                 ].map((feature, index) => (
                   <div className="feature-box" key={index}>
                     <img
+                      onContextMenu={disableRightClick}
+                      draggable="false"
                       loading="eager"
                       src={feature.img}
                       alt={feature.title}
@@ -292,6 +297,8 @@ const CustomJewel = () => {
                   >
                     <div className="blog_fade_ds">
                       <img
+                        onContextMenu={disableRightClick}
+                        draggable="false"
                         src={item.image}
                         className="blog_ss_tysn_mg w-100"
                         alt="blog"
@@ -300,7 +307,6 @@ const CustomJewel = () => {
                     <div className="d-flex flex-column gap-2 pt-4">
                       <span className="mainj_ss text-start">{item.title}</span>
                       <p className="psps">{item.description}</p>
-
                     </div>
                   </div>
                 ))}
@@ -316,6 +322,8 @@ const CustomJewel = () => {
               style and story.
             </p>
             <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="eager"
               src="/Images/Groupimg.png"
               className="home_tag_img mb-4"

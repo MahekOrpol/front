@@ -16,6 +16,7 @@ export default function Section5TrendingCollections({
   const [topRated, setTopRated] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
   const [onSale, setOnSale] = useState([]);
+  const disableRightClick = (e) => e.preventDefault();
 
   const navigate = useNavigate();
   const scrollContainerRef = useRef(null);
@@ -76,6 +77,8 @@ export default function Section5TrendingCollections({
       <span className="category_name ">Trending Collection</span>
       <p className="category_txt">The Latest looks, Crafted to Perfection</p>
       <img
+        onContextMenu={disableRightClick}
+        draggable="false"
         loading="lazy"
         // fetchPriority="high"
         src="/Images/Groupimg.png"
@@ -188,6 +191,8 @@ export default function Section5TrendingCollections({
                           );
                           return imageToShow ? (
                             <img
+                              onContextMenu={disableRightClick}
+                              draggable="false"
                               src={`https://dev.crystovajewels.com${imageToShow}`}
                               alt={product?.productName}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
@@ -290,6 +295,8 @@ export default function Section5TrendingCollections({
                           );
                           return imageToShow ? (
                             <img
+                              onContextMenu={disableRightClick}
+                              draggable="false"
                               src={`https://dev.crystovajewels.com${imageToShow}`}
                               alt={product?.productName}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"
@@ -394,6 +401,8 @@ export default function Section5TrendingCollections({
                           );
                           return imageToShow ? (
                             <img
+                              onContextMenu={disableRightClick}
+                              draggable="false"
                               src={`https://dev.crystovajewels.com${imageToShow}`}
                               alt={product?.productName}
                               className="p-1_proi img-fluid sdcijdic_ass_sssssswx_ring"

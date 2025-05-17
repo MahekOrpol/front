@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Section7Occasions = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
+  const disableRightClick = (e) => e.preventDefault();
 
   const handleCategoryClick = React.useCallback(
     (category) => {
@@ -113,6 +114,8 @@ const Section7Occasions = () => {
         Celebrate Forever with a Sparkle
       </p>
       <img
+        onContextMenu={disableRightClick}
+        draggable="false"
         loading="lazy"
         // fetchPriority="high"
         src="/Images/Groupimg.png"
@@ -126,10 +129,10 @@ const Section7Occasions = () => {
             Celebrate Every Moment with Timeless Elegance
           </h2>
           <p className="mack_pox_headfrp">
-            Discover exclusive designs in our Limited Edition Jewellery Collection
-            – where artistry meets sophistication. Handcrafted with precision
-            for those who value beauty that never fades. Available for a limited
-            time only.
+            Discover exclusive designs in our Limited Edition Jewellery
+            Collection – where artistry meets sophistication. Handcrafted with
+            precision for those who value beauty that never fades. Available for
+            a limited time only.
           </p>
           <button className="shop_now_sijd">
             Explore Collection <FaArrowRightLong />
@@ -144,6 +147,8 @@ const Section7Occasions = () => {
               {sliderContent.map((content, index) => (
                 <div key={index} className="slider-card">
                   <img
+                    onContextMenu={disableRightClick}
+                    draggable="false"
                     loading="eager"
                     src={content.image}
                     alt={`Gift Slide ${index + 1}`}
@@ -157,6 +162,8 @@ const Section7Occasions = () => {
           {/* Static Card - Now Dynamic based on current slide */}
           <div className="static-gift-card text-center MHK position-relative gap-2 gift_img_round">
             <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="eager"
               src="/Images/first.svg"
               className="img-fluid gift-img gift_box_dsdd"

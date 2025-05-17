@@ -15,6 +15,7 @@ import {
 import { RiTwitterXFill } from "react-icons/ri";
 
 const Footer = () => {
+  const disableRightClick = (e) => e.preventDefault();
   const phoneNumber = "919081139039";
   const message = `Hello! 👋 I hope you're doing well.
  I'm interested in your jewellery collection and would like to know more about your designs and customization options. Please share the details.`;
@@ -30,7 +31,9 @@ const Footer = () => {
       <div className="footer_mdjj hdr_csdssdrcsdc pt-5 d-none d-md-block">
         <div className="justify-content-around d-flex w-100 fccc_asxs_footer">
           <div className=" footer_cont text-white sdc_sdds1">
-            <img
+           <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
               loading="eager"
               src="/Images/crystovalogowhite (1) 2.png"
               width={400}
@@ -169,7 +172,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
-          <img
+         <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
             loading="eager"
             src="/Images/Group 104.svg"
             className=""
@@ -190,7 +195,9 @@ const Footer = () => {
       <div className="footer_mdjj_1 hdr_csdssdrcsdc pt-4 d-md-none">
         <div className="justify-content-center align-items-center d-flex flex-column w-100 fccc_asxs_footer">
           <div className=" footer_cont_1 text-white sdc_sdds1">
-            <img
+           <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
               loading="eager"
               src="/Images/crystovalogowhite (1) 2.png"
               width={400}
@@ -351,7 +358,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
-          <img
+         <img   
+  onContextMenu={disableRightClick}
+   draggable="false"
             loading="eager"
             src="/Images/Group 104.svg"
             className=""
