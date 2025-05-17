@@ -405,7 +405,7 @@ Please let me know the next steps.`;
       icon: (
         <img
           onContextMenu={disableRightClick}
-          draggable="false"
+       draggable="false"
           loading="lazy"
           src="/Images/watch.png"
           alt="product details"
@@ -419,7 +419,7 @@ Please let me know the next steps.`;
       icon: (
         <img
           onContextMenu={disableRightClick}
-          draggable="false"
+       draggable="false"
           loading="eager"
           src="/Images/Vector (6).png"
           alt="product details"
@@ -533,7 +533,7 @@ Please let me know the next steps.`;
                         ) : (
                           <img
                             onContextMenu={disableRightClick}
-                            draggable="false"
+                         draggable="false"
                             loading="eager"
                             className="detr_img bg-white"
                             src={`https://dev.crystovajewels.com${img}`}
@@ -595,7 +595,7 @@ Please let me know the next steps.`;
                           ) : (
                             <img
                               onContextMenu={disableRightClick}
-                              draggable="false"
+                           draggable="false"
                               loading="eager"
                               className="detr_img slider_ring_sss"
                               src={`https://dev.crystovajewels.com${img}`}
@@ -893,7 +893,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       onContextMenu={disableRightClick}
-                      draggable="false"
+                   draggable="false"
                       loading="eager"
                       src="/Images/material.png"
                       alt="AVOID WATER / MOISTURE"
@@ -904,7 +904,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       onContextMenu={disableRightClick}
-                      draggable="false"
+                   draggable="false"
                       loading="eager"
                       src="/Images/Frame 1597883978.png"
                       alt="AVOID PERFUME / LOTION"
@@ -915,7 +915,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       onContextMenu={disableRightClick}
-                      draggable="false"
+                   draggable="false"
                       loading="eager"
                       src="/Images/oeeofiw.png"
                       alt="REMOVE BEFORE SLEEPING"
@@ -926,7 +926,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       onContextMenu={disableRightClick}
-                      draggable="false"
+                   draggable="false"
                       loading="eager"
                       src="/Images/Frame 1597883980.png"
                       alt="USE SOFT / DRY FABRIC TO CLEAN"
@@ -963,7 +963,7 @@ Please let me know the next steps.`;
                               >
                                 <img
                                   onContextMenu={disableRightClick}
-                                  draggable="false"
+                               draggable="false"
                                   loading="eager"
                                   src="/Images/Frame (23).svg"
                                   className="offer-icon"
@@ -996,7 +996,7 @@ Please let me know the next steps.`;
                         <div className="d-flex align-items-center gap-3">
                           <img
                             onContextMenu={disableRightClick}
-                            draggable="false"
+                         draggable="false"
                             loading="eager"
                             src="/Images/Group (2).png"
                             alt="product details"
@@ -1060,7 +1060,7 @@ Please let me know the next steps.`;
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
             <img
               onContextMenu={disableRightClick}
-              draggable="false"
+           // draggable="false"
               loading="eager"
               src="/Images/Groupimg.png"
               alt="product details"
@@ -1121,7 +1121,7 @@ Please let me know the next steps.`;
                               return imageToShow ? (
                                 <img
                                   onContextMenu={disableRightClick}
-                                  draggable="false"
+                               // draggable="false"
                                   src={`https://dev.crystovajewels.com${imageToShow}`}
                                   alt={product?.productName}
                                   className="p-1_proi img-fluid border-0"

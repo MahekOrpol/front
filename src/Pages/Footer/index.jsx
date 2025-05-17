@@ -33,7 +33,7 @@ const Footer = () => {
           <div className=" footer_cont text-white sdc_sdds1">
            <img   
   onContextMenu={disableRightClick}
-   draggable="false"
+  //  draggable="false"
               loading="eager"
               src="/Images/crystovalogowhite (1) 2.png"
               width={400}
@@ -174,7 +174,7 @@ const Footer = () => {
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
          <img   
   onContextMenu={disableRightClick}
-   draggable="false"
+  //  draggable="false"
             loading="eager"
             src="/Images/Group 104.svg"
             className=""
@@ -197,7 +197,7 @@ const Footer = () => {
           <div className=" footer_cont_1 text-white sdc_sdds1">
            <img   
   onContextMenu={disableRightClick}
-   draggable="false"
+  //  draggable="false"
               loading="eager"
               src="/Images/crystovalogowhite (1) 2.png"
               width={400}
@@ -360,7 +360,7 @@ const Footer = () => {
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
          <img   
   onContextMenu={disableRightClick}
-   draggable="false"
+  //  draggable="false"
             loading="eager"
             src="/Images/Group 104.svg"
             className=""
