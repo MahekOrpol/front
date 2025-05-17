@@ -529,6 +529,7 @@ Please let me know the next steps.`;
                             muted
                             playsInline
                             controls={false}
+                            preload="auto" 
                           />
                         ) : (
                           <img
@@ -591,6 +592,7 @@ Please let me know the next steps.`;
                               autoPlay
                               loop
                               muted
+                              preload="auto" 
                             />
                           ) : (
                             <img
