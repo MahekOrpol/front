@@ -488,7 +488,7 @@ const CheckoutPage = () => {
                     return imageToShow ? (
                       <img
                         onContextMenu={disableRightClick}
-                        draggable="false"
+                      //   draggable="false"
                         loading="eager"
                         src={`https://dev.crystovajewels.com${imageToShow}`}
                         alt={item.productId.productId}
