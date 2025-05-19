@@ -39,7 +39,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
   const handleQuantityChange = async (index, change) => {
     const updatedItems = orderDetails.map((item, i) =>
       i === index
-        ? { ...item, quantity: Math.max(1, item.quantity + change) }
+        ? { ...item, quantity: Math.max(0, item.quantity + change) }
         : item
     );
 
@@ -281,7 +281,11 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
                   <div className="d-inline-flex align-items-center p-2 gap-3 wr_sss_dd_sssss ">
                     <button
                       className="btn bg_prime rounded-circle fw-bold"
-                      onClick={() => handleQuantityChange(index, -1)}
+                      onClick={() =>{ handleQuantityChange(index, -1)
+                        if(item.quantity == 1){
+                          handleRemoveItem(item.id, index)
+                        }
+                      }}
                     >
                       −
                     </button>
