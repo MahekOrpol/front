@@ -124,7 +124,7 @@ const Contact = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/v1/contact-us/create",
+        "https://dev.crystovajewels.com/api/v1/contact-us/create",
         formData
       );
 
