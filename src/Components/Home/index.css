@@ -1173,7 +1173,7 @@ button.swiper-pagination-bullet {
   height: 10px;
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  width: 26px;
+  width: 10px;
   -webkit-transition: 0.2s;
   transition: 0.2s;
 }
