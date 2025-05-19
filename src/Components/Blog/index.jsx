@@ -225,6 +225,7 @@ const Blog = () => {
                     className="blog_ss_tysn_mg"
                     width={554}
                     alt="blog"
+                    style={{width:"100%"}}
                   />
                 </div>
 
@@ -259,6 +260,7 @@ const Blog = () => {
                     className="blog_ss_tysn_mg"
                     width={554}
                     alt="blog"
+                    style={{width:"100%"}}
                   />
                 </div>
 
@@ -293,6 +295,7 @@ const Blog = () => {
                     className="blog_ss_tysn_mg"
                     width={554}
                     alt="blog"
+                    style={{width:"100%"}}
                   />
                 </div>
 
@@ -327,6 +330,7 @@ const Blog = () => {
                     className="blog_ss_tysn_mg"
                     width={554}
                     alt="blog"
+                    style={{width:"100%"}}
                   />
                 </div>
 
@@ -361,6 +365,7 @@ const Blog = () => {
                     className="blog_ss_tysn_mg"
                     width={554}
                     alt="blog"
+                    style={{width:"100%"}}
                   />
                 </div>
 
@@ -395,6 +400,7 @@ const Blog = () => {
                     className="blog_ss_tysn_mg"
                     width={554}
                     alt="blog"
+                    style={{width:"100%"}}
                   />
                 </div>
 
