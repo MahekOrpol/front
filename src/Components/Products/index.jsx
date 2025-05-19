@@ -957,9 +957,11 @@ const Products = () => {
                       >
                         <div className="card prio_card scdscsed_sdss_pro">
                           <div className="card-image-wrapper position-relative">
+                            {product?.discount?.$numberDecimal !== "0" && (
                             <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 trtrd">
                               SALE
                             </button>
+                            )}
                             <div
                               className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
                               onClick={() => toggleFavorite(product.id)}
