@@ -1167,30 +1167,26 @@ button.swiper-pagination-bullet {
 
 .swiper-pagination-bullet {
   background: transparent none repeat scroll 0 0;
-  border: 1px solid #ee0f6f;
+  border: 1px solid #ee0f6f !important;
   border-radius: 10px;
   display: inline-block;
-  height: 10px;
-  opacity: 1;
+  height: 7px !important;
+  opacity: 1 !important;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  width: 10px;
+  width: 7px !important;
   -webkit-transition: 0.2s;
   transition: 0.2s;
+  background-color: #d3d3d3 !important;
 }
 
 .swiper-pagination-bullet-active {
-  background: rgba(0, 0, 0, 0) -webkit-linear-gradient(
-      left,
-      #ee0f6f 0%,
-      #f89482 100%
-    ) repeat scroll 0 0;
-  background: rgba(0, 0, 0, 0)
-    linear-gradient(to right, #ee0f6f 0%, #f89482 100%) repeat scroll 0 0;
+  border: none !important;
+  background-color: #600 !important;
   border: medium none;
-  height: 12px;
-  opacity: 1;
+  height: 8px !important;
+  opacity: 1 !important;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  width: 12px;
+  width: 8px !important;
 }
 
 .scerff_sdcds {

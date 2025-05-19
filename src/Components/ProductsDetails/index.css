@@ -638,32 +638,6 @@
   }
 }
 
-/* Default Pagination Bullet */
-.swiper-pagination-bullet {
-  background: #d3d3d3;
-  /* Light Gray */
-  opacity: 0.5;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  transition: all 0.3s ease-in-out;
-  margin: 0 3px;
-  /* Space between bullets */
-}
-
-/* Active Bullet */
-.swiper-pagination-bullet-active {
-  background: #600;
-  /* Dark Maroon */
-  width: 6px;
-  /* Longer Active Indicator */
-  height: 6px;
-  /* Same height as other bullets */
-  border-radius: 10px;
-  /* Makes it an elongated dot */
-  opacity: 1;
-}
-
 @media (min-width: 991px) and (max-width: 1201px) {
   .detr_img {
     border-top-left-radius: 0;
