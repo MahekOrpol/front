@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState, useCallback } from "react";
+import React, { lazy, Suspense, useEffect, useState, useCallback, useRef } from "react";
 
 import {
   FaAngleDown,
@@ -31,12 +31,34 @@ const Wishlist = () => {
   const [wishlistCount, setWishlistCount] = useState(
     parseInt(localStorage.getItem("wishlistCount")) || 0
   );
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   const dispatch = useDispatch();
   const {
     count: cartCount,
     loading,
     error,
   } = useSelector((state) => state.cart);
+  const overlayRef = useRef(null);
+
+  useEffect(() => {
+    const overlay = overlayRef.current;
+    if (!overlay) return;
+    const preventScroll = (e) => e.preventDefault();
+
+    if (isCartOpen) {
+      overlay.addEventListener("wheel", preventScroll, { passive: false });
+      overlay.addEventListener("touchmove", preventScroll, { passive: false });
+    } else {
+      overlay.removeEventListener("wheel", preventScroll);
+      overlay.removeEventListener("touchmove", preventScroll);
+    }
+
+    return () => {
+      overlay.removeEventListener("wheel", preventScroll);
+      overlay.removeEventListener("touchmove", preventScroll);
+    };
+  }, [isCartOpen]);
 
   useEffect(() => {
     dispatch(fetchCartCount());
@@ -70,7 +92,7 @@ const Wishlist = () => {
     window.scrollTo(0, 0); // Scrolls to the top when the component loads
   }, []);
 
-  const [isCartOpen, setIsCartOpen] = useState(false);
+
 
   const openCart = useCallback(() => {
     const userId = localStorage.getItem("user_Id");
@@ -261,7 +283,7 @@ const Wishlist = () => {
         showToast={showToast}
         toastMessage={toastMessage}
       />
-      {isCartOpen && <div className="overlay" onClick={closeCart}></div>}
+      {isCartOpen && <div ref={overlayRef} className="overlay" onClick={closeCart}></div>}
       <div className={isCartOpen ? "blurred" : ""}>
         <div className="main-header1">
           <Suspense fallback={<div>Loading...</div>}>
