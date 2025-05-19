@@ -96,3 +96,7 @@ img {
   border-top-color: transparent !important;
   border-left-color: transparent !important;
 }
+
+.product-main-image{
+  transform: scale(1.4);
+}

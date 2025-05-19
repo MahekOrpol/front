@@ -17,7 +17,7 @@ import ImageZoom from "react-image-zooom";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Pagination, Zoom } from "swiper/modules";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -68,6 +68,13 @@ const ProductDetailss = () => {
   const [currentVideoSlide, setCurrentVideoSlide] = useState(0);
   const [currentImageSlide, setCurrentImageSlide] = useState(0);
 
+  const modalRef = useRef();
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const openModal = () => {
+    const modal = new window.bootstrap.Modal(modalRef.current);
+    modal.show();
+  };
   const dispatch = useDispatch();
   const { count: cartCount } = useSelector((state) => state.cart);
 
@@ -405,7 +412,7 @@ Please let me know the next steps.`;
       icon: (
         <img
           onContextMenu={disableRightClick}
-       draggable="false"
+          draggable="false"
           loading="lazy"
           src="/Images/watch.png"
           alt="product details"
@@ -419,7 +426,7 @@ Please let me know the next steps.`;
       icon: (
         <img
           onContextMenu={disableRightClick}
-       draggable="false"
+          draggable="false"
           loading="eager"
           src="/Images/Vector (6).png"
           alt="product details"
@@ -529,12 +536,12 @@ Please let me know the next steps.`;
                             muted
                             playsInline
                             controls={false}
-                            preload="auto" 
+                            preload="auto"
                           />
                         ) : (
                           <img
                             onContextMenu={disableRightClick}
-                         draggable="false"
+                            draggable="false"
                             loading="eager"
                             className="detr_img bg-white"
                             src={`https://dev.crystovajewels.com${img}`}
@@ -542,6 +549,7 @@ Please let me know the next steps.`;
                             style={{
                               boxShadow: "0 0 0 0",
                             }}
+                            onClick={openModal}
                           />
                         )}
                       </div>
@@ -592,12 +600,12 @@ Please let me know the next steps.`;
                               autoPlay
                               loop
                               muted
-                              preload="auto" 
+                              preload="auto"
                             />
                           ) : (
                             <img
                               onContextMenu={disableRightClick}
-                           draggable="false"
+                              draggable="false"
                               loading="eager"
                               className="detr_img slider_ring_sss"
                               src={`https://dev.crystovajewels.com${img}`}
@@ -605,6 +613,7 @@ Please let me know the next steps.`;
                               style={{
                                 boxShadow: "0 0 0 0",
                               }}
+                              onClick={openModal}
                             />
                           )}
                         </SwiperSlide>
@@ -895,7 +904,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       onContextMenu={disableRightClick}
-                   draggable="false"
+                      draggable="false"
                       loading="eager"
                       src="/Images/material.png"
                       alt="AVOID WATER / MOISTURE"
@@ -906,7 +915,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       onContextMenu={disableRightClick}
-                   draggable="false"
+                      draggable="false"
                       loading="eager"
                       src="/Images/Frame 1597883978.png"
                       alt="AVOID PERFUME / LOTION"
@@ -917,7 +926,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       onContextMenu={disableRightClick}
-                   draggable="false"
+                      draggable="false"
                       loading="eager"
                       src="/Images/oeeofiw.png"
                       alt="REMOVE BEFORE SLEEPING"
@@ -928,7 +937,7 @@ Please let me know the next steps.`;
                   <div className="icon-bdf">
                     <img
                       onContextMenu={disableRightClick}
-                   draggable="false"
+                      draggable="false"
                       loading="eager"
                       src="/Images/Frame 1597883980.png"
                       alt="USE SOFT / DRY FABRIC TO CLEAN"
@@ -965,7 +974,7 @@ Please let me know the next steps.`;
                               >
                                 <img
                                   onContextMenu={disableRightClick}
-                               draggable="false"
+                                  draggable="false"
                                   loading="eager"
                                   src="/Images/Frame (23).svg"
                                   className="offer-icon"
@@ -998,7 +1007,7 @@ Please let me know the next steps.`;
                         <div className="d-flex align-items-center gap-3">
                           <img
                             onContextMenu={disableRightClick}
-                         draggable="false"
+                            draggable="false"
                             loading="eager"
                             src="/Images/Group (2).png"
                             alt="product details"
@@ -1062,7 +1071,7 @@ Please let me know the next steps.`;
             <p className="category_txt">A Touch of Grace for Every Gesture</p>
             <img
               onContextMenu={disableRightClick}
-           // draggable="false"
+              // draggable="false"
               loading="eager"
               src="/Images/Groupimg.png"
               alt="product details"
@@ -1123,7 +1132,7 @@ Please let me know the next steps.`;
                               return imageToShow ? (
                                 <img
                                   onContextMenu={disableRightClick}
-                               // draggable="false"
+                                  // draggable="false"
                                   src={`https://dev.crystovajewels.com${imageToShow}`}
                                   alt={product?.productName}
                                   className="p-1_proi img-fluid border-0"
@@ -1171,6 +1180,71 @@ Please let me know the next steps.`;
                     </SwiperSlide>
                   ))}
                 </Swiper>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            className="modal fade"
+            id="exampleModalCenter"
+            tabIndex="-1"
+            ref={modalRef}
+            aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog modal-dialog-centered" role="document">
+              <div className="modal-content">
+                <div className="modal-header border-0">
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body text-center p-0">
+                  <Swiper
+                    initialSlide={selectedIndex}
+                    spaceBetween={10}
+                    loop={true}
+                    speed={800}
+                    zoom={true}
+                    modules={[Zoom,Pagination]}
+                    pagination={{
+                      clickable: true,
+                    }}
+                  >
+                    {customProductDetails?.image?.map((img, index) => {
+                      const isVideo = img.endsWith(".mp4");
+                      return (
+                        <SwiperSlide key={index}>
+                          {isVideo ? (
+                            <video
+                              className="img-fluid"
+                              src={`https://dev.crystovajewels.com${img}`}
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              controls={false}
+                              preload="auto"
+                            />
+                          ) : (
+                            <div className="swiper-zoom-container">
+
+                            <img
+                              className="img-fluid"
+                              src={`https://dev.crystovajewels.com${img}`}
+                              alt={`Product ${index + 1}`}
+                              />
+                              </div>
+                          )}
+                        </SwiperSlide>
+                      );
+                    })}
+                  </Swiper>
+                </div>
               </div>
             </div>
           </div>
