@@ -2208,3 +2208,18 @@ img#imageZoom {
     object-fit: cover;
   }
 }
+
+.modal-body .swiper-slide img {
+  box-shadow: none;
+  border: none;
+  background: white;
+}
+.modal-body {
+  overflow: hidden;
+}
+
+.modal-body .swiper-wrapper {
+  gap: 0rem;
+  margin: auto;
+  margin-top: 0rem;
+}
