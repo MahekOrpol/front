@@ -37,6 +37,7 @@ const Contact = () => {
   const [wishlistCount, setWishlistCount] = useState(
     parseInt(localStorage.getItem("wishlistCount")) || 0
   );
+  const [imageIndexes, setImageIndexes] = useState({});
   const [wishlistItems, setWishlistItems] = useState({});
   const dispatch = useDispatch();
   const {
@@ -65,32 +66,50 @@ const Contact = () => {
   };
 
   useEffect(() => {
-    const fetchWishlist = async () => {
-      if (!userId) return;
-      try {
-        const response = await axios.get(
-          `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
-        );
-        const wishlistData = response.data.data || [];
-        const count = wishlistData.length;
-        updateWishlistCount(count); // Initialize count properly
-        const wishlistMap = {};
-        wishlistData.forEach((item) => {
-          let productId = item.productId._id || item.productId.id;
-          if (typeof productId === "string" || typeof productId === "number") {
-            wishlistMap[productId] = item.id;
-          } else {
-            console.error("Invalid productId format:", item.productId);
-          }
-        });
-        setWishlistItems(wishlistMap);
-        setWishlistCount(wishlistData.length);
-      } catch (error) {
-        console.error("Error fetching wishlist:", error);
-      }
-    };
     fetchWishlist();
   }, [userId]);
+
+  const fetchWishlist = async () => {
+    if (!userId) {
+      console.log("No userId found");
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
+      );
+
+      if (!response?.data?.data) {
+        console.log("No wishlist data found");
+        setWishlistItems([]);
+        setWishlistCount(0);
+        localStorage.setItem("wishlistCount", "0");
+        return;
+      }
+
+      const wishlistData = response.data.data.filter((item) => item?.productId); // Filter out items without productId
+      setWishlistItems(wishlistData);
+      setWishlistCount(wishlistData.length);
+      localStorage.setItem("wishlistCount", wishlistData.length.toString());
+
+      // Initialize image indexes for each product
+      const initialIndexes = {};
+      wishlistData.forEach((item) => {
+        if (item?.productId?.id) {
+          initialIndexes[item.productId.id] = 0;
+        }
+      });
+      setImageIndexes(initialIndexes);
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+      toast.error("Failed to fetch wishlist items");
+      setWishlistItems([]);
+      setWishlistCount(0);
+      localStorage.setItem("wishlistCount", "0");
+    }
+  };
+
 
   const openCart = () => {
     const userId = localStorage.getItem("user_Id");

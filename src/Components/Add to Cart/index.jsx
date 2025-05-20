@@ -19,7 +19,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
     return orderDetails
       .reduce(
         (total, item) =>
-          total + parseFloat(item.salePrice || 0) * item.quantity,
+          total + parseFloat(item.salePrice || 0) * item.selectedqty,
         0
       )
       .toFixed(2);
@@ -30,7 +30,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
       .reduce(
         (total, item) =>
           total +
-          parseFloat(item.discount?.$numberDecimal || 0) * item.quantity,
+          parseFloat(item.discount?.$numberDecimal || 0) * item.selectedqty,
         0
       )
       .toFixed(2);
@@ -39,7 +39,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
   const handleQuantityChange = async (index, change) => {
     const updatedItems = orderDetails.map((item, i) =>
       i === index
-        ? { ...item, quantity: Math.max(0, item.quantity + change) }
+        ? { ...item, selectedqty: Math.max(0, parseInt(item.selectedqty) + change) }
         : item
     );
 
@@ -52,14 +52,14 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
     console.log("Calling update API with:");
     console.log("User ID:", userId);
     console.log("Product ID:", productId);
-    console.log("Quantity:", updatedItem.quantity);
+    console.log("Quantity:", updatedItem.selectedqty);
 
     if (userId && productId) {
       try {
         await axios.put(
           `https://dev.crystovajewels.com/api/v1/order-details/update/${userId}/${productId}`,
           {
-            selectedqty: JSON.stringify(updatedItem.quantity),
+            selectedqty: JSON.stringify(updatedItem.selectedqty),
           }
         );
         console.log("Quantity updated");
@@ -190,6 +190,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
               className="cart-item d-flex flex-column align-items-center"
             >
               {(() => {
+                console.log('orderDetails :>> ', orderDetails);
                 const imageToShow = item.productId?.image.find(
                   (img) => !img.endsWith(".mp4")
                 );
@@ -282,14 +283,14 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
                     <button
                       className="btn bg_prime rounded-circle fw-bold"
                       onClick={() =>{ handleQuantityChange(index, -1)
-                        if(item.quantity == 1){
+                        if(item.selectedqty == 1){
                           handleRemoveItem(item.id, index)
                         }
                       }}
                     >
                       −
                     </button>
-                    <span className="fw-bold">{item.quantity}</span>
+                    <span className="fw-bold">{item.selectedqty}</span>
                     <button
                       className="btn bg_prime rounded-circle fw-bold"
                       onClick={() => handleQuantityChange(index, 1)}
