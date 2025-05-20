@@ -1,13 +1,101 @@
-import React, { lazy } from 'react';
+import React, { lazy, useEffect, useState } from "react";
 const Footer = lazy(() => import("../Footer"));
 const Header = lazy(() => import("../Header"));
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fetchCartCount } from "../../redux/cartSlice";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const PrivacyPolicy = () => {
+  const dispatch = useDispatch();
+  const { count: cartCount } = useSelector((state) => state.cart);
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
+  );
+  const [imageIndexes, setImageIndexes] = useState({});
+  const [wishlistItems, setWishlistItems] = useState({});
+
+  useEffect(() => {
+    dispatch(fetchCartCount());
+  }, [dispatch]);
+  const navigate = useNavigate("");
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const userId = localStorage.getItem("user_Id");
+
+  const openCart = () => {
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
+    setIsCartOpen(true);
+    document.body.classList.add("no-scroll");
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false);
+    setShowToast(false);
+    dispatch(fetchCartCount());
+    document.body.classList.remove("no-scroll");
+  };
+
+  useEffect(() => {
+    fetchWishlist();
+  }, [userId]);
+
+  const fetchWishlist = async () => {
+    if (!userId) {
+      console.log("No userId found");
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
+      );
+
+      if (!response?.data?.data) {
+        console.log("No wishlist data found");
+        setWishlistItems([]);
+        setWishlistCount(0);
+        localStorage.setItem("wishlistCount", "0");
+        return;
+      }
+
+      const wishlistData = response.data.data.filter((item) => item?.productId); // Filter out items without productId
+      setWishlistItems(wishlistData);
+      setWishlistCount(wishlistData.length);
+      localStorage.setItem("wishlistCount", wishlistData.length.toString());
+
+      // Initialize image indexes for each product
+      const initialIndexes = {};
+      wishlistData.forEach((item) => {
+        if (item?.productId?.id) {
+          initialIndexes[item.productId.id] = 0;
+        }
+      });
+      setImageIndexes(initialIndexes);
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+      toast.error("Failed to fetch wishlist items");
+      setWishlistItems([]);
+      setWishlistCount(0);
+      localStorage.setItem("wishlistCount", "0");
+    }
+  };
+
   return (
     <div>
-      <Header />
+      <Header
+        openCart={openCart}
+        wishlistCount={userId ? wishlistCount : null}
+        cartCount={userId ? cartCount : null}
+      />
       <div className="privacy-policy container">
-      <h2 className="text-uppercase termsAndCondition d-flex justify-content-start pt-3">
+        <h2 className="text-uppercase termsAndCondition d-flex justify-content-start pt-3">
           Privacy Policy
         </h2>
 

@@ -48,6 +48,7 @@ const ProductDetailss = () => {
   const [productDetails, setProductDetails] = useState({});
   const userId = localStorage.getItem("user_Id");
   const [wishlistItems, setWishlistItems] = useState({});
+  const [imageIndexes, setImageIndexes] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -345,32 +346,49 @@ Please let me know the next steps.`;
   );
 
   useEffect(() => {
-    const fetchWishlist = async () => {
-      if (!userId) return;
-      try {
-        const response = await axios.get(
-          `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
-        );
-        const wishlistData = response.data.data || [];
-        const count = wishlistData.length;
-        updateWishlistCount(count); // Initialize count properly
-        const wishlistMap = {};
-        wishlistData.forEach((item) => {
-          let productId = item.productId?._id || item.productId?.id;
-          if (typeof productId === "string" || typeof productId === "number") {
-            wishlistMap[productId] = item.id;
-          } else {
-            console.error("Invalid productId format:", item.productId);
-          }
-        });
-        setWishlistItems(wishlistMap);
-        setWishlistCount(wishlistData.length);
-      } catch (error) {
-        console.error("Error fetching wishlist:", error);
-      }
-    };
     fetchWishlist();
   }, [userId]);
+
+  const fetchWishlist = async () => {
+    if (!userId) {
+      console.log("No userId found");
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
+      );
+
+      if (!response?.data?.data) {
+        console.log("No wishlist data found");
+        setWishlistItems([]);
+        setWishlistCount(0);
+        localStorage.setItem("wishlistCount", "0");
+        return;
+      }
+
+      const wishlistData = response.data.data.filter((item) => item?.productId); // Filter out items without productId
+      setWishlistItems(wishlistData);
+      setWishlistCount(wishlistData.length);
+      localStorage.setItem("wishlistCount", wishlistData.length.toString());
+
+      // Initialize image indexes for each product
+      const initialIndexes = {};
+      wishlistData.forEach((item) => {
+        if (item?.productId?.id) {
+          initialIndexes[item.productId.id] = 0;
+        }
+      });
+      setImageIndexes(initialIndexes);
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+      toast.error("Failed to fetch wishlist items");
+      setWishlistItems([]);
+      setWishlistCount(0);
+      localStorage.setItem("wishlistCount", "0");
+    }
+  };
 
   useEffect(() => {
     const fetchTopReview = async () => {
@@ -446,39 +464,68 @@ Please let me know the next steps.`;
           navigate("/login");
           return;
         }
-        const productSize = Array.isArray(product?.productSize)
-          ? product.productSize.join(",")
-          : product?.productSize || "";
-        const variationIds = Array.isArray(product?.variations)
-          ? product.variations.map((variation) => variation?.id)
-          : [];
-        const payload = {
-          userId: userId,
-          productId: product?.id,
-          productPrice: product.salePrice?.$numberDecimal,
-          quantity: product?.quantity || 1,
-          productSize: productSize,
-          discount: product?.discount?.$numberDecimal || 0,
-          variation: variationIds,
-        };
-        const response = await axios.post(
-          "https://dev.crystovajewels.com/api/v1/order-details/create",
-          payload,
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        openCart();
-        if (response.status === 200) {
-          console.log("Product added to cart successfully:", response.data);
-          dispatch(fetchCartCount());
-        } else {
-          console.error("Failed to add product to cart:", response);
+
+        // First, check if the product already exists in the cart
+        let existingItem = null;
+        try {
+          const existingCartResponse = await axios.get(
+            `https://dev.crystovajewels.com/api/v1/order-details/get/${userId}`
+          );
+          const existingCartItems = existingCartResponse.data.data || [];
+          existingItem = existingCartItems.find(
+            (item) => item?.productId?.id === product.id
+          );
+          console.log('existingItem :>> ', existingItem);
+        } catch (error) {
+          console.log("Error fetching cart items, proceeding to add new item", error);
         }
-        setToastMessage("Item added to cart successfully!");
+
+        if (existingItem && existingItem.productId) {
+          // If product exists, update the quantity
+          const updatedQuantity = parseInt(existingItem.selectedqty) + 1;
+          await axios.put(
+            `https://dev.crystovajewels.com/api/v1/order-details/update/${userId}/${existingItem.productId.id}`,
+            {
+              selectedqty: JSON.stringify(updatedQuantity)
+            }
+          );
+        } else {
+          // If product doesn't exist, create a new cart item
+          const productSize = Array.isArray(product?.productSize)
+            ? product.productSize.join(",")
+            : product?.productSize || "";
+          const variationIds = Array.isArray(product?.variations)
+            ? product.variations.map((variation) => variation.id)
+            : [];
+          const payload = {
+            userId: userId,
+            productId: product?.id,
+            productPrice: product.salePrice?.$numberDecimal,
+            quantity: product?.quantity || 1,
+            productSize: productSize,
+            discount: product?.discount?.$numberDecimal || 0,
+            variation: variationIds,
+          };
+          await axios.post(
+            "https://dev.crystovajewels.com/api/v1/order-details/create",
+            payload,
+            {
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+        }
+
+        openCart();
+        dispatch(fetchCartCount());
+        setToastMessage(
+          existingItem
+            ? "Item quantity increased in cart!"
+            : "Item added to cart successfully!"
+        );
         setShowToast(true);
       } catch (error) {
         console.error("Error adding product to cart:", error);
+        toast.error("Failed to update cart. Please try again!");
       }
     },
     [dispatch, openCart, navigate]
@@ -522,7 +569,7 @@ Please let me know the next steps.`;
             <div className="w-100 sdcsd_saxza d-md-none">
               <div className="pt-5 d-flex flex-column gap-4 position-sticky top-0 dscsd_insdsss">
                 {customProductDetails?.image &&
-                customProductDetails.image.length > 0 ? (
+                  customProductDetails.image.length > 0 ? (
                   customProductDetails.image.map((img, index) => {
                     const isVideo = img.endsWith(".mp4"); // Check if the file is a video
                     return (
@@ -585,7 +632,7 @@ Please let me know the next steps.`;
                   className="fddd"
                 >
                   {customProductDetails?.image &&
-                  customProductDetails.image.length > 0 ? (
+                    customProductDetails.image.length > 0 ? (
                     customProductDetails.image.map((img, index) => {
                       const isVideo = img.endsWith(".mp4"); // Check if the file is a video
 
@@ -749,7 +796,7 @@ Please let me know the next steps.`;
                 {/* Only show size dropdown if productSize is not ["[]"] */}
                 {customProductDetails?.productSize?.toString() !== "[]" &&
                   customProductDetails?.productSize?.toString() !==
-                    "Size is not Available" && (
+                  "Size is not Available" && (
                     <>
                       <div className="dropdown">
                         <Dropdown>
@@ -763,18 +810,18 @@ Please let me know the next steps.`;
                           <Dropdown.Menu className="product_det_menu w-50 mt-1">
                             {Array.isArray(customProductDetails?.productSize)
                               ? customProductDetails.productSize.map(
-                                  (sizeGroup) =>
-                                    sizeGroup.split(",").map((size) => (
-                                      <Dropdown.Item
-                                        key={size.trim()}
-                                        onClick={() =>
-                                          handleSelect(size.trim())
-                                        }
-                                      >
-                                        {size.trim()}
-                                      </Dropdown.Item>
-                                    ))
-                                )
+                                (sizeGroup) =>
+                                  sizeGroup.split(",").map((size) => (
+                                    <Dropdown.Item
+                                      key={size.trim()}
+                                      onClick={() =>
+                                        handleSelect(size.trim())
+                                      }
+                                    >
+                                      {size.trim()}
+                                    </Dropdown.Item>
+                                  ))
+                              )
                               : []}
                           </Dropdown.Menu>
                         </Dropdown>
@@ -832,10 +879,10 @@ Please let me know the next steps.`;
                     target="_blank"
                     rel="noopener noreferrer"
                     className="d-flex align-items-center whats_abtn  justify-content-center gap-3 mt-2 "
-                    // onClick={() => {
-                    //   window.open("https://wa.me/919081139039", "_blank");
-                    // }}
-                    // onClick={() => addToCart(productDetails)}
+                  // onClick={() => {
+                  //   window.open("https://wa.me/919081139039", "_blank");
+                  // }}
+                  // onClick={() => addToCart(productDetails)}
                   >
                     Order On Whatsapp{" "}
                     <span className="whatsapp-icon">
@@ -868,10 +915,10 @@ Please let me know the next steps.`;
                       target="_blank"
                       rel="noopener noreferrer"
                       className="d-flex align-items-center w-100 whats_abtn_1 txt_shu justify-content-center gap-1"
-                      // onClick={() => {
-                      //   window.open("https://wa.me/919081139039", "_blank");
-                      // }}
-                      // onClick={() => addToCart(productDetails)}
+                    // onClick={() => {
+                    //   window.open("https://wa.me/919081139039", "_blank");
+                    // }}
+                    // onClick={() => addToCart(productDetails)}
                     >
                       Order On Whatsapp{" "}
                       <span className="whatsapp-icon">
@@ -1037,9 +1084,8 @@ Please let me know the next steps.`;
                       <div className="accordion-item" key={index}>
                         <h2 className="accordion-header">
                           <button
-                            className={`accordion-button ${
-                              openIndex === index ? "" : "collapsed"
-                            }`}
+                            className={`accordion-button ${openIndex === index ? "" : "collapsed"
+                              }`}
                             type="button"
                             onClick={() => toggleFAQ(index)}
                           >
@@ -1049,9 +1095,8 @@ Please let me know the next steps.`;
                           </button>
                         </h2>
                         <div
-                          className={`accordion-collapse collapse ${
-                            openIndex === index ? "show" : ""
-                          }`}
+                          className={`accordion-collapse collapse ${openIndex === index ? "show" : ""
+                            }`}
                           data-bs-parent="#faqAccordion"
                         >
                           <div className="accordion-body srfferc">
@@ -1093,11 +1138,11 @@ Please let me know the next steps.`;
                   loop={true}
                   preloadImages={false}
                   lazy={true}
-                  // autoplay={{
-                  //   delay: 3000, // Change delay as needed (3000ms = 3s)
-                  //   disableOnInteraction: false,
-                  // }}
-                  // modules={[Autoplay]}
+                // autoplay={{
+                //   delay: 3000, // Change delay as needed (3000ms = 3s)
+                //   disableOnInteraction: false,
+                // }}
+                // modules={[Autoplay]}
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
@@ -1210,7 +1255,7 @@ Please let me know the next steps.`;
                     loop={true}
                     speed={800}
                     zoom={true}
-                    modules={[Zoom,Pagination]}
+                    modules={[Zoom, Pagination]}
                     pagination={{
                       clickable: true,
                     }}
@@ -1233,12 +1278,12 @@ Please let me know the next steps.`;
                           ) : (
                             <div className="swiper-zoom-container">
 
-                            <img
-                              className="img-fluid"
-                              src={`https://dev.crystovajewels.com${img}`}
-                              alt={`Product ${index + 1}`}
+                              <img
+                                className="img-fluid"
+                                src={`https://dev.crystovajewels.com${img}`}
+                                alt={`Product ${index + 1}`}
                               />
-                              </div>
+                            </div>
                           )}
                         </SwiperSlide>
                       );

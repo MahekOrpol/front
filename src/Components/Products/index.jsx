@@ -483,32 +483,49 @@ const Products = () => {
   );
 
   useEffect(() => {
-    const fetchWishlist = async () => {
-      if (!userId) return;
-      try {
-        const response = await axios.get(
-          `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
-        );
-        const wishlistData = response.data.data || [];
-        const count = wishlistData.length;
-        updateWishlistCount(count); // Initialize count properly
-        const wishlistMap = {};
-        wishlistData.forEach((item) => {
-          let productId = item.productId?._id || item.productId?.id;
-          if (typeof productId === "string" || typeof productId === "number") {
-            wishlistMap[productId] = item.id;
-          } else {
-            console.error("Invalid productId format:", item.productId);
-          }
-        });
-        setWishlistItems(wishlistMap);
-        setWishlistCount(wishlistData.length);
-      } catch (error) {
-        console.error("Error fetching wishlist:", error);
-      }
-    };
     fetchWishlist();
   }, [userId]);
+
+  const fetchWishlist = async () => {
+    if (!userId) {
+      console.log("No userId found");
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
+      );
+
+      if (!response?.data?.data) {
+        console.log("No wishlist data found");
+        setWishlistItems([]);
+        setWishlistCount(0);
+        localStorage.setItem("wishlistCount", "0");
+        return;
+      }
+
+      const wishlistData = response.data.data.filter((item) => item?.productId); // Filter out items without productId
+      setWishlistItems(wishlistData);
+      setWishlistCount(wishlistData.length);
+      localStorage.setItem("wishlistCount", wishlistData.length.toString());
+
+      // Initialize image indexes for each product
+      const initialIndexes = {};
+      wishlistData.forEach((item) => {
+        if (item?.productId?.id) {
+          initialIndexes[item.productId.id] = 0;
+        }
+      });
+      setImageIndexes(initialIndexes);
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+      toast.error("Failed to fetch wishlist items");
+      setWishlistItems([]);
+      setWishlistCount(0);
+      localStorage.setItem("wishlistCount", "0");
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -522,39 +539,68 @@ const Products = () => {
           navigate("/login");
           return;
         }
-        const productSize = Array.isArray(product?.productSize)
-          ? product.productSize.join(",")
-          : product?.productSize || "";
-        const variationIds = Array.isArray(product?.variations)
-          ? product.variations.map((variation) => variation.id)
-          : [];
-        const payload = {
-          userId: userId,
-          productId: product?.id,
-          productPrice: product.salePrice?.$numberDecimal,
-          quantity: product?.quantity || 1,
-          productSize: productSize,
-          discount: product?.discount?.$numberDecimal || 0,
-          variation: variationIds,
-        };
-        const response = await axios.post(
-          "https://dev.crystovajewels.com/api/v1/order-details/create",
-          payload,
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        );
-        openCart();
-        if (response.status === 200) {
-          console.log("Product added to cart successfully:", response.data);
-        } else {
-          console.error("Failed to add product to cart:", response);
+
+        // First, check if the product already exists in the cart
+        let existingItem = null;
+        try {
+          const existingCartResponse = await axios.get(
+            `https://dev.crystovajewels.com/api/v1/order-details/get/${userId}`
+          );
+          const existingCartItems = existingCartResponse.data.data || [];
+          existingItem = existingCartItems.find(
+            (item) => item?.productId?.id === product.id
+          );
+          console.log('existingItem :>> ', existingItem);
+        } catch (error) {
+          console.log("Error fetching cart items, proceeding to add new item", error);
         }
+
+        if (existingItem && existingItem.productId) {
+          // If product exists, update the quantity
+          const updatedQuantity = parseInt(existingItem.selectedqty) + 1;
+          await axios.put(
+            `https://dev.crystovajewels.com/api/v1/order-details/update/${userId}/${existingItem.productId.id}`,
+            {
+              selectedqty: JSON.stringify(updatedQuantity)
+            }
+          );
+        } else {
+          // If product doesn't exist, create a new cart item
+          const productSize = Array.isArray(product?.productSize)
+            ? product.productSize.join(",")
+            : product?.productSize || "";
+          const variationIds = Array.isArray(product?.variations)
+            ? product.variations.map((variation) => variation.id)
+            : [];
+          const payload = {
+            userId: userId,
+            productId: product?.id,
+            productPrice: product.salePrice?.$numberDecimal,
+            quantity: product?.quantity || 1,
+            productSize: productSize,
+            discount: product?.discount?.$numberDecimal || 0,
+            variation: variationIds,
+          };
+          await axios.post(
+            "https://dev.crystovajewels.com/api/v1/order-details/create",
+            payload,
+            {
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+        }
+
+        openCart();
         dispatch(fetchCartCount());
-        setToastMessage("Item added to cart successfully!");
+        setToastMessage(
+          existingItem
+            ? "Item quantity increased in cart!"
+            : "Item added to cart successfully!"
+        );
         setShowToast(true);
       } catch (error) {
         console.error("Error adding product to cart:", error);
+        toast.error("Failed to update cart. Please try again!");
       }
     },
     [dispatch, openCart, navigate]
@@ -633,7 +679,7 @@ const Products = () => {
   return (
     <>
       <ToastContainer
-        position="top-right"
+        position="center"
         autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -949,18 +995,17 @@ const Products = () => {
                         </div>
                       )}
                       <div
-                        className={`${
-                          isSearchActive
-                            ? "masonry-item col-lg-3 col-md-4 col-6"
-                            : "col-lg-3 col-md-4 col-6"
-                        } mb-4 pt-2 asxasx_card`}
+                        className={`${isSearchActive
+                          ? "masonry-item col-lg-3 col-md-4 col-6"
+                          : "col-lg-3 col-md-4 col-6"
+                          } mb-4 pt-2 asxasx_card`}
                       >
                         <div className="card prio_card scdscsed_sdss_pro">
                           <div className="card-image-wrapper position-relative">
                             {product?.discount?.$numberDecimal !== "0" && (
-                            <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 trtrd">
-                              SALE
-                            </button>
+                              <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 trtrd">
+                                SALE
+                              </button>
                             )}
                             <div
                               className="snuf_dfv text-overlay position-absolute top-0 end-0 p-2 text-white text-center d-flex flex-column mt-2 me-2"
@@ -1009,25 +1054,25 @@ const Products = () => {
                               {product.image?.filter(
                                 (img) => !img.endsWith(".mp4")
                               )?.length > 1 && (
-                                <div className="hover-overlay">
-                                  <button
-                                    className="left-btn"
-                                    onClick={() =>
-                                      handlePrevImage(product.id, product.image)
-                                    }
-                                  >
-                                    <FaChevronLeft />
-                                  </button>
-                                  <button
-                                    className="right-btn"
-                                    onClick={() =>
-                                      handleNextImage(product.id, product.image)
-                                    }
-                                  >
-                                    <FaChevronRight />
-                                  </button>
-                                </div>
-                              )}
+                                  <div className="hover-overlay">
+                                    <button
+                                      className="left-btn"
+                                      onClick={() =>
+                                        handlePrevImage(product.id, product.image)
+                                      }
+                                    >
+                                      <FaChevronLeft />
+                                    </button>
+                                    <button
+                                      className="right-btn"
+                                      onClick={() =>
+                                        handleNextImage(product.id, product.image)
+                                      }
+                                    >
+                                      <FaChevronRight />
+                                    </button>
+                                  </div>
+                                )}
                             </div>
                           </div>
                         </div>

@@ -1,11 +1,22 @@
-import React, { lazy, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 const Footer = lazy(() => import("../../Pages/Footer"));
 const Header = lazy(() => import("../../Pages/Header"));
 import "./policy.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fetchCartCount } from "../../redux/cartSlice";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const TermsAndConditions = () => {
   const [activeSection, setActiveSection] = useState(null);
-
+  const dispatch = useDispatch();
+  const { count: cartCount } = useSelector((state) => state.cart);
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
+  );
+  const [imageIndexes, setImageIndexes] = useState({});
+  const [wishlistItems, setWishlistItems] = useState({});
   const toggleSection = (section) => {
     setActiveSection(activeSection === section ? null : section);
   };
@@ -149,9 +160,84 @@ const TermsAndConditions = () => {
     },
   ];
 
+  useEffect(() => {
+    dispatch(fetchCartCount());
+  }, [dispatch]);
+  const navigate = useNavigate("");
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const userId = localStorage.getItem("user_Id");
+
+  const openCart = () => {
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      navigate("/login");
+      return;
+    }
+    setIsCartOpen(true);
+    document.body.classList.add("no-scroll");
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false);
+    setShowToast(false);
+    dispatch(fetchCartCount());
+    document.body.classList.remove("no-scroll");
+  };
+
+  useEffect(() => {
+    fetchWishlist();
+  }, [userId]);
+
+  const fetchWishlist = async () => {
+    if (!userId) {
+      console.log("No userId found");
+      return;
+    }
+
+    try {
+      const response = await axios.get(
+        `https://dev.crystovajewels.com/api/v1/wishlist/${userId}`
+      );
+
+      if (!response?.data?.data) {
+        console.log("No wishlist data found");
+        setWishlistItems([]);
+        setWishlistCount(0);
+        localStorage.setItem("wishlistCount", "0");
+        return;
+      }
+
+      const wishlistData = response.data.data.filter((item) => item?.productId); // Filter out items without productId
+      setWishlistItems(wishlistData);
+      setWishlistCount(wishlistData.length);
+      localStorage.setItem("wishlistCount", wishlistData.length.toString());
+
+      // Initialize image indexes for each product
+      const initialIndexes = {};
+      wishlistData.forEach((item) => {
+        if (item?.productId?.id) {
+          initialIndexes[item.productId.id] = 0;
+        }
+      });
+      setImageIndexes(initialIndexes);
+    } catch (error) {
+      console.error("Error fetching wishlist:", error);
+      toast.error("Failed to fetch wishlist items");
+      setWishlistItems([]);
+      setWishlistCount(0);
+      localStorage.setItem("wishlistCount", "0");
+    }
+  };
+
   return (
     <div>
-      <Header />
+      <Header
+        openCart={openCart}
+        wishlistCount={userId ? wishlistCount : null}
+        cartCount={userId ? cartCount : null}
+      />
       <div className="terms-and-conditions container">
         <h2 className="text-uppercase termsAndCondition d-flex justify-content-start pt-3">
           Terms and Conditions
@@ -186,9 +272,8 @@ const TermsAndConditions = () => {
             <div className="accordion-item" key={index}>
               <h2 className="accordion-header">
                 <button
-                  className={`accordion-button ${
-                    activeSection === index ? "" : "collapsed"
-                  }`}
+                  className={`accordion-button ${activeSection === index ? "" : "collapsed"
+                    }`}
                   type="button"
                   aria-expanded={activeSection === index}
                   onClick={() => toggleSection(index)}
@@ -200,9 +285,8 @@ const TermsAndConditions = () => {
                 </button>
               </h2>
               <div
-                className={`accordion-collapse collapse ${
-                  activeSection === index ? "show" : ""
-                }`}
+                className={`accordion-collapse collapse ${activeSection === index ? "show" : ""
+                  }`}
               >
                 <div
                   className="accordion-body"
