@@ -6,14 +6,24 @@ import { useLocation } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { fetchCartCount } from "../../redux/cartSlice";
+import { useDispatch } from "react-redux";
 
 const Header = lazy(() => import("../../Pages/Header"));
 const Footer = lazy(() => import("../../Pages/Footer"));
 
-const CheckoutPage = () => {
+const CheckoutPage = ({cartCount = 0}) => {
   const navigate = useNavigate();
   const [errors, setErrors] = useState({}); // State to store error messages
   const disableRightClick = (e) => e.preventDefault();
+  const [orderDetails, setOrderDetails] = useState([]);
+  // const [totalAmount, setTotalAmount] = useState(0);
+  const [discountTotal, setDiscountTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const user_Id = localStorage.getItem("user_Id");
+
+  
 
   const [formData, setFormData] = useState({
     email: "",
@@ -30,10 +40,69 @@ const CheckoutPage = () => {
     payPhoneNumber: "",
   });
 
+  const calculateTotal = () => {
+    return orderDetails
+      .reduce(
+        (total, item) =>
+          total + parseFloat(item.salePrice || 0) * item.selectedqty,
+        0
+      )
+      .toFixed(2);
+  };
+  useEffect(() => {
+      if (user_Id) {
+        dispatch(fetchCartCount());
+      }
+    }, [dispatch, user_Id]);
   useEffect(() => {
     window.scrollTo(0, 0);
     sessionStorage.setItem("cameFromCheckout", "true");
+    getOrderDetails();
   }, []);
+
+  const getOrderDetails = async () => {
+    const userId = localStorage.getItem("user_Id");
+    try {
+      const res = await axios.get(
+        `https://dev.crystovajewels.com/api/v1/order-details/get/${userId}`
+      );
+      if (res.status === 200) {
+        const items = res.data.data.map((item) => {
+          const hasVariations = item.productId?.hasVariations;
+          let selectedSize = "";
+          let salePrice = parseFloat(
+            item.productId?.salePrice?.$numberDecimal || 0
+          );
+
+          if (
+            hasVariations &&
+            Array.isArray(item.variation) &&
+            item.variation.length > 0
+          ) {
+            selectedSize = item.variation[0]?.productSize || "";
+            salePrice = parseFloat(item.variation[0]?.salePrice || 0);
+          } else if (!hasVariations) {
+            selectedSize = Array.isArray(item.productId?.productSize)
+              ? item.productId?.productSize[0].split(",")[0] || ""
+              : "";
+          }
+
+          return {
+            ...item,
+            quantity: 1,
+            selectedSize,
+            salePrice,
+          };
+        });
+
+        setOrderDetails(items);
+        setLoading(false);
+      }
+    } catch (err) {
+      console.error("Error fetching order details:", err);
+      setLoading(false);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -83,12 +152,12 @@ const CheckoutPage = () => {
   }, []);
 
   const location = useLocation();
-  const totalAmount = location.state?.total || "0.00";
-  const orderDetails = location.state?.orderDetails || [];
-  const discountTotal = location?.state?.discountTotal || 0;
-  const selectedqty = location?.state?.selectedqty || 0;
+  // const totalAmount = location.state?.total || "0.00";
+  // const orderDetails = location.state?.orderDetails || [];
+  // const discountTotal = location?.state?.discountTotal || 0;
+  // const selectedqty = location?.state?.selectedqty || 0;
   // const selectedSize = orderDetails.selectedSize;
-  const mainTotal = totalAmount - discountTotal;
+  // const mainTotal = totalAmount - discountTotal;
   // const quantity = location.state?.orderDetails.quantity;
   const selectedSize = orderDetails.map((item) => item.selectedSize).join(", ");
   const quantity = orderDetails.map((item) => item.selectedqty).join(", ");
@@ -477,8 +546,8 @@ const CheckoutPage = () => {
               const displayPrice = item.productId.hasVariations
                 ? item.salePrice // Use the size-specific sale price
                 : item.productPrice?.$numberDecimal
-                ? parseFloat(item.productPrice.$numberDecimal)
-                : "Price not available";
+                  ? parseFloat(item.productPrice.$numberDecimal)
+                  : "Price not available";
               return (
                 <div className="checkout-order-item" key={index}>
                   {(() => {
@@ -488,7 +557,7 @@ const CheckoutPage = () => {
                     return imageToShow ? (
                       <img
                         onContextMenu={disableRightClick}
-                      //   draggable="false"
+                        //   draggable="false"
                         loading="eager"
                         src={`https://dev.crystovajewels.com${imageToShow}`}
                         alt={item.productId.productId}
@@ -538,8 +607,8 @@ const CheckoutPage = () => {
 
             <div className="checkout-summary">
               <div className="summary-row">
-                <span>Subtotal • {orderDetails.length} Items</span>
-                <strong>&#8377;{totalAmount}</strong>
+                <span>Subtotal • {cartCount} Items</span>
+                <strong>₹{calculateTotal()}</strong>
               </div>
               <div className="summary-row">
                 <span>Total Discount</span>
@@ -552,7 +621,7 @@ const CheckoutPage = () => {
               <div className="summary-divider"></div>
               <div className="summary-row total">
                 <span>Total</span>
-                <strong>&#8377;{mainTotal.toFixed(2)}</strong>
+                <strong>₹{calculateTotal()}</strong>
               </div>
             </div>
           </div>

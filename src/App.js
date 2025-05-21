@@ -24,8 +24,13 @@ import 'nprogress/nprogress.css';
 import TermsAndConditions from "./Pages/Policies/terms&conditions";
 import PrivacyPolicy from "./Pages/Policies/privacy-policy";
 import NotFound from "./NotFound";
+import { useDispatch, useSelector } from "react-redux";
+
 
 function App() {
+  const userId = localStorage.getItem("user_Id");
+  const { count: cartCount } = useSelector((state) => state.cart);
+
   useEffect(() => {
     let lastScrollTop = 0;
 
@@ -85,7 +90,7 @@ function App() {
           />
           <Route
             path="/checkout"
-            element={<ProtectedRoute element={<CheckoutPage />} />}
+            element={<ProtectedRoute element={<CheckoutPage cartCount={userId ? cartCount : null} />} />}
           />
           <Route
             path="/login"
