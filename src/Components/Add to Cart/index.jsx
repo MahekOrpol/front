@@ -86,6 +86,34 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
       toast.error("Failed to remove item from cart");
     }
   };
+  const deleteAllOrderDetails = async () => {
+    const userId = localStorage.getItem("user_Id");
+
+    if (!userId) {
+      toast.error("User not identified. Please login again.");
+      return;
+    }
+
+    try {
+      const response = await axios.delete(
+        `https://dev.crystovajewels.com/api/v1/order-details/delete-all/${userId}`
+      );
+
+      if (response.status === 200) {
+        // Clear the local state
+        setOrderDetails([]);
+        // Update the cart count in Redux
+        dispatch(updateCartCount(0));
+        // Show success message
+        toast.success("All items removed from cart!");
+        // Close the cart popup if desired
+        // closeCart();
+      }
+    } catch (error) {
+      console.error("Error deleting order details:", error);
+      toast.error(error.response?.data?.message || "Failed to clear cart");
+    }
+  };
 
   const getOrderDetails = async () => {
     const userId = localStorage.getItem("user_Id");
@@ -181,7 +209,9 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
         <h5 className="fw-bold">Your Cart</h5>
         <RxCross2 onClick={closeCart} style={{ cursor: "pointer" }} />
       </div>
-
+      <div className="d-flex p-2 align-items-center justify-content-end" style={{color:"#611d2b",textDecoration:"Underline"}}>
+        <div><a onClick={deleteAllOrderDetails}>Clear All</a></div>
+      </div>
       <div className="cart-items-bg">
         {orderDetails?.length > 0 ? (
           orderDetails.map((item, index) => (
@@ -216,11 +246,11 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
               })()}
               <div className="cart_item_detail pt-3">
                 {!Array.isArray(item.productId?.productSize) ||
-                item.productId.productSize.length === 0 ||
-                item.productId.productSize[0] === "[]" ||
-                item.productId.productSize[0]
-                  .split(",")
-                  .filter((size) => size.trim() !== "").length === 0 ? (
+                  item.productId.productSize.length === 0 ||
+                  item.productId.productSize[0] === "[]" ||
+                  item.productId.productSize[0]
+                    .split(",")
+                    .filter((size) => size.trim() !== "").length === 0 ? (
                   <div className="d-flex align-items-center justify-content-between secure_chckotfre">
                     <h5 className="fw-bold mb-1 cart_headre_ssss text-truncate">
                       {item.productId?.productName}
@@ -282,8 +312,9 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
                   <div className="d-inline-flex align-items-center p-2 gap-3 wr_sss_dd_sssss ">
                     <button
                       className="btn bg_prime rounded-circle fw-bold"
-                      onClick={() =>{ handleQuantityChange(index, -1)
-                        if(item.selectedqty == 1){
+                      onClick={() => {
+                        handleQuantityChange(index, -1)
+                        if (item.selectedqty == 1) {
                           handleRemoveItem(item.id, index)
                         }
                       }}
