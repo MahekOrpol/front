@@ -1517,11 +1517,7 @@
   }
 }
 
-.product-main-image {
-  height: 100% !important;
-  object-fit: cover;
 
-}
 
 .hover-overlay button {
   pointer-events: auto;
@@ -1595,7 +1591,7 @@
 
 .product-main-image {
   width: 100%;
-  height: auto;
+  height: 100% !important;
   object-fit: cover;
   image-rendering: auto;
 }
