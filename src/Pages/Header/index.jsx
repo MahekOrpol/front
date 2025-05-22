@@ -158,9 +158,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           style={{ cursor: "pointer" }}
           onClick={() => navigate("/")}
         >
-         <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+          <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             loading="eager"
             fetchPriority="high"
             src="/Images/greenlogo.png"
@@ -193,7 +193,6 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 >
                   <div className="popup-arrow"></div>
                   <div className="profile-section">
-
                     <div className="profile-details">
                       {localStorage.getItem("user_name") ? (
                         <div className="d-flex flex-column gap-2">
@@ -211,7 +210,6 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                           <h5>
                             {"Hey"}, {localStorage.getItem("user_fname")} !
                           </h5>
-
                         </div>
                       ) : (
                         <h5></h5>
@@ -221,7 +219,6 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                         !localStorage.getItem("user_fname") && (
                           <div className="d-flex flex-column gap-2">
                             <h6> {"Welcome To Crystova Jewels !"} </h6>
-
                           </div>
                         )}
                     </div>
@@ -229,15 +226,17 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   {/* Menu List */}
                   <ul className="menu-list">
                     {localStorage.getItem("user_Id") &&
-                      localStorage.getItem("user_token") ? (
-                      <li onClick={() => {
-                        navigate("/Editprofile");
-                        setIsSignup(false);
-                      }}>
+                    localStorage.getItem("user_token") ? (
+                      <li
+                        onClick={() => {
+                          navigate("/Editprofile");
+                          setIsSignup(false);
+                        }}
+                      >
                         <div className="menu-item gap-2">
-                         <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                          <img
+                            onContextMenu={disableRightClick}
+                            draggable="false"
                             loading="eager"
                             width={18}
                             height={18}
@@ -250,14 +249,16 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                         <FaAngleRight size={20} className="menu-arrow" />
                       </li>
                     ) : (
-                      <li onClick={() => {
-                        navigate("/login");
-                        setIsSignup(false);
-                      }}>
+                      <li
+                        onClick={() => {
+                          navigate("/login");
+                          setIsSignup(false);
+                        }}
+                      >
                         <div className="menu-item gap-2">
-                         <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                          <img
+                            onContextMenu={disableRightClick}
+                            draggable="false"
                             loading="eager"
                             width={18}
                             height={18}
@@ -271,14 +272,16 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       </li>
                     )}
 
-                    <li onClick={() => {
-                      navigate("/Order");
-                      setIsSignup(false);
-                    }}>
+                    <li
+                      onClick={() => {
+                        navigate("/Order");
+                        setIsSignup(false);
+                      }}
+                    >
                       <div className="menu-item gap-2">
-                       <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                        <img
+                          onContextMenu={disableRightClick}
+                          draggable="false"
                           loading="eager"
                           width={18}
                           height={18}
@@ -290,14 +293,16 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
-                    <li onClick={() => {
-                      navigate('/terms-and-conditions');
-                      setIsSignup(false);
-                    }}>
+                    <li
+                      onClick={() => {
+                        navigate("/terms-and-conditions");
+                        setIsSignup(false);
+                      }}
+                    >
                       <div className="menu-item gap-2">
-                       <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                        <img
+                          onContextMenu={disableRightClick}
+                          draggable="false"
                           loading="eager"
                           width={18}
                           height={18}
@@ -309,14 +314,16 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
-                    <li onClick={() => {
-                      navigate('/privacy-policy');
-                      setIsSignup(false);
-                    }}>
+                    <li
+                      onClick={() => {
+                        navigate("/privacy-policy");
+                        setIsSignup(false);
+                      }}
+                    >
                       <div className="menu-item gap-2">
-                       <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                        <img
+                          onContextMenu={disableRightClick}
+                          draggable="false"
                           loading="eager"
                           width={18}
                           height={18}
@@ -328,14 +335,16 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       </div>
                       <FaAngleRight size={20} className="menu-arrow" />
                     </li>
-                    <li onClick={() => {
-                      navigate("/contact-us");
-                      setIsSignup(false);
-                    }}>
+                    <li
+                      onClick={() => {
+                        navigate("/contact-us");
+                        setIsSignup(false);
+                      }}
+                    >
                       <div className="menu-item gap-2">
-                       <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                        <img
+                          onContextMenu={disableRightClick}
+                          draggable="false"
                           loading="eager"
                           width={18}
                           height={18}
@@ -380,7 +389,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   fontSize: "11px",
                   padding: "5px 8px",
                   minWidth: "1.2rem",
-                  backgroundColor: "#175C65",
+                  backgroundColor: "#1B464D",
                   fontFamily: "Cabin, sans-serif",
                 }}
               >
@@ -408,7 +417,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   fontSize: "11px",
                   padding: "5px 8px",
                   minWidth: "1.2rem",
-                  backgroundColor: "#175C65",
+                  backgroundColor: "#1B464D",
                   fontFamily: "Cabin, sans-serif",
                 }}
               >
@@ -425,15 +434,15 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
       <div className="dsn_mdcm">
         <div
           className="d-flex align-items-center justify-content-center jhdb_dhvh"
-          style={{ borderTop: "1px solid #797979", background: "#f0f0f0" }}
+          style={{ borderTop: "1px solid #797979", background: "#fff" }}
         >
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Rings")}
           >
-           <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+            <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="lazy"
               src="/Images/diamond-ring-diamond-svgrepo-com.svg"
               width={25}
@@ -445,9 +454,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Earrings")}
           >
-           <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+            <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="lazy"
               src="/Images/earrings.png"
               width={25}
@@ -459,9 +468,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Pendant")}
           >
-           <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+            <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="lazy"
               src="/Images/gem-pendant-svgrepo-com.svg"
               width={20}
@@ -473,9 +482,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => handleCategoryClick("Bracelet")}
           >
-           <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+            <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="lazy"
               src="/Images/noun-bracelet-5323037.svg"
               width={25}
@@ -487,9 +496,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"
             onClick={() => navigate("/Customjewel")}
           >
-           <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+            <img
+              onContextMenu={disableRightClick}
+              draggable="false"
               loading="eager"
               src="/Images/Group 1597884646.svg"
               width={20}
@@ -503,9 +512,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
       {/* Mobile Drawer */}
       <div className={`mobile-drawer ${isDrawerOpen ? "open" : ""}`}>
         <div className="mobile-img">
-         <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+          <img
+            onContextMenu={disableRightClick}
+            draggable="false"
             loading="eager"
             src="/Images/crystovalogowhite (1) 2.png"
             style={{ width: "60%" }}
@@ -538,7 +547,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
           {!localStorage.getItem("user_name") &&
             !localStorage.getItem("user_fname") && (
               <div className="d-flex flex-column gap-2">
-                <h6 className="mb-0 mobile_drawer_text"> {"Welcome To Crystova Jewels!"} </h6>
+                <h6 className="mb-0 mobile_drawer_text">
+                  {" "}
+                  {"Welcome To Crystova Jewels!"}{" "}
+                </h6>
               </div>
             )}
           <hr />
@@ -561,9 +573,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Rings")}
               >
-               <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="lazy"
                   src="/Images/diamond-ring-diamond-svgrepo-com.svg"
                   width={20}
@@ -575,9 +587,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Earrings")}
               >
-               <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="lazy"
                   src="/Images/earrings.png"
                   width={20}
@@ -589,9 +601,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Pendant")}
               >
-               <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="lazy"
                   src="/Images/gem-pendant-svgrepo-com.svg"
                   width={20}
@@ -603,9 +615,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => handleCategoryClick("Bracelet")}
               >
-               <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="lazy"
                   src="/Images/noun-bracelet-5323037.svg"
                   width={20}
@@ -617,9 +629,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => navigate("/Customjewel")}
               >
-               <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="lazy"
                   src="/Images/Group 1597884646.svg"
                   width={20}
@@ -634,9 +646,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                 className="drawer-item d-flex align-items-center gap-2 w-100"
                 onClick={() => navigate("/contact-us")}
               >
-               <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                <img
+                  onContextMenu={disableRightClick}
+                  draggable="false"
                   loading="lazy"
                   src="/Images/contacticon.png"
                   width={18}
@@ -646,7 +658,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
               </div>
             </div>
             {localStorage.getItem("user_Id") &&
-              localStorage.getItem("user_token") ? (
+            localStorage.getItem("user_token") ? (
               <>
                 <div className="pt-2">
                   <span className="drawer-new">ACCOUNT</span>
@@ -657,9 +669,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       navigate("/Editprofile");
                     }}
                   >
-                   <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                    <img
+                      onContextMenu={disableRightClick}
+                      draggable="false"
                       loading="lazy"
                       src="/Images/profileicon.png"
                       width={18}
@@ -674,9 +686,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                       navigate("/Order");
                     }}
                   >
-                   <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                    <img
+                      onContextMenu={disableRightClick}
+                      draggable="false"
                       loading="lazy"
                       src="/Images/ordericon.png"
                       width={18}
@@ -708,9 +720,9 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     navigate("/login");
                   }}
                 >
-                 <img   
-  onContextMenu={disableRightClick}
-   draggable="false"
+                  <img
+                    onContextMenu={disableRightClick}
+                    draggable="false"
                     loading="eager"
                     src="/Images/Group.png"
                     width={18}

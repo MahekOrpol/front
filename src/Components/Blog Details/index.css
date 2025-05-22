@@ -43,7 +43,7 @@
 }
 
 .ssjnsec_fd {
-  background-color: #f1f1f1;
+  background-color: #175c6563;
   border-left: 6px solid #175C65;
   width: 100%;
 }
@@ -135,7 +135,7 @@
     line-height: 100%;
     letter-spacing: 0%;
     text-align: center;
-    background-color: #f4eded;
+    background-color: #175c6530;
     border: none;
     padding: 1rem;
     border-radius: 92px;
@@ -184,12 +184,12 @@
   .esyh_btn {
     color: #175C65;
     font-family: "Cabin", sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 13px;
     line-height: 100%;
     letter-spacing: 0%;
     text-align: center;
-    background-color: #f4eded;
+    background-color: #175c6530;
     border: none;
     padding: 1rem;
     border-radius: 92px;
@@ -261,7 +261,7 @@
     line-height: 100%;
     letter-spacing: 0%;
     text-align: center;
-    background-color: #f4eded;
+    background-color: #175c6530;
     border: none;
     padding: 1rem;
     border-radius: 92px;
@@ -294,7 +294,7 @@
     line-height: 100%;
     letter-spacing: 0%;
     text-align: center;
-    background-color: #f4eded;
+    background-color: #175c6530;
     border: none;
     padding: 1rem;
     border-radius: 92px;

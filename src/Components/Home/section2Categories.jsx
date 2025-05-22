@@ -33,7 +33,7 @@ const Section2Categories = () => {
         onContextMenu={disableRightClick}
         draggable="false"
         loading="lazy"
-        src="/Images/Groupimg.png"
+        src="/Images/green123.png"
         className="home_tag_img"
         alt="home"
       />

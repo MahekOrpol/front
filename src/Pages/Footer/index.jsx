@@ -13,6 +13,7 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import { RiTwitterXFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const disableRightClick = (e) => e.preventDefault();
@@ -26,18 +27,21 @@ const Footer = () => {
     window.open(whatsappLink, "_blank", "noopener,noreferrer");
   };
 
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="footer_mdjj hdr_csdssdrcsdc pt-5 d-none d-md-block">
         <div className="justify-content-around d-flex w-100 fccc_asxs_footer">
           <div className=" footer_cont text-white sdc_sdds1">
-           <img   
-  onContextMenu={disableRightClick}
-  //  draggable="false"
+            <img
+              onContextMenu={disableRightClick}
+              //  draggable="false"
               loading="eager"
               src="/Images/crystovalogowhite (1) 2.png"
               width={400}
               alt="footer"
+              onClick={() => navigate("/")}
             />
             <p className="sdcdscsdss_ss ms-3 mt-3 ">
               At Crystova Jewellery, we believe that every piece tells a story.
@@ -105,10 +109,14 @@ const Footer = () => {
               className="doof_dd pt-2"
             >
               <li className="bcdhb_jcb">
-                <a className="footr_lnk" href="/privacy-policy">Privacy Policy</a>
+                <a className="footr_lnk" href="/privacy-policy">
+                  Privacy Policy
+                </a>
               </li>
               <li className="bcdhb_jcb">
-                <a className="footr_lnk" href="/terms-and-conditions">Terms & Conditions</a>
+                <a className="footr_lnk" href="/terms-and-conditions">
+                  Terms & Conditions
+                </a>
               </li>
             </ul>
           </div>
@@ -172,9 +180,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
-         <img   
-  onContextMenu={disableRightClick}
-  //  draggable="false"
+          <img
+            onContextMenu={disableRightClick}
+            //  draggable="false"
             loading="eager"
             src="/Images/Group 104.svg"
             className=""
@@ -195,13 +203,14 @@ const Footer = () => {
       <div className="footer_mdjj_1 hdr_csdssdrcsdc pt-4 d-md-none">
         <div className="justify-content-center align-items-center d-flex flex-column w-100 fccc_asxs_footer">
           <div className=" footer_cont_1 text-white sdc_sdds1">
-           <img   
-  onContextMenu={disableRightClick}
-  //  draggable="false"
+            <img
+              onContextMenu={disableRightClick}
+              //  draggable="false"
               loading="eager"
               src="/Images/crystovalogowhite (1) 2.png"
               width={400}
               alt="footer"
+              onClick={() => navigate("/")}
             />
           </div>
           <p className="sdcdscsdss_ss_1 mt-3 " style={{ width: "88%" }}>
@@ -296,10 +305,14 @@ const Footer = () => {
                 style={{ listStyle: "none", paddingLeft: "0rem" }}
               >
                 <li>
-                  <a className="footr_lnk" href="/privacy-policy">Privacy Policy</a>
+                  <a className="footr_lnk" href="/privacy-policy">
+                    Privacy Policy
+                  </a>
                 </li>
                 <li>
-                  <a className="footr_lnk" href="/terms-and-conditions">Terms & Conditions</a>
+                  <a className="footr_lnk" href="/terms-and-conditions">
+                    Terms & Conditions
+                  </a>
                 </li>
               </ul>
             </AccordionDetails>
@@ -358,9 +371,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="d-flex justify-content-center mb-0  text-white zsdds_sss55">
-         <img   
-  onContextMenu={disableRightClick}
-  //  draggable="false"
+          <img
+            onContextMenu={disableRightClick}
+            //  draggable="false"
             loading="eager"
             src="/Images/Group 104.svg"
             className=""

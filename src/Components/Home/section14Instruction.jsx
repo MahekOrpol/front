@@ -23,7 +23,7 @@ const Section13Instruction = () => {
         draggable="false"
         loading="lazy"
         // fetchPriority="high"
-        src="/Images/Groupimg.png"
+        src="/Images/green123.png"
         alt="Decorative"
         className="home_tag_img"
       />

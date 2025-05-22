@@ -118,7 +118,7 @@ const Section7Occasions = () => {
         draggable="false"
         loading="lazy"
         // fetchPriority="high"
-        src="/Images/Groupimg.png"
+        src="/Images/green123.png"
         className="home_tag_img best_sellig_sdcdc d-none"
         alt="home"
       />

@@ -236,7 +236,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                     aria-label="Login/Register Tabs"
                     variant="fullWidth"
                     TabIndicatorProps={{
-                      style: { backgroundColor: "#703340" }, // Active indicator color
+                      style: { backgroundColor: "#195E67" }, // Active indicator color
                     }}
                     sx={{
                       "& .MuiTab-root": {
@@ -244,7 +244,7 @@ const RegisterPopup = ({ isOpen, onClose }) => {
                         textTransform: "capitalize",
                       },
                       "& .Mui-selected": {
-                        color: "#703340 !important",
+                        color: "#195E67 !important",
                         fontWeight: 600,
                       },
                     }}
