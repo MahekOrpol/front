@@ -2762,7 +2762,7 @@ img.ring-image {
 }
 
 .sdcijdic_ass_sssssswx_ring:hover {
-  transform: scale(1.07);
+  transform: scale(1.4);
   /* Slight zoom effect */
   box-shadow: 0 0 25px rgba(126, 121, 121, 0.8);
 
@@ -5955,7 +5955,6 @@ video {
 /* Categories Slider Section - Optimized */
 .categories-slider {
   width: 100%;
-  background: #fff;
   position: relative;
   overflow: hidden;
   will-change: transform;
@@ -6042,7 +6041,7 @@ video {
     width: 100px;
     height: 100px;
   }
-
+  
   .category-image-wrapper:hover {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     transform: none;
@@ -6051,7 +6050,7 @@ video {
     -ms-transform: none;
     -o-transform: none;
   }
-
+  
   .category-label {
     font-size: 0.9rem;
   }
@@ -6062,7 +6061,7 @@ video {
     width: 70px;
     height: 70px;
   }
-
+  
   .category-label {
     font-size: 0.8rem;
   }
@@ -6078,7 +6077,7 @@ video {
     width: 70px;
     height: 70px;
   }
-
+  
   .category-label {
     font-size: 0.8rem;
   }
@@ -6094,7 +6093,7 @@ video {
     width: 90px;
     height: 90px;
   }
-
+  
   .category-label {
     font-size: 0.8rem;
   }
@@ -6228,4 +6227,36 @@ video {
   text-align: center;
   /* padding-top: 65px; */
   height: 282px;
+}
+
+/* .dxfcvdfsCV_ss,
+.ring-slider-container1 .ring-img,
+.ring-slider-container1 .nav-btn,
+.diamon_jewe,
+.hnbgygjhh,
+.sign_collection,
+.abc1,
+.szdxksdx_HGVBH,
+.ringSection,
+.cline_ytsdhcsd,
+.hdr_csd,
+.slider-container,
+.heder_sec_main,
+.client_footer_monial,
+.categories-slider,
+.ring-slider-container1  {
+  background-color: #f0f0f0 !important;
+  } */
+  
+ .ringSection, .slider-container, .ring-slider-container1,.ring-slider-container1 .ring-img,.ring-slider-container1 .nav-btn{
+  background-color: #f0f0f0 !important;
+
+}
+.offer_page_css{
+  background-color: white;
+}
+.html, body, #root {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
 }

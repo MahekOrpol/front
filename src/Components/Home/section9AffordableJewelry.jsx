@@ -12,7 +12,7 @@ export default function Section9AffordableJewelry() {
     { amount: 3999, className: "offer_prixx3" },
   ];
   return (
-    <div className="abc1 paddingdn d-flex flex-column align-items-center mt-md-4 stunning_price_fvf">
+    <div className="abc1 paddingdn d-flex flex-column align-items-center pt-md-4 stunning_price_fvf">
       <span className="category_name mt-0 mobile-hide">Affordable Luxury</span>
       <span className="category_name mt-0 mobile-show">Stunning Surprise</span>
 

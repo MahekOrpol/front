@@ -38,7 +38,7 @@ const Section3Offers = () => {
         </div>
       </div>
       {/* </div> */}
-      <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row">
+      <div className="d-flex flex-column flex-sm-column flex-md-column flex-lg-row offer_page_css">
         <div className="position-relative">
           <img
             onContextMenu={disableRightClick}

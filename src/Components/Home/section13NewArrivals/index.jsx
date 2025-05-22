@@ -71,7 +71,7 @@ const Section13NewArrivals = () => {
   }, [calculateWheel, updateRotateMultiplier]);
   return (
     <>
-      <div className="paddingdn d-flex flex-column align-items-center mt-2 mt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
+      <div className="paddingdn d-flex flex-column align-items-center pt-2 pt-md-4 asxs_sdxszx dxfcvdfsCV_ss">
         <span className="category_name">New Arrivals</span>
         <p className="category_txt">New Creations, Forever Elegance</p>
         <img
