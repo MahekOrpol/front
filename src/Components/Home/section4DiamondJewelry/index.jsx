@@ -34,7 +34,7 @@ const Section4DiamondJewelry = () => {
         draggable="false"
         loading="lazy"
         // fetchPriority="high"
-        src="/Images/Groupimg.png"
+        src="/Images/green123.png"
         className="home_tag_img"
         alt="home"
       />

@@ -6,7 +6,7 @@ const images = [
   "/Images/jewe.jpg",
   "/Images/jewelery (1).jpg",
 ];
-const groupImg = "/Images/Groupimg.png";
+const groupImg = "/Images/green123.png";
 
 const section10ExquisiteJewelry = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

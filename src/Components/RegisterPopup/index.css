@@ -58,13 +58,13 @@
 .tab-underline {
   border: 0;
   height: 3px;
-  background: #4C0D16;
+  background: #1B464D;
   width: 99%;
   margin: 5px auto 20px;
 }
 .register-text {
   font-size: 24px;
-  color: #4C0D16;
+  color: #1B464D;
   text-align: left;
   font-weight: 400;
   font-family: "Cabin", sans-serif;
@@ -90,13 +90,13 @@
   margin: 10px 0;
 }
 .terms-text a {
-  color: #4C0D16;
+  color: #1B464D;
   text-decoration: none;
   font-weight: bold;
 }
 .register-btn {
   width: 39%;
-  background: #4C0D16;
+  background: #1B464D;
   color: white;
   padding: 10px;
   border: none;
@@ -203,7 +203,7 @@ cursor: pointer;
   }
   .register-text {
     font-size: 22px;
-    color: #4C0D16;
+    color: #1B464D;
     text-align: left;
     font-weight: 400;
     margin-bottom: 4px;
@@ -297,7 +297,7 @@ cursor: pointer;
   }
   .register-text {
     font-size: 21px;
-    color: #4C0D16;
+    color: #1B464D;
     text-align: left;
     font-weight: 400;
     font-family: "Cabin", sans-serif;
@@ -389,7 +389,7 @@ cursor: pointer;
   }
   .register-text {
     font-size: 18px;
-    color: #4C0D16;
+    color: #1B464D;
     text-align: left;
     font-weight: 400;
     font-family: "Cabin", sans-serif;

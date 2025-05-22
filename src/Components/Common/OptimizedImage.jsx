@@ -52,7 +52,7 @@ const OptimizedImage = ({
           overflow: hidden;
         }
         .loading {
-          background: #f0f0f0;
+          background: #fff;
           animation: pulse 1.5s infinite;
         }
         @keyframes pulse {

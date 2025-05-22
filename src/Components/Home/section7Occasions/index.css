@@ -66,7 +66,7 @@
 .slick-next {
   /* top: 50%; */
   position: absolute;
-  background-color: #660f2e;
+  background-color: #175C65;
   border-radius: 50%;
   width: 35px;
   height: 35px;
@@ -76,7 +76,7 @@
 .detail_arrowW_xss .slick-prev, .detail_arrowW_xss .slick-next {
   /* top: 50%; */
   position: absolute;
-  background-color: #660f2e;
+  background-color: #175C65;
   border-radius: 50%;
   width: 25px;
   height: 25px;
@@ -92,7 +92,7 @@
   height: 8px;
   border-left: 2px solid #fff;
   border-bottom: 2px solid #fff;
-  color: #660f2e;
+  color: #175C65;
   font-size: 24px;
   box-sizing: border-box;
 }
@@ -115,7 +115,7 @@
   height: 10px;
   border-left: 2px solid #fff;
   border-bottom: 2px solid #fff;
-  color: #660f2e;
+  color: #175C65;
   font-size: 24px;
   box-sizing: border-box;
 }
@@ -178,7 +178,7 @@
 }
 
 .static-gift-card {
-  background: #dfd2d5;
+  background: #e9f1f1;
   padding: 20px;
   width: 45%;
 
@@ -195,7 +195,7 @@
 }
 
 .circle-btn {
-  background-color: #660f2e;
+  background-color: #175C65;
   color: white;
   border: none;
   padding: 10px 14px;
@@ -206,7 +206,7 @@
 }
 
 .circle-btn:hover {
-  background-color: #44091f;
+  background-color: #1B464D;
 }
 
 .dfvcf_VFFYT {
@@ -231,7 +231,7 @@
 }
 
 .MHK {
-  border: 1px solid #b08e95;
+  border: 1px solid #175C65;
 }
 
 .gift_box_dsdd {

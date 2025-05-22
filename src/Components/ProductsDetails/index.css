@@ -683,7 +683,7 @@
 
 .oib_inout {
   border: none;
-  background-color: #f0f0f0;
+  background-color: #fff;
   outline: none;
 }
 
@@ -702,7 +702,7 @@
 }
 
 .size_drp_dpwn {
-  background-color: #f0f0f0;
+  background-color: #fff;
   color: #000000;
   border: none;
   font-family: "Cabin", sans-serif;
@@ -714,7 +714,7 @@
 .btn-check:focus + .btn-secondary,
 .btn-secondary:focus {
   color: #000000;
-  background-color: #f0f0f0;
+  background-color: #fff;
   border: none;
   box-shadow: 0 0 0 0.25rem rgba(130, 138, 145, 0.5);
 }
@@ -817,7 +817,7 @@
 
 .det_cddd {
   border-radius: 6px;
-  background-color: #f0f0f0;
+  background-color: #fff;
   border: none;
 }
 
@@ -1444,7 +1444,7 @@
 }
 
 .whats_abtn_1 {
-  background-color: #f0f0f0;
+  background-color: #fff;
   color: #000;
   border-radius: 5px;
   font-family: "Cabin", sans-serif;

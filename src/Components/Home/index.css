@@ -410,7 +410,7 @@
 
 .new_btndd_arvl {
   color: #175C65;
-  background-color: #f4eded;
+  background-color: #175c6563;
   border: 1px solid #175C65;
   border-radius: 5px;
   height: 40px;
@@ -1312,7 +1312,7 @@ button.swiper-pagination-bullet {
 }
 .spg_nb_sle:hover {
   font-family: "DM Serif Text", serif;
-  color: #f4eded;
+  color: #175c6563;
   font-weight: 400;
   font-size: 28px;
   background-color: #175C65;
@@ -2121,7 +2121,7 @@ img.ring-image {
 
   .banner-img-op {
     /* background-color: #8f5e63; */
-    background-image: url("../../../public/Images/Rectangle 27.webp");
+    background-image: url("../../../public/Images/our2222.png");
     border-radius: 36px;
     padding: 2rem 1rem !important;
     background-repeat: no-repeat;
@@ -2129,7 +2129,7 @@ img.ring-image {
   }
 
   .our_colles {
-    background-image: url("../../../public/Images/banerbg.webp");
+    background-image: url("../../../public/Images/our1111.png");
     width: 100%;
     height: auto;
     padding: 0.6rem !important;
@@ -2362,8 +2362,8 @@ img.ring-image {
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #175C65;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     border: none;
     width: fit-content !important;
     height: 26px;
@@ -2417,8 +2417,8 @@ img.ring-image {
     font-size: 12px !important;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #175C65;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     border: none;
     width: fit-content !important;
   }
@@ -2436,8 +2436,8 @@ img.ring-image {
     font-size: 8px !important;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #175C65;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     border: none;
     width: fit-content !important;
     white-space: nowrap;
@@ -2511,8 +2511,8 @@ img.ring-image {
     font-size: 8px !important;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #175C65;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     border: none;
     width: fit-content !important;
     white-space: nowrap;
@@ -2897,7 +2897,7 @@ img.ring-image {
     padding: 0;
   }
   .our_colles {
-    background-image: url("../../../public/Images/banerbg.webp");
+    background-image: url("../../../public/Images/our1111.png");
     width: 100%;
     height: auto;
     padding: 1rem !important;
@@ -3218,8 +3218,8 @@ img.ring-image {
   font-size: 14px;
   line-height: 100%;
   letter-spacing: 0%;
-  background-color: #175C65;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   border: none;
   width: 114px;
   height: 26px;
@@ -4030,8 +4030,8 @@ video {
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #175C65;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     border: none;
     width: fit-content !important;
     height: 26px;
@@ -4371,8 +4371,8 @@ video {
   font-size: 14px;
   line-height: 100%;
   letter-spacing: 0%;
-  background-color: #175C65;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   border: none;
   width: 114px;
   height: 26px;
@@ -4439,7 +4439,7 @@ video {
 }
 
 .our_colles {
-  background-image: url("../../../public/Images/banerbg.webp");
+  background-image: url("../../../public/Images/our1111.png");
   width: 100%;
   height: auto;
   padding: 5rem 7rem;
@@ -4448,7 +4448,7 @@ video {
 
 .banner-img-op {
   /* background-color: #8f5e63; */
-  background-image: url("../../../public/Images/Rectangle 27.webp");
+  background-image: url("../../../public/Images/our2222.png");
   border-radius: 36px;
   padding: 3rem;
   background-repeat: no-repeat;
@@ -4502,7 +4502,7 @@ video {
 
 @media (max-width: 1499px) {
   .our_colles {
-    background-image: url("../../../public/Images/banerbg.webp");
+    background-image: url("../../../public/Images/our1111.png");
     width: 100%;
     height: auto;
     padding: 3rem;
@@ -4524,7 +4524,7 @@ video {
 
 @media (max-width: 1300px) {
   .our_colles {
-    background-image: url("../../../public/Images/banerbg.webp");
+    background-image: url("../../../public/Images/our1111.png");
     width: 100%;
     height: auto;
     padding: 3rem;
@@ -4560,7 +4560,7 @@ video {
 
   .banner-img-op {
     /* background-color: #8f5e63; */
-    background-image: url("../../../public/Images/Rectangle 27.webp");
+    background-image: url("../../../public/Images/our2222.png");
     border-radius: 36px;
     padding: 2rem !important;
     background-repeat: no-repeat;
@@ -4574,7 +4574,7 @@ video {
 
 @media (min-width: 1922px) {
   .our_colles {
-    background-image: url("../../../public/Images/banerbg.webp");
+    background-image: url("../../../public/Images/our1111.png");
     width: 100%;
     height: auto;
     padding: 5rem 7rem;
@@ -4584,7 +4584,7 @@ video {
 
   .banner-img-op {
     /* background-color: #8f5e63; */
-    background-image: url("../../../public/Images/Rectangle 27.webp");
+    background-image: url("../../../public/Images/our2222.png");
     border-radius: 36px;
     padding: 3rem;
     background-repeat: no-repeat;
@@ -5830,7 +5830,7 @@ video {
 }
 @media (width: 375px) {
   .our_colles {
-    background-image: url("../../../public/Images/banerbg.webp");
+    background-image: url("../../../public/Images/our1111.png");
     width: 100%;
     height: auto;
     padding: 0.6rem !important;
@@ -6244,11 +6244,11 @@ video {
 .client_footer_monial,
 .categories-slider,
 .ring-slider-container1  {
-  background-color: #f0f0f0 !important;
+  background-color: #fff !important;
   } */
   
  .ringSection, .slider-container, .ring-slider-container1,.ring-slider-container1 .ring-img,.ring-slider-container1 .nav-btn{
-  background-color: #f0f0f0 !important;
+  background-color: #fff !important;
 
 }
 .offer_page_css{
@@ -6257,5 +6257,20 @@ video {
 .html, body, #root {
   margin: 0;
   padding: 0;
-  background-color: #f0f0f0;
+  background-color: #fff;
+}
+
+.eotRQP {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  min-height: 25vh;
+  background-position: 50% 50%;
+  background-color: #1B464D !important;
+  margin: 0px;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.circle-btn svg{
+  margin-top: -4px;
 }

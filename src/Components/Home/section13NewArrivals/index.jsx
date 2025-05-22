@@ -79,7 +79,7 @@ const Section13NewArrivals = () => {
           draggable="false"
           loading="eager"
           fetchpriority="high"
-          src="/Images/Groupimg.png"
+          src="/Images/green123.png"
           className="home_tag_img"
           alt="home"
         />

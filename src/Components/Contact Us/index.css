@@ -20,7 +20,7 @@
 }
 
 .ssjnsec_fdd {
-  background-color: #ede3e5;
+  background-color: #175c6563;
   border-left: 6px solid #175C65;
   width: 100%;
 }
@@ -119,7 +119,7 @@
 }
 
 .icon-wrapper {
-  background-color: #ede3e5;
+  background-color: #175c6563;
   padding: 20px;
   border-radius: 50%;
   display: flex;
@@ -275,7 +275,7 @@ h4 {
     border-radius: 50%;
   }
   .icon-wrapper svg {
-    color: #7d1228;
+    color: #1B464D;
   }
   .text-left {
     text-align: left;

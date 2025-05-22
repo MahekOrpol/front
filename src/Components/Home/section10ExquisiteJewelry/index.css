@@ -124,7 +124,7 @@
 .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus {
   color: transparent;
   outline: none;
-  background: #660f2e;
+  background: #175C65;
 }
 
 .next-button {
@@ -154,7 +154,7 @@
   /* left: 43%; */
   font-size: 160px;
   font-family: "DM Serif Text", serif;
-  color: #c8b0b5;
+  color: #175c6563;
   font-weight: 100;
   z-index: 3;
   /* transform: translate(40px, -270px); */

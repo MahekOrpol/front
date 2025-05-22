@@ -264,7 +264,7 @@ const CustomJewel = () => {
                 onContextMenu={disableRightClick}
                 draggable="false"
                 loading="eager"
-                src="/Images/Groupimg.png"
+                src="/Images/green123.png"
                 className="home_tag_img"
                 alt="Decorative"
               />
@@ -344,7 +344,7 @@ const CustomJewel = () => {
               onContextMenu={disableRightClick}
               draggable="false"
               loading="eager"
-              src="/Images/Groupimg.png"
+              src="/Images/green123.png"
               className="home_tag_img mb-4"
               alt="Decorative"
             />

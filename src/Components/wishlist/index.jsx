@@ -401,10 +401,10 @@ const Wishlist = () => {
                           </span>
                           <div className="d-flex align-items-center gap-3 pt-1">
                             <span className="mikdec_asdxsx">
-                              {productId.salePrice?.$numberDecimal || "0.00"}
+                             ₹{productId.salePrice?.$numberDecimal || "0.00"}
                             </span>
                             <span className="mikdec_axsx">
-                              {productId.regularPrice?.$numberDecimal || "0.00"}
+                             ₹{productId.regularPrice?.$numberDecimal || "0.00"}
                             </span>
                           </div>
                           <div className="d-flex align-items-center justify-content-between gap-2 pt-2 fvdvdf_Ththgf">

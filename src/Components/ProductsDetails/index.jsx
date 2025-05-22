@@ -1108,7 +1108,7 @@ Please let me know the next steps.`;
               onContextMenu={disableRightClick}
               // draggable="false"
               loading="eager"
-              src="/Images/Groupimg.png"
+              src="/Images/green123.png"
               alt="product details"
             />
           </div>

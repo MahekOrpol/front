@@ -172,7 +172,7 @@
   transition: all 0.3s ease-in-out;
   overflow: hidden;
   position: relative;
-  background: #f0f0f0;
+  background: #fff;
   border-radius: 8px;
 }
 
@@ -214,8 +214,8 @@
 .right-btn {
   background: #fff;
   border: none;
-  width: 35px;
-  height: 35px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -227,8 +227,8 @@
 
 .left-btn:hover,
 .right-btn:hover {
-  background: #175C65;
-  color: #fff;
+  background:   white;
+  color: #000;
 }
 
 .jjcsindn_jcb {
@@ -261,7 +261,7 @@
 }
 
 .add-to-crd-dd1:hover {
-  background: #4a1620;
+  background: #1B464D;
 }
 
 .container {
@@ -299,7 +299,7 @@
   padding: 5px 10px;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #f0f0f0;
+  background-color: #fff;
 }
 
 .right-btn {
@@ -309,7 +309,7 @@
   padding: 5px 10px;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #f0f0f0;
+  background-color: #fff;
 }
 
 .close-button {
@@ -393,7 +393,7 @@
   }
 
   .hi_to_low {
-    background-color: #f0f0f0;
+    background-color: #fff;
     border: none;
     font-family: "Cabin", sans-serif;
     font-weight: 400;
@@ -451,7 +451,7 @@
   }
 
   .hi_to_low {
-    background-color: #f0f0f0;
+    background-color: #fff;
     border: none;
     font-family: "Cabin", sans-serif;
     font-weight: 400;
@@ -1436,10 +1436,10 @@
     height: 319px;
   }
   .left-btn {
-    left: 35%;
+    left: 40%;
   }
   .right-btn {
-    right: 35%;
+    right: 40%;
   }
 }
 
@@ -1507,7 +1507,7 @@
     transition: all 0.3s ease-in-out;
     overflow: hidden;
     position: relative;
-    background: #F0F0F0;
+    background: #fff;
     border-radius: 8px;
     padding-bottom: 0.11rem;
   }
