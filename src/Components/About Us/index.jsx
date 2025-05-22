@@ -19,7 +19,11 @@ const AboutUs = () => {
   const disableRightClick = (e) => e.preventDefault();
 
   const [slidesPerView, setSlidesPerView] = useState(1);
-
+  const [wishlistCount, setWishlistCount] = useState(
+    parseInt(localStorage.getItem("wishlistCount")) || 0
+  );
+  const [wishlistItems, setWishlistItems] = useState({});
+  const [imageIndexes, setImageIndexes] = useState({});
   
   
   const dispatch = useDispatch();

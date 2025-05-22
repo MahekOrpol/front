@@ -73,7 +73,7 @@ export default function Section5TrendingCollections({
     fetchAll();
   }, []);
   return (
-    <div className="paddingdn d-flex flex-column align-items-center hnbgygjhh mt-md-4">
+    <div className="paddingdn d-flex flex-column align-items-center hnbgygjhh pt-md-4">
       <span className="category_name ">Trending Collection</span>
       <p className="category_txt">The Latest looks, Crafted to Perfection</p>
       <img

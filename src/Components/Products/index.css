@@ -85,7 +85,7 @@
 }
 
 .hi_to_low {
-  background-color: #eaeaea;
+  background-color: #ffff;
   border: none;
   font-family: "Cabin", sans-serif;
   font-weight: 400;
@@ -172,7 +172,7 @@
   transition: all 0.3s ease-in-out;
   overflow: hidden;
   position: relative;
-  background: #fff;
+  background: #f0f0f0;
   border-radius: 8px;
 }
 
@@ -183,6 +183,11 @@
 
 .card-image-wrapper img {
   transition: transform 0.5s ease;
+  transform: scale(1.3);
+  padding-top: 16px;
+  background-color: #aaaaaa;
+  opacity: 1;
+
 }
 
 .hover-overlay {
@@ -294,7 +299,7 @@
   padding: 5px 10px;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #eaeaea;
+  background-color: #f0f0f0;
 }
 
 .right-btn {
@@ -304,7 +309,7 @@
   padding: 5px 10px;
   border-radius: 50%;
   cursor: pointer;
-  background-color: #eaeaea;
+  background-color: #f0f0f0;
 }
 
 .close-button {
@@ -388,7 +393,7 @@
   }
 
   .hi_to_low {
-    background-color: #eaeaea;
+    background-color: #f0f0f0;
     border: none;
     font-family: "Cabin", sans-serif;
     font-weight: 400;
@@ -446,7 +451,7 @@
   }
 
   .hi_to_low {
-    background-color: #eaeaea;
+    background-color: #f0f0f0;
     border: none;
     font-family: "Cabin", sans-serif;
     font-weight: 400;

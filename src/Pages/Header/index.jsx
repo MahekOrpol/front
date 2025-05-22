@@ -425,7 +425,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
       <div className="dsn_mdcm">
         <div
           className="d-flex align-items-center justify-content-center jhdb_dhvh"
-          style={{ borderTop: "1px solid #797979", background: "white" }}
+          style={{ borderTop: "1px solid #797979", background: "#f0f0f0" }}
         >
           <div
             className="header_list_tcty mx-4 my-2 d-flex align-items-center gap-2"

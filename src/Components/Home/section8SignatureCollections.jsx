@@ -63,7 +63,9 @@ export default function Section8SignatureCollections({
   }, []);
 
   return (
-    <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell mt-md-4">
+    <div className="sign_collection">
+
+    <div className="container d-flex flex-column align-items-center asdxdsx_bases_sell pt-md-4">
       <span className="category_name">Signature Collections</span>
       <p className="category_txt">Elevate the Everyday in Diamond Elegance</p>
       <img
@@ -286,6 +288,7 @@ export default function Section8SignatureCollections({
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -90,7 +90,7 @@ const Section12RingSlider = () => {
 
   return (
     <>
-      <div className="paddingdn d-flex flex-column align-items-center mt-md-4 szdxksdx_HGVBH">
+      <div className="paddingdn d-flex flex-column align-items-center pt-md-4 szdxksdx_HGVBH">
         <span className="category_name mt-2">Discover Styles</span>
         <p className="category_txt">New Designs, Same Timeless Elegance</p>
         <img
