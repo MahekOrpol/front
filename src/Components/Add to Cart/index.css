@@ -60,7 +60,7 @@
 
 /* Cart Header */
 .cart-header {
-  background-color: #611d2b;
+  background-color: #175C65;
   padding: 15px;
   color: white;
   padding-bottom: 10px;
@@ -131,7 +131,7 @@
   color: white;
   font-family: "Cabin", sans-serif;
 
-  background-color: #611d2b;
+  background-color: #175C65;
 }
 .btn_check_out:hover {
   color: white;
@@ -139,7 +139,7 @@
 
 .bg_prime {
   color: white;
-  background-color: #611d2b;
+  background-color: #175C65;
 }
 .bg_prime:hover {
   color: white;
@@ -210,7 +210,7 @@ margin-bottom: 20px;
 }
 .bg_prime {
   color: white;
-  background-color: #611d2b;
+  background-color: #175C65;
 }
 
 .cart-footer {

@@ -17,7 +17,7 @@
   position: absolute;
   bottom: -26px;
   left: 50px;
-  background-color: #611d2b;
+  background-color: #175C65;
   color: #fff;
   padding: 18px 80px;
   font-size: 20px;
@@ -44,7 +44,7 @@
 
 .ssjnsec_fd {
   background-color: #f1f1f1;
-  border-left: 6px solid #611d2b;
+  border-left: 6px solid #175C65;
   width: 100%;
 }
 
@@ -81,7 +81,7 @@
     position: absolute;
     bottom: -26px;
     left: 50px;
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     padding: 14px 60px;
     font-size: 17px;
@@ -98,7 +98,7 @@
     letter-spacing: 0%;
   }
   .sxdexes {
-    color: #611d2b;
+    color: #175C65;
     font-family: "Cabin", sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -128,7 +128,7 @@
     letter-spacing: 0%;
   }
   .esyh_btn {
-    color: #611d2b;
+    color: #175C65;
     font-family: "Cabin", sans-serif;
     font-weight: 400;
     font-size: 14px;
@@ -152,7 +152,7 @@
     letter-spacing: 0%;
   }
   .sxdexes {
-    color: #611d2b;
+    color: #175C65;
     font-family: "Cabin", sans-serif;
     font-weight: 500;
     font-size: 13px;
@@ -182,7 +182,7 @@
     letter-spacing: 0%;
   }
   .esyh_btn {
-    color: #611d2b;
+    color: #175C65;
     font-family: "Cabin", sans-serif;
     font-weight: 400;
     font-size: 13px;
@@ -216,7 +216,7 @@
     width: 40%;
   }
   .sxdexes {
-    color: #611d2b;
+    color: #175C65;
     font-family: "Cabin", sans-serif;
     font-weight: 500;
     font-size: 13px;
@@ -254,7 +254,7 @@
     letter-spacing: 0%;
   }
   .esyh_btn {
-    color: #611d2b;
+    color: #175C65;
     font-family: "Cabin", sans-serif;
     font-weight: 400;
     font-size: 13px;
@@ -274,7 +274,7 @@
     line-height: 142%;
     letter-spacing: 0%;
     text-align: justify;
-    color: #611d2b;
+    color: #175C65;
   }
 }
 @media (max-width: 841px) {
@@ -287,7 +287,7 @@
     text-align: justify;
   }
   .esyh_btn {
-    color: #611d2b;
+    color: #175C65;
     font-family: "Cabin", sans-serif;
     font-weight: 400;
     font-size: 15px;
@@ -315,7 +315,7 @@
     line-height: 142%;
     letter-spacing: 0%;
     text-align: justify;
-    color: #611d2b;
+    color: #175C65;
   }
 }
 @media (max-width: 816px) {
@@ -367,7 +367,7 @@
     position: absolute;
     bottom: -26px;
     left: 50px;
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     padding: 14px 60px;
     font-size: 18px;
@@ -441,7 +441,7 @@
     letter-spacing: 0%;
   }
   .sxdexes {
-    color: #611d2b;
+    color: #175C65;
     font-family: "Cabin", sans-serif;
     font-weight: 500;
     font-size: 18px;

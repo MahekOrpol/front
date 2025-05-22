@@ -209,7 +209,7 @@ const CartPopup = ({ isOpen, closeCart, showToast, toastMessage }) => {
         <h5 className="fw-bold">Your Cart</h5>
         <RxCross2 onClick={closeCart} style={{ cursor: "pointer" }} />
       </div>
-      <div className="d-flex p-2 align-items-center justify-content-end" style={{color:"#611d2b",textDecoration:"Underline"}}>
+      <div className="d-flex p-2 align-items-center justify-content-end" style={{color:"#175C65",textDecoration:"Underline"}}>
         <div><a onClick={deleteAllOrderDetails}>Clear All</a></div>
       </div>
       <div className="cart-items-bg">

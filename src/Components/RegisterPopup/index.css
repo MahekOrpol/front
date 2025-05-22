@@ -146,7 +146,7 @@
 }
 .hrdd {
   font-size: 15px;
-  color: #611D2B;
+  color: #175C65;
   text-decoration: underline;
   font-family: "Cabin", sans-serif;
 }
@@ -156,10 +156,10 @@
 }
 .tvjg {
 cursor: pointer;
-  color: #611D2B;
+  color: #175C65;
 }
 .tvjgds {
-  color: #611D2B;
+  color: #175C65;
   cursor: pointer;
 }
 

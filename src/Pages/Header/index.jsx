@@ -163,7 +163,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
    draggable="false"
             loading="eager"
             fetchPriority="high"
-            src="/Images/Group 1597884561.webp"
+            src="/Images/greenlogo.png"
             alt="Logo"
             width={280}
             height={280}
@@ -380,7 +380,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   fontSize: "11px",
                   padding: "5px 8px",
                   minWidth: "1.2rem",
-                  backgroundColor: "#611d2b",
+                  backgroundColor: "#175C65",
                   fontFamily: "Cabin, sans-serif",
                 }}
               >
@@ -408,7 +408,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   fontSize: "11px",
                   padding: "5px 8px",
                   minWidth: "1.2rem",
-                  backgroundColor: "#611d2b",
+                  backgroundColor: "#175C65",
                   fontFamily: "Cabin, sans-serif",
                 }}
               >

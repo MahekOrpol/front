@@ -115,7 +115,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #611d2b;
+  color: #175C65;
   font-weight: initial;
   font-size: 1.2rem;
   z-index: 1;
@@ -181,7 +181,7 @@
   backdrop-filter: blur(536.200012px);
   position: absolute;
   left: 50%;
-  background: #611d2b38;
+  background: #175C6538;
   opacity: 21%;
   border-radius: 50%;
   z-index: 1;

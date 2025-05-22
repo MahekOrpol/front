@@ -47,7 +47,7 @@ const JewelrySale = () => {
           className="center-content"
           style={{
             backgroundImage:
-              "url('/Images/purple-ornament-indoors-decor-fabric-material2.webp')",
+              "url('/Images/green.jpg')",
           }}
         >
           <img

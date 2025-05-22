@@ -53,7 +53,7 @@
   width: 185px;
   height: 45px;
   border-radius: 185px;
-  color: #611d2b;
+  color: #175C65;
   font-weight: 700;
   font-size: 19px;
 }
@@ -63,7 +63,7 @@
 }
 
 .arrow_bac {
-  background-color: #611d2b;
+  background-color: #175C65;
   border-radius: 50%;
   width: 45px;
   height: 45px;
@@ -93,7 +93,7 @@
 
 .dai_txt {
   font-size: 28px;
-  color: #611d2b;
+  color: #175C65;
   font-weight: 400;
   white-space: noWrap;
   font-family: "DM Serif Text", serif;
@@ -160,7 +160,7 @@
 }
 
 .explore_btn {
-  background-color: #611d2b;
+  background-color: #175C65;
   width: 241;
   height: 56;
   top: 2028px;
@@ -274,7 +274,7 @@
 }
 
 .sale_offer {
-  background-color: #611d2b;
+  background-color: #175C65;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -284,7 +284,7 @@
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  background-color: #611d2b;
+  background-color: #175C65;
   padding: 10px 0;
   position: relative;
 }
@@ -319,7 +319,7 @@
 }
 
 .new_btndd {
-  background-color: #611d2b;
+  background-color: #175C65;
   color: #fff;
   width: 70%;
   border: none;
@@ -340,7 +340,7 @@
 }
 
 .heart-icon_ss {
-  color: #611d2b;
+  color: #175C65;
 }
 
 .snuf_dfv {
@@ -383,7 +383,7 @@
 }
 
 .add-to-crd-dd {
-  background-color: #611d2b;
+  background-color: #175C65;
   color: #fff;
   border-radius: 4px;
   border: none;
@@ -394,7 +394,7 @@
 }
 
 .more_btn_dsdd {
-  border: 2px solid #611d2b !important;
+  border: 2px solid #175C65 !important;
   color: #000000;
   font-weight: 500;
   background-color: #fff;
@@ -409,9 +409,9 @@
 }
 
 .new_btndd_arvl {
-  color: #611d2b;
+  color: #175C65;
   background-color: #f4eded;
-  border: 1px solid #611d2b;
+  border: 1px solid #175C65;
   border-radius: 5px;
   height: 40px;
   font-family: DM Serif Text;
@@ -1303,20 +1303,19 @@ button.swiper-pagination-bullet {
 
 .spg_nb_sle {
   font-family: "DM Serif Text", serif;
-  color: #611d2b;
+  color: #175C65;
   font-weight: 400;
   font-size: 28px;
-  background-color: #f4eded;
-  border: 1px solid #611d2b;
+  background-color: #DBE3E3;
+  border: 1px solid #175C65;
   border-radius: 5px;
 }
-
 .spg_nb_sle:hover {
   font-family: "DM Serif Text", serif;
   color: #f4eded;
   font-weight: 400;
   font-size: 28px;
-  background-color: #611d2b;
+  background-color: #175C65;
   border: 1px solid #fff;
   border-radius: 5px;
   transition: all 0.3s ease;
@@ -1377,35 +1376,35 @@ button.swiper-pagination-bullet {
 }
 
 .next_arrow {
-  background-color: #611d2b;
+  background-color: #175C65;
   color: #fff;
   border-radius: 200px;
 }
 
 .offer_prixx {
-  border: 2px solid #611d2b;
-  background-color: #611d2b1a;
+  border: 2px solid #175C65;
+  background-color: #175C651a;
   border-radius: 29px;
   /* width: 24%; */
 }
 
 .offer_prixx1 {
-  border: 2px solid #611d2b;
-  background-color: #dfd2d5;
+  border: 2px solid #175C65;
+  background-color: #1b464d2b;
   border-radius: 29px;
   /* width: 24%; */
 }
 
 .offer_prixx2 {
-  border: 2px solid #611d2b;
-  background-color: #d0bbbf;
+  border: 2px solid #175C65;
+  background-color: #1b464d61;
   border-radius: 29px;
   /* width: 24%; */
 }
 
 .offer_prixx3 {
-  border: 2px solid #611d2b;
-  background-color: #b08e95;
+  border: 2px solid #175C65;
+  background-color: #1b464d9c;
   border-radius: 29px;
   /* width: 24%; */
 }
@@ -1630,8 +1629,8 @@ img.ring-image {
     font-size: 12px !important;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #611d2b;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     border: none;
     width: 59px !important;
     height: 24px !important;
@@ -1667,7 +1666,7 @@ img.ring-image {
 
   .more_btn_dsdd {
     padding: 0.38rem !important;
-    border: 2px solid #611d2b !important;
+    border: 2px solid #175C65 !important;
     color: #000000;
     font-weight: 500;
     background-color: #fff;
@@ -1801,9 +1800,9 @@ img.ring-image {
 
 @media (max-width: 992px) {
   .view_more_round {
-    background-color: #611d2b;
+    background-color: #175C65;
     padding: 13px !important;
-    border: 1px solid #611d2b;
+    border: 1px solid #175C65;
     border-radius: 50px;
     transform: translateX(17px);
     opacity: 15%;
@@ -1812,7 +1811,7 @@ img.ring-image {
   .more_link {
     font-family: "Cabin", sans-serif;
     text-decoration: none;
-    color: #611d2b;
+    color: #175C65;
     font-weight: 500;
     font-size: 13px;
   }
@@ -1930,8 +1929,8 @@ img.ring-image {
 }
 
 .sle_home_ddd {
-  background-color: #611d2b;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   border: none;
   border-radius: 4px;
   font-size: 0.8rem;
@@ -1942,7 +1941,7 @@ img.ring-image {
 
 .snuf_dfv .heart-icon_ss {
   border-radius: 50%;
-  color: #611d2b;
+  color: #fff;
 }
 
 .sle_home_ddd,
@@ -2060,7 +2059,7 @@ img.ring-image {
   }
 
   .ring_secededfcvd .add-to-crd-dd {
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border-radius: 4px;
     border: none;
@@ -2079,8 +2078,8 @@ img.ring-image {
   }
 
   .ring_secededfcvd .more_btn_dsdd {
-    border: 2px solid #611d2b !important;
-    color: #611d2b;
+    border: 2px solid #175C65 !important;
+    color: #175C65;
     font-weight: 500;
     background-color: #fff;
     border-radius: 4px;
@@ -2181,8 +2180,8 @@ img.ring-image {
     font-size: 12px !important;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #611d2b;
-    color: #fff;
+    background-color: #fff;
+    color: #000;
     border: none;
     height: 24px !important;
     white-space: nowrap;
@@ -2228,7 +2227,7 @@ img.ring-image {
 
   .more_btn_dsdd {
     padding: 0.38rem !important;
-    border: 2px solid #611d2b !important;
+    border: 2px solid #175C65 !important;
     color: #000000;
     font-weight: 500;
     background-color: #fff;
@@ -2363,7 +2362,7 @@ img.ring-image {
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border: none;
     width: fit-content !important;
@@ -2418,7 +2417,7 @@ img.ring-image {
     font-size: 12px !important;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border: none;
     width: fit-content !important;
@@ -2437,7 +2436,7 @@ img.ring-image {
     font-size: 8px !important;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border: none;
     width: fit-content !important;
@@ -2512,7 +2511,7 @@ img.ring-image {
     font-size: 8px !important;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border: none;
     width: fit-content !important;
@@ -3219,7 +3218,7 @@ img.ring-image {
   font-size: 14px;
   line-height: 100%;
   letter-spacing: 0%;
-  background-color: #611d2b;
+  background-color: #175C65;
   color: #fff;
   border: none;
   width: 114px;
@@ -3594,7 +3593,7 @@ img.ring-image {
     border-radius: 50px;
     width: 52px;
     height: 25px;
-    border: 1px solid #611d2b;
+    border: 1px solid #175C65;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -4031,7 +4030,7 @@ video {
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border: none;
     width: fit-content !important;
@@ -4296,7 +4295,7 @@ video {
   }
 
   .next_arrow {
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border-radius: 200px;
     padding: 0.2rem !important;
@@ -4372,7 +4371,7 @@ video {
   font-size: 14px;
   line-height: 100%;
   letter-spacing: 0%;
-  background-color: #611d2b;
+  background-color: #175C65;
   color: #fff;
   border: none;
   width: 114px;
@@ -4656,7 +4655,7 @@ video {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid #611d2b !important;
+    border: 1px solid #175C65 !important;
     will-change: transform;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -4775,7 +4774,7 @@ video {
 
 @media (min-width: 992px) and (max-width: 1200px) {
   .ring_secededfcvd .add-to-crd-dd {
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border-radius: 4px;
     border: none;
@@ -4790,8 +4789,8 @@ video {
   }
 
   .ring_secededfcvd .more_btn_dsdd {
-    border: 2px solid #611d2b !important;
-    color: #611d2b;
+    border: 2px solid #175C65 !important;
+    color: #175C65;
     font-weight: 500;
     background-color: #fff;
     border-radius: 4px;
@@ -4846,7 +4845,7 @@ video {
   }
 
   .ring_secededfcvd .add-to-crd-dd {
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border-radius: 4px;
     border: none;
@@ -4865,8 +4864,8 @@ video {
   }
 
   .ring_secededfcvd .more_btn_dsdd {
-    border: 2px solid #611d2b !important;
-    color: #611d2b;
+    border: 2px solid #175C65 !important;
+    color: #175C65;
     font-weight: 500;
     background-color: #fff;
     border-radius: 4px;
@@ -4892,7 +4891,7 @@ video {
   }
 
   .ring_secededfcvd .add-to-crd-dd {
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border-radius: 4px;
     border: none;
@@ -4911,8 +4910,8 @@ video {
   }
 
   .ring_secededfcvd .more_btn_dsdd {
-    border: 2px solid #611d2b !important;
-    color: #611d2b;
+    border: 2px solid #175C65 !important;
+    color: #175C65;
     font-weight: 500;
     background-color: #fff;
     border-radius: 4px;
@@ -5066,7 +5065,7 @@ video {
     border-radius: 50px;
     width: 52px;
     height: 25px;
-    border: 1px solid #611d2b;
+    border: 1px solid #175C65;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -5427,7 +5426,7 @@ video {
 .tooltip-content p {
   font-size: 16px;
   font-weight: bold;
-  color: #611d2b;
+  color: #175C65;
 }
 
 /* Position the spots on the banner image */
@@ -5729,7 +5728,7 @@ video {
   }
 
   .next_arrow {
-    background-color: #611d2b;
+    background-color: #175C65;
     color: #fff;
     border-radius: 200px;
     padding: 0.2rem !important;
@@ -5840,7 +5839,7 @@ video {
 }
 
 .btn-arrow-go {
-  background-color: #611d2b;
+  background-color: #175C65;
   color: white;
   border: none;
   border-radius: 50%;
@@ -5886,20 +5885,20 @@ video {
 .more_link {
   font-family: "Cabin", sans-serif;
   text-decoration: none;
-  color: #611d2b;
+  color: #175C65;
   font-weight: 500;
 }
 .more_link:hover {
   font-weight: 500;
   font-family: "Cabin", sans-serif;
   text-decoration: underline;
-  color: #611d2b;
+  color: #175C65;
 }
 
 .view_more_round {
-  background-color: #611d2b;
+  background-color: #175C65;
   padding: 17px;
-  border: 1px solid #611d2b;
+  border: 1px solid #175C65;
   border-radius: 50px;
   transform: translateX(17px);
   opacity: 15%;
@@ -5995,7 +5994,7 @@ video {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   /* transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); */
-  border: 2px solid #611d2b;
+  border: 2px solid #175C65;
   will-change: transform;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -6032,7 +6031,7 @@ video {
 }
 
 .categories-slider .swiper-slide:hover .category-label {
-  color: #611d2b;
+  color: #175C65;
 }
 
 /* Optimized Responsive Design */
