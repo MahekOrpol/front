@@ -1,5 +1,5 @@
 .footer_mdjj {
-  background-color: #611d2b;
+  background-color: #175C65;
   background-image: url("../../../public/Images/footer_dssds.svg");
   background-repeat: no-repeat;
 }
@@ -72,7 +72,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #611d2b;
+  background-color: #175C65;
   border-radius: 50%;
 }
 
@@ -122,7 +122,7 @@
 
 .gbhuji8usdjikijd {
   border-radius: 9px;
-  color: #611d2b;
+  color: #175C65;
   background-color: #fff;
   width: 60%;
   align-items: center;
@@ -132,7 +132,7 @@
 }
 
 .suv_butn {
-  background-color: #611d2b;
+  background-color: #175C65;
   color: #fff;
   border-radius: 4px;
   font-family: "Cabin", sans-serif;
@@ -259,7 +259,7 @@
 @media (max-width: 1024px) {
   .gbhuji8usdjikijd {
     border-radius: 9px;
-    color: #611d2b;
+    color: #175C65;
     background-color: #fff;
     width: 90%;
     align-items: center;
@@ -345,7 +345,7 @@
 @media (max-width: 1240px) and (min-width: 1025px) {
   .gbhuji8usdjikijd {
     border-radius: 9px;
-    color: #611d2b;
+    color: #175C65;
     background-color: #fff;
     width: 90%;
     align-items: center;
@@ -431,7 +431,7 @@
   font-family: "Cabin", sans-serif;
   font-weight: 700;
   text-align: justify;
-  color: #611d2b;
+  color: #175C65;
   border: 1px solid white;
   border-radius: 100px;
   display: flex;
@@ -532,7 +532,7 @@
 }
 
 .footer_mdjj_1 {
-  background-color: #611d2b;
+  background-color: #175C65;
   /* background-image: url('/Images/footer_dssds.svg'); */
   background-repeat: no-repeat;
 }

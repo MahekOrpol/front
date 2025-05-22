@@ -94,14 +94,14 @@ export default function Section5TrendingCollections({
               aria-label="basic tabs example"
               textColor="black"
               TabIndicatorProps={{
-                style: { backgroundColor: "#611D2B" }, // Active indicator color
+                style: { backgroundColor: "#175C65" }, // Active indicator color
               }}
               sx={{
                 "& .MuiTab-root": {
                   color: "black", // Default text color for all tabs
                 },
                 "& .Mui-selected": {
-                  color: "#611D2B !important",
+                  color: "#175C65 !important",
                   fontWeight: 600,
                 },
                 "& .MuiTabs-list": {
@@ -112,20 +112,20 @@ export default function Section5TrendingCollections({
               <Tab
                 className="xjc_dbv flex-row align-items-center "
                 icon={
-                  <BiSolidOffer color="#611D2B" className="pt-1" size={30} />
+                  <BiSolidOffer color="#175C65" className="pt-1" size={30} />
                 }
                 label="On Sale"
                 value="1"
               />
               <Tab
                 className="xjc_dbv flex-row align-items-center "
-                icon={<FaAward color="#611D2B" className="pt-1" size={30} />}
+                icon={<FaAward color="#175C65" className="pt-1" size={30} />}
                 label="Best Seller"
                 value="2"
               />
               <Tab
                 className="xjc_dbv flex-row align-items-center "
-                icon={<FaMedal color="#611D2B" className="pt-1" size={30} />}
+                icon={<FaMedal color="#175C65" className="pt-1" size={30} />}
                 label="Top Rated"
                 value="3"
               />

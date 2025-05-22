@@ -272,7 +272,7 @@ const CheckoutPage = ({cartCount = 0}) => {
     //         address: formData.address,
     //       },
     //       theme: {
-    //         color: "#611D2B",
+    //         color: "#175C65",
     //       },
     //     };
 

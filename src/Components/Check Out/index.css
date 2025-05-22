@@ -160,7 +160,7 @@
 }
 
 .PayBtn {
-    background-color: #611d2b;
+    background-color: #175C65;
     color: white;
     font-size: 29px;
     font-weight: bold;
@@ -168,7 +168,7 @@
 }
 
 .PayBtn1 {
-    color: #611d2b;
+    color: #175C65;
     background-color: white;
     margin-left: 7px;
     padding: 10px;
@@ -187,7 +187,7 @@
 }
 
 .PayBtn2 {
-    color: #611d2b;
+    color: #175C65;
     font-weight: bold;
     font-size: 20px;
     background-color: white;
@@ -211,7 +211,7 @@
 }
 
 .bdsh_mIN {
-    background-color: #611d2b;
+    background-color: #175C65;
 }
 
 .Logo {
@@ -282,7 +282,7 @@
     }
 
     .PayBtn2 {
-        color: #611d2b;
+        color: #175C65;
         font-weight: bold;
         font-size: 15px;
         background-color: white;
@@ -327,7 +327,7 @@
 
 @media(min-width:768px)and (max-width:1699px) {
     .PayBtn2 {
-        color: #611d2b;
+        color: #175C65;
         font-weight: bold;
         font-size: 16px;
         background-color: white;
@@ -399,7 +399,7 @@
     }
 
     .PayBtn2 {
-        color: #611d2b;
+        color: #175C65;
         font-weight: bold;
         font-size: 16px;
         background-color: white;
@@ -550,7 +550,7 @@
 
 @media(min-width:600px)and (max-width:767px) {
     .PayBtn2 {
-        color: #611d2b;
+        color: #175C65;
         font-weight: bold;
         font-size: 16px;
         background-color: white;
@@ -613,7 +613,7 @@
 
 @media(max-width:1500px) {
     .PayBtn {
-        background-color: #611d2b;
+        background-color: #175C65;
         color: white;
         font-size: 23px;
         font-weight: bold;
@@ -622,7 +622,7 @@
 
 @media(min-width:250px) and (max-width:600px) {
     .PayBtn {
-        background-color: #611d2b;
+        background-color: #175C65;
         color: white;
         font-size: 18px;
         font-weight: bold;
@@ -641,7 +641,7 @@
     }
 
     .PayBtn {
-        background-color: #611d2b;
+        background-color: #175C65;
         color: white;
         font-size: 17px;
         font-weight: bold;
@@ -873,8 +873,8 @@
 }
 
 .form-check-input:checked {
-    background-color: #611D2B;
-    border-color: #611D2B;
+    background-color: #175C65;
+    border-color: #175C65;
 }
 
 .form-check-input {
@@ -975,7 +975,7 @@
 
 .apply-btn {
     background-color: #fff;
-    color: #611d2b;
+    color: #175C65;
     border: none;
     padding: 11px 37px;
     font-weight: bold;

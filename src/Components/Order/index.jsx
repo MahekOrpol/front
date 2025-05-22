@@ -243,7 +243,7 @@ const OrderDetails = () => {
                     )
                   )}
                   className="price-slider w-100"
-                  style={{ accentColor: "#611d2b" }}
+                  style={{ accentColor: "#175C65" }}
                   readOnly
                 />
                 <div className="d-flex justify-content-between mt-2">

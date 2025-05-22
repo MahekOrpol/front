@@ -1,5 +1,5 @@
 .header_main {
-  background-color: #611d2b;
+  background-color: #175C65;
   color: #fff;
   height: 40px;
 }
@@ -54,7 +54,7 @@
 .mobile-img {
   display: flex;
   justify-content: space-between;
-  background-color: #611d2b;
+  background-color: #175C65;
   padding: 12px;
 }
 
@@ -125,7 +125,7 @@
 
 .drawer-logout-button {
   padding: 12px;
-  background-color: #611d2b;
+  background-color: #175C65;
   color: white;
   cursor: pointer;
   font-size: 19px;
@@ -548,7 +548,7 @@
   margin: 0;
   font-size: 20px;
   font-weight: bold;
-  color: #611d2b;
+  color: #175C65;
   text-transform: capitalize;
   font-family: "Cabin", sans-serif;
 }
@@ -556,7 +556,7 @@
   margin: 0;
   font-size: 19px;
   font-weight: bold;
-  color: #611d2b;
+  color: #175C65;
   text-transform: capitalize;
   font-family: "Cabin", sans-serif;
 }

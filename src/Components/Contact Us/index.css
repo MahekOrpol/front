@@ -21,7 +21,7 @@
 
 .ssjnsec_fdd {
   background-color: #ede3e5;
-  border-left: 6px solid #611d2b;
+  border-left: 6px solid #175C65;
   width: 100%;
 }
 
@@ -52,13 +52,13 @@
 }
 
 .submit-btn {
-  background-color: #611d2b !important;
+  background-color: #175C65 !important;
   color: white !important;
 }
 
 .btn-primary {
   color: #fff;
-  background-color: #611d2b !important;
+  background-color: #175C65 !important;
   color: white !important;
   border: none;
   font-family: "Inter", sans-serif;
@@ -130,7 +130,7 @@
 }
 
 .icon-wrapper svg {
-  color: #611d2b;
+  color: #175C65;
 }
 
 h4 {
