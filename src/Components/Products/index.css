@@ -1605,7 +1605,7 @@
   
   .card-image-wrapper img {
       transition: transform 0.5s ease;
-      transform: scale(1.4) !important;
+      transform: scale(1.1) !important;
       padding-top: 16px;
       background-color: #1B464C;
       opacity: 1;
