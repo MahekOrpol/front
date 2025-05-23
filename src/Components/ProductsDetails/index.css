@@ -817,7 +817,7 @@
 
 .det_cddd {
   border-radius: 6px;
-  background-color: #fff;
+  background-color: #eaeaea;
   border: none;
 }
 
@@ -1430,11 +1430,11 @@
 }
 
 .whats_abtn {
-    background-color: white;
+    background-color: #eaeaea;
     color: #000;
     border-radius: 5px;
     font-family: "Cabin", sans-serif;
-    border: 1px solid #175C65;
+    border: none;
     font-weight: 600;
     font-size: 17px;
     /* border: none; */
