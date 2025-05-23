@@ -74,7 +74,7 @@ const Section4DiamondJewelry = () => {
                 <Suspense>
                   <LazyVideo
                     loading={videoVisible ? "eager" : "lazy"}
-                    src="/Videos/diamond jewelry.webm"
+                    src="/Videos/123121.mp4"
                     className="w-100 h-100 object-fit-cover bg-white demoiin-video_sec"
                     autoPlay
                     loop
