@@ -46,7 +46,7 @@ const Section4DiamondJewelry = () => {
               <img
                 onContextMenu={disableRightClick}
                 draggable="false"
-                src="/Images/rose.webp"
+                src="/Images/rose.png"
                 alt="Rings"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
@@ -58,7 +58,7 @@ const Section4DiamondJewelry = () => {
               <img
                 onContextMenu={disableRightClick}
                 draggable="false"
-                src="/Images/pen.webp"
+                src="/Images/pen.png"
                 alt="Pendant"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
@@ -94,7 +94,7 @@ const Section4DiamondJewelry = () => {
               <img
                 onContextMenu={disableRightClick}
                 draggable="false"
-                src="/Images/bracletesss.webp"
+                src="/Images/braceletsss.png"
                 alt="Bracelet"
                 loading="eager"
                 className="w-100 h-100 diamond_img"
@@ -106,7 +106,7 @@ const Section4DiamondJewelry = () => {
               <img
                 onContextMenu={disableRightClick}
                 draggable="false"
-                src="/Images/schbgdsccc.webp"
+                src="/Images/ear.png"
                 alt="Earrings"
                 loading="eager"
                 className="w-100 h-100 diamond_img"

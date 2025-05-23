@@ -186,7 +186,7 @@ const Wishlist = () => {
             "wishlistCount",
             Math.max(0, wishlistCount - 1).toString()
           );
-          toast.success(res.data.message || "Removed from wishlist!");
+          // toast.success(res.data.message || "Removed from wishlist!");
         }
       } catch (error) {
         console.error("Error removing from wishlist:", error);
