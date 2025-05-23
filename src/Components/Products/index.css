@@ -85,7 +85,7 @@
 }
 
 .hi_to_low {
-  background-color: #ffff;
+  background-color: #eaeaea;
   border: none;
   font-family: "Cabin", sans-serif;
   font-weight: 400;
@@ -393,7 +393,7 @@
   }
 
   .hi_to_low {
-    background-color: #fff;
+    background-color: #eaeaea;
     border: none;
     font-family: "Cabin", sans-serif;
     font-weight: 400;
@@ -451,7 +451,7 @@
   }
 
   .hi_to_low {
-    background-color: #fff;
+    background-color: #eaeaea;
     border: none;
     font-family: "Cabin", sans-serif;
     font-weight: 400;
