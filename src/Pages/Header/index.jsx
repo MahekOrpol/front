@@ -724,9 +724,19 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                     />{" "}
                     My Orders
                   </div>
+                  <div
+                    className="drawer-item d-flex align-items-center gap-2 w-100"
+                    onClick={() => {
+                      setIsDrawerOpen(false);
+                      handleLogout();
+                    }}
+                  >
+                    <MdLogout size={23} />{" "}
+                    Log Out
+                  </div>
                 </div>
                 {/* Logout button at bottom with red background */}
-                <div className="drawer-logout-container">
+                {/* <div className="drawer-logout-container">
                   <div
                     className="drawer-logout-button d-flex align-items-center gap-2 w-100"
                     onClick={() => {
@@ -736,7 +746,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
                   >
                     <MdLogout width={18} /> Log Out
                   </div>
-                </div>
+                </div> */}
               </>
             ) : (
               <div className="pt-2">

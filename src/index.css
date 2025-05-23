@@ -25,6 +25,13 @@
   color: black;
 }
 
+.sign_txt {
+  color: #797979;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: "Cabin", sans-serif;
+}
+
 .header_list_tcty {
   font-weight: 500;
   font-size: 18px;
@@ -62,6 +69,10 @@
   left: 0;
 }
 
+.khcb_jcj.close {
+  display: none;
+}
+
 .drawer-header {
   display: flex;
   justify-content: flex-end;
@@ -73,15 +84,18 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
+  background-color: white;
+  height: 100vh;
 }
 
 .drawer-item {
   padding: 6px 0;
   font-size: 16px;
   font-weight: 500;
+  color: black;
   font-family: "Cabin", sans-serif;
   cursor: pointer;
-  /* border-bottom: 1px solid #ddd; */
+  position: relative;
 }
 
 .drawer-item:hover {
@@ -110,14 +124,14 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
 
 /* Mobile Drawer Logout Button */
 .drawer-logout-container {
-  position: absolute;
+  position: sticky;
   bottom: 0;
   left: 0;
   right: 0;
@@ -198,6 +212,9 @@
   }
 
   /* Hide desktop navigation */
+  .d-lg-flex {
+    display: none !important;
+  }
 
   /* .hedr_sss {
     width: 100% !important;
@@ -242,6 +259,13 @@
     justify-content: space-between !important;
     /* gap: 20px !important; */
     padding: 10px 23px;
+  }
+
+  .dsfcecv_dfvf {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: end !important;
+    width: 50% !important;
   }
 
   .dsfcdsfcsdfc_dcd {
@@ -316,6 +340,10 @@
     cursor: pointer;
   }
 
+  .sign_txt {
+    font-size: 14px;
+  }
+
   .acco9_text {
     font-size: 14px;
   }
@@ -353,6 +381,10 @@
     width: 27%;
   } */
 
+  .sign_txt {
+    font-size: 12px;
+  }
+
   .acco9_text {
     font-size: 12px;
   }
@@ -382,6 +414,9 @@
     margin-left: 7rem;
     width: 27%;
   } */
+  .sign_txt {
+    font-size: 18px;
+  }
 
   .acco9_text {
     font-size: 18px;
@@ -418,7 +453,7 @@
 }
 
 .hedr_sss img {
-  max-width: 180px;
+  max-width: 180px !important;
   height: auto;
 }
 
@@ -434,6 +469,24 @@
   width: 12%;
   height: auto;
 } */
+
+.sign_txt {
+  font-size: 14px;
+  /* color: #ccc; */
+}
+
+.input-group1 {
+  display: flex;
+  align-items: center;
+  width: 25% !important;
+  max-width: 100%;
+}
+
+@media (min-width: 992px) and (max-width: 1024px) {
+  .input-group1 {
+    width: 43% !important;
+  }
+}
 
 @media (min-width: 1400px) {
   .xdcxscd_sercv {
@@ -498,7 +551,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -561,6 +614,11 @@
   font-family: "Cabin", sans-serif;
 }
 
+.pope {
+  font-size: 16px;
+  font-family: "Cabin", sans-serif;
+}
+
 .contact-number {
   margin: 0;
   font-size: 15px;
@@ -588,6 +646,12 @@
 .menu-item {
   display: flex;
   align-items: center;
+}
+
+.mini_icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
 }
 
 .sass {
@@ -711,19 +775,20 @@
 
 .dropdown-subcategory {
   position: absolute;
-  top: 119%;
+  top: 100%;
   left: 0;
   background-color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  z-index: 10;
+  z-index: 1000;
   min-width: 150px;
-  transition:  transform 0.3s ease;
+  transition: transform 0.3s ease;
+  padding-top: 10px;
 }
 
 .dropdown-subcategory div {
   padding: 8px 12px;
   cursor: pointer;
-  
+  white-space: nowrap;
 }
 
 .dropdown-subcategory div:hover {
@@ -746,4 +811,10 @@
 
 .arrow-icon.rotate {
   transform: rotate(90deg);
+}
+
+.mobile_drawer_text{
+  color: #000000;
+  font-weight: 500;
+  font-size: .92rem;
 }
