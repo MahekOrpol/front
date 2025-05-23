@@ -717,7 +717,7 @@ const Products = () => {
             <span className="produ_shsu">Choose Perfect Style for You</span>
             <p className="pro_p">
               Find the design that speaks to your heart. Explore a variety of
-              stunning ring styles to match your unique taste and occasion
+              stunning {categoryName} styles to match your unique taste and occasion
             </p>
             {categoryName !== "Earrings" && (
               <div className="pt-3 Sfg">
