@@ -183,7 +183,7 @@
 
 .card-image-wrapper img {
   transition: transform 0.5s ease;
-  transform: scale(1.3);
+  transform: scale(1.1);
   padding-top: 16px;
   background-color: #1B464C;
   opacity: 1;
@@ -1599,4 +1599,16 @@
   height: 100% !important;
   object-fit: cover;
   image-rendering: auto;
+}
+
+@media (min-width:1400px) and (max-width:1749px){
+  
+  .card-image-wrapper img {
+      transition: transform 0.5s ease;
+      transform: scale(1.4) !important;
+      padding-top: 16px;
+      background-color: #1B464C;
+      opacity: 1;
+}
+
 }

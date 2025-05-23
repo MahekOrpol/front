@@ -1312,7 +1312,7 @@ button.swiper-pagination-bullet {
 }
 .spg_nb_sle:hover {
   font-family: "DM Serif Text", serif;
-  color: #175c6563;
+  color: #fff;
   font-weight: 400;
   font-size: 28px;
   background-color: #175C65;
@@ -2761,7 +2761,7 @@ img.ring-image {
 }
 
 .sdcijdic_ass_sssssswx_ring:hover {
-  transform: scale(1.4);
+  transform: scale(1.2);
   /* Slight zoom effect */
   box-shadow: 0 0 25px rgba(126, 121, 121, 0.8);
 
