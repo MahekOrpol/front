@@ -290,8 +290,18 @@ const CheckoutPage = ({cartCount = 0}) => {
     // }
   };
 
+    useEffect(() => {
+    // Add class when component mounts
+    document.body.classList.add('checkout_pageaaaa');
+
+    // Cleanup: remove class when component unmounts
+    return () => {
+      document.body.classList.remove('checkout_pageaaaa');
+    };
+  }, []);
+
   return (
-    <div>
+    <>
       <div className="main-header1">
         <div className="d-flex p-0 justify-content-center w-100 bdsh_mIN">
           <img
@@ -628,7 +638,7 @@ const CheckoutPage = ({cartCount = 0}) => {
         </Col>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 
