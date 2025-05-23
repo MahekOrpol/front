@@ -665,7 +665,7 @@ Please let me know the next steps.`;
 
             <div className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3 sticky-gallery">
               {/* Box 1: First video (if exists) */}
-              <div className="col-md-6 border vider_saxasxs">
+              <div className="col-md-6 vider_saxasxs">
                 {videos.length > 0 ? (
                   <video
                     src={`https://dev.crystovajewels.com${videos[0]}`}
