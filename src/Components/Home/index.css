@@ -6274,3 +6274,29 @@ video {
 .circle-btn svg{
   margin-top: -4px;
 }
+
+
+/* Add these new styles */
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000000000000000000000000;
+  background: white;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-container.visible {
+  transform: translateY(0);
+}
+
+.header-container.hidden {
+  transform: translateY(-100%);
+}
+
+/* Add this to prevent content from jumping when header hides/shows */
+body {
+  padding-top: 150px; /* Adjust this value to match your header height */
+}

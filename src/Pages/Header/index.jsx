@@ -23,6 +23,30 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
   const popupRef = useRef(null);
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [showHeader, setShowHeader] = useState(true);
+  const headerRef = useRef(null);
+
+  useEffect(() => {
+    const controlHeader = () => {
+      if (typeof window !== 'undefined') { 
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          // Scrolling down and past 100px - hide header
+          setShowHeader(false);
+        } else if (currentScrollY < lastScrollY || currentScrollY < 100) {
+          // Scrolling up or near top - show header
+          setShowHeader(true);
+        }
+
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    window.addEventListener('scroll', controlHeader);
+    return () => window.removeEventListener('scroll', controlHeader);
+  }, [lastScrollY]);
 
   const handleSearch = () => {
     if (searchValue.trim()) {
@@ -112,6 +136,10 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
 
   return (
     <>
+      <div 
+        ref={headerRef}
+        className={`header-container ${showHeader ? 'visible' : 'hidden'}`}
+      >
       <div className="header_main">
         <p className="header_text pt-2">Shop Gold and Diamond Jewellery</p>
       </div>
@@ -750,6 +778,7 @@ const Header = ({ openCart, wishlistCount = 0, cartCount = 0 }) => {
       {isDrawerOpen && (
         <div className="drawer-overlay" onClick={toggleDrawer}></div>
       )}
+      </div>
     </>
   );
 };
