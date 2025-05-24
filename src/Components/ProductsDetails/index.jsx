@@ -521,6 +521,51 @@ Please let me know the next steps.`;
     [dispatch, openCart, navigate]
   );
 
+  const handleBuyNow = useCallback(async () => {
+      addToCart(customProductDetails);
+  if (!userId) {
+    navigate("/login");
+    return;
+  }
+
+  // Check if size selection is required but not selected
+  if (
+    customProductDetails?.productSize?.toString() !== "[]" &&
+    customProductDetails?.productSize?.toString() !== "Size is not Available" &&
+    selectedSize === "Select size"
+  ) {
+    toast.error("Please select size before checkout", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+    return;
+  }
+
+  // Prepare the single product for checkout
+  const productForCheckout = {
+    productId: customProductDetails,
+    selectedSize: selectedSize !== "Select size" ? selectedSize : "",
+    selectedqty: 1, // Force quantity to 1 for Buy Now
+    salePrice: displayPrice.salePrice,
+    discount: displayPrice.discount,
+    // Include other necessary product fields
+    ...customProductDetails
+  };
+
+  // Navigate to checkout with only this product
+  navigate("/checkout", {
+    state: {
+      total: displayPrice.salePrice,
+      discountTotal: displayPrice.discount,
+      orderDetails: [productForCheckout] // Single item array
+    },
+  });
+}, [customProductDetails, displayPrice, navigate, selectedSize, userId]);
+
   return (
     <div className="product-detailszzz">
       <ToastContainer
@@ -665,7 +710,7 @@ Please let me know the next steps.`;
 
             <div className="row col-md-6 gap-2 dfcdfsc_drtvdvdf escjh_drftvbfbvfcv d-none d-md-flex ps-lg-3 sticky-gallery">
               {/* Box 1: First video (if exists) */}
-              <div className="col-md-6 vider_saxasxs">
+              <div className="col-md-6 border vider_saxasxs">
                 {videos.length > 0 ? (
                   <video
                     src={`https://dev.crystovajewels.com${videos[0]}`}
@@ -829,7 +874,7 @@ Please let me know the next steps.`;
                     <div className="d-flex justify-content-between align-items-center gap-3 but_buton_ssssxs">
                       <button
                         className="d-flex align-items-center add-to-crd-dd_dd w-100 p-2 justify-content-center gap-3"
-                        onClick={() => addToCart(customProductDetails)}
+                        onClick={handleBuyNow}
                       >
                         Buy Now
                       </button>
