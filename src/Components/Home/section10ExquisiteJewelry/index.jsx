@@ -2,9 +2,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import "./index.css";
 
 const images = [
-  "/Images/image (32).png",
-  "/Images/jewe.jpg",
-  "/Images/jewelery (1).jpg",
+  "/Images/image (32).jpeg",
+  "/Images/section12w21w.jpg",
+  "/Images/swectionsddd.jpg",
 ];
 const groupImg = "/Images/green123.png";
 

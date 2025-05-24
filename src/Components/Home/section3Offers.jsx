@@ -43,7 +43,7 @@ const Section3Offers = () => {
           <img
             onContextMenu={disableRightClick}
             draggable="false"
-            src="/Images/hero-img3.webp"
+            src="/Images/offersec123.png"
             alt="Main Image"
             className="img-fluid"
             style={{ borderRadius: "0px 0px 0px 0px" }}
