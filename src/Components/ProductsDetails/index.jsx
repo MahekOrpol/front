@@ -1159,7 +1159,7 @@ Please let me know the next steps.`;
           </div>
           <div className="heder_sec_main d-flex flex-column p-0 product_detaildd">
             <div className="row">
-              <div className="slider_ssss_fdcdf ">
+              <div className="slider_ssss_fdcdf qwerty_uiop ">
                 <Swiper
                   spaceBetween={0}
                   slidesPerView={2}
@@ -1181,7 +1181,7 @@ Please let me know the next steps.`;
                 >
                   {relatedProducts.map((product) => (
                     <SwiperSlide key={product.id}>
-                      <div className="card prio_card scdscsed_sdss fgfdddds">
+                      <div className="card prio_card scdscsed_sdss_pro fgfdddds">
                         <div className="card-image-wrapper position-relative">
                           <button className="new_btnddx sle_home_ddd p-1 ms-3 mt-3 position-absolute top-0 start-0 dssdd">
                             NEW
@@ -1203,7 +1203,7 @@ Please let me know the next steps.`;
 
                           <div
                             className="card-body p-0 d-flex justify-content-center"
-                            style={{ height: "100%" }}
+                            style={{ height: "100%" }}  
                           >
                             {(() => {
                               const imageToShow = product.image?.find(
@@ -1215,7 +1215,7 @@ Please let me know the next steps.`;
                                   // draggable="false"
                                   src={`https://dev.crystovajewels.com${imageToShow}`}
                                   alt={product?.productName}
-                                  className="p-1_proi img-fluid border-0"
+                                  className="p-1_proi img-fluid border-0 product-main-image"
                                   onClick={() => handleProductClick(product.id)}
                                   style={{ height: "100%" }}
                                 />

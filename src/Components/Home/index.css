@@ -2171,9 +2171,9 @@ img.ring-image {
     font-family: "Cabin", sans-serif;
     padding-top: 0.45rem !important;
   }
-  .p-1_proi {
+  /* .p-1_proi {
     object-fit: cover !important;
-  }
+  } */
 
   .sle_home_ddd {
     font-family: "Cabin", sans-serif;
@@ -5433,13 +5433,13 @@ video {
 /* Position the spots on the banner image */
 /* Update the existing spot positions if needed */
 .spot-1 {
-  top: 22%;
-  left: 33%;
+    top: 20%;
+    left: 68%;
 }
 
-.spot-2 {
-  top: 68%;
-  left: 49%;
+.spot-2 { 
+    top: 79%;
+    left: 46%;
 }
 
 .spot-tooltip {
@@ -5460,8 +5460,8 @@ video {
 
 /* Add this to your existing CSS */
 .spot-3 {
-  top: 78%;
-  left: 82%;
+    top: 53%;
+    left: 67%;
 }
 
 .spot-3 .spot-tooltip {
