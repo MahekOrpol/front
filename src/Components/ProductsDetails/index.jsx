@@ -229,9 +229,10 @@ Please let me know the next steps.`;
   };
 
   const closeCart = useCallback(() => {
-    setIsCartOpen(false);
-    setShowToast(false);
-  }, []);
+      setIsCartOpen(false);
+      setShowToast(false);
+      dispatch(fetchCartCount());
+    }, [dispatch]);
 
   const toggleFAQ = useCallback((index) => {
     setOpenIndex((prev) => (prev === index ? null : index));
