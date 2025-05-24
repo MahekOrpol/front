@@ -85,7 +85,7 @@ export default function Section8SignatureCollections({
               onContextMenu={disableRightClick}
               draggable="false"
               loading="eager"
-              src="/Images/Mask group (9).webp"
+              src="/Images/Frame 14.png"
               className="img-fluid w-100 h-100 object-fit-cover rounded"
               alt="home"
             />
