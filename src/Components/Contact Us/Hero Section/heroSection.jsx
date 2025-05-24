@@ -10,7 +10,7 @@ const JewelrySale = () => {
   // Preload only critical LCP image
   useEffect(() => {
     const lcpImg = new Image();
-    lcpImg.src = "/Images/image (29).webp";
+    lcpImg.src = "/Images/Frame 11.png";
   }, []);
 
   return (
@@ -23,7 +23,7 @@ const JewelrySale = () => {
             // draggable="false"
             loading="eager"
             fetchpriority="high"
-            src="/Images/image (29).webp"
+            src="/Images/Frame 12 (1).png"
             alt="Elegant necklace with pendant"
             className="large-img"
             width={280}
@@ -34,7 +34,7 @@ const JewelrySale = () => {
               onContextMenu={disableRightClick}
               // draggable="false"
               loading="lazy"
-              src="/Images/Mask group (6).webp"
+              src="/Images/Frame 13 (1).png"
               alt="Diamond ring close-up"
               width={280}
               height={280}
@@ -78,7 +78,7 @@ const JewelrySale = () => {
               onContextMenu={disableRightClick}
               // draggable="false"
               loading="lazy"
-              src="/Images/image (30).webp"
+              src="/Images/Frame 11 (2).png"
               alt="Bracelet on display"
               width={280}
               height={280}
@@ -88,7 +88,7 @@ const JewelrySale = () => {
             onContextMenu={disableRightClick}
             // draggable="false"
             loading="lazy"
-            src="/Images/Mask group (7).webp"
+            src="/Images/Frame 10 (1).png"
             alt="Gold Jewellery display"
             className="large-img"
             width={280}
